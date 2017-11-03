@@ -1,4 +1,4 @@
-\documentclass[]{scrbook}
+\documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -9,7 +9,10 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 }
 \usepackage{graphicx}       % provides commands for including figures
 \usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
 \usepackage{enumitem}
+
+\makenoidxglossaries
 
 
 \title{PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft}
