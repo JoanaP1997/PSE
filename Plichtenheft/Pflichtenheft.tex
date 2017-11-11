@@ -41,7 +41,9 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
-..
+Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei Programmläufen erleichtern, erweitert werden. Der Fokus liegt hierbei in der Unterstützung des Findens von Zusammenhängen in den vom Nutzer in einer WHILE-Sprache verfassten Programmen.
+
+Zielgruppe wo?
 
 \section{Produkteinsatz}
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
@@ -63,14 +65,14 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 		..
 	\subsection{Nichtfunktionale Anforderungen}
 		\subsubsection{Produktdaten}
-			\paragraph{1. Konfigurationsdateien:}
+			\paragraph{/PD10/. Konfigurationsdateien:}
 			Diese Dateien speichern eine Konfiguration des Debuggers.
 			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablen Auswahl, 						Quelltext und Position beider Programme, aber nicht die Ausgabewerte, da diese 			vom Programmcode zur Laufzeit generiert werden.
-			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte 			als auch bedingte Breakpoints. Letzteres benötigt keine Speicherung der Zeile, 			sondern eines Bereiches, zwei Variablen der Programmtexte und ein Operator. 				Dies gilt auch für die Watch-Expressions mit Ausnahme eines Bereiches.
-			\paragraph{2. Sprachdateien:}
+			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte 			als auch bedingte Breakpoints. Letzteres benötigt keine Speicherung der Zeile, 			sondern eines Bereiches, zwei Variablen der Programmtexte und einen Operator. 				Dies gilt auch für die Watch-Expressions mit Ausnahme eines Bereiches.
+			\paragraph{/PD20/ Sprachdateien:}
 			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
 			Dazu gehören die Texte auf GUI-Elementen und Tooltips.
-			\paragraph{3. Einstellungsdatei:}
+			\paragraph{/PD30/ Einstellungsdatei:}
 			Diese Datei speichert die zuletzt ausgewählte Sprache und die URL der 						Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
 		\subsubsection{Produktleistungen}
 		..
