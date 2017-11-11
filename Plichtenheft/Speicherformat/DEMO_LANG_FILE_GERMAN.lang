@@ -1,0 +1,21 @@
+language='Deutsch'
+MENU(){
+	file='Datei'
+	suggestion='Vorschläge'
+	configuration='Einstellungen'
+}
+PROGRAM(){
+	stepsize='Schrittgröße'
+	singlestep='Einzelschritt'
+	values_input='Eingabewerte'
+	values_output='Ausgabewerte'
+}
+DEBUGGER(){
+	step='Schritt'
+	continue='Weiter'
+	cond_breakpoints='Bedingte Breakpoints'
+	watch_expressions='Watch-Expressions'
+}
+HELP(defTextBlock,def_blockLen=3,id='help_stepsize'){
+	//Nützlichen Text Einfügen
+}
