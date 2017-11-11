@@ -36,6 +36,9 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \maketitle
 \newpage
 
+\tableofcontents
+\newpage
+
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
 ..
@@ -60,7 +63,15 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 		..
 	\subsection{Nichtfunktionale Anforderungen}
 		\subsubsection{Produktdaten}
-		..
+			\paragraph{1. Konfigurationsdateien:}
+			Diese Dateien speichern eine Konfiguration des Debuggers.
+			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablen Auswahl, 						Quelltext und Position beider Programme, aber nicht die Ausgabewerte, da diese 			vom Programmcode zur Laufzeit generiert werden.
+			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte 			als auch bedingte Breakpoints. Letzteres benötigt keine Speicherung der Zeile, 			sondern eines Bereiches, zwei Variablen der Programmtexte und ein Operator. 				Dies gilt auch für die Watch-Expressions mit Ausnahme eines Bereiches.
+			\paragraph{2. Sprachdateien:}
+			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
+			Dazu gehören die Texte auf GUI-Elementen und Tooltips.
+			\paragraph{3. Einstellungsdatei:}
+			Diese Datei speichert die zuletzt ausgewählte Sprache und die URL der 						Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
 		\subsubsection{Produktleistungen}
 		..
 		\subsubsection{Weitere nichtfunktionale Anforderungen}
@@ -69,6 +80,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Qualitätsanforderungen}
 ..
 
+\newpage
 \section{Anwendungsfälle und Szenarien}
 \begin{figure}[h] 
   \centering
@@ -80,6 +92,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Globale Testfälle}
 ..
 
+\newpage
 \section{Systemmodelle}
 %Architektur, Verhalten, usw
 \begin{figure}[h] 
@@ -89,10 +102,15 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
   \label{fig:Bild1}
 \end{figure}
 
-
+\newpage
 \section{Benutzungsoberfläche}
 %Gui-Skizzen, Erklärungen der Menüs, usw
-..
+\begin{figure}[h] 
+  \centering
+     \includegraphics[width=0.7\textwidth]{skizzeFull}
+  \caption{Editiermodus (oben) und Debugmodus (unten)}
+  \label{fig:Bild1}
+\end{figure}
 
 \section{Zeit- und Ressourcenplanung}
 ..
