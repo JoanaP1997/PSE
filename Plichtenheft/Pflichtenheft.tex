@@ -41,17 +41,31 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
-Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei Programmläufen erleichtern, erweitert werden. Der Fokus liegt hierbei in der Unterstützung des Findens von Zusammenhängen in den vom Nutzer in einer WHILE-Sprache verfassten Programmen.
+Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei Programmläufen erleichtern, erweitert werden. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache verfassten Programmen.
 
-Zielgruppe wo?
 
 \section{Produkteinsatz}
+Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu relationalen Eigenschaften von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
+Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern des Instituts für theoretische Informatik und soll in deren Büroumgebung zum Einsatz kommen.
+%Betriebsbedingungen? Einsatz wo? (Büroumgebung?)
+
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
-..
+
 
 \section{Produktumgebung}
 %Software, Hardware, Orgware, Schnittstellen
-..
+Das Produkt läuft auf dem Rechner des Nutzers und benötigt keine Kommunikation mit außerhalb. Hierbei läuft das Produkt eventuell neben anderen Applikationen, kommuniziert jedoch nicht mit diesen.
+
+\subsection{Software}
+Da es sich bei dem Produkt um ein Java-Programm handelt, muss ein JRE (Java Runtime Environment) auf dem Rechner vorhanden sein oder mitinstalliert werden. \\
+Das Produkt läuft sowohl auf Windows, als auch auf Mac OS und Linux.
+
+\subsection{Hardware}
+An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt läuft auf jedem Standardrechner (ca. 1 GHz und 128 MB RAM).
+
+\subsection{Schnittstellen}
+Das Produkt hat (öffentliche?) Schnittstellen zur graphischen Benutzeroberfläche und zum Interpreter, um diese leicht austauschbar zu gestalten.
+
 
 \section{Produktfuntionen}
 	\subsection{Funktionale Anforderungen}
