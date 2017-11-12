@@ -21,7 +21,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	\texttt{udpto@student.kit.edu}
 	\and Chiara Staudenmaier\\
 	\texttt{uzhtd@student.kit.edu}
-	\and Étienne ?\\
+	\and Etienne Brunner\\
 	\texttt{urmlp@student.kit.edu}
 	\and Joana Plewnia\\
 	\texttt{uhfpm@student.kit.edu} 
@@ -105,13 +105,35 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \newpage
 \section{Benutzungsoberfläche}
 %Gui-Skizzen, Erklärungen der Menüs, usw
-\begin{figure}[h] 
-  \centering
-     \includegraphics[width=0.7\textwidth]{skizzeFull}
-  \caption{Editiermodus (oben) und Debugmodus (unten)}
-  \label{fig:Bild1}
+\begin{figure}[!ht] 
+    \vspace{-20pt}
+    \centering
+       \includegraphics[width=0.9\textwidth]{skizzeFull}
+       \caption{
+         Benutzeroberfläche von --Programmname-- im Editiermodus (oben) und im Debugmodus
+         (unten)
+       }
+    \label{fig:Bild1}
 \end{figure}
 
+    \subsection{Beschreibung}
+        Befindet sich --Programmname-- im Editiermodus können die Eingabequelltexte über die 
+        Eingabefenster bearbeitet werden.
+        Durch Verändern des Textes im Bereich \enquote{Eingabewerte} können Werte der Eingangsvariablen
+        spezifiziert, gelöscht und verändert werden. 
+        Bedingte Haltepunkte und Watch-Expressions können durch Betätigung der jeweiligen 
+        \enquote{+}-Schaltflächen hinzugefügt werden.
+        Die Schaltflächen \enquote{Schritt} und \enquote{Weiter}, sowie \enquote{Einzelschritt} können nicht betätigt
+        werden. Betätigung der Schaltfläche mit dem grünen Pfeil verursacht den Übergang von
+        --Programmname-- in den Debugmodus.
+        
+        Befindet sich --Programmname-- im Debugmodus, können die Eingabequelltexte nicht
+        über die Eingabefenster bearbeitet werden. Die \enquote{+}-Schaltflächen für bedingte Haltepunkte
+        und Watch-Expressions können nicht betätigt werden.
+        Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt} können betätigt werden.
+        Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
+        
+        
 \section{Zeit- und Ressourcenplanung}
 ..
 
