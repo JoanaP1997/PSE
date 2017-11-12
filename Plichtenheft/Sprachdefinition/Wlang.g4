@@ -2,6 +2,13 @@
 grammar Wlang;
 r: statements;
 
+routineHead: returntype = TYPE id = ID '(' args=arglist ')' #FunctionHead
+			| 'void' id =ID '('args=arglist')' #ProcedureHead
+			;
+arglist: argument ',' arglist | argument;
+argument: type=TYPE id=ID;
+routine: routineHead block;
+
 
 //Statements
 
@@ -54,6 +61,7 @@ term : left = term '/' right = term #Division
 	| FLOATLITERAL #FloatLiteral
 	| INTLITERAL #IntLiteral
 	| ID #ID
+	| CHARLITERAL #CharLiteral
 	;
 //maybe func-call here
 
@@ -70,7 +78,7 @@ TYPE: 'float' | 'int' | 'char' | 'boolean';
 ID : ([a-z]|[A-Z])+ ;
 INTLITERAL: [1-9][0-9]* | '0';
 FLOATLITERAL: [1-9][0-9]*.[0-9]+ | '0';
-CHARLITERAL: '([a-z]|[A-Z])';
+CHARLITERAL: '\'' ~['\\\r\n] '\'';
 BOOLEANLITERAL:	'true'|	'false';
 ASSIGN: '=';
 
