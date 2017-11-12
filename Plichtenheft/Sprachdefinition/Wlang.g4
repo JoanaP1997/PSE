@@ -45,14 +45,10 @@ condition: ID #IdCondition
 comparison: left=term comperator=COMPOPERATOR right=term;
 
 
-
-
-
-
- term : left = term '*' right = term #Multiplication
-	| left = term '/' right = term #Division
-	| left = term '+' right = term #Addition
+term : left = term '/' right = term #Division
+	| left = term '*' right = term #Multiplication
 	| left = term '-' right = term #Subtraction
+	| left = term '+' right = term #Addition
 	| left = term '%' right = term #Modulo
 	|'('term')' #Brackets
 	| FLOATLITERAL #FloatLiteral
