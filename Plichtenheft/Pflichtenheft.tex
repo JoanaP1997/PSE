@@ -51,6 +51,7 @@ Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrst
 
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
  
+ \newpage
 
 \section{Produktumgebung}
 %Software, Hardware, Orgware, Schnittstellen
@@ -67,6 +68,7 @@ An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das
 Das Produkt hat Schnittstellen zur graphischen Benutzeroberfläche und zum Interpreter, um diese leicht austauschbar zu gestalten. \\
 Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer Sprachkonfigurationsdateien, verschiedene Sprachen der Benutzeroberfläche genutzt werden. 
 
+\newpage
 
 \section{Produktfuntionen}
 	 	\subsection{Funktionale Anforderungen}
@@ -94,29 +96,58 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
 		\end{itemize}
- 
+
  		\subsubsection{Sollkriterien}
 		\begin{itemize}
 		\item[/FA220/] Das Produkt kann zufällige Vorschläge für Eingabewerte über einen Vorschlag-Button erstellen. Der Benutzer kann diese noch ändern.
 		\item[/FA230/] Der Benutzer kann Variablen auswählen, von welchen jeder angenommene Wert gespeichert wird.
 		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl an Schleifendurchläufe kann vom Benutzer festgelegt werden (maximal 250).
 		\item[/FA250/] Der Benutzer kann mehr als zwei Programme simultan debuggen.
+		\item[/FA260/] Das Produkt kann Vorschläge für Eingabevariablen anhand der zu debuggenden Programme machen.
+		\item[/FA270/] Das Produkt kann Vorschläge für Watch-Expressions anhand der zu debuggenden Programme machen.
+		\item[/FA280/] Das Produkt kann Vorschläge für bedingte Breakpoints anhand der zu debuggenden Programme machen.
 		\end{itemize}
 
  		\subsubsection{Kannkriterien}
- 		..
+		\begin{itemize}
+		\item[/FA290/] Das Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
+		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
+		\item[/FA310/] Der Benutzer kann Variablen angeben, für welche das Produkt eine Relation vorschlägt.
+		\item[/FA320/] Der Benutzer kann einen Rückschritt durchführen.
+		\item[/FA330/] Die, an den Code gebundenen, Breakpoints verschieben sich mit dem Code, wenn dieser im Editiermodus geändert wird.
+		\end{itemize}		 		
+ 		
+ 		
  		\subsubsection{Abgrenzungskriterien}
+ 		\begin{itemize}
+ 		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen Code optimiert. Mehr als 250 Zeilen Code sind nicht zugelassen.
+ 		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert. Mehr als 200 Iterationen pro Schleife bzw. 200 Rekursionsaufrufe pro Funktion sind nicht zugelassen.
+ 		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
+ 		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
+ 		\end{itemize}
+ 		
+ \newpage		
+ 		
 	\subsection{Nichtfunktionale Anforderungen}
 		\subsubsection{Produktdaten}
-			\paragraph{/PD10/ Konfigurationsdateien:}
-			Diese Dateien speichern eine Konfiguration des Debuggers.
-			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablen Auswahl, 						Quelltext und Position beider Programme, aber nicht die Ausgabewerte, da diese 			vom Programmcode zur Laufzeit generiert werden.
-			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte 			als auch bedingte Breakpoints. Letzteres benötigt keine Speicherung der Zeile, 			sondern eines Bereiches, zweier Variablen der Programmtexte und eines Operators. 				Dies gilt auch für die Watch-Expressions mit Ausnahme eines Bereiches.
-			\paragraph{/PD20/ Sprachdateien:}
+		\begin{itemize}
+		
+		
+			\item[/PD10/] Konfigurationsdateien: \\
+			Diese Dateien speichern eine Konfiguration des Debuggers. 
+			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablen Auswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
+			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. Bedingte Breakpoints benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die Watch-Expressions.
+			
+			\item[/PD20/] Sprachdateien: \\
 			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
-			Dazu gehören die Texte auf GUI-Elementen und Tooltips.
-			\paragraph{/PD30/ Einstellungsdatei:}
-			Diese Datei speichert die zuletzt ausgewählte Sprache und die URL der 						Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
+			Dazu gehören die Texte der GUI-Elemente und Tooltips.
+			
+			\item[/PD30/] Einstellungsdatei: \\
+			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
+			
+			\end{itemize}
+			
+			
 		\subsubsection{Produktleistungen}
 		..
 		\subsubsection{Weitere nichtfunktionale Anforderungen}
