@@ -12,6 +12,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \usepackage[nonumberlist]{glossaries}     % provides glossary commands
 \usepackage{enumitem}
 
+
 \makenoidxglossaries
 
 
@@ -38,6 +39,8 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \tableofcontents
 \newpage
+
+%Eventuell Fußnoten generieren
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
@@ -95,6 +98,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA190/] Nach jedem Schritt oder Breakpoint werden die aktuellen Variablenbelegungen angezeigt.
 		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
+		\item[/FA215/] Das Produkt ermöglicht automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
 		\end{itemize}
 
  		\subsubsection{Sollkriterien}
@@ -149,9 +153,39 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 			
 			
 		\subsubsection{Produktleistungen}
-		..
+		%Zeitverhalten, Genauigkeit, Fehlertoleranz
+		\begin{itemize}
+		\item[/PL10/] Zeitverhalten: \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in annähernd Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in annähernd Echtzeit möglich. \\
+		Den Debugmodus zu starten dauert unter 5 Sekunden. 
+		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
+		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
+		\item[/PL20/] Genauigkeit: \\
+		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
+		\item[/PL30/] Fehlertoleranz: \\
+		Durch automatisches Ablehnen kritischer Eingaben (A10, A20, A40) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
+		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
+		\end{itemize}
+		
 		\subsubsection{Weitere nichtfunktionale Anforderungen}
-		..
+		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
+		\begin{itemize}
+		\item[/NA10/]Erweiterbarkeit: \\
+		Das Produkt ist, durch seinen modularen Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche, sowie einen Interpreter für weitere Sprachen.
+		\item[/NA20/]Wartbarkeit: \\
+		Durch seinen Modularen Entwurf, können Fehler, die z.B. durch veraltete Module entstehen, leicht beseitigt werden.
+		%\item[/NA25/]Robustheit: \\
+		%weiß hier jemand was?
+		\item[/NA30/]Urheberrecht: \\
+		Das Produkt wird unter Open Source Lizenz entwickelt. Bei der Entwicklung wird das unter BSD-Lizenz veröffentlichte Antlr\textsuperscript{\textcopyright} verwendet.
+		Außerdem wird das Produkt in Java entwickelt, welches unter der GNU General Public Lizenz verfügbar ist.
+		\item[/NA40/] Sicherheit: \\
+		Da das Produkt keine Netzwerkverbindung besitzt, verbleiben die vom Benutzer eingegebenen Daten ausschließlich auf dem Rechner des Benutzers.
+		\item[/NA50/]Benutzerfreundlichkeit: \\
+		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
+		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
+		\end{itemize}
+		
 
 \section{Qualitätsanforderungen}
 ..
