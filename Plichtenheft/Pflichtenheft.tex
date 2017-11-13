@@ -41,13 +41,13 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
-Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei Programmläufen erleichtern, erweitert werden. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache verfassten Programmen.
+Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
+Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
 
 
 \section{Produkteinsatz}
 Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu relationalen Eigenschaften von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
-Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl "Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert" des Instituts für theoretische Informatik am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen.
-%Betriebsbedingungen? Einsatz wo? (Büroumgebung?)
+Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl "Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert" des Instituts für theoretische Informatik am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
 
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
  
@@ -64,39 +64,45 @@ Das Produkt läuft sowohl auf Windows, als auch auf Mac OS und Linux.
 An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt läuft auf jedem Standardrechner (ca. 1 GHz und 128 MB RAM).
 
 \subsection{Schnittstellen}
-Das Produkt hat (öffentliche?) Schnittstellen zur graphischen Benutzeroberfläche und zum Interpreter, um diese leicht austauschbar zu gestalten.
+Das Produkt hat Schnittstellen zur graphischen Benutzeroberfläche und zum Interpreter, um diese leicht austauschbar zu gestalten. \\
+Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer Sprachkonfigurationsdateien, verschiedene Sprachen der Benutzeroberfläche genutzt werden. 
 
 
 \section{Produktfuntionen}
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Im Debugmodus kann der Benutzer Schritte durchführen, um das Programm weiter zu debuggen.
-		\item[/FA15/] Durch Einzelschritte können einzelne Programme unabhängig weiter debuggt werden.
-		\item[/FA20/] Der Benutzer kann Breakpoints an Zeilen im Code setzen.
-		\item[/FA30/] --Programmname-- ist ein Debugger für Quellcodes, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
-		\item[/FA40/] Der Benutzer kann die Schrittgröße manuell festlegen.
-		\item[/FA50/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als Watch-Expressions festlegen.
-		\item[/FA60/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als bedingte Breakpoints festlegen.
-		\item[/FA70/] Nach jedem Schritt oder Breakpoint werden die aktuellen Variablenbelegungen angezeigt.
-		\item[/FA80/] Im Debugmodus kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
-		\item[/FA90/]--Programmname-- bietet die Möglichkeit, eine Konfigurationsdatei für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Codes.
-		\item[/FA100/] Das zu debuggende Programm kann direkt in die Textbox des Tools kopiert oder geschrieben werden.
-		\item[/FA110/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
-		\item[/FA120/] Der Debugmodus kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum Editiermodus zurück.
-		\item[/FA130/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
+		\item[/FA10/] Das Produkt ist ein Debugger für Quellcodes, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA20/] Im Debugmodus kann der Benutzer Schritte(Steps) durchführen.
+		\item[/FA30/] Es ist möglich unabhängige Einzelschritte in einem Programm auszuführen.
+		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
+		\item[/FA50/] Bei einem Schritt wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
+		\item[/FA60/] Der Benutzer kann durch Step-Out eine Funktion verlassen.
+		\item[/FA70/] Durch Step-Over kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
+		\item[/FA80/] Der Benutzer kann Breakpoints an Zeilen im Code setzen.
+		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als bedingte Breakpoints festlegen.
+		\item[/FA100/] Bedingte Breakpoints können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als Watch-Expressions festlegen.
+		\item[/FA120/] Watch-Expressions können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA130/] Im Debugmodus kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine Konfigurationsdatei für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Codes.
+		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
+		\item[/FA160/] Das zu debuggende Programm kann direkt in die Textbox des Produkts kopiert werden.
+		\item[/FA170/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
+		\item[/FA180/] Der Debugmodus kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum Editiermodus zurück.
+		\item[/FA190/] Nach jedem Schritt oder Breakpoint werden die aktuellen Variablenbelegungen angezeigt.
+		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
+		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
 		\end{itemize}
-		..
+ 
  		\subsubsection{Sollkriterien}
 		\begin{itemize}
-		\item[/FA200/] Watch-Expressions können auch nur in von Benutzer festgeletem Bereich überprüft werden.
-		\item[/FA210/] Variablen im Variableninspektor können ausgeblendet werden.
-		\item[/FA220/] Zufällige Vorschläge für Eingabewerte über Vorschlag-Button.
-		\item[/FA230/] Jeder angenommene Wert von vom Benutzer ausgewählten Variablen kann gespeichert werden.
-		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl Schleifendurchläufe kann vom Benutzer festgelegt werden (maximal 250).
-		\item[/FA250/] Es können mehr als 2 Programme debuggt werden.
+		\item[/FA220/] Das Produkt kann zufällige Vorschläge für Eingabewerte über einen Vorschlag-Button erstellen. Der Benutzer kann diese noch ändern.
+		\item[/FA230/] Der Benutzer kann Variablen auswählen, von welchen jeder angenommene Wert gespeichert wird.
+		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl an Schleifendurchläufe kann vom Benutzer festgelegt werden (maximal 250).
+		\item[/FA250/] Der Benutzer kann mehr als zwei Programme simultan debuggen.
 		\end{itemize}
-		..
+
  		\subsubsection{Kannkriterien}
  		..
  		\subsubsection{Abgrenzungskriterien}
@@ -172,6 +178,8 @@ Das Produkt hat (öffentliche?) Schnittstellen zur graphischen Benutzeroberfläc
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt} können betätigt werden.
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
         
+\section{Anforderungen an die Entwicklungsumgebung}
+..
         
 \section{Zeit- und Ressourcenplanung}
 ..
