@@ -50,7 +50,7 @@ Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschri
 
 \section{Produkteinsatz}
 Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu relationalen Eigenschaften von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
-Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl "Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert" des Instituts für theoretische Informatik am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
+Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl ''Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert'' des Instituts für theoretische Informatik am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
 
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
  
@@ -61,11 +61,11 @@ Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrst
 Das Produkt läuft auf dem Rechner des Nutzers und benötigt keine Kommunikation mit außerhalb. Hierbei läuft das Produkt eventuell neben anderen Applikationen, kommuniziert jedoch nicht mit diesen.
 
 \subsection{Software}
-Da es sich bei dem Produkt um ein Java-Programm handelt, muss ein JRE (Java Runtime Environment) auf dem Rechner vorhanden sein oder mitinstalliert werden. \\
-Das Produkt läuft sowohl auf Windows, als auch auf Mac OS und Linux.
+Da es sich bei dem Produkt um ein Java-Programm handelt, muss ein JRE (Java Runtime Environment) der Version 8 oder höher auf dem Rechner vorhanden sein oder mitinstalliert werden. \\
+Das Produkt läuft sowohl auf Windows, als auch auf Mac OS und Linux (64bit empfohlen).
 
 \subsection{Hardware}
-An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt läuft auf jedem Standardrechner (ca. 1 GHz und 128 MB RAM).
+An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt läuft auf Rechnern mit mindestens einem 1 GHz Prozessor und 1 GB RAM.
 
 \subsection{Schnittstellen}
 Das Produkt hat Schnittstellen zur graphischen Benutzeroberfläche und zum Interpreter, um diese leicht austauschbar zu gestalten. \\
@@ -78,7 +78,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
  		\subsubsection{Musskriterien}
 		\begin{itemize}
 		\item[/FA10/] Das Produkt ist ein Debugger für Quellcodes, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
-		\item[/FA20/] Im Debugmodus kann der Benutzer Schritte(Steps) durchführen.
+		\item[/FA20/] Im Debugmodus kann der Benutzer Schritte (Steps) durchführen.
 		\item[/FA30/] Es ist möglich unabhängige Einzelschritte in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem Schritt wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
@@ -90,7 +90,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als Watch-Expressions festlegen.
 		\item[/FA120/] Watch-Expressions können an vom Benutzer bestimmte Stellen im Code gebunden werden.
 		\item[/FA130/] Im Debugmodus kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine Konfigurationsdatei für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Codes.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine Konfigurationsdatei für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
 		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
 		\item[/FA160/] Das zu debuggende Programm kann direkt in die Textbox des Produkts kopiert werden.
 		\item[/FA170/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
@@ -114,7 +114,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 
  		\subsubsection{Kannkriterien}
 		\begin{itemize}
-		\item[/FA290/] Das Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
+		\item[/FA290/] Die Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
 		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
 		\item[/FA310/] Der Benutzer kann Variablen angeben, für welche das Produkt eine Relation vorschlägt.
 		\item[/FA320/] Der Benutzer kann einen Rückschritt durchführen.
@@ -125,7 +125,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
  		\subsubsection{Abgrenzungskriterien}
  		\begin{itemize}
  		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen Code optimiert. Mehr als 250 Zeilen Code sind nicht zugelassen.
- 		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert. Mehr als 200 Iterationen pro Schleife bzw. 200 Rekursionsaufrufe pro Funktion sind nicht zugelassen.
+ 		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert.
  		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
  		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
  		\end{itemize}
@@ -156,7 +156,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
 		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in annähernd Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in annähernd Echtzeit möglich. \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
 		Den Debugmodus zu starten dauert unter 5 Sekunden. 
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
@@ -225,7 +225,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 \begin{figure}[!ht] 
     \vspace{-10pt}
     \centering
-       \includegraphics[width=0.85\textwidth]{skizzeFull.jpg}
+       \includegraphics[width=0.85\textwidth]{skizzeFull.eps}
        \caption{
          Benutzeroberfläche von --Programmname-- im Editiermodus (oben) und im Debugmodus
          (unten)
@@ -252,7 +252,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
         
 \section{Anforderungen an die Entwicklungsumgebung}
-Das Produkt wird in Java entwickelt, dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.
+Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.
         
 \section{Zeit- und Ressourcenplanung}
 % Tabelle mit Phasendaten (Ideen sammeln, Einzelarbeit, Ideen zusammentragen, Überarbeitung, Abgabe Vorversion, Kolloquium/Abgabe Finalversion)
