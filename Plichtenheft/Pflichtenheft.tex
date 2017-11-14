@@ -13,9 +13,69 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \usepackage{enumitem}
 
 
-\makenoidxglossaries
 
-
+\newglossaryentry{Einzelschritt}
+{
+	name={Einzelschritt},
+	plural={Einzelschritte},
+	description={Ein Einzelschritt entspricht einem ausgeführten Befehl.}
+}
+\newglossaryentry{Schritt}
+{
+  name={Schritt},
+  plural={Schritte},
+  description={Siehe Einzelschritt. Die Anzahl ausgeführter Befehle entspricht der Schrittgröße.}
+}
+\newglossaryentry{Step-Out}
+{
+	name={Step-Out},
+	description={Springt bis zum Ende der aktuell ausgeführten Funktion. Befindet sich der Debugger in der main-Funktion, wird das Programm fertig gedebuggt.}
+}
+\newglossaryentry{Step-Over}
+{
+	name={Step-Over},
+	description={Ist der Befehl in der aktuellen Zeile ein Methodenaufruf, wird das Programm bis zum Ende dieser Methode gedebuggt. Ist der Befehl eine einzelne Ausführung,
+	wird diese wie bei einem Einzelschritt ausgeführt.}
+}
+\newglossaryentry{Breakpoint}
+{
+	name={Breakpoint},
+	plural={Breakpoints},
+	description={Erreicht das Produkt einen Breakpoint, stoppt es an dieser Stelle das Debuggen.}
+}
+\newglossaryentry{bedingter Breakpoint}
+{
+	name={bedingter Breakpoint},
+	plural={bedingte Breakpoints},
+	description={Der Benutzer kann Relationen zwischen Variablen der zu debuggenden Programme angeben. Sobald diese Relation zutrifft, stoppt das Produkt das Debuggen,
+	auch wenn aktuell ein Schritt ausgeführt wird, der weiter springen würde.}
+}
+\newglossaryentry{Watch-Expression}
+{
+	name={Watch-Expression},
+	plural={Watch-Expressions},
+	description={Der Benutzer kann Rekationen zwischen Variablen als Watch-Expressions angeben. Sobald diese Relationen zutreffen, wird der Benutzer darüber informiert.}
+}
+\newglossaryentry{Debugmodus}
+{
+	name={Debugmodus},
+	description={Das Produkt befindet sich im Debugmodus, sobald der Benutzer Start auswählt. Im Debugmodus können Eingabevariablen und die zu debuggenden Programme nicht
+	mehr geändert werden}
+}
+\newglossaryentry{Editiermodus}
+{
+	name={Editiermodus},
+	description={Das Produkt befindet sich im Editiermodus, bevor der Benutzer den Debugmodus startet, und nachdem das Debuggen abgeschlossen ist. Im Editiermodus
+	können Eingabevariablen und die zu debuggenden Programme geändert werden.}
+}
+\newglossaryentry{Konfigurationsdatei}
+{
+	name={Kofigurationsdatei},
+	plural={Konfigurationsdateien},
+	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
+	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
+}
+\makeglossaries
 \title{PSE:\\ Entwicklung eines relationalen Debuggers\\ Pflichtenheft}
 \author{
 	Benedikt Wagner\\
@@ -32,6 +92,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	\texttt{ujuhe@student.kit.edu}
 }
 
+
 \begin{document}
 
 \maketitle
@@ -45,7 +106,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
 Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
-Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich Einzelschritte, Breakpoints und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das betrachten von sogenannten Watchexpressions, bei denen der Nutzer beispielsweise Differenz oder Quotient aus zwei Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
+Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient aus zwei Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
 
 
 \section{Produkteinsatz}
@@ -78,24 +139,24 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
  		\subsubsection{Musskriterien}
 		\begin{itemize}
 		\item[/FA10/] Das Produkt ist ein Debugger für Quellcodes, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
-		\item[/FA20/] Im Debugmodus kann der Benutzer Schritte (Steps) durchführen.
-		\item[/FA30/] Es ist möglich unabhängige Einzelschritte in einem Programm auszuführen.
+		\item[/FA20/] Im Debugmodus kann der Benutzer \glspl{Schritt} (Steps) durchführen.
+		\item[/FA30/] Es ist möglich unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
-		\item[/FA50/] Bei einem Schritt wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
-		\item[/FA60/] Der Benutzer kann durch Step-Out eine Funktion verlassen.
-		\item[/FA70/] Durch Step-Over kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
-		\item[/FA80/] Der Benutzer kann Breakpoints an Zeilen im Code setzen.
-		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als bedingte Breakpoints festlegen.
-		\item[/FA100/] Bedingte Breakpoints können an vom Benutzer bestimmte Stellen im Code gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als Watch-Expressions festlegen.
-		\item[/FA120/] Watch-Expressions können an vom Benutzer bestimmte Stellen im Code gebunden werden.
-		\item[/FA130/] Im Debugmodus kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine Konfigurationsdatei für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
+		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
+		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
+		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
+		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Code setzen.
+		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
+		\item[/FA100/] \glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
 		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
 		\item[/FA160/] Das zu debuggende Programm kann direkt in die Textbox des Produkts kopiert werden.
 		\item[/FA170/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
-		\item[/FA180/] Der Debugmodus kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum Editiermodus zurück.
-		\item[/FA190/] Nach jedem Schritt oder Breakpoint werden die aktuellen Variablenbelegungen angezeigt.
+		\item[/FA180/] Der \gls{Debugmodus} kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
+		\item[/FA190/] Nach jedem Schritt oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
 		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
 		\item[/FA215/] Das Produkt ermöglicht automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
@@ -108,8 +169,8 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl an Schleifendurchläufe kann vom Benutzer festgelegt werden (maximal 250).
 		\item[/FA250/] Der Benutzer kann mehr als zwei Programme simultan debuggen.
 		\item[/FA260/] Das Produkt kann Vorschläge für Eingabevariablen anhand der zu debuggenden Programme machen.
-		\item[/FA270/] Das Produkt kann Vorschläge für Watch-Expressions anhand der zu debuggenden Programme machen.
-		\item[/FA280/] Das Produkt kann Vorschläge für bedingte Breakpoints anhand der zu debuggenden Programme machen.
+		\item[/FA270/] Das Produkt kann Vorschläge für \glspl{Watch-Expression} anhand der zu debuggenden Programme machen.
+		\item[/FA280/] Das Produkt kann Vorschläge für \glspl{bedingter Breakpoint} anhand der zu debuggenden Programme machen.
 		\end{itemize}
 
  		\subsubsection{Kannkriterien}
@@ -118,7 +179,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
 		\item[/FA310/] Der Benutzer kann Variablen angeben, für welche das Produkt eine Relation vorschlägt.
 		\item[/FA320/] Der Benutzer kann einen Rückschritt durchführen.
-		\item[/FA330/] Die, an den Code gebundenen, Breakpoints verschieben sich mit dem Code, wenn dieser im Editiermodus geändert wird.
+		\item[/FA330/] Die, an den Code gebundenen, \glspl{Breakpoint} verschieben sich mit dem Code, wenn dieser im \gls{Editiermodus} geändert wird.
 		\end{itemize}		 		
  		
  		
@@ -214,7 +275,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{pakete}
+	\includegraphics[width=1.0\textwidth]{pakete}
 	\caption{Paketdiagramm}
 	\label{fig:Bild2}
 \end{figure}
@@ -271,7 +332,13 @@ Qualitätssicherungsphase: Etienne Brunner\\
 Präsentation/Abnahme: Ulla Scheler\\
 
 \subsection{Vorraussichtliche zeitliche Feinplanung}
-\subsubsection{Definitionsphase ???}
+\subsubsection{Definitionsphase}
+\textit{bis 06.11.} Sammeln der Inhalte
+\textit{bis 13.11.} Formulierung der Punkte im Pflichtenheft in Einzelarbeit
+\textit{bis 17.11.} Gemeinsame Überarbeitung
+\textit{17.11. 11:30 Uhr} Abgabe der vor-finalen Version des Pflichtenhefts
+\textit{bis 24.11.} Gemeinsame Überarbeitung
+\textit{24.11. 11:30 Uhr} Abgabe der finalen Version des Pflichtenhefts 
 
 \subsubsection{Entwurfsphase}
 \textit{bis 03.12.} Fertigstellung der Einteilung des Systems in Pakete und Unterpakete und Festlegung der Schnittstellen derer. \\
@@ -294,7 +361,7 @@ Präsentation/Abnahme: Ulla Scheler\\
 ..
 
 \section{Glossar}
-
+\printglossaries
 
 
 
