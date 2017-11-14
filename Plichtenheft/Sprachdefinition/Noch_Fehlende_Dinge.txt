@@ -1,0 +1,5 @@
+WLang.g4 fehlende dinge
+
+FLOATLITERAL .f einfügen
+elseif fehlt
+arrays
