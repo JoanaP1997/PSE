@@ -115,11 +115,12 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \makeglossaries
 
-\title{PSE:\\ Entwicklung eines relationalen Debuggers\\ Pflichtenheft}
-\author{
+\title{PSE:\\ Entwicklung eines relationalen Debuggers\\}
+\subtitle{\vspace{1cm}Pflichtenheft}
+\author{\vspace{1cm} \\
 	Benedikt Wagner\\
 	\texttt{udpto@student.kit.edu}
-	\and Chiara Staudenmaier\\
+	\and \vspace{1cm} \\ Chiara Staudenmaier\\
 	\texttt{uzhtd@student.kit.edu}
 	\and Etienne Brunner\\
 	\texttt{urmlp@student.kit.edu}
@@ -144,7 +145,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
-Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
+Das Produkt \enquote{DIbugger} soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
 Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient aus zwei Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
 
 
@@ -291,7 +292,46 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		
 
 \section{Qualitätsanforderungen}
-..
+ \begin{tabular}{l||c|c|c|c} 
+  Produktqualität & Sehr gut & Gut & Normal & Nicht relevant \\
+  \hline
+  \hline
+  \textbf{Funktionalität} & &&&\\
+  Angemessenheit & & & X &  \\
+  Richtigkeit & X & & & \\
+  Interoperabilität & & & X &\\
+  Sicherheit & & & X & \\
+  \hline
+  \textbf{Zuverlässigkeit} &&&&\\
+  Reife & & & X & \\
+  Fehlertoleranz & & & X & \\
+  Wiederherstellbarkeit & & & X &\\
+  \hline
+  \textbf{Benutzbarkeit} &&&&\\
+  Verständlichkeit & & X & &\\
+  Erlernbarkeit & & X & &\\
+  Bedienbarkeit & X & & &\\
+  \hline
+  \textbf{Effizienz} &&&&\\
+  Zeitverhalten & & & X & \\
+  Verbauchsverhalten & & & X & \\
+  \hline
+  \textbf{Änderbarkeit} &&&&\\
+  Analysierbarkeit & & & X &\\
+  Modifizierbarkeit & X & & &\\
+  Stabilität & & X&  &\\
+  Prüfbarkeit & & & X &\\
+  \hline
+  \textbf{Übertragbarkeit} &&&&\\
+  Anpassbarkeit & & X & &\\
+  Installierbarkeit & & X & & \\
+  Konformität & & & X & \\
+  Austauschbarkeit & & & X & \\
+ \end{tabular}
+ 
+ Es wird also insbesondere Wert auf Benutzerfreundlichkeit und Änderbarkeit gelegt.
+ 
+
 
 \newpage
 \section{Anwendungsfälle und Szenarien}
@@ -356,14 +396,14 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
   \centering
      \includegraphics[width=0.8\textwidth]{Aktivitaetsdiagramm}
   \caption{Aktivitätsdiagramm}
-  \label{fig:Bild1}
+  \label{fig:Bild2}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{pakete}
 	\caption{Paketdiagramm}
-	\label{fig:Bild2}
+	\label{fig:Bild3}
 \end{figure}
 
 \newpage
@@ -377,7 +417,7 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
          Benutzeroberfläche des Produktes im \gls{Editiermodus}  (oben) und im Debugmodus
          (unten)
        }
-    \label{fig:Bild1}
+    \label{fig:Bild4}
 \end{figure}
 
 \newpage
