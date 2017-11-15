@@ -18,7 +18,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \newglossaryentry{Debugger}
 {
 	name={Debugger},
-	description={Ein Debugger ist ein Werkzeug zum Diagnostizieren und Auffinden von Fehlern in Computerprogrammen.}
+	description={Ein \gls{Debugger} ist ein Werkzeug zum Diagnostizieren und Auffinden von Fehlern in Computerprogrammen.}
 }
 \newglossaryentry{Variableninspektor}
 {
@@ -59,7 +59,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \newglossaryentry{Step-Out}
 {
 	name={Step-Out},
-	description={Springt bis zum Ende der aktuell ausgeführten Funktion. Befindet sich der Debugger in der main-Funktion, wird das Programm fertig gedebuggt.}
+	description={Springt bis zum Ende der aktuell ausgeführten Funktion. Befindet sich der \gls{Debugger} in der main-Funktion, wird das Programm fertig gedebuggt.}
 }
 \newglossaryentry{Step-Over}
 {
@@ -105,7 +105,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	name={Kofigurationsdatei},
 	plural={Konfigurationsdateien},
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
-	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
+	Breakpoints, \glpl{Watch-Expression}  Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
 }
 
 
@@ -185,8 +185,8 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Das Produkt ist ein Debugger für Quelltexte, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
-		\item[/FA20/] Im Debugmodus kann der Benutzer \glspl{Schritt} (Steps) durchführen.
+		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für Quelltexte, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
@@ -197,15 +197,15 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA100/] \glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
 		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{Watch-Expression} festlegen.
 		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
-		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
+		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} das Programm bis zum nächsten \gls{Breakpoint} debuggen.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, \glpl{Watch-Expression}  Schrittgröße und die zu debuggenden Quelltexte.
 		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
 		\item[/FA160/] Das zu debuggende Programm kann direkt in die Textbox des Produkts kopiert werden.
 		\item[/FA170/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
 		\item[/FA180/] Der \gls{Debugmodus} kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
-		\item[/FA190/] Nach jedem Schritt oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
-		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
-		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
+		\item[/FA190/] Nach jedem \gls{Schritt} oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
+		\item[/FA200/] Die Variablenreihenfolge im \gls{Variableninspektor} ist manuell veränderbar.
+		\item[/FA210/] Im \gls{Variableninspektor} können Variablen ausgeblendet werden.
 		\item[/FA215/] Das Produkt ermöglicht die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
 		\end{itemize}
 
@@ -247,15 +247,15 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\begin{itemize}
 		
 		
-			\item[/PD10/] Konfigurationsdateien: \\
+			\item[/PD10/]  \glpl{Kofigurationsdatei}: \\
 			Diese Dateien speichern eine Konfiguration des Debuggers. 
 			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
-			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. Bedingte Breakpoints benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die Watch-Expressions.
-			Zudem wird, falls die Datei aus dem Debugmodus erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
+			Weiter müssen alle \glpl{Breakpoint} gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. Bedingte \glpl{Breakpoint} benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die Watch-Expressions.
+			Zudem wird, falls die Datei aus dem \gls{Debugmodus} erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
 			
 			\item[/PD20/] Sprachdateien: \\
 			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
-			Dazu gehören die Texte der GUI-Elemente und Tooltips.
+			Dazu gehören die Texte der GUI-Elemente und \glpl{Tooltip} 
 			
 			\item[/PD30/] Einstellungsdatei: \\
 			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
@@ -267,22 +267,22 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
 		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
-		Den Debugmodus zu starten dauert unter 5 Sekunden. 
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, \glpl{Watch-Expression}  Schrittgröße und \glpl{Breakpoint} in Echtzeit. Das Ausführen von Schritten, \gls{Step-Over} und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
+		Den \gls{Debugmodus} zu starten dauert unter 5 Sekunden. 
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
 		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatisches Ablehnen kritischer Eingaben (A10, A20, A40) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
-		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
+		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des \gls{Debugmodus} zu jeder Zeit ermöglicht.
 		\end{itemize}
 		
 		\subsubsection{Weitere nichtfunktionale Anforderungen}
 		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
 		\begin{itemize}
 		\item[/NA10/]Erweiterbarkeit: \\
-		Das Produkt ist, durch seinen modularen Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche, sowie einen Interpreter für weitere Sprachen.
+		Das Produkt ist, durch seinen modularen Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche, sowie einen \gls{Interpreter} für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
 		Durch seinen Modularen Entwurf, können Fehler, die z.B. durch veraltete Module entstehen, leicht beseitigt werden.
 		%\item[/NA25/]Robustheit: \\
@@ -293,7 +293,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/NA40/] Sicherheit: \\
 		Da das Produkt keine Netzwerkverbindung besitzt, verbleiben die vom Benutzer eingegebenen Daten ausschließlich auf dem Rechner des Benutzers.
 		\item[/NA50/]Benutzerfreundlichkeit: \\
-		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
+		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch \glpl{Tooltip} abgedeckt. \\
 		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
 		\end{itemize}
 		
@@ -354,10 +354,10 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 \begin{itemize}
 		\item[/AF10/] Code hinzufügen: \\ ...
 		\item[/AF20/] Code ändern: \\ ...
-		\item[/AF30/] Breakpoints setzen: \\...
+		\item[/AF30/] \glpl{Breakpoint} setzen: \\...
 		\item[/AF40/] Relationale Eigenschaften hinzufügen: \\...
 		\item[/AF50/] Codes debuggen: \\
-				Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
+				Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
 		\item[/AF60/] Durchlauf speichern: \\ ...
 
 \end{itemize}
@@ -429,7 +429,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
     \centering
        \includegraphics[width=0.85\textwidth]{skizzeFull.eps}
        \caption{
-         Benutzeroberfläche des Produktes im Editiermodus (oben) und im Debugmodus
+         Benutzeroberfläche des Produktes im \gls{Editiermodus}  (oben) und im Debugmodus
          (unten)
        }
     \label{fig:Bild4}
@@ -451,7 +451,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         über die Eingabefenster bearbeitet werden. Die \enquote{+}-Schaltflächen für bedingte Haltepunkte
         und \glspl{Watch-Expression} können nicht betätigt werden.
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt} können betätigt werden.
-        Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
+        Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den \gls{Editiermodus} .
         
 \section{Anforderungen an die Entwicklungsumgebung}
 Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.
@@ -474,12 +474,12 @@ Präsentation/Abnahme: Ulla Scheler\\
 
 \subsection{Vorraussichtliche zeitliche Feinplanung}
 \subsubsection{Definitionsphase}
-\textit{bis 06.11.} Sammeln der Inhalte
-\textit{bis 13.11.} Formulierung der Punkte im Pflichtenheft in Einzelarbeit
-\textit{bis 17.11.} Gemeinsame Überarbeitung
-\textit{17.11. 11:30 Uhr} Abgabe der vor-finalen Version des Pflichtenhefts
-\textit{bis 24.11.} Gemeinsame Überarbeitung
-\textit{24.11. 11:30 Uhr} Abgabe der finalen Version des Pflichtenhefts 
+\textit{bis 06.11.} Sammeln der Inhalte \\
+\textit{bis 13.11.} Formulierung der Punkte im Pflichtenheft in Einzelarbeit \\
+\textit{bis 17.11.} Gemeinsame Überarbeitung \\
+\textit{17.11. 11:30 Uhr} Abgabe der vor-finalen Version des Pflichtenhefts \\
+\textit{bis 24.11.} Gemeinsame Überarbeitung \\
+\textit{24.11. 11:30 Uhr} Abgabe der finalen Version des Pflichtenhefts \\
 
 \subsubsection{Entwurfsphase}
 \textit{bis 03.12.} Fertigstellung der Einteilung des Systems in Pakete und Unterpakete und Festlegung der Schnittstellen derer. \\
@@ -491,7 +491,7 @@ Präsentation/Abnahme: Ulla Scheler\\
 \textit{bis 14.01.} Fertigstellung der Dateiverwalter und des Interpreters. Beginn an Front- und Backend.\\
 \textit{bis 21.01.} Fertige, aber noch nicht funktionelle Benutzeroberfläche. Bereitstellung einiger Methoden des Backends für diese.\\
 \textit{bis 28.01.} Vollständige Implementierung des Backends und ein funktionierendes Frontend.\\
-\textit{bis 04.02.} Ende und Abgabe der Implementierung des Programms.
+\textit{bis 04.02.} Ende und Abgabe der Implementierung des Produkts.
 
 \subsubsection{Qualitätssicherungsphase}
 
@@ -507,7 +507,7 @@ Präsentation/Abnahme: Ulla Scheler\\
 ..
 
 \section{Glossar}
-\printglossary[style=altlist,title=Glossar]
+\printglossaries
 
 
 
