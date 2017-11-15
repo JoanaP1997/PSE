@@ -154,12 +154,13 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 %kurze Übersicht über das Produkt
 Das Produkt \enquote{DIbugger} soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
 Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient aus zwei Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
+\vspace{1cm}
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.85\textwidth]{logo_nongi.png}
 \caption{Produktlogo}
 \end{figure}
-
+\newpage
 
 \section{Produkteinsatz}
 Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu relationalen Eigenschaften von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
@@ -277,6 +278,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
 		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
+		\newpage
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatisches Ablehnen kritischer Eingaben (A10, A20, A40) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
 		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
@@ -498,7 +500,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 \begin{figure}[!ht] 
     \vspace{-10pt}
     \centering
-       \includegraphics[width=0.85\textwidth]{skizzeFull.eps}
+       \includegraphics[width=0.87\textwidth]{skizzeFull.eps}
        \caption{
          Benutzeroberfläche des Produktes im Editiermodus (oben) und im Debugmodus
          (unten)
@@ -527,7 +529,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 \section{Anforderungen an die Entwicklungsumgebung}
 Bei der Erstellung des Aktivitäts- und Anwendungsfalldiagramms wurde die Freie Version des Online-Diagramm-Editors \href{https://creately.com/}{Creately} verwendet.\\
 Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.\\
-
+\newpage
         
 \section{Zeit- und Ressourcenplanung}
 % Tabelle mit Phasendaten (Ideen sammeln, Einzelarbeit, Ideen zusammentragen, Überarbeitung, Abgabe Vorversion, Kolloquium/Abgabe Finalversion)
@@ -595,6 +597,8 @@ Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
 \item Schleifen: \texttt{while}
 \end{itemize}
 Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können sowohl zeilenweise (\texttt{//}) als auch zeilenübergreifend (\texttt{/*Kommentar*/}) benutzt werden. Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich.
+\newpage
+
 \paragraph{Syntax der Sprache}
 Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
 
@@ -630,6 +634,7 @@ int main(int j, int k)
     return z+j;
 }
 \end{verbatim}
+\newpage
 \subsection{Syntax bedingter Breakpoints und der Watch-Expressions}
 Die Syntax der Watch-Expressions und bedingten Breakpoints ist durch folgende kontextfreie Ableitungsregeln gegeben: \\\\
 <WatchExpression> $\rightarrow$ <BooleanExpression> | <Term>\\\\
@@ -642,8 +647,7 @@ Wobei ein <Atom> ein fester Wert eines Datentyps (z.B. \texttt{5, 'c', true}) od
 Das heißt, Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich bedingte Breakpoints immer zu einem Wahrheitswert auswerten.
 
 
-
-\section{Glossar}
+\newpage
 \printglossary[style=altlist,title=Glossar]
 
 
