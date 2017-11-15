@@ -102,7 +102,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 }
 \newglossaryentry{Konfigurationsdatei}
 {
-	name={Kofigurationsdatei},
+	name={Konfigurationsdatei},
 	plural={Konfigurationsdateien},
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
 	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
@@ -115,11 +115,19 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \makeglossaries
 
-\title{PSE:\\ Entwicklung eines relationalen Debuggers\\ Pflichtenheft}
+\title{
+	\vspace{2cm}
+	PSE:\\ 
+	Entwicklung eines relationalen Debuggers\\
+}
+\subtitle{
+	\vspace{1cm}Pflichtenheft
+}
 \author{
+	\vspace{1cm} \\
 	Benedikt Wagner\\
 	\texttt{udpto@student.kit.edu}
-	\and Chiara Staudenmaier\\
+	\and \vspace{1cm} \\ Chiara Staudenmaier\\
 	\texttt{uzhtd@student.kit.edu}
 	\and Etienne Brunner\\
 	\texttt{urmlp@student.kit.edu}
@@ -144,7 +152,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
-Das Produkt soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
+Das Produkt \enquote{DIbugger} soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
 Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient aus zwei Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer in einer WHILE-Sprache, welche eine Teilmenge von Java darstellt und in Kapitel 12 näher definiert wird, verfassten Programmen.
 
 
@@ -243,6 +251,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 			Diese Dateien speichern eine Konfiguration des Debuggers. 
 			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
 			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. Bedingte Breakpoints benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die Watch-Expressions.
+			Zudem wird, falls die Datei aus dem Debugmodus erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
 			
 			\item[/PD20/] Sprachdateien: \\
 			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
@@ -290,7 +299,46 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		
 
 \section{Qualitätsanforderungen}
-..
+ \begin{tabular}{l||c|c|c|c} 
+  Produktqualität & Sehr gut & Gut & Normal & Nicht relevant \\
+  \hline
+  \hline
+  \textbf{Funktionalität} & &&&\\
+  Angemessenheit & & & X &  \\
+  Richtigkeit & X & & & \\
+  Interoperabilität & & & X &\\
+  Sicherheit & & & X & \\
+  \hline
+  \textbf{Zuverlässigkeit} &&&&\\
+  Reife & & & X & \\
+  Fehlertoleranz & & & X & \\
+  Wiederherstellbarkeit & & & X &\\
+  \hline
+  \textbf{Benutzbarkeit} &&&&\\
+  Verständlichkeit & & X & &\\
+  Erlernbarkeit & & X & &\\
+  Bedienbarkeit & X & & &\\
+  \hline
+  \textbf{Effizienz} &&&&\\
+  Zeitverhalten & & & X & \\
+  Verbauchsverhalten & & & X & \\
+  \hline
+  \textbf{Änderbarkeit} &&&&\\
+  Analysierbarkeit & & & X &\\
+  Modifizierbarkeit & X & & &\\
+  Stabilität & & X&  &\\
+  Prüfbarkeit & & & X &\\
+  \hline
+  \textbf{Übertragbarkeit} &&&&\\
+  Anpassbarkeit & & X & &\\
+  Installierbarkeit & & X & & \\
+  Konformität & & & X & \\
+  Austauschbarkeit & & & X & \\
+ \end{tabular}
+ 
+ Es wird also insbesondere Wert auf Benutzerfreundlichkeit und Änderbarkeit gelegt.
+ 
+
 
 \newpage
 \section{Anwendungsfälle und Szenarien}
@@ -415,18 +463,31 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 %Architektur, Verhalten, usw
 \begin{figure}[h] 
   \centering
-     \includegraphics[width=0.8\textwidth]{Aktivitaetsdiagramm}
+     \includegraphics[width=1.0\textwidth]{Aktivitaetsdiagramm}
   \caption{Aktivitätsdiagramm}
-  \label{fig:Bild1}
+  \label{fig:Bild2}
 \end{figure}
+\vspace{0.7cm}
+Das Aktivitätsdiagramm stellt die möglichen Reihenfolgen der Interaktion des Benutzers mit dem Produkt dar. \\
+Bindet der Benutzer direkt nach Start des Programms eine \gls{Konfigurationsdatei} eines früheren Laufs ein, kann er diesen Lauf direkt starten, oder vorher Änderungen an den Eingaben und Quelltexten vornehmen. \\
+Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Quelltexten und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten uund an \glspl{Breakpoint}. \\
+Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum \gls{Editiermodus} zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Quelltexten vornehmen.\\
+Das Beenden des Produkts ist an jeder Stelle möglich.
 
-\begin{figure}
+\newpage
+
+\begin{figure}[!ht]
 	\centering
 	\includegraphics[width=1.0\textwidth]{pakete}
 	\caption{Paketdiagramm}
-	\label{fig:Bild2}
-\end{figure}
+	\label{fig:Bild3} 
 
+\end{figure}
+\vspace{0.7cm}
+	Während der Definitionsphase ergab sich das obige Paketdiagramm.\\ 
+	Diese vorläufige Version des Paketdiagramms wird als Grundlage für die den Entwurf des
+	Produkts in der Entwurfsphase verwendet.
+	
 \newpage
 \section{Benutzungsoberfläche}
 %Gui-Skizzen, Erklärungen der Menüs, usw
@@ -438,7 +499,7 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
          Benutzeroberfläche des Produktes im Editiermodus (oben) und im Debugmodus
          (unten)
        }
-    \label{fig:Bild1}
+    \label{fig:Bild4}
 \end{figure}
 
 \newpage
@@ -460,7 +521,9 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
         
 \section{Anforderungen an die Entwicklungsumgebung}
-Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.
+Bei der Erstellung des Aktivitäts- und Anwendungsfalldiagramms wurde die Freie Version des Online-Diagramm-Editors \href{https://creately.com/}{Creately} verwendet.\\
+Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.\\
+
         
 \section{Zeit- und Ressourcenplanung}
 % Tabelle mit Phasendaten (Ideen sammeln, Einzelarbeit, Ideen zusammentragen, Überarbeitung, Abgabe Vorversion, Kolloquium/Abgabe Finalversion)
