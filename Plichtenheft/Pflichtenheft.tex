@@ -75,6 +75,8 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
 	name={bedingter Breakpoint},
 	plural={bedingte Breakpoints},
+	user1={bedingten Breakpoints},
+	user2={Bedingte Breakpoints},
 	description={Der Benutzer kann Relationen zwischen Variablen der zu debuggenden Programme angeben. Sobald diese Relation zutrifft, stoppt das Produkt das Debuggen,
 	auch wenn aktuell ein Schritt ausgeführt wird, der weiter springen würde.}
 }
@@ -103,6 +105,10 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
 	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
 }
+
+
+\let\glsplgen\glsuseri
+\let\glsplcap\glsuserii
 
 \makeglossaries
 
@@ -189,7 +195,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA190/] Nach jedem Schritt oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
 		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
-		\item[/FA215/] Das Produkt ermöglicht automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
+		\item[/FA215/] Das Produkt ermöglicht die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
 		\end{itemize}
 
  		\subsubsection{Sollkriterien}
@@ -219,6 +225,8 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
  		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert.
  		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
  		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
+ 		\item[/A50/] Das Produkt ersetzt keinen Text-Editor. So hat es zum Beispiel kein Syntax-Highlighting und keine Auto-Vervollständigung.
+ 		\item[/A50/] Das Produkt ersetzt keine Versionskontrolle. Die Nutzerin ist selbst dafür verantwortlich, ihre Änderungen - zum Beispiel durch Kommentare - zu dokumentieren.
  		\end{itemize}
  		
  \newpage		
@@ -230,7 +238,7 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		
 			\item[/PD10/] Konfigurationsdateien: \\
 			Diese Dateien speichern eine Konfiguration des Debuggers. 
-			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablen Auswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
+			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
 			Weiter müssen alle Breakpoints gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. Bedingte Breakpoints benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die Watch-Expressions.
 			
 			\item[/PD20/] Sprachdateien: \\
@@ -290,6 +298,19 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
   \label{fig:Bild1}
 \end{figure}
 
+In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
+
+\begin{itemize}
+		\item[/AF10/] Code hinzufügen: \\ ...
+		\item[/AF20/] Code ändern: \\ ...
+		\item[/AF30/] Breakpoints setzen: \\...
+		\item[/AF40/] Relationale Eigenschaften hinzufügen: \\...
+		\item[/AF50/] Codes debuggen: \\
+				Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
+		\item[/AF60/] Durchlauf speichern: \\ ...
+
+\end{itemize}
+
 \section{Globale Testfälle}
 ..
 
@@ -326,19 +347,19 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 
 \newpage
     \subsection{Beschreibung}
-        Befindet sich das Produkt im Editiermodus, so können die Eingabequelltexte über die 
+        Befindet sich das Produkt im \gls{Editiermodus}, so können die Eingabequelltexte über die 
         Eingabefenster bearbeitet werden.
         Durch Verändern des Textes im Bereich \enquote{Eingabewerte} können Werte der Eingangsvariablen
         spezifiziert, gelöscht und verändert werden. 
-        Bedingte Haltepunkte und Watch-Expressions können durch Betätigung der jeweiligen 
+        \glsplcap{bedingte Haltepunkte} und \glspl{Watch-Expressions} können durch Betätigung der jeweiligen 
         \enquote{+}-Schaltflächen hinzugefügt werden.
         Die Schaltflächen \enquote{Schritt} und \enquote{Weiter}, sowie \enquote{Einzelschritt} können nicht betätigt
         werden. Betätigung der Schaltfläche mit dem grünen Pfeil verursacht den Übergang von
         das Produkt in den Debugmodus.
         
-        Befindet sich das Produkt im Debugmodus, können die Eingabequelltexte nicht
+        Befindet sich das Produkt im \gls{Debugmodus}, können die Eingabequelltexte nicht
         über die Eingabefenster bearbeitet werden. Die \enquote{+}-Schaltflächen für bedingte Haltepunkte
-        und Watch-Expressions können nicht betätigt werden.
+        und \glspl{Watch-Expressions} können nicht betätigt werden.
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt} können betätigt werden.
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang von --Programmname-- in den Editiermodus.
         
@@ -385,6 +406,8 @@ Präsentation/Abnahme: Ulla Scheler\\
 \subsubsection{Qualitätssicherungsphase}
 
 \subsubsection{Abnahme und Präsentation ???}
+\textit{bis 16.03.} Einarbeiten der Anmerkungen aus dem letzten Kolloquium
+\textit{bis NN} Anfertigung der Abschlusspräsentation
 
 \section{Ergänzungen}
 %Sprache
