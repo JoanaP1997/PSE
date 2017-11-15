@@ -80,13 +80,13 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	user1={bedingten Breakpoints},
 	user2={Bedingte Breakpoints},
 	description={Der Benutzer kann Relationen zwischen Variablen der zu debuggenden Programme angeben. Sobald diese Relation zutrifft, stoppt das Produkt das Debuggen,
-	auch wenn aktuell ein Schritt ausgeführt wird, der weiter springen würde.}
+	auch wenn aktuell ein Schritt ausgeführt wird, der weiter springen würde. Weiteres dazu ist in Kapitel \ref{Ergänzungen} auf S.\pageref{Ergänzungen} zu finden.}
 }
 \newglossaryentry{Watch-Expression}
 {
 	name={Watch-Expression},
 	plural={Watch-Expressions},
-	description={Der Benutzer kann Rekationen zwischen Variablen als Watch-Expressions angeben. Sobald diese Relationen zutreffen, wird der Benutzer darüber informiert.}
+	description={Der Benutzer kann Ausdrücke, die sich auf Variablen in den zu debuggenden Programmen beziehen, als Watch-Expressions angeben. Er wird dann beim Debuggen dauerhaft über den aktuellen Zustand des ausgewerteten Ausdrucks informiert. Weiteres dazu ist in Kapitel \ref{Ergänzungen} auf S.\pageref{Ergänzungen} zu finden.}
 }
 \newglossaryentry{Debugmodus}
 {
@@ -631,7 +631,7 @@ int main(int j, int k)
     return z+j;
 }
 \end{verbatim}
-\subsection{Syntax der Watch-Expressions und bedingten Breakpoints}
+\subsection{Syntax bedingter Breakpoints und der Watch-Expressions}
 Die Syntax der Watch-Expressions und bedingten Breakpoints ist durch folgende kontextfreie Ableitungsregeln gegeben: \\\\
 <WatchExpression> $\rightarrow$ <BooleanExpression> | <Term>\\\\
 <BedingterBreakpoint> $\rightarrow$ <BooleanExpression>\\\\<BooleanExpression> $\rightarrow$ <Term> < <Term> 
