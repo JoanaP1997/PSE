@@ -13,6 +13,34 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \usepackage{enumitem}
 
 
+\newglossaryentry{Debugger}
+{
+	name={Debugger},
+	description={Ein Debugger ist ein Werkzeug zum Diagnostizieren und Auffinden von Fehlern in Computerprogrammen.}
+}
+\newglossaryentry{Variableninspektor}
+{
+	name={Variableninspektor},
+	plural={Variableninspektoren},
+	description={Zeigt die Variablen des Programms und deren Belegung an.}
+}
+\newglossaryentry{Relationale Eigenschaft}
+{
+	name={Relationale Eigenschaft},
+	plural={Relationale Eigenschaften},
+	description={}%TODO
+}
+\newglossaryentry{Interpreter}
+{
+	name={Interpreter},
+	description={Teil des Produkts, welches die definierte Sprache ausführt.}
+}
+\newglossaryentry{Tooltip}
+{
+	name={Tooltip},
+	plural{Tooltips},
+	description={Zeigt eine Beschreibung zu einem Element der Benutzeroberfläche.}
+}
 
 \newglossaryentry{Einzelschritt}
 {
@@ -43,7 +71,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	plural={Breakpoints},
 	description={Erreicht das Produkt einen Breakpoint, stoppt es an dieser Stelle das Debuggen.}
 }
-\newglossaryentry{bedingter Breakpoint}
+\newglossaryentry{Bedingter Breakpoint}
 {
 	name={bedingter Breakpoint},
 	plural={bedingte Breakpoints},
@@ -75,7 +103,9 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
 	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde.}
 }
+
 \makeglossaries
+
 \title{PSE:\\ Entwicklung eines relationalen Debuggers\\ Pflichtenheft}
 \author{
 	Benedikt Wagner\\
@@ -138,18 +168,18 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Das Produkt ist ein Debugger für Quellcodes, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA10/] Das Produkt ist ein Debugger für Quelltexte, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im Debugmodus kann der Benutzer \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
-		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Code setzen.
+		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Quelltext setzen.
 		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
-		\item[/FA100/] \glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA100/] \glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
 		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{Watch-Expression} festlegen.
-		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Stellen im Code gebunden werden.
+		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
 		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
 		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
@@ -179,13 +209,13 @@ Außerdem können durch eine öffentliche Schnittstellen, mittels austauschbarer
 		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
 		\item[/FA310/] Der Benutzer kann Variablen angeben, für welche das Produkt eine Relation vorschlägt.
 		\item[/FA320/] Der Benutzer kann einen Rückschritt durchführen.
-		\item[/FA330/] Die, an den Code gebundenen, \glspl{Breakpoint} verschieben sich mit dem Code, wenn dieser im \gls{Editiermodus} geändert wird.
+		\item[/FA330/] Die, an den Quelltext gebundenen, \glspl{Breakpoint} verschieben sich mit dem Quelltext, wenn dieser im \gls{Editiermodus} geändert wird.
 		\end{itemize}		 		
  		
  		
  		\subsubsection{Abgrenzungskriterien}
  		\begin{itemize}
- 		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen Code optimiert. Mehr als 250 Zeilen Code sind nicht zugelassen.
+ 		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen Quelltext optimiert. Mehr als 250 Zeilen Quelltext sind nicht zugelassen.
  		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert.
  		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
  		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
