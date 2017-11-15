@@ -576,63 +576,73 @@ Präsentation/Abnahme: Ulla Scheler\\
 \section{Ergänzungen}
 %Sprache
 \subsection{Sprache}
--Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
- \paragraph{Klassifikation der Sprache} Die Sprache ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
- \paragraph{Elemente der Sprache}
- Die Sprache unterstützt die folgenden primitiven Datentypen:
- \begin{itemize}
- \item  32-bit Ganzzahlen: \texttt{int}
-   \item  64-bit Ganzzahlen: \texttt{long}
-  \item  32-bit IEEE 754 Fließkommazahlen: \texttt{float}
-  \item   64-bit IEEE 754 Fließkommazahlen: \texttt{double}
-   \item  Einzelnes Zeichen: \texttt{char}
-   \item  Wahrheitswert: \texttt{boolean}
- \end{itemize}
- Zudem sind bis zu dreidimensionale Arrays dieser Datentypen möglich.
- Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
- \begin{itemize}
- \item Funktionen und Prozeduren, also Unterprogramme mit oder ohne Rückgabewert.
- \item Bedingte Ausführung: \texttt{if, else if, else}
- \item Schleifen: \texttt{while}
- \end{itemize}
- Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können sowohl zeilenweise (\texttt{//}) als auch zeilenübergreifend (\texttt{/*Kommentar*/}) benutzt werden. Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich.
- \paragraph{Syntax der Sprache}
- Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
-  
- \begin{verbatim}
- void doSenselessStuff() { //Prozedur ohne Rückgabe
-     int a = 0;
- }
- float devide(float x, float y) { //Funktion mit Rückgabewert
-     if(y != 0)	
-         return x/y;
-     return -1; //Rückgabe
- }
- int main(int j, int k)
- {
-     int a; //Deklaration
-     a = 1; //Zuweisung
-     long x = 100000L; 
-     int b = 2; // Deklaration mit Initialisierung
-     int[j+k] myInts; \\Arraydeklaration
-     char[8] myChars= {'a','b','c','d'};
-     if(j<k) {
-         int i = 0;
-         while(i<j) {
-             myInts[i] = 0; //Arrayzugriff
-             i=i+1;
-         }	
-     } else if(j==k) {
-         return 0;
-     } else
-         return -1;
-     doSenselessStuff(); //Routinenaufruf
-     float z = devide(3.0f*k /1.1f);
-     return z+j;
- }
- \end{verbatim}
-\subsection{Watch-Expressions}
-..
+Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
+\paragraph{Klassifikation der Sprache} Die Sprache ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
+\paragraph{Elemente der Sprache}
+Die Sprache unterstützt die folgenden primitiven Datentypen:
+\begin{itemize}
+\item  32-bit Ganzzahlen: \texttt{int}
+  \item  64-bit Ganzzahlen: \texttt{long}
+ \item  32-bit IEEE 754 Fließkommazahlen: \texttt{float}
+ \item   64-bit IEEE 754 Fließkommazahlen: \texttt{double}
+  \item  Einzelnes Zeichen: \texttt{char}
+  \item  Wahrheitswert: \texttt{boolean}
+\end{itemize}
+Zudem sind bis zu dreidimensionale Arrays dieser Datentypen möglich.
+Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
+\begin{itemize}
+\item Funktionen und Prozeduren, also Unterprogramme mit oder ohne Rückgabewert.
+\item Bedingte Ausführung: \texttt{if, else if, else}
+\item Schleifen: \texttt{while}
+\end{itemize}
+Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können sowohl zeilenweise (\texttt{//}) als auch zeilenübergreifend (\texttt{/*Kommentar*/}) benutzt werden. Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich.
+\paragraph{Syntax der Sprache}
+Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
+
+\begin{verbatim}
+void doSenselessStuff() { //Prozedur ohne Rückgabe
+    int a = 0;
+}
+float devide(float x, float y) { //Funktion mit Rückgabewert
+    if(y != 0)	
+        return x/y;
+    return -1; //Rückgabe
+}
+int main(int j, int k)
+{
+    int a; //Deklaration
+    a = 1; //Zuweisung
+    long x = 100000L; 
+    int b = 2; // Deklaration mit Initialisierung
+    int[j+k] myInts; \\Arraydeklaration
+    char[8] myChars= {'a','b','c','d'};
+    if(j<k) {
+        int i = 0;
+        while(i<j) {
+            myInts[i] = 0; //Arrayzugriff
+            i=i+1;
+        }	
+    } else if(j==k) {
+        return 0;
+    } else
+        return -1;
+    doSenselessStuff(); //Routinenaufruf
+    float z = devide(3.0f*k /1.1f);
+    return z+j;
+}
+\end{verbatim}
+\section{Syntax der Watch-Expressions und bedingten Breakpoints}
+Die Syntax der Watch-Expressions und bedingten Breakpoints ist durch folgende kontextfreie Ableitungsregeln gegeben: \\\\
+<WatchExpression> $\rightarrow$ <BooleanExpression> | <Term>\\\\
+<BedingterBreakpoint> $\rightarrow$ <BooleanExpression>\\\\<BooleanExpression> $\rightarrow$ <Term> < <Term> 
+| <Term> > <Term> |\\ <Term> >= <Term>|<Term> <= <Term>| <Term> == <Term>| \\<Term> != <Term>\\\\
+<Term> $\rightarrow$ <Term> / <Term> 
+| <Term> * <Term> |\\ <Term> - <Term>|<Term> + <Term>| <Atom>\\\\
+
+Wobei ein <Atom> ein fester Wert eines Datentyps (z.B. \texttt{5, 'c', true}) oder eine Variable der Form <Programmbezeichner>.<Variablenname> (z.B. \texttt{A.x} für Variable x in Programm A) ist. \\
+Das heißt, Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich bedingte Breakpoints immer zu einem Wahrheitswert auswerten.
+
+
 
 \section{Glossar}
 \printglossary[style=altlist,title=Glossar]
