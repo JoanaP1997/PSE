@@ -30,7 +30,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
 	name={Relationale Eigenschaft},
 	plural={Relationale Eigenschaften},
-	description={}%TODO
+	description={ Relationale Eigenschaften sind solche Eigenschaften, die sich auf mindestens zwei Programmausführungen beziehen. Dabei können diese sich auf Variablen aus den verschiedenen Programmläufen beziehen und diese miteinander in Verbindung setzen, etwa ob eine Variable größer als eine andere ist}
 }
 \newglossaryentry{Interpreter}
 {
@@ -197,13 +197,13 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
 		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Quelltext setzen.
 		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
-		\item[/FA100/] \glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{Watch-Expression} festlegen.
-		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Stellen im Quelltext gebunden werden.
-		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter das Programm bis zum nächsten Breakpoint debuggen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte.
-		\item[/FA150/] Das zu debuggende Programm kann direkt in die Textbox des Produkts  geschrieben werden.
-		\item[/FA160/] Das zu debuggende Programm kann direkt in die Textbox des Produkts kopiert werden.
+		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
+		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetische Terme über den Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
+		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte, sowie die aktuellen Befehle, an denen die Ausführung steht.
+		\item[/FA150/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts  geschrieben werden.
+		\item[/FA160/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts kopiert werden.
 		\item[/FA170/] Das zu debuggende Programm kann aus einer Textdatei eingebunden werden.
 		\item[/FA180/] Der \gls{Debugmodus} kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
 		\item[/FA190/] Nach jedem Schritt oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
