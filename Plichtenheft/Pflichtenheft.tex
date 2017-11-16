@@ -360,10 +360,9 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
     \item [/AF10/] Hinzufügen von Quelltext:\\ 
 	Der Nutzer möchte einen Programmquelltext hinzufügen, auf welchen er über die Dateiverwaltung
 	seines Betriebssystems zugreifen kann.\\
-	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste.\\
-	In der Menüansicht wählt er anschließend die Fläche \enquote{Neu}.\\
+	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste. In der Menüansicht wählt er anschließend die Fläche \enquote{Neu}.\\
 	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese an,
-	den gewünschten Quelltext zu öffnen.\\
+	den gewünschten Quelltext zu öffnen.
 	Der Quelltext erscheint in einem Eingabefenster.\\
 	Hierbei sind folgende Ausnahmen zu beachten: Besitzt der hinzuzufügende Quelltext mehr als 100 Zeilen, so benachrichtigt das Produkt den Benutzer über /A10/.\\
 	Besitzt der hinzuzufügende Quelltext mehr als 200 Zeilen, so wird dieser nach /A10/ nicht hinzugefügt, und
@@ -530,7 +529,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 \end{figure}
 
 \newpage
-    \subsection{Beschreibung}
+    \subsection{Beschreibung der Oberfläche}
         Befindet sich das Produkt im \gls{Editiermodus}, so können die Eingabequelltexte über die 
         Eingabefenster bearbeitet werden.
         Durch Verändern des Textes im Bereich \enquote{Eingabewerte} können Werte der Eingangsvariablen
@@ -547,13 +546,19 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         In beiden Modi können \glspl{bedingter Breakpoint} und \glspl{Watch-Expression} durch Betätigung der jeweiligen 
         \enquote{+}-Schaltflächen hinzugefügt werden. Über selbige Schaltflächen können Wirksamkeitsbereiche der \glspl{Watch-Expression} und \glspl{Breakpoint}
         spezifiziert werden.\\
-        Über die Menüleiste können Menueinträge zum Verwalten von Konfigurationsdateien, Anzeigen von Vorschlägen für bedingte Breakpoints, Watch-
-        Expressions und Eingabevariablen betätigt werden. Genauso wird Veränderung der Benutzeroberflächensprache über Betätigung der Menueinträge ermöglicht.
+     \subsection{Beschreibung der Menüs}
+     Die Benutzeroberfläche bietet die folgenden Menüs:
+     \begin{itemize}
+     \item[Datei] Dieses Menü enthält die Menüeinträge \enquote{Neu}, \enquote{Konfigurationsdatei laden}, \enquote{Konfigrationsdatei speichern} und \enquote{Neuen Quelltext hinzufügen}. Außerdem kann das Produkt über dieses Menü beendet werden.
+     \item[Vorschläge] In diesem Menü befinden sich die Menüeinträge um Vorschläge für \glspl{Watch-Expression}, \glspl{bedingter Breakpoint} und Eingabevariablen anzufordern.
+     \item[Einstellungen] Über dieses Menü können Grundeinstellungen des Produkts, wie die Sprache der Benutzeroberfläche, angepasst werden.
+     \item[Hilfe] Das Hilfemenü \enquote{?} stellt Hinweise zur Benutzung des Produkts zur Verfügung.
+     \end{itemize}
        
 \section{Anforderungen an die Entwicklungsumgebung}
 Bei der Erstellung des Aktivitäts- und Anwendungsfalldiagramms wurde die Freie Version des Online-Diagramm-Editors \href{https://creately.com/}{Creately} verwendet.\\
 Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.\\
-\newpage
+
         
 \section{Zeit- und Ressourcenplanung}
 % Tabelle mit Phasendaten (Ideen sammeln, Einzelarbeit, Ideen zusammentragen, Überarbeitung, Abgabe Vorversion, Kolloquium/Abgabe Finalversion)
@@ -570,7 +575,6 @@ Entwurfsphase: Joana Plewnia, Benedikt Wagner\\
 Implementierungsphase: Pascal Zwick\\
 Qualitätssicherungsphase: Etienne Brunner\\
 Präsentation/Abnahme: Ulla Scheler\\
-
 \subsection{Vorraussichtliche zeitliche Feinplanung}
 \subsubsection{Definitionsphase}
 \textit{bis 06.11.} Sammeln der Inhalte\\
