@@ -260,8 +260,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 			Dazu gehören die Texte der GUI-Elemente und Tooltips.
 			
 			\item[/PD30/] Einstellungsdatei: \\
-			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.
-			
+			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.  
 			\end{itemize}
 			
 			 
@@ -369,7 +368,7 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 	In der Menüansicht wählt er anschließend die Fläche \enquote{Neu}.\\
 	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese an,
 	den gewünschten Quelltext zu öffnen.\\
-	Der Quelltext erscheint in einer Quelltextansichten von DIbugger.
+	Der Quelltext erscheint in einem Eingabefenster von DIbugger.
     \item [/AF20/] \textbf{Name}: Ändern von Quelltext\\
         \textbf{Ausnahmen}:\\
         \textbf{Textuelle Beschreibung}:\\
@@ -539,18 +538,21 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         Eingabefenster bearbeitet werden.
         Durch Verändern des Textes im Bereich \enquote{Eingabewerte} können Werte der Eingangsvariablen
         spezifiziert, gelöscht und verändert werden. 
-        \glsplcap{bedingter Breakpoint} und \glspl{Watch-Expression} können durch Betätigung der jeweiligen 
-        \enquote{+}-Schaltflächen hinzugefügt werden.
         Die Schaltflächen \enquote{\gls{Schritt}} und \enquote{Weiter}, sowie \enquote{\gls{Einzelschritt}} können in diesem Modus nicht betätigt
         werden. Betätigung der Schaltfläche mit dem grünen Pfeil verursacht den Übergang des Produkts in den Debugmodus.
         
-        Befindet sich das Produkt im \gls{Debugmodus}, können die Eingabequelltexte nicht mhehr
-        bearbeitet werden. Über die \enquote{+}-Schaltflächen für bedingte Haltepunkte
-        und \glspl{Watch-Expression} können diese weiterhin hinzugefügt werden.
+        Befindet sich das Produkt im \gls{Debugmodus}, können die Eingabequelltexte nicht mehr
+        bearbeitet werden.
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt}, sowie \enquote{Step Over} und \enquote{Step Out} können
-        benutzt werden, um das Programm zu debuggen.
+        benutzt werden, um das Programm zu debuggen. \glspl{Breakpoint} können in den Eingabefenstern per Mausdruck gesetzt werden.
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang in den Editiermodus.
-        
+
+        In beiden Modi können \glspl{bedingter Breakpoint} und \glspl{Watch-Expression} durch Betätigung der jeweiligen 
+        \enquote{+}-Schaltflächen hinzugefügt werden. Über selbige Schaltflächen können Wirksamkeitsbereiche der \glspl{Watch-Expression} und \glspl{Breakpoint}
+        spezifiziert werden.\\
+        Über die Menüleiste können Menueinträge zum Verwalten von Konfigurationsdateien, Anzeigen von Vorschlägen für bedingte Breakpoints, Watch-
+        Expressions und Eingabevariablen betätigt werden. Genauso wird Veränderung der Benutzeroberflächensprache über Betätigung der Menueinträge ermöglicht.
+       
 \section{Anforderungen an die Entwicklungsumgebung}
 Bei der Erstellung des Aktivitäts- und Anwendungsfalldiagramms wurde die Freie Version des Online-Diagramm-Editors \href{https://creately.com/}{Creately} verwendet.\\
 Das Produkt wird in Java entwickelt. Dazu werden die Java-Entwicklungsumgebungen IntelliJ\textsuperscript{\textcopyright} und Eclipse\textsuperscript{\textcopyright} verwendet.\\
