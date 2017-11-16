@@ -358,13 +358,33 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 
 \begin{itemize}
-		\item[/AF10/] Code hinzufügen: \\ ...
-		\item[/AF20/] Code ändern: \\ ...
-		\item[/AF30/] Breakpoints setzen: \\...
-		\item[/AF40/] Relationale Eigenschaften hinzufügen: \\...
-		\item[/AF50/] Codes debuggen: \\
-				Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
-		\item[/AF60/] Durchlauf speichern: \\ ...
+    \item [/AF10/] \textbf{Name}: Hinzufügen von Quelltext\\ 
+        \textbf{Ausnahmen}:\\
+	Besitzt der hinzuzufügende Quelltext mehr als 100 Zeilen, so benachrichtigt DIbugger den Benutzer über /A10/.\\
+	Besitzt der hinzuzufügende Quelltext mehr als 200 Zeilen, so wird dieser nach /A10/ nicht hinzugefügt, und
+	DIbugger benachrichtigt den Benutzer mittels einer Fehlermeldung.\\
+        \textbf{Textuelle Beschreibung}:\\
+	Der Nutzer möchte einen Programmquelltext zu DIbugger hinzufügen, auf welchen er über die Dateiverwaltung
+	seines Betriebssystems zugreifen kann.\\
+	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste.\\
+	In der Menüansicht wählt er anschließend die Fläche \enquote{Neu}.\\
+	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese an,
+	den gewünschten Quelltext zu öffnen.\\
+	Der Quelltext erscheint in einer Quelltextansichten von DIbugger.
+    \item [/AF20/] \textbf{Name}: Ändern von Quelltext\\
+        \textbf{Ausnahmen}:\\
+        \textbf{Textuelle Beschreibung}:\\
+    \item [/AF30/] \textbf{Name}: Setzen von Breakpoints\\
+        \textbf{Ausnahmen}:\\
+        \textbf{Textuelle Beschreibung}:\\
+    \item [/AF40/] \textbf{Name}: Hinzufügen von Watch-Expressions\\
+        \textbf{Ausnahmen}:\\
+        \textbf{Textuelle Beschreibung}:\\
+    \item [/AF50/] Codes debuggen: \\
+			Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
+    \item [/AF60/] \textbf{Name}: Speichern eines Durchlaufs\\
+        \textbf{Ausnahmen}:\\
+        \textbf{Textuelle Beschreibung}:\\
 
 \end{itemize}
 
