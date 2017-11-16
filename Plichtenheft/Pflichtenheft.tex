@@ -380,10 +380,10 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
         \textbf{Ausnahmen}:\\
         \textbf{Textuelle Beschreibung}:\\
     \item [/AF50/] Codes debuggen: \\
-			Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
-    \item [/AF60/] \textbf{Name}: Speichern eines Durchlaufs\\
-        \textbf{Ausnahmen}:\\
-        \textbf{Textuelle Beschreibung}:\\
+			Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. \\Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
+    \item [/AF60/] Speichern eines Durchlaufs: \\
+    Die Nutzerin möchte einen von ihr durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt sie zu einem beliebigen Zeitpunkt, nachdem sie mindestens einen zu debuggenden Quellcode hinzugefügt hat, im Dateimenü den Punkt Konfigurationsdatei speichern aus. \\
+    Anschließend kann die Benutzerin den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
 
 \end{itemize}
 \newpage
@@ -426,8 +426,8 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 	\item[/T070/] Setzen eines \glspl{Breakpoint} synchron in allen Textfenstern
 	\item[/T080/] Löschen eines \glspl{Breakpoint} in einem Textfenster
 	\item[/T090/] Löschen aller \glspl{Breakpoint} eines Fensters
-	\item[/T100/] Starten des \glspl{Debugmodus}
-	\item[/T110/] Abbrechen des \glspl{Debugmodus}
+	\item[/T100/] Starten des \gls{Debugmodus}
+	\item[/T110/] Abbrechen des \gls{Debugmodus}
 	\item[/T120/] Halten des Debuggers an (bedingten) \glspl{Breakpoint}
 	\item[/T130/] Verändern der Schrittlänge
 	\item[/T140/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
