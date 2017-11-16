@@ -356,19 +356,17 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 
 \begin{itemize}
-    \item [/AF10/] \textbf{Name}: Hinzufügen von Quelltext\\ 
-        \textbf{Ausnahmen}:\\
-	Besitzt der hinzuzufügende Quelltext mehr als 100 Zeilen, so benachrichtigt DIbugger den Benutzer über /A10/.\\
-	Besitzt der hinzuzufügende Quelltext mehr als 200 Zeilen, so wird dieser nach /A10/ nicht hinzugefügt, und
-	DIbugger benachrichtigt den Benutzer mittels einer Fehlermeldung.\\
-        \textbf{Textuelle Beschreibung}:\\
-	Der Nutzer möchte einen Programmquelltext zu DIbugger hinzufügen, auf welchen er über die Dateiverwaltung
+    \item [/AF10/] Hinzufügen von Quelltext:\\ 
+	Der Nutzer möchte einen Programmquelltext hinzufügen, auf welchen er über die Dateiverwaltung
 	seines Betriebssystems zugreifen kann.\\
 	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste.\\
 	In der Menüansicht wählt er anschließend die Fläche \enquote{Neu}.\\
 	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese an,
 	den gewünschten Quelltext zu öffnen.\\
-	Der Quelltext erscheint in einem Eingabefenster von DIbugger.
+	Der Quelltext erscheint in einem Eingabefenster.\\
+	Hierbei sind folgende Ausnahmen zu beachten: Besitzt der hinzuzufügende Quelltext mehr als 100 Zeilen, so benachrichtigt das Produkt den Benutzer über /A10/.\\
+	Besitzt der hinzuzufügende Quelltext mehr als 200 Zeilen, so wird dieser nach /A10/ nicht hinzugefügt, und
+	das Produkt benachrichtigt den Benutzer mittels einer Fehlermeldung.\\
     \item [/AF20/] Ändern von Quelltext:\\
     Die Nutzerin möchte den von ihr hinzugefügten Quelltext ändern. Befindet sie sich im Debugmodus, muss sie diesen zuvor abbrechen. \\
     Um den Code zu ändern, kann die Nutzerin den Quelltext direkt im Fenster, durch hineinklicken, bearbeiten. Außerdem kann die Nutzerin auch weitere Quelltexte hinzufüge, oder Quelltexte entfernen.
@@ -380,11 +378,9 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
     \item [/AF50/] Codes debuggen: \\
 			Die Nutzerin möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt sie die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft ihre Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Ggf. verändert sie den Quelltext ihrer Programme noch einmal. Dann startet sie den \gls{Debugger}. Dieser läuft automatisch bis zum ersten (bedingten) \gls{Breakpoint} durch. \\Die Nutzerin hat dann die Möglichkeit pro Zeile(n) oder pro Breakpoint vorzugehen. Nach jedem Weitergehen werden ihr die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihr die Ausgabewerte aller Programme angezeigt.
     \item [/AF60/] Speichern eines Durchlaufs: \\
-    Die Nutzerin möchte einen von ihr durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt sie zu einem beliebigen Zeitpunkt, nachdem sie mindestens einen zu debuggenden Quellcode hinzugefügt hat, im Dateimenü den Punkt Konfigurationsdatei speichern aus. \\
-    Anschließend kann die Benutzerin den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
+    Die Nutzerin möchte einen von ihr durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt sie zu einem beliebigen Zeitpunkt, nachdem sie mindestens einen zu debuggenden Quellcode hinzugefügt hat, im Dateimenü den Punkt Konfigurationsdatei speichern aus. Anschließend kann die Benutzerin den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
 
 \end{itemize}
-\newpage
 \section{Globale Testfälle}
 
 \subsection{Basisfunktionen}
