@@ -30,7 +30,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
 	name={Relationale Eigenschaft},
 	plural={Relationale Eigenschaften},
-	description={}%TODO
+	description={ Relationale Eigenschaften sind solche Eigenschaften, die sich auf mindestens zwei Programmausführungen beziehen. Dabei können diese sich auf Variablen aus den verschiedenen Programmläufen beziehen und diese miteinander in Verbindung setzen, etwa ob eine Variable größer als eine andere ist}
 }
 \newglossaryentry{Interpreter}
 {
@@ -198,7 +198,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Quelltext setzen.
 		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
 		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetische Terme über den Variablen als \glspl{Watch-Expression} festlegen.
 		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option Weiter die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
 		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Quelltexte, sowie die aktuellen Befehle, an denen die Ausführung steht.
