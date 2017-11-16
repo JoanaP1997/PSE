@@ -403,19 +403,19 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 
 \begin{itemize}
 
-	\item[/T070/] Setzen eines Breakpoints synchron in allen Textfenstern
-	\item[/T080/] Löschen eines Breakpoints in einem Textfenster
-	\item[/T090/] Löschen aller Breakpoints eines Fensters
-	\item[/T100/] Starten des Debug-Modus
-	\item[/T110/] Abbrechen des Debug-Modus
-	\item[/T120/] Halten des Debuggers an (bedingten) Breakpoints
-	\item[/T130/] Verändern der Schrittlänge.
-	\item[/T140/] Einen Schritt der gewählten Schrittlänge in allen Fenstern machen
-	\item[/T150/] Einen Einzelschritt in einem einzelnen Fenster machen.
-	\item[/T160/] Mittels Step-Over eine Funktion nicht inspizieren
-	\item[/T170/] Mittels Step-Out aus einer Funktion zurückkehren
+	\item[/T070/] Setzen eines \glspl{Breakpoint} synchron in allen Textfenstern
+	\item[/T080/] Löschen eines \glspl{Breakpoint} in einem Textfenster
+	\item[/T090/] Löschen aller \glspl{Breakpoint} eines Fensters
+	\item[/T100/] Starten des \glspl{Debugmodus}
+	\item[/T110/] Abbrechen des \glspl{Debugmodus}
+	\item[/T120/] Halten des Debuggers an (bedingten) \glspl{Breakpoint}
+	\item[/T130/] Verändern der Schrittlänge
+	\item[/T140/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
+	\item[/T150/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
+	\item[/T160/] Mittels \gls{Step-Over} eine Funktion nicht inspizieren
+	\item[/T170/] Mittels \gls{Step-Out} aus einer Funktion zurückkehren
 	\item[/T180/] Korrektes Ausgeben der Ausgabewerte
-	\item[/T190/] Korrektes Auswerten der Watch-Expressions
+	\item[/T190/] Korrektes Auswerten der \glspl{Watch-Expression}
 	\item[/T200/] Korrektes Anzeigen der Zwischenwerte von Variablen
 	
 \end{itemize}
@@ -425,9 +425,9 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur.
 
 \begin{itemize}
 
-	\item[/T210/] Hinzufügen einer Expression
-	\item[/T220/] Löschen einer Expression
-	\item[/T230/] Bearbeiten einer Expression
+	\item[/T210/] Hinzufügen einer \gls{Watch-Expression}
+	\item[/T220/] Löschen einer \gls{Watch-Expression}
+	\item[/T230/] Bearbeiten einer \gls{Watch-Expression}
 	\item[/T240/] Hinzufügen einer Markierung
 	\item[/T250/] Löschen einer Markierung
 	\item[/T260/] Anzeigen einer Markierung
@@ -610,7 +610,7 @@ Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die
 Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
 
 \begin{verbatim}
-void doSenselessStuff() { //Prozedur ohne Rückgabe
+void doUselessStuff() { //Prozedur ohne Rückgabe
     int a = 0;
 }
 float devide(float x, float y) { //Funktion mit Rückgabewert
@@ -643,7 +643,7 @@ int main(int j, int k)
 \end{verbatim}
 \newpage
 \subsection{Syntax bedingter Breakpoints und der Watch-Expressions}
-Die Syntax der Watch-Expressions und bedingten Breakpoints ist durch folgende kontextfreie Ableitungsregeln gegeben: \\\\
+Die Syntax der \gls{Watch-Expression} und bedingten Breakpoints ist durch folgende kontextfreie Ableitungsregeln gegeben: \\\\
 <WatchExpression> $\rightarrow$ <BooleanExpression> | <Term>\\\\
 <BedingterBreakpoint> $\rightarrow$ <BooleanExpression>\\\\<BooleanExpression> $\rightarrow$ <Term> < <Term> 
 | <Term> > <Term> |\\ <Term> >= <Term>|<Term> <= <Term>| <Term> == <Term>| \\<Term> != <Term>\\\\
@@ -651,7 +651,7 @@ Die Syntax der Watch-Expressions und bedingten Breakpoints ist durch folgende ko
 | <Term> * <Term> |\\ <Term> - <Term>|<Term> + <Term>| <Atom>\\\\
 
 Wobei ein <Atom> ein fester Wert eines Datentyps (z.B. \texttt{5, 'c', true}) oder eine Variable der Form <Programmbezeichner>.<Variablenname> (z.B. \texttt{A.x} für Variable x in Programm A) ist. \\
-Das heißt, Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich bedingte Breakpoints immer zu einem Wahrheitswert auswerten.
+Das heißt, Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich \glspl{bedingter Breakpoint} immer zu einem Wahrheitswert auswerten.
 
 
 \newpage
