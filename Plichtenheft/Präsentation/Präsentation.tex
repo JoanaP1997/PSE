@@ -20,6 +20,7 @@
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
+\usepackage[11pt]{moresize}
 
 
 \mode<presentation> {
@@ -123,6 +124,25 @@
 \includegraphics[scale=0.3]{../logo_nongi}
 \end{frame}
 
+\section{Sprache}
+\subsection{Sprache}
+\subsubsection{Sprache}
+\begin{frame}
+\frametitle{Elemente der Sprache}
+\begin{itemize}
+\item  32-bit Ganzzahlen: \texttt{int}
+  \item  64-bit Ganzzahlen: \texttt{long}
+ \item  32-bit IEEE 754 Fließkommazahlen: \texttt{float}
+ \item   64-bit IEEE 754 Fließkommazahlen: \texttt{double}
+  \item  Einzelnes Zeichen: \texttt{char}
+  \item  Wahrheitswert: \texttt{boolean}
+\item Funktionen und Prozeduren % Unterprogramme mit oder ohne Rückgabewert.
+\item Bedingte Ausführung: \texttt{if, else if, else}
+\item Schleifen: \texttt{while}
+\end{itemize}
+\end{frame}
+
+
 %------------------------------------------------
 \subsection{Produkteinsatz}
 \begin{frame}
@@ -210,6 +230,59 @@
 \end{frame}
 
 %------------------------------------------------
+\section{Qualitätsanforderungen}
+\subsection{Qualitätsanforderungen}
+\begin{frame}
+\frametitle{Qualitätsanforderungen}
+\begin{ssmall}
+\begin{tabular}{l||l|c|c|c|c} 
+    & Produktqualität & Sehr gut & Gut & Normal & Nicht relevant \\
+  \hline
+  \hline
+  \textbf{Funktionalität} &Angemessenheit & & & X &  \\
+  %\cline{2-6}
+  &Richtigkeit & X & & & \\
+  %\cline{2-6}
+  &Interoperabilität & & & X &\\
+  %\cline{2-6}
+  &Sicherheit & & & X & \\
+  \hline
+  \textbf{Zuverlässigkeit} &Reife & & & X & \\
+  %\cline{2-6}
+  &Fehlertoleranz & & & X & \\
+  %\cline{2-6}
+  &Wiederherstellbarkeit & & & X &\\
+  \hline
+  \textbf{Benutzbarkeit} &Verständlichkeit & & X & &\\
+  %\cline{2-6}
+  &Erlernbarkeit & & X & &\\
+  %\cline{2-6}
+  &Bedienbarkeit & X & & &\\
+  \hline
+  \textbf{Effizienz} &Zeitverhalten & & & X & \\
+  %\cline{2-6}
+  &Verbauchsverhalten & & & X & \\
+  \hline
+  \textbf{Änderbarkeit} &Analysierbarkeit & & & X &\\
+  %\cline{2-6}
+  &Modifizierbarkeit & X & & &\\
+  %\cline{2-6}
+  &Stabilität & & X&  &\\
+  %\cline{2-6}
+  &Prüfbarkeit & & & X &\\
+  \hline
+  \textbf{Übertragbarkeit} &Anpassbarkeit & & X & &\\
+  %\cline{2-6}
+  &Installierbarkeit & & X & & \\
+  %\cline{2-6}
+  &Konformität & & & X & \\
+  %\cline{2-6}
+  &Austauschbarkeit & & & X & \\
+ \end{tabular}
+ \end{ssmall}
+\end{frame}
+
+%------------------------------------------------
 \subsection{Globale Testfälle}
 \begin{frame}
 \frametitle{Globale Testfälle}
@@ -223,12 +296,6 @@
 \includegraphics[scale=0.12]{../Aktivitaetsdiagramm}
 \end{frame}
 
-%------------------------------------------------
-\subsection{Paketdiagramm}
-\begin{frame}
-\frametitle{Paketdiagramm}
-\includegraphics[scale=0.3]{../pakete}
-\end{frame}
 
 %------------------------------------------------
 \section{GUI}
@@ -245,23 +312,6 @@
 \end{frame}
 
 %------------------------------------------------
-\section{Sprache}
-\subsection{Sprache}
-\subsubsection{Sprache}
-\begin{frame}
-\frametitle{Elemente der Sprache}
-\begin{itemize}
-\item  32-bit Ganzzahlen: \texttt{int}
-  \item  64-bit Ganzzahlen: \texttt{long}
- \item  32-bit IEEE 754 Fließkommazahlen: \texttt{float}
- \item   64-bit IEEE 754 Fließkommazahlen: \texttt{double}
-  \item  Einzelnes Zeichen: \texttt{char}
-  \item  Wahrheitswert: \texttt{boolean}
-\item Funktionen und Prozeduren % Unterprogramme mit oder ohne Rückgabewert.
-\item Bedingte Ausführung: \texttt{if, else if, else}
-\item Schleifen: \texttt{while}
-\end{itemize}
-\end{frame}
 
 
 %----------------------------------------------------------------------------------------
