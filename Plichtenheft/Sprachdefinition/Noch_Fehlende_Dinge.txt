@@ -1,6 +1,4 @@
 WLang.g4 fehlende dinge
-
+double,long
 FLOATLITERAL .f einfügen
-elseif fehlt
-arrays
 null

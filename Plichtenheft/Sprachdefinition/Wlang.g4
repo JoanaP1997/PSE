@@ -1,14 +1,23 @@
 
 grammar Wlang;
-r: statements;
+r: programm;
 
-routineHead: returntype = TYPE id = ID '(' args=arglist ')' #FunctionHead
-			| 'void' id =ID '('args=arglist')' #ProcedureHead
+
+programm: routine* mainRoutine;
+routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
+			| 'void' id =ID '('args=arglist?')' #ProcedureHead
 			;
+
+mainHead: returntype = TYPE 'main' '(' args=arglist? ')' #MainFunctionHead
+			| 'void' 'main' '('args=arglist?')' #MainProcedureHead
+			;
+
 arglist: argument ',' arglist | argument;
 argument: type=TYPE id=ID;
+filledArglist: filledArgument ',' filledArglist | filledArgument;
+filledArgument: term;
 routine: routineHead block;
-
+mainRoutine: mainHead block;
 
 //Statements
 
@@ -18,15 +27,33 @@ statements : statement statements #CompStatement
 statement:  ifState 
 		| ifelseState 
 		| whileState 
-		| assignment 
+		| assignment
+		| arrayDeclaration
+		| arrayDeclareAssign
+		| arrayElementAssign
 		| declaration 
-				;//or funcCall
+		| funcCall ';'	;
 		
-		
+
+funcCall: functionname = ID '(' args=filledArglist? ')' 
+	  |functionname = 'main' '(' args=filledArglist? ')'
+	;
+
+	
 block: '{'statements'}';
 assignment: declareAssign
 			| pureAssign
 			;
+
+arrayDeclaration: type = TYPE dims id = ID ';';
+arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
+arrayElementAssign: arrayAccess ASSIGN value = term';';
+dims: '['term']' #oneDims
+	| '['term']''['term']' #twoDims
+	| '['term']''['term']''['term']' #threeDims
+	;
+
+
 pureAssign: id = ID ASSIGN value = term ';';
 declareAssign: type = TYPE id = ID ASSIGN value = term ';';
 declaration: type = TYPE id = ID ';';
@@ -62,8 +89,14 @@ term : left = term '/' right = term #Division
 	| INTLITERAL #IntLiteral
 	| ID #ID
 	| CHARLITERAL #CharLiteral
+	| funcCall #FunctionCallInTerm
+	| arrayAccess #ArrayAccessInTerm
 	;
-//maybe func-call here
+
+arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
 
 
 //LITERALE bzw TOKENS
@@ -77,8 +110,9 @@ LINE_COMMENT:   '//' ~[\r\n]* -> skip;
 TYPE: 'float' | 'int' | 'char' | 'boolean';
 ID : ([a-z]|[A-Z])+ ;
 INTLITERAL: [1-9][0-9]* | '0';
-FLOATLITERAL: [1-9][0-9]*.[0-9]+ | '0';
+FLOATLITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 CHARLITERAL: '\'' ~['\\\r\n] '\'';
 BOOLEANLITERAL:	'true'|	'false';
+NULLLITERAL: 'null';
 ASSIGN: '=';
 
