@@ -76,8 +76,14 @@ condition: ID #IdCondition
 	| '('condition')' '&&' '('condition')' #AndCondition
 	| '!'condition #NotCondition
 	;
-comparison: left=term comperator=COMPOPERATOR right=term;
 
+comparison: left=term '<' right=term #LessComp
+	   | left=term '<=' right=term #LessEqualComp
+	   | left=term '>' right=term #MoreComp
+	   | left=term '>=' right=term #MoreEqualComp
+	   | left=term '==' right=term #EqualComp
+	   | left=term '!=' right=term #NotEqualComp
+	;
 
 term : left = term '/' right = term #Division
 	| left = term '*' right = term #Multiplication
@@ -103,7 +109,7 @@ arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 
 
 
-COMPOPERATOR:  '<'|'>'|'<='|'>='|'==';
+COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT:   '//' ~[\r\n]* -> skip;
