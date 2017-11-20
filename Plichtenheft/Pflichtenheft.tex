@@ -56,6 +56,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
   plural={Schritte},
   description={Siehe Einzelschritt. Die Anzahl ausgeführter Befehle entspricht der Schrittgröße}
 }
+%\newglossaryentry{Schrittgröße}
+%{
+%	name={Schrittgröße},
+%	description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in %Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
+%}
 \newglossaryentry{Step-Out}
 {
 	name={Step-Out},
@@ -197,20 +202,20 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für Quelltexte, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
-		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Quelltext setzen.
+		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Programm setzen.
 		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
-		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
+		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche im Programm gebunden werden.
 		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetische Terme über den Variablen als \glspl{Watch-Expression} festlegen.
-		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Quelltext gebunden werden.
+		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Programm gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, Schrittgröße und die zu debuggenden Quelltexte, sowie die aktuellen Befehle, an denen die Ausführung steht.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, Schrittgröße und die zu debuggenden Programme, sowie die aktuellen Befehle, an denen die Ausführung steht.
 		\item[/FA150/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts  geschrieben werden.
 		\item[/FA160/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts kopiert werden.
 		\item[/FA170/] Die zu debuggenden Programm können aus einer Textdatei eingebunden werden.
@@ -237,13 +242,13 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/FA290/] Die Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
 		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
 		\item[/FA310/] Der Benutzer kann einen Rückschritt durchführen.
-		\item[/FA320/] Die, an den Quelltext gebundenen, \glspl{Breakpoint} verschieben sich mit dem Quelltext, wenn dieser im \gls{Editiermodus} geändert wird.
+		\item[/FA320/] Die, an Zeilen im Programm gebundenen, \glspl{Breakpoint} verschieben sich mit dem Programm, wenn dieser im \gls{Editiermodus} geändert wird.
 		\end{itemize}		 		
  		
  		
  		\subsubsection{Abgrenzungskriterien}
  		\begin{itemize}
- 		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen Quelltext optimiert. Mehr als 250 Zeilen Quelltext sind nicht zugelassen.
+ 		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen optimiert.
  		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert.
  		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
  		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
@@ -260,7 +265,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		
 			\item[/PD10/] Konfigurationsdateien: \\
 			Diese Dateien speichern eine Konfiguration des Debuggers. 
-			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Quelltext und Position beider Programme, aber nicht die Ausgabewerte. \\
+			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Programmcode und Position beider Programme, aber nicht die Ausgabewerte. \\
 			Weiter müssen alle \gls{Breakpoint} gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. \Glspl{bedingter Breakpoint} benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die \glspl{Watch-Expression}.
 			Zudem wird, falls die Datei aus dem \gls{Debugmodus} erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
 			
@@ -372,30 +377,30 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 
 \begin{itemize}
-    \item [/AF10/] Hinzufügen von Quelltext:\\ 
-	Der Benutzer möchte einen Programmquelltext hinzufügen, auf welchen er über die Dateiverwaltung
+    \item [/AF10/] Hinzufügen von Programmen:\\ 
+	Der Benutzer möchte einen Programmcode hinzufügen, auf welchen er über die Dateiverwaltung
 	seines Betriebssystems zugreifen kann.\\
-	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste. In der Menüansicht wählt er anschließend die Fläche \enquote{Neuen Quelltext hinzufügen}.\\
-	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese den gewünschten Quelltext an.
-	Der Quelltext erscheint in einem Eingabefenster.\\
-	Hierbei ist folgende Ausnahme zu beachten: Besitzt der hinzuzufügende Quelltext mehr als 100 Zeilen, so benachrichtigt das Produkt den Benutzer über /A10/. Der Quelltext wird in jedem Fall hinzugefügt.\\
+	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste. In der Menüansicht wählt er anschließend die Fläche \enquote{Neues Programm hinzufügen}.\\
+	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese den gewünschten Programmcode an.
+	Das Programm erscheint in einem Eingabefenster.\\
+	Hierbei ist folgende Ausnahme zu beachten: Besitzt das hinzuzufügende Programm mehr als 100 Zeilen, so benachrichtigt das Produkt den Benutzer über /A10/. Das Programm wird in jedem Fall hinzugefügt.\\
     
-    \item [/AF20/] Ändern von Quelltext:\\
-    Der Benutzer möchte den von ihm hinzugefügten Quelltext ändern. Befindet er sich im \gls{Debugmodus}, muss er diesen zuvor abbrechen. \\
-    Um den Code zu ändern kann der Benutzer den Quelltext direkt im Fenster durch hineinklicken bearbeiten. Außerdem kann der Benutzer auch weitere Quelltexte hinzufügen oder Quelltexte entfernen.
+    \item [/AF20/] Ändern von Programmen:\\
+    Der Benutzer möchte das von ihm hinzugefügte Programm ändern. Befindet er sich im \gls{Debugmodus}, muss er diesen zuvor abbrechen. \\
+    Um den Code zu ändern kann der Benutzer das Programm direkt im Fenster durch hineinklicken bearbeiten. Außerdem kann der Benutzer auch weitere Programme hinzufügen oder Programme entfernen.
     
     \item [/AF30/] Setzen von Breakpoints:\\
-    Der Benutzer möchte einen \gls{Breakpoint} hinzufügen. Hierbei hat er die Möglichkeit, einen \gls{Breakpoint} durch Doppelklick direkt in Zeilen im Quelltext zu setzen.\\
+    Der Benutzer möchte einen \gls{Breakpoint} hinzufügen. Hierbei hat er die Möglichkeit, einen \gls{Breakpoint} durch Doppelklick direkt in Zeilen im Programmcode zu setzen.\\
     Die zweite Möglichkeit ist das Setzen eines bedingten Breakpoints. Hierzu wählt der Benutzer die passende \enquote{+} Schaltfläche aus, fügt einen semantisch korrekten bedingten Breakpoint ein und wählt gegebenenfalls einen Bereich aus.
     
     \item [/AF40/] Hinzufügen von Watch-Expressions:\\
-    Der Benutzer möchte eine \gls{Watch-Expression} bezüglich der von ihm hinzugefügten Quelltexte hinzufügen. Dazu wählt er in der Benutzeroberfläche die Schaltfläche \enquote{+} unter \glspl{Watch-Expression} aus. Hier gibt er eine semantisch korrekte \gls{Watch-Expression} (siehe Kapitel 12) ein. Anschließend kann im selben Feld ein Bereich in einem oder mehreren der Quelltexte angegeben werden, in dem das Produkt die Korrektheit der \gls{Watch-Expression} untersucht. Wird dieser Bereich leer gelassen, wird die Korrektheit der \gls{Watch-Expression} während des gesamten Durchlaufs überprüft.
+    Der Benutzer möchte eine \gls{Watch-Expression} bezüglich der von ihm hinzugefügten Programme hinzufügen. Dazu wählt er in der Benutzeroberfläche die Schaltfläche \enquote{+} unter \glspl{Watch-Expression} aus. Hier gibt er eine semantisch korrekte \gls{Watch-Expression} (siehe Kapitel 12) ein. Anschließend kann im selben Feld ein Bereich in einem oder mehreren der Programme angegeben werden, in dem das Produkt die Korrektheit der \gls{Watch-Expression} untersucht. Wird dieser Bereich leer gelassen, wird die Korrektheit der \gls{Watch-Expression} während des gesamten Durchlaufs überprüft.
     
     \item [/AF50/] Codes debuggen: \\
-			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Quelltexte in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Quelltext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Nach jedem Weitergehen werden ihm die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
+			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmcode seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Nach jedem Weitergehen werden ihm die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
     
     \item [/AF60/] Speichern eines Durchlaufs: \\
-    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Quelltext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
+    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmcode hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
 
 \end{itemize}
 \section{Globale Testfälle}
@@ -415,7 +420,7 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 	%\begin{itemize}
 	%	\item Vorher: \\
 	%	Das Programm befindet sich im Editier-Modus und ... \\
-	%%	b) es ist noch kein Quelltext geöffnet. \\
+	%%	b) es ist noch kein Programm geöffnet. \\
 		%c) 
 		%\item Aktion: Aufruf des File-Chooser-Dialogs im Menüpunkt \enquote{Datei}.
 		%\item Nachher: Die ausgewählte Text-Datei
@@ -439,7 +444,7 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 	\item[/T110/] Starten des \gls{Debugmodus}
 	\item[/T120/] Abbrechen des \gls{Debugmodus}
 	\item[/T130/] Halten des Debuggers an (bedingten) \glspl{Breakpoint}
-	\item[/T140/] Verändern der Schrittlänge
+	\item[/T140/] Verändern der Schrittgröße
 	\item[/T150/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
 	\item[/T160/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
 	\item[/T170/] Mittels \gls{Step-Over} eine Funktion nicht inspizieren
@@ -511,9 +516,9 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 \end{figure}
 \vspace{0.7cm}
 Das Aktivitätsdiagramm stellt die möglichen Reihenfolgen der Interaktion des Benutzers mit dem Produkt dar. \\
-Bindet der Benutzer direkt nach Start des Programms eine \gls{Konfigurationsdatei} eines früheren Laufs ein, kann er diesen Lauf direkt starten, oder vorher Änderungen an den Eingaben und Quelltexten vornehmen. \\
-Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Quelltexten und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an \glspl{Breakpoint}. \\
-Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum \gls{Editiermodus} zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Quelltexten vornehmen.\\
+Bindet der Benutzer direkt nach Start des Programms eine \gls{Konfigurationsdatei} eines früheren Laufs ein, kann er diesen Lauf direkt starten, oder vorher Änderungen an den Eingaben und Programmen vornehmen. \\
+Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Programmen und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an \glspl{Breakpoint}. \\
+Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum \gls{Editiermodus} zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Programmen vornehmen.\\
 Das Beenden des Produkts ist an jeder Stelle möglich.
 
 \newpage
@@ -546,14 +551,14 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 
 \newpage
     \subsection{Beschreibung der Oberfläche}
-        Befindet sich das Produkt im \gls{Editiermodus}, so können die Eingabequelltexte über die 
+        Befindet sich das Produkt im \gls{Editiermodus}, so können die Eingabeprogramme über die 
         Eingabefenster bearbeitet werden.
         Durch Verändern des Textes im Bereich \enquote{Eingabewerte} können Werte der Eingangsvariablen
         spezifiziert, gelöscht und verändert werden. 
         Die Schaltflächen \enquote{\gls{Schritt}} und \enquote{Weiter}, sowie \enquote{\gls{Einzelschritt}} können in diesem Modus nicht betätigt
         werden. Betätigung der Schaltfläche mit dem grünen Pfeil verursacht den Übergang des Produkts in den Debugmodus.
         
-        Befindet sich das Produkt im \gls{Debugmodus}, können die Eingabequelltexte nicht mehr
+        Befindet sich das Produkt im \gls{Debugmodus}, können die Eingabeprogramme nicht mehr
         bearbeitet werden.
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt}, sowie \enquote{Step Over} und \enquote{Step Out} können
         benutzt werden, um das Programm zu debuggen. \glspl{Breakpoint} können in den Eingabefenstern per Mausdruck gesetzt werden.
@@ -565,7 +570,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
      \subsection{Beschreibung der Menüs}
      Die Benutzeroberfläche bietet die folgenden Menüs:
      \begin{itemize}
-     \item[Datei] Dieses Menü enthält die Menüeinträge \enquote{Neu}, \enquote{Konfigurationsdatei laden}, \enquote{Konfigrationsdatei speichern} und \enquote{Neuen Quelltext hinzufügen}. Außerdem kann das Produkt über dieses Menü beendet werden.
+     \item[Datei] Dieses Menü enthält die Menüeinträge \enquote{Neu}, \enquote{Konfigurationsdatei laden}, \enquote{Konfigrationsdatei speichern} und \enquote{Neues Programm hinzufügen}. Außerdem kann das Produkt über dieses Menü beendet werden.
      \item[Vorschläge] In diesem Menü befinden sich die Menüeinträge, um Vorschläge für \glspl{Watch-Expression}, \glspl{bedingter Breakpoint} und Eingabevariablen anzufordern.
      \item[Einstellungen] Über dieses Menü können Grundeinstellungen des Produkts, wie die Sprache der Benutzeroberfläche, angepasst werden.
      \item[Hilfe] Das Hilfemenü \enquote{?} stellt Hinweise zur Benutzung des Produkts zur Verfügung.
