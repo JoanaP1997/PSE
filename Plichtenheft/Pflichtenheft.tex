@@ -401,7 +401,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
         Der Benutzer möchte zwei (oder mehr) Programmteile auf \glspl{Relationale Eigenschaft} (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt Breakpoints an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von Watch-Expressions oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) Breakpoint durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro Breakpoint vorzugehen. Die Ergebnisse der Variablen und der Auswertung der Watch-Expressions werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
     
     \item [/AF60/] Speichern eines Durchlaufs: \\
-    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
+    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der Konfigurationsdatei über ein Pop-Up Fenster auswählen.\\
 
 \end{itemize}
 \section{Globale Testfälle}
@@ -443,7 +443,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Die Konfiguration hat einen unterstützten Umfang (vgl. /A10/ und /A20/).
 		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Konfiguration speichern} per Mausklick aufgerufen.
-		\item Reaktion:	Die aktuelle Konfiguration wird in einer \gls{Konfigurationsdatei} abgespeichert.
+		\item Reaktion:	Die aktuelle Konfiguration wird in einer Konfigurationsdatei abgespeichert.
 		\end{itemize}	
 	
 	\end{itemize}
@@ -454,51 +454,51 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 
 	\item[/T060/] Setzen eines \glspl{Breakpoint} synchron in allen Textfenstern
 	\begin{itemize}
-		\item Erfolgsvorbedingung: Es sind mehrere Textfenster vorhanden. Die Stelle, an der der \gls{Breakpoint} gesetzt werden sollen, ist in allen Textfenster noch nicht von einem \gls{Breakpoint} belegt und in allen Fenstern einer Zeile validen Programmtextes \frage{(Wie heißen jetzt unsere "Befehle"?)} zugeordnet. 
+		\item Erfolgsvorbedingung: Es sind mehrere Textfenster vorhanden. Die Stelle, an der der Breakpoint gesetzt werden sollen, ist in allen Textfenster noch nicht von einem Breakpoint belegt und in allen Fenstern einer Zeile validen Programmtextes \frage{(Wie heißen jetzt unsere "Befehle"?)} zugeordnet. 
 		\item Aktion: Der linke Rand neben einem der Textfenster wird doppelt angeklickt.	
-		\item Reaktion:	In allen vorhandenen Textfenstern wird auf derselben Höhe ein \gls{Breakpoint} gesetzt.
+		\item Reaktion:	In allen vorhandenen Textfenstern wird auf derselben Höhe ein Breakpoint gesetzt.
 	\end{itemize}		
 	
-	\item[/T070/] Löschen eines \glspl{Breakpoint} in einem Textfenster
+	\item[/T070/] Löschen eines Breakpoint in einem Textfenster
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Es ist an der entsprechenden Stelle ein \gls{Breakpoint} gesetzt.	
-		\item Aktion: Der zu entfernende \gls{Breakpoint} wird einmal einfach angeklickt.
+		\item Erfolgsvorbedingung: Es ist an der entsprechenden Stelle ein Breakpoint gesetzt.	
+		\item Aktion: Der zu entfernende Breakpoint wird einmal einfach angeklickt.
 		\item Reaktion:	Der \gls{Breakpoint} wird erfolgreich entfernt, d.h. er ist weder zu sehen, noch hält das Programm zukünftig an der Stelle.
 		\end{itemize}		
 		
 		
-	\item[/T100/] Löschen aller \glspl{Breakpoint} eines Fensters
+	\item[/T100/] Löschen aller Breakpoints eines Fensters
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Es sind im entsprechenden Fenster mehrere \glspl{Breakpoint} vorhanden.
+		\item Erfolgsvorbedingung: Es sind im entsprechenden Fenster mehrere Breakpoints vorhanden.
 		\item Aktion: \frage{Wo ist der Button in der GUI? Im großen Menü? Im Textfenstermenü?}
-		\item Reaktion:	Alle \glspl{Breakpoint} des Fensters werden gelöscht.
+		\item Reaktion:	Alle Breakpoints des Fensters werden gelöscht.
 		\end{itemize}		
 	
 	\item[/T110/] Starten des \gls{Debugmodus}
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus}. Die zu untersuchenden Programme sind syntaktisch korrekt, d.h. es ergeben sich keine Fehler beim Kompilieren. Des Weiteren sind alle notwendigen Variableneingaben vorhanden und entsprechen dem Typ der jeweiligen Variable.
 		\item Aktion: Der Play-Button wird angeklickt.
-		\item Reaktion:	Das Produkt wechselt in den \gls{Debugmodus} und läuft in allen Programmen bis zum jeweils ersten \gls{Breakpoint} durch bzw. bis die Bedingung des ersten bedingten Breakpoints erfüllt wird.
+		\item Reaktion:	Das Produkt wechselt in den Debugmodus und läuft in allen Programmen bis zum jeweils ersten Breakpoint durch bzw. bis die Bedingung des ersten bedingten Breakpoints erfüllt wird.
 		\end{itemize}		
 	
-	\item[/T120/] Abbrechen des \gls{Debugmodus}
+	\item[/T120/] Abbrechen des Debugmodus
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}.
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus.
 		\item Aktion: Der Stop-Button wird angeklickt.
-		\item Reaktion: Das Produkt wechselt in den \gls{Editiermodus}.		
+		\item Reaktion: Das Produkt wechselt in den Editiermodus.		
 		\end{itemize}		
 	
-	\item[/T130/] Halten des Debuggers an \glspl{Breakpoint}
+	\item[/T130/] Halten des Debuggers an Breakpoints
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein Breakpoint in einem Textfenster.
-		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein \gls{Breakpoint} erreicht werden kann: Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Es existiert ein Breakpoint in einem Textfenster.
+		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein Breakpoint erreicht werden kann: Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
 		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte und aktuell erfüllten Watch-Expressions an.
 		\end{itemize}		
 	
 	\item[/T135/] Halten des Debuggers an (bedingten) \glspl{bedingter Breakpoint}
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein \gls{bedingter Breakpoint} mit syntaktisch korrekter und erfüllbarer Bedingung. 
-		\item Aktion: Es gibt verschiedene Nutzer-Handlungene, durch die ein \gls{bedingter Breakpoint} erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein bedingter Breakpoint mit syntaktisch korrekter und erfüllbarer Bedingung. 
+		\item Aktion: Es gibt verschiedene Nutzer-Handlungene, durch die ein bedingter Breakpoint erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
 		\item Reaktion:		
 		\end{itemize}	
 	
@@ -565,7 +565,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 
 \begin{itemize}
 
-	\item[/T220/] Hinzufügen einer \gls{Watch-Expression}
+	\item[/T220/] Hinzufügen einer Watch-Expression
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
@@ -579,7 +579,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion:		
 		\end{itemize}	
 	
-	\item[/T240/] Bearbeiten einer \gls{Watch-Expression}
+	\item[/T240/] Bearbeiten einer Watch-Expression
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
@@ -730,8 +730,8 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 \vspace{0.7cm}
 Das Aktivitätsdiagramm stellt die möglichen Reihenfolgen der Interaktion des Benutzers mit dem Produkt dar. \\
 Bindet der Benutzer direkt nach Start des Programms eine \gls{Konfigurationsdatei} eines früheren Laufs ein, kann er diesen Lauf direkt starten, oder vorher Änderungen an den Eingaben und Programmen vornehmen. \\
-Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Programmen und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an \glspl{Breakpoint}. \\
-Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum \gls{Editiermodus} zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Programmen vornehmen.\\
+Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Programmen und Ändern der Eingabevariablen nicht während des Debugmodus möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an Breakpoints. \\
+Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum Editiermodus zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Programmen vornehmen.\\
 Das Beenden des Produkts ist an jeder Stelle möglich.
 
 \newpage
@@ -747,8 +747,8 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 	\paragraph{User Interface} Das User Interface ist der Teil des Produktes, den der Benutzer sieht und mit dem er direkt interagieren kann. Somit dient dieser Teil dem Nutzer als Schnittstelle für Kontrolle und Ansicht. 
 	\paragraph{File Handler} Der File Handler stellt Funktionalität zum Laden, Einlesen und Speichern von Dateien bereit. Diese Dateien speichern Sprache, die Konfiguration eines Laufes oder Einstellungen des Nutzers. Neben dem eigentlichen Einlesen übernimmt der File Handler auch die Aufgabe, die Dateien entprechend zu parsen und zu interpretieren. Diese Funktionalität wird vom User Interface genutzt, falls der Nutzer die entsprechende Anweisung gibt. Für eine Änderung des Speicherformates müsste also nur der File Handler durch einen anderen ersetzt werden.
 	\paragraph{Debug Logic} Die Debug Logic stellt die eigentlichen Debugmechanismen und die Interpretation der zu debugenden Programme sowie die Logik der \glspl{Watch-Expression} und \glsplgen{bedingter Breakpoint} zur Verfügung. Sie ist unterteilt in: 
-	\subparagraph{Debugger} Der Debugger nutzt die vom \gls{Interpreter} erzeugten Informationen, um \glspl{Watch-Expression} und \glspl{bedingter Breakpoint} auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
-	\subparagraph{Interpreter} Der \gls{Interpreter} nutzt den Syntax-Baum, den der Antlr Parser erzeugt, um damit den Programmablauf der zu debuggenden Programme auszuführen. 
+	\subparagraph{Debugger} Der Debugger nutzt die vom \gls{Interpreter} erzeugten Informationen, um Watch-Expression und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+	\subparagraph{Interpreter} Der Interpreter nutzt den Syntax-Baum, den der Antlr Parser erzeugt, um damit den Programmablauf der zu debuggenden Programme auszuführen. 
 	\subparagraph{Antlr Parser} Der Antlr Parser enthält die von Antlr generierten Elemente zur Erzeugung des Syntaxbaums aus den eingegebenen Quelltexten.
 	
 	
@@ -782,13 +782,13 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         Betätigung der Schaltfläche mit dem roten Viereck verursacht den Übergang in den Editiermodus.
 
         In beiden Modi können \glspl{bedingter Breakpoint} und \glspl{Watch-Expression} durch Betätigung der jeweiligen 
-        \enquote{+}-Schaltflächen hinzugefügt werden. Über selbige Schaltflächen können Wirksamkeitsbereiche der \glspl{Watch-Expression} und \glspl{Breakpoint}
+        \enquote{+}-Schaltflächen hinzugefügt werden. Über selbige Schaltflächen können Wirksamkeitsbereiche der Watch-Expressions und Breakpoints
         spezifiziert werden.\\
      \subsection{Beschreibung der Menüs}
      Die Benutzeroberfläche bietet die folgenden Menüs:
      \begin{itemize}
      \item[Datei] Dieses Menü enthält die Menüeinträge \enquote{Neu}, \enquote{Konfigurationsdatei laden}, \enquote{Konfigrationsdatei speichern} und \enquote{Neues Programm hinzufügen}. Außerdem kann das Produkt über dieses Menü beendet werden.
-     \item[Vorschläge] In diesem Menü befinden sich die Menüeinträge, um Vorschläge für \glspl{Watch-Expression}, \glspl{bedingter Breakpoint} und Eingabevariablen anzufordern.
+     \item[Vorschläge] In diesem Menü befinden sich die Menüeinträge, um Vorschläge für Watch-Expressions, bedingte Breakpoints und Eingabevariablen anzufordern.
      \item[Einstellungen] Über dieses Menü können Grundeinstellungen des Produkts, wie die Sprache der Benutzeroberfläche, angepasst werden.
      \item[Hilfe] Das Hilfemenü \enquote{?} stellt Hinweise zur Benutzung des Produkts zur Verfügung.
      \end{itemize}
@@ -913,7 +913,7 @@ Die Syntax der \gls{Watch-Expression} und \glsplgen{bedingter Breakpoint} ist du
 | <Term> * <Term> |\\ <Term> - <Term>|<Term> + <Term>| <Atom>\\\\
 
 Wobei ein <Atom> ein fester Wert eines Datentyps (z.B. \texttt{5, 'c', true}) oder eine Variable der Form <Programmbezeichner>.<Variablenname> (z.B. \texttt{A.x} für Variable x in Programm A) ist. \\
-Das heißt \glspl{Watch-Expression} werten sich zu einem beliebigen Wert aus, während sich \glspl{bedingter Breakpoint} immer zu einem Wahrheitswert auswerten.
+Das heißt Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich bedingte Breakpoints immer zu einem Wahrheitswert auswerten.
 
 
 \newpage
