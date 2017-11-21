@@ -23,7 +23,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \newglossaryentry{Variableninspektor}
 {
 	name={Variableninspektor},
-	plural={Variableninspektoren},
+	plural={Variableninspektors},
 	description={Zeigt die Variablen des Programms und deren Belegung an}
 }
 \newglossaryentry{Relationale Eigenschaft}
@@ -56,11 +56,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
   plural={Schritte},
   description={Siehe Einzelschritt. Die Anzahl ausgeführter Befehle entspricht der Schrittgröße}
 }
-%\newglossaryentry{Schrittgröße}
-%{
-%	name={Schrittgröße},
-%	description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in %Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
-%}
+\newglossaryentry{Schrittgroesse}
+{
+	name={Schrittgröße},
+	description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
+}
 \newglossaryentry{Step-Out}
 {
 	name={Step-Out},
@@ -110,7 +110,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	name={Konfigurationsdatei},
 	plural={Konfigurationsdateien},
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
-	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
+	Breakpoints, Watch-Expressions, Eingabevariablen, \gls{Schrittgrösse}n und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
 }
 
 
@@ -166,7 +166,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
 Das Produkt \enquote{DIbugger} soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
-Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Variableninspektion, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das Betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient zweier Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von relationalen Zusammenhängen in den vom Nutzer verfassten Programmen.
+Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Anzeige eines \glspl{Variableninspektor}, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das Betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient zweier Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von \glspl{Relationale Eigenschaft} in den vom Nutzer verfassten Programmen.
 Die Sprache dieser Programme wird in Kapitel 12 näher definiert.
 \vspace{0.7cm}
 \begin{figure}[!h]
@@ -176,7 +176,7 @@ Die Sprache dieser Programme wird in Kapitel 12 näher definiert.
 \end{figure}
 
 \section{Produkteinsatz}
-Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu relationalen Eigenschaften von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
+Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu \glspl{Relationale Eigenschaft} von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
 Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
 
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
@@ -217,14 +217,14 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende, Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
-		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
+		\item[/FA40/] Der Benutzer kann die \gls{Schrittgroesse} für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
 		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen in den Programmen setzen.
-		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
+		\item[/FA90/] Der Benutzer kann \glspl{Relationale Eigenschaft} bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
 		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetischen Termen über den Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA110/] Der Benutzer kann \glspl{Relationale Eigenschaft} bezüglich Variablen und arithmetischen Termen über den Variablen als \glspl{Watch-Expression} festlegen.
 		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
 		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, Schrittgröße und die zu debuggenden Programme, sowie die Position im Programmablauf, an denen die Ausführung steht.
@@ -233,8 +233,8 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/FA170/] Die zu debuggenden Programme können aus einer Textdatei eingebunden werden.
 		\item[/FA180/] Der \gls{Debugmodus} kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
 		\item[/FA190/] Nach jedem \gls{Schritt} oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
-		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
-		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
+		\item[/FA200/] Die Variablenreihenfolge im \gls{Variableninspektor} ist manuell veränderbar.
+		\item[/FA210/] Im \gls{Variableninspektor} können Variablen ausgeblendet werden.
 		\item[/FA215/] Das Produkt ermöglicht die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
 		\end{itemize}
 
@@ -311,7 +311,7 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
 		\begin{itemize}
 		\item[/NA10/]Erweiterbarkeit: \\
-		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar, um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie Interpreter für weitere Sprachen.
+		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar, um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie \gls{Interpreter} für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
 		Durch seinen objektorientierten Entwurf können auftretende Fehler leicht beseitigt werden.
 		%\item[/NA25/]Robustheit: \\
@@ -397,7 +397,7 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehreren der Programme angegeben werden, in dem das Produkt die Korrektheit der \gls{Watch-Expression} untersucht. Wird einer oder mehrere dieser Bereiche leer gelassen, wird die Korrektheit der \gls{Watch-Expression} während des gesamten Durchlaufs überprüft.
     
     \item [/AF50/] Codes debuggen: \\
-			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
+			Der Benutzer möchte zwei (oder mehr) Programmteile auf \glspl{Relationale Eigenschaft} (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
     
     \item [/AF60/] Speichern eines Durchlaufs: \\
     Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
@@ -508,7 +508,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion:		
 		\end{itemize}	
 	
-	\item[/T150/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
+	\item[/T150/] Einen \gls{Schritt} der gewählten \gls{Schrittgroesse} in allen Fenstern machen
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
@@ -746,8 +746,8 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 	\paragraph{User Interface} Das User Interface ist der Teil des Produktes, den der Benutzer sieht und mit dem er direkt interagieren kann. Somit dient dieser Teil dem Nutzer als Schnittstelle für Kontrolle und Ansicht. 
 	\paragraph{File Handler} Der File Handler stellt Funktionalität zum Laden, Einlesen und Speichern von Dateien bereit. Diese Dateien speichern Sprache, die Konfiguration eines Laufes oder Einstellungen des Nutzers. Neben dem eigentlichen Einlesen übernimmt der File Handler auch die Aufgabe, die Dateien entprechend zu parsen und zu interpretieren. Diese Funktionalität wird vom User Interface genutzt, falls der Nutzer die entsprechende Anweisung gibt. Für eine Änderung des Speicherformates müsste also nur der File Handler durch einen anderen ersetzt werden.
 	\paragraph{Debug Logic} Die Debug Logic stellt die eigentlichen Debugmechanismen und die Interpretation der zu debugenden Programme sowie die Logik der \glspl{Watch-Expression} und \glsplgen{bedingter Breakpoint} zur Verfügung. Sie ist unterteilt in: 
-	\subparagraph{Debugger} Der Debugger nutzt die vom Interpreter erzeugten Informationen, um \glspl{Watch-Expression} und \glspl{bedingter Breakpoint} auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
-	\subparagraph{Interpreter} Der Interpreter nutzt den Syntax-Baum, den der Antlr Parser erzeugt, um damit den Programmablauf der zu debuggenden Programme auszuführen. 
+	\subparagraph{Debugger} Der Debugger nutzt die vom \gls{Interpreter} erzeugten Informationen, um \glspl{Watch-Expression} und \glspl{bedingter Breakpoint} auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+	\subparagraph{Interpreter} Der \gls{Interpreter} nutzt den Syntax-Baum, den der Antlr Parser erzeugt, um damit den Programmablauf der zu debuggenden Programme auszuführen. 
 	\subparagraph{Antlr Parser} Der Antlr Parser enthält die von Antlr generierten Elemente zur Erzeugung des Syntaxbaums aus den eingegebenen Quelltexten.
 	
 	
@@ -828,7 +828,7 @@ Präsentation/Abnahme: Ulla Scheler\\
 \textit{22.12.} Abgabe des endgültigen Entwurfs
 
 \subsubsection{Implementierungsphase}
-\textit{bis 14.01.} Fertigstellung der Dateiverwalter und des Interpreters. Beginn an Front- und Backend\\
+\textit{bis 14.01.} Fertigstellung der Dateiverwalter und des \gls{Interpreter}s. Beginn an Front- und Backend\\
 \textit{bis 21.01.} Fertige, aber noch nicht funktionelle Benutzeroberfläche. Bereitstellung einiger Methoden des Backends für diese\\
 \textit{bis 28.01.} Vollständige Implementierung des Backends und ein funktionierendes Frontend\\
 \textit{bis 04.02.} Ende und Abgabe der Implementierung des Programms
