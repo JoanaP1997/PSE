@@ -358,7 +358,7 @@ Da das Produkt seinen Einsatz bei der wissenschaftlichen Arbeit findet, wird vom
 Da das Produkt als Unterstützung beim Führen von formalen Beweisen eingesetzt werden soll, ist die Richtigkeit aller Werte, die vom Produkt angezeigt und ausgerechnet werden, sehr relevant. \\
 Um den Nutzer gut unterstützen zu können, ist eine gewisse Fehlertoleranz des Produktes bei falschen oder fehlenden Eingaben wichtig. Um gut eingesetzt werden zu können ist eine einfache Installation, die reibungslos funktioniert, ebenfalls wichtig. Jedoch wird bei diesen beiden Punkten wieder eine gewisse Selbstständigkeit des Nutzers vorausgesetzt, weshalb diese Punkte nicht so relevant wie die Richtigkeit des Produktes sind.
 Da das Produkt in der ersten Version eventuell noch nicht alle möglichen Einsatzgebiete abdeckt, ist eine gute Erweiterbarkeit wichtig. \\
-Da dem Nutzer moderne Rechner mit großer Rechenleistung, sowie viel Speicherplatz zur Verfügung stehen, ist die Ressourceneffizient nicht sehr relevant. 
+Da dem Nutzer moderne Rechner mit hoher Rechenleistung, sowie viel Speicherplatz zur Verfügung stehen, ist die Ressourceneffizient nicht sehr relevant. 
 %Ebenso muss der Nutzer bei zu komplizierten, zu untersuchenden Programmläufen damit rechnen, dass das Produkt nicht sehr Zeiteffizient ist, was jedoch durch die große Rechenleistung der verfügbaren Rechner ausgeglichen werden kann.
  
 
@@ -377,8 +377,8 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
     \item [/AF10/] Hinzufügen von Programmen:\\ 
 	Der Benutzer möchte einen Programmcode hinzufügen, auf welchen er über die Dateiverwaltung
 	seines Betriebssystems zugreifen kann.\\
-	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste. In der Menüansicht wählt er anschließend die Fläche \enquote{Neues Programm hinzufügen}.\\
-	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese den gewünschten Programmcode an.
+	Dazu wählt er die Schaltfläche \enquote{Datei} der Menüleiste. In der Menüansicht wählt er anschließend die Fläche \enquote{Programm hinzufügen}.\\
+	Daraufhin öffnet sich die Dateiverwaltung seines Betriebssystems und der Benutzer fordert über diese den gewünschten Programmtext an.
 	Das Programm erscheint in einem Eingabefenster.\\
 	Hierbei ist folgende Ausnahme zu beachten: Besitzt das hinzuzufügende Programm mehr als 100 Zeilen, so benachrichtigt das Produkt den Benutzer über /A10/. Das Programm wird in jedem Fall hinzugefügt.\\
     
@@ -387,17 +387,18 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
     Um den Code zu ändern kann der Benutzer das Programm direkt im Fenster durch hineinklicken bearbeiten. Außerdem kann der Benutzer auch weitere Programme hinzufügen oder Programme entfernen.
     
     \item [/AF30/] Setzen von Breakpoints:\\
-    Der Benutzer möchte einen \gls{Breakpoint} hinzufügen. Hierbei hat er die Möglichkeit, einen \gls{Breakpoint} durch Doppelklick direkt in Zeilen im Programmcode zu setzen.\\
-    Die zweite Möglichkeit ist das Setzen eines bedingten Breakpoints. Hierzu wählt der Benutzer die passende \enquote{+} Schaltfläche aus, fügt einen semantisch korrekten bedingten Breakpoint ein und wählt gegebenenfalls einen Bereich aus.
+    Der Benutzer möchte einen \gls{Breakpoint} hinzufügen. Hierbei hat er die Möglichkeit, einen \gls{Breakpoint} durch Doppelklick direkt in Zeilen im Programmtext zu setzen.\\
+    Die zweite Möglichkeit ist das Setzen eines bedingten Breakpoints. Hierzu wählt der Benutzer die passende \enquote{+} Schaltfläche aus, fügt einen semantisch korrekten Ausdruck ein und wählt gegebenenfalls die zugehörigen Bereiche in den Programmen aus.
     
     \item [/AF40/] Hinzufügen von Watch-Expressions:\\
-    Der Benutzer möchte eine \gls{Watch-Expression} bezüglich der von ihm hinzugefügten Programme hinzufügen. Dazu wählt er in der Benutzeroberfläche die Schaltfläche \enquote{+} unter \glspl{Watch-Expression} aus. Hier gibt er eine semantisch korrekte \gls{Watch-Expression} (siehe Kapitel 12) ein. Anschließend kann im selben Feld ein Bereich in einem oder mehreren der Programme angegeben werden, in dem das Produkt die Korrektheit der \gls{Watch-Expression} untersucht. Wird dieser Bereich leer gelassen, wird die Korrektheit der \gls{Watch-Expression} während des gesamten Durchlaufs überprüft.
+    Der Benutzer möchte eine \gls{Watch-Expression} bezüglich der von ihm hinzugefügten Programme hinzufügen. Dazu wählt er in der Benutzeroberfläche die Schaltfläche \enquote{+} unter \glspl{Watch-Expression} aus. Hier gibt er einen semantisch korrekten %\gls{Watch-Expression} (siehe Kapitel 12) 
+Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehreren der Programme angegeben werden, in dem das Produkt die Korrektheit der \gls{Watch-Expression} untersucht. Wird einer oder mehrere dieser Bereiche leer gelassen, wird die Korrektheit der \gls{Watch-Expression} während des gesamten Durchlaufs überprüft.
     
     \item [/AF50/] Codes debuggen: \\
-			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Programm ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmcode seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Nach jedem Weitergehen werden ihm die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} angezeigt. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
+			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt \glspl{Breakpoint} an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von \glspl{Watch-Expression} oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) \gls{Breakpoint} durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro \gls{Breakpoint} vorzugehen. Die Ergebnisse der Variablen und der Auswertung der \glspl{Watch-Expression} werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
     
     \item [/AF60/] Speichern eines Durchlaufs: \\
-    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weitergeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmcode hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
+    Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
 
 \end{itemize}
 \section{Globale Testfälle}
