@@ -404,12 +404,13 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 
 \begin{itemize}
 	\item[/T010/] Öffnen des Produkts
-	%\begin{itemize}
-	%	\item Vorher: Desktop oder Terminal des Betriebssystems
-	%	\item Aktion: Aufrufen des Produkts über Icon oder Terminal
-	%	\item Nachher: Produkt öffnet sich in der Default-Ansicht.
-	%	\frage{Öffnet das Produkt sich in Default? Wie sieht das aus?}
-	%\end{itemize}
+	\begin{itemize}
+		\item Vorbedingung: Das Produkt ist noch nicht geöffnet.
+		\frage{Braucht man noch eine Vorbedingung an das Betriebssystem?}
+		\item Aktion: Aufrufen des Produkts über das Produkt-Icon oder das Terminal
+		\item Reaktion: Das Produkt öffnet sich. Zu sehen sind die Menü-Leisten. Es sind nach dem Öffnen noch keine Programme des Nutzers eingebunden.
+		\item Verletzung der Vorbedingung: Das Programm lässt sich nur einmal öffnen. Folglich erscheint nur das bereits geöffnete Fenster wieder im Vordergrund.
+	\end{itemize}
 	
 	\item[/T020/] Öffnen einer Textdatei
 	%\begin{itemize}
