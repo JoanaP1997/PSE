@@ -910,7 +910,7 @@ Die Syntax der \gls{Watch-Expression} und \glsplgen{bedingter Breakpoint} ist du
 <BedingterBreakpoint> $\rightarrow$ <BooleanExpression>\\\\<BooleanExpression> $\rightarrow$ <Term> < <Term> 
 | <Term> > <Term> |\\ <Term> >= <Term>|<Term> <= <Term>| <Term> == <Term>| \\<Term> != <Term>\\\\
 <Term> $\rightarrow$ <Term> / <Term> 
-| <Term> * <Term> |\\ <Term> - <Term>|<Term> + <Term>| <Term> \% <Term>|<Atom>\\\\
+| <Term> * <Term> |\\ <Term> - <Term>|<Term> + <Term>| <Term> \% <Term> | (<Term>) |<Atom>\\\\
 
 Wobei ein <Atom> ein fester Wert eines Datentyps (z.B. \texttt{5, 'c', true}) oder eine Variable der Form <Programmbezeichner>.<Variablenname> (z.B. \texttt{A.x} für Variable x in Programm A) ist. \% steht für die Modulo-Operation.\\
 Das heißt Watch-Expressions werten sich zu einem beliebigen Wert aus, während sich bedingte Breakpoints immer zu einem Wahrheitswert auswerten.
