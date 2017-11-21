@@ -288,8 +288,8 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
-		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
-		\newpage
+		Die Genauigkeit von Fließkommazahlen (float und double) richtet sich nach dem IEEE 754 Standard.
+
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
 		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
@@ -301,7 +301,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/NA10/]Erweiterbarkeit: \\
 		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie einen Interpreter für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
-		Durch seinen objektorientierten Entwurf können auftretende Fehler leicht beseitigt werden.
+		Durch den objektorientierten Entwurf des Produkts können auftretende Fehler leicht beseitigt werden.
 		%\item[/NA25/]Robustheit: \\
 		%weiß hier jemand was?
 		\item[/NA30/]Urheberrecht: \\
@@ -615,11 +615,13 @@ Präsentation/Abnahme: Ulla Scheler\\
 \newpage
 \section{Ergänzungen}
 %Sprache
-\subsection{Sprache}
-Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
-\paragraph{Klassifikation der Sprache} Die Sprache ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
+\subsection{Sprache - Wlang}
+%Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
+\paragraph{Name der Sprache}
+Der Name der Sprache ist Wlang, was von WHILE-language abgeleitet ist, da es sich hierbei um eine WHILE-Sprache handelt.
+\paragraph{Klassifikation der Sprache} Wlang ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
 \paragraph{Elemente der Sprache}
-Die Sprache unterstützt die folgenden primitiven Datentypen:
+Wlang unterstützt die folgenden primitiven Datentypen:
 \begin{itemize}
 \item  32-bit Ganzzahlen: \texttt{int}
   \item  64-bit Ganzzahlen: \texttt{long}
@@ -629,7 +631,7 @@ Die Sprache unterstützt die folgenden primitiven Datentypen:
   \item  Wahrheitswert: \texttt{boolean}
 \end{itemize}
 Zudem sind bis zu dreidimensionale Arrays dieser Datentypen möglich.
-Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
+Ferner unterstützt Wlang die folgenden Kontrollstrukturen:
 \begin{itemize}
 \item Funktionen und Prozeduren, also Unterprogramme mit oder ohne Rückgabewert.
 \item Bedingte Ausführung: \texttt{if, else if, else}
@@ -639,7 +641,7 @@ Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die
 \newpage
 
 \paragraph{Syntax der Sprache}
-Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
+Die Syntax von Wlang ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
 
 \begin{verbatim}
 void doUselessStuff() { //Prozedur ohne Rückgabe
