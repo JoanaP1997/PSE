@@ -211,25 +211,25 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
-		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer \glspl{Schritt} (Steps) durchführen.
+		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende, Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
 		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
-		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen im Programm setzen.
+		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen in den Programmen setzen.
 		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen.
-		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche im Programm gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetische Terme über den Variablen als \glspl{Watch-Expression} festlegen.
-		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Programm gebunden werden.
+		\item[/FA100/] \Glspl{bedingter Breakpoint} können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
+		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetischen Termen über den Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
 		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, Schrittgröße und die zu debuggenden Programme, sowie die aktuellen Befehle, an denen die Ausführung steht.
 		\item[/FA150/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts  geschrieben werden.
 		\item[/FA160/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts kopiert werden.
-		\item[/FA170/] Die zu debuggenden Programm können aus einer Textdatei eingebunden werden.
+		\item[/FA170/] Die zu debuggenden Programme können aus einer Textdatei eingebunden werden.
 		\item[/FA180/] Der \gls{Debugmodus} kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
-		\item[/FA190/] Nach jedem \gls{Schritt}e oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
+		\item[/FA190/] Nach jedem \gls{Schritt} oder \gls{Breakpoint} werden die aktuellen Variablenbelegungen angezeigt.
 		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
 		\item[/FA215/] Das Produkt ermöglicht die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
@@ -239,7 +239,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\begin{itemize}
 		\item[/FA220/] Das Produkt kann zufällige Vorschläge für Eingabewerte über einen Vorschlag-Button erstellen. Der Benutzer kann diese noch ändern.
 		\item[/FA230/] Der Benutzer kann Variablen auswählen, von welchen jeder angenommene Wert gespeichert wird.
-		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl an Schleifendurchläufe kann vom Benutzer festgelegt werden (maximal 250).
+		\item[/FA240/] Bei Endlosschleifen wird automatisch abgebrochen. Die maximale Anzahl an Schleifendurchläufe kann vom Benutzer festgelegt werden.
 		\item[/FA250/] Der Benutzer kann mehr als zwei Programme simultan debuggen.
 		\item[/FA260/] Das Produkt kann Vorschläge für Eingabevariablen anhand der zu debuggenden Programme machen.
 		\item[/FA270/] Das Produkt kann Vorschläge für \glspl{Watch-Expression} anhand der zu debuggenden Programme machen.
@@ -248,10 +248,11 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 
  		\subsubsection{Kannkriterien}
 		\begin{itemize}
-		\item[/FA290/] Die Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
+		\item[/FA290/] Die Datei des zu debuggenden Programms kann in eines der jeweiligen Textfelder hineingezogen werden.
+		\item[/FA291/] Die Textfelder für die jeweiligen Programme verfügen über ein Syntax-Highlighting.
 		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
-		\item[/FA310/] Der Benutzer kann einen Rückschritt durchführen.
-		\item[/FA320/] Die, an Zeilen im Programm gebundenen, \glspl{Breakpoint} verschieben sich mit dem Programm, wenn dieser im \gls{Editiermodus} geändert wird.
+		\item[/FA310/] Der Benutzer kann Rückschritte in den Programmen durchführen.
+		\item[/FA320/] Die, an Zeilen im Programm gebundenen, \glspl{Breakpoint} verschieben sich mit dem Programm, wenn dieses im \gls{Editiermodus} geändert wird.
 		\end{itemize}		 		
  		
  		
@@ -260,9 +261,9 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
  		\item[/A10/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Zeilen optimiert.
  		\item[/A20/] Das Produkt ist auf zu debuggende Programme mit maximal 100 Iterationen pro Schleife bzw. 100 Rekursionsaufrufe pro Funktion optimiert.
  		\item[/A30/] Das Produkt vergleicht nur Programme die in einem gemeinsamen Durchlauf gedebuggt wurden.
- 		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen.
- 		\item[/A50/] Das Produkt ersetzt keinen Text-Editor. So hat es zum Beispiel kein Syntax-Highlighting und keine Auto-Vervollständigung.
- 		\item[/A50/] Das Produkt ersetzt keine Versionskontrolle. Die Nutzerin ist selbst dafür verantwortlich, ihre Änderungen - zum Beispiel durch Kommentare - zu dokumentieren.
+ 		\item[/A40/] Das Produkt unterstützt eine maximale Zeilenbreite von 120 Zeichen. Wird diese überschritten, so wird automatisch ein Zeilenumbruch durchgeführt.
+ 		\item[/A50/] Das Produkt ersetzt keine Entwicklungsumgebung. So hat es zum Beispiel keine Auto-Vervollständigung.
+ 		\item[/A60/] Das Produkt ersetzt keine Versionskontrolle. Die Nutzerin ist selbst dafür verantwortlich, ihre Änderungen - zum Beispiel durch Kommentare - zu dokumentieren.
  		\end{itemize}
  		
  \newpage		
@@ -273,10 +274,10 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		
 		
 			\item[/PD10/] Konfigurationsdateien: \\
-			Diese Dateien speichern eine Konfiguration des Debuggers. 
-			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Programmcode und Position beider Programme, aber nicht die Ausgabewerte. \\
-			Weiter müssen alle \gls{Breakpoint} gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. \Glspl{bedingter Breakpoint} benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die \glspl{Watch-Expression}.
-			Zudem wird, falls die Datei aus dem \gls{Debugmodus} erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
+			Diese Dateien speichern eine Konfiguration des Produkts. 
+			Hierzu gehört der aktuelle Status der Benutzeroberfläche (Eingabewerte, Schrittgrößen, Variablenauswahl, Programmtexte, Breakpoints, bedingte Breakpoints, Watch-Expressions) und der Programme.
+			Hier werden dann zusätzlich die aktuellen Positionen in den Programmabläufen, sowie Variablenbelegungen derer gespeichert.
+%			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Programmcode und Position beider Programme, aber nicht die Ausgabewerte. \\ Weiter müssen alle \gls{Breakpoint} gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. \Glspl{bedingter Breakpoint} benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die \glspl{Watch-Expression}. Zudem wird, falls die Datei aus dem \gls{Debugmodus} erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
 			
 			\item[/PD20/] Sprachdateien: \\
 			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
@@ -291,12 +292,13 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
 		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne längere Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne längere Verzögerung möglich. \\
 		Den Debugmodus zu starten dauert unter 5 Sekunden. 
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
-		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
+		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), repräsentiert werden, ergeben sich die selben Genauigkeiten aus Java auch in unserer Sprache. %TODO
+		%Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
 		\newpage
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
@@ -307,7 +309,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
 		\begin{itemize}
 		\item[/NA10/]Erweiterbarkeit: \\
-		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie einen Interpreter für weitere Sprachen.
+		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar, um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie Interpreter für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
 		Durch seinen objektorientierten Entwurf können auftretende Fehler leicht beseitigt werden.
 		%\item[/NA25/]Robustheit: \\
