@@ -735,18 +735,22 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 
 \begin{figure}[!ht]
 	\centering
-	\includegraphics[width=1.0\textwidth]{pakete}
-	\caption{Paketdiagramm}
+	\includegraphics[width=1.0\textwidth]{Architektur}
+	\caption{Systemarchitektur}
 	\label{fig:Bild3} 
 
 \end{figure}
 \vspace{0.7cm}
-	Während der Definitionsphase ergab sich das obige Paketdiagramm.\\ 
-	Diese vorläufige Version des Paketdiagramms wird als Grundlage für den Entwurf des
-	Produkts in der Entwurfsphase verwendet.
+	\paragraph{User Interface} Das User Interface ist der Teil des Produktes, den der Benutzer sieht und mit dem er direkt interagieren kann. Somit dient dieser Teil dem Nutzer als Schnittstelle für Kontrolle und Ansicht. 
+	\paragraph{File Handler} Der File Handler stellt Funktionalität zum Laden, Einlesen und Speichern von Dateien bereit. Diese Dateien speichern Sprache, die Konfiguration eines Laufes oder Einstellungen des Nutzers. Neben dem eigentlichen Einlesen übernimmt der File Handler auch die Aufgabe, die Dateien entprechend zu parsen und zu interpretieren. Diese Funktionalität wird vom User Interface genutzt, falls der Nutzer die entsprechende Anweisung gibt. Für eine Änderung des Speicherformates müsste also nur der File Handler durch einen anderen ersetzt werden.
+	\paragraph{Debug Logic} Die Debug Logic stellt die eigentlichen Debugmechanismen und die Interpretation der zu debugenden Programme sowie die Logik der \glspl{Watch-Expression} und \glsplgen{bedingter Breakpoint} zur Verfügung. Sie ist unterteilt in: 
+	\subparagraph{Debugger} Der Debugger nutzt die vom Interpreter erzeugten Informationen, um \glspl{Watch-Expression} und \glspl{bedingter Breakpoint} auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+	\subparagraph{Interpreter} Der Interpreter nutzt den Syntax-Baum, den der Antlr Parser erzeugt, um damit den Programmablauf der zu debuggenden Programme auszuführen. 
+	\subparagraph{Antlr Parser} Der Antlr Parser enthält die von Antlr generierten Elemente zur Erzeugung des Syntaxbaums aus den eingegebenen Quelltexten.
+	
 	
 \newpage
-\section{Benutzungsoberfläche}
+\section{Benutzeroberfläche}
 %Gui-Skizzen, Erklärungen der Menüs, usw
 \begin{figure}[!ht] 
     \vspace{-10pt}
@@ -839,10 +843,10 @@ Präsentation/Abnahme: Ulla Scheler\\
 \section{Ergänzungen}
 %Sprache
 \subsection{Sprache}
-Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
-\paragraph{Klassifikation der Sprache} Die Sprache ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
+Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als \enquote{WLang} (WHILE-Language) bezeichnet. 
+\paragraph{Klassifikation der Sprache} WLang ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
 \paragraph{Elemente der Sprache}
-Die Sprache unterstützt die folgenden primitiven Datentypen:
+WLang unterstützt die folgenden primitiven Datentypen:
 \begin{itemize}
 \item  32-bit Ganzzahlen: \texttt{int}
   \item  64-bit Ganzzahlen: \texttt{long}
@@ -852,7 +856,7 @@ Die Sprache unterstützt die folgenden primitiven Datentypen:
   \item  Wahrheitswert: \texttt{boolean}
 \end{itemize}
 Zudem sind bis zu dreidimensionale Arrays dieser Datentypen möglich.
-Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
+Ferner unterstützt WLang die folgenden Kontrollstrukturen:
 \begin{itemize}
 \item Funktionen und Prozeduren, also Unterprogramme mit oder ohne Rückgabewert.
 \item Bedingte Ausführung: \texttt{if, else if, else}
@@ -862,7 +866,7 @@ Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die
 \newpage
 
 \paragraph{Syntax der Sprache}
-Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
+Die Syntax von WLang ist angeleht an gängige Programmiersprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
 
 \begin{verbatim}
 void doUselessStuff() { //Prozedur ohne Rückgabe
