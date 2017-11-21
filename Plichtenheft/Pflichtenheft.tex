@@ -217,14 +217,14 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende, Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im Debugmodus kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
-                \item[/FA40/] Der Benutzer kann die \gls{Schrittgröße} für jedes Programm einzeln festlegen.
+                \item[/FA40/] Der Benutzer kann die \gls{Schrittgrösse} für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem Schritt wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
 		\item[/FA80/] Der Benutzer kann \glspl{Breakpoint} an Zeilen in den Programmen setzen.
-		\item[/FA90/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen. %glspl relationale Eigensch.?
+                \item[/FA90/] Der Benutzer kann \gls{Relationale Eigenschaft} bezüglich Variablen als \glspl{bedingter Breakpoint} festlegen. %glspl relationale Eigensch.?
 		\item[/FA100/] Bedingte Breakpoints können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
-		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetischen Termen über den Variablen als \glspl{Watch-Expression} festlegen.
+		\item[/FA110/] Der Benutzer kann Relationale Eigenschaften bezüglich Variablen und arithmetischen Termen über den Variablen als \glspl{Watch-Expression} festlegen.
 		\item[/FA120/] Watch-Expressions können an vom Benutzer bestimmte Bereiche in den Programmen gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
 		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, Breakpoints, Watch-Expressions, Schrittgröße und die zu debuggenden Programme, sowie die Position im Programmablauf, an denen die Ausführung steht.
@@ -233,7 +233,7 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/FA170/] Die zu debuggenden Programme können aus einer Textdatei eingebunden werden.
 		\item[/FA180/] Der Debugmodus kann vom Benutzer abgebrochen werden. Dadurch kehrt der Benutzer zum \gls{Editiermodus} zurück.
 		\item[/FA190/] Nach jedem \gls{Schritt} oder Breakpoint werden die aktuellen Variablenbelegungen angezeigt.
-		\item[/FA200/] Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.
+                \item[/FA200/] Die Variablenreihenfolge im \gls{Variableninspektor} ist manuell veränderbar.
 		\item[/FA210/] Im Variableninspektor können Variablen ausgeblendet werden.
 		\item[/FA215/] Das Produkt ermöglicht die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte.
 		\end{itemize}
@@ -398,7 +398,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
     
     \item [/AF50/] Codes debuggen: \\
                         %relationale Eigenschaften groß? (Rela...)
-			Der Benutzer möchte zwei (oder mehr) Programmteile auf relationale Eigenschaften (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt Breakpoints an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von Watch-Expressions oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) Breakpoint durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro Breakpoint vorzugehen. Die Ergebnisse der Variablen und der Auswertung der Watch-Expressions werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
+        Der Benutzer möchte zwei (oder mehr) Programmteile auf \glspl{Relationale Eigenschaft} (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt Breakpoints an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von Watch-Expressions oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) Breakpoint durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro Breakpoint vorzugehen. Die Ergebnisse der Variablen und der Auswertung der Watch-Expressions werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
     
     \item [/AF60/] Speichern eines Durchlaufs: \\
     Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen, oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der \gls{Konfigurationsdatei} über ein Pop-Up Fenster auswählen.\\
