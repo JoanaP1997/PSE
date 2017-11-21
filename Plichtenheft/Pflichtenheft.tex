@@ -409,82 +409,200 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 	\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt ist noch nicht geöffnet.
 		\frage{Braucht man noch eine Vorbedingung an das Betriebssystem?}
-		\item Aktion: Das Produkt wird über das Produkt-Icon oder das Terminal aufgerufen.
+		\item Aktion: Das Produkt wird über das Terminal oder per Mausklick über das Produkt--Symbol aufgerufen.
 		\item Reaktion: Das Produkt öffnet sich. Zu sehen sind die Menü-Leisten. Es sind nach dem Öffnen noch keine Programme des Nutzers eingebunden.
 %		\item Verletzung der Vorbedingung: Das Programm lässt sich nur einmal öffnen. Folglich erscheint nur das bereits geöffnete Fenster wieder im Vordergrund.
 	\end{itemize}
 	
 	\item[/T020/] Öffnen einer Textdatei
 	\begin{itemize}
-		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus} und die auszuwählende Textdatei hat eine unterstützte Länge (vgl. A10).
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus} und die auszuwählende Textdatei hat eine unterstützte Länge (vgl. /A10/).
 		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Textdatei öffnen} aufgerufen und die entsprechende Textdatei ausgewählt.
-		\item Reaktion: Die ausgewählte Text-Datei wird in einem neuen Programm-Lauf-Fenster \frage{??} eingefügt.
+		\item Reaktion: Die ausgewählte Text-Datei wird in einem neuen Programm-Fenster \frage{??} eingefügt.
 	\end{itemize}	
 
 	\item[/T030/] Schließen des Produkts
 	\begin{itemize}
-		\item Erfolgsvorbedingung: Die Arbeit des Nutzers ist erfolgreich in einer \gls{Konfigurationsdatei} gespeichert.
-		\item Aktion: Der Nutzer klickt auf den Schließen-Button oder auf den Menüpunkt \enquote{Beenden} im Menü \enquote{Datei}.
+		\item Erfolgsvorbedingung: Die Arbeit des Nutzers ist bereits gespeichert.
+		\item Aktion: Es wird der Schließen-Button  oder der Menüpunkt \enquote{Beenden} im Menü \enquote{Datei} per Mausklick aufgerufen.
 		\item Reaktion: Das Produkt beendet und schließt sich.
-	\end{itemize}	
+		\end{itemize}	
 	
 	\item[/T040/] Öffnen einer Konfiguration
 		\begin{itemize}
-		\item Erfolgsvorbedingung: Es ist aktuell keine Konfiguration geöffnet. Die auszuwählende Konfiguration ist korrekt abgespeichert.
-		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Konfiguration öffnen} aufgerufen und die entsprechende \gls{Konfigurationsdatei} ausgewählt.
+		\item Erfolgsvorbedingung: Es ist aktuell keine Konfiguration geöffnet. Die auszuwählende Konfiguration ist korrekt abgespeichert und von unterstütztem Umfang (vgl. /A10/ und /A20/).
+		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Konfiguration öffnen} per Mausklick aufgerufen und die entsprechende \gls{Konfigurationsdatei} ausgewählt.
 		\item Reaktion: Die Konfiguration wird angezeigt und der Nutzer kann die Arbeit daran fortsetzen.		
-	\end{itemize}	
+		\end{itemize}	
 	
 	\item[/T050/] Speichern einer Konfiguration
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Die Konfiguration hat einen unterstützten Umfang (vgl. /A10/ und /A20/).
+		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Konfiguration speichern} per Mausklick aufgerufen.
+		\item Reaktion:	Die aktuelle Konfiguration wird in einer \gls{Konfigurationsdatei} abgespeichert.
+		\end{itemize}	
 	
 	\end{itemize}
-	
-	
-	
-	\begin{itemize}
-		\item Erfolgsvorbedingung:
-		
-		
-		\item Aktion:
-		
-		
-		\item Reaktion:
-		
-		
-	\end{itemize}	
 
 \subsection{Grundsätzliche Debug-Funktionen}
 
 \begin{itemize}
 
 	\item[/T060/] Setzen eines \glspl{Breakpoint} synchron in allen Textfenstern
+	\begin{itemize}
+		\item Erfolgsvorbedingung: Es sind mehrere Textfenster vorhanden. Die Stelle, an der der \gls{Breakpoint} gesetzt werden sollen, ist in allen Textfenster noch nicht von einem \gls{Breakpoint} belegt und in allen Fenstern einer Zeile validen Programmtextes \frage{(Wie heißen jetzt unsere "Befehle"?)} zugeordnet. 
+		\item Aktion: Der linke Rand neben einem der Textfenster wird doppelt angeklickt.	
+		\item Reaktion:	In allen vorhandenen Textfenstern wird auf derselben Höhe ein \gls{Breakpoint} gesetzt.
+	\end{itemize}		
+	
 	\item[/T070/] Löschen eines \glspl{Breakpoint} in einem Textfenster
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Es ist an der entsprechenden Stelle ein \gls{Breakpoint} gesetzt.	
+		\item Aktion: Der zu entfernende \gls{Breakpoint} wird einmal einfach angeklickt.
+		\item Reaktion:	Der \gls{Breakpoint} wird erfolgreich entfernt, d.h. er ist weder zu sehen, noch hält das Programm zukünftig an der Stelle.
+		\end{itemize}		
+		
+		
 	\item[/T100/] Löschen aller \glspl{Breakpoint} eines Fensters
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Es sind im entsprechenden Fenster mehrere \glspl{Breakpoint} vorhanden.
+		\item Aktion: \frage{Wo ist der Button in der GUI? Im großen Menü? Im Textfenstermenü?}
+		\item Reaktion:	Alle \glspl{Breakpoint} des Fensters werden gelöscht.
+		\end{itemize}		
+	
 	\item[/T110/] Starten des \gls{Debugmodus}
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus}. Die zu untersuchenden Programme sind syntaktisch korrekt, d.h. es ergeben sich keine Fehler beim Kompilieren. Des Weiteren sind alle notwendigen Variableneingaben vorhanden und entsprechen dem Typ der jeweiligen Variable.
+		\item Aktion: Der Play-Button wird angeklickt.
+		\item Reaktion:	Das Produkt wechselt in den \gls{Debugmodus} und läuft in allen Programmen bis zum jeweils ersten \gls{Breakpoint} durch bzw. bis die Bedingung des ersten bedingten Breakpoints erfüllt wird.
+		\end{itemize}		
+	
 	\item[/T120/] Abbrechen des \gls{Debugmodus}
-	\item[/T130/] Halten des Debuggers an (bedingten) \glspl{Breakpoint}
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}.
+		\item Aktion: Der Stop-Button wird angeklickt.
+		\item Reaktion: Das Produkt wechselt in den \gls{Editiermodus}.		
+		\end{itemize}		
+	
+	\item[/T130/] Halten des Debuggers an \glspl{Breakpoint}
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein Breakpoint in einem Textfenster.
+		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein \gls{Breakpoint} erreicht werden kann: Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
+		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte und aktuell erfüllten Watch-Expressions an.
+		\end{itemize}		
+	
+	\item[/T135/] Halten des Debuggers an (bedingten) \glspl{bedingter Breakpoint}
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein \gls{bedingter Breakpoint} mit syntaktisch korrekter und erfüllbarer Bedingung. 
+		\item Aktion: Es gibt verschiedene Nutzer-Handlungene, durch die ein \gls{bedingter Breakpoint} erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T140/] Verändern der Schrittgröße
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T150/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T160/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T170/] Mittels \gls{Step-Over} eine Funktion nicht inspizieren
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T180/] Mittels \gls{Step-Out} aus einer Funktion zurückkehren
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T190/] Korrektes Ausgeben der Ausgabewerte
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T200/] Korrektes Auswerten der \glspl{Watch-Expression}
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T210/] Korrektes Anzeigen der Zwischenwerte von Variablen
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	
 \end{itemize}
-
 
 \subsection{Watch-Expressions}
 
 \begin{itemize}
 
 	\item[/T220/] Hinzufügen einer \gls{Watch-Expression}
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T230/] Löschen einer \gls{Watch-Expression}
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T240/] Bearbeiten einer \gls{Watch-Expression}
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T250/] Hinzufügen einer Markierung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T260/] Löschen einer Markierung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T270/] Anzeigen einer Markierung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 		
 \end{itemize}
 \subsection{Bedingte Breakpoints}
@@ -492,11 +610,47 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 \begin{itemize}
 
 	\item[/T280/] Hinzufügen eines bedingten Breakpoints
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T290/] Löschen eines bedingten Breakpoints
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T300/] Bearbeiten eines bedingten Breakpoints
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T310/] Hinzufügen einer Bereichsbindung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T320/] Löschen einer Bereichsbindung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T330/] Anzeigen einer Bereichsbindung
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 		
 \end{itemize}
 
@@ -508,8 +662,26 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 \begin{itemize}
 
 \item[/T330/] Angeben des Startwerts einer Variable
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 \item[/T340/] Angeben einer Wertespanne für den Startwert einer Variablen
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 \item[/T350/] Einfügen eines zufälligen Startwerts für eine Variable
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 \end{itemize}
 
 \subsection{Menü-Funktionen}
@@ -519,8 +691,26 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 \begin{itemize}
 
 	\item[/T360/] Verändern der Item-Reihenfolge
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T370/] Ein- und Ausblenden von Variablen
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 	\item[/T380/] Korrektes Anzeigen des Scrollbalkens
+		\begin{itemize}
+		\item Erfolgsvorbedingung:
+		\item Aktion:
+		\item Reaktion:		
+		\end{itemize}	
+	
 \end{itemize}
 
 
