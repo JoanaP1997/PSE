@@ -405,30 +405,51 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 \begin{itemize}
 	\item[/T010/] Öffnen des Produkts
 	\begin{itemize}
-		\item Vorbedingung: Das Produkt ist noch nicht geöffnet.
+		\item Erfolgsvorbedingung: Das Produkt ist noch nicht geöffnet.
 		\frage{Braucht man noch eine Vorbedingung an das Betriebssystem?}
-		\item Aktion: Aufrufen des Produkts über das Produkt-Icon oder das Terminal
+		\item Aktion: Das Produkt wird über das Produkt-Icon oder das Terminal aufgerufen.
 		\item Reaktion: Das Produkt öffnet sich. Zu sehen sind die Menü-Leisten. Es sind nach dem Öffnen noch keine Programme des Nutzers eingebunden.
-		\item Verletzung der Vorbedingung: Das Programm lässt sich nur einmal öffnen. Folglich erscheint nur das bereits geöffnete Fenster wieder im Vordergrund.
+%		\item Verletzung der Vorbedingung: Das Programm lässt sich nur einmal öffnen. Folglich erscheint nur das bereits geöffnete Fenster wieder im Vordergrund.
 	\end{itemize}
 	
 	\item[/T020/] Öffnen einer Textdatei
-	%\begin{itemize}
-	%	\item Vorher: \\
-	%	Das Programm befindet sich im Editier-Modus und ... \\
-	%%	b) es ist noch kein Programm geöffnet. \\
-		%c) 
-		%\item Aktion: Aufruf des File-Chooser-Dialogs im Menüpunkt \enquote{Datei}.
-		%\item Nachher: Die ausgewählte Text-Datei
-		%\\
-		%\frage{Ist das im Editiermodus möglich? Öffnet es sich automatisch in ein neues Textfenster? Welche %Dateiformate sind zugelassen?}
-	%\end{itemize}	
+	\begin{itemize}
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus} und die auszuwählende Textdatei hat eine unterstützte Länge (vgl. A10).
+		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Textdatei öffnen} aufgerufen und die entsprechende Textdatei ausgewählt.
+		\item Reaktion: Die ausgewählte Text-Datei wird in einem neuen Programm-Lauf-Fenster \frage{??} eingefügt.
+	\end{itemize}	
 
 	\item[/T030/] Schließen des Produkts
+	\begin{itemize}
+		\item Erfolgsvorbedingung: Die Arbeit des Nutzers ist erfolgreich in einer \gls{Konfigurationsdatei} gespeichert.
+		\item Aktion: Der Nutzer klickt auf den Schließen-Button oder auf den Menüpunkt \enquote{Beenden} im Menü \enquote{Datei}.
+		\item Reaktion: Das Produkt beendet und schließt sich.
+	\end{itemize}	
+	
 	\item[/T040/] Öffnen einer Konfiguration
+		\begin{itemize}
+		\item Erfolgsvorbedingung: Es ist aktuell keine Konfiguration geöffnet. Die auszuwählende Konfiguration ist korrekt abgespeichert.
+		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Konfiguration öffnen} aufgerufen und die entsprechende \gls{Konfigurationsdatei} ausgewählt.
+		\item Reaktion: Die Konfiguration wird angezeigt und der Nutzer kann die Arbeit daran fortsetzen.		
+	\end{itemize}	
+	
 	\item[/T050/] Speichern einer Konfiguration
 	
 	\end{itemize}
+	
+	
+	
+	\begin{itemize}
+		\item Erfolgsvorbedingung:
+		
+		
+		\item Aktion:
+		
+		
+		\item Reaktion:
+		
+		
+	\end{itemize}	
 
 \subsection{Grundsätzliche Debug-Funktionen}
 
