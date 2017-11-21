@@ -56,12 +56,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
   plural={Schritte},
   description={Siehe Einzelschritt. Die Anzahl ausgeführter Befehle entspricht der Schrittgröße}
 }
-\newglossaryentry{Schrittgrösse}
-{
-  name={Schrittgröße},
-  plural={Schrittgrößen},
-  description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
-}
+%\newglossaryentry{Schrittgröße}
+%{
+%	name={Schrittgröße},
+%	description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in %Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
+%}
 \newglossaryentry{Step-Out}
 {
 	name={Step-Out},
@@ -111,7 +110,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	name={Konfigurationsdatei},
 	plural={Konfigurationsdateien},
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
-	Breakpoints, Watch-Expressions, Eingabevariablen, \glspl{Schrittgrösse} und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
+	Breakpoints, Watch-Expressions, Eingabevariablen, Schrittgrößen und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
 }
 
 
@@ -189,10 +188,11 @@ Das Produkt läuft auf dem Rechner des Nutzers und benötigt keine Kommunikation
 
 \subsection{Software}
 Da es sich bei dem Produkt um ein Java-Programm handelt, muss ein JRE (Java Runtime Environment) der Version 8 oder höher auf dem Rechner vorhanden sein oder mitinstalliert werden. \\
-Das Produkt läuft sowohl auf Windows, als auch auf Mac OS und Linux (64bit empfohlen).
+Das Produkt läuft sowohl auf Windows (Vista SP2, 7, 8.x, 10), als auch auf Mac OS X (10.8.3+, 10.9+) und Linux (15.10 Kernel 4.2 oder höher) (64bit empfohlen).
 
 \subsection{Hardware}
-An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt läuft auf Rechnern mit mindestens einem 1 GHz Prozessor und 1 GB RAM.
+An die Hardware des Rechners werden keine speziellen Anforderungen gestellt. Das Produkt wird auf Rechnern mit folgender Hardware getestet:
+%Hier Rechner Tabelle einfügen
 
 \subsection{Schnittstellen}
 Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\ Es können sowohl Sprachkonfigurationsdateien, die die auf dieser Oberfläche angezeigten Texte beeinflussen, als auch Einstellungsdateien, die Einstellungen des Nutzers speichern, und Dateien, die Eingaben des Nutzers festhalten, geladen und persistent gespeichert werden, sodass eine Schnittstelle zum Dateisystem des Betriebssystems vorhanden ist. 
@@ -206,7 +206,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im \gls{Debugmodus} kann der Benutzer \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
-		\item[/FA40/] Der Benutzer kann die \gls{Schrittgrösse} für jedes Programm einzeln festlegen.
+		\item[/FA40/] Der Benutzer kann die Schrittgröße für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem \gls{Schritt} wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
@@ -216,7 +216,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		\item[/FA110/] Der Benutzer kann relationale Eigenschaften bezüglich Variablen und arithmetische Terme über den Variablen als \glspl{Watch-Expression} festlegen.
 		\item[/FA120/] \glspl{Watch-Expression} können an vom Benutzer bestimmte Bereiche im Programm gebunden werden.
 		\item[/FA130/] Im \gls{Debugmodus} kann der Benutzer durch Auswahl der Option \enquote{Weiter} die Programme bis zum jeweils nächsten Breakpoint laufen lassen.
-		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, \gls{Schrittgrösse} und die zu debuggenden Programme, sowie die aktuellen Befehle, an denen die Ausführung steht.
+		\item[/FA140/] Das Produkt bietet die Möglichkeit, eine \gls{Konfigurationsdatei} für einen Lauf zu speichern. Diese beinhaltet festgelegte Eingabewerte, \glspl{Breakpoint}, \glspl{Watch-Expression}, Schrittgröße und die zu debuggenden Programme, sowie die aktuellen Befehle, an denen die Ausführung steht.
 		\item[/FA150/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts  geschrieben werden.
 		\item[/FA160/] Die zu debuggenden Programme können direkt in die Textboxen des Produkts kopiert werden.
 		\item[/FA170/] Die zu debuggenden Programm können aus einer Textdatei eingebunden werden.
@@ -241,7 +241,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
  		\subsubsection{Kannkriterien}
 		\begin{itemize}
 		\item[/FA290/] Die Datei des zu debuggenden Programms kann in das Textfeld hineingezogen werden.
-		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die \gls{Schrittgrösse}(Step-Size) vorschlagen.
+		\item[/FA300/] Das Produkt kann, abhängig von der Zeilenanzahl der Programme, dem Benutzer die Schrittgröße(Step-Size) vorschlagen.
 		\item[/FA310/] Der Benutzer kann einen Rückschritt durchführen.
 		\item[/FA320/] Die, an Zeilen im Programm gebundenen, \glspl{Breakpoint} verschieben sich mit dem Programm, wenn dieser im \gls{Editiermodus} geändert wird.
 		\end{itemize}		 		
@@ -266,7 +266,7 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		
 			\item[/PD10/] Konfigurationsdateien: \\
 			Diese Dateien speichern eine Konfiguration des Debuggers. 
-			Zu diesen gehören die Eingabewerte, \glspl{Schrittgrösse}, Variablenauswahl, Programmcode und Position beider Programme, aber nicht die Ausgabewerte. \\
+			Zu diesen gehören die Eingabewerte, Schrittgrößen, Variablenauswahl, Programmcode und Position beider Programme, aber nicht die Ausgabewerte. \\
 			Weiter müssen alle \gls{Breakpoint} gespeichert werden. Dazu zählen sowohl gesetzte als auch bedingte Breakpoints. \Glspl{bedingter Breakpoint} benötigen keine Speicherung der Zeile, 			sondern die Speicherung eines Bereiches, zweier Variablen der Programmtexte und eines Operators. Dies gilt auch für die \glspl{Watch-Expression}.
 			Zudem wird, falls die Datei aus dem \gls{Debugmodus} erzeugt wurde, der letzte Status aller Programme gespeichert, um diese nach späterem Laden weiter ausführen lassen zu können. 
 			
@@ -283,15 +283,15 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
 		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, \gls{Schrittgrösse} und Breakpoints in Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints in Echtzeit. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls in Echtzeit möglich. \\
 		Den Debugmodus zu starten dauert unter 5 Sekunden. 
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
-		Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
-		\newpage
+		Die Genauigkeit von Fließkommazahlen (float und double) richtet sich nach dem IEEE 754 Standard.
+
 		\item[/PL30/] Fehlertoleranz: \\
-		Durch automatische Warnung bei kritischen Eingaben (A10, A20, A40) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
+		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
 		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
 		\end{itemize}
 		
@@ -299,9 +299,9 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
 		\begin{itemize}
 		\item[/NA10/]Erweiterbarkeit: \\
-		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche, sowie einen Interpreter für weitere Sprachen.
+		Das Produkt ist, durch objektorientierten Entwurf, erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie einen Interpreter für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
-		Durch seinen objektorientierten Entwurf können auftretende Fehler leicht beseitigt werden.
+		Durch den objektorientierten Entwurf des Produkts können auftretende Fehler leicht beseitigt werden.
 		%\item[/NA25/]Robustheit: \\
 		%weiß hier jemand was?
 		\item[/NA30/]Urheberrecht: \\
@@ -315,6 +315,8 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 		
 
 \section{Qualitätsanforderungen}
+
+\subsection{Übersicht}
  \begin{tabular}{l||l|c|c|c} 
     & Produktqualität & Sehr relevant & Relevant & Weniger relevant \\
   \hline
@@ -324,22 +326,31 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
   &Übersichtlichkeit & X & &\\
   %\cline{2-6}
   &Erlernbarkeit & & X & \\
+  &Modifizierbarkeit & X && \\
   \hline
   \textbf{System} &Fehlertoleranz/ Stabilität & & X &  \\
   %\cline{2-6}
   &Zeit-/Ressourceneffizienz & & & X \\
   %\cline{2-6}
   &Richtigkeit &X & & \\
-  &Änderbarkeit & & X &\\
+  &Erweiterbarkeit & & X &\\
   %\cline{2-6}
   &Installierbarkeit & & X &\\
  \end{tabular}
  
- Es wird also insbesondere Wert auf die Bereiche Benutzerfreundlichkeit und Änderbarkeit gelegt.
- Außerdem ist die Richtigkeit der vom Produkt angezeigten Werte von großer Wichtigkeit, da es als Unterstützung bei
- formalen Beweisen eingesetzt werden soll.
+ \subsection{Benutzeroberfläche}
  
+ Bei der Benutzeroberfläche wird besonders Wert auf Übersichtlichkeit, damit der Nutzer alle relevanten Daten und Einstellungen leicht findet, und Modifizierbarkeit, damit die Benutzeroberfläche leicht angepasst werden kann, falls das Produkt erweitert wird, gelegt. \\
+Da das Produkt seinen Einsatz bei der wissenschaftlichen Arbeit findet, wird vom Nutzer eine gewisse Fähigkeit des Verstehens und Erlernens vorausgesetzt, sodass diese Punkte zwar relevant, aber nicht sehr relevant sind.
 
+\subsection{System}
+
+Da das Produkt als Unterstützung beim Führen von formalen Beweisen eingesetzt werden soll, ist die Richtigkeit aller Werte, die vom Produkt angezeigt und ausgerechnet werden, sehr relevant. \\
+Um den Nutzer gut unterstützen zu können, ist eine gewisse Fehlertoleranz des Produktes bei falschen oder fehlenden Eingaben wichtig. Um gut eingesetzt werden zu können ist eine einfache Installation, die reibungslos funktioniert, ebenfalls wichtig. Jedoch wird bei diesen beiden Punkten wieder eine gewisse Selbstständigkeit des Nutzers vorausgesetzt, weshalb diese Punkte nicht so relevant wie die Richtigkeit des Produktes sind.
+Da das Produkt in der ersten Version eventuell noch nicht alle möglichen Einsatzgebiete abdeckt, ist eine gute Erweiterbarkeit wichtig. \\
+Da dem Nutzer moderne Rechner mit großer Rechenleistung, sowie viel Speicherplatz zur Verfügung stehen, ist die Ressourceneffizient nicht sehr relevant. 
+%Ebenso muss der Nutzer bei zu komplizierten, zu untersuchenden Programmläufen damit rechnen, dass das Produkt nicht sehr Zeiteffizient ist, was jedoch durch die große Rechenleistung der verfügbaren Rechner ausgeglichen werden kann.
+ 
 
 \newpage
 \section{Anwendungsfälle und Szenarien}
@@ -420,8 +431,8 @@ In allen Anwendungsfällen ist der Benutzer der einzige Akteur
 	\item[/T110/] Starten des \gls{Debugmodus}
 	\item[/T120/] Abbrechen des \gls{Debugmodus}
 	\item[/T130/] Halten des Debuggers an (bedingten) \glspl{Breakpoint}
-	\item[/T140/] Verändern der \gls{Schrittgrösse}
-	\item[/T150/] Einen \gls{Schritt} der gewählten \gls{Schrittgrösse} in allen Fenstern machen
+	\item[/T140/] Verändern der Schrittgröße
+	\item[/T150/] Einen \gls{Schritt} der gewählten Schrittlänge in allen Fenstern machen
 	\item[/T160/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
 	\item[/T170/] Mittels \gls{Step-Over} eine Funktion nicht inspizieren
 	\item[/T180/] Mittels \gls{Step-Out} aus einer Funktion zurückkehren
@@ -493,7 +504,7 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 \vspace{0.7cm}
 Das Aktivitätsdiagramm stellt die möglichen Reihenfolgen der Interaktion des Benutzers mit dem Produkt dar. \\
 Bindet der Benutzer direkt nach Start des Programms eine \gls{Konfigurationsdatei} eines früheren Laufs ein, kann er diesen Lauf direkt starten, oder vorher Änderungen an den Eingaben und Programmen vornehmen. \\
-Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Programmen und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der \gls{Schrittgrösse} ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an \glspl{Breakpoint}. \\
+Die Aufteilung in \gls{Editiermodus} und \gls{Debugmodus} zeigt, dass das Ändern und Hinzufügen von Programmen und Ändern der Eingabevariablen nicht während des \gls{Debugmodus} möglich sind. Das Ändern von (bedingten) \glspl{Breakpoint}, \glspl{Watch-Expression} und der Schrittgröße ist auch im Debugmodus möglich, allerdings nur zwischen den ausgeführten Schritten und an \glspl{Breakpoint}. \\
 Nach manuellem Abbruch oder nach kompletter Durchführung eines Debug-Laufs kehrt das Produkt zum \gls{Editiermodus} zurück. Die vorherigen Eingaben bleiben bestehen, sodass die Wiederholung des Laufs ohne Änderungen direkt möglich ist. Ebenso kann der Benutzer wieder Änderungen an den Eingabevariablen und den Programmen vornehmen.\\
 Das Beenden des Produkts ist an jeder Stelle möglich.
 
@@ -560,20 +571,11 @@ Für die Entwicklung in Java werden die Java-Entwicklungsumgebungen IntelliJ\tex
 \section{Zeit- und Ressourcenplanung}
 % Tabelle mit Phasendaten (Ideen sammeln, Einzelarbeit, Ideen zusammentragen, Überarbeitung, Abgabe Vorversion, Kolloquium/Abgabe Finalversion)
 \subsection{Zeitliche Gesamtplanung}
-Der Umfang des Moduls beträgt 8 ECTS, das entspricht 270 Arbeitsstunden pro Teilnehmer. Diese
-teilen sich wie folgt auf die Phasen der Softwareentwicklung auf: \\
-\begin{itemize}
-\item Definitionssphase\\ \textit{06.11.2017 - 26.11.2017}: 27h/Teilnehmer 
-\item Entwurfsphase\\ \textit{27.11.2017 - 24.12.2017}: 81h/Teilnehmer
-\item Implementierungsphase\\ \textit{08.01.2018 - 04.02.2018}:  81h/Teilnehmer
-\item Qualitätssicherungsphase\\ \textit{19.02.2018 - 11.03.2018}: 54h/Teilnehmer
-\item Abnahme und Präsentation\\ \textit{12.03.2018 - 25.03-2018}:  27h/Teilnehmer
-\end{itemize}
-
-
-
-
-
+\textit{06.11.2017 - 26.11.2017} Definitionssphase \\
+\textit{27.11.2017 - 24.12.2017} Entwurfsphase \\
+\textit{08.01.2018 - 04.02.2018} Implementierungsphase\\
+\textit{19.02.2018 - 11.03.2018} Qualitätssicherungsphase\\
+\textit{12.03.2018 - 25.03-2018} Abnahme und Präsentation
 
 \subsection{Phasenverantwortliche:}
 Definitionsphase: Chiara Staudenmaier\\
@@ -613,11 +615,13 @@ Präsentation/Abnahme: Ulla Scheler\\
 \newpage
 \section{Ergänzungen}
 %Sprache
-\subsection{Sprache}
-Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
-\paragraph{Klassifikation der Sprache} Die Sprache ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
+\subsection{Sprache - Wlang}
+%Die Programmiersprache, in der die zu debuggenden Programme verfasst sind, wird im Folgenden als die Sprache bezeichnet. 
+\paragraph{Name der Sprache}
+Der Name der Sprache ist Wlang, was von WHILE-language abgeleitet ist, da es sich hierbei um eine WHILE-Sprache handelt.
+\paragraph{Klassifikation der Sprache} Wlang ist prozedural und imperativ, nicht objektorientiert und nicht einrückungsbasiert.
 \paragraph{Elemente der Sprache}
-Die Sprache unterstützt die folgenden primitiven Datentypen:
+Wlang unterstützt die folgenden primitiven Datentypen:
 \begin{itemize}
 \item  32-bit Ganzzahlen: \texttt{int}
   \item  64-bit Ganzzahlen: \texttt{long}
@@ -627,7 +631,7 @@ Die Sprache unterstützt die folgenden primitiven Datentypen:
   \item  Wahrheitswert: \texttt{boolean}
 \end{itemize}
 Zudem sind bis zu dreidimensionale Arrays dieser Datentypen möglich.
-Ferner unterstützt die Sprache die folgenden Kontrollstrukturen:
+Ferner unterstützt Wlang die folgenden Kontrollstrukturen:
 \begin{itemize}
 \item Funktionen und Prozeduren, also Unterprogramme mit oder ohne Rückgabewert.
 \item Bedingte Ausführung: \texttt{if, else if, else}
@@ -637,7 +641,7 @@ Es muss in jedem Programm eine \texttt{main}-Routine vorhanden sein, von der die
 \newpage
 
 \paragraph{Syntax der Sprache}
-Die Syntax der Sprache ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
+Die Syntax von Wlang ist angeleht an gängige Sprachen wie C oder Java. Im folgenden Listing ist ein Beispielprogramm aufgeführt. 
 
 \begin{verbatim}
 void doUselessStuff() { //Prozedur ohne Rückgabe
