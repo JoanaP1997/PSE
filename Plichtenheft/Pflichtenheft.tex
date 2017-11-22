@@ -499,40 +499,40 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Es existiert ein Breakpoint in einem Textfenster.
 		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein Breakpoint erreicht werden kann: Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
-		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte und aktuell erfüllten Watch-Expressions an.
+		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte an. Die aktuell erfüllten Watch-Expressions werden farblich hinterlegt.
 		\end{itemize}		
 	
 	\item[/T135/] Halten des Debuggers an \glsplgen{bedingter Breakpoint}
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein bedingter Breakpoint mit syntaktisch korrekter und erfüllbarer Bedingung. 
-		\item Aktion: Es gibt verschiedene Nutzer-Handlungene, durch die ein bedingter Breakpoint erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
-		\item Reaktion:		
+		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein bedingter Breakpoint erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. / Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. / Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
+		\item Reaktion:	Der Debugger hält alle Programme an, sobald der bedingte Breakpoint in einem oder mehreren der Programme seine Bedingung erfüllt. Die aktuellen Variablenwerte werden angezeigt und aktuell erfüllte Watch-Expressions farblich hinterlegt.
 		\end{itemize}	
 	
 	\item[/T140/] Verändern der Schrittgröße
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Es ist ein Textfenster vorhanden.
+		\item Aktion: Die Schrittgröße wird durch den Nutzer geändert, indem er in die entsprechende Box des Textfensters klickt. Dabei gibt er nur ganze Zahlen größer gleich Null und kleiner gleich der Länge des Programmtextes ein. \frage{??}
+		\item Reaktion: Die Schrittgröße wird verändert angezeigt. Folgende Schritte haben die entsprechende Länge.
 		\end{itemize}	
 	
-	\item[/T150/] Einen \gls{Schritt} der gewählten \gls{Schrittgrösse} in allen Fenstern machen
+	\item[/T150/] Gleichzeitig in allen Textfenstern einen \gls{Schritt} der jeweils gewählten \gls{Schrittgrösse} machen
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Die zu testenden Textfenster (mindestens zwei) haben jeweils eine gültige Schrittlänge, und der Debugger ist in mindestens einem von ihnen noch nicht am Ende des Programmtextes angekommen.
+		\item Aktion: Der Schritt-Button wird angeklickt.
+		\item Reaktion:	In allen Fenstern wird ein Schritt der jeweiligen Größe ausgeführt. Die aktuellen Variablenwerte werden angezeigt und aktuell erfüllte Watch-Expressions farblich hinterlegt.\frage{Was passiert, wenn alle Programme am Ende angekommen sind?} 
 		\end{itemize}	
 	
 	\item[/T160/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Das zu testende Textfenster hat eine gültige Schrittlänge, und der Debugger ist noch nicht am Ende des Programmtextes angekommen.
+		\item Aktion: Der Einzelschritt-Button des Textfensters wird angeklickt.
+		\item Reaktion:	In dem Fenster wird ein Einzelschritt gemacht. Andere möglicherweise vorhandene Fenster verändern sich nicht. Die aktuellen Variablenwerte werden angezeigt und aktuell erfüllte Watch-Expressions farblich hinterlegt.
 		\end{itemize}	
 	
 	\item[/T170/] Mittels \gls{Step-Over} eine Funktion nicht inspizieren
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
+		\item Erfolgsvorbedingung: 
 		\item Aktion:
 		\item Reaktion:		
 		\end{itemize}	
