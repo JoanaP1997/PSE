@@ -365,9 +365,9 @@ Da das Produkt seinen Einsatz bei der wissenschaftlichen Arbeit findet, wird vom
 \subsection{System}
 
 Da das Produkt als Unterstützung beim Führen von formalen Beweisen eingesetzt werden soll, ist die Richtigkeit aller Werte, die vom Produkt angezeigt und ausgerechnet werden, sehr relevant. \\
-Um den Nutzer gut unterstützen zu können, ist eine gewisse Fehlertoleranz des Produktes bei falschen oder fehlenden Eingaben wichtig. Um gut eingesetzt werden zu können ist eine einfache Installation, die reibungslos funktioniert, ebenfalls wichtig. Jedoch wird bei diesen beiden Punkten wieder eine gewisse Selbstständigkeit des Nutzers vorausgesetzt, weshalb diese Punkte nicht so relevant wie die Richtigkeit des Produktes sind.
+Um den Nutzer gut unterstützen zu können, ist eine gewisse Fehlertoleranz des Produktes bei falschen oder fehlenden Eingaben wichtig. Um gut eingesetzt werden zu können ist eine einfache Installation, die reibungslos funktioniert, ebenfalls wichtig. Jedoch wird bei diesen beiden Punkten wieder eine gewisse Selbstständigkeit des Nutzers vorausgesetzt, weshalb diese Punkte nicht so relevant sind wie die Richtigkeit des Produktes.
 Da das Produkt in der ersten Version eventuell noch nicht alle möglichen Einsatzgebiete abdeckt, ist eine gute Erweiterbarkeit wichtig. \\
-Da dem Nutzer moderne Rechner mit hoher Rechenleistung, sowie viel Speicherplatz zur Verfügung stehen, ist die Ressourceneffizient nicht sehr relevant. 
+Da dem Nutzer moderne Rechner mit hoher Rechenleistung, sowie viel Speicherplatz zur Verfügung stehen, ist die Ressourceneffizienz nicht sehr relevant. 
 %Ebenso muss der Nutzer bei zu komplizierten, zu untersuchenden Programmläufen damit rechnen, dass das Produkt nicht sehr Zeiteffizient ist, was jedoch durch die große Rechenleistung der verfügbaren Rechner ausgeglichen werden kann.
  
 
@@ -461,7 +461,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 
 	\item[/T060/] Setzen eines \glspl{Breakpoint} synchron in allen Textfenstern
 	\begin{itemize}
-		\item Erfolgsvorbedingung: Es sind mehrere Textfenster vorhanden. Die Stelle, an der der Breakpoint gesetzt werden sollen, ist in allen Textfenster noch nicht von einem Breakpoint belegt und in allen Fenstern einer Zeile validen Programmtextes \frage{(Wie heißen jetzt unsere "Befehle"?)} zugeordnet. 
+		\item Erfolgsvorbedingung: Es sind mehrere Textfenster vorhanden. Die Stelle, an der der Breakpoint gesetzt werden sollen, ist in allen Textfenstern noch nicht von einem Breakpoint belegt und in allen Fenstern einem Befehl zugeordnet. 
 		\item Aktion: Der linke Rand neben einem der Textfenster wird doppelt angeklickt.	
 		\item Reaktion:	In allen vorhandenen Textfenstern wird auf derselben Höhe ein Breakpoint gesetzt.
 	\end{itemize}		
@@ -477,7 +477,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 	\item[/T100/] Löschen aller Breakpoints eines Fensters
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Es sind im entsprechenden Fenster mehrere Breakpoints vorhanden.
-		\item Aktion: \frage{Wo ist der Button in der GUI? Im großen Menü? Im Textfenstermenü?}
+		\item Aktion: Es wird per Rechtsklick auf einen der Breakpoints des entsprechenden Fensters geklickt und die Option \enquote{Alle Breakpoints löschen} angeklickt.
 		\item Reaktion:	Alle Breakpoints des Fensters werden gelöscht.
 		\end{itemize}		
 	
@@ -520,8 +520,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Die zu testenden Textfenster (mindestens zwei) haben jeweils eine gültige Schrittlänge, und der Debugger ist in mindestens einem von ihnen noch nicht am Ende des Programmtextes angekommen.
 		\item Aktion: Der Schritt-Button wird angeklickt.
-		\item Reaktion:	In allen Fenstern wird ein Schritt der jeweiligen Größe ausgeführt. Die aktuellen Variablenwerte werden angezeigt und aktuell erfüllte Watch-Expressions farblich hinterlegt.\frage{Was passiert, wenn alle Programme am Ende angekommen sind?} 
-		\end{itemize}	
+		\item Reaktion:	In allen Fenstern wird ein Schritt der jeweiligen Größe ausgeführt. Die aktuellen Variablenwerte werden angezeigt und aktuell erfüllte Watch-Expressions farblich hinterlegt. Sind alle Programme an ihrem Ende angekommen, wechselt das Produkt zurück in den Editiermodus, zeigt aber weiterhin die letzten Werte der Variablen an.	
 	
 	\item[/T160/] Einen \gls{Einzelschritt} in einem einzelnen Fenster machen
 		\begin{itemize}
