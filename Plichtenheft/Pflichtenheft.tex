@@ -595,16 +595,16 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 	
 	\item[/T250/] Hinzufügen einer Bereichsbindung
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Eine Watch-Expression existiert.
+		\item Aktion: Der Nutzer wählt über das Optionenfeld der Watch-Expression die Option \enqoute{an Bereich binden} aus. Dann gibt er im erscheinenden Menü die erste und letzte Zeile des Bereichs in jedem der zu debuggenden Programme an, an den die Watch-Expression gebunden wird. 
+		\item Reaktion:	Die Watch-Expression wird während des Debuggens nur noch ausgewertet, wenn sich eines der Programme im jeweiligen Bereich befindet. Beim Anzeigen der Bereichsbindung(/T270/) wird diese angezeigt. 
 		\end{itemize}	
 	
 	\item[/T260/] Löschen einer Bereichsbindung
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Eine Watch-Expression existiert und wurde bereits an einen Bereich gebunden. 
+		\item Aktion: Der Nutzer wählt über das Optionenfeld der Watch-Expression die Option \enqoute{von Bereich lösen} aus.
+		\item Reaktion:	Die Bereichsbindung wird aufgehoben und die Watch-Expression wird während des Debuggens dauerhaft überprüft und ausgewertet.
 		\end{itemize}	
 	
 	\item[/T270/] Anzeigen einer Bereichsbindung
