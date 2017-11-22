@@ -648,11 +648,11 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion:	Der bedingte Breakpoint wird während des Debuggens nur noch ausgewertet, wenn sich eines der Programme im jeweiligen Bereich befindet. Beim Anzeigen der Bereichsbindung(/T270/) wird diese angezeigt. 
 		\end{itemize}		
 	
-	\item[/T320/] Löschen einer Bereichsbindung
+	\item[/T260/] Löschen einer Bereichsbindung
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Ein bedingter Breakpoint existiert und wurde bereits an einen Bereich gebunden. 
+		\item Aktion: Der Nutzer wählt über das Optionenfeld des bedingten Breakpoints die Option \enquote{von Bereich lösen} aus.
+		\item Reaktion:	Die Bereichsbindung wird aufgehoben und der bedingte Breakpoint wird während des Debuggens dauerhaft überprüft und ausgewertet.
 		\end{itemize}	
 	
 	\item[/T330/] Anzeigen einer Bereichsbindung
