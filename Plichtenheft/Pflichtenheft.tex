@@ -211,13 +211,13 @@ An die Hardware des Rechners werden keine speziellen Anforderungen neben den Anf
 	Rechner 2 & Windows 7 64bit & Intel Core i3-380M 2K 4T @2.5Ghz & 8GB DDR3 \\
 	 & KDE Neon 5.11.3 64bit &  \\
 	Rechner 3 & Ubuntu 17.04 64 bit & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
-	Rechner 4 & Windows 10 64bit & Intel Core i7-7500U @2.7Ghz & 16GB DDR3\\
-		& Ubuntu 17.04 64bit\\
+	 %Hier weitere Rechner einfügen
 \end{tabular}
-\newpage
+
 \subsection{Schnittstellen}
 Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\ Es können sowohl Sprachkonfigurationsdateien, die die auf dieser Oberfläche angezeigten Texte beeinflussen, als auch Einstellungsdateien, die Einstellungen des Nutzers speichern, und Dateien, die Eingaben des Nutzers festhalten, geladen und persistent gespeichert werden. Um dies zu ermöglichen, nutzt das Produkt die in Java 8 vorhandenen Schnittstellen zum Dateisystem des Betriebssystems. 
 
+\newpage
 
 \section{Produktfuntionen}
 Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit. Zu einem Zeitpunkt befindet sich das Produkt dabei immer in einem der beiden Modi. Die Modi nennen sich im Laufe des Dokumentes \gls{Debugmodus} und \gls{Editiermodus}. \\ Jeder Modus hat einen bestimmten Zweck, weshalb die Produktfunktionen auch nicht immer in beiden Modi angeboten werden. 
@@ -777,16 +777,16 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         Durch Verändern der Texte im Bereich \enquote{Eingabewerte} (1) können Werte der Eingabevariablen
         spezifiziert, gelöscht und verändert werden. 
         Die Schaltflächen \enquote{\gls{Schritt}} und \enquote{Weiter}, sowie \enquote{\gls{Einzelschritt}} können in diesem Modus nicht betätigt
-        werden (Bereich 9). Betätigung der Startschaltfläche (8) verursacht den Übergang des Produkts in den Debugmodus.
+        werden (Bereich 9). Betätigung der Startschaltfläche (8) verursacht den Übergang des Produkts in den \gls{Debugmodus}.
         
-        Befindet sich das Produkt im \gls{Debugmodus}, können die Programme nicht mehr
+        Befindet sich das Produkt im Debugmodus, können die Programme nicht mehr
         bearbeitet werden.
         Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt}, sowie \enquote{Step Over} und \enquote{Step Out} können
         benutzt werden, um die Programme zu debuggen (Bereich 9). \glspl{Breakpoint} (5) können am Rand der Eingabefenstern (4) per Mausklick gesetzt werden.
         Betätigung der Stoppschaltfläche (10) verursacht den Übergang in den Editiermodus.
 
         In beiden Modi können \glspl{bedingter Breakpoint} (11) und \glspl{Watch-Expression} (12) durch Betätigung der jeweiligen 
-        \enquote{+}-Schaltflächen hinzugefügt werden. Über die Optionsschaltflächen (13) auf der linken Seite der \glspl{Watch-Expression} und \glsplgen{bedingter Breakpoint} können Wirksamkeitsbereiche der Watch-Expressions und Breakpoints
+        \enquote{+}-Schaltflächen hinzugefügt werden. Über die Optionsschaltflächen (13) auf der linken Seite der Watch-Expression und bedingter Breakpoint können Wirksamkeitsbereiche der Watch-Expressions und Breakpoints
         spezifiziert werden.\\
      \subsection{Beschreibung der Menüs}
      Die Benutzeroberfläche bietet die folgenden Menüs:
