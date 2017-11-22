@@ -30,7 +30,9 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
 	name={Relationale Eigenschaft},
 	plural={Relationale Eigenschaften},
-	description={ Relationale Eigenschaften sind solche Eigenschaften, die sich auf mindestens zwei Programmausführungen beziehen. Dabei können diese sich auf Variablen aus den verschiedenen Programmläufen beziehen und diese miteinander in Verbindung setzen, etwa ob eine Variable größer als eine andere ist}
+	user1={Relationalen Eigenschaften},
+	user3={Relationaler Eigenschaften},
+	description={Relationale Eigenschaften sind solche Eigenschaften, die sich auf mindestens zwei Programmausführungen beziehen. Dabei können diese sich auf Variablen aus den verschiedenen Programmläufen beziehen und diese miteinander in Verbindung setzen, etwa ob eine Variable größer als eine andere ist}
 }
 \newglossaryentry{Interpreter}
 {
@@ -54,7 +56,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
   name={Schritt},
   plural={Schritte},
-  description={Siehe Einzelschritt. Die Anzahl ausgeführter Befehle entspricht der Schrittgröße}
+  description={Der Benutzer kann durch die Schrittgröße festlegen, aus wie vielen Einzelschritten ein Schritt befehlen soll. Die Schrittgröße entspricht also der Anzahl ausgeführter Befehle}
 }
 \newglossaryentry{Schrittgrösse}
 {
@@ -117,6 +119,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 
 \let\glsplgen\glsuseri
 \let\glsplcap\glsuserii
+\let\glsplgenER\glsuseriii
 
 \makeglossaries
 
@@ -166,7 +169,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Produktübersicht}
 %kurze Übersicht über das Produkt
 Das Produkt \enquote{DIbugger} soll dem Nutzer die Möglichkeit bieten, mehr als ein Programm gleichzeitig zu debuggen und interaktiv zu analysieren. \\
-Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Anzeige eines \glspl{Variableninspektor}, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das Betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient zweier Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von \glspl{Relationale Eigenschaft} in den vom Nutzer verfassten Programmen.
+Dabei sollen die Konzepte eines herkömmlichen Debuggers, namentlich \glspl{Einzelschritt}, \glspl{Breakpoint} und Anzeige eines \glspl{Variableninspektor}, erhalten bleiben und um zusätzliche Konzepte, die den Umgang mit zwei oder mehr Programmläufen erleichtern, erweitert werden. Zu diesen Konzepten gehören das Betrachten von sogenannten \glspl{Watch-Expression}, bei denen der Nutzer beispielsweise Differenz oder Quotient zweier Variablen aus den verschiedenen Programmen untersuchen kann. Der Fokus liegt hierbei auf der Unterstützung des Findens von \glsplgen{Relationale Eigenschaft} in den vom Nutzer verfassten Programmen.
 Die Sprache dieser Programme wird in Kapitel 12 näher definiert.
 \vspace{0.7cm}
 \begin{figure}[!h]
@@ -176,8 +179,11 @@ Die Sprache dieser Programme wird in Kapitel 12 näher definiert.
 \end{figure}
 
 \section{Produkteinsatz}
-Das Produkt unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu \glspl{Relationale Eigenschaft} von Programmen. Hierbei soll die Möglichkeit des gleichzeitigen Debuggens der Programme dem Nutzer bei der Beweisführung helfen. \\
-Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
+Die Verifikation \glsplgenER{Relationale Eigenschaft} stellt ein wichtiges Forschungsthema der Theoretischen Informatik dar - und ein unentscheidbares Problem. Folglich ist es nicht immer möglich, einen Beweis zu führen. \\
+Dieses Produkt ist darum darauf ausgelegt, dem Nutzer durch die Möglichkeit des gleichzeitigen Debuggens der Programme bei der Beweisführung helfen. Obwohl es speziell anhand der Anforderungen der Mitarbeiter des Instituts für theoretische Informatik am Karlsruher Institut für Technologie entwickelt wird, kann das Produkt von jedem genutzt werden, der ein grundlegendes Verständnis eines Debuggers hat. Um alle Funktionalitäten des Produktes auszuschöpfen, ist ein Grundverständnis logischer Ausdrücke allerdings hilfreich.\\
+
+%unterstützt das Institut für theoretische Informatik am Karlsruher Institut für Technologie beim Führen von Beweisen zu \glsplgen{Relationale Eigenschaft} von Programmen. Hierbei soll die 
+%Verwendet wird das Produkt hierbei von wissenschaftlichen Mitarbeitern am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie und soll in deren Büroumgebung zum Einsatz kommen. 
 
 %Anwendungsbereiche, Zielgruppen, Betriebsbedingungen
  
@@ -199,6 +205,7 @@ An die Hardware des Rechners werden keine speziellen Anforderungen neben den Anf
 	Rechner 1 & Windows 7 64bit & AMD Phenom II X4 B50 4K 4T @3.5Ghz & 10GB DDR3 \\
 	Rechner 2 & Windows 7 64bit & Intel Core i3-380M 2K 4T @2.5Ghz & 8GB DDR3 \\
 	 & KDE Neon 5.11.3 64bit &  \\
+	Rechner 3 & Ubuntu 17.04 64 bit & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
 	 %Hier weitere Rechner einfügen
 \end{tabular}
 
@@ -208,13 +215,13 @@ Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\
 \newpage
 
 \section{Produktfuntionen}
-Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit. Zu einem Zeitpunkt befindet sich das Produkt dabei immer in einem der beiden Modi. Die Modi nennen sich im Laufe des Dokumentes \gls{Debugmodus} und \gls{Editiermodus}. \\ Jeder Modus hat einen bestimmten Zweck, wonach die Produktfunktionen auch nicht immer in beiden Modi angeboten werden. 
-\paragraph{Editiermodus} Der Editiermodus dient dazu, dass der Nutzer seine zu debuggenden Programme bearbeiten oder einfügen, sowie Eingabevariablen und \glspl{Watch-Expression} oder \glspl{bedingter Breakpoint} spezifizieren kann. Sobald er nun bereit zum debuggen ist, kann er in den Debugmodus wechseln, in dem er einen entsprechenden Button drückt. 
-\paragraph{Debugmodus} Der Debugmodus ist aktiv, wenn das eigentliche Debuggen stattfindet. Hier kann der Nutzer etwa Variablen inspizieren und den Programmablauf verfolgen. 
+Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit. Zu einem Zeitpunkt befindet sich das Produkt dabei immer in einem der beiden Modi. Die Modi nennen sich im Laufe des Dokumentes \gls{Debugmodus} und \gls{Editiermodus}. \\ Jeder Modus hat einen bestimmten Zweck, weshalb die Produktfunktionen auch nicht immer in beiden Modi angeboten werden. 
+\paragraph{Editiermodus} Der \gls{Editiermodus} dient dazu, dass der Nutzer seine zu debuggenden Programme bearbeiten oder einfügen, sowie Eingabevariablen und \glspl{Watch-Expression} oder \glspl{bedingter Breakpoint} spezifizieren kann. Sobald er nun bereit zum debuggen ist, kann er in den Debugmodus wechseln, in dem er einen entsprechenden Button drückt. 
+\paragraph{Debugmodus} Der \gls{Debugmodus} ist aktiv, wenn das eigentliche Debuggen stattfindet. Hier kann der Nutzer etwa Variablen inspizieren und den Programmablauf verfolgen. 
 	 	\subsection{Funktionale Anforderungen}
  		\subsubsection{Musskriterien}
 		\begin{itemize}
-		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende, Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im Debugmodus kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
                 \item[/FA40/] Der Benutzer kann die \gls{Schrittgrösse} für jedes Programm einzeln festlegen.
@@ -459,7 +466,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion:	In allen vorhandenen Textfenstern wird auf derselben Höhe ein Breakpoint gesetzt.
 	\end{itemize}		
 	
-	\item[/T070/] Löschen eines Breakpoint in einem Textfenster
+	\item[/T070/] Löschen eines Breakpoints in einem Textfenster
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Es ist an der entsprechenden Stelle ein Breakpoint gesetzt.	
 		\item Aktion: Der zu entfernende Breakpoint wird einmal einfach angeklickt.
@@ -495,7 +502,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte und aktuell erfüllten Watch-Expressions an.
 		\end{itemize}		
 	
-	\item[/T135/] Halten des Debuggers an (bedingten) \glspl{bedingter Breakpoint}
+	\item[/T135/] Halten des Debuggers an \glsplgen{bedingter Breakpoint}
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein bedingter Breakpoint mit syntaktisch korrekter und erfüllbarer Bedingung. 
 		\item Aktion: Es gibt verschiedene Nutzer-Handlungene, durch die ein bedingter Breakpoint erreicht werden kann. Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
