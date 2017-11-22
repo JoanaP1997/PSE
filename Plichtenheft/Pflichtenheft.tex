@@ -571,14 +571,14 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 
 \begin{itemize}
 
-	\item[/T220/] Hinzufügen einer Watch-Expression
+	\item[/T220/] Hinzufügen einer \gls{Watch-Expression}
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
 		\item Reaktion:		
 		\end{itemize}	
 	
-	\item[/T230/] Löschen einer \gls{Watch-Expression}
+	\item[/T230/] Löschen einer Watch-Expression
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
@@ -619,7 +619,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 
 \begin{itemize}
 
-	\item[/T280/] Hinzufügen eines bedingten Breakpoints
+	\item[/T280/] Hinzufügen eines \glsplgen{bedingter Breakpoint}
 		\begin{itemize}
 		\item Erfolgsvorbedingung:
 		\item Aktion:
@@ -642,16 +642,16 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 	
 	\item[/T310/] Hinzufügen einer Bereichsbindung
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
-		\end{itemize}	
+		\item Erfolgsvorbedingung: Ein bedingter Breakpoint existiert.
+		\item Aktion: Der Nutzer wählt über das Optionenfeld des bedingten Breakpoints die Option \enquote{an Bereich binden} aus. Dann gibt er im erscheinenden Menü die erste und letzte Zeile des Bereichs in jedem der zu debuggenden Programme an, an den der bedingte Breakpoint gebunden wird. 
+		\item Reaktion:	Der bedingte Breakpoint wird während des Debuggens nur noch ausgewertet, wenn sich eines der Programme im jeweiligen Bereich befindet. Beim Anzeigen der Bereichsbindung(/T270/) wird diese angezeigt. 
+		\end{itemize}		
 	
-	\item[/T320/] Löschen einer Bereichsbindung
+	\item[/T260/] Löschen einer Bereichsbindung
 		\begin{itemize}
-		\item Erfolgsvorbedingung:
-		\item Aktion:
-		\item Reaktion:		
+		\item Erfolgsvorbedingung: Ein bedingter Breakpoint existiert und wurde bereits an einen Bereich gebunden. 
+		\item Aktion: Der Nutzer wählt über das Optionenfeld des bedingten Breakpoints die Option \enquote{von Bereich lösen} aus.
+		\item Reaktion:	Die Bereichsbindung wird aufgehoben und der bedingte Breakpoint wird während des Debuggens dauerhaft überprüft und ausgewertet.
 		\end{itemize}	
 	
 	\item[/T330/] Anzeigen einer Bereichsbindung
