@@ -126,7 +126,6 @@
 
 \section{Sprache}
 \subsection{Sprache}
-\subsubsection{Sprache}
 \begin{frame}
 \frametitle{Elemente der Sprache}
 \begin{itemize}
@@ -144,12 +143,7 @@
 
 
 %------------------------------------------------
-\subsection{Produkteinsatz}
-\begin{frame}
-\frametitle{Produkteinsatz}
-\end{frame}
-
-%------------------------------------------------
+\section{Produktumgebung}
 \subsection{Produktumgebung}
 \begin{frame}
 \frametitle{Produktumgebung}
@@ -163,26 +157,50 @@
 %------------------------------------------------
 
 \section{Produktfunktionen}
+
 \subsection{Funktionale Anforderungen}
 \begin{frame}
-\frametitle{Musskriterien}
+\frametitle{Aktivitätsdiagramm}
+\includegraphics[scale=0.125]{../Aktivitaetsdiagramm}
 \end{frame}
-
 %------------------------------------------------
 \subsubsection{Sollkriterien}
 \begin{frame}
 \frametitle{Sollkriterien}
+\begin{itemize}
+\item Vorschläge für Eingabewerte
+\item Speichern des Verlaufs einer Variable
+\item Festlegen der Anzahl maximaler Schleifendurchläufe
+\item Debuggen von mehr als 2 Programmen
+\item Vorschläge für Watch-Expressions
+\item Vorschläge für bedingte Breakpoints
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
 \subsubsection{Kannkriterien}
 \begin{frame}
 \frametitle{Kannkriterien}
+\begin{itemize}
+\item Hineinziehen der zu debuggenden Programme
+\item Syntax-Highlighting
+\item Vorschlag der Schrittgröße
+\item Rückschritte
+\item Bereichsbindung bedingter Breakpoints/ Watch-Expressions passt sich bei Bearbeiten der Programme an
+\end{itemize}
 \end{frame}
 %-----------------------------------------------
 \subsubsection{Abgrenzungskriterien}
 \begin{frame}
 \frametitle{Abgrenzungskriterien}
+\begin{itemize}
+\item Optimierung auf 100 Zeilen
+\item Maximale Zeilenbreite von 120 Zeichen
+\item Optimierung auf maximal 100 Iterationen / Rekursionsaufrufe
+\item Nur Programme innerhalb eines Durchlaufs werden verglichen
+\item Ersetzt keine Entwicklungsumgebung
+\item Keine Versionskontrolle
+\end{itemize}
 \end{frame}
 
 %----------------------------------------------
@@ -221,83 +239,6 @@
 \end{frame}
 
 
-\section{Testfälle und Anwendungsfälle}
-
-%------------------------------------------------
-\subsection{Anwendungsfälle}
-\begin{frame}
-\frametitle{Anwendungsfälle}
-\end{frame}
-
-%------------------------------------------------
-\section{Qualitätsanforderungen}
-\subsection{Qualitätsanforderungen}
-\begin{frame}
-\frametitle{Qualitätsanforderungen}
-\begin{ssmall}
-\begin{tabular}{l||l|c|c|c|c} 
-    & Produktqualität & Sehr gut & Gut & Normal & Nicht relevant \\
-  \hline
-  \hline
-  \textbf{Funktionalität} &Angemessenheit & & & X &  \\
-  %\cline{2-6}
-  &Richtigkeit & X & & & \\
-  %\cline{2-6}
-  &Interoperabilität & & & X &\\
-  %\cline{2-6}
-  &Sicherheit & & & X & \\
-  \hline
-  \textbf{Zuverlässigkeit} &Reife & & & X & \\
-  %\cline{2-6}
-  &Fehlertoleranz & & & X & \\
-  %\cline{2-6}
-  &Wiederherstellbarkeit & & & X &\\
-  \hline
-  \textbf{Benutzbarkeit} &Verständlichkeit & & X & &\\
-  %\cline{2-6}
-  &Erlernbarkeit & & X & &\\
-  %\cline{2-6}
-  &Bedienbarkeit & X & & &\\
-  \hline
-  \textbf{Effizienz} &Zeitverhalten & & & X & \\
-  %\cline{2-6}
-  &Verbauchsverhalten & & & X & \\
-  \hline
-  \textbf{Änderbarkeit} &Analysierbarkeit & & & X &\\
-  %\cline{2-6}
-  &Modifizierbarkeit & X & & &\\
-  %\cline{2-6}
-  &Stabilität & & X&  &\\
-  %\cline{2-6}
-  &Prüfbarkeit & & & X &\\
-  \hline
-  \textbf{Übertragbarkeit} &Anpassbarkeit & & X & &\\
-  %\cline{2-6}
-  &Installierbarkeit & & X & & \\
-  %\cline{2-6}
-  &Konformität & & & X & \\
-  %\cline{2-6}
-  &Austauschbarkeit & & & X & \\
- \end{tabular}
- \end{ssmall}
-\end{frame}
-
-%------------------------------------------------
-\subsection{Globale Testfälle}
-\begin{frame}
-\frametitle{Globale Testfälle}
-\end{frame}
-
-%------------------------------------------------
-\section{Systemmodelle}
-\subsection{Aktivitätsdiagramm}
-\begin{frame}
-\frametitle{Aktivitätsdiagramm}
-\includegraphics[scale=0.12]{../Aktivitaetsdiagramm}
-\end{frame}
-
-
-%------------------------------------------------
 \section{GUI}
 \subsection{Editiermodus}
 \begin{frame}
@@ -310,6 +251,23 @@
 \frametitle{Debugmodus}
 %\includegraphics[scale=0.5]{../skizzeDebug.eps}
 \end{frame}
+
+
+%------------------------------------------------
+\section{Qualitätsanforderungen}
+\subsection{Qualitätsanforderungen}
+\begin{frame}
+\frametitle{Qualitätsanforderungen}
+
+\end{frame}
+
+
+
+
+
+
+%------------------------------------------------
+
 
 %------------------------------------------------
 
