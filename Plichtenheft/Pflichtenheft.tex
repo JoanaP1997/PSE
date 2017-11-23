@@ -50,13 +50,13 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 {
 	name={Einzelschritt},
 	plural={Einzelschritte},
-	description={Ein Einzelschritt entspricht einem ausgeführten Befehl}
+	description={Ein Einzelschritt entspricht einem ausgeführten Befehl in einem Programm.}
 }
 \newglossaryentry{Schritt}
 {
   name={Schritt},
   plural={Schritte},
-  description={Der Benutzer kann durch die Schrittgröße festlegen, aus wie vielen Einzelschritten ein Schritt befehlen soll. Die Schrittgröße entspricht also der Anzahl ausgeführter Befehle}
+  description={Der Benutzer kann durch die Schrittgröße festlegen, aus wie vielen Einzelschritten ein Schritt befehlen soll. Die Schrittgröße entspricht also der Anzahl ausgeführter Befehle bei einem Schritt.}
 }
 \newglossaryentry{Schrittgroesse}
 {
@@ -774,7 +774,7 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
 \begin{figure}[!ht] 
     \vspace{-10pt}
     \centering
-       \includegraphics[width=0.95\textwidth]{skizzeFull_v3.eps}
+       \includegraphics[width=0.95\textwidth]{skizzeFull_v2.eps}
        \caption{
          Benutzeroberfläche des Produktes im Editiermodus (oben) und im Debugmodus
          (unten)
@@ -788,13 +788,13 @@ Das Beenden des Produkts ist an jeder Stelle möglich.
         Eingabefenster (4) bearbeitet werden.
         Durch Verändern der Texte im Bereich \enquote{Eingabewerte} (1) können Werte der Eingabevariablen
         spezifiziert, gelöscht und verändert werden. 
-        Die Schaltflächen \enquote{\gls{Schritt}} und \enquote{Weiter}, sowie \enquote{\gls{Einzelschritt}} können in diesem Modus nicht betätigt
+        Die Schaltflächen \enquote{Step} und \enquote{Continue}, sowie \enquote{\gls{Einzelschritt}} können in diesem Modus nicht betätigt
         werden (Bereich 9). Betätigung der Startschaltfläche (8) verursacht den Übergang des Produkts in den \gls{Debugmodus}.
         
         Befindet sich das Produkt im Debugmodus, können die Programme nicht mehr
         bearbeitet werden.
-        Die Schaltflächen \enquote{Schritt}, \enquote{Weiter} und \enquote{Einzelschritt}, sowie \enquote{Step Over} und \enquote{Step Out} können
-        benutzt werden, um die Programme zu debuggen (Bereich 9). \glspl{Breakpoint} (5) können am Rand der Eingabefenstern (4) per Mausklick gesetzt werden.
+        Die Schaltflächen \enquote{Step}, \enquote{Continue} und \enquote{Einzelschritt}, sowie \enquote{Step Over} und \enquote{Step Out} können
+        benutzt werden, um die Programme zu debuggen (Bereich 9). Dabei führt \enquote{Step} einen \gls{Schritt} aus (entsprechend der \gls{Schrittgroesse}) und \enquote{Continue} führt die Programme bis zum jeweils nächsten Breakpoint aus. \glspl{Breakpoint} (5) können am Rand der Eingabefenstern (4) per Mausklick gesetzt werden.
         Betätigung der Stoppschaltfläche (10) verursacht den Übergang in den Editiermodus.
 
         In beiden Modi können \glspl{bedingter Breakpoint} (11) und \glspl{Watch-Expression} (12) durch Betätigung der jeweiligen 
