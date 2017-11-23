@@ -210,15 +210,14 @@ An die Hardware des Rechners werden keine speziellen Anforderungen neben den Anf
 	Rechner 1 & Windows 7 64bit & AMD Phenom II X4 B50 4K 4T @3.5Ghz & 10GB DDR3 \\
 	Rechner 2 & Windows 7 64bit & Intel Core i3-380M 2K 4T @2.5Ghz & 8GB DDR3 \\
 	 & KDE Neon 5.11.3 64bit &  \\
-	Rechner 3 & Ubuntu 17.04 64 bit & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
+	Rechner 3 & Ubuntu 17.04 64bit & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
 	Rechner 4 & Windows 10 Pro 64bit & Intel Core i7-7500U @2.7Ghz & 16GB DDR4\\
 		& Ubuntu 17.04 64bit\\
 \end{tabular}
-
+\newpage
 \subsection{Schnittstellen}
 Als Schnittstelle zum Nutzer selbst dient die graphische Benutzeroberfläche. \\ Es können sowohl Sprachkonfigurationsdateien, die die auf dieser Oberfläche angezeigten Texte beeinflussen, als auch Einstellungsdateien, die Einstellungen des Nutzers speichern, und Dateien, die Eingaben des Nutzers festhalten, geladen und persistent gespeichert werden. Um dies zu ermöglichen, nutzt das Produkt die in Java 8 vorhandenen Schnittstellen zum Dateisystem des Betriebssystems. 
 
-\newpage
 
 \section{Produktfuntionen}
 Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit. Zu einem Zeitpunkt befindet sich das Produkt dabei immer in einem der beiden Modi. Die Modi nennen sich im Laufe des Dokumentes \gls{Debugmodus} und \gls{Editiermodus}. \\ Jeder Modus hat einen bestimmten Zweck, weshalb die Produktfunktionen auch nicht immer in beiden Modi angeboten werden. 
@@ -314,7 +313,6 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/PL20/] Genauigkeit: \\
 		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), repräsentiert werden, ergeben sich die selben Genauigkeiten aus Java auch in unserer Sprache. %TODO
 		%Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
-		\newpage
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
 		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
@@ -583,7 +581,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Der Nutzer wählt im Block \enquote{Watch-Expressions} das \enquote{+}-Symbol aus. Anschließend gibt er in das Feld eine semantisch korrekte Watch-Expression ein.
 		\item Reaktion:	Die Watch-Expression wird hinzugefügt und deren Auswertung beginnt im Debugmodus direkt, im Editiermodus hingegen sobald der Debugmodus gestartet wird.
 		\end{itemize}	
-	
+\newpage
 	\item[/T230/] Löschen einer Watch-Expression
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Eine Watch Expression existiert.
@@ -609,7 +607,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Der Nutzer wählt über das Optionenfeld der Watch-Expression die Option \enquote{an Bereich binden} aus. Dann gibt er im erscheinenden Menü die erste und letzte Zeile des Bereichs in jedem der zu debuggenden Programme an, an den die Watch-Expression gebunden wird. 
 		\item Reaktion:	Die Watch-Expression wird während des Debuggens nur noch ausgewertet, wenn sich eines der Programme im jeweiligen Bereich befindet. Beim Anzeigen der Bereichsbindung(/T270/) wird diese angezeigt. 
 		\end{itemize}	
-	
+\newpage
 	\item[/T260/] Löschen einer Bereichsbindung
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Eine Watch-Expression existiert und wurde bereits an einen Bereich gebunden. 
@@ -636,7 +634,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Der Nutzer wählt im Block \enquote{Bedingte Breakpoints} das \enquote{+}-Symbol aus. Anschließend gibt er in das Feld eine semantisch korrekten bedingten Breakpoint ein.
 		\item Reaktion:	Der bedingte Breakpoint wird hinzugefügt und dessen Auswertung beginnt im Debugmodus direkt, im Editiermodus hingegen sobald der Debugmodus gestartet wird.	
 		\end{itemize}	
-	
+\newpage	
 	\item[/T290/] Löschen eines bedingten Breakpoints
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Ein bedingter Breakpoint existiert.
@@ -661,7 +659,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Der Nutzer wählt über das Optionenfeld des bedingten Breakpoints die Option \enquote{an Bereich binden} aus. Dann gibt er im erscheinenden Menü die erste und letzte Zeile des Bereichs in jedem der zu debuggenden Programme an, an den der bedingte Breakpoint gebunden wird. 
 		\item Reaktion:	Der bedingte Breakpoint wird während des Debuggens nur noch ausgewertet, wenn sich eines der Programme im jeweiligen Bereich befindet. Beim Anzeigen der Bereichsbindung(/T270/) wird diese angezeigt. 
 		\end{itemize}		
-	
+\newpage	
 	\item[/T260/] Löschen einer Bereichsbindung
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Ein bedingter Breakpoint existiert und wurde bereits an einen Bereich gebunden. 
@@ -679,7 +677,6 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		
 \end{itemize}
 
-\newpage
 \subsection{Variableneingabe}
 
 
@@ -692,7 +689,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Es wird in das Feld \enquote{Eingabewerte} geklickt und die Variablenzuweisung eingegeben.
 		\item Reaktion: Die Eingabewerte werden so angezeigt, wie der Nutzer sie eingegeben hat.
 		\end{itemize}	
-	
+\newpage	
 \item[/T350/] Angeben einer Wertespanne für den zufälligen Startwert einer Variablen
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im Editiermodus. Es ist ein Programmtext angegeben, der einen Startwert für mindestens eine Variable erfordert.
