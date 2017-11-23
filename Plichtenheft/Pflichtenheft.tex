@@ -58,7 +58,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
   plural={Schritte},
   description={Der Benutzer kann durch die Schrittgröße festlegen, aus wie vielen Einzelschritten ein Schritt befehlen soll. Die Schrittgröße entspricht also der Anzahl ausgeführter Befehle}
 }
-\newglossaryentry{Schrittgrösse}
+\newglossaryentry{Schrittgroesse}
 {
 	name={Schrittgröße},
 	description={Die vom Benutzer anzugebende Schrittgröße bestimmt die pro Schritt ausgeführten Befehle. Hierbei zählt jeder Befehl einzeln und in Methoden und Funktionen werden alle Befehle gezählt, statt die Methode bzw. Funktion als einen Befehl zu betrachten}
@@ -117,7 +117,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 	name={Konfigurationsdatei},
 	plural={Konfigurationsdateien},
 	description={Der Benutzer kann Konfigurationsdateien bezüglich eines Durchlaufs des Produkts erstellen. Diese Dateien enthalten die zu debuggenden Programme,
-	Breakpoints, Watch-Expressions, Eingabevariablen, \gls{Schrittgrösse}n und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
+	Breakpoints, Watch-Expressions, Eingabevariablen, \gls{Schrittgroesse}n und die Stelle, an der das Debuggen eventuell unterbrochen wurde}
 }
 
 
@@ -229,7 +229,7 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
 		\item[/FA20/] Im Debugmodus kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
-                \item[/FA40/] Der Benutzer kann die \gls{Schrittgrösse} für jedes Programm einzeln festlegen.
+                \item[/FA40/] Der Benutzer kann die \gls{Schrittgroesse} für jedes Programm einzeln festlegen.
 		\item[/FA50/] Bei einem Schritt wird die vorgegebene Anzahl an Befehlen ausgeführt. Dabei werden die Befehle einer Funktion einzeln ausgeführt (automatisches Step-In). 
 		\item[/FA60/] Der Benutzer kann durch \gls{Step-Out} eine Funktion verlassen.
 		\item[/FA70/] Durch \gls{Step-Over} kann eine Funktion als einzelner auszuführender Befehl abgearbeitet werden.
@@ -520,7 +520,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Reaktion: Die Schrittgröße wird verändert angezeigt. Folgende Schritte haben die entsprechende Länge.
 		\end{itemize}	
 	
-	\item[/T150/] Gleichzeitig in allen Textfenstern einen \gls{Schritt} der jeweils gewählten \gls{Schrittgrösse} machen
+	\item[/T150/] Gleichzeitig in allen Textfenstern einen \gls{Schritt} der jeweils gewählten \gls{Schrittgroesse} machen
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im Debugmodus. Die zu testenden Textfenster (mindestens zwei) haben jeweils eine gültige Schrittlänge, und der Debugger ist in mindestens einem von ihnen noch nicht am Ende des Programmtextes angekommen.
 		\item Aktion: Der Schritt-Button wird angeklickt.
