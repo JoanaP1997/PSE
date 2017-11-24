@@ -227,6 +227,7 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
  		\subsubsection{Musskriterien}
 		\begin{itemize}
 		\item[/FA10/] Das Produkt ist ein \gls{Debugger} für mehrere, gleichzeitig ablaufende Programme, welche in der im Kapitel Ergänzungen spezifizierten Sprache geschrieben sind.
+		\item[/FA15/] Es gibt einen \gls{Debugmodus} und einen \gls{Editiermodus}
 		\item[/FA20/] Im Debugmodus kann der Benutzer in diesen \glspl{Schritt} (Steps) durchführen.
 		\item[/FA30/] Es ist möglich, von den anderen Programmen unabhängige \glspl{Einzelschritt} in einem Programm auszuführen.
                 \item[/FA40/] Der Benutzer kann die \gls{Schrittgroesse} für jedes Programm einzeln festlegen.
@@ -306,16 +307,16 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
 		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne längere Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne längere Verzögerung möglich. \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne spürbare Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne spürbare Verzögerung möglich. \\
 		Den Debugmodus zu starten dauert unter 5 Sekunden. 
 		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
 		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
 		\item[/PL20/] Genauigkeit: \\
-		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), repräsentiert werden, ergeben sich dieselben Genauigkeiten aus Java auch in unserer Sprache. %TODO
+		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), repräsentiert werden, ergeben sich dieselben Genauigkeiten aus Java auch in unserer Sprache. 
 		%Da das Produkt alle primitiven Datentypen von Java unterstützt, ergibt sich für die vom Produkt angezeigten Variablenbelegungen die selbe Genauigkeit wie bei der Ausführung durch die JVM (Java Virtual Machine).
 		\item[/PL30/] Fehlertoleranz: \\
 		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
-		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus zu jeder Zeit ermöglicht.
+		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus aus dem Editiermodus zu jeder Zeit ermöglicht.
 		\end{itemize}
 		
 		\subsubsection{Weitere nichtfunktionale Anforderungen}
@@ -324,7 +325,8 @@ Das Produkt stellt seine Funktionalität gegliedert in zwei Betriebsmodi bereit.
 		\item[/NA10/]Erweiterbarkeit: \\
 		Das Produkt ist durch objektorientierten Entwurf erweiterbar um zusätzliche Sprachen für die Benutzeroberfläche (neben Deutsch und Englisch), sowie um \gls{Interpreter} für weitere Sprachen.
 		\item[/NA20/]Wartbarkeit: \\
-		Durch seinen objektorientierten Entwurf können auftretende Fehler leicht beseitigt werden. 
+		Durch den objektorientierten Entwurf des Produkts und ausführliche Dokumentation dessen
+		 können auftretende Fehler leicht beseitigt werden. 
 		%\item[/NA25/]Robustheit: \\
 		%weiß hier jemand was?
 		\item[/NA30/]Urheberrecht: \\
@@ -384,7 +386,8 @@ Da dem Nutzer moderne Rechner mit hoher Rechenleistung, sowie viel Speicherplatz
   \label{fig:Bild1}
 \end{figure}
 
-In allen Anwendungsfällen ist der Benutzer der einzige Akteur
+In allen Anwendungsfällen ist der Benutzer der einzige Akteur. Hierbei ist das Geschlecht des Benutzers ohne Bedeutung für
+die Benutzung des Produkts. Daher kann der Benutzer sein Geschlecht zu jeder Zeit frei wählen.
 
 \begin{itemize}
     \item [/AF10/] Hinzufügen von Programmen:\\ 
@@ -410,7 +413,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
     \item [/AF50/] Codes debuggen: \\
                         %relationale Eigenschaften groß? (Rela...)
         Der Benutzer möchte zwei (oder mehr) Programmteile auf \glspl{Relationale Eigenschaft} (z.B. Nicht-Interferenz oder Äquivalenz) untersuchen. Dazu fügt er die zu untersuchenden Programme in das Produkt ein, setzt Breakpoints an relevanten Stellen und prüft seine Annahmen, wo die Programme sich unterscheiden könnten, mit Hilfe von Watch-Expressions oder \glsplgen{bedingter Breakpoint}. Gegebenenfalls verändert er den Programmtext seiner Programme noch einmal. Dann startet er den \gls{Debugger}. Dieser läuft automatisch bis zum jeweils nächsten (bedingten) Breakpoint durch. \\Der Benutzer hat dann die Möglichkeit, pro Zeile(n) oder pro Breakpoint vorzugehen. Die Ergebnisse der Variablen und der Auswertung der Watch-Expressions werden ihm dauerhaft angezeigt und nach jedem Weitergehen aktualisiert. Am Ende des Debug-Vorgangs werden ihm die Ausgabewerte aller Programme angezeigt.
-    
+    \newpage
     \item [/AF60/] Speichern eines Durchlaufs: \\
     Der Benutzer möchte einen von ihm durchgeführten Debug-Lauf speichern, um ihn später zu wiederholen, an dieser Stelle fortzusetzen oder an einen anderen Benutzer weiterzugeben. Dazu wählt er zu einem beliebigen Zeitpunkt, nachdem er mindestens einen zu debuggenden Programmtext hinzugefügt hat, im Dateimenü den Punkt \enquote{\gls{Konfigurationsdatei} speichern} aus. Anschließend kann der Benutzer den Speicherort der Konfigurationsdatei über ein Pop-Up Fenster auswählen.\\
 
@@ -434,7 +437,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Im Menü \enquote{Datei} wird der Menüpunkt \enquote{Textdatei öffnen} aufgerufen und die entsprechende Textdatei ausgewählt.
 		\item Reaktion: Die ausgewählte Text-Datei wird in einem neuen Text-Fenster eingefügt.
 	\end{itemize}	
-
+\newpage
 	\item[/T030/] Schließen des Produkts
 	\begin{itemize}
 		\item Erfolgsvorbedingung: Die Arbeit des Nutzers ist bereits gespeichert.
@@ -457,7 +460,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\end{itemize}	
 	
 	\end{itemize}
-
+\newpage
 \subsection{Grundsätzliche Debug-Funktionen}
 
 \begin{itemize}
@@ -483,7 +486,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Es wird per Rechtsklick auf einen der Breakpoints des entsprechenden Fensters geklickt und die Option \enquote{Alle Breakpoints löschen} angeklickt.
 		\item Reaktion:	Alle Breakpoints des Fensters werden gelöscht.
 		\end{itemize}		
-	
+	\newpage
 	\item[/T110/] Starten des \gls{Debugmodus}
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Editiermodus}. Die zu untersuchenden Programme sind syntaktisch korrekt, d.h. es ergeben sich keine Fehler beim Kompilieren. Des Weiteren sind alle notwendigen Variableneingaben vorhanden und entsprechen dem Typ der jeweiligen Variable.
@@ -504,7 +507,7 @@ Ausdruck ein. Anschließend kann im selben Feld ein Bereich in einem oder mehrer
 		\item Aktion: Es gibt verschiedene Nutzer-Handlungen, durch die ein Breakpoint erreicht werden kann: Der Nutzer startet den Debugmodus mit Klick auf den Play-Button. Der Nutzer macht einen Schritt mittels Klick auf den Step-Button. Der Nutzer setzt das bisherige Debuggen fort mittels Klick auf den Continue-Button.
 		\item Reaktion:	Das Produkt hält im entsprechenden Fenster in der Zeile des \glspl{Breakpoint} und zeigt die aktuellen Variablenwerte an. Die aktuell erfüllten Watch-Expressions werden farblich hinterlegt.
 		\end{itemize}		
-	
+\newpage
 	\item[/T135/] Halten des Debuggers an \glsplgen{bedingter Breakpoint}
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Das Produkt befindet sich im \gls{Debugmodus}. Es existiert ein bedingter Breakpoint mit syntaktisch korrekter und erfüllbarer Bedingung. 
@@ -710,7 +713,7 @@ Ein Item bezeichnet hier jeweils eine Einheit innerhalb eines Submenüs, zum Bei
 		\item Aktion: Durch \enquote{Drag and Drop} verändert der Benutzer die Reihenfolge der Variablen.
 		\item Reaktion:	Die verschobene Variable wird je nach Aktion weiter oben beziehungsweise unten im Variableninspektor angezeigt.
 		\end{itemize}	
-	
+\newpage
 	\item[/T370/] Ein- und Ausblenden von Variablen
 		\begin{itemize}
 		\item Erfolgsvorbedingung: Die Programmtexte ist nach Definition der Sprache Wlang (Definition siehe Ergänzungen) valide. Die ein-/auszublendenden
