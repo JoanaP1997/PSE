@@ -38,7 +38,7 @@
 +createCondBreakpoint(int id, String cond)
 +changeCondBreakpoint(int id, String cond)
 +deleteCondBreakpoint(int id)
-+createSynchBreakpoint(int line)
++createSyncBreakpoint(int line)
 +createBreakpoint(int program, int line)
 +deleteBreakpoint(int breakpoint, int line)
 +deleteAllBreakpoints()
