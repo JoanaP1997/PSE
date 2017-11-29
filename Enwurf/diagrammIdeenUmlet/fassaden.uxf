@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>70</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>GuiFacade
+
+--
+
+--
+
+Beobachterzeug</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>480</y>
+      <w>420</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes>ControllFacade
+--
+--
++setStepSize(int program, int size)
++step(int type)
++continue()
++singelStep()
++createWatchExpression(int id, String watchexpr)
++changeWatchExpression(int id, String watchexpr, List&lt;int&gt;?????)
++deleteWatchExpression(int id)
++createCondBreakpoint(int id, String condBreak)
++changeCondBreakpoint(int id, String condBreak)
++deleteCondBreakpoint(int id)
++createSynchBreakpoint(int line)
++createBreakpoint(int program, int line)
++deleteBreakpoint(int breakpoint, int line)
++deleteAllBreakpoints()
++saveText(List&lt;String&gt; programcodes, List&lt;String&gt; inputvar)
++startDebug()
++stopDebug()
++reset()
++loadConfig(File configFile)
++saveConfig(File configFile)
++loadProgrammText(File file)
++...methoden fuer Vorschlaege
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>480</y>
+      <w>290</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>DebugLogicFacade
+--
+--
++setStepSize(int program, int size)
++step(int type)
++singleStep()
++createBreakpoint(int program, int line)
++launchRun(List&lt;Controll.ProgramAndInputInWLang&gt; ProgrammeUndEingaben, List&lt;Int&gt; programcounters)
++getProgramCounter(): List&lt;int&gt;
+get...
+reset()
++... Methdoen fuer Vorschlaege</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
