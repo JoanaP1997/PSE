@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>784</x>
-      <y>160</y>
+      <x>632</x>
+      <y>80</y>
       <w>168</w>
       <h>152</h>
     </coordinates>
@@ -19,23 +20,23 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>368</y>
+      <x>648</x>
+      <y>288</y>
       <w>440</w>
       <h>408</h>
     </coordinates>
-    <panel_attributes>ControllFacade
+    <panel_attributes>ControlFacade
 --
 --
 +setStepSize(int program, int size)
 +step(int type)
 +continue()
 +singelStep()
-+createWatchExpression(int id, String watchexpr)
-+changeWatchExpression(int id, String watchexpr, List&lt;int&gt;?????)
++createWatchExpression(int id, String expr)
++changeWatchExpression(int id, String expr, List&lt;int&gt;?????)
 +deleteWatchExpression(int id)
-+createCondBreakpoint(int id, String condBreak)
-+changeCondBreakpoint(int id, String condBreak)
++createCondBreakpoint(int id, String cond)
++changeCondBreakpoint(int id, String cond)
 +deleteCondBreakpoint(int id)
 +createSynchBreakpoint(int line)
 +createBreakpoint(int program, int line)
@@ -55,8 +56,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>152</x>
-      <y>376</y>
+      <x>0</x>
+      <y>296</y>
       <w>400</w>
       <h>304</h>
     </coordinates>
@@ -67,11 +68,11 @@
 +step(int type)
 +singleStep()
 +continue()
-+createWatchExpression(int id, String watchexpr)
-+changeWatchExpression(int id, String watchexpr, List&lt;int&gt;?????)
++createWatchExpression(int id, String expr)
++changeWatchExpression(int id, String expr, List&lt;int&gt;?????)
 +deleteWatchExpression(int id)
-+createCondBreakpoint(int id, String condBreak)
-+changeCondBreakpoint(int id, String condBreak)
++createCondBreakpoint(int id, String cond)
++changeCondBreakpoint(int id, String cond)
 +deleteCondBreakpoint(int id)
 +createBreakpoint(int program, int line)
 +deleteBreakpoint(int breakpoint, int line)
@@ -87,23 +88,23 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>344</x>
-      <y>248</y>
+      <x>192</x>
+      <y>168</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
 +attach(Observer observer)
-+dettach(Observer observer)
++detach(Observer observer)
 +notify()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>328</y>
+      <x>280</x>
+      <y>248</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -113,8 +114,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>832</x>
-      <y>80</y>
+      <x>680</x>
+      <y>0</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -126,8 +127,8 @@ update()</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>592</x>
-      <y>312</y>
+      <x>440</x>
+      <y>232</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -139,8 +140,8 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>296</y>
+      <x>248</x>
+      <y>216</y>
       <w>208</w>
       <h>56</h>
     </coordinates>
@@ -150,8 +151,8 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>856</x>
-      <y>120</y>
+      <x>704</x>
+      <y>40</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -161,8 +162,8 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>432</x>
-      <y>88</y>
+      <x>280</x>
+      <y>8</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -175,8 +176,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>944</x>
-      <y>240</y>
+      <x>792</x>
+      <y>160</y>
       <w>120</w>
       <h>144</h>
     </coordinates>
@@ -187,8 +188,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>544</x>
-      <y>520</y>
+      <x>392</x>
+      <y>440</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
