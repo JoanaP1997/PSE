@@ -1,3 +1,2 @@
-- 	deleteBreakpoint(int breakpoint, int line) //Warum zeile und breakpointID??? reicht doch eins von beiden!!!
 - 	allgemein in der controlFacade nur eine methode für createBreakpoint / deleteBreakpoint. wir wollen unsere "dumme" gui ja nicht überfordern
 	vorschlag: toggleBreakpoint(int line) da mehr breakpoints pro zeile sinnlos erscheinen

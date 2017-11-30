@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -40,7 +39,7 @@
 +deleteCondBreakpoint(int id)
 +createSyncBreakpoint(int line)
 +createBreakpoint(int program, int line)
-+deleteBreakpoint(int breakpoint, int line)
++deleteBreakpoint(int program, int line)
 +deleteAllBreakpoints()
 +saveText(List&lt;String&gt; programcodes, List&lt;String&gt; inputvar)
 +startDebug()
@@ -75,7 +74,7 @@
 +changeCondBreakpoint(int id, String cond)
 +deleteCondBreakpoint(int id)
 +createBreakpoint(int program, int line)
-+deleteBreakpoint(int breakpoint, int line)
++deleteBreakpoint(int program, int line)
 +launchRun(List&lt;Controll.ProgramAndInputInWLang&gt; ProgrammeUndEingaben, List&lt;Int&gt; programcounters)
 +getProgramCounter(): List&lt;int&gt;
 get...
