@@ -14,25 +14,13 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>100</y>
-      <w>30</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>lt=.
-layer=0</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>550</x>
       <y>100</y>
       <w>30</w>
-      <h>230</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;280.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -103,19 +91,6 @@ layer=0</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>320</x>
-      <y>110</y>
-      <w>20</w>
-      <h>220</h>
-    </coordinates>
-    <panel_attributes>
-layer=5
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
       <x>550</x>
       <y>110</y>
       <w>20</w>
@@ -167,7 +142,7 @@ saveConfig(File configFile)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-saveConfig(File configFile)</panel_attributes>
+getInfos...()</panel_attributes>
     <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -179,14 +154,14 @@ saveConfig(File configFile)</panel_attributes>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-return configuration</panel_attributes>
+return infos</panel_attributes>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>560</x>
-      <y>180</y>
+      <y>230</y>
       <w>450</w>
       <h>40</h>
     </coordinates>
@@ -198,9 +173,9 @@ safeConfig(configuration, File configFile)</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1000</x>
-      <y>200</y>
+      <y>270</y>
       <w>20</w>
-      <h>60</h>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -209,13 +184,13 @@ safeConfig(configuration, File configFile)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1010</x>
-      <y>210</y>
-      <w>180</w>
-      <h>70</h>
+      <y>260</y>
+      <w>160</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 safeConfig()</panel_attributes>
-    <additional_attributes>10.0;40.0;80.0;50.0;80.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;60.0;40.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
@@ -232,5 +207,50 @@ Daten kennt?
 Funktioniert das so überhaupt mit Speichern? Sollte 
 nicht die GUI das File kriegen?</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>560</x>
+      <y>190</y>
+      <w>20</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>170</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+makeConfig(infos)</panel_attributes>
+    <additional_attributes>20.0;60.0;70.0;50.0;70.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>320</x>
+      <y>110</y>
+      <w>20</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>140</y>
+      <w>30</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
   </element>
 </diagram>
