@@ -60,9 +60,18 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 %Eventuell Fußnoten generieren
 \section{Einleitung}
 %Einleitung mit grobem Überblick. Dieser Abschnitt soll an das Pflichtenheft anschließen.
+Dieses Dokument dokumentiert den Entwurf des Produkts \enquote{DIbugger}, wie es im Pflichtenheft definiert wurde.\\
+Hierbei werden das Geheimnisprinzip und Lose Kopplung berücksichtigt, um für erhöhte Verständlichkeit
+zu sorgen.
 \section{Paketeinteilung} %eventuell fällt jemandem ein besserer Titel ein
 %Paketdiagramm, Erläuterung der Einteilungsentscheidung, Schnittstellen
-\subsection{Übersicht} %hier Paketdiagramm?
+\subsection{Übersicht}
+
+\includegraphics[scale=0.35]{../Plichtenheft/Architektur.png}
+Das Produkt ist aufgeteilt in die Pakete \enquote{Control}, \enquote{User Interface}, \enquote{File Handler} und \enquote{Debug Logic}.
+Hierbei besteht die Debug Logic aus den Unterpaketen \enquote{Debugger}, \enquote{Interpreter} und
+\enquote{Antlr Parser}.
+
 \subsection{Erläuterung der einzelnen Pakete}
 \subsubsection{User Interface}
 \paragraph{Aufgaben}
