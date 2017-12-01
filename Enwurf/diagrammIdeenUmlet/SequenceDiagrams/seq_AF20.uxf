@@ -4,19 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>60</x>
-      <y>60</y>
-      <w>120</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_:Nutzer_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>330</x>
-      <y>60</y>
+      <x>470</x>
+      <y>40</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -26,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>600</x>
-      <y>60</y>
+      <x>740</x>
+      <y>40</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -37,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>870</x>
-      <y>60</y>
+      <x>1010</x>
+      <y>40</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -48,8 +37,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>80</y>
+      <x>250</x>
+      <y>60</y>
       <w>30</w>
       <h>900</h>
     </coordinates>
@@ -60,8 +49,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>80</y>
+      <x>520</x>
+      <y>60</y>
       <w>30</w>
       <h>900</h>
     </coordinates>
@@ -71,8 +60,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>80</y>
+      <x>790</x>
+      <y>60</y>
       <w>30</w>
       <h>900</h>
     </coordinates>
@@ -82,8 +71,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>80</y>
+      <x>1060</x>
+      <y>60</y>
       <w>30</w>
       <h>900</h>
     </coordinates>
@@ -93,9 +82,9 @@
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>30</x>
-      <y>120</y>
-      <w>450</w>
+      <x>180</x>
+      <y>100</y>
+      <w>970</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>opt
@@ -104,35 +93,22 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>0</x>
-      <y>30</y>
-      <w>1050</w>
-      <h>960</h>
-    </coordinates>
-    <panel_attributes>AF20
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>140</y>
-      <w>290</w>
+      <x>530</x>
+      <y>130</y>
+      <w>280</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 stopDebug()</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
-      <y>160</y>
+      <x>520</x>
+      <y>140</y>
       <w>20</w>
       <h>30</h>
     </coordinates>
@@ -142,8 +118,8 @@ stopDebug()</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>110</x>
-      <y>950</y>
+      <x>250</x>
+      <y>930</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -153,8 +129,8 @@ stopDebug()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>230</y>
+      <x>250</x>
+      <y>210</y>
       <w>290</w>
       <h>50</h>
     </coordinates>
@@ -166,8 +142,8 @@ Programm A</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
-      <y>250</y>
+      <x>520</x>
+      <y>230</y>
       <w>20</w>
       <h>30</h>
     </coordinates>
@@ -177,31 +153,20 @@ Programm A</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>290</y>
+      <x>250</x>
+      <y>340</y>
       <w>290</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-füge Programm C hinzu</panel_attributes>
+füge Programm B hinzu (öffnen)</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
-      <y>310</y>
-      <w>20</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>380</x>
-      <y>370</y>
+      <x>520</x>
+      <y>360</y>
       <w>20</w>
       <h>30</h>
     </coordinates>
@@ -211,20 +176,8 @@ füge Programm C hinzu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>350</y>
-      <w>290</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-entferne Programm B</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>110</x>
-      <y>410</y>
+      <x>250</x>
+      <y>460</y>
       <w>290</w>
       <h>50</h>
     </coordinates>
@@ -236,10 +189,10 @@ drücke auf die
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
-      <y>430</y>
+      <x>520</x>
+      <y>480</y>
       <w>20</w>
-      <h>170</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -247,8 +200,8 @@ drücke auf die
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>420</y>
+      <x>530</x>
+      <y>470</y>
       <w>280</w>
       <h>40</h>
     </coordinates>
@@ -259,8 +212,8 @@ saveText(Programme, Eingaben)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>650</x>
-      <y>440</y>
+      <x>790</x>
+      <y>490</y>
       <w>20</w>
       <h>30</h>
     </coordinates>
@@ -270,8 +223,8 @@ saveText(Programme, Eingaben)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1530</x>
-      <y>20</y>
+      <x>1670</x>
+      <y>0</y>
       <w>20</w>
       <h>40</h>
     </coordinates>
@@ -281,8 +234,8 @@ saveText(Programme, Eingaben)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>650</x>
-      <y>500</y>
+      <x>790</x>
+      <y>550</y>
       <w>20</w>
       <h>100</h>
     </coordinates>
@@ -292,8 +245,8 @@ saveText(Programme, Eingaben)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>480</y>
+      <x>530</x>
+      <y>530</y>
       <w>280</w>
       <h>40</h>
     </coordinates>
@@ -304,8 +257,8 @@ startDebug()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>660</x>
-      <y>520</y>
+      <x>800</x>
+      <y>570</y>
       <w>20</w>
       <h>30</h>
     </coordinates>
@@ -315,9 +268,9 @@ startDebug()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>500</y>
-      <w>280</w>
+      <x>800</x>
+      <y>550</y>
+      <w>270</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -328,8 +281,8 @@ createProgramObjects()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>550</y>
+      <x>800</x>
+      <y>600</y>
       <w>280</w>
       <h>40</h>
     </coordinates>
@@ -340,10 +293,10 @@ launchRun(programs, {0, 0})</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>920</x>
-      <y>570</y>
+      <x>1060</x>
+      <y>620</y>
       <w>20</w>
-      <h>30</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -351,13 +304,164 @@ launchRun(programs, {0, 0})</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>70</x>
-      <y>120</y>
+      <x>210</x>
+      <y>100</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>[im Debugmodus]
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>200</x>
+      <y>40</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Nutzer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>790</x>
+      <y>150</y>
+      <w>20</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>120</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+roter Button gedrückt</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>520</x>
+      <y>280</y>
+      <w>20</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>260</y>
+      <w>290</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+aus Programmbox rausklicken</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>150</x>
+      <y>0</y>
+      <w>1050</w>
+      <h>960</h>
+    </coordinates>
+    <panel_attributes>AF20
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>270</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+saveText(Programme, Eingaben)</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>790</x>
+      <y>290</y>
+      <w>20</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>350</y>
+      <w>280</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+saveText(Programme, Eingaben)</panel_attributes>
+    <additional_attributes>260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>790</x>
+      <y>370</y>
+      <w>20</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1070</x>
+      <y>640</y>
+      <w>20</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>620</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+notify()</panel_attributes>
+    <additional_attributes>20.0;30.0;80.0;30.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>640</y>
+      <w>560</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+update()</panel_attributes>
+    <additional_attributes>10.0;20.0;540.0;20.0</additional_attributes>
   </element>
 </diagram>

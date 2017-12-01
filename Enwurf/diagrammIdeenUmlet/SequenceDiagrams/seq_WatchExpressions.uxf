@@ -354,4 +354,18 @@ update()</panel_attributes>
     <panel_attributes/>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>770</x>
+      <y>750</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Kommentar
+--
+Nutzer hinzufügen
+schöner machen</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>

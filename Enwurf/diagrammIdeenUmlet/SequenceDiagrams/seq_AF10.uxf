@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>315</x>
-      <y>369</y>
+      <x>153</x>
+      <y>297</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -14,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>522</x>
-      <y>369</y>
+      <x>360</x>
+      <y>297</y>
       <w>108</w>
       <h>27</h>
     </coordinates>
@@ -25,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>711</x>
-      <y>369</y>
+      <x>549</x>
+      <y>297</y>
       <w>135</w>
       <h>27</h>
     </coordinates>
@@ -34,21 +35,10 @@
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1179</x>
-      <y>369</y>
-      <w>90</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:FileHandler_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>351</x>
-      <y>387</y>
+      <x>189</x>
+      <y>315</y>
       <w>27</w>
       <h>360</h>
     </coordinates>
@@ -58,8 +48,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1215</x>
-      <y>387</y>
+      <x>603</x>
+      <y>315</y>
       <w>27</w>
       <h>360</h>
     </coordinates>
@@ -69,19 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>765</x>
-      <y>387</y>
-      <w>27</w>
-      <h>360</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>351</x>
-      <y>414</y>
+      <x>189</x>
+      <y>342</y>
       <w>234</w>
       <h>36</h>
     </coordinates>
@@ -92,8 +71,8 @@ fügt ein Programm hinzu</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>909</x>
-      <y>369</y>
+      <x>747</x>
+      <y>297</y>
       <w>135</w>
       <h>27</h>
     </coordinates>
@@ -103,8 +82,8 @@ fügt ein Programm hinzu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>963</x>
-      <y>387</y>
+      <x>801</x>
+      <y>315</y>
       <w>27</w>
       <h>360</h>
     </coordinates>
@@ -114,34 +93,8 @@ fügt ein Programm hinzu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>432</y>
-      <w>207</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-loadProgramText(File file)</panel_attributes>
-    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>396</x>
-      <y>495</y>
-      <w>234</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>Oder ein durchgehender Balken?
-
-
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>774</x>
-      <y>450</y>
+      <x>414</x>
+      <y>360</y>
       <w>207</w>
       <h>36</h>
     </coordinates>
@@ -152,31 +105,20 @@ loadProgramText(File file)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>972</x>
-      <y>459</y>
-      <w>261</w>
+      <x>612</x>
+      <y>378</y>
+      <w>207</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 loadProgramText(File file)</panel_attributes>
-    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1215</x>
-      <y>468</y>
-      <w>18</w>
-      <h>81</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>387</y>
+      <x>405</x>
+      <y>315</y>
       <w>27</w>
       <h>360</h>
     </coordinates>
@@ -186,105 +128,70 @@ loadProgramText(File file)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>567</x>
+      <x>405</x>
+      <y>360</y>
+      <w>18</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>603</x>
+      <y>378</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>801</x>
+      <y>396</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>117</x>
+      <y>153</y>
+      <w>108</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Programmdatei aus Datei hinzufügen
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>414</y>
+      <w>207</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+String programtext</panel_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
       <y>432</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>765</x>
-      <y>450</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>963</x>
-      <y>468</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1233</x>
-      <y>495</y>
-      <w>315</w>
+      <w>207</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-// evtl. irgendeine innere Methode</panel_attributes>
-    <additional_attributes>20.0;20.0;90.0;20.0;90.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1224</x>
-      <y>495</y>
-      <w>18</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>396</x>
-      <y>279</y>
-      <w>342</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Wie sieht das mit den Antwortpfeilen aus?
-Ich habe sie jetzt mal weggelassen.
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>576</x>
-      <y>531</y>
-      <w>657</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-// irgendeine GUI-Update-Funktion, ich weiß nicht, ob es extra eine für Text geben sollte</panel_attributes>
-    <additional_attributes>10.0;20.0;710.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>567</x>
-      <y>540</y>
-      <w>18</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1035</x>
-      <y>558</y>
-      <w>342</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Ich habe angenommen, dass die GUI nicht die Text-Files beobachtet, sondern direkt aktualisiert wird.
-bg=red</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;-
+String programtext</panel_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
 </diagram>
