@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>5</zoom_level>
+  <zoom_level>17</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>620</x>
-      <y>225</y>
-      <w>310</w>
-      <h>120</h>
+      <x>425</x>
+      <y>646</y>
+      <w>1054</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>Controll</panel_attributes>
     <additional_attributes/>
@@ -14,10 +14,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>495</x>
-      <y>375</y>
-      <w>260</w>
-      <h>195</h>
+      <x>0</x>
+      <y>1156</y>
+      <w>884</w>
+      <h>663</h>
     </coordinates>
     <panel_attributes>File Handler</panel_attributes>
     <additional_attributes/>
@@ -25,10 +25,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>785</x>
-      <y>375</y>
-      <w>380</w>
-      <h>295</h>
+      <x>986</x>
+      <y>1156</y>
+      <w>1292</w>
+      <h>1003</h>
     </coordinates>
     <panel_attributes>DebugLogic</panel_attributes>
     <additional_attributes/>
@@ -36,10 +36,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>340</y>
-      <w>70</w>
-      <h>55</h>
+      <x>323</x>
+      <y>1037</y>
+      <w>238</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -48,10 +48,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>855</x>
-      <y>340</y>
-      <w>120</w>
-      <h>55</h>
+      <x>1224</x>
+      <y>1037</y>
+      <w>408</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -60,10 +60,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>805</x>
-      <y>495</y>
-      <w>165</w>
-      <h>55</h>
+      <x>1054</x>
+      <y>1564</y>
+      <w>561</w>
+      <h>187</h>
     </coordinates>
     <panel_attributes>TraceGenerator</panel_attributes>
     <additional_attributes/>
@@ -71,10 +71,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>800</x>
-      <y>395</y>
-      <w>360</w>
-      <h>85</h>
+      <x>1037</x>
+      <y>1224</y>
+      <w>1224</w>
+      <h>289</h>
     </coordinates>
     <panel_attributes>Debugger</panel_attributes>
     <additional_attributes/>
@@ -82,10 +82,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>805</x>
-      <y>595</y>
-      <w>350</w>
-      <h>60</h>
+      <x>1054</x>
+      <y>1904</y>
+      <w>1190</w>
+      <h>204</h>
     </coordinates>
     <panel_attributes>AntlrParser</panel_attributes>
     <additional_attributes/>
@@ -93,21 +93,21 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>980</x>
-      <y>495</y>
-      <w>175</w>
-      <h>55</h>
+      <x>1649</x>
+      <y>1564</y>
+      <w>595</w>
+      <h>187</h>
     </coordinates>
-    <panel_attributes>WatchExpressionGenerator</panel_attributes>
+    <panel_attributes>RelationalExpressionGenerator</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>895</x>
-      <y>475</y>
-      <w>40</w>
-      <h>40</h>
+      <x>1360</x>
+      <y>1496</y>
+      <w>136</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -116,10 +116,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>475</y>
-      <w>40</w>
-      <h>40</h>
+      <x>2057</x>
+      <y>1496</y>
+      <w>136</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -128,10 +128,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>545</y>
-      <w>40</w>
-      <h>70</h>
+      <x>2057</x>
+      <y>1734</y>
+      <w>136</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -140,10 +140,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>545</y>
-      <w>40</w>
-      <h>70</h>
+      <x>1547</x>
+      <y>1734</y>
+      <w>136</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -152,10 +152,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>650</x>
-      <y>35</y>
-      <w>375</w>
-      <h>120</h>
+      <x>527</x>
+      <y>0</y>
+      <w>1275</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>UserInterface</panel_attributes>
     <additional_attributes/>
@@ -163,10 +163,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>150</y>
-      <w>110</w>
-      <h>95</h>
+      <x>901</x>
+      <y>391</y>
+      <w>374</w>
+      <h>323</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -175,10 +175,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>975</x>
-      <y>150</y>
-      <w>80</w>
-      <h>245</h>
+      <x>1632</x>
+      <y>391</y>
+      <w>272</w>
+      <h>833</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 beobachtet</panel_attributes>
