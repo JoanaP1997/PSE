@@ -15,7 +15,7 @@
 --
 +showProgramText(int program, String text)
 +showInput(int program, String input)
-+showVariables(List&lt;String&gt; vars)
++showVariables(List&lt;List&lt;String&gt;&gt; vars)
 </panel_attributes>
     <additional_attributes/>
   </element>
