@@ -3,8 +3,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>740</x>
-      <y>240</y>
+      <x>620</x>
+      <y>225</y>
       <w>310</w>
       <h>120</h>
     </coordinates>
@@ -14,8 +14,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>615</x>
-      <y>390</y>
+      <x>495</x>
+      <y>375</y>
       <w>260</w>
       <h>195</h>
     </coordinates>
@@ -25,8 +25,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>905</x>
-      <y>390</y>
+      <x>785</x>
+      <y>375</y>
       <w>380</w>
       <h>295</h>
     </coordinates>
@@ -36,8 +36,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>355</y>
+      <x>590</x>
+      <y>340</y>
       <w>70</w>
       <h>55</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>975</x>
-      <y>355</y>
+      <x>855</x>
+      <y>340</y>
       <w>120</w>
       <h>55</h>
     </coordinates>
@@ -60,8 +60,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>925</x>
-      <y>510</y>
+      <x>805</x>
+      <y>495</y>
       <w>165</w>
       <h>55</h>
     </coordinates>
@@ -71,8 +71,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>920</x>
-      <y>410</y>
+      <x>800</x>
+      <y>395</y>
       <w>360</w>
       <h>85</h>
     </coordinates>
@@ -82,8 +82,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>925</x>
-      <y>610</y>
+      <x>805</x>
+      <y>595</y>
       <w>350</w>
       <h>60</h>
     </coordinates>
@@ -93,8 +93,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1100</x>
-      <y>510</y>
+      <x>980</x>
+      <y>495</y>
       <w>175</w>
       <h>55</h>
     </coordinates>
@@ -104,8 +104,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>490</y>
+      <x>895</x>
+      <y>475</y>
       <w>40</w>
       <h>40</h>
     </coordinates>
@@ -116,8 +116,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
-      <y>490</y>
+      <x>1100</x>
+      <y>475</y>
       <w>40</w>
       <h>40</h>
     </coordinates>
@@ -128,8 +128,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
-      <y>560</y>
+      <x>1100</x>
+      <y>545</y>
       <w>40</w>
       <h>70</h>
     </coordinates>
@@ -140,8 +140,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
-      <y>560</y>
+      <x>950</x>
+      <y>545</y>
       <w>40</w>
       <h>70</h>
     </coordinates>
@@ -152,8 +152,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>770</x>
-      <y>50</y>
+      <x>650</x>
+      <y>35</y>
       <w>375</w>
       <h>120</h>
     </coordinates>
@@ -163,8 +163,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
-      <y>165</y>
+      <x>760</x>
+      <y>150</y>
       <w>110</w>
       <h>95</h>
     </coordinates>
@@ -175,8 +175,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1095</x>
-      <y>165</y>
+      <x>975</x>
+      <y>150</y>
       <w>80</w>
       <h>245</h>
     </coordinates>
