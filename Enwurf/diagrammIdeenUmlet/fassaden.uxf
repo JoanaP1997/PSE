@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>8</zoom_level>
+  <zoom_level>14</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>704</x>
-      <y>104</y>
-      <w>264</w>
-      <h>152</h>
+      <x>1176</x>
+      <y>140</y>
+      <w>462</w>
+      <h>266</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
@@ -22,10 +22,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>784</x>
-      <y>312</y>
-      <w>440</w>
-      <h>408</h>
+      <x>1316</x>
+      <y>504</y>
+      <w>770</w>
+      <h>714</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -58,10 +58,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>320</y>
-      <w>400</w>
-      <h>304</h>
+      <x>28</x>
+      <y>518</y>
+      <w>854</w>
+      <h>532</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -78,7 +78,7 @@
 +deleteCondBreakpoint(int id)
 +createBreakpoint(int program, int line)
 +deleteBreakpoint(int program, int line)
-+???launchRun(List&lt;Control.ProgramInput&gt; ProgrammeUndEingaben, List&lt;Int&gt; programcounters)
++launchRun(List&lt;DebugLogic.ProgramInput&gt; ProgrammeUndEingaben, List&lt;Int&gt; programcounters)
 +getProgramCounter(): List&lt;int&gt;
 get...
 reset()
@@ -90,10 +90,10 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>328</x>
-      <y>192</y>
-      <w>192</w>
-      <h>88</h>
+      <x>518</x>
+      <y>294</y>
+      <w>336</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -105,10 +105,10 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>416</x>
-      <y>272</y>
-      <w>24</w>
-      <h>64</h>
+      <x>672</x>
+      <y>434</y>
+      <w>42</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -116,10 +116,10 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>816</x>
-      <y>24</y>
-      <w>80</w>
-      <h>48</h>
+      <x>1372</x>
+      <y>0</y>
+      <w>140</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>/Observer/
 --
@@ -129,10 +129,10 @@ update()</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>576</x>
-      <y>256</y>
-      <w>104</w>
-      <h>56</h>
+      <x>952</x>
+      <y>406</y>
+      <w>182</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>for all o in observers {
 	o.update()
@@ -142,10 +142,10 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
-      <y>240</y>
-      <w>208</w>
-      <h>56</h>
+      <x>616</x>
+      <y>378</y>
+      <w>364</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>240.0;50.0;10.0;10.0</additional_attributes>
@@ -153,10 +153,10 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>64</y>
-      <w>24</w>
-      <h>56</h>
+      <x>1414</x>
+      <y>70</y>
+      <w>42</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -164,10 +164,10 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>416</x>
-      <y>32</y>
-      <w>416</w>
-      <h>176</h>
+      <x>672</x>
+      <y>14</y>
+      <w>728</w>
+      <h>308</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
@@ -178,10 +178,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>184</y>
-      <w>88</w>
-      <h>144</h>
+      <x>1624</x>
+      <y>280</y>
+      <w>154</w>
+      <h>252</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 </panel_attributes>
@@ -190,10 +190,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>464</y>
-      <w>272</w>
-      <h>32</h>
+      <x>868</x>
+      <y>770</y>
+      <w>476</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
