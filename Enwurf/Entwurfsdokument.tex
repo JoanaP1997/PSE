@@ -81,12 +81,28 @@ Hierbei besteht die Debug Logic aus den Unterpaketen \enquote{Debugger}, \enquot
 \paragraph{Aufgaben}
 \paragraph{Schnittstellen}
 \paragraph{Benutztrelation}
+
 \subsection{File Handler}
 \paragraph{Aufgaben}
-\paragraph{Schnittstellen} Eventuell aufteilen in benötigte und angebotene?
-\paragraph{Benutztrelation} 
+Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVS-Konzepts an.
+Dabei wandelt dieser eine Konfigurationsdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
+Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also Zuweisungen und Blöcke.
+Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
+\paragraph{Schnittstellen}
+\begin{itemize}
+\item Genutzte Schnittstellen: \\
+Der FileHandler benötigt keine Schnittstellen anderer Programmpakete, da er an unterster Stelle in der Benutztrelation steht.
+\item Angebotene Schnittstellen: \\
+Es werden eine Fassade und drei Klassen angeboten.
+Diese repräsentieren die Dateien für Produkteinstellungen, Sprachen (Übersetzungen der GUI) und Laufkonfigurationen.
+
+\end{itemize}
+\paragraph{Benutztrelation}
+Der FileHandler hat keine Unterpakete und steht an unterster Stelle der Benutztrelation.
+Somit entstehen auch keine Abhängigkeiten zu anderen Paketen.
+
 \subsection{Debug Logic}
-Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketesist eine intransparente 3-Schichten-Architektur.\\
+Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
 Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
@@ -101,8 +117,12 @@ Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren,
 \subparagraph{Aufgaben}
 Dieses Subpaket nimmt den Quelltext eines WLang-Programms entgegen und hat die Aufgabe, einen Pfad über den gesamten Programmfluss dessen zu erzeugen, sodass später darüber iteriert werden kann. Dazu gehört auch das Prüfen auf semantische Fehler, etwa das Fehlen eines return Statements.
 \subparagraph{Schnittstellen}
-Angebotene Funktionalität: Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.\\
-Genutzte Funktionalität: Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+\begin{itemize}
+\item Angebotene Funktionalität:\\
+Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.
+\item Genutzte Funktionalität:\\
+Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+\end{itemize}
 
 %TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
@@ -111,8 +131,12 @@ Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlerParser}, um damit
 \subparagraph{Aufgaben}
 Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
 \subparagraph{Schnittstellen}
-Angebotene Funktionalität: Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.\\
-Genutzte Funktionalität: Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+\begin{itemize}
+\item Angebotene Funktionalität:\\
+Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
+\item Genutzte Funktionalität:\\
+Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+\end{itemize}
 %TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
 Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlerParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
