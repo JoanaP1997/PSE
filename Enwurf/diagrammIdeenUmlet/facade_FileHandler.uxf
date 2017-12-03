@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>392</x>
+      <y>272</y>
+      <w>320</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>FileHandlerFacade
+--
+--
++ loadConfig(File file) : ConfigurationFile
++ saveConfig(ConfigurationFile config, File f)
+
++ getPropertiesFile() : PropertiesFile
+
++ getLanguages() : List&lt;String&gt;
++ getLanguageFile(String langID) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>824</x>
+      <y>272</y>
+      <w>304</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>ConfigurationFile
+--
+--
++ getProgramText(int programID) : String
++ getInputValue(int programID, String identifier) : String
++ getLatestExecutionLine(int programID) : int
+
++ getVariablesOfInspector(int programID) : List&lt;String&gt; 
+
++ getWatchExpressions() : List&lt;String&gt;
++ getConditionalBreakpoints() : List&lt;String&gt;
++ getBreakpoints(int programID) : List&lt;int&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>368</y>
+      <w>136</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-
+erzeugt &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>376</y>
+      <w>136</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>8</x>
+      <y>272</y>
+      <w>272</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>PropertiesFile
+--
+--
++ getSelectedLanguage() : String
+
++ getLastConfigurationFile() : ConfigurationFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>48</y>
+      <w>280</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>LanguageFile
+--
++ getTranslation(String textID) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>176</y>
+      <w>40</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+</diagram>
