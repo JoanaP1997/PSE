@@ -67,14 +67,14 @@ zu sorgen.
 %Paketdiagramm, Erläuterung der Einteilungsentscheidung, Schnittstellen
 \subsection{Übersicht}
 
-\includegraphics[scale=0.35]{../Plichtenheft/Architektur.png}
+\includegraphics[scale=0.35]{../Plichtenheft/Architektur.png} \\
 Das Produkt ist aufgeteilt in die Pakete \enquote{Control}, \enquote{User Interface}, \enquote{File Handler} und \enquote{Debug Logic}.
 Hierbei besteht die Debug Logic aus den Unterpaketen \enquote{Debugger}, \enquote{Interpreter} und
 \enquote{Antlr Parser}.
 
 
 \subsection{User Interface}
-\paragraph{Aufgaben} Das Paket User Interface stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVS-Konzepts.
+\paragraph{Aufgaben} Das Paket User Interface stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts.
 \paragraph{Schnittstellen} 
 \begin{itemize}
 \item Angebotene Schnittstellen:\\
@@ -92,10 +92,10 @@ Dieses Paket nutzt die Control-Fassade und deren angebotenen Schnittstellen.
 
 \subsection{File Handler}
 \paragraph{Aufgaben}
-Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
+Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVS-Konzepts an.
 Dabei wandelt dieser eine Konfigurationsdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
 Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also Zuweisungen und Blöcke.
-Weiter erzeugt der \textit{FileHandler} Objekte, die Konfigurations-, Sprach- und Einstellungsdateien in abstrakter Form repräsentieren, und kann diese nach außen weitergeben.
+Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
 \paragraph{Schnittstellen}
 \begin{itemize}
 \item Genutzte Schnittstellen: \\
