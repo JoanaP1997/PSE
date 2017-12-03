@@ -109,7 +109,7 @@
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createBreakpoint(int program, int line)</panel_attributes>
+createBreakpoint(0, 17)</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -121,7 +121,7 @@ createBreakpoint(int program, int line)</panel_attributes>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createBreakpoint(int program, int line)</panel_attributes>
+createBreakpoint(0, 17)</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -189,7 +189,7 @@ notify()</panel_attributes>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createBreakpoint(int program, int line)</panel_attributes>
+createBreakpoint(program.ID, 27)</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -201,7 +201,7 @@ createBreakpoint(int program, int line)</panel_attributes>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createSyncBreakpoint(int line)</panel_attributes>
+createSyncBreakpoint(27)</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -247,7 +247,7 @@ foreach program</panel_attributes>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createCondBreakpoint(int id, String cond)</panel_attributes>
+createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -270,7 +270,7 @@ createCondBreakpoint(int id, String cond)</panel_attributes>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-createCondBreakpoint(int id, String cond)</panel_attributes>
+createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
     <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
