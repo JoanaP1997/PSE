@@ -71,7 +71,7 @@ zu sorgen. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipi
 Das Produkt ist aufgeteilt in die Pakete \enquote{Control}, \enquote{User Interface}, \enquote{File Handler} und \enquote{Debug Logic}.
 Hierbei besteht die Debug Logic aus den Unterpaketen \enquote{Debugger}, \enquote{Interpreter} und
 \enquote{Antlr Parser}.
-
+Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur Verfügung. Die genauen Schnittstellen sind also durch diese Klassen definiert.
 
 \subsection{User Interface}
 \paragraph{Aufgaben} Das Paket User Interface stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts.
@@ -82,7 +82,7 @@ Es wird eine Fassade angeboten, welche es ermöglicht Variablen, Programmtexte u
 \item Genutzte Schnittstellen:\\
 Dieses Paket nutzt die Control-Fassade und deren angebotenen Schnittstellen.
 \end{itemize}
-\paragraph{Benutztrelation} Das Paket User Interface benutzt die Control-Fassade um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen. Da das Paket User Interface die oberste Schicht des Schichtendiagramms darstellt, wird dieses von keinen anderen Paketen benutzt. 
+\paragraph{Benutztrelation} Das Paket User Interface benutzt die Control-Fassade um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen.
 
 
 \subsection{Control}
