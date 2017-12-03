@@ -74,9 +74,17 @@ Hierbei besteht die Debug Logic aus den Unterpaketen \enquote{Debugger}, \enquot
 
 
 \subsection{User Interface}
-\paragraph{Aufgaben}
-\paragraph{Schnittstellen}
-\paragraph{Benutztrelation} z.B. 1 benutzt 2, weil (durch, indem ...)
+\paragraph{Aufgaben} Das Paket User Interface stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVS-Konzepts.
+\paragraph{Schnittstellen} 
+\begin{itemize}
+\item Angebotene Schnittstellen:\\
+Es wird eine Fassade angeboten, welche es ermöglicht Variablen, Programmtexte und Eingaben anzuzeigen.
+\item Genutzte Schnittstellen:\\
+Dieses Paket nutzt die Control-Fassade und deren angebotenen Schnittstellen.
+\end{itemize}
+\paragraph{Benutztrelation} Das Paket User Interface benutzt die Control-Fassade um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen. Da das Paket User Interface die oberste Schicht des Schichtendiagramms darstellt, wird dieses von keinen anderen Paketen benutzt. 
+
+
 \subsection{Control}
 \paragraph{Aufgaben}
 \paragraph{Schnittstellen}
@@ -106,7 +114,7 @@ Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die
 Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
-Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expression und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 \subparagraph{Schnittstellen}
 Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit.
 \subparagraph{Benutztrelation} 
