@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>3</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>342</x>
+      <y>498</y>
+      <w>153</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>ConditionGenerationVisitor
+--
+--
++visitEqualComp(EqualCompContext ctx): ConditionalBreak
++visitMoreComp(MoreCompContext ctx): ConditionalBreak
++visitMoreEqualComp(MoreEqualCompContext ctx): ConditionalBreak
++visitLessComp(LessCompContext ctx): ConditionalBreak
++visitLessEqualComp(LessEqualCompContext ctx): ConditionalBreak
++visitNotEqualComp(NotEqualCompContext ctx): ConditionalBreak
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>333</x>
+      <y>606</y>
+      <w>180</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>/ConditionalBreak/
+--
+--
++ConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
+/+evaluate(List&lt;TraceState&gt; states): boolean/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>213</x>
+      <y>783</y>
+      <w>192</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>EqualConditionalBreak
+--
+--
++EqualConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>726</y>
+      <w>183</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>LessConditionalBreak
+--
+--
++LessConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>519</x>
+      <y>672</y>
+      <w>195</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>LessEqualConditionalBreak
+--
+--
++LessEqualConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>174</x>
+      <y>726</y>
+      <w>192</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>MoreConditionalBreak
+--
+--
++MoreConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>672</y>
+      <w>204</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>MoreEqualConditionalBreak
+--
+--
++MoreEqualConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>501</y>
+      <w>135</w>
+      <h>57</h>
+    </coordinates>
+    <panel_attributes>RelationalTermGenerationVisitor
+--
+--
++visitAddition(AdditionContext ctx): RelationalTerm
++visitMultiplication(MultiplicationContext ctx): RelationalTerm
++visitIntLiteral(IntLiteralContext ctx): RelationalTerm
++visitBrackets(BracketsContext ctx): RelationalTerm
++visitID(IDContext ctx): RelationalTerm
++visitDivision(DivisionContext ctx): RelationalTerm
++visitSubtraction(SubtractionContext ctx): RelationalTerm
++visitModulo(ModuloContext ctx): RelationalTerm
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>441</x>
+      <y>783</y>
+      <w>201</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>NotEqualConditionalBreak
+--
+--
++NotEqualConditionalBreak(RelationalTerm leftOperand, RelationalTerm rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>552</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+erzeugt v
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>492</x>
+      <y>525</y>
+      <w>333</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+startet &gt;</panel_attributes>
+    <additional_attributes>1090.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>630</y>
+      <w>213</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;690.0;90.0;690.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>327</x>
+      <y>630</y>
+      <w>102</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;110.0;10.0;110.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>303</x>
+      <y>630</y>
+      <w>126</w>
+      <h>159</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>400.0;10.0;400.0;470.0;10.0;470.0;10.0;510.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>630</y>
+      <w>129</w>
+      <h>159</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;470.0;410.0;470.0;410.0;510.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>630</y>
+      <w>99</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0;310.0;110.0;310.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>630</y>
+      <w>219</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>710.0;10.0;710.0;90.0;10.0;90.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>675</y>
+      <w>147</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>AdditionRelationalTerm
+--
+--
++AdditionRelationalTerm(RelationalTerm left, RelationalTerm right)
++evaluate(List&lt;TraceState&gt; states): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>837</x>
+      <y>672</y>
+      <w>96</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>ConstantRelationalTerm
+--
+-value: int
+--
++ConstantRelationalTerm(int value)
++evaluate(List&lt;TraceState&gt; states): int
+--
+Pro Datentyp eine Klasse??</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>849</x>
+      <y>609</y>
+      <w>90</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>/RelationalTerm/
+--
+--
++evaluate(List&lt;TraceState&gt; states): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>672</y>
+      <w>99</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>VariableRelationalTerm
+--
+-identifier: String
+--
++VariableRelationalTerm(String identifier)
++evaluate(List&lt;TraceState&gt; states): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>615</y>
+      <w>345</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;1130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>9</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>627</y>
+      <w>117</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;370.0;100.0;10.0;100.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>153</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;490.0;100.0;490.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>615</y>
+      <w>138</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2
+r2=left, right (children)</panel_attributes>
+    <additional_attributes>440.0;200.0;440.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>747</y>
+      <w>138</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>DivisionRelationalTerm
+--
+--
++DivisionRelationalTerm(RelationalTerm left, RelationalTerm right)
++evaluate(List&lt;TraceState&gt; states): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>771</y>
+      <w>141</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ModuloRelationalTerm
+--
+--
++ModuloRelationalTerm(RelationalTerm left, RelationalTerm right)
++evaluate(List&lt;TraceState&gt; states): int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>723</y>
+      <w>150</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>MultiplicationRelationalTerm
+--
+--
++MultiplicationRelationalTerm(RelationalTerm left, RelationalTerm right)
++evaluate(List&lt;TraceState&gt; states): int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>954</x>
+      <y>699</y>
+      <w>147</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>SubtractionRelationalTerm
+--
+--
++SubtractionRelationalTerm(RelationalTerm left, RelationalTerm right)
++evaluate(List&lt;TraceState&gt; states): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>618</y>
+      <w>207</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>550.0;300.0;670.0;300.0;670.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>618</y>
+      <w>207</w>
+      <h>123</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>560.0;390.0;670.0;390.0;670.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>618</y>
+      <w>207</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>520.0;470.0;670.0;470.0;670.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>618</y>
+      <w>207</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>530.0;550.0;670.0;550.0;670.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>72</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;280.0;220.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>72</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;360.0;220.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>72</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;440.0;220.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>627</y>
+      <w>72</w>
+      <h>159</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;510.0;220.0;510.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>792</x>
+      <y>741</y>
+      <w>90</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Kommentar
+--
+Eine großes Problem besteht darin,
+dass die Terme verschiedene 
+Datentypen bei evaluate() 
+zurueckgeben muessten.
+Momentan nur int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>888</x>
+      <y>555</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+erzeugt v
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>216</x>
+      <y>447</y>
+      <w>138</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>TypeDetectionVisitor
+--
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
