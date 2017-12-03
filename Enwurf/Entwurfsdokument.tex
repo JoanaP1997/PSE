@@ -87,8 +87,20 @@ Dieses Paket nutzt die Control-Fassade und deren angebotenen Schnittstellen.
 
 \subsection{Control}
 \paragraph{Aufgaben}
+    Das Paket Control entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\
+    Es dient der Entgegennahme von Benutzereingaben und Steuerung der Interaktion zwischen den
+    Subsystemen \textit{User Interface} und \textit{Debug Logic}.\\
+    Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket 
+    \textit{User Interface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
 \paragraph{Schnittstellen}
+    Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
+    Die Methoden verursachen Zustandsveränderung des Datenmodells \textit{Debug Logic}.\\
+    Beispielsweise kann das Modell aufgefordert einen eingegebenen Quelltext, oder spezifizierten Haltepunkt
+    zu speichern, oder zu löschen.\\
+    Weiter kann das Modell dazu aufgefordert werden datenbezogene Aktionen auszuführen wie
+    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes.
 \paragraph{Benutztrelation}
+    \textit{Control} benutzt das Paket \textit{Debug Logic}.
 
 \subsection{File Handler}
 \paragraph{Aufgaben}
