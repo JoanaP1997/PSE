@@ -61,7 +61,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \section{Einleitung}
 %Einleitung mit grobem Überblick. Dieser Abschnitt soll an das Pflichtenheft anschließen.
 Dieses Dokument dokumentiert die Ergebnisse der Entwurfsphase (\textit{28.11.-22.12.2017}) im Rahmen
-von Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation} am Karlsruher Institut für Technologie (KIT).\\
+des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
 Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. 
 Das Entwurfsdokument beschreibt die Paketeinteilung, Beschreibung der Klassen und Abläufe und genaue Spezifikation der Abhängigkeiten und Kernkomponenten. 
 \\Die Implementierung während der Implementierungsphase (\textit{09.01.-02.02.2018}) wird anhand der Vorgaben in diesem Dokument durchgeführt. \\
@@ -71,7 +71,7 @@ zu sorgen. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipi
 \vspace{1cm}
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.7\textwidth]{../Plichtenheft/logo_nongi.png}
+\includegraphics[width=0.8\textwidth]{../Plichtenheft/logo_nongi.png}
 \caption{Produktlogo}
 \end{figure}
 
@@ -89,8 +89,8 @@ zu sorgen. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipi
 \caption{Architekturdiagramm}
 \end{figure}
 Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}.
-Die Debug Logic besteht aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
-\textit{Antlr Parser}.\\
+Die \textit{DebugLogic} besteht aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
+\textit{AntlrParser}.\\
 Hierbei wird das Architekturmuster Model-View-Controller (MVC) eingesetzt, um einen flexiblen Programmentwurf zu ermöglichen und die Erweiterbarkeit des Produkts sicher zu stellen. Die Pakete \textit{DebugLogic} und \textit{FileHandler} sind hierbei das Modell, welches die darzustellenden Daten enthält. Das \textit{UserInterface} ist die Präsentationsschicht, welche Benutzereingaben annimmt und die darzustellenden Werte über ein Beobachtermuster erhält. Die Steuerung, welche Benutzereingaben von der Präsentationsschicht erhält und diese auswertet, wird vom \textit{Control}-Paket bereitgestellt. \\
 Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur Verfügung. Die genauen Schnittstellen sind also durch diese Klassen definiert.
 
@@ -101,9 +101,9 @@ Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur V
 \paragraph{Schnittstellen} 
 \begin{itemize}
 \item Angebotene Schnittstellen:\\
-Es wird eine Fassade angeboten, welche es ermöglicht Variablen, Programmtexte und Eingaben anzuzeigen.
+Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen.
 \item Genutzte Schnittstellen:\\
-Dieses Paket nutzt die Fassade des Paketes \textit{Control}und deren angebotenen Schnittstellen.
+Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen.
 \end{itemize}
 \paragraph{Benutztrelation} Das Paket \textit{UserInterface} benutzt die Control-Fassade, um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen. %ich versteh den Satz nicht..
 
@@ -127,7 +127,7 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control}und deren angebotenen
 
 \subsection{File Handler}
 \paragraph{Aufgaben}
-Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVS-Konzepts an.
+Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
 Dabei wandelt dieser eine Konfigurationsdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
 Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also Zuweisungen und Blöcke.
 Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
