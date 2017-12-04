@@ -74,33 +74,33 @@ Hierbei besteht die Debug Logic aus den Unterpaketen \textit{Debugger}, \textit{
 Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur Verfügung. Die genauen Schnittstellen sind also durch diese Klassen definiert.
 
 \subsection{User Interface}
-\paragraph{Aufgaben} Das Paket User Interface stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts.
+\paragraph{Aufgaben} Das Paket \textit{UserInterface} stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts.
 \paragraph{Schnittstellen} 
 \begin{itemize}
 \item Angebotene Schnittstellen:\\
 Es wird eine Fassade angeboten, welche es ermöglicht Variablen, Programmtexte und Eingaben anzuzeigen.
 \item Genutzte Schnittstellen:\\
-Dieses Paket nutzt die Control-Fassade und deren angebotenen Schnittstellen.
+Dieses Paket nutzt die Fassade des Paketes \textit{Control}und deren angebotenen Schnittstellen.
 \end{itemize}
-\paragraph{Benutztrelation} Das Paket User Interface benutzt die Control-Fassade um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen.
+\paragraph{Benutztrelation} Das Paket \textit{UserInterface} benutzt die Control-Fassade, um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen. %ich versteh den Satz nicht..
 
 
 \subsection{Control}
 \paragraph{Aufgaben}
-    Das Paket Control entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\
+    Das Paket \textit{Control} entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\
     Es dient der Entgegennahme von Benutzereingaben und Steuerung der Interaktion zwischen den
-    Subsystemen \textit{User Interface} und \textit{Debug Logic}.\\
+    Subsystemen \textit{UserInterface} und \textit{DebugLogic}.\\
     Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket 
-    \textit{User Interface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
+    \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
 \paragraph{Schnittstellen}
     Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
-    Die Methoden verursachen Zustandsveränderung des Datenmodells \textit{Debug Logic}.\\
-    Beispielsweise kann das Modell aufgefordert einen eingegebenen Quelltext, oder spezifizierten Haltepunkt
-    zu speichern, oder zu löschen.\\
-    Weiter kann das Modell dazu aufgefordert werden datenbezogene Aktionen auszuführen wie
-    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes.
+    Die Methoden verursachen Zustandsveränderung des Datenmodells \textit{DebugLogic}.\\
+    Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt
+    zu speichern oder zu löschen.\\
+    Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie
+    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler} geben. 
 \paragraph{Benutztrelation}
-    \textit{Control} benutzt das Paket \textit{Debug Logic}.
+    \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
 
 \subsection{File Handler}
 \paragraph{Aufgaben}
@@ -128,7 +128,7 @@ Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es
 \subparagraph{Aufgaben}
 Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 \subparagraph{Schnittstellen}
-Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit.
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
 Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
@@ -165,7 +165,7 @@ Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlerParser}, um damit
 \subparagraph{Schnittstellen}
 \subparagraph{Benutztrelation} 
 
-\section{Beschreibung der Klassen}
+\section{Beschreibung der Klassen}\label{Klassen}
 Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen zu allen Me-
 thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind private Felder
 und Methoden. Das sind Implementierungsdetails.
