@@ -122,6 +122,7 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene
     zu speichern oder zu löschen.\\
     Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie
     das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler} geben. 
+    %TODO Diesen komischen Satz noch zu einem sinnvollen, deutschen machen.
 \paragraph{Benutztrelation}
     \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
 
@@ -169,7 +170,7 @@ Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.
 
 %TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlerParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
 \subsubsection{Relational Expression Generator}
 \subparagraph{Aufgaben}
 Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
@@ -182,11 +183,20 @@ Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.
 \end{itemize}
 %TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlerParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
 \subsubsection{Antlr Parser}
 \subparagraph{Aufgaben}
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der in \ref{FormSpez} gegebenen Grammatik.
+
 \subparagraph{Schnittstellen}
-\subparagraph{Benutztrelation} 
+\begin{itemize}
+\item Angebotene Funktionalität:\\
+Prüft die textbasierten Eingaben des Nutzers auf Übereinstimmung mit der gegebenen Grammatik und erzeugt aus der Eingabe einen ablaufbaren Syntaxbaum, der dann vom Unterpaket \textit{DebugLogic.RelationalExpressionGenerator} weiter ausgewertet werden kann.
+\item Genutzte Funktionalität:\\
+Benötigt keine Schnittstellen anderer Programmpakete, da das Paket an unterster Stelle der Benutztrelation steht.
+\end{itemize}
+\subparagraph{Benutztrelation}
+Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutztrelation. Somit entstehen keine Abhängigkeiten zu anderen Paketen.
 
 \section{Beschreibung der Klassen}\label{Klassen}
 Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen zu allen Me-
