@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>8</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>392</x>
-      <y>272</y>
-      <w>320</w>
-      <h>272</h>
+      <x>336</x>
+      <y>259</y>
+      <w>280</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>FileHandlerFacade
 --
@@ -24,14 +24,16 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>824</x>
-      <y>272</y>
-      <w>304</w>
-      <h>272</h>
+      <x>714</x>
+      <y>259</y>
+      <w>266</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>ConfigurationFile
 --
 --
++ getSystemFile() : File
+
 + getProgramText(int programID) : String
 + getInputValue(int programID, String identifier) : String
 + getLatestExecutionLine(int programID) : int
@@ -47,10 +49,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>704</x>
-      <y>368</y>
-      <w>136</w>
-      <h>32</h>
+      <x>609</x>
+      <y>343</y>
+      <w>119</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=-
 erzeugt &gt;</panel_attributes>
@@ -59,10 +61,10 @@ erzeugt &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
-      <y>376</y>
-      <w>136</w>
-      <h>32</h>
+      <x>231</x>
+      <y>350</y>
+      <w>119</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -72,10 +74,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>8</x>
-      <y>272</y>
-      <w>272</w>
-      <h>272</h>
+      <x>0</x>
+      <y>259</y>
+      <w>238</w>
+      <h>238</h>
     </coordinates>
     <panel_attributes>PropertiesFile
 --
@@ -88,10 +90,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>408</x>
-      <y>48</y>
-      <w>280</w>
-      <h>136</h>
+      <x>350</x>
+      <y>63</y>
+      <w>245</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>LanguageFile
 --
@@ -101,10 +103,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>536</x>
-      <y>176</y>
-      <w>40</w>
-      <h>112</h>
+      <x>462</x>
+      <y>175</y>
+      <w>35</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..n
