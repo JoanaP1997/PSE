@@ -60,17 +60,19 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 %Eventuell Fußnoten generieren
 \section{Einleitung}
 %Einleitung mit grobem Überblick. Dieser Abschnitt soll an das Pflichtenheft anschließen.
-Dieses Dokument dokumentiert den Entwurf des Produkts \enquote{DIbugger}, wie es im Pflichtenheft definiert wurde.\\
+Dieses Dokument dokumentiert den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde.\\
 Hierbei werden das Geheimnisprinzip und Lose Kopplung berücksichtigt, um für erhöhte Verständlichkeit
 zu sorgen. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipien sicherstellen
 \section{Paketeinteilung} %eventuell fällt jemandem ein besserer Titel ein
 %Paketdiagramm, Erläuterung der Einteilungsentscheidung, Schnittstellen
-\subsection{Übersicht}
 
+\subsection{Übersicht}
 \includegraphics[scale=0.35]{../Plichtenheft/Architektur.png} \\
+
 Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}.
-Hierbei besteht die Debug Logic aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
-\textit{Antlr Parser}.
+Die Debug Logic besteht aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
+\textit{Antlr Parser}.\\
+Hierbei wird das Architekturmuster Model-View-Controller (MVC) eingesetzt, um einen flexiblen Programmentwurf zu ermöglichen und die Erweiterbarkeit des Produkts sicher zu stellen. Die Pakete \textit{DebugLogic} und \textit{FileHandler} sind hierbei das Modell, welches die darzustellenden Daten enthält. Das \textit{UserInterface} ist die Präsentationsschicht, welche Benutzereingaben annimmt und die darzustellenden Werte über ein Beobachtermuster erhält. Die Steuerung, welche Benutzereingaben von der Präsentationsschicht erhält und diese auswertet, wird vom \textit{Control}-Paket bereitgestellt. \\
 Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur Verfügung. Die genauen Schnittstellen sind also durch diese Klassen definiert.
 
 \subsection{User Interface}
