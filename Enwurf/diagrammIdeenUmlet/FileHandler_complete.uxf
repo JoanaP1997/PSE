@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>625</x>
+      <y>250</y>
+      <w>140</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>/FileReader/
+--
+
+--
++ loadConfigFile(File f) : ConfigurationFile
++ loadProperties() : PropertiesFile
++ loadLanguageFile(File f) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>215</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>RDBFReader
+--
+
+--
++ loadConfigFile() : ConfigurationFile
++ loadProperties() : PropertiesFile
++ loadLanguageFile() : LanguageFile
+
++ loadRDBFFile() : RDBFFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>265</y>
+      <w>75</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;60.0;40.0;60.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1025</x>
+      <y>305</y>
+      <w>95</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>RDBFFile
+--
+
+--
++ getSystemFile() : File</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>260</y>
+      <w>75</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;160.0;80.0;160.0;80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1045</x>
+      <y>135</y>
+      <w>185</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/RDBFAdditions/
+--
+
+--
++ getBlockList() : List&lt;RDBFBlock&gt;
++ getValueList() : List&lt;RDBFData&gt;
+
++ getBlocksByName(String identifier) : List&lt;RDBFBlock&gt;
++ getFirstBlockByName(String identifier) : RDBFBlock
++ getDataByName(String identifier) : List&lt;RDBFData&gt;
++ getFirstDataByName(String identifier) : RDBFData</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>20</y>
+      <w>140</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>RDBFParser
+--
+- parser : RDBFParser
+--
+- RDBFParser()
+_+ getInstance() : RDBFParser_
+
++ getDataType(String line) : int
++ getVariableName(String line) : String
+
++ evaluateLine(String line) : int
+
++ getSValue(String s) : String
++ getIValue(String s) : int
++ getLValue(String s) : long
++ getFValue(String s) : float
++ getDValue(String s) : double
++ getBValue(String s) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>220</y>
+      <w>75</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;130.0;80.0;10.0;80.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1155</x>
+      <y>305</y>
+      <w>120</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>RDBFBlock
+--
+
+--
++ getName() : String
++ getParameters() : List&lt;RDBFData&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1130</x>
+      <y>255</y>
+      <w>95</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0;170.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1345</x>
+      <y>135</y>
+      <w>95</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>RDBFData
+--
+
+--
++ getName() : String
++ getType : int
++ getValue : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1285</x>
+      <y>175</y>
+      <w>70</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1225</x>
+      <y>175</y>
+      <w>80</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;340.0;100.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>625</x>
+      <y>370</y>
+      <w>140</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>/FileWriter/
+--
+
+--
++ saveConfigFile(ConfigurationFile f)
++ saveProperties(PropertiesFile)
++ saveLanguageFile(LanguageFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>400</y>
+      <w>75</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;50.0;130.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>825</x>
+      <y>370</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>RDBFWriter
+--
+
+--
++ saveConfigFile(ConfigurationFile f)
++ saveProperties(PropertiesFile f)
++ saveLanguageFile(LanguageFile f)
+
++ saveRDBFFile(RDBFFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>335</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>80.0;10.0;80.0;180.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>155</y>
+      <w>15</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>90</x>
+      <y>145</y>
+      <w>715</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>de.rd.FileHandler.Facade</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>365</x>
+      <y>260</y>
+      <w>200</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>FileHandlerFacade
+--
+--
++ loadConfig(File file) : ConfigurationFile
++ saveConfig(ConfigurationFile config, File f)
+
++ getPropertiesFile() : PropertiesFile
+
++ getLanguages() : List&lt;String&gt;
++ getLanguageFile(String langID) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>260</y>
+      <w>190</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>ConfigurationFile
+--
+--
++ getSystemFile() : File
+
++ getProgramText(int programID) : String
++ getInputValue(int programID, String identifier) : String
++ getLatestExecutionLine(int programID) : int
+
++ getVariablesOfInspector(int programID) : List&lt;String&gt; 
+
++ getWatchExpressions() : List&lt;String&gt;
++ getConditionalBreakpoints() : List&lt;String&gt;
++ getBreakpoints(int programID) : List&lt;int&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>285</x>
+      <y>340</y>
+      <w>90</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=-
+&lt; erzeugt</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>275</x>
+      <y>190</y>
+      <w>205</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;390.0;10.0;390.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>165</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>PropertiesFile
+--
+--
++ getSelectedLanguage() : String
+
++ getLastConfigurationFile() : ConfigurationFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>465</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>LanguageFile
+--
++ getTranslation(String textID) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>275</x>
+      <y>425</y>
+      <w>210</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1..n</panel_attributes>
+    <additional_attributes>10.0;140.0;400.0;140.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>280</y>
+      <w>75</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;70.0;10.0;70.0;130.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>340</y>
+      <w>45</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>815</x>
+      <y>0</y>
+      <w>635</w>
+      <h>535</h>
+    </coordinates>
+    <panel_attributes>de.rd.FileHandler.RDBF</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
