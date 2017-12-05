@@ -142,7 +142,8 @@ Diese repräsentieren die Dateien für Produkteinstellungen, Sprachen (Übersetz
 
 \end{itemize}
 \paragraph{Benutztrelation}
-Der FileHandler hat keine Unterpakete und steht an unterster Stelle der Benutztrelation.
+Der FileHandler hat keine Unterpakete
+%TODO echt keine Zwick?  und steht an unterster Stelle der Benutztrelation.
 Somit entstehen auch keine Abhängigkeiten zu anderen Paketen.
 
 \subsection{Debug Logic}
@@ -198,7 +199,7 @@ Benötigt keine Schnittstellen anderer Programmpakete, da das Paket an unterster
 \subparagraph{Benutztrelation}
 Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutztrelation. Somit entstehen keine Abhängigkeiten zu anderen Paketen.
 
-\section{Beschreibung der Klassen}\label{Klassen}
+\section{Beschreibung wichtiger Klassen}\label{Klassen}
 Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen zu allen Me-
 thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind private Felder
 und Methoden. Das sind Implementierungsdetails.
@@ -206,7 +207,11 @@ und Methoden. Das sind Implementierungsdetails.
 \subsection{Klassen in Paket 1}
 \subsection{Klassen in Paket 2} 
 ...
-
+\section{Verwendete Design Patterns}
+\subsection{Patterns im Paket User Interface}
+\subsection{Patterns im Paket Control}
+\subsection{Patterns im Paket Debug Logic}
+\subsection{Patterns im Paket File Handler}
 \section{Charakteristische Abläufe}
 Beschreibung von charakteristischen Abläufen anhand von Sequenzdiagrammen. Beispielswei-
 se bieten sich Testszenarien aus dem Pflichtenheft hier an. Wir empfehlen Sequenzdiagramme
@@ -215,11 +220,11 @@ sen klar.
 Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
 
 
-\section{Abhängigkeitseinteilung}
+\section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig vonein-
 ander implementiert und getestet werden können.
 
-\section{Formale Spezifikation von Kernkomponenten}\label{FormSpez}
+\section{Formale Spezifikation von von WLang und Speicherfoprmaten}\label{FormSpez}
 Speicherformate, Sprachdefinition(formal)
 
 \section{Änderung zum Pflichtenheft}
@@ -233,7 +238,7 @@ UML-Klassendiagramm
 Vollständiges großformatiges Klassendiagramm im Anhang. Ausschnitte/Teile können bereits
 vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwischen Klas-
 sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
-Identifikation von Entwurfsmustern um Struktur gröber zu beschreiben.
+
 
 
 
