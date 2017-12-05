@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>535</x>
+      <y>235</y>
+      <w>140</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>/FileReader/
+--
+
+--
++ getFile() : File
+
++ loadConfigFile() : ConfigurationFile
++ loadProperties() : PropertiesFile
++ loadLanguage() : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>80</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>RDBFMasterReader
+--
+
+--
++ getFile() : File
+
++ loadConfigFile() : ConfigurationFile
++ loadProperties() : PropertiesFile
++ loadLanguageFile() : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>175</y>
+      <w>145</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;190.0;60.0;190.0;60.0;90.0;270.0;90.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1205</x>
+      <y>195</y>
+      <w>95</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>RDBFFile
+--
+
+--
++ getSystemFile() : File</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>130</y>
+      <w>160</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;70.0;300.0;70.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1350</x>
+      <y>175</y>
+      <w>185</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>/RDBFAdditions/
+--
+
+--
++ getBlockList() : List&lt;RDBFBlock&gt;
++ getValueList() : List&lt;RDBFData&gt;
+
++ addBlock(RDBFBlock block)
++ addData(RDBFData data)
+
++ getBlocksByName(String identifier) : List&lt;RDBFBlock&gt;
++ getFirstBlockByName(String identifier) : RDBFBlock
++ getDataByName(String identifier) : List&lt;RDBFData&gt;
++ getFirstDataByName(String identifier) : RDBFData</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>850</x>
+      <y>260</y>
+      <w>140</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>RDBFBaseParser
+--
+- parser : RDBFBaseParser
+--
+- RDBFBaseParser()
+_+ getInstance() : RDBFBaseParser_
+
++ getDataType(String line) : int
++ getVariableName(String line) : String
++ getValue(String line) : String
+
++ evaluateLineType(String line) : int
+
++ getSValue(String s) : String
++ getIValue(String s) : int
++ getLValue(String s) : long
++ getFValue(String s) : float
++ getDValue(String s) : double
++ getBValue(String s) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1295</x>
+      <y>225</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>140</y>
+      <w>120</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>RDBFBlock
+--
+
+--
++ getName() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1435</x>
+      <y>125</y>
+      <w>195</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;370.0;10.0;370.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1565</x>
+      <y>255</y>
+      <w>100</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>RDBFData
+--
+
+--
++ getName() : String
++ getType : int
++ getValue : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1530</x>
+      <y>210</y>
+      <w>110</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;30.0;180.0;30.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>535</x>
+      <y>355</y>
+      <w>140</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>/FileWriter/
+--
+
+--
++ saveConfigFile(ConfigurationFile f)
++ saveProperties(PropertiesFile f)
++ saveLanguageFile(LanguageFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>385</y>
+      <w>145</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0;60.0;100.0;270.0;100.0;270.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>480</y>
+      <w>140</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>RDBFMasterWriter
+--
+
+--
++ saveConfigFile(ConfigurationFile f)
++ saveProperties(PropertiesFile f)
++ saveLanguageFile(LanguageFile f)
+
++ saveRDBFFile(RDBFFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>130</y>
+      <w>15</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>955</x>
+      <y>85</y>
+      <w>160</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>300.0;50.0;300.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>130</y>
+      <w>715</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>de.rd.FileHandler.Facade</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>275</x>
+      <y>245</y>
+      <w>200</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>FileHandlerFacade
+--
+--
++ loadConfig(File file) : ConfigurationFile
++ saveConfig(ConfigurationFile config, File f)
+
++ getPropertiesFile() : PropertiesFile
+
++ getLanguages() : List&lt;String&gt;
++ getLanguageFile(String langID) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>245</y>
+      <w>190</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>ConfigurationFile
+--
+--
++ getSystemFile() : File
+
++ getProgramText(int programID) : String
++ getInputValue(int programID, String identifier) : String
++ getLatestExecutionLine(int programID) : int
+
++ getVariablesOfInspector(int programID) : List&lt;String&gt; 
+
++ getWatchExpressions() : List&lt;String&gt;
++ getConditionalBreakpoints() : List&lt;String&gt;
++ getBreakpoints(int programID) : List&lt;int&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>195</x>
+      <y>325</y>
+      <w>90</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=-
+&lt; erzeugt</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>185</x>
+      <y>175</y>
+      <w>205</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;390.0;10.0;390.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>150</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>PropertiesFile
+--
+--
++ getSelectedLanguage() : String
+
++ getLastConfigurationFile() : ConfigurationFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>450</y>
+      <w>180</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>LanguageFile
+--
++ getTranslation(String textID) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>185</x>
+      <y>410</y>
+      <w>210</w>
+      <h>85</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1..n</panel_attributes>
+    <additional_attributes>10.0;140.0;400.0;140.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>470</x>
+      <y>265</y>
+      <w>75</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;70.0;10.0;70.0;130.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>500</x>
+      <y>325</y>
+      <w>45</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>725</x>
+      <y>60</y>
+      <w>985</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>de.rd.FileHandler.RDBF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1035</x>
+      <y>285</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>RDBFExtParser
+--
+--
++ getBlockName(String line) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>985</x>
+      <y>310</y>
+      <w>60</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1185</x>
+      <y>110</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFConfigReader
+--
+--
++ loadConfig(File f) : ConfigurationFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1040</x>
+      <y>110</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFLangReader
+--
+--
++ loadLanguageFile(File f) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1045</x>
+      <y>215</y>
+      <w>120</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFReader
+--
+--
++ loadRDBFFile(File f) : RDBFFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>225</y>
+      <w>55</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>85</y>
+      <w>100</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>180.0;50.0;180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>130</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;70.0;100.0;70.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1205</x>
+      <y>325</y>
+      <w>95</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>RDBFBaseFile
+--
+
+--
++ getSystemFile() : File</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1350</x>
+      <y>325</y>
+      <w>185</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/RDBFBaseAdditions/
+--
+
+--
++ getValueList() : List&lt;RDBFData&gt;
+
++ addData(RDBFData data)
+
++ getDataByName(String identifier) : List&lt;RDBFData&gt;
++ getFirstDataByName(String identifier) : RDBFData</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1530</x>
+      <y>340</y>
+      <w>105</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;60.0;170.0;60.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1435</x>
+      <y>280</y>
+      <w>15</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1295</x>
+      <y>360</y>
+      <w>65</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>895</x>
+      <y>110</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFPropReader
+--
+--
++ loadPropertiesFile(File f) : PropertiesFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>85</y>
+      <w>160</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>300.0;50.0;300.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>235</y>
+      <w>15</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>225</y>
+      <w>385</w>
+      <h>235</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>750.0;280.0;370.0;280.0;370.0;450.0;10.0;450.0;10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1185</x>
+      <y>490</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFConfigWriter
+--
+--
++ saveConfig(ConfigurationFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1040</x>
+      <y>490</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFLangWriter
+--
+--
++ saveLanguageFile(LanguageFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>895</x>
+      <y>490</y>
+      <w>135</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFPropWriter
+--
+--
++ savePropertiesFile(PropertiesFile f)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>510</y>
+      <w>100</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>180.0;10.0;180.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>955</x>
+      <y>510</y>
+      <w>160</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;300.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>510</y>
+      <w>160</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>300.0;10.0;300.0;90.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>90</y>
+      <w>470</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>20.0;210.0;20.0;180.0;150.0;180.0;150.0;130.0;280.0;130.0;280.0;10.0;920.0;10.0;920.0;700.0;10.0;700.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1175</x>
+      <y>465</y>
+      <w>85</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0;150.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1125</x>
+      <y>425</y>
+      <w>120</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>RDBFReader
+--
+--
++ loadRDBFFile(File f) : RDBFFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>445</y>
+      <w>90</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>955</x>
+      <y>445</y>
+      <w>15</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
