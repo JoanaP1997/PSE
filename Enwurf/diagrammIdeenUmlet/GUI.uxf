@@ -4,19 +4,21 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>330</y>
-      <w>100</w>
-      <h>30</h>
+      <x>330</x>
+      <y>280</y>
+      <w>260</w>
+      <h>80</h>
     </coordinates>
-    <panel_attributes>MainInterface</panel_attributes>
+    <panel_attributes>MainInterface
+--
+List&lt;ProgramPanel&gt; programPanels</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>330</y>
+      <x>1050</x>
+      <y>280</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -26,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>490</y>
+      <x>940</x>
+      <y>440</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -37,8 +39,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>350</y>
+      <x>980</x>
+      <y>300</y>
       <w>160</w>
       <h>160</h>
     </coordinates>
@@ -48,8 +50,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>490</y>
+      <x>1130</x>
+      <y>440</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -59,8 +61,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>350</y>
+      <x>1110</x>
+      <y>300</y>
       <w>120</w>
       <h>160</h>
     </coordinates>
@@ -70,8 +72,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>160</y>
+      <x>140</x>
+      <y>110</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -81,8 +83,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>160</y>
+      <x>420</x>
+      <y>110</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -92,8 +94,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>580</x>
-      <y>160</y>
+      <x>590</x>
+      <y>110</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -104,20 +106,20 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>180</y>
+      <x>180</x>
+      <y>130</y>
       <w>190</w>
       <h>170</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
+    <panel_attributes>lt=-&gt;&gt;
 &lt;&lt;extends&gt;&gt;</panel_attributes>
     <additional_attributes>170.0;150.0;170.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>180</y>
+      <x>370</x>
+      <y>130</y>
       <w>120</w>
       <h>170</h>
     </coordinates>
@@ -128,8 +130,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>180</y>
+      <x>540</x>
+      <y>130</y>
       <w>120</w>
       <h>80</h>
     </coordinates>
@@ -140,8 +142,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>160</y>
+      <x>760</x>
+      <y>110</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -151,20 +153,20 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>320</y>
-      <w>650</w>
+      <x>580</x>
+      <y>270</y>
+      <w>490</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;uses&gt;&gt;</panel_attributes>
-    <additional_attributes>630.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>160</y>
+      <x>940</x>
+      <y>110</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -174,8 +176,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>80</y>
+      <x>510</x>
+      <y>30</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -185,8 +187,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>80</y>
+      <x>680</x>
+      <y>30</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -196,8 +198,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>80</y>
+      <x>870</x>
+      <y>30</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -209,8 +211,8 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>450</x>
-      <y>100</y>
+      <x>460</x>
+      <y>50</y>
       <w>120</w>
       <h>160</h>
     </coordinates>
@@ -220,8 +222,8 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1240</x>
-      <y>240</y>
+      <x>1250</x>
+      <y>190</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -231,20 +233,20 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>260</y>
+      <x>1110</x>
+      <y>210</y>
       <w>220</w>
       <h>90</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
+    <panel_attributes>lt=-&gt;&gt;
 &lt;&lt;extends&gt;&gt;</panel_attributes>
     <additional_attributes>10.0;70.0;10.0;30.0;200.0;30.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>100</y>
+      <x>630</x>
+      <y>50</y>
       <w>120</w>
       <h>160</h>
     </coordinates>
@@ -254,8 +256,8 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>180</y>
+      <x>720</x>
+      <y>130</y>
       <w>110</w>
       <h>80</h>
     </coordinates>
@@ -265,8 +267,8 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>100</y>
+      <x>800</x>
+      <y>50</y>
       <w>130</w>
       <h>160</h>
     </coordinates>
@@ -276,12 +278,258 @@ für Syntaxhilighting, da HTML</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
-      <y>180</y>
+      <x>900</x>
+      <y>130</y>
       <w>130</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>110.0;10.0;110.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>210</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>ProgramPanel
+--
++id: String
+-programText: String
+-inputVariables: String
+-stepSize: int
+--
++update()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>130</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>40</x>
+      <y>340</y>
+      <w>250</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Muster
+Befehl für ActionListener
+Beobachter (MVC) von DebugLogic
+ProgramPanel eigene Beobachter
+Kompositum in Swing
+Layout-Manager ist Strategie
+Vererbung
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>40</x>
+      <y>10</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Note..
+ActionListener in den 
+Klassen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>40</x>
+      <y>500</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Note..
+Debug-Modus ohne Texte nicht startbar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>440</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>ErrorPopUp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>300</y>
+      <w>290</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;60.0;10.0;60.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>660</y>
+      <w>600</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Fassade
+--
+
+--
++updateProgramText(String programText, int id)
++updateStepSize(int size, int id)
++reset()
++updateInputVariables(String inputVariables)
++updateWatchExpressions(Map&lt;int id, Map&lt;String expression, String area&gt; &gt; expressions)
++updateCondBreakpoint(Map&lt;int id, Map&lt;String expression, String area&gt; &gt; conBreakpoints)
++updateBreakpoints(int programID, List&lt;Integer&gt; lines)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>290</y>
+      <w>170</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+&lt;&lt;uses&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0;150.0;370.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>210</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>CommandPanel
+--
+-einzigesExemplar: CommandPanel = null
+-start: JButton
+-stop: JButton
+-stepOver : JButton
+-stepOut: JButton
+-continue: JButton
+--
+-CommandPanel()
++getCommandPanel(): CommandPanel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>210</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>ExpressionPanel
+--
+--
++update()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>310</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>WatchExpressionPanel
+--
+-sigelton: WatchExpressionPanel = null
+-watchExpressions: Map&lt;int id, Map&lt;String expression, String area &gt; &gt;
+-evaluationLabels: List&lt;JLabel&gt;
+--
++getWatchExpressionPanel(): WatchExpressionPanel
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>890</x>
+      <y>310</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>CondBreakpointPanel
+--
+-sigelton: CondBreakpointPanel = null
+-condBreakpoints: Map&lt;int id, Map&lt;String expression, String area &gt; &gt;
+-breakpointMarker: List&lt;JLabel&gt;
+--
++getCondBreakpointPanel(): CondBreakpointPanel</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>130</y>
+      <w>190</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;170.0;70.0;170.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>130</y>
+      <w>380</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;360.0;70.0;360.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>230</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0;100.0;30.0;100.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>230</y>
+      <w>90</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;30.0;10.0;30.0;10.0;80.0</additional_attributes>
   </element>
 </diagram>
