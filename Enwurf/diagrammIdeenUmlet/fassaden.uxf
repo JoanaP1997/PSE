@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -16,7 +15,8 @@
 --
 +showProgramText(int program, String text)
 +showInput(int program, String input)
-+showVariables(int program, String vars)
++showVariables(int program, List&lt;String&gt; vars)
++reset()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -124,7 +124,7 @@ reset()
     </coordinates>
     <panel_attributes>/Observer/
 --
-update()</panel_attributes>
+/+update()/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
