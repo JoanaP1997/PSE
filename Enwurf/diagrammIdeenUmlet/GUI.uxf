@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>385</x>
-      <y>434</y>
+      <x>245</x>
+      <y>392</y>
       <w>182</w>
       <h>77</h>
     </coordinates>
@@ -17,8 +17,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1036</x>
-      <y>448</y>
+      <x>896</x>
+      <y>406</y>
       <w>105</w>
       <h>35</h>
     </coordinates>
@@ -28,8 +28,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
-      <y>581</y>
+      <x>910</x>
+      <y>539</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -39,8 +39,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1183</x>
-      <y>581</y>
+      <x>1043</x>
+      <y>539</y>
       <w>112</w>
       <h>21</h>
     </coordinates>
@@ -50,8 +50,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>301</x>
-      <y>343</y>
+      <x>161</x>
+      <y>301</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -61,8 +61,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>301</x>
-      <y>518</y>
+      <x>161</x>
+      <y>476</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -72,8 +72,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>350</y>
+      <x>1050</x>
+      <y>308</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -83,8 +83,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>371</x>
-      <y>581</y>
+      <x>231</x>
+      <y>539</y>
       <w>112</w>
       <h>98</h>
     </coordinates>
@@ -102,8 +102,8 @@ List&lt;ProgramPanel&gt; programPanels</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1099</x>
-      <y>42</y>
+      <x>959</x>
+      <y>0</y>
       <w>224</w>
       <h>91</h>
     </coordinates>
@@ -119,8 +119,8 @@ Vererbung
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>616</x>
-      <y>49</y>
+      <x>476</x>
+      <y>7</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -132,8 +132,8 @@ Klassen</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>399</x>
-      <y>49</y>
+      <x>259</x>
+      <y>7</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -144,8 +144,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>581</y>
+      <x>770</x>
+      <y>539</y>
       <w>70</w>
       <h>21</h>
     </coordinates>
@@ -155,8 +155,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>623</x>
-      <y>182</y>
+      <x>483</x>
+      <y>140</y>
       <w>420</w>
       <h>133</h>
     </coordinates>
@@ -178,8 +178,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>497</x>
-      <y>581</y>
+      <x>357</x>
+      <y>539</y>
       <w>196</w>
       <h>154</h>
     </coordinates>
@@ -190,7 +190,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
 -stop: JButton
 -stepOver : JButton
 -stepOut: JButton
--continue: JButton
+-nextBreakpoint: JButton
 --
 -CommandPanel()
 +getCommandPanel(): CommandPanel
@@ -200,8 +200,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>721</x>
-      <y>581</y>
+      <x>581</x>
+      <y>539</y>
       <w>119</w>
       <h>42</h>
     </coordinates>
@@ -214,15 +214,15 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>756</y>
+      <x>280</x>
+      <y>714</y>
       <w>322</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>WatchExpressionPanel
 --
--sigelton: WatchExpressionPanel = null
--watchExpressions: Map&lt;int id, Map&lt;String expression, String area &gt; &gt;
+-singleton: WatchExpressionPanel = null
+-watchExpressions: Map&lt;Integer, Map&lt;String, String &gt; &gt;
 -evaluationLabels: List&lt;JLabel&gt;
 --
 +getWatchExpressionPanel(): WatchExpressionPanel
@@ -233,15 +233,15 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>756</y>
+      <x>700</x>
+      <y>714</y>
       <w>322</w>
       <h>119</h>
     </coordinates>
     <panel_attributes>CondBreakpointPanel
 --
--sigelton: CondBreakpointPanel = null
--condBreakpoints: Map&lt;int id, Map&lt;String expression, String area &gt; &gt;
+-singleton: CondBreakpointPanel = null
+-condBreakpoints: Map&lt;Integer, Map&lt;String, String &gt; &gt;
 -breakpointMarker: List&lt;JLabel&gt;
 --
 +getCondBreakpointPanel(): CondBreakpointPanel</panel_attributes>
@@ -250,8 +250,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>798</x>
-      <y>364</y>
+      <x>658</x>
+      <y>322</y>
       <w>98</w>
       <h>49</h>
     </coordinates>
@@ -263,8 +263,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>364</x>
-      <y>518</y>
+      <x>224</x>
+      <y>476</y>
       <w>238</w>
       <h>77</h>
     </coordinates>
@@ -274,8 +274,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>364</x>
-      <y>518</y>
+      <x>224</x>
+      <y>476</y>
       <w>84</w>
       <h>77</h>
     </coordinates>
@@ -285,8 +285,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>364</x>
-      <y>518</y>
+      <x>224</x>
+      <y>476</y>
       <w>434</w>
       <h>77</h>
     </coordinates>
@@ -296,8 +296,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>364</x>
-      <y>343</y>
+      <x>224</x>
+      <y>301</y>
       <w>133</w>
       <h>105</h>
     </coordinates>
@@ -307,8 +307,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>476</y>
+      <x>938</x>
+      <y>434</y>
       <w>182</w>
       <h>119</h>
     </coordinates>
@@ -318,8 +318,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>938</x>
-      <y>476</y>
+      <x>798</x>
+      <y>434</y>
       <w>161</w>
       <h>119</h>
     </coordinates>
@@ -329,8 +329,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>476</y>
+      <x>938</x>
+      <y>434</y>
       <w>21</w>
       <h>119</h>
     </coordinates>
@@ -340,8 +340,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>350</y>
+      <x>938</x>
+      <y>308</y>
       <w>126</w>
       <h>112</h>
     </coordinates>
@@ -351,8 +351,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>777</x>
-      <y>616</y>
+      <x>637</x>
+      <y>574</y>
       <w>147</w>
       <h>154</h>
     </coordinates>
@@ -362,8 +362,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>616</y>
+      <x>560</x>
+      <y>574</y>
       <w>98</w>
       <h>154</h>
     </coordinates>
@@ -373,8 +373,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>889</x>
-      <y>385</y>
+      <x>749</x>
+      <y>343</y>
       <w>161</w>
       <h>84</h>
     </coordinates>
@@ -385,8 +385,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>385</y>
+      <x>420</x>
+      <y>343</y>
       <w>245</w>
       <h>91</h>
     </coordinates>
@@ -397,8 +397,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>462</y>
+      <x>420</x>
+      <y>420</y>
       <w>490</w>
       <h>28</h>
     </coordinates>
@@ -409,8 +409,8 @@ calls &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>196</y>
+      <x>364</x>
+      <y>154</y>
       <w>133</w>
       <h>252</h>
     </coordinates>
@@ -423,8 +423,8 @@ m2=0..1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>196</x>
-      <y>462</y>
+      <x>56</x>
+      <y>420</y>
       <w>203</w>
       <h>154</h>
     </coordinates>
@@ -437,8 +437,8 @@ has &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>140</x>
-      <y>434</y>
+      <x>0</x>
+      <y>392</y>
       <w>371</w>
       <h>301</h>
     </coordinates>
@@ -451,8 +451,8 @@ has &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>483</y>
+      <x>420</x>
+      <y>441</y>
       <w>280</w>
       <h>112</h>
     </coordinates>
