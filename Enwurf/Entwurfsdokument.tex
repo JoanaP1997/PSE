@@ -204,11 +204,18 @@ Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen
 thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind private Felder
 und Methoden. Das sind Implementierungsdetails.
 
-\subsection{Klassen in Paket 1}
+\subsection{Klassen im User Interface}
+\subsubsection{Fassade}
+
 \subsection{Klassen in Paket 2} 
 ...
 \section{Verwendete Design Patterns}
+
 \subsection{Patterns im Paket User Interface}
+Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem Kompositum. 
+Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
+Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert.
+Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
 \subsection{Patterns im Paket File Handler}
