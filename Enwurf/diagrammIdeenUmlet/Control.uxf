@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>256</y>
+      <w>440</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>ControlFacade
+--
+--
++setStepSize(int program, int size)
++step(int type)
++continue()
++singleStep()
++createWatchExpression(int id, String expr)
++changeWatchExpression(int id, String expr, List&lt;int&gt;?????)
++deleteWatchExpression(int id)
++createCondBreakpoint(int id, String cond)
++changeCondBreakpoint(int id, String cond)
++deleteCondBreakpoint(int id)
++createSyncBreakpoint(int line)
++createBreakpoint(int program, int line)
++deleteBreakpoint(int program, int line)
++deleteAllBreakpoints()
++saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar)
++startDebug()
++stopDebug()
++reset()
++loadConfig(File configFile)
++saveConfig(File configFile)
++loadProgramText(File file)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>848</x>
+      <y>344</y>
+      <w>320</w>
+      <h>424</h>
+    </coordinates>
+    <panel_attributes>*Wie implementieren?*
+
+Diskussionsvorschläge:
+Grundsätzlich:
+- Soll alle Funktionalität von einem Control-Objekt abgedeckt werden oder nicht? Man könnte es ja auch noch einmal verschiedene Unter-Controller nutzen lassen.
+
+- Abstrakte Klasse statt Fassade, wenn alle Funktionalität in ein Control-Objekt soll?
+
+- Singleton für das Control-Objekt?
+
+- Aufteilung der Funktionalitäten: Steps, Expressions, etc. oder, sinnvoller nach Interaktions-Paketen:
+
+- Gui-Interactor, File-Handler-Interactor, etc. ABER: welchen Mehrwert bilden diese Klassen abgesehne von einer semantischen Trennung? Haben sie Eigenschaften, etc. die erhalten bleiben?
+
+* - SEHR RELEVANT:* Sollte es nicht eine Bulk-Hinzufügen-Option geben, bei der sehr viele Breakpoints, Expressions, etc. auf einmal in einem bestimmten Format an die Logic übergeben werden? Bisher ist es so implementiert, dass die Control das ausliest und abarbeitet (vgl. seq_loadConfig).
+
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>224</x>
+      <y>136</y>
+      <w>216</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>+ Methoden für Vorschläge
+
+*- fehlt: Language-Einlesen*
+*- fehlt: Parametertyp bei WatchExpressions, siehe ?????*
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>616</x>
+      <y>56</y>
+      <w>264</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>*Exceptions*
+- ungültige Eingaben übergeben (bzw. wird das an der Stelle geworfen oder nur durchgereicht?)
+- Wer wirft und wer hndelt die Exceptions?
+
+
+
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
