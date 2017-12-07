@@ -30,7 +30,7 @@
       <w>165</w>
       <h>33</h>
     </coordinates>
-    <panel_attributes>_:Control_</panel_attributes>
+    <panel_attributes>_:ControlFacade_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -39,10 +39,10 @@
       <x>209</x>
       <y>66</y>
       <w>33</w>
-      <h>737</h>
+      <h>616</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;540.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -50,10 +50,10 @@
       <x>781</x>
       <y>66</y>
       <w>33</w>
-      <h>737</h>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -76,7 +76,7 @@ eine Konfiguration aus</panel_attributes>
       <w>165</w>
       <h>33</h>
     </coordinates>
-    <panel_attributes>_:FileHandler_</panel_attributes>
+    <panel_attributes>_:FileHandlerFacade_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -85,10 +85,10 @@ eine Konfiguration aus</panel_attributes>
       <x>1276</x>
       <y>66</y>
       <w>33</w>
-      <h>737</h>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -120,10 +120,10 @@ loadConfig(File file)</panel_attributes>
       <x>506</x>
       <y>66</y>
       <w>33</w>
-      <h>737</h>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -346,12 +346,12 @@ notify()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1001</x>
+      <x>979</x>
       <y>44</y>
-      <w>132</w>
+      <w>176</w>
       <h>33</h>
     </coordinates>
-    <panel_attributes>_:DebugLogic_</panel_attributes>
+    <panel_attributes>_:DebugLogicFacade_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -360,10 +360,10 @@ notify()</panel_attributes>
       <x>1056</x>
       <y>66</y>
       <w>33</w>
-      <h>737</h>
+      <h>165</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -537,5 +537,82 @@ reset()</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>506</x>
+      <y>649</y>
+      <w>33</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>781</x>
+      <y>627</y>
+      <w>33</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>220</y>
+      <w>33</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>462</y>
+      <w>33</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>550</y>
+      <w>33</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>627</y>
+      <w>33</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1276</x>
+      <y>176</y>
+      <w>33</w>
+      <h>495</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;430.0</additional_attributes>
   </element>
 </diagram>
