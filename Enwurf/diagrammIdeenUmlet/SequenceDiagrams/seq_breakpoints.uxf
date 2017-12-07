@@ -1,23 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=14
+fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
   <zoom_level>12</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>216</x>
+      <x>120</x>
       <y>108</y>
-      <w>120</w>
+      <w>180</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>_:UserInterface_</panel_attributes>
+    <panel_attributes>_:GUIFacade_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>552</x>
+      <x>516</x>
       <y>108</y>
-      <w>120</w>
+      <w>180</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>_:ControlFacade_</panel_attributes>
@@ -26,7 +49,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
+      <x>192</x>
       <y>132</y>
       <w>36</w>
       <h>84</h>
@@ -48,9 +71,9 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>864</x>
+      <x>900</x>
       <y>108</y>
-      <w>168</w>
+      <w>192</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>_:DebugLogicFacade_</panel_attributes>
@@ -59,7 +82,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>132</y>
       <w>36</w>
       <h>108</h>
@@ -70,7 +93,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>264</x>
+      <x>192</x>
       <y>192</y>
       <w>24</w>
       <h>492</h>
@@ -92,7 +115,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>216</y>
       <w>24</w>
       <h>96</h>
@@ -103,33 +126,33 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>180</y>
-      <w>348</w>
+      <w>420</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createBreakpoint(0, 17)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>612</x>
       <y>192</y>
-      <w>348</w>
+      <w>384</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createBreakpoint(0, 17)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>216</y>
-      <w>192</w>
+      <w>204</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -139,7 +162,7 @@ notify()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>300</y>
       <w>36</w>
       <h>120</h>
@@ -172,7 +195,7 @@ notify()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>396</y>
       <w>24</w>
       <h>108</h>
@@ -185,41 +208,29 @@ notify()</panel_attributes>
     <coordinates>
       <x>612</x>
       <y>372</y>
-      <w>348</w>
+      <w>384</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createBreakpoint(program.ID, 27)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>324</y>
-      <w>348</w>
+      <w>420</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createSyncBreakpoint(27)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>444</x>
-      <y>360</y>
-      <w>900</w>
-      <h>156</h>
-    </coordinates>
-    <panel_attributes>Loop
-foreach program</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>492</y>
       <w>36</w>
       <h>108</h>
@@ -241,14 +252,14 @@ foreach program</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>540</y>
-      <w>348</w>
+      <w>420</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -266,17 +277,17 @@ createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
     <coordinates>
       <x>612</x>
       <y>552</y>
-      <w>348</w>
+      <w>384</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>576</y>
       <w>24</w>
       <h>96</h>
@@ -287,24 +298,13 @@ createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
+      <x>192</x>
       <y>672</y>
       <w>36</w>
-      <h>84</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>264</x>
-      <y>732</y>
-      <w>24</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>type=termination</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -318,42 +318,20 @@ createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>600</x>
-      <y>732</y>
-      <w>24</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>type=termination</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>972</x>
       <y>660</y>
       <w>36</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>936</x>
-      <y>732</y>
-      <w>24</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>type=termination</panel_attributes>
-    <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>252</y>
       <w>24</w>
       <h>48</h>
@@ -364,19 +342,19 @@ createCondBreakpoint(42, "A.x == B.y")</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
+      <x>216</x>
       <y>240</y>
-      <w>684</w>
+      <w>792</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-update()</panel_attributes>
-    <additional_attributes>10.0;20.0;550.0;20.0</additional_attributes>
+               update()</panel_attributes>
+    <additional_attributes>10.0;20.0;640.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>264</y>
       <w>24</w>
       <h>24</h>
@@ -387,9 +365,9 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>396</y>
-      <w>192</w>
+      <w>204</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -399,7 +377,7 @@ notify()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>432</y>
       <w>24</w>
       <h>48</h>
@@ -410,19 +388,19 @@ notify()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
+      <x>216</x>
       <y>420</y>
-      <w>684</w>
+      <w>792</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-update()</panel_attributes>
-    <additional_attributes>10.0;20.0;550.0;20.0</additional_attributes>
+               update()</panel_attributes>
+    <additional_attributes>10.0;20.0;640.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>444</y>
       <w>24</w>
       <h>24</h>
@@ -433,9 +411,9 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>576</y>
-      <w>192</w>
+      <w>204</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -445,7 +423,7 @@ notify()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>948</x>
+      <x>984</x>
       <y>612</y>
       <w>24</w>
       <h>48</h>
@@ -456,24 +434,36 @@ notify()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
+      <x>216</x>
       <y>600</y>
-      <w>684</w>
+      <w>792</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-update()</panel_attributes>
-    <additional_attributes>10.0;20.0;550.0;20.0</additional_attributes>
+              update()</panel_attributes>
+    <additional_attributes>10.0;20.0;640.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>276</x>
+      <x>204</x>
       <y>624</y>
       <w>24</w>
       <h>24</h>
     </coordinates>
     <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>396</x>
+      <y>360</y>
+      <w>768</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Loop
+foreach program</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
