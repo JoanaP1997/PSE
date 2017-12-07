@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLGeneric</id>
@@ -40,10 +39,10 @@
       <x>189</x>
       <y>315</y>
       <w>27</w>
-      <h>360</h>
+      <h>207</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -51,10 +50,10 @@
       <x>603</x>
       <y>315</y>
       <w>27</w>
-      <h>360</h>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -85,10 +84,10 @@ fügt ein Programm hinzu</panel_attributes>
       <x>801</x>
       <y>315</y>
       <w>27</w>
-      <h>360</h>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -120,10 +119,10 @@ loadProgramText(File file)</panel_attributes>
       <x>405</x>
       <y>315</y>
       <w>27</w>
-      <h>360</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
@@ -153,21 +152,9 @@ loadProgramText(File file)</panel_attributes>
       <x>801</x>
       <y>396</y>
       <w>18</w>
-      <h>54</h>
+      <h>45</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>117</x>
-      <y>153</y>
-      <w>108</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>Programmdatei aus Datei hinzufügen
-style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -193,5 +180,38 @@ String programtext</panel_attributes>
     <panel_attributes>lt=&lt;-
 String programtext</panel_attributes>
     <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>468</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>459</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>432</y>
+      <w>27</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
 </diagram>
