@@ -204,10 +204,53 @@ Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen
 thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind private Felder
 und Methoden. Das sind Implementierungsdetails.
 
-\subsection{Klassen im User Interface}
-\subsubsection{Fassade}
+\subsection{Klassen im Paket \enquote{User Interface}}
+\paragraph{Fassade}
 
-\subsection{Klassen in Paket 2} 
+\subsection{Klassen im Paket \enquote{Control}}
+
+\subsubsection{Unterpaket Debugger}
+
+\subsubsection{Unterpaket Interpreter}
+
+\subsubsection{Unterpaket AntlrParser}
+
+\subsection{Klassen im Paket \enquote{DebugLogic}}
+
+\subsection{Klassen im Paket \enquote{FileHandler}}
+
+\subsubsection{Unterpaket Filehandler.Facade}
+
+\paragraph{FileHandlerFacade}
+\begin{itemize}
+\item loadConfig(File file) : ConfigurationFile \\
+Lädt die angegebene Datei als Konfigurationsdatei und gibt diese zurück.
+\item saveConfig(ConfigurationFile config) \\
+Speichert die angegebene Konfiguration an den darin gespeicherten Dateipfad.
+\item getPropertiesFile() : PropertiesFile \\
+Gibt die im Voraus geladene Einstellungsdatei zurück.
+\item getLanguages() : List<String> \\
+Gibt alle Sprachnamen in einer Liste als String zurück.
+\item getLanguageFile(String langID) : LanguageFile \\
+Gibt die zur langID passende Sprachdatei zurück, falls diese existiert,
+sonst wird eine LanguageNotFoundException geworfen.
+\end{itemize}
+\paragraph{PropertiesFile}
+\begin{itemize}
+\item getSystemFile() : File \\
+Gibt ein java.io.File Objekt zurück, welchen die Datei im Dateisystem des Nutzers repräsentiert.
+\item getProgramText(int programID) : String \\
+Gibt den Programmtext von Programm programID als String zurück.
+\item getStepSize(int programID) : int \\
+Gibt die Schrittgröße von Program programID zurück.
+\item getInputValue(int programID, String identifier) : String \\
+Gibt den Eingabewert von Programm programID für die Variable identifier zurück, falls diese existeirt,
+sonst wird null zurückgegeben.
+\item getLatestExecutionLine(int programID) : int \\
+Gibt die Position von Programm programID im Programmablaufbaum als int zurück. %TODO bessere erklärung
+\end{itemize}
+
+\subsection{Klassen im Paket \enquote{Exceptions}} 
 ...
 \section{Verwendete Design Patterns}
 
