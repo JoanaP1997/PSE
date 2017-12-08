@@ -4,7 +4,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>405</x>
-      <y>225</y>
+      <y>198</y>
       <w>144</w>
       <h>27</h>
     </coordinates>
@@ -15,7 +15,7 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>792</x>
-      <y>225</y>
+      <y>198</y>
       <w>135</w>
       <h>27</h>
     </coordinates>
@@ -26,18 +26,18 @@
     <id>Relation</id>
     <coordinates>
       <x>846</x>
-      <y>576</y>
+      <y>648</y>
       <w>27</w>
-      <h>72</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>468</x>
-      <y>378</y>
+      <y>351</y>
       <w>396</w>
       <h>36</h>
     </coordinates>
@@ -49,77 +49,9 @@
     <id>UMLGeneric</id>
     <coordinates>
       <x>459</x>
-      <y>297</y>
+      <y>270</y>
       <w>18</w>
       <h>99</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>855</x>
-      <y>459</y>
-      <w>315</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-attach(guiFa:GUIFacade)</panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>468</x>
-      <y>486</y>
-      <w>702</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-                   update()</panel_attributes>
-    <additional_attributes>10.0;20.0;760.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1152</x>
-      <y>423</y>
-      <w>18</w>
-      <h>153</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1107</x>
-      <y>225</y>
-      <w>144</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:DebugLogicFacade_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1152</x>
-      <y>567</y>
-      <w>27</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>450</x>
-      <y>522</y>
-      <w>18</w>
-      <h>18</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -132,6 +64,63 @@ attach(guiFa:GUIFacade)</panel_attributes>
       <w>315</w>
       <h>36</h>
     </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+attach(guiFa:GUIFacade)</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>468</x>
+      <y>558</y>
+      <w>702</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+                   update()</panel_attributes>
+    <additional_attributes>10.0;20.0;760.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1152</x>
+      <y>396</y>
+      <w>18</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1107</x>
+      <y>198</y>
+      <w>144</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>_:DebugLogicFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>639</y>
+      <w>27</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>855</x>
+      <y>405</y>
+      <w>315</w>
+      <h>36</h>
+    </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;create&gt;&gt; DebugLogicFacade()</panel_attributes>
     <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
@@ -140,9 +129,9 @@ attach(guiFa:GUIFacade)</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>846</x>
-      <y>396</y>
+      <y>369</y>
       <w>18</w>
-      <h>189</h>
+      <h>288</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -151,7 +140,7 @@ attach(guiFa:GUIFacade)</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>459</x>
-      <y>504</y>
+      <y>576</y>
       <w>18</w>
       <h>45</h>
     </coordinates>
@@ -162,7 +151,7 @@ attach(guiFa:GUIFacade)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>468</x>
-      <y>540</y>
+      <y>612</y>
       <w>702</w>
       <h>27</h>
     </coordinates>
@@ -173,7 +162,7 @@ attach(guiFa:GUIFacade)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>855</x>
-      <y>567</y>
+      <y>639</y>
       <w>315</w>
       <h>27</h>
     </coordinates>
@@ -181,35 +170,21 @@ attach(guiFa:GUIFacade)</panel_attributes>
     <additional_attributes>10.0;10.0;330.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>369</x>
-      <y>486</y>
-      <w>108</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-
-
-update()</panel_attributes>
-    <additional_attributes>90.0;40.0;10.0;40.0;10.0;20.0;100.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>90</x>
-      <y>225</y>
+      <y>198</y>
       <w>144</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Main</panel_attributes>
+    <panel_attributes>_:MainInterface_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>144</x>
-      <y>243</y>
+      <y>216</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -220,7 +195,7 @@ update()</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>153</x>
-      <y>279</y>
+      <y>252</y>
       <w>324</w>
       <h>36</h>
     </coordinates>
@@ -232,9 +207,9 @@ update()</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>144</x>
-      <y>288</y>
+      <y>261</y>
       <w>18</w>
-      <h>27</h>
+      <h>414</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -242,34 +217,36 @@ update()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
-      <y>306</y>
+      <x>459</x>
+      <y>360</y>
       <w>27</w>
-      <h>306</h>
+      <h>234</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;320.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>459</x>
-      <y>387</y>
-      <w>27</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>459</x>
-      <y>540</y>
+      <y>612</y>
       <w>27</w>
       <h>72</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>81</x>
+      <y>477</y>
+      <w>1161</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>später
+--
+		...zb neuer Breakpoint</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
