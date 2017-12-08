@@ -45,7 +45,7 @@
       <w>128</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>VariableValuePopUp</panel_attributes>
+    <panel_attributes>ArrayValuePopUp</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -172,8 +172,8 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
 +showVariables(int program, List&lt;String&gt; vars)
 +update()
 +GUIFacade(MainInterface mainInterface)
-+showError(Exception e)
-+showWarning(Exception e)
++showError(String s)
++showWarning(String s)
 
 
 </panel_attributes>
@@ -189,7 +189,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
     </coordinates>
     <panel_attributes>CommandPanel
 --
--einzigesExemplar: CommandPanel = null
+_-singleton: CommandPanel = null_
 -start: JButton
 -stop: JButton
 -stepOver : JButton
@@ -197,7 +197,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
 -nextBreakpoint: JButton
 --
 -CommandPanel()
-+getCommandPanel(): CommandPanel
+_+getCommandPanel(): CommandPanel_
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -225,11 +225,11 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
     </coordinates>
     <panel_attributes>WatchExpressionPanel
 --
--singleton: WatchExpressionPanel = null
+_-singleton: WatchExpressionPanel = null_
 -watchExpressions: Map&lt;Integer, Map&lt;String, String &gt; &gt;
 -evaluationLabels: List&lt;JLabel&gt;
 --
-+getWatchExpressionPanel(): WatchExpressionPanel
+_+getWatchExpressionPanel(): WatchExpressionPanel_
 
 </panel_attributes>
     <additional_attributes/>
@@ -244,11 +244,11 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
     </coordinates>
     <panel_attributes>CondBreakpointPanel
 --
--singleton: CondBreakpointPanel = null
+_-singleton: CondBreakpointPanel = null_
 -condBreakpoints: Map&lt;Integer, Map&lt;String, String &gt; &gt;
 -breakpointMarker: List&lt;JLabel&gt;
 --
-+getCondBreakpointPanel(): CondBreakpointPanel</panel_attributes>
+_+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -476,5 +476,53 @@ has &gt;</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;140.0;150.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1112</x>
+      <y>256</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>showError(String s) 
+und showWarning(String s) 
+mit String in HTML Form</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>272</y>
+      <w>448</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-()
+
+</panel_attributes>
+    <additional_attributes>540.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1384</x>
+      <y>616</y>
+      <w>144</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>VariableSuggestionPopUp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1072</x>
+      <y>496</y>
+      <w>416</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;500.0;70.0;500.0;150.0</additional_attributes>
   </element>
 </diagram>
