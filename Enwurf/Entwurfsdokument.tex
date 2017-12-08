@@ -155,36 +155,59 @@ Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und
 \subparagraph{Schnittstellen}
 Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
-Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
-Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
-Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.RelationalExpressionGenerator} bereitgestellte abstrakte Repräsentationen.
-\subsubsection{Trace Generator}
-\subparagraph{Aufgaben}
-Dieses Subpaket nimmt den Quelltext eines WLang-Programms entgegen und hat die Aufgabe, einen Pfad über den gesamten Programmfluss dessen zu erzeugen, sodass später darüber iteriert werden kann. Dazu gehört auch das Prüfen auf semantische Fehler, etwa das Fehlen eines return Statements.
+%Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
+%Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
+%Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.RelationalExpressionGenerator} bereitgestellte abstrakte Repräsentationen.
+
+
+Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
+Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+
+\subparagraph{Interpreter}
+Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
+Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Fehlen eines return-Statements.
+
+%TODO ist Zeichenketten hier schon präzise genug? Wie sehen die Zeichenketten aus, wenn sie aus Antlr herauskommen? Weiter oben heißt es nämlich, dass alles vom User erst in Antlr geparst wird.
+
 \subparagraph{Schnittstellen}
 \begin{itemize}
 \item Angebotene Funktionalität:\\
-Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.
+Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung. Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
+
 \item Genutzte Funktionalität:\\
 Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
 \end{itemize}
 
-%TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
-\subsubsection{Relational Expression Generator}
-\subparagraph{Aufgaben}
-Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
-\subparagraph{Schnittstellen}
-\begin{itemize}
-\item Angebotene Funktionalität:\\
-Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
-\item Genutzte Funktionalität:\\
-Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
-\end{itemize}
-%TODO Schnittstellen in Form von Facade
-\subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen.
+
+%\subsubsection{TraceGenerator}
+%\subparagraph{Aufgaben}
+%Dieses Subpaket nimmt den Quelltext eines WLang-Programms entgegen und hat die Aufgabe, einen Pfad über den gesamten Programmfluss dessen zu erzeugen, sodass später darüber iteriert werden kann. Dazu gehört auch das Prüfen auf semantische Fehler, etwa das Fehlen eines return-Statements. \\
+%\subparagraph{Schnittstellen}
+%\begin{itemize}
+%\item Angebotene Funktionalität:\\
+%Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.
+%\item Genutzte Funktionalität:\\
+%Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+%\end{itemize}
+%
+%%TODO Schnittstellen in Form von Facade
+%\subparagraph{Benutztrelation} 
+%Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+%\subsubsection{Relational Expression Generator}
+%\subparagraph{Aufgaben}
+%Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
+%\subparagraph{Schnittstellen}
+%\begin{itemize}
+%\item Angebotene Funktionalität:\\
+%Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
+%\item Genutzte Funktionalität:\\
+%Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+%\end{itemize}
+%%TODO Schnittstellen in Form von Facade
+%\subparagraph{Benutztrelation} 
+%Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
 \subsubsection{Antlr Parser}
 \subparagraph{Aufgaben}
 Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der in \ref{FormSpez} gegebenen Grammatik.
