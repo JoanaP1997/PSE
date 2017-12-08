@@ -1,63 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>256</y>
+      <x>536</x>
+      <y>176</y>
       <w>440</w>
-      <h>312</h>
+      <h>368</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
 --
-+setStepSize(int program, int size)
-+step(int type)
-+continue()
-+singleStep()
-+createWatchExpression(int id, String expr)
-+changeWatchExpression(int id, String expr, List&lt;int&gt;?????)
-+deleteWatchExpression(int id)
-+createCondBreakpoint(int id, String cond)
-+changeCondBreakpoint(int id, String cond)
-+deleteCondBreakpoint(int id)
-+createSyncBreakpoint(int line)
-+createBreakpoint(int program, int line)
-+deleteBreakpoint(int program, int line)
-+deleteAllBreakpoints()
-+saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar)
-+startDebug()
-+stopDebug()
-+reset()
-+loadConfig(File configFile)
-+saveConfig(File configFile)
-+loadProgramText(File file)
-</panel_attributes>
++ ControlFacade(guiFacade : guiFacade);
++ setStepSize(int program, int size);
++ step(int type);
++ continue();
++ singleStep();
++ createWatchExpression(int id, String expr);
++ changeWatchExpression(int id, String expr, List&lt;int&gt;?????);
++ deleteWatchExpression(int id);
++ createCondBreakpoint(int id, String cond);
++ changeCondBreakpoint(int id, String cond);
++ deleteCondBreakpoint(int id);
++ createSyncBreakpoint(int line);
++ createBreakpoint(int program, int line);
++ deleteBreakpoint(int program, int line);
++ deleteAllBreakpoints();
++ saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
++ startDebug();
++ stopDebug();
++ reset();
++ loadConfig(File configFile);
++ saveConfig(File configFile);
++ loadProgramText(File file);
++ ...Methoden für Vorschläge, BOF-Einstellungen
++ changePresentationLanguage(String langId)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>848</x>
-      <y>344</y>
-      <w>320</w>
+      <x>0</x>
+      <y>88</y>
+      <w>416</w>
       <h>424</h>
     </coordinates>
     <panel_attributes>*Wie implementieren?*
 
 Diskussionsvorschläge:
 Grundsätzlich:
-- Soll alle Funktionalität von einem Control-Objekt abgedeckt werden oder nicht? Man könnte es ja auch noch einmal verschiedene Unter-Controller nutzen lassen.
+-  Soll alle Funktionalität von einem Control-Objekt abgedeckt werden oder 
+	nicht? Man könnte es ja auch noch einmal verschiedene Unter-Controller 
+	nutzen lassen.
 
-- Abstrakte Klasse statt Fassade, wenn alle Funktionalität in ein Control-Objekt soll?
+- Abstrakte Klasse statt Fassade, wenn alle Funktionalität in ein 
+  Control-Objekt soll?
 
 - Singleton für das Control-Objekt?
 
-- Aufteilung der Funktionalitäten: Steps, Expressions, etc. oder, sinnvoller nach Interaktions-Paketen:
+- Aufteilung der Funktionalitäten: Steps, Expressions, etc. oder, sinnvoller 
+  nach Interaktions-Paketen:
 
-- Gui-Interactor, File-Handler-Interactor, etc. ABER: welchen Mehrwert bilden diese Klassen abgesehne von einer semantischen Trennung? Haben sie Eigenschaften, etc. die erhalten bleiben?
+- Gui-Interactor, File-Handler-Interactor, etc. ABER: welchen Mehrwert bilden 
+  diese Klassen abgesehne von einer semantischen Trennung? Haben sie 
+  Eigenschaften, etc. die erhalten bleiben?
 
-* - SEHR RELEVANT:* Sollte es nicht eine Bulk-Hinzufügen-Option geben, bei der sehr viele Breakpoints, Expressions, etc. auf einmal in einem bestimmten Format an die Logic übergeben werden? Bisher ist es so implementiert, dass die Control das ausliest und abarbeitet (vgl. seq_loadConfig).
+* - SEHR RELEVANT:* Sollte es nicht eine Bulk-Hinzufügen-Option geben, bei 
+    der sehr viele Breakpoints, Expressions, etc. auf einmal in einem 
+    bestimmten Format an die Logic übergeben werden? Bisher ist es so 
+    implementiert, dass die Control das ausliest und abarbeitet 
+    (vgl. seq_loadConfig).
 
 bg=red</panel_attributes>
     <additional_attributes/>
@@ -65,9 +78,9 @@ bg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>224</x>
-      <y>136</y>
-      <w>216</w>
+      <x>0</x>
+      <y>0</y>
+      <w>376</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>+ Methoden für Vorschläge
@@ -80,18 +93,233 @@ bg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>616</x>
-      <y>56</y>
+      <x>0</x>
+      <y>520</y>
       <w>264</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>*Exceptions*
-- ungültige Eingaben übergeben (bzw. wird das an der Stelle geworfen oder nur durchgereicht?)
+- ungültige Eingaben übergeben (bzw. wird das an der Stelle geworfen oder 
+  nur durchgereicht?)
 - Wer wirft und wer hndelt die Exceptions?
 
 
 
 bg=blue</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1336</x>
+      <y>696</y>
+      <w>392</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>...
+debugLogicFacade.step(int type)
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>200</y>
+      <w>240</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>280.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>992</x>
+      <y>176</y>
+      <w>352</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>...
+debugLogicFacade : debuglogic::DebugLogicFacade
+    := debuglogic::DebugLogicFacade.getInstance()
+...
+debugLogicFacade.attach(guiFacade);
+...
+debug logic controller := DebugLogicController.getInstance()
+...
+/ /    file handler inter. ggfalls. später erstellen
+file handler interactor := new FileHandlerInteractor(guiFacade)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1016</x>
+      <y>712</y>
+      <w>336</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>400.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1336</x>
+      <y>624</y>
+      <w>392</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>...
+debugLogicFacade.setStepSize(int program, int size)
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1144</x>
+      <y>640</y>
+      <w>208</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1336</x>
+      <y>768</y>
+      <w>392</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>...
+foreach program known to debugLogicFacade do
+    foreach breakpoint in program do
+        ...
+        debugLogicFacade.deleteBreakpoint(program, breakpoint.line)
+        ...
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>808</y>
+      <w>200</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>230.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>920</x>
+      <y>624</y>
+      <w>400</w>
+      <h>328</h>
+    </coordinates>
+    <panel_attributes>DebugLogicController
+--
+_- debugLogicController : DebugLogicController = null;_
+- debugLogicFacade : debuglogic::DebugLogicFacade
+    = debuglogic::DebugLogicFacade.getInstance()
+--
+- DebugLogicController();
+_+ getInstance() : DebugLogicController;_
++ setStepSize(int program, int size);
++ step(int type);
++ continue();
++ singleStep();
++ createWatchExpression(int id, String expr);
++ changeWatchExpression(int id, String expr, List&lt;int&gt;?????);
++ deleteWatchExpression(int id);
++ createCondBreakpoint(int id, String cond);
++ changeCondBreakpoint(int id, String cond);
++ deleteCondBreakpoint(int id);
++ createSyncBreakpoint(int line);
++ createBreakpoint(int program, int line);
++ deleteBreakpoint(int program, int line);
++ deleteAllBreakpoints();
++ saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
++ startDebug();
++ stopDebug();
++ reset();</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>896</x>
+      <y>536</y>
+      <w>248</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+delegates to v
+r1=debug logic controller</panel_attributes>
+    <additional_attributes>290.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>464</x>
+      <y>536</y>
+      <w>152</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1
+delegates to v
+r1=file handler interactor</panel_attributes>
+    <additional_attributes>10.0;100.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>616</y>
+      <w>272</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>FileHandlerInteractor
+--
+--
++ loadConfig(File configFile);
++ saveConfig(File configFile);
++ loadProgramText(File file);
++ changePresentationLanguage(String langId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1336</x>
+      <y>888</y>
+      <w>392</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>...
+DebugLogicFacade.launchRun(
+     ProgrammeUndEingaben : List&lt;DebugLogic::ProgramInput&gt;, 
+     List&lt;Int&gt; programcounters)
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1008</x>
+      <y>904</y>
+      <w>344</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>410.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
