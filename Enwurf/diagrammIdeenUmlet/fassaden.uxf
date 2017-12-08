@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -19,6 +18,7 @@
 +showVariables(int program, List&lt;String&gt; vars)
 +stepBack()
 +reset()
++update()
 </panel_attributes>
     <additional_attributes/>
   </element>
