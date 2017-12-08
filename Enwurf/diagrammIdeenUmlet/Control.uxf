@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>8</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>536</x>
-      <y>176</y>
-      <w>440</w>
-      <h>368</h>
+      <x>620</x>
+      <y>0</y>
+      <w>550</w>
+      <h>470</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -34,54 +34,20 @@
 + loadConfig(File configFile);
 + saveConfig(File configFile);
 + loadProgramText(File file);
-+ ...Methoden für Vorschläge, BOF-Einstellungen
-+ changePresentationLanguage(String langId)</panel_attributes>
++ ...Methoden für Vorschläge, GUI-Einstellungen
++ setMaximumIterations(int i);
++ setMaximumFunctionCalls(int i);
++ changePresentationLanguage(String langId)
++ suggestStepSize()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>88</y>
-      <w>416</w>
-      <h>424</h>
-    </coordinates>
-    <panel_attributes>*Wie implementieren?*
-
-Diskussionsvorschläge:
-Grundsätzlich:
--  Soll alle Funktionalität von einem Control-Objekt abgedeckt werden oder 
-	nicht? Man könnte es ja auch noch einmal verschiedene Unter-Controller 
-	nutzen lassen.
-
-- Abstrakte Klasse statt Fassade, wenn alle Funktionalität in ein 
-  Control-Objekt soll?
-
-- Singleton für das Control-Objekt?
-
-- Aufteilung der Funktionalitäten: Steps, Expressions, etc. oder, sinnvoller 
-  nach Interaktions-Paketen:
-
-- Gui-Interactor, File-Handler-Interactor, etc. ABER: welchen Mehrwert bilden 
-  diese Klassen abgesehne von einer semantischen Trennung? Haben sie 
-  Eigenschaften, etc. die erhalten bleiben?
-
-* - SEHR RELEVANT:* Sollte es nicht eine Bulk-Hinzufügen-Option geben, bei 
-    der sehr viele Breakpoints, Expressions, etc. auf einmal in einem 
-    bestimmten Format an die Logic übergeben werden? Bisher ist es so 
-    implementiert, dass die Control das ausliest und abarbeitet 
-    (vgl. seq_loadConfig).
-
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>376</w>
-      <h>80</h>
+      <x>50</x>
+      <y>210</y>
+      <w>470</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>+ Methoden für Vorschläge
 
@@ -93,28 +59,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>520</y>
-      <w>264</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>*Exceptions*
-- ungültige Eingaben übergeben (bzw. wird das an der Stelle geworfen oder 
-  nur durchgereicht?)
-- Wer wirft und wer hndelt die Exceptions?
-
-
-
-bg=blue</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1336</x>
-      <y>696</y>
-      <w>392</w>
-      <h>56</h>
+      <x>1620</x>
+      <y>690</y>
+      <w>490</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade.step(int type)
@@ -124,21 +72,21 @@ debugLogicFacade.step(int type)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>768</x>
-      <y>200</y>
-      <w>240</w>
-      <h>40</h>
+      <x>900</x>
+      <y>40</y>
+      <w>310</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>280.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>992</x>
-      <y>176</y>
-      <w>352</w>
-      <h>152</h>
+      <x>1190</x>
+      <y>40</y>
+      <w>440</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade : debuglogic::DebugLogicFacade
@@ -155,21 +103,21 @@ file handler interactor := new FileHandlerInteractor(guiFacade)</panel_attribute
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1016</x>
-      <y>712</y>
-      <w>336</w>
-      <h>40</h>
+      <x>1430</x>
+      <y>710</y>
+      <w>210</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>400.0;10.0;10.0;30.0</additional_attributes>
+    <additional_attributes>190.0;10.0;10.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1336</x>
-      <y>624</y>
-      <w>392</w>
-      <h>56</h>
+      <x>1620</x>
+      <y>600</y>
+      <w>490</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade.setStepSize(int program, int size)
@@ -179,73 +127,43 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1144</x>
-      <y>640</y>
-      <w>208</w>
-      <h>96</h>
+      <x>1380</x>
+      <y>620</y>
+      <w>260</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>240.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1336</x>
-      <y>768</y>
-      <w>392</w>
-      <h>104</h>
-    </coordinates>
-    <panel_attributes>...
-foreach program known to debugLogicFacade do
-    foreach breakpoint in program do
-        ...
-        debugLogicFacade.deleteBreakpoint(program, breakpoint.line)
-        ...
-...</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1152</x>
-      <y>808</y>
-      <w>200</w>
-      <h>88</h>
-    </coordinates>
-    <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>230.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
-      <y>624</y>
-      <w>400</w>
-      <h>328</h>
+      <x>1100</x>
+      <y>600</y>
+      <w>500</w>
+      <h>410</h>
     </coordinates>
     <panel_attributes>DebugLogicController
 --
-_- debugLogicController : DebugLogicController = null;_
 - debugLogicFacade : debuglogic::DebugLogicFacade
-    = debuglogic::DebugLogicFacade.getInstance()
 --
 - DebugLogicController();
-_+ getInstance() : DebugLogicController;_
 + setStepSize(int program, int size);
 + step(int type);
 + continue();
 + singleStep();
 + createWatchExpression(int id, String expr);
-+ changeWatchExpression(int id, String expr, List&lt;int&gt;?????);
++ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope);
 + deleteWatchExpression(int id);
 + createCondBreakpoint(int id, String cond);
-+ changeCondBreakpoint(int id, String cond);
++ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope);
 + deleteCondBreakpoint(int id);
 + createSyncBreakpoint(int line);
 + createBreakpoint(int program, int line);
 + deleteBreakpoint(int program, int line);
 + deleteAllBreakpoints();
 + saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
++ suggestStepSize();
 + startDebug();
 + stopDebug();
 + reset();</panel_attributes>
@@ -254,38 +172,38 @@ _+ getInstance() : DebugLogicController;_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
-      <y>536</y>
-      <w>248</w>
-      <h>104</h>
+      <x>1070</x>
+      <y>460</y>
+      <w>440</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 delegates to v
 r1=debug logic controller</panel_attributes>
-    <additional_attributes>290.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;140.0;290.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>464</x>
-      <y>536</y>
-      <w>152</w>
-      <h>96</h>
+      <x>530</x>
+      <y>460</y>
+      <w>190</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1
 delegates to v
 r1=file handler interactor</panel_attributes>
-    <additional_attributes>10.0;100.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;10.0;70.0;170.0;70.0;170.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>344</x>
-      <y>616</y>
-      <w>272</w>
-      <h>136</h>
+      <x>380</x>
+      <y>590</y>
+      <w>340</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>FileHandlerInteractor
 --
@@ -299,10 +217,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1336</x>
-      <y>888</y>
-      <w>392</w>
-      <h>64</h>
+      <x>1620</x>
+      <y>930</y>
+      <w>490</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>...
 DebugLogicFacade.launchRun(
@@ -314,12 +232,25 @@ DebugLogicFacade.launchRun(
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>904</y>
-      <w>344</w>
-      <h>24</h>
+      <x>1210</x>
+      <y>950</y>
+      <w>430</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>410.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>530</y>
+      <w>130</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>ExceptionHandler
+--
+--</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

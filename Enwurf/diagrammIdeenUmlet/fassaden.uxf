@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
+      <x>801</x>
       <y>144</y>
       <w>297</w>
       <h>171</h>
@@ -16,6 +17,7 @@
 +showProgramText(int program, String text)
 +showInput(int program, String input)
 +showVariables(int program, List&lt;String&gt; vars)
++stepBack()
 +reset()
 </panel_attributes>
     <additional_attributes/>
@@ -23,7 +25,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
+      <x>891</x>
       <y>378</y>
       <w>459</w>
       <h>396</h>
@@ -52,6 +54,9 @@
 +loadConfig(File configFile)
 +saveConfig(File configFile)
 +loadProgrammText(File file)
++setMaximumIterations(int i);
++setMaximumFunctionCalls(int i);
++stepBack();
 +...methoden fuer Vorschlaege
 </panel_attributes>
     <additional_attributes/>
@@ -59,7 +64,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
+      <x>63</x>
       <y>387</y>
       <w>549</w>
       <h>342</h>
@@ -84,6 +89,9 @@
 get...
 reset()
 +... Methdoen fuer Vorschlaege
++setMaximumIterations(int i);
++setMaximumFunctionCalls(int i);
++deleteAllBreakpoints()
 
 </panel_attributes>
     <additional_attributes/>
@@ -91,7 +99,7 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
+      <x>378</x>
       <y>243</y>
       <w>216</w>
       <h>99</h>
@@ -106,7 +114,7 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
+      <x>477</x>
       <y>333</y>
       <w>27</w>
       <h>72</h>
@@ -117,7 +125,7 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>936</x>
+      <x>927</x>
       <y>54</y>
       <w>90</w>
       <h>54</h>
@@ -130,7 +138,7 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>666</x>
+      <x>657</x>
       <y>315</y>
       <w>117</w>
       <h>63</h>
@@ -143,7 +151,7 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>450</x>
+      <x>441</x>
       <y>297</y>
       <w>234</w>
       <h>63</h>
@@ -154,7 +162,7 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>963</x>
+      <x>954</x>
       <y>99</y>
       <w>27</w>
       <h>63</h>
@@ -165,7 +173,7 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>486</x>
+      <x>477</x>
       <y>63</y>
       <w>468</w>
       <h>198</h>
@@ -179,7 +187,7 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
+      <x>1089</x>
       <y>234</y>
       <w>99</w>
       <h>162</h>
@@ -191,7 +199,7 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
+      <x>603</x>
       <y>549</y>
       <w>306</w>
       <h>36</h>
