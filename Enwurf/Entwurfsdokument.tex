@@ -285,40 +285,85 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
 \subsection{Patterns im Paket File Handler}
+
+\newpage
 \section{Charakteristische Abläufe}
-Beschreibung von charakteristischen Abläufen anhand von Sequenzdiagrammen. Beispielswei-
-se bieten sich Testszenarien aus dem Pflichtenheft hier an. Wir empfehlen Sequenzdiagramme
-möglichst früh zu erstellen, denn dabei werden die Schnittstellen zwischen Packages und Klas-
-sen klar. 
-Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
+In diesem Kapitel werden charakteristische Abläufe des Produkts, wie der erste Programmaufruf und die
+Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
+ %TODO Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
 
 \subsection{Erster Programmaufruf}
-\subsection{AF10:}
-\begin{figure}
+\begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\end{figure}
-\subsection{AF20:}
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
-\end{figure}
-\subsection{AF30:}
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\end{figure}
-\subsection{AF40:}
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\end{figure}
-\subsection{AF50:}
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
+\caption{Sequenzdiagramm: Erster Programmaufruf}
 \end{figure}
 
+...
+\newpage
+\subsection{Konfigurationsdatei laden}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
+\caption{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
+\end{figure}
+
+...
+\newpage
+\subsection{Konfigurationsdatei speichern}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
+\caption{Sequenzdigramm: Speichern einer Konfigurationsdatei}
+\end{figure}
+
+...
+\newpage
+\subsection{AF10: Hinzufügen von Programmen}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
+\caption{Sequenzdiagramm: Hinzufügen von Programmen}
+\end{figure}
+
+...
+\newpage
+\subsection{AF20: Ändern von Programmen}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
+\caption{Sequenzdiagramm: Ändern von Programmen}
+\end{figure}
+
+...
+\newpage
+\subsection{AF30: Setzen von Breakpoints}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
+\caption{Sequenzdiagramm: Setzen von Breakpoints}
+\end{figure}
+
+...
+\newpage
+\subsection{AF40: Hinzufügen von Watch-Expressions}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
+\caption{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
+\end{figure}
+
+...
+\newpage
+\subsection{AF50: Programme debuggen}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
+\caption{Sequenzdiagramm: Debuggen von Programmen}
+\end{figure}
+
+...
+\newpage
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
