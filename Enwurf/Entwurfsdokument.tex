@@ -341,14 +341,7 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
 \caption{Sequenzdiagramm: Hinzufügen von Programmen}
 \end{figure}
-Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
-Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
-Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
-Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
-mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
-Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
-alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
-Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
+AF10 ist falsch
 
 
 \newpage
@@ -358,8 +351,15 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
 \caption{Sequenzdiagramm: Ändern von Programmen}
 \end{figure}
+Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
+Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
+Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
+Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
+mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
+Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
+alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
+Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
 
-...
 \newpage
 \subsection{AF30: Setzen von Breakpoints}
 \begin{figure}[!h]
@@ -367,8 +367,16 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
 \caption{Sequenzdiagramm: Setzen von Breakpoints}
 \end{figure}
+Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
+diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
+Zeile an die DebugLogicFacade weitergibt.
+Setzte der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
+MainInterface dies der ControlFacade mit. Die ControlFacade ruft für jedes Programm
+die Methode createBreakpoint der DebugLogicFacade auf.
+Beim hinzufügen von bedingten Breakpoints gibt das MainInterface die ID des Breakpoints
+und den vom Benutzer angegebenen Ausdruck an die ControlFacade weiter. Die Control reicht diese Informationen
+ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitpunkt auswertet.
 
-...
 \newpage
 \subsection{AF40: Hinzufügen von Watch-Expressions}
 \begin{figure}[!h]
@@ -376,8 +384,13 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
 \caption{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{figure}
+Dieser Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
+Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
+die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
+er die Bereichsbindung angibt, wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
+Auch beim Löschen einer Watch-Expression über das entsprechende Menü der Benutzeroberfläche, erhält die
+DebugLogic diese Information über die Control und stoppt das Auswerten dieser Watch-Expression.
 
-...
 \newpage
 \subsection{AF50: Programme debuggen}
 \begin{figure}[!h]
@@ -385,8 +398,14 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
 \caption{Sequenzdiagramm: Debuggen von Programmen}
 \end{figure}
+Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen.
+Hierbei werden zuvor Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
+Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die Control startet 
+den DebugLauf der DebugLogic.
+Wenn der Benutzer durch Weiter oder Schritt durch den DebugLauf navigiert, werden diese Befehle über
+die Control an die DebugLogic weitergegeben. Die Schritte werden von der DebugLogic ausgeführt, und anschließend
+wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
 
-...
 \newpage
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
