@@ -1,4 +1,4 @@
-\documentclass[parskip=full]{scrartcl}
+﻿\documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -297,9 +297,15 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
 \caption{Sequenzdiagramm: Erster Programmaufruf}
-\end{figure}
+\end{figure
+Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
+Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
+die DebugLogicFacade erstellt.
+Die ControlFacade und DebugLogicFacade erstellen intern Instanzen der Klassen ihrer Pakete. \\
+Die GUIFacade wird bei diesem Prozess bis zur DebugLogic weitergereicht, um dort als Observer angemeldet werden
+zu können. Wird später dann zum Beispiel ein Breakpoint hinzugefügt, wird die GUIFacade benachrichtigt und
+kann sich updaten.
 
-...
 \newpage
 \subsection{Konfigurationsdatei laden}
 \begin{figure}[!h]
@@ -307,8 +313,15 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
 \caption{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
 \end{figure}
+Wählt der Benutzer über den Menpeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus,
+gibt das UserInterface diesen Befehl an die Control weiter, welche ein Configuration Objekt vom FileHandler 
+erhält. \\
+Die Control ruft anschließend Methoden der GUIFacade auf, um die Programmtexte, Eingabevariablen und
+die im Variableninspektor anzuzeigende Variablen anzuzeigen. Außerdem ruft die Control
+Mathoden der DebugLogicFacade auf, um für jedes Programm die Breakpoints, Watch-Expressions und
+Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als Observer benachrichtigt und
+kann diese ebenfalls anzeigen
 
-...
 \newpage
 \subsection{Konfigurationsdatei speichern}
 \begin{figure}[!h]
