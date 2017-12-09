@@ -1,0 +1,2604 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>2</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>614</x>
+      <y>112</y>
+      <w>48</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>TraceIterator
+--
+
+--
+getIterator(): TraceIterator
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>192</x>
+      <y>136</y>
+      <w>90</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>GenerationController
+--
+Map&lt;String,RoutineCommand&gt; routines
+Stack&lt;Scope&gt; stack
+--
++generateTrace(String text): TraceIterator
++getCurrentScope():Scope
++pushScope(Scope scope)
++popScope():Scope scope //Konvention
++setReturnValue(TermValue value)
++getReturnValue():TermValue
++getRoutineRootCommand(String routine): RoutineCommand
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>334</x>
+      <y>114</y>
+      <w>54</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>CommandGenerationVisitor
+--
+
+--
++visit(ParseTree t):Command
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>426</x>
+      <y>156</y>
+      <w>62</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>/Command/
+--
+
+--
+/+run(): List&lt;TraceState&gt; /
+
+
+TODO: Konstruktor nimmt GenerationController entgegen
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>548</x>
+      <y>112</y>
+      <w>42</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>Trace
+--
+
+--
+getIterator(): TraceIterator
+
+TODO: Rest des Patterns...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>126</y>
+      <w>58</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+calls &gt;
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;110.0;180.0;110.0;180.0;10.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>126</y>
+      <w>30</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>534</x>
+      <y>176</y>
+      <w>68</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>TraceState
+--
+- Map&lt;String, TermValue&gt; vars
+--
++getValueOf(String identifier): TermValue
++getPostion(): TracceStatePosition
++getLineNumber(): int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>566</x>
+      <y>148</y>
+      <w>8</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>386</x>
+      <y>138</y>
+      <w>44</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m2=*
+creates &gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;100.0;200.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>394</x>
+      <y>234</y>
+      <w>52</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>Assignment
+--
+- identifier :String
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>226</y>
+      <w>50</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>WhileCommand
+--
+
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>426</x>
+      <y>192</y>
+      <w>30</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;130.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>192</y>
+      <w>52</w>
+      <h>38</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;240.0;130.0;240.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>178</y>
+      <w>40</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+r2=children</panel_attributes>
+    <additional_attributes>120.0;340.0;180.0;340.0;180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>106</x>
+      <y>186</y>
+      <w>44</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>AntlrParser.ParseTree
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>218</x>
+      <y>60</y>
+      <w>58</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>Some Class of Debugger
+bg=#00AAFF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>148</x>
+      <y>178</y>
+      <w>86</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+processes v
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>246</x>
+      <y>64</y>
+      <w>14</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+call v</panel_attributes>
+    <additional_attributes>10.0;360.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>304</x>
+      <y>234</y>
+      <w>42</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>Declaration
+--
+- identifier: String
+
+--
+run(): List&lt;TraceState&gt;
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>278</y>
+      <w>20</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+Type
+--
+NULL
+INT
+LONG
+FLOAT
+DOUBLE
+CHAR
+BOOLEAN</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>326</x>
+      <y>254</y>
+      <w>6</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>556</x>
+      <y>304</y>
+      <w>20</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>/Condition/
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>322</x>
+      <y>354</y>
+      <w>20</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>/Term/
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>254</y>
+      <w>86</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>10.0;510.0;410.0;510.0;410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>602</x>
+      <y>220</y>
+      <w>32</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+TraceStatePosition
+--
+AFTERRETURN
+AFTERFUNCCALL</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>202</y>
+      <w>22</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>288</y>
+      <w>50</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>IfCommand
+--
+
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>234</y>
+      <w>42</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>DeclarationAssignment
+--
+- identifier: String
+
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>254</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>10.0;500.0;10.0;370.0;180.0;370.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>338</x>
+      <y>254</y>
+      <w>22</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;150.0;90.0;150.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>326</x>
+      <y>174</y>
+      <w>62</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Scope
+--
+Map&lt;String,TermValue&gt; values
+Map&lt;String,Type&gt;  types
+Map&lt;String,TermValue[][][]&gt;  
+-returnValue: TermValue
+-expectedReturnType: Type
+-id: int
+-routineFinished: boolean
+--
+getValue ... </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>76</x>
+      <y>116</y>
+      <w>104</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>1. Phase: Alle Routinen trennen und Rückgabetyp speichern
+2. Phase: Fuer jede Routine wird CommandBaum erzeugt
+3. Phase: Stack aus Scopes: Mainbaum ausfuehren, dieser holt
+sich bei Funktionsaufruf den entsprechenden Funktionsbaum. Daten holt er aus dem currentScope.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>160</y>
+      <w>150</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-&gt;
+m2=*
+r1=controller
+m1=1
+controlls &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;730.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>262</x>
+      <y>80</y>
+      <w>314</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+creates &gt;
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>1540.0;160.0;1540.0;20.0;10.0;20.0;10.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>192</y>
+      <w>18</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;420.0;70.0;420.0;70.0;480.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>482</x>
+      <y>252</y>
+      <w>88</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;420.0;130.0;420.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>178</y>
+      <w>40</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+r2=children</panel_attributes>
+    <additional_attributes>120.0;620.0;180.0;620.0;180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>340</y>
+      <w>50</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>IfElseCommand
+--
+
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>178</y>
+      <w>40</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+r2=children</panel_attributes>
+    <additional_attributes>120.0;890.0;180.0;890.0;180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>192</y>
+      <w>18</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;700.0;70.0;700.0;70.0;740.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>508</x>
+      <y>306</y>
+      <w>52</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>508</x>
+      <y>310</y>
+      <w>62</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;250.0;290.0;250.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>258</x>
+      <y>234</y>
+      <w>42</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>ReturnCommand
+--
+- identifier: String
+
+--
+run(): List&lt;TraceState&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>278</x>
+      <y>254</y>
+      <w>56</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>250.0;500.0;250.0;370.0;10.0;370.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>212</x>
+      <y>234</y>
+      <w>44</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>RoutineCall
+--
+- routineName: String
+- arguments: List&lt;Term&gt;
+--
+run(): List&lt;TraceState&gt;
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>230</x>
+      <y>192</y>
+      <w>226</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1110.0;10.0;1110.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>276</x>
+      <y>192</y>
+      <w>180</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>880.0;10.0;880.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>322</x>
+      <y>192</y>
+      <w>134</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>650.0;10.0;650.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>368</x>
+      <y>192</y>
+      <w>88</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>420.0;10.0;420.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>168</x>
+      <y>274</y>
+      <w>80</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>RoutineCommand c = controller.getRoutineRootCommand(routineName);
+c.setArgs(arguments)
+List&lt;TraceStates&gt; l = c.run()
+scope.setReturnValue(controller.getReturnValue())
+return l;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>446</x>
+      <y>384</y>
+      <w>64</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>RoutineCommand
+--
+--
++ run():List&lt;TraceState&gt;
++ setArgs(List&lt;Term&gt;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>214</x>
+      <y>248</y>
+      <w>44</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;100.0;200.0;100.0;200.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>412</x>
+      <y>92</y>
+      <w>132</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>
+Alle Commands muessen vor Ausfuehrung pruefen, ob im aktuellen Scope bereits routineFinished auf true ist.
+Wenn dies der Fall ist, fuehren sie sich nicht aus(also geben leere liste zurueck)
+
+Zusaetzlich muessen Commands bei Ausfuehrung 
+ihre Typrichtigkeit pruefen.
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>486</x>
+      <y>178</y>
+      <w>40</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+r2=children</panel_attributes>
+    <additional_attributes>120.0;1060.0;180.0;1060.0;180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>192</y>
+      <w>6</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;960.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>172</y>
+      <w>50</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=*
+m1=1
+r2=stack</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>386</x>
+      <y>182</y>
+      <w>44</w>
+      <h>10</h>
+    </coordinates>
+    <panel_attributes>lt=-
+&lt; knows
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;20.0;200.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>204</x>
+      <y>316</y>
+      <w>70</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>setzt routineFinished auf true
+controller.setReturnValue(Term.evaluate())
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>258</x>
+      <y>250</y>
+      <w>6</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>450</x>
+      <y>414</y>
+      <w>70</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Argumente holen aus altem Scope
+ScopeAnlegen
+ausfuehren
+Scope weglegen und pruefen, ob korrekt returned wurde</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>390</y>
+      <w>6</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>474</x>
+      <y>118</y>
+      <w>6</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=().</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>178</x>
+      <y>120</y>
+      <w>30</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>722</x>
+      <y>172</y>
+      <w>120</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>ConditionGenerationVisitor
+--
+--
++visitEqualComp(EqualCompContext ctx): Condition
++visitMoreComp(MoreCompContext ctx): Condition
++visitMoreEqualComp(MoreEqualCompContext ctx): Condition
++visitLessComp(LessCompContext ctx): Condition
++visitLessEqualComp(LessEqualCompContext ctx): Condition
++visitNotEqualComp(NotEqualCompContext ctx): Condition
++visitConstantCondition(ConstantConditionContext ctx): Condition
++visitAndCondition(AndConditionContext ctx): Condition
++visitOrCondition(OrConditionContext ctx): Condition
++visitNotCondition(NotConditionContext ctx): Condition
++visitIdCondition(IdConditionContext ctx): Condition
++visitArrayAccessCondition(ArrayAccessConditionContext ctx): Condition
++visitComparisonCondition(ComparisonConditionContext ctx): Condition </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>630</y>
+      <w>76</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>EqualComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>674</x>
+      <y>592</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>LessComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>556</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>LessEqualComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>592</y>
+      <w>76</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>MoreComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>556</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>MoreEqualComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>630</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>NotEqualComparison
+--
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean
+
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>634</x>
+      <y>530</y>
+      <w>142</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;690.0;80.0;690.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>572</x>
+      <y>530</y>
+      <w>68</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;100.0;10.0;100.0;10.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>556</x>
+      <y>530</y>
+      <w>84</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>400.0;10.0;400.0;460.0;10.0;460.0;10.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>634</x>
+      <y>530</y>
+      <w>86</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;460.0;410.0;460.0;410.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>634</x>
+      <y>530</y>
+      <w>66</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;310.0;100.0;310.0;310.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>494</x>
+      <y>530</y>
+      <w>146</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>710.0;10.0;710.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>512</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>/Comparison/
+--
+--
++Comparison(Term leftOperand, Term rightOperand)
+/+evaluate(List&lt;TraceState&gt; states): boolean/
+/+evaluate(Scope currentScope): boolean/
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>908</x>
+      <y>174</y>
+      <w>104</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>TermGenerationVisitor
+--
+--
++visitAddition(AdditionContext ctx): RelationalTerm
++visitMultiplication(MultiplicationContext ctx): RelationalTerm
++visitIntLiteral(IntLiteralContext ctx): RelationalTerm
++visitBrackets(BracketsContext ctx): RelationalTerm
++visitID(IDContext ctx): RelationalTerm
++visitDivision(DivisionContext ctx): RelationalTerm
++visitSubtraction(SubtractionContext ctx): RelationalTerm
++visitModulo(ModuloContext ctx): RelationalTerm
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>718</x>
+      <y>222</y>
+      <w>64</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt; creates 
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;140.0;290.0;140.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>190</y>
+      <w>72</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+starts &gt;</panel_attributes>
+    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>974</x>
+      <y>556</y>
+      <w>78</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>ConstantTerm
+--
+--
++ConstantTerm(TermValue value)
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>976</x>
+      <y>506</y>
+      <w>82</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>/Term/
+--
+--
+/+evaluate(List&lt;TraceState&gt; states): TermValue/
+/+evaluate(Scope currentScope): TermValue/
++evaluateToString(List&lt;TraceState&gt; states): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>892</x>
+      <y>556</y>
+      <w>78</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>VariableRelationalTerm
+--
+-identifier: String
+--
++VariableTerm(String identifier)
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>6</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>950</x>
+      <y>526</y>
+      <w>78</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;370.0;100.0;10.0;100.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>102</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;490.0;100.0;490.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>518</y>
+      <w>90</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2
+r2=left, right (children)</panel_attributes>
+    <additional_attributes>430.0;160.0;430.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>610</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>DivisionTerm
+--
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>630</y>
+      <w>94</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>ModuloTerm
+--
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>590</y>
+      <w>104</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>MultiplicationTerm
+--
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>570</y>
+      <w>104</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>SubtractionTerm
+--
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>520</y>
+      <w>136</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>570.0;300.0;660.0;300.0;660.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>520</y>
+      <w>136</w>
+      <h>82</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>570.0;390.0;660.0;390.0;660.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>520</y>
+      <w>136</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>530.0;470.0;660.0;470.0;660.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>520</y>
+      <w>136</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>520.0;620.0;660.0;620.0;660.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>48</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;280.0;220.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>48</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;360.0;220.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>48</w>
+      <h>92</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;440.0;220.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>48</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;580.0;220.0;580.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>892</x>
+      <y>582</y>
+      <w>78</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>VariableTerm
+--
+-identifier: String
+--
++VariableTerm(String identifier)
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>884</x>
+      <y>526</y>
+      <w>144</w>
+      <h>74</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>700.0;10.0;700.0;100.0;10.0;100.0;10.0;350.0;40.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>892</x>
+      <y>616</y>
+      <w>50</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>VariableTerm("x") is used during TraceGeneration
+and VarableRelationalTerm ("A.x")
+is used for WatchExpressions and BBP 
+bg=gray
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>550</y>
+      <w>98</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>AdditionTerm
+--
+--
++AdditionTerm(Term left, Term right)
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>694</x>
+      <y>518</y>
+      <w>286</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=2</panel_attributes>
+    <additional_attributes>10.0;10.0;1410.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>212</y>
+      <w>20</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+creates v
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1092</x>
+      <y>716</y>
+      <w>68</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>CharValue
+--
+- value: char
+--
++getValue(): char
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>806</x>
+      <y>716</y>
+      <w>70</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>FloatValue
+--
+- value: float
+--
++getValue(): float
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>878</x>
+      <y>716</y>
+      <w>68</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>IntValue
+--
+- value: int
+--
++getValue(): int
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>948</x>
+      <y>716</y>
+      <w>68</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>LongValue
+--
+- value: long
+--
++getValue(): long
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>980</x>
+      <y>642</y>
+      <w>68</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+TermValue
+--
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1018</x>
+      <y>716</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>DoubleValue
+--
+- value: double 
+--
++getValue():double
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>838</x>
+      <y>690</y>
+      <w>180</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>880.0;10.0;880.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>908</x>
+      <y>690</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>530.0;10.0;530.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>690</y>
+      <w>38</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;80.0;10.0;80.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1012</x>
+      <y>690</y>
+      <w>44</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;200.0;80.0;200.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1012</x>
+      <y>690</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;580.0;80.0;580.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1012</x>
+      <y>690</y>
+      <w>188</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;920.0;80.0;920.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1162</x>
+      <y>716</y>
+      <w>68</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>BooleanValue
+--
+- value: boolean
+--
++getValue(): boolean
++add(TermValue operand): TermValue
++mult(TermValue operand): TermValue
++div(TermValue operand): TermValue
++modulo(TermValue operand): TermValue
++sub(TermValue operand): TermValue
++moreEqual(TermValue operand): boolean
++more(TermValue operand): boolean
++lessEqual(TermValue operand): boolean
++less(TermValue operand): boolean
++equal(TermValue operand): boolean
++toString(): String
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1012</x>
+      <y>574</y>
+      <w>14</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=value</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>856</x>
+      <y>120</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>WatchExpression
+--
+- scopeStarts: List&lt;int&gt;
+- scopeEnds: List&lt;int&gt;
+--
++WatchExpression(String specifier)
++evaluate(List&lt;TraceState&gt; states): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>670</x>
+      <y>124</y>
+      <w>78</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ConditionalBreakpoint
+--
+- scopeStarts: List&lt;int&gt;
+- scopeEnds: List&lt;int&gt;
+--
++ConditionalBreakpoint(String specifier)
++evaluate(List&lt;TraceState&gt; states): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>146</y>
+      <w>8</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>146</y>
+      <w>68</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+starts &gt;</panel_attributes>
+    <additional_attributes>320.0;130.0;320.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>80</y>
+      <w>92</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>Some class of Debugger
+bg=#00AAFF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>708</x>
+      <y>84</y>
+      <w>68</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;140.0;320.0;140.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>770</x>
+      <y>84</y>
+      <w>126</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+creates</panel_attributes>
+    <additional_attributes>610.0;180.0;610.0;140.0;10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>782</x>
+      <y>404</y>
+      <w>86</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+Expression
+--
+--
++evaluateToString(List&lt;TraceState&gt; states): String
++evaluateToString(Scope currentScope): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>886</x>
+      <y>142</y>
+      <w>22</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+m2=    expression</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>246</y>
+      <w>20</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>/Condition/
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>946</x>
+      <y>240</y>
+      <w>20</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>/Term/
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>876</x>
+      <y>168</y>
+      <w>20</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>Expression
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>422</y>
+      <w>198</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0;970.0;190.0;970.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>524</x>
+      <y>444</y>
+      <w>120</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>/Condition/
+--
+--
+/+evaluate(List&lt;TraceState&gt; states): boolean/
+/+evaluate(Scope currentScope): boolean/
++evaluateToString(List&lt;TraceState&gt; states): String
++evaluateToString(Scope currentScope): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>578</x>
+      <y>464</y>
+      <w>62</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0;290.0;150.0;290.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>292</x>
+      <y>94</y>
+      <w>50</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>ConditionGenerationVisitor
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>354</x>
+      <y>94</y>
+      <w>50</w>
+      <h>8</h>
+    </coordinates>
+    <panel_attributes>TermGenerationVisitor
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>100</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+starts ^</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>100</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+starts ^</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>518</y>
+      <w>102</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>AndCondition
+--
+--
++AndCondition(Condition leftOperand, Condition rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>544</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>OrCondition
+--
+--
++OrCondition(Condition leftOperand, Condition rightOperand)
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>492</y>
+      <w>102</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>NotCondition
+--
+--
++NotCondition(Condition operand)
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>512</y>
+      <w>80</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>ConstantCondition
+--
+- value: boolean
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>404</x>
+      <y>512</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>VariableCondition
+--
+- identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>422</y>
+      <w>250</w>
+      <h>26</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>1230.0;10.0;1230.0;40.0;10.0;50.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>512</y>
+      <w>80</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>ArrayAccessCondition
+--
+- identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>548</y>
+      <w>20</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>/Term/
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>356</x>
+      <y>528</y>
+      <w>16</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=indices</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>154</x>
+      <y>234</y>
+      <w>52</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>ArrayElementAssignment
+--
+- identifier :String
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>234</y>
+      <w>48</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>ArrayDeclaration
+--
+- identifier :String
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>100</x>
+      <y>234</y>
+      <w>52</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>ArrayDeclarationAssignment
+--
+- identifier :String
+--
+run(): List&lt;TraceState&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>176</x>
+      <y>192</y>
+      <w>280</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1380.0;10.0;1380.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>124</x>
+      <y>192</y>
+      <w>332</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1640.0;10.0;1640.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>192</y>
+      <w>386</w>
+      <h>46</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1910.0;10.0;1910.0;130.0;10.0;130.0;10.0;210.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>318</y>
+      <w>56</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>/Term/
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>254</y>
+      <w>30</w>
+      <h>74</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=dimensions</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0;130.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>100</x>
+      <y>254</y>
+      <w>22</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=dimensions</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>254</y>
+      <w>14</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=value</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>254</y>
+      <w>52</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=     value</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;70.0;40.0;70.0;40.0;330.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>254</y>
+      <w>38</w>
+      <h>68</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=indices</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;60.0;10.0;60.0;10.0;320.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>442</x>
+      <y>464</y>
+      <w>142</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>690.0;10.0;690.0;150.0;10.0;150.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>576</y>
+      <w>80</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>RelationalArrayAccessCondition
+--
+- identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>404</x>
+      <y>534</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>RelationalVariableCondition
+--
+- identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): boolean
++evaluate(Scope currentScope): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>464</y>
+      <w>56</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>260.0;10.0;260.0;150.0;10.0;150.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>464</y>
+      <w>104</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>500.0;10.0;500.0;150.0;30.0;150.0;30.0;400.0;10.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>356</x>
+      <y>552</y>
+      <w>16</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=indices</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>464</y>
+      <w>234</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1150.0;10.0;1150.0;150.0;10.0;150.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>464</y>
+      <w>194</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>950.0;10.0;950.0;150.0;50.0;150.0;50.0;620.0;10.0;620.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>464</y>
+      <w>302</w>
+      <h>34</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1490.0;10.0;1490.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>464</y>
+      <w>302</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1490.0;10.0;1490.0;150.0;70.0;150.0;70.0;330.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>282</x>
+      <y>464</y>
+      <w>302</w>
+      <h>94</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1490.0;10.0;1490.0;150.0;70.0;150.0;70.0;450.0;10.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>162</x>
+      <y>458</y>
+      <w>366</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>100.0;230.0;10.0;230.0;10.0;10.0;1810.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>158</x>
+      <y>454</y>
+      <w>370</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>120.0;370.0;10.0;370.0;10.0;10.0;1830.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>152</x>
+      <y>450</y>
+      <w>376</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2</panel_attributes>
+    <additional_attributes>150.0;520.0;10.0;520.0;10.0;10.0;1860.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1066</x>
+      <y>652</y>
+      <w>94</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>NegativeTerm
+--
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>508</y>
+      <w>142</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=child</panel_attributes>
+    <additional_attributes>520.0;760.0;690.0;760.0;690.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>526</y>
+      <w>48</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0;180.0;100.0;180.0;680.0;220.0;680.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>574</y>
+      <w>16</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=indices</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>814</x>
+      <y>598</y>
+      <w>20</w>
+      <h>6</h>
+    </coordinates>
+    <panel_attributes>/Term/
+
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>602</y>
+      <w>16</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1..3
+r2=indices</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>788</x>
+      <y>554</y>
+      <w>78</w>
+      <h>22</h>
+    </coordinates>
+    <panel_attributes>ArrayAccessRelationalTerm
+--
+-identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>788</x>
+      <y>626</y>
+      <w>78</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>ArrayAccessTerm
+--
+-identifier: String
+--
++evaluate(List&lt;TraceState&gt; states): TermValue
++evaluate(Scope currentScope): TermValue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>526</y>
+      <w>164</w>
+      <h>118</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>800.0;10.0;800.0;100.0;50.0;100.0;50.0;570.0;10.0;570.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>526</y>
+      <w>206</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>1010.0;10.0;1010.0;100.0;10.0;100.0;10.0;140.0</additional_attributes>
+  </element>
+</diagram>

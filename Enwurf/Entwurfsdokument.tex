@@ -1,4 +1,4 @@
-\documentclass[parskip=full]{scrartcl}
+﻿\documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -155,36 +155,59 @@ Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und
 \subparagraph{Schnittstellen}
 Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
-Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
-Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
-Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.RelationalExpressionGenerator} bereitgestellte abstrakte Repräsentationen.
-\subsubsection{Trace Generator}
-\subparagraph{Aufgaben}
-Dieses Subpaket nimmt den Quelltext eines WLang-Programms entgegen und hat die Aufgabe, einen Pfad über den gesamten Programmfluss dessen zu erzeugen, sodass später darüber iteriert werden kann. Dazu gehört auch das Prüfen auf semantische Fehler, etwa das Fehlen eines return Statements.
+%Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
+%Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
+%Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.RelationalExpressionGenerator} bereitgestellte abstrakte Repräsentationen.
+
+
+Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
+Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+
+\subparagraph{Interpreter}
+Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
+Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Fehlen eines return-Statements.
+
+%TODO ist Zeichenketten hier schon präzise genug? Wie sehen die Zeichenketten aus, wenn sie aus Antlr herauskommen? Weiter oben heißt es nämlich, dass alles vom User erst in Antlr geparst wird.
+
 \subparagraph{Schnittstellen}
 \begin{itemize}
 \item Angebotene Funktionalität:\\
-Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.
+Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung. Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
+
 \item Genutzte Funktionalität:\\
 Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
 \end{itemize}
 
-%TODO Schnittstellen in Form von Facade
 \subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
-\subsubsection{Relational Expression Generator}
-\subparagraph{Aufgaben}
-Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
-\subparagraph{Schnittstellen}
-\begin{itemize}
-\item Angebotene Funktionalität:\\
-Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
-\item Genutzte Funktionalität:\\
-Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
-\end{itemize}
-%TODO Schnittstellen in Form von Facade
-\subparagraph{Benutztrelation} 
-Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen.
+
+%\subsubsection{TraceGenerator}
+%\subparagraph{Aufgaben}
+%Dieses Subpaket nimmt den Quelltext eines WLang-Programms entgegen und hat die Aufgabe, einen Pfad über den gesamten Programmfluss dessen zu erzeugen, sodass später darüber iteriert werden kann. Dazu gehört auch das Prüfen auf semantische Fehler, etwa das Fehlen eines return-Statements. \\
+%\subparagraph{Schnittstellen}
+%\begin{itemize}
+%\item Angebotene Funktionalität:\\
+%Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung.
+%\item Genutzte Funktionalität:\\
+%Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+%\end{itemize}
+%
+%%TODO Schnittstellen in Form von Facade
+%\subparagraph{Benutztrelation} 
+%Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
+%\subsubsection{Relational Expression Generator}
+%\subparagraph{Aufgaben}
+%Dieses Subpaket nimmt Zeichenketten, die Watch-Expressions und bedingte Breakpoints beschreiben, entgegen und hat die Aufgabe, diese zu interpretieren. Dazu wird in diesem Paket eine abstrakte Darstellung dieser erzeugt.
+%\subparagraph{Schnittstellen}
+%\begin{itemize}
+%\item Angebotene Funktionalität:\\
+%Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
+%\item Genutzte Funktionalität:\\
+%Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
+%\end{itemize}
+%%TODO Schnittstellen in Form von Facade
+%\subparagraph{Benutztrelation} 
+%Das Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für Watch-Expressions und Bedingte Breakpoints erzeugen zu lassen. Auf dieser Vorraussetzung baut die Arbeit des Subpakets auf.
 \subsubsection{Antlr Parser}
 \subparagraph{Aufgaben}
 Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der in \ref{FormSpez} gegebenen Grammatik.
@@ -312,40 +335,109 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
 \subsection{Patterns im Paket File Handler}
+
+\newpage
 \section{Charakteristische Abläufe}
-Beschreibung von charakteristischen Abläufen anhand von Sequenzdiagrammen. Beispielswei-
-se bieten sich Testszenarien aus dem Pflichtenheft hier an. Wir empfehlen Sequenzdiagramme
-möglichst früh zu erstellen, denn dabei werden die Schnittstellen zwischen Packages und Klas-
-sen klar. 
-Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
+In diesem Kapitel werden charakteristische Abläufe des Produkts, wie der erste Programmaufruf und die
+Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
+ %TODO Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
 
 \subsection{Erster Programmaufruf}
-\subsection{AF10:}
-\begin{figure}
+\begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
+\caption{Sequenzdiagramm: Erster Programmaufruf}
+\end{figure
+Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
+Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
+die DebugLogicFacade erstellt.
+Die ControlFacade und DebugLogicFacade erstellen intern Instanzen der Klassen ihrer Pakete. \\
+Die GUIFacade wird bei diesem Prozess bis zur DebugLogic weitergereicht, um dort als Observer angemeldet werden
+zu können. Wird später dann zum Beispiel ein Breakpoint hinzugefügt, wird die GUIFacade benachrichtigt und
+kann sich updaten.
+
+\newpage
+\subsection{Konfigurationsdatei laden}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
+\caption{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
 \end{figure}
-\subsection{AF20:}
-\begin{figure}
+Wählt der Benutzer über den Menpeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus,
+gibt das UserInterface diesen Befehl an die Control weiter, welche ein Configuration Objekt vom FileHandler 
+erhält. \\
+Die Control ruft anschließend Methoden der GUIFacade auf, um die Programmtexte, Eingabevariablen und
+die im Variableninspektor anzuzeigende Variablen anzuzeigen. Außerdem ruft die Control
+Mathoden der DebugLogicFacade auf, um für jedes Programm die Breakpoints, Watch-Expressions und
+Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als Observer benachrichtigt und
+kann diese ebenfalls anzeigen
+
+\newpage
+\subsection{Konfigurationsdatei speichern}
+\begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
+\caption{Sequenzdigramm: Speichern einer Konfigurationsdatei}
 \end{figure}
-\subsection{AF30:}
-\begin{figure}
+Möchte der Benutzer eine Konfigurationsdaatei speicher, reicht das UserInterface den Speicherort
+an die ControlFacade weiter. Die Control sammelt die benötigten Daten in einer Configuration Instanz.
+Dieses Objekt wird mit dem angegebenen Speicherort an die FileHandlerFacade weitergegeben, welche 
+dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
+
+\newpage
+\subsection{AF10: Hinzufügen von Programmen}
+\begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
+\caption{Sequenzdiagramm: Hinzufügen von Programmen}
 \end{figure}
-\subsection{AF40:}
-\begin{figure}
+Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
+Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
+Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
+Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
+mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
+Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
+alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
+Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
+
+
+\newpage
+\subsection{AF20: Ändern von Programmen}
+\begin{figure}[!h]
 \centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\end{figure}
-\subsection{AF50:}
-\begin{figure}
-\centering
-\includegraphics[scale=0.5]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
+\caption{Sequenzdiagramm: Ändern von Programmen}
 \end{figure}
 
+...
+\newpage
+\subsection{AF30: Setzen von Breakpoints}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
+\caption{Sequenzdiagramm: Setzen von Breakpoints}
+\end{figure}
+
+...
+\newpage
+\subsection{AF40: Hinzufügen von Watch-Expressions}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
+\caption{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
+\end{figure}
+
+...
+\newpage
+\subsection{AF50: Programme debuggen}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
+\caption{Sequenzdiagramm: Debuggen von Programmen}
+\end{figure}
+
+...
+\newpage
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
