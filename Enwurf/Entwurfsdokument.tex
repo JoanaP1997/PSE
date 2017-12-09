@@ -1,4 +1,4 @@
-﻿\documentclass[parskip=full]{scrartcl}
+\documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -347,7 +347,7 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
 \caption{Sequenzdiagramm: Erster Programmaufruf}
-\end{figure
+\end{figure}
 Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
 Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
 die DebugLogicFacade erstellt.
@@ -459,7 +459,19 @@ wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte an
 \newpage
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
-Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
+%Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
+\subsection{Abhängikeiten}
+Das Paketdiagramm besagt, dass FileHandler und DebugLogic nicht voneinader abhängen.
+Beide werden von der Control benutzt und müssen somit korrekt implementiert sein, bevor die Control richtig funktionieren kann. Weiter führt die Control Methoden der GUIFacade aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende Control.
+Die GUI hingegen ist stark von der Control abhängig und kann ohne diese nicht korrekte Daten anzeigen.
+
+%TODO Pakete der Debuglogic aktualisieren, da noch nicht fertig
+\subsection{Implementierung}
+Die Implementierung der Hauptpakete kann durch den von Fassaden geprägten Entwurf und dem MVC-Konzept gleichzeitig geschehen. Es ist jedoch sinnvoll das Exception Paket als erstes zu implementieren, um später keine Stellen im Quelltext suchen zu müssen, an denen Fehler auftreten können.
+Weiter sollten die Unterpakete der DebugLogic entsprechend der Benutztrelation implementiert werden, also zuerst AntlrParser, Interpreter und zum Schluss der Debugger.
+Dieses Problem besteht bei den Hauptpaketen nicht, da für die Kommunikation ausschließlich Fassaden benutzt werden. Diese können zur gleichzeitigen Implementierung der Pakete Pseudoerstellt werden, d.h. die Methoden sind leer und enthalten keine bzw. nur sehr wenig Funktionalität.\\
+Der FileHandler stellt wiederum eine Ausnahme dar, da er mehrere Klassen zur Repräsentation und Interaktion zum Dateisystem bereitstellt.
+Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile gleichzeitig mit der FileHandlerFacade Klasse einsatzbereit sein.
 
 \section{Formale Spezifikation von WLang und Speicherformaten}\label{FormSpez}
 Speicherformate, Sprachdefinition(formal)
