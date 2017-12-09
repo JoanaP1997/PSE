@@ -243,9 +243,10 @@ und Methoden. Das sind Implementierungsdetails.
 \subsection{Klassen im Paket \enquote{FileHandler}}
 
 \subsubsection{Unterpaket Filehandler.Facade}
-
 \paragraph{FileHandlerFacade}
 \begin{itemize}
+\item Klassenbeschreibung: \\
+Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurationsdateien.
 \item loadConfig(File file) : ConfigurationFile \\
 Lädt die angegebene Datei als Konfigurationsdatei und gibt diese zurück.
 \item saveConfig(ConfigurationFile config) \\
@@ -258,8 +259,11 @@ Gibt alle Sprachnamen in einer Liste als String zurück.
 Gibt die zur langID passende Sprachdatei zurück, falls diese existiert,
 sonst wird eine LanguageNotFoundException geworfen.
 \end{itemize}
-\paragraph{PropertiesFile}
+
+\paragraph{ConfigurationFile}
 \begin{itemize}
+\item Klassenbeschreibung: \\
+Diese Klasse speichert eine Konfiguration des Debuggers.
 \item getSystemFile() : File \\
 Gibt ein java.io.File Objekt zurück, welchen die Datei im Dateisystem des Nutzers repräsentiert.
 \item getProgramText(int programID) : String \\
@@ -271,6 +275,52 @@ Gibt den Eingabewert von Programm programID für die Variable identifier zurück
 sonst wird null zurückgegeben.
 \item getLatestExecutionLine(int programID) : int \\
 Gibt die Position von Programm programID im Programmablaufbaum als int zurück. %TODO bessere erklärung
+\item getVariablesOfInspector(int programID) : List<String> \\
+Gibt eine Liste von variablen Namen zurück, welche im Variablen Inspektor eingeblendet sind.
+\item getWEScopeBegin(int expressionID) : List<int> \\
+Gibt eine Liste der Anfanggrenze der Bereichsintervalle für die WatchExpression expressionID zurück
+\item getWEScopeEnd(int expressionID) : List<int> \\
+Gibt eine Liste der Endgrenze der Bereichsintervalle für die WatchExpression expressionID zurück.
+\item getCBScopeBegin(int breakpointID) : List<int> \\
+Äquivalente Funktion für bedingte Breakpoints zu getWEScopeBegin
+\item getCBScopeEnd(int breakpointID) : List<int> \\
+Äquivalente Funktion für bedingte Breakpoints zu getWEScopeEnd
+\item getBreakpoints(int programID) : List<int> \\
+Gibt eine Liste der Zeilen der Breakpoints für Programm programID zurück.
+\end{itemize}
+
+\paragraph{PropertiesFile}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Diese Klasse speichert die Einstellungen des Debuggers.
+\item getSelectedLanguage() : String \\
+Gibt den SprachIdentifier der eingestellten Sprache zurück.
+\item getLastConfigurationFile() : ConfigurationFile \\
+Gibt eine Repräsentation der zuletzt aktiven Konfiguration zurück.
+\item getMaxWhileIterations() : int \\
+Gibt die eingestellte Obergrenze für Schleifendurchläufe wieder.
+\item getMaxFunctionCalls() : int \\
+Gibt die eingestelle Obergrenze für Funktionsaufrufe wieder.
+\end{itemize}
+
+\paragraph{LanguageFile}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt eine Übersetzung der GUI zu einer bestimmtem Sprache bereit.
+\item getTranslation(String textID) : String \\
+Gibt den Text (Übersetzung) zu der übergebenen textID zurück.
+\end{itemize}
+
+\paragraph{FileReader}%TODO
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedene Dateiformate.
+\end{itemize}
+
+\paragraph{FileWriter}%TODO
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate.
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
