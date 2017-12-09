@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>9</zoom_level>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>801</x>
-      <y>144</y>
-      <w>297</w>
-      <h>171</h>
+      <x>656</x>
+      <y>128</y>
+      <w>264</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
@@ -25,10 +26,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>891</x>
-      <y>378</y>
-      <w>459</w>
-      <h>396</h>
+      <x>736</x>
+      <y>336</y>
+      <w>408</w>
+      <h>352</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -64,10 +65,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>63</x>
-      <y>387</y>
-      <w>549</w>
-      <h>342</h>
+      <x>0</x>
+      <y>344</y>
+      <w>488</w>
+      <h>304</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -99,10 +100,10 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
-      <y>243</y>
-      <w>216</w>
-      <h>99</h>
+      <x>280</x>
+      <y>216</y>
+      <w>192</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -114,10 +115,10 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>333</y>
-      <w>27</w>
-      <h>72</h>
+      <x>368</x>
+      <y>296</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -125,10 +126,10 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>927</x>
-      <y>54</y>
-      <w>90</w>
-      <h>54</h>
+      <x>768</x>
+      <y>48</y>
+      <w>80</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>/Observer/
 --
@@ -138,10 +139,10 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>657</x>
-      <y>315</y>
-      <w>117</w>
-      <h>63</h>
+      <x>528</x>
+      <y>280</y>
+      <w>104</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>for all o in observers {
 	o.update()
@@ -151,10 +152,10 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>297</y>
-      <w>234</w>
-      <h>63</h>
+      <x>336</x>
+      <y>264</y>
+      <w>208</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>240.0;50.0;10.0;10.0</additional_attributes>
@@ -162,10 +163,10 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>954</x>
-      <y>99</y>
-      <w>27</w>
-      <h>63</h>
+      <x>792</x>
+      <y>88</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -173,10 +174,10 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>63</y>
-      <w>468</w>
-      <h>198</h>
+      <x>368</x>
+      <y>56</y>
+      <w>416</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
@@ -187,10 +188,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1089</x>
-      <y>234</y>
-      <w>99</w>
-      <h>162</h>
+      <x>912</x>
+      <y>208</y>
+      <w>88</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 </panel_attributes>
@@ -199,13 +200,45 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>549</y>
-      <w>306</w>
-      <h>36</h>
+      <x>480</x>
+      <y>488</y>
+      <w>272</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
     <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1288</x>
+      <y>440</y>
+      <w>320</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>FileHandlerFacade
+--
+--
++ loadConfig(File file) : ConfigurationFile
++ saveConfig(ConfigurationFile config)
+
++ getPropertiesFile() : PropertiesFile
+
++ getLanguages() : List&lt;String&gt;
++ getLanguageFile(String langID) : LanguageFile</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1136</x>
+      <y>488</y>
+      <w>168</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
