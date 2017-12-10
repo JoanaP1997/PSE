@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1044</x>
-      <y>468</y>
+      <x>1215</x>
+      <y>432</y>
       <w>189</w>
       <h>171</h>
     </coordinates>
@@ -17,8 +17,8 @@ SuggestionStrategy
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>855</x>
-      <y>783</y>
+      <x>1026</x>
+      <y>747</y>
       <w>261</w>
       <h>90</h>
     </coordinates>
@@ -29,8 +29,8 @@ SuggestionStrategy
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>981</x>
-      <y>630</y>
+      <x>1152</x>
+      <y>594</y>
       <w>171</w>
       <h>171</h>
     </coordinates>
@@ -40,21 +40,51 @@ SuggestionStrategy
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>468</y>
-      <w>189</w>
-      <h>171</h>
+      <x>396</x>
+      <y>405</y>
+      <w>585</w>
+      <h>468</h>
     </coordinates>
     <panel_attributes>DebugControl
 --
-</panel_attributes>
+- watchExpressions : List&lt;Interpreter.WatchExpression&gt;
+- condBreakpoints : List&lt;Interpreter.ConditionalBreakpoints&gt;
+- breakpoints : List&lt;Breakpoint&gt;
+- list_traceIterator : List&lt;Interpreter.TraceIterator&gt;
+
+_+ STEP_NORMAL = 0 : int_
+_+ STEP_OUT = 1 : int_
+_+ STEP_OVER = 2 : int_
+_+ STEP_BACK = 3 : int_
+--
++ launchRun(List&lt;ProgramInput&gt; programs)
++ step(int type)
++ singleStep(int programID)
++ continue()
+
++ createWatchExpression(int id, String expr)
++ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
++ deleteWatchExpression(int id)
+
++ createCondBreakpoint(int id, String cond)
++ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteCondBreakpoint(int id)
+
++ createBreakpoint(int program, int line)
++ deleteBreakpoint(int program, int line)
+
++ getProgramCounter(): List&lt;int&gt;
+
++ setMaximumIterations(int i);
++ setMaximumFunctionCalls(int i);
++ deleteAllBreakpoints()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1179</x>
-      <y>774</y>
+      <x>1350</x>
+      <y>747</y>
       <w>261</w>
       <h>90</h>
     </coordinates>
@@ -65,19 +95,19 @@ SuggestionStrategy
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1125</x>
-      <y>630</y>
+      <x>1296</x>
+      <y>594</y>
       <w>180</w>
-      <h>162</h>
+      <h>171</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0;180.0;80.0;180.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;180.0;80.0;180.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
-      <y>270</y>
+      <x>738</x>
+      <y>216</y>
       <w>324</w>
       <h>108</h>
     </coordinates>
@@ -90,8 +120,8 @@ SuggestionStrategy
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>909</x>
-      <y>216</y>
+      <x>891</x>
+      <y>162</y>
       <w>27</w>
       <h>72</h>
     </coordinates>
@@ -101,8 +131,8 @@ SuggestionStrategy
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>126</y>
+      <x>792</x>
+      <y>72</y>
       <w>216</w>
       <h>99</h>
     </coordinates>
@@ -116,32 +146,32 @@ SuggestionStrategy
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>702</x>
-      <y>369</y>
+      <x>684</x>
+      <y>315</y>
       <w>216</w>
-      <h>117</h>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 delegates</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;50.0;220.0;50.0;220.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;50.0;220.0;50.0;220.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>909</x>
-      <y>369</y>
-      <w>234</w>
-      <h>117</h>
+      <x>891</x>
+      <y>315</y>
+      <w>423</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 delegates</panel_attributes>
-    <additional_attributes>240.0;110.0;240.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>450.0;130.0;450.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>288</y>
+      <x>342</x>
+      <y>234</y>
       <w>252</w>
       <h>81</h>
     </coordinates>
@@ -156,8 +186,34 @@ delegates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>315</y>
+      <x>585</x>
+      <y>261</y>
+      <w>171</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>450</y>
+      <w>252</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>Breakpoint
+--
+--
++ getLine() : int
++ getProgramID() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>243</x>
+      <y>477</y>
       <w>171</w>
       <h>27</h>
     </coordinates>
