@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>805</x>
+      <y>455</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+SuggestionStrategy
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>700</y>
+      <w>203</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>AequivalenceSuggestionStrategy
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>581</y>
+      <w>133</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;80.0;10.0;80.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>462</x>
+      <y>455</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>DebugControl
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>693</y>
+      <w>203</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>NoninterferenceSuggestionStrategy
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>868</x>
+      <y>581</y>
+      <w>140</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;180.0;80.0;180.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>301</y>
+      <w>252</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>DebugLogicFacade
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>259</y>
+      <w>21</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>623</x>
+      <y>189</y>
+      <w>168</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>/Subject/
+--
++attach(Observer observer)
++detach(Observer observer)
++notify()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>378</y>
+      <w>168</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+delegates</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;50.0;220.0;50.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>378</y>
+      <w>182</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+delegates</panel_attributes>
+    <additional_attributes>240.0;110.0;240.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
