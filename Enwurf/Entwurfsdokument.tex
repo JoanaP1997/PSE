@@ -234,8 +234,14 @@ und Methoden. Das sind Implementierungsdetails.
 \item[Klassenbeschreibung] Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können.
 \item[Methoden]
 \begin{itemize}
-\item showProgramText(String programText, int id): ermöglicht es einen Programmtext in einem bestimmten Programmfeld (durch ID gekennzeichnet) anzuzeigen.
-\item
+\item showProgramText(String programText, int id): ermöglicht es einen Programmtext in einem bestimmten Programmfeld (durch ID gekennzeichnet) anzuzeigen
+\item reset(): ermöglicht es, alle angezeigten Elemente wieder in ihren Ursprungszustand zurückzusetzen
+\item showInput(int program, String inputVariables): ermöglicht es, die Eingabevariablen für ein bestimmtes Programm (durch ID gekennzeichnet) anzeigen zu lassen
+\item showVariables(int program, List<String> vars): ermöglicht es, die aktuelle Variablenbelegung eines ausgewählten Programms anzuzeigen
+\item update(): Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente der Benutzeroberfläche, die über die Fassade bei einem Subjekt angemeldet sind.
+\item GUIFacade(MainInterface mainInterface): Konstruktor für die Fassade. Hier wird ein sogenanntes MainInterface übergeben, welches die Grundlage der Benutzeroberfläche darstellt
+\item showError(String s): ermöglicht es, eine Fehlermeldung anzeigen zu lassen
+\item showWarning(String s): ermöglicht es eine Warnmeldung anzeigen zu lassen
 \end{itemize}
 \end{itemize}
 
