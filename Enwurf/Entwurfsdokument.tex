@@ -230,18 +230,106 @@ und Methoden. Das sind Implementierungsdetails.
 \subsection{Klassen im Paket \enquote{User Interface}}
 \paragraph{Fassade}
 \begin{itemize}
-\item[Klassenbeschreibung] Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können.
-\item[Methoden]
+\item Klassenbeschreibung: \\
+Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können.
+\item Methoden: \\
 \begin{itemize}
-\item showProgramText(String programText, int id): ermöglicht es einen Programmtext in einem bestimmten Programmfeld (durch ID gekennzeichnet) anzuzeigen
-\item reset(): ermöglicht es, alle angezeigten Elemente wieder in ihren Ursprungszustand zurückzusetzen
-\item showInput(int program, String inputVariables): ermöglicht es, die Eingabevariablen für ein bestimmtes Programm (durch ID gekennzeichnet) anzeigen zu lassen
-\item showVariables(int program, List<String> vars): ermöglicht es, die aktuelle Variablenbelegung eines ausgewählten Programms anzuzeigen
-\item update(): Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente der Benutzeroberfläche, die über die Fassade bei einem Subjekt angemeldet sind.
-\item GUIFacade(MainInterface mainInterface): Konstruktor für die Fassade. Hier wird ein sogenanntes MainInterface übergeben, welches die Grundlage der Benutzeroberfläche darstellt
-\item showError(String s): ermöglicht es, eine Fehlermeldung anzeigen zu lassen
-\item showWarning(String s): ermöglicht es eine Warnmeldung anzeigen zu lassen
+\item showProgramText(String programText, int id)\\ Ermöglicht es einen Programmtext in einem bestimmten Programmfeld (durch ID gekennzeichnet) anzuzeigen
+\item reset()\\ Ermöglicht es, alle angezeigten Elemente wieder in ihren Ursprungszustand zurückzusetzen
+\item showInput(int program, String inputVariables)\\ Ermöglicht es, die Eingabevariablen für ein bestimmtes Programm (durch ID gekennzeichnet) anzeigen zu lassen
+\item showVariables(int program, List<String> vars)\\ Ermöglicht es, die aktuelle Variablenbelegung eines ausgewählten Programms anzuzeigen
+\item update()\\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente der Benutzeroberfläche, die über die Fassade bei einem Subjekt angemeldet sind.
+\item GUIFacade(MainInterface mainInterface)\\ Konstruktor für die Fassade. Hier wird ein sogenanntes MainInterface übergeben, welches die Grundlage der Benutzeroberfläche darstellt
+\item showError(String s)\\ Ermöglicht es, eine Fehlermeldung anzeigen zu lassen
+\item showWarning(String s)\\ Ermöglicht es eine Warnmeldung anzeigen zu lassen
 \end{itemize}
+\end{itemize}
+
+\paragraph{MainInterface}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+ Das sogenannte MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten. 
+\end{itemize}
+
+\paragraph{ProgramPanel}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung.
+\end{itemize}
+
+\paragraph{CommandPanel}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein CommandPanel ist ein Singleton, welches die Buttons zur Kontrolle des Debugvorgangs anzeigt. 
+\item Methoden: \\
+\begin{itemize}
+\item getCommandPanel(): CommandPanel \\
+Gibt das aktuelle CommandPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
+\end{itemize}
+\end{itemize}
+
+\paragraph{ExpressionPanel}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen.
+\item Methoden: \\
+\begin{itemize}
+\item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des Expressionpanels, die bei einem Subjekt angemeldet sind.
+\end{itemize}
+\end{itemize}
+
+\paragraph{WatchExpressionPanel}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein WatchExpressionPanel ist ein ExpressionPanel, welches Watch-Expressions anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
+\item Methoden :\\
+\begin{itemize}
+\item getWatchExpressionPanel(): WatchExpressionPanel \\
+Gibt das aktuelle WatchExpressionPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
+\end{itemize}
+\end{itemize}
+
+\paragraph{CondBreakpointPanel}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein CondBreakpointPanel ist ein ExpressionPanel, welches konditionale Breakpoints anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
+\item Methoden :\\
+\begin{itemize}
+\item getConBreakpointPanel(): CondBreakpointPanel \\
+Gibt das aktuelle CondBreakpointPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
+\end{itemize}
+\end{itemize}
+
+\paragraph{DebuggerPopUp}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein DebuggerPopUp ist ein JDialog, welcher auf diese Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Die Klasse DebuggerPopUp stellt ein Dekorierer Entwurfsmuster mit JDialog dar.
+%Methoden: show()?
+\item Methoden: \\
+\end{itemize}
+
+\paragraph{ErrorPopUp}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein ErrorPopUp ist ein DebuggerPopUp, welches eine Fehlermeldung anzeigt.
+\end{itemize}
+
+\paragraph{WarningPopUp}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein WarningPopUp ist ein DebuggerPopUp, welches eine Warnung anzeigt, welche ignoriert werden kann, ohne die Funktionalität des Produkts zu schmälern.
+\end{itemize}
+
+\paragraph{ArrayValuePopUp}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein ArrayValuePopUp ist ein DebuggerPopUp, welches die Werte eines Arrays anzeigt. Es kann vom Variableninspektor des ProgramPanels aufgerufen werden.
+\end{itemize}
+
+\paragraph{VariableSuggestionPopUp}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um darin z.B. Art und Intervall der Variablenvorschläge eingeben zu können.
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{Control}}
