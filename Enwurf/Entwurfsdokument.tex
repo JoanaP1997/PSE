@@ -244,7 +244,6 @@ und Methoden. Das sind Implementierungsdetails.
 
 \subsubsection{Unterpaket Interpreter}
 
-\subsubsection{Unterpaket AntlrParser}
 
 \subsection{Klassen im Paket \enquote{DebugLogic}}
 
@@ -335,7 +334,7 @@ Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schre
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
 ...
-\section{Verwendete Design Patterns}
+\section{Verwendete Design Patterns}\label{Patterns}
 
 \subsection{Patterns im Paket User Interface}
 Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem Kompositum. 
@@ -465,8 +464,47 @@ den DebugLauf der DebugLogic.
 Wenn der Benutzer durch Weiter oder Schritt durch den DebugLauf navigiert, werden diese Befehle über
 die Control an die DebugLogic weitergegeben. Die Schritte werden von der DebugLogic ausgeführt, und anschließend
 wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
-
+\subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
+In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
+\subsubsection{Erzeugung einer abstrakten Repräsentation für Watch-Expressions und bedingte Breakpoints}
+Eine Watch-Expression kann entweder aus einem Term bestehen, oder aus einer Bedingung. Ein bedingter Breakpoint hingegegen muss aus einer Bedingung bestehen. Der Zusammenhang von Bedingungen und Termen soll zunächst besprochen werden.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/ConditionTerm.pdf}
+\caption{Terme und Bedingungen}
+\label{Terme}
+\end{figure}
+In Diagramm \ref{Terme} sind der Übersichtlichkeit halber nur die abstrakten Klassen ohne Methoden oder Attribute zu sehen. So sind etwa die zahlreichen Unterklassen von \textit{Condition, Comparison} und  \textit{Term} ausgespart. Bei \textit{Term} und \textit{Condition} handelt es sich überdies um ein Kompositum. Dies wird genauer in \ref{Patterns} erklärt. Wichtig ist hierbei vor allem, dass ein Vergleich eine spezielle Bedingung darstellt, die zwei Terme enthält und diese miteinander vergleicht. Jede Expression ist auswertbar. So nimmt eine Bedingung stehts einen boolschen Wert an, während ein Term sich zu einem beliebigen Datentyp auswerten kann. 
+Wir betrachten das Diagramm \ref{WEBBP} 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}
+\caption{Watch-Expressions und Bedingte Breakpoints}
+\label{WEBBP}
+\end{figure}
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{ConditionGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Da eine \textit{Comparison} etwa auch zwei \textit{Term} Objecte benötigt, wird von diesem an entsprechender Stelle der \textit{TermGenerationVisitor} aufgerufen. Beim Erzeugen einer WatchExpression passiert das gleiche, wobei es sich auch um reine Terme handeln kann, sodass ein \textit{ConditionGenerationVisitor} eventuell gar nicht gebraucht wird.
 \newpage
+\subsubsection{Erzeugung des Traces}
+\begin{figure}[!h]
+\includegraphics[width=1.4\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
+\caption{An der Tracegenerierung beteiligte Klassen}
+\label{TraceGen}
+\end{figure}
+Gegeben sie das folgende (Wlang-)Programm:
+\begin{verbatim}
+int foo() {
+    return 1+2+3;
+}
+int main(){
+    int x;
+    int y=3;
+    while(x<(y+7)%4){
+        x=x+1;
+    }
+    return c;
+}
+\end{verbatim}
+
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
