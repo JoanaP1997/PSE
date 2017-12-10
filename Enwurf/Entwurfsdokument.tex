@@ -492,7 +492,7 @@ Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu ei
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
-\includegraphics[width=1.4\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
 \caption{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
 \end{figure}
@@ -511,6 +511,20 @@ int main(){
 }
 \end{verbatim}
 
+Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
+\begin{figure}[!h]
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
+\caption{Beispiel für einen Ableitungsbaum}
+\label{ParseTreeExample}
+\end{figure}
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
+\begin{figure}[!h]
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
+\caption{Objektstruktur nach der Commanderzeugung}
+\label{CommandTreeExample}
+\end{figure}
 
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
