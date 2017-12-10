@@ -162,7 +162,7 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 
-\subparagraph{Interpreter}
+\subsubsection{Interpreter}
 Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
 Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Fehlen eines return-Statements.
 
@@ -339,6 +339,7 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 
 \subsection{Klassen im Paket \enquote{DebugLogic}}
 \subsubsection{Unterpaket Debugger}
+\subsubsection{Unterpaket Interpreter}
 \paragraph{GenerationController}
 \begin{itemize}
 \item Klassenbeschreibung: \\
@@ -415,8 +416,7 @@ Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 
 
 \end{itemize}
-\subsubsection{Unterpaket Interpreter}
-\
+
 \subsection{Klassen im Paket \enquote{FileHandler}}
 
 \subsubsection{Unterpaket FileHandler.Facade}
