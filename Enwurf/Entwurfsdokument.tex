@@ -65,8 +65,7 @@ des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungs
 Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. 
 Das Entwurfsdokument beschreibt die Paketeinteilung, Beschreibung der Klassen und Abläufe und genaue Spezifikation der Abhängigkeiten und Kernkomponenten. 
 \\Die Implementierung während der Implementierungsphase (\textit{09.01.-02.02.2018}) wird anhand der Vorgaben in diesem Dokument durchgeführt. \\
-Hierbei werden das Geheimnisprinzip und Lose Kopplung berücksichtigt, um für erhöhte Verständlichkeit
-zu sorgen. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipien sicherstellen
+Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipien sicherstellen
 
 \vspace{1cm}
 \begin{figure}[!h]
@@ -262,6 +261,8 @@ und Methoden. Das sind Implementierungsdetails.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurationsdateien.
+\item Methoden: \\
+\begin{itemize}
 \item loadConfig(File file) : ConfigurationFile \\
 Lädt die angegebene Datei als Konfigurationsdatei und gibt diese zurück.
 \item saveConfig(ConfigurationFile config) \\
@@ -274,11 +275,14 @@ Gibt alle Sprachnamen in einer Liste als String zurück.
 Gibt die zur langID passende Sprachdatei zurück, falls diese existiert,
 sonst wird eine LanguageNotFoundException geworfen.
 \end{itemize}
+\end{itemize}
 
 \paragraph{ConfigurationFile}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Diese Klasse speichert eine Konfiguration des Debuggers.
+\item Methoden: \\
+\begin{itemize}
 \item getSystemFile() : File \\
 Gibt ein java.io.File Objekt zurück, welchen die Datei im Dateisystem des Nutzers repräsentiert.
 \item getProgramText(int programID) : String \\
@@ -302,6 +306,7 @@ Gibt eine Liste der Endgrenze der Bereichsintervalle für die WatchExpression ex
 Äquivalente Funktion für bedingte Breakpoints zu getWEScopeEnd
 \item getBreakpoints(int programID) : List<int> \\
 Gibt eine Liste der Zeilen der Breakpoints für Programm programID zurück.
+\end{itemize}
 \end{itemize}
 
 \paragraph{PropertiesFile}
