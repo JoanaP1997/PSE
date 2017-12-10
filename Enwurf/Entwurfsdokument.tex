@@ -334,13 +334,43 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 
 \subsection{Klassen im Paket \enquote{Control}}
 
-\subsubsection{Unterpaket Debugger}
 
-\subsubsection{Unterpaket Interpreter}
 
 
 \subsection{Klassen im Paket \enquote{DebugLogic}}
+\subsubsection{Unterpaket Debugger}
+\paragraph{GenerationController}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Steuert die Erzeugung eines kompletten Programmverlaufs, siehe \ref{charAbl}.
+\item Wichtige Methoden:\\
+\begin{itemize}
+\item[-] generateTrace(String text, List<String> input): TraceIterator\\
+Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über alle angenommenen Zustände.
+\end{itemize}
+\end{itemize}
 
+\paragraph{CommandGenerationVisitor}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
+\item Wichtige Methoden:\\
+Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
+\end{itemize}
+\paragraph{Scope}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
+\end{itemize}
+\paragraph{Command}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.\\
+Subklassen: \textit{WhileCommand, IfCommand, IfElseCommand, RoutineCommand, Assignment, DeclarationAssignment, Declaration, ReturnCommand, RoutineCall, ArrayElementAssignment, ArrayDeclarationAssignment, ArrayDeclaration}
+\end{itemize}
+
+\subsubsection{Unterpaket Interpreter}
+\
 \subsection{Klassen im Paket \enquote{FileHandler}}
 
 \subsubsection{Unterpaket FileHandler.Facade}
@@ -446,7 +476,7 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket File Handler}
 
 \newpage
-\section{Charakteristische Abläufe}
+\section{Charakteristische Abläufe}\label{charAbl}
 In diesem Kapitel werden charakteristische Abläufe des Produkts, wie der erste Programmaufruf und die
 Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
  %TODO Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
