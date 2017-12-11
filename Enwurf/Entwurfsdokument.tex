@@ -552,13 +552,15 @@ Gibt eine Liste an Strings zurück, welche die Zeilen angeben, in welchen der Fe
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde
+Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
 
+
+Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
 \paragraph{MissingReturnCallException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-%TODO Beschreibung der Klasse
+Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
 \end{itemize}
 
 \paragraph{InvalidProgramException}
@@ -591,10 +593,15 @@ Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben w
 Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
 \end{itemize}
 
-\paragraph{AssignmentException}
+\paragraph{WrongTypeAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-%TODO Klassenbeschreibung
+Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+\end{itemize}
+\paragraph{VariableNotFoundException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
 \end{itemize}
 
 \paragraph{AlreadyDeclaredException}
@@ -662,7 +669,7 @@ kann diese ebenfalls anzeigen
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
 \caption{Sequenzdigramm: Speichern einer Konfigurationsdatei}
 \end{figure}
-Möchte der Benutzer eine Konfigurationsdaatei speicher, reicht das UserInterface den Speicherort
+Möchte der Benutzer eine Konfigurationsdatei speichern, reicht das UserInterface den Speicherort
 an die ControlFacade weiter. Die Control sammelt die benötigten Daten in einer Configuration Instanz.
 Dieses Objekt wird mit dem angegebenen Speicherort an die FileHandlerFacade weitergegeben, welche 
 dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
@@ -766,7 +773,7 @@ Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu ei
 \caption{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
 \end{figure}
-Gegeben sie das folgende (Wlang-)Programm:
+Gegeben sei das folgende (Wlang-)Programm:
 \begin{verbatim}
 int foo() {
     return 1+2+3;
@@ -799,10 +806,10 @@ Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} i
 Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
 Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
 Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
-Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
+Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. So gibt ein \textit{IfCommand}-Objekt also eine leere Liste zurück, falls die Bedingung nicht erfüllt ist, und die Konkatenation aller TraceStatelisten seiner Kinder sonst. Ein \textit{WhileCommand}-Objekt gibt dementsprechend die Listen seiner Kinder in wiederholter Form zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
-\subsection{Abhängikeiten}
+\subsection{Abhängigkeiten}
 Das Paketdiagramm besagt, dass FileHandler und DebugLogic nicht voneinader abhängen.
 Beide werden von der Control benutzt und müssen somit korrekt implementiert sein, bevor die Control richtig funktionieren kann. Weiter führt die Control Methoden der GUIFacade aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende Control.
 Die GUI hingegen ist stark von der Control abhängig und kann ohne diese nicht korrekte Daten anzeigen.

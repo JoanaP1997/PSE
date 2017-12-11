@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>693</x>
-      <y>140</y>
+      <y>168</y>
       <w>140</w>
       <h>105</h>
     </coordinates>
@@ -21,7 +20,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>385</x>
-      <y>413</y>
+      <y>441</y>
       <w>119</w>
       <h>21</h>
     </coordinates>
@@ -31,9 +30,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>595</x>
-      <y>413</y>
-      <w>126</w>
+      <x>560</x>
+      <y>441</y>
+      <w>189</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>/WrongArgumentException/</panel_attributes>
@@ -43,8 +42,8 @@
     <id>UMLClass</id>
     <coordinates>
       <x>490</x>
-      <y>532</y>
-      <w>147</w>
+      <y>560</y>
+      <w>175</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>WrongTypeArgumentException</panel_attributes>
@@ -53,9 +52,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>532</y>
-      <w>154</w>
+      <x>679</x>
+      <y>560</y>
+      <w>203</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>WrongNumberArgumentException</panel_attributes>
@@ -65,7 +64,7 @@
     <id>Relation</id>
     <coordinates>
       <x>651</x>
-      <y>427</y>
+      <y>455</y>
       <w>133</w>
       <h>119</h>
     </coordinates>
@@ -76,7 +75,7 @@
     <id>Relation</id>
     <coordinates>
       <x>539</x>
-      <y>427</y>
+      <y>455</y>
       <w>133</w>
       <h>119</h>
     </coordinates>
@@ -87,19 +86,19 @@
     <id>UMLClass</id>
     <coordinates>
       <x>910</x>
-      <y>413</y>
-      <w>105</w>
+      <y>441</y>
+      <w>182</w>
       <h>21</h>
     </coordinates>
-    <panel_attributes>AssignmentException</panel_attributes>
+    <panel_attributes>WrongTypeAssignmentException</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1064</x>
-      <y>413</y>
-      <w>126</w>
+      <x>1099</x>
+      <y>441</y>
+      <w>112</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>AlreadyDeclaredException</panel_attributes>
@@ -109,8 +108,8 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1225</x>
-      <y>413</y>
-      <w>126</w>
+      <y>441</y>
+      <w>168</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>RoutineNotFoundException</panel_attributes>
@@ -120,8 +119,8 @@
     <id>UMLClass</id>
     <coordinates>
       <x>763</x>
-      <y>413</y>
-      <w>105</w>
+      <y>441</y>
+      <w>133</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>ReturnTypeException</panel_attributes>
@@ -131,7 +130,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>189</x>
-      <y>413</y>
+      <y>441</y>
       <w>133</w>
       <h>21</h>
     </coordinates>
@@ -142,7 +141,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>413</y>
+      <y>441</y>
       <w>140</w>
       <h>21</h>
     </coordinates>
@@ -153,7 +152,7 @@
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>238</y>
+      <y>266</y>
       <w>70</w>
       <h>189</h>
     </coordinates>
@@ -164,7 +163,7 @@
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>238</y>
+      <y>266</y>
       <w>224</w>
       <h>189</h>
     </coordinates>
@@ -175,7 +174,7 @@
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>238</y>
+      <y>266</y>
       <w>406</w>
       <h>189</h>
     </coordinates>
@@ -186,7 +185,7 @@
     <id>Relation</id>
     <coordinates>
       <x>749</x>
-      <y>238</y>
+      <y>266</y>
       <w>553</w>
       <h>189</h>
     </coordinates>
@@ -197,7 +196,7 @@
     <id>Relation</id>
     <coordinates>
       <x>651</x>
-      <y>238</y>
+      <y>266</y>
       <w>119</w>
       <h>189</h>
     </coordinates>
@@ -208,7 +207,7 @@
     <id>Relation</id>
     <coordinates>
       <x>434</x>
-      <y>238</y>
+      <y>266</y>
       <w>336</w>
       <h>189</h>
     </coordinates>
@@ -219,7 +218,7 @@
     <id>Relation</id>
     <coordinates>
       <x>245</x>
-      <y>238</y>
+      <y>266</y>
       <w>525</w>
       <h>189</h>
     </coordinates>
@@ -230,11 +229,33 @@
     <id>Relation</id>
     <coordinates>
       <x>49</x>
-      <y>238</y>
+      <y>266</y>
       <w>721</w>
       <h>189</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>1010.0;10.0;1010.0;170.0;10.0;170.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>749</x>
+      <y>266</y>
+      <w>742</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0;1040.0;170.0;1040.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1407</x>
+      <y>441</y>
+      <w>168</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>VariableNotFoundException</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
