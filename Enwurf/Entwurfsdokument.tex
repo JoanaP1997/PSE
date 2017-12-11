@@ -162,7 +162,7 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 
-\subparagraph{Interpreter}
+\subsubsection{Interpreter}
 Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
 Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Fehlen eines return-Statements.
 
@@ -336,12 +336,88 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 
 \subsection{Klassen im Paket \enquote{Control}}
 
-\subsubsection{Unterpaket Debugger}
 
-\subsubsection{Unterpaket Interpreter}
 
 
 \subsection{Klassen im Paket \enquote{DebugLogic}}
+\subsubsection{Unterpaket Debugger}
+\subsubsection{Unterpaket Interpreter}
+\paragraph{GenerationController}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Steuert die Erzeugung eines kompletten Programmverlaufs, siehe \ref{charAbl}.
+\item Wichtige Methoden:\\
+\begin{itemize}
+\item[-] generateTrace(String text, List<String> input): TraceIterator\\
+Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über alle angenommenen Zustände.
+\end{itemize}
+\end{itemize}
+
+\paragraph{CommandGenerationVisitor}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
+\item Wichtige Methoden:\\
+Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
+\end{itemize}
+\paragraph{Scope}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
+\end{itemize}
+\paragraph{Command}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.\\
+Subklassen: \textit{WhileCommand, IfCommand, IfElseCommand, RoutineCommand, Assignment, DeclarationAssignment, Declaration, ReturnCommand, RoutineCall, ArrayElementAssignment, ArrayDeclarationAssignment, ArrayDeclaration}
+\end{itemize}
+\paragraph{Trace}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt den kompletten Programmverlauf eines WLang-Programms dar.
+\end{itemize}
+\paragraph{TraceState}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
+\end{itemize}
+\paragraph{Condition}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+
+\item Wichtige Methoden:\\
+
+\end{itemize}
+\paragraph{Comparison}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+
+\item Wichtige Methoden:\\
+\end{itemize}
+\paragraph{Term}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+
+\item Wichtige Methoden:\\
+
+
+\end{itemize}
+\paragraph{WatchExpression}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+
+\item Wichtige Methoden:\\
+
+
+\end{itemize}
+\paragraph{ConditionalBreakpoint}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+
+\item Wichtige Methoden:\\
+
+
+\end{itemize}
 
 \subsection{Klassen im Paket \enquote{FileHandler}}
 
@@ -448,7 +524,7 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket File Handler}
 
 \newpage
-\section{Charakteristische Abläufe}
+\section{Charakteristische Abläufe}\label{charAbl}
 In diesem Kapitel werden charakteristische Abläufe des Produkts, wie der erste Programmaufruf und die
 Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
  %TODO Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
@@ -588,7 +664,7 @@ Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu ei
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
-\includegraphics[width=1.4\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
 \caption{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
 \end{figure}
@@ -607,7 +683,25 @@ int main(){
 }
 \end{verbatim}
 
-
+Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
+\caption{Beispiel für einen Ableitungsbaum}
+\label{ParseTreeExample}
+\end{figure}
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
+\begin{figure}[!h]
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
+\caption{Objektstruktur nach der Commanderzeugung}
+\label{CommandTreeExample}
+\end{figure}
+Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
+Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
+Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
+Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
 \subsection{Abhängikeiten}
@@ -631,8 +725,265 @@ Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile g
 
 
 \section{Formale Spezifikation von WLang und Speicherformaten}\label{FormSpez}
-Speicherformate, Sprachdefinition(formal)
+Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
+\subsection{Konntextfreie Antlr-Grammatik für WLang-Syntax}
+\begin{verbatim}
 
+grammar Wlang;
+r: programm;
+
+programm: routine* mainRoutine;
+routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
+			| 'void' id =ID '('args=arglist?')' #ProcedureHead
+			;
+
+mainHead: returntype = TYPE 'main' '(' args=arglist? ')' #MainFunctionHead
+			| 'void' 'main' '('args=arglist?')' #MainProcedureHead
+			;
+
+arglist: argument ',' arglist | argument;
+argument: type=TYPE id=ID;
+filledArglist: filledArgument ',' filledArglist | filledArgument;
+filledArgument: term;
+routine: routineHead block;
+mainRoutine: mainHead block;
+
+//Statements
+
+statements : statement statements #CompStatement 
+			| statement #SingleStatement
+			;
+statement:  ifState 
+		| ifelseState 
+		| whileState 
+		| assignment
+		| arrayDeclaration
+		| arrayDeclareAssign
+		| arrayElementAssign
+		| declaration 
+		| funcCall ';'	
+		| returnState;
+		
+funcCall: functionname = ID '(' args=filledArglist? ')' 
+	  |functionname = 'main' '(' args=filledArglist? ')'
+	;
+
+	
+block: '{'statements'}';
+assignment: declareAssign
+			| pureAssign
+			;
+
+arrayDeclaration: type = TYPE dims id = ID ';';
+arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
+arrayElementAssign: arrayAccess ASSIGN value = term';';
+dims: '['term']' #oneDims
+	| '['term']''['term']' #twoDims
+	| '['term']''['term']''['term']' #threeDims
+	;
+
+pureAssign: id = ID ASSIGN value = term ';';
+declareAssign: type = TYPE id = ID ASSIGN value = term ';';
+declaration: type = TYPE id = ID ';';
+returnState: 'return' returnvalue = term ';';
+
+//Kontrollstrukturen
+ifState: 'if' '(' condition ')' block
+	| 'if' '(' condition ')' statement
+	;
+ifelseState: ifState 'else' block
+	| ifState 'else' statement
+	;
+whileState: 'while' '(' condition ')' block
+	| 'while' '(' condition ')' statement
+	;
+//Bedingungen
+condition: ID #IdCondition
+	| arrayAccess #ArrayAccessCondition
+	| comparison #ComparisonCondition
+	| BOOLEANLITERAL #ConstantCondition
+	| '('condition')' '||' '('condition')' #OrCondition
+	| '('condition')' '&&' '('condition')' #AndCondition
+	| '!'condition #NotCondition
+	;
+
+comparison: left=term '<' right=term #LessComp
+	   | left=term '<=' right=term #LessEqualComp
+	   | left=term '>' right=term #MoreComp
+	   | left=term '>=' right=term #MoreEqualComp
+	   | left=term '==' right=term #EqualComp
+	   | left=term '!=' right=term #NotEqualComp
+	;
+
+term : '-' inner = term #NegativeTerm
+    | left = term '/' right = term #Division
+	| left = term '*' right = term #Multiplication
+	| left = term '-' right = term #Subtraction
+	| left = term '+' right = term #Addition
+	| left = term '%' right = term #Modulo
+	|'('term')' #Brackets
+	| FLOATLITERAL #FloatLiteral
+	| INTLITERAL #IntLiteral
+	| LONGLITERAL #LongLiteral
+	| DOUBLELITERAL #DoubleLiteral
+	| ID #ID
+	| CHARLITERAL #CharLiteral
+	| funcCall #FunctionCallInTerm
+	| arrayAccess #ArrayAccessInTerm
+	;
+
+arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
+
+//LITERALE bzw TOKENS
+
+COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
+WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+COMMENT:   '/*' .*? '*/' -> skip;
+LINE_COMMENT:   '//' ~[\r\n]* -> skip;
+TYPE: 'float' | 'int' | 'char' | 'boolean' | 'double' | 'long';
+ID : ([a-z]|[A-Z])+ ;
+INTLITERAL: '-'? [1-9][0-9]* | '0';
+FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
+CHARLITERAL: '\'' ~['\\\r\n] '\'';
+BOOLEANLITERAL:	'true'|	'false';
+NULLLITERAL: 'null';
+LONGLITERAL: ([1-9][0-9]* | '0' )'L';
+DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
+ASSIGN: '=';
+\end{verbatim}
+\subsection{Kontextfreie Antlr-Grammatik für Syntax von Watch-Expressions}
+\begin{verbatim}
+
+grammar WatchExpressions;
+r: we;
+
+we: condition | term
+
+condition: ID #IdCondition
+	| arrayAccess #ArrayAccessCondition
+	| comparison #ComparisonCondition
+	| BOOLEANLITERAL #ConstantCondition
+	| '('condition')' '||' '('condition')' #OrCondition
+	| '('condition')' '&&' '('condition')' #AndCondition
+	| '!'condition #NotCondition
+	;
+	
+//Bedingungen
+comparison: left=term '<' right=term #LessComp
+	   | left=term '<=' right=term #LessEqualComp
+	   | left=term '>' right=term #MoreComp
+	   | left=term '>=' right=term #MoreEqualComp
+	   | left=term '==' right=term #EqualComp
+	   | left=term '!=' right=term #NotEqualComp
+	;
+
+
+term : '-' inner = term #NegativeTerm
+    | left = term '/' right = term #Division
+	| left = term '*' right = term #Multiplication
+	| left = term '-' right = term #Subtraction
+	| left = term '+' right = term #Addition
+	| left = term '%' right = term #Modulo
+	|'('inner = term')' #Brackets
+	| FLOATLITERAL #FloatLiteral
+	| INTLITERAL #IntLiteral
+	| LONGLITERAL #LongLiteral
+	| DOUBLELITERAL #DoubleLiteral
+	| ID #ID
+	| CHARLITERAL #CharLiteral
+	| arrayAccess #ArrayAccessInTerm
+	;
+
+arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
+
+//LITERALE bzw TOKENS
+
+COMPOPERATOR:  '<'|'>'|'<='|'>='|'==';
+WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+COMMENT:   '/*' .*? '*/' -> skip;
+LINE_COMMENT:   '//' ~[\r\n]* -> skip;
+TYPE: 'float' | 'int' | 'char' | 'boolean';
+ID : [A-Z]'.'([a-z]|[A-Z])+ ;
+INTLITERAL: [1-9][0-9]* | '0';
+FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
+CHARLITERAL: '\'' ~['\\\r\n] '\'';
+BOOLEANLITERAL:	'true'|	'false';
+NULLLITERAL: 'null';
+LONGLITERAL: ([1-9][0-9]* | '0' )'L';
+DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
+ASSIGN: '=';
+
+\end{verbatim}
+\subsection{Kontextfreie Antlr-Grammatik für Syntax vonbedingten Breakpoints}
+\begin{verbatim}
+
+grammar Assertions;
+r: condition;
+
+condition: ID #IdCondition
+	| arrayAccess #ArrayAccessCondition
+	| comparison #ComparisonCondition
+	| BOOLEANLITERAL #ConstantCondition
+	| '('condition')' '||' '('condition')' #OrCondition
+	| '('condition')' '&&' '('condition')' #AndCondition
+	| '!'condition #NotCondition
+	;
+
+//Bedingungen
+comparison: left=term '<' right=term #LessComp
+	   | left=term '<=' right=term #LessEqualComp
+	   | left=term '>' right=term #MoreComp
+	   | left=term '>=' right=term #MoreEqualComp
+	   | left=term '==' right=term #EqualComp
+	   | left=term '!=' right=term #NotEqualComp
+	;
+
+
+term : '-' inner = term #NegativeTerm
+    | left = term '/' right = term #Division
+	| left = term '*' right = term #Multiplication
+	| left = term '-' right = term #Subtraction
+	| left = term '+' right = term #Addition
+	| left = term '%' right = term #Modulo
+	|'('inner = term')' #Brackets
+    | INTLITERAL #IntLiteral
+	| FLOATLITERAL #FloatLiteral
+	| LONGLITERAL #LongLiteral
+	| DOUBLELITERAL #DoubleLiteral
+	| ID #ID
+	| CHARLITERAL #CharLiteral
+	| arrayAccess #ArrayAccessInTerm
+	;
+
+arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
+
+//LITERALE bzw TOKENS
+
+COMPOPERATOR:  '<'|'>'|'<='|'>='|'==';
+WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+COMMENT:   '/*' .*? '*/' -> skip;
+LINE_COMMENT:   '//' ~[\r\n]* -> skip;
+TYPE: 'float' | 'int' | 'char' | 'boolean';
+ID : [A-Z]'.'([a-z]|[A-Z])+ ;
+INTLITERAL: [1-9][0-9]* | '0';
+FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
+CHARLITERAL: '\'' ~['\\\r\n] '\'';
+BOOLEANLITERAL:	'true'|	'false';
+NULLLITERAL: 'null';
+LONGLITERAL: ([1-9][0-9]* | '0' )'L';
+DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
+ASSIGN: '=';
+
+\end{verbatim}
 \section{Änderung zum Pflichtenheft}
 Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
 

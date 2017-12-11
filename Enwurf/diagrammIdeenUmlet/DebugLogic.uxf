@@ -31,7 +31,7 @@
 Map&lt;String,RoutineCommand&gt; routines
 Stack&lt;Scope&gt; stack
 --
-+generateTrace(String text): TraceIterator
++generateTrace(String text, List&lt;String&gt; input): TraceIterator
 +getCurrentScope():Scope
 +pushScope(Scope scope)
 +popScope():Scope scope

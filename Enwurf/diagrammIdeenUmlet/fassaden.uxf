@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>656</x>
-      <y>128</y>
+      <x>800</x>
+      <y>144</y>
       <w>264</w>
       <h>152</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>736</x>
-      <y>336</y>
+      <x>880</x>
+      <y>352</y>
       <w>408</w>
       <h>352</h>
     </coordinates>
@@ -37,7 +37,7 @@
 +setStepSize(int program, int size)
 +step(int type)
 +continue()
-+singelStep()
++singleStep(int programID)
 +createWatchExpression(int id, String expr)
 +changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 +deleteWatchExpression(int id)
@@ -65,9 +65,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>344</y>
-      <w>488</w>
+      <x>120</x>
+      <y>360</y>
+      <w>512</w>
       <h>304</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
@@ -75,7 +75,7 @@
 --
 +setStepSize(int program, int size)
 +step(int type)
-+singleStep()
++singleStep(int programID)
 +continue()
 +createWatchExpression(int id, String expr)
 +changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
@@ -100,8 +100,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>216</y>
+      <x>424</x>
+      <y>232</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -115,8 +115,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>296</y>
+      <x>512</x>
+      <y>312</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -126,8 +126,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>768</x>
-      <y>48</y>
+      <x>912</x>
+      <y>64</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -139,8 +139,8 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>528</x>
-      <y>280</y>
+      <x>672</x>
+      <y>296</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -152,8 +152,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>336</x>
-      <y>264</y>
+      <x>480</x>
+      <y>280</y>
       <w>208</w>
       <h>56</h>
     </coordinates>
@@ -163,8 +163,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
-      <y>88</y>
+      <x>936</x>
+      <y>104</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -174,8 +174,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>368</x>
-      <y>56</y>
+      <x>512</x>
+      <y>72</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -188,8 +188,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>912</x>
-      <y>208</y>
+      <x>1056</x>
+      <y>224</y>
       <w>88</w>
       <h>144</h>
     </coordinates>
@@ -200,8 +200,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>488</y>
+      <x>624</x>
+      <y>504</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
@@ -212,8 +212,8 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1288</x>
-      <y>440</y>
+      <x>1432</x>
+      <y>456</y>
       <w>320</w>
       <h>128</h>
     </coordinates>
@@ -232,8 +232,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1136</x>
-      <y>488</y>
+      <x>1280</x>
+      <y>504</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
