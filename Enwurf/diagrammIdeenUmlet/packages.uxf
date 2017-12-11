@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLPackage</id>
@@ -84,7 +85,7 @@
     <coordinates>
       <x>840</x>
       <y>616</y>
-      <w>56</w>
+      <w>49</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
@@ -96,7 +97,7 @@
     <coordinates>
       <x>840</x>
       <y>756</y>
-      <w>56</w>
+      <w>49</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
@@ -146,7 +147,7 @@
       <w>182</w>
       <h>119</h>
     </coordinates>
-    <panel_attributes>Exceptions
+    <panel_attributes>DIbuggerExceptions
 </panel_attributes>
     <additional_attributes/>
   </element>
