@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>96</x>
-      <y>192</y>
+      <x>120</x>
+      <y>216</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>248</x>
-      <y>192</y>
+      <x>272</x>
+      <y>216</y>
       <w>96</w>
       <h>24</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>552</x>
-      <y>192</y>
+      <x>616</x>
+      <y>216</y>
       <w>120</w>
       <h>24</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>128</x>
-      <y>208</y>
+      <x>152</x>
+      <y>232</y>
       <w>24</w>
       <h>184</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>208</y>
+      <x>664</x>
+      <y>232</y>
       <w>24</w>
       <h>96</h>
     </coordinates>
@@ -59,8 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>232</y>
+      <x>144</x>
+      <y>256</y>
       <w>184</w>
       <h>32</h>
     </coordinates>
@@ -71,20 +71,20 @@ fügt ein Programm hinzu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>280</y>
-      <w>328</w>
+      <x>320</x>
+      <y>304</y>
+      <w>360</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
 saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_attributes>
-    <additional_attributes>20.0;20.0;380.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;430.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>208</y>
+      <x>312</x>
+      <y>232</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -94,8 +94,8 @@ saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_a
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>288</x>
-      <y>248</y>
+      <x>312</x>
+      <y>272</y>
       <w>16</w>
       <h>104</h>
     </coordinates>
@@ -105,9 +105,9 @@ saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_a
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>592</x>
-      <y>288</y>
-      <w>24</w>
+      <x>664</x>
+      <y>312</y>
+      <w>16</w>
       <h>32</h>
     </coordinates>
     <panel_attributes/>
@@ -116,8 +116,8 @@ saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_a
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>344</y>
+      <x>312</x>
+      <y>368</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
@@ -127,8 +127,8 @@ saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_a
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>312</y>
+      <x>664</x>
+      <y>336</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -138,13 +138,13 @@ saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_a
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>296</x>
-      <y>240</y>
-      <w>224</w>
+      <x>320</x>
+      <y>264</y>
+      <w>232</w>
       <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-&lt;&lt;create&gt;&gt;new ProgramPanel</panel_attributes>
+&lt;&lt;create&gt;&gt; new ProgramPanel()</panel_attributes>
     <additional_attributes>10.0;40.0;90.0;40.0;90.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
