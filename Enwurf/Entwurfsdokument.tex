@@ -228,7 +228,7 @@ thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind pri
 und Methoden. Das sind Implementierungsdetails.
 
 \subsection{Klassen im Paket \enquote{User Interface}}
-\paragraph{Fassade}
+\paragraph{GUIFacade}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können.
@@ -255,6 +255,10 @@ Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung.
+\item Methoden: \\
+\begin{itemize}
+\item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des ProgramPanels, die bei einem Subjekt angemeldet sind.
+\end{itemize}
 \end{itemize}
 
 \paragraph{CommandPanel}
@@ -274,7 +278,7 @@ Gibt das aktuelle CommandPanel zurück, falls es schon existiert, sonst wird ein
 Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen.
 \item Methoden: \\
 \begin{itemize}
-\item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des Expressionpanels, die bei einem Subjekt angemeldet sind.
+\item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des ExpressionPanels, die bei einem Subjekt angemeldet sind.
 \end{itemize}
 \end{itemize}
 
@@ -304,8 +308,6 @@ Gibt das aktuelle CondBreakpointPanel zurück, falls es schon existiert, sonst w
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein DebuggerPopUp ist ein JDialog, welcher auf diese Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Die Klasse DebuggerPopUp stellt ein Dekorierer Entwurfsmuster mit JDialog dar.
-%Methoden: show()?
-\item Methoden: \\
 \end{itemize}
 
 \paragraph{ErrorPopUp}
