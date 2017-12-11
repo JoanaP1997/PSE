@@ -741,7 +741,7 @@ Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu ei
 \caption{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
 \end{figure}
-Gegeben sie das folgende (Wlang-)Programm:
+Gegeben sei das folgende (Wlang-)Programm:
 \begin{verbatim}
 int foo() {
     return 1+2+3;
@@ -777,7 +777,7 @@ Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müss
 Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
-\subsection{Abhängikeiten}
+\subsection{Abhängigkeiten}
 Das Paketdiagramm besagt, dass FileHandler und DebugLogic nicht voneinader abhängen.
 Beide werden von der Control benutzt und müssen somit korrekt implementiert sein, bevor die Control richtig funktionieren kann. Weiter führt die Control Methoden der GUIFacade aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende Control.
 Die GUI hingegen ist stark von der Control abhängig und kann ohne diese nicht korrekte Daten anzeigen.
