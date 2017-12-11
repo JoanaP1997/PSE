@@ -763,16 +763,16 @@ int main(){
 }
 \end{verbatim}
 
-Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
-Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
+Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe Abbildung \ref{Patterns}). Dabei verwendet er zwei weitere Visitor-Objekte, die ihm Bedingungen und Terme in Form der in Abbildung \ref{Terme} gegebenen Klassen erzeugen. 
-Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm Abbildung \ref{CommandTreeExample} aus.
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
 \caption{Objektstruktur nach der Commanderzeugung}
@@ -781,7 +781,7 @@ Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} i
 Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
 Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
 Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
-Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
+Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. So gibt ein \textit{IfCommand}-Objekt also eine leere Liste zurück, falls die Bedingung nicht erfüllt ist, und die Konkatenation aller TraceStatelisten seiner Kinder sonst. Ein \textit{WhileCommand}-Objekt gibt dementsprechend die Listen seiner Kinder in wiederholter Form zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
 \subsection{Abhängigkeiten}
