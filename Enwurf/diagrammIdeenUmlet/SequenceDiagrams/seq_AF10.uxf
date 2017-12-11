@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>9</zoom_level>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>153</x>
-      <y>297</y>
-      <w>90</w>
-      <h>27</h>
+      <x>96</x>
+      <y>192</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>Nutzer</panel_attributes>
     <additional_attributes/>
@@ -14,21 +15,21 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>360</x>
-      <y>297</y>
-      <w>108</w>
-      <h>27</h>
+      <x>248</x>
+      <y>192</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
-    <panel_attributes>_:GUIFacade_</panel_attributes>
+    <panel_attributes>_:UserInterface_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>549</x>
-      <y>297</y>
-      <w>135</w>
-      <h>27</h>
+      <x>552</x>
+      <y>192</y>
+      <w>120</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>_:ControlFacade_</panel_attributes>
     <additional_attributes/>
@@ -36,10 +37,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>315</y>
-      <w>27</w>
-      <h>207</h>
+      <x>128</x>
+      <y>208</y>
+      <w>24</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
@@ -47,79 +48,45 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>315</y>
-      <w>27</w>
-      <h>81</h>
+      <x>600</x>
+      <y>208</y>
+      <w>24</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>189</x>
-      <y>342</y>
-      <w>234</w>
-      <h>36</h>
+      <x>120</x>
+      <y>232</y>
+      <w>184</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 fügt ein Programm hinzu</panel_attributes>
-    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>747</x>
-      <y>297</y>
-      <w>135</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:FileHandlerFacade_</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>315</y>
-      <w>27</w>
-      <h>99</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>414</x>
-      <y>360</y>
-      <w>207</w>
-      <h>36</h>
+      <x>288</x>
+      <y>280</y>
+      <w>328</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;
-loadProgramText(File file)</panel_attributes>
-    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
+saveText(List&lt;String&gt; programmCodes, List&lt;String&gt; inputvar)</panel_attributes>
+    <additional_attributes>20.0;20.0;380.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>378</y>
-      <w>207</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-loadProgramText(File file)</panel_attributes>
-    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>405</x>
-      <y>315</y>
-      <w>27</w>
-      <h>63</h>
+      <x>288</x>
+      <y>208</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
@@ -127,10 +94,10 @@ loadProgramText(File file)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>405</x>
-      <y>360</y>
-      <w>18</w>
-      <h>117</h>
+      <x>288</x>
+      <y>248</y>
+      <w>16</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -138,21 +105,10 @@ loadProgramText(File file)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>603</x>
-      <y>378</y>
-      <w>18</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>801</x>
-      <y>396</y>
-      <w>18</w>
-      <h>45</h>
+      <x>592</x>
+      <y>288</y>
+      <w>24</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -160,34 +116,10 @@ loadProgramText(File file)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>414</y>
-      <w>207</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-String programtext</panel_attributes>
-    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>414</x>
-      <y>432</y>
-      <w>207</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-String programtext</panel_attributes>
-    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>405</x>
-      <y>468</y>
-      <w>27</w>
-      <h>54</h>
+      <x>288</x>
+      <y>344</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -195,23 +127,24 @@ String programtext</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>603</x>
-      <y>459</y>
-      <w>27</w>
-      <h>54</h>
+      <x>600</x>
+      <y>312</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>801</x>
-      <y>432</y>
-      <w>27</w>
-      <h>54</h>
+      <x>296</x>
+      <y>240</y>
+      <w>224</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;create&gt;&gt;new ProgramPanel</panel_attributes>
+    <additional_attributes>10.0;40.0;90.0;40.0;90.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
