@@ -756,16 +756,16 @@ int main(){
 }
 \end{verbatim}
 
-Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
-Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
+Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
-Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe Abbildung \ref{Patterns}). Dabei verwendet er zwei weitere Visitor-Objekte, die ihm Bedingungen und Terme in Form der in Abbildung \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm Abbildung \ref{CommandTreeExample} aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
 \caption{Objektstruktur nach der Commanderzeugung}
