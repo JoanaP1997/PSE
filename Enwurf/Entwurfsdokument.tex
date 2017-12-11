@@ -578,8 +578,10 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
 \caption{Sequenzdiagramm: Hinzufügen von Programmen}
 \end{figure}
-AF10 ist falsch
-
+Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
+neues ProgramPanel. Nach jedem Einfügen und Ändern von Programmtext oder Eingabevariablen, gibt
+das UserInterface diese Informationen an die Control weiter, welche sie zu Start des Debugmodus
+an die DebugLogic weiter gibt.
 
 \newpage
 \subsection{AF20: Ändern von Programmen}
