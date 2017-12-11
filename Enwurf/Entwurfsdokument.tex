@@ -511,7 +511,30 @@ Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schre
 \subsubsection{Unterpaket FileHandler.RDBF}
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
-...
+\paragraph{DIbuggerException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+DIbuggerException ist eine abstrakte Klasse, für Exceptions, welche speziell auf dieses Produkt ausgelegt sind.
+\item Methoden: \\
+\begin{itemize}
+\item getID(): String \\
+Gibt eine Identifikationsmöglichkeit in Form einer Zeichenfolge zurück
+\item getOccurance(): List<String> \\
+Gibt eine Liste an Strings zurück, welche die Zeilen angeben, in welchen der Fehler aufgetreten ist
+\end{itemize}
+\end{itemize}
+
+\paragraph{LanguageNotFoundException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde
+\end{itemize}
+
+\paragraph{MissingReturnCallException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+%TODO Beschreibung der Klasse
+\end{itemize}
 \section{Verwendete Design Patterns}\label{Patterns}
 
 \subsection{Patterns im Paket User Interface}
