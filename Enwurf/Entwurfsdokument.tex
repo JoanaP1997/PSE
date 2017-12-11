@@ -478,6 +478,8 @@ Gibt eine Liste der Zeilen der Breakpoints für Programm programID zurück.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Diese Klasse speichert die Einstellungen des Debuggers.
+\item Methoden: \\
+\begin{itemize}
 \item getSelectedLanguage() : String \\
 Gibt den SprachIdentifier der eingestellten Sprache zurück.
 \item getLastConfigurationFile() : ConfigurationFile \\
@@ -487,28 +489,51 @@ Gibt die eingestellte Obergrenze für Schleifendurchläufe wieder.
 \item getMaxFunctionCalls() : int \\
 Gibt die eingestelle Obergrenze für Funktionsaufrufe wieder.
 \end{itemize}
+\end{itemize}
 
 \paragraph{LanguageFile}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt eine Übersetzung der GUI zu einer bestimmtem Sprache bereit.
+\item Methoden: \\
+\begin{itemize}
 \item getTranslation(String textID) : String \\
 Gibt den Text (Übersetzung) zu der übergebenen textID zurück.
+\end{itemize}
 \end{itemize}
 
 \paragraph{FileReader}%TODO
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedene Dateiformate.
+\item Methoden: \\
+\begin{itemize}
+\item loadConfigFile(File f) : ConfigurationFile \\
+Lädt die übergebene Datei als Konfigurationsdatei und gibt diese in der Struktur ConfigurationFile zurück.
+\item loadProperties(File f) : PropertiesFile \\
+Lädt die übergebene Datei als Einstellungsdatei und gibt diese in der Struktur PropertiesFile zurück.
+\item loadLanguage(File f) : LanguageFile \\
+Lädt die übergebene Datei als Sprachdatei und gibt diese in der Struktur LanguageFile zurück.
+\end{itemize}
 \end{itemize}
 
 \paragraph{FileWriter}%TODO
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate.
+\item Methoden: \\
+\begin{itemize}
+\item saveConfig(ConfigurationFile f) \\
+Speichert die angegeben Konfigurationsdatei an der darin beschriebenen Stelle.
+\item saveProperties(PropertiesFile f) \\
+Speichert die angegeben Einstellungsdatei an der dafür vorgesehenen Standard Stelle.
+\item saveLanguageFile(LanguageFile f) \\
+Speichert die übergebene Sprachdatei im \enquote{/lang/} Verzeichnis des DIbuggers mit dem Dateinamen \enquote{kürzel _ sprachname .lang}.
+\end{itemize}
 \end{itemize}
 
 \subsubsection{Unterpaket FileHandler.RDBF}
+\paragraph{}
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
 \paragraph{DIbuggerException}
