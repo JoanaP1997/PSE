@@ -3,8 +3,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>144</y>
+      <x>816</x>
+      <y>152</y>
       <w>264</w>
       <h>184</h>
     </coordinates>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>352</y>
+      <x>896</x>
+      <y>360</y>
       <w>408</w>
-      <h>352</h>
+      <h>456</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -38,37 +38,46 @@
 +step(int type)
 +continue()
 +singleStep(int programID)
+
 +createWatchExpression(int id, String expr)
 +changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 +deleteWatchExpression(int id)
+
 +createCondBreakpoint(int id, String cond)
 +changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
 +deleteCondBreakpoint(int id)
+
 +createSyncBreakpoint(int line)
 +createBreakpoint(int program, int line)
 +deleteBreakpoint(int program, int line)
 +deleteAllBreakpoints()
+
 +saveText(List&lt;String&gt; programcodes, List&lt;String&gt; inputvar)
 +startDebug()
 +stopDebug()
 +reset()
+
 +loadConfig(File configFile)
 +saveConfig(File configFile)
 +loadProgrammText(File file)
+
 +setMaximumIterations(int i);
 +setMaximumFunctionCalls(int i);
 +stepBack();
-+...methoden fuer Vorschlaege
+
+//Vorschlagsmethoden
++ suggestEquivalence() : String
++ suggestNoninterference() : String
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>360</y>
+      <x>136</x>
+      <y>368</y>
       <w>512</w>
-      <h>304</h>
+      <h>336</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -77,31 +86,37 @@
 +step(int type)
 +singleStep(int programID)
 +continue()
+
 +createWatchExpression(int id, String expr)
 +changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 +deleteWatchExpression(int id)
+
 +createCondBreakpoint(int id, String cond)
 +changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
 +deleteCondBreakpoint(int id)
+
 +createBreakpoint(int program, int line)
 +deleteBreakpoint(int program, int line)
+
 +launchRun(List&lt;DebugLogic.ProgramInput&gt; ProgrammeUndEingaben, List&lt;Int&gt; programcounters)
 +getProgramCounter(): List&lt;int&gt;
-get...
+
 reset()
-+... Methdoen fuer Vorschlaege
+
 +setMaximumIterations(int i);
 +setMaximumFunctionCalls(int i);
 +deleteAllBreakpoints()
 
-</panel_attributes>
+//Vorschlagsmethoden
++ suggestEquivalence() : String
++ suggestNoninterference() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>424</x>
-      <y>232</y>
+      <x>440</x>
+      <y>240</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -115,8 +130,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>312</y>
+      <x>528</x>
+      <y>320</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -126,8 +141,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>912</x>
-      <y>64</y>
+      <x>928</x>
+      <y>72</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -139,8 +154,8 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>672</x>
-      <y>296</y>
+      <x>688</x>
+      <y>304</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -152,8 +167,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>280</y>
+      <x>496</x>
+      <y>288</y>
       <w>208</w>
       <h>56</h>
     </coordinates>
@@ -163,8 +178,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
-      <y>104</y>
+      <x>952</x>
+      <y>112</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -174,8 +189,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>72</y>
+      <x>528</x>
+      <y>80</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -188,8 +203,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>224</y>
+      <x>1072</x>
+      <y>232</y>
       <w>88</w>
       <h>144</h>
     </coordinates>
@@ -200,8 +215,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>504</y>
+      <x>640</x>
+      <y>512</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
@@ -212,10 +227,10 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1432</x>
-      <y>456</y>
+      <x>1448</x>
+      <y>464</y>
       <w>320</w>
-      <h>128</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>FileHandlerFacade
 --
@@ -225,6 +240,8 @@ r2= observers
 
 + getPropertiesFile() : PropertiesFile
 
++ loadProgramText(File f) : String
+
 + getLanguages() : List&lt;String&gt;
 + getLanguageFile(String langID) : LanguageFile</panel_attributes>
     <additional_attributes/>
@@ -232,8 +249,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
-      <y>504</y>
+      <x>1296</x>
+      <y>512</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
