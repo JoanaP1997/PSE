@@ -502,7 +502,7 @@ Gibt den Text (Übersetzung) zu der übergebenen textID zurück.
 \end{itemize}
 \end{itemize}
 
-\paragraph{FileReader}%TODO
+\paragraph{FileReader}%TODO 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
@@ -1017,9 +1017,9 @@ Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile g
 \end{figure}
 
 
-\section{Formale Spezifikation von WLang und Speicherformaten}\label{FormSpez}
+\section{Formale Spezifikation der Programmsprache und Speicherformate}\label{FormSpez}
 Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
-\subsection{Konntextfreie Antlr-Grammatik für WLang-Syntax}
+\subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax}
 \begin{verbatim}
 
 grammar Wlang;
@@ -1213,7 +1213,7 @@ DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 
 \end{verbatim}
-\subsection{Kontextfreie Antlr-Grammatik für Syntax vonbedingten Breakpoints}
+\subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints}
 \begin{verbatim}
 
 grammar Assertions;
