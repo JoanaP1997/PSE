@@ -77,7 +77,7 @@ Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheim
 \newpage
 
 
-\section{Paketeinteilung} %eventuell fällt jemandem ein besserer Titel ein
+\section{Paketeinteilung}\label{Packages} %eventuell fällt jemandem ein besserer Titel ein
 %Paketdiagramm, Erläuterung der Einteilungsentscheidung, Schnittstellen
 
 \subsection{Übersicht}
@@ -381,14 +381,7 @@ Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \item Klassenbeschreibung: \\
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \end{itemize}
-\paragraph{Condition}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-
-\item Wichtige Methoden:\\
-
-\end{itemize}
-\paragraph{Comparison}
+\paragraph{ScopeTuple}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 
@@ -804,15 +797,58 @@ Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und ver
 Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
 \end{itemize}
 \section{Verwendete Design Patterns}\label{Patterns}
-
+\subsection{Global genutzte Patterns}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/fassaden.pdf}
+\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
+\label{Terme}
+\end{figure}
+\paragraph{Das Observerpattern im MVC}
+Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine Zustandsänderung des Modells sofort erfährt und darauf reagieren kann, indem sie sich die von ihr zur Anzeige benötigten Daten holt. Da es der Erweiterbarkeit wegen auch möglich sein soll, einmal mehrere verschiedene dieser beobachtenden Viewkomponenten ein Modell beobachten zu lassen, empfiehlt sich das Entwurfsmuster \enquote{Observer}. Die von diesem Pattern zur Verfügung gestellte 1-zu-n Abhängigkeit passt damit hervorragend zur vorliegenden Problemstellung: Aus Gründen der Wiederverwendbarkeit darf das Modell nicht festsetzen, welche und wie viele solcher Beobachter es hat. Die allgemein definierten Schnittstellen \textit{Observer} und \textit{Subject} ermöglichen dies. 
+\paragraph{Das Fassadenpattern}
+Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
 \subsection{Patterns im Paket User Interface}
-Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem Kompositum. 
+Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert.
-Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
+Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar. %TODO eventuell Erklären welche vorteile das ergibt
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
+\paragraph{Das Kompositum}
+Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\caption{Das Termkompositum im Entwurf}
+\label{Terme}
+\end{figure}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
+\caption{Die Klasse \textit{Command} als Kompositum}
+\label{Command}
+\end{figure}
+\paragraph{Das Termkompositum}
+Die Struktur eines Termes kann wie folgt beschrieben werden:
+Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
+\paragraph{Das Commandkompositum und Befehlsmuster}
+Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre Subklassen verwendet. Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auf Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
+Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
+\paragraph{Das Visitorpattern}
+Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
+\paragraph{Der Traceiterator}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
+\caption{Der Traceiterator}
+\label{TraceIterator}
+\end{figure}
+Wir betrachten Abbildung \ref{TraceIterator}.
+Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach aussen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \subsection{Patterns im Paket File Handler}
+Das Paket FileHandler.Facade stellt vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien bereit. Dadurch wird das \enquote{Strategie}-Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden. Somit dient die Verwendung des Musters vor allem der Erweiterbarkeit.\\
+Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
 
 \newpage
 \section{Charakteristische Abläufe}\label{charAbl}
@@ -914,12 +950,21 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
 \caption{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{figure}
-Dieser Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
+Diese Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
 Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
 die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
 er die Bereichsbindung angibt, wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
 Auch beim Löschen einer Watch-Expression über das entsprechende Menü der Benutzeroberfläche, erhält die
 DebugLogic diese Information über die Control und stoppt das Auswerten dieser Watch-Expression.
+
+\newpage
+\subsection{Generieren von Vorschlägen}%TODO
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
+\caption{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
+\end{figure}
+Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
 
 \newpage
 \subsection{AF50: Programme debuggen}
@@ -938,22 +983,17 @@ wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte an
 \subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
 In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
 \subsubsection{Erzeugung einer abstrakten Repräsentation für Watch-Expressions und bedingte Breakpoints}
-Eine Watch-Expression kann entweder aus einem Term bestehen, oder aus einer Bedingung. Ein bedingter Breakpoint hingegegen muss aus einer Bedingung bestehen. Der Zusammenhang von Bedingungen und Termen soll zunächst besprochen werden.
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/ConditionTerm.pdf}
-\caption{Terme und Bedingungen}
-\label{Terme}
-\end{figure}
-In Diagramm \ref{Terme} sind der Übersichtlichkeit halber nur die abstrakten Klassen ohne Methoden oder Attribute zu sehen. So sind etwa die zahlreichen Unterklassen von \textit{Condition, Comparison} und  \textit{Term} ausgespart. Bei \textit{Term} und \textit{Condition} handelt es sich überdies um ein Kompositum. Dies wird genauer in \ref{Patterns} erklärt. Wichtig ist hierbei vor allem, dass ein Vergleich eine spezielle Bedingung darstellt, die zwei Terme enthält und diese miteinander vergleicht. Jede Expression ist auswertbar. So nimmt eine Bedingung stehts einen boolschen Wert an, während ein Term sich zu einem beliebigen Datentyp auswerten kann. 
-Wir betrachten das Diagramm \ref{WEBBP} 
+Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. Wie Terme in der Klassenstruktur aufgebaut sind, ist im Kapitel \ref{Patterns} genauer beschrieben. Zusätzlich enthalten Watch-Expressions und bedingte Breakpoints einen Gültigkeitsbereich in Form von mehreren \textit{ScopeTuple}-Instanzen. 
+\\
+In den hier abgebildeten Diagrammen sind der Übersichtlichkeit halber nur die für die Erklärung wichtigsten Klassen meist ohne Methoden oder Attribute zu sehen.
+Wir betrachten das Diagramm \ref{WEBBP}.  
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}
 \caption{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{figure}
-Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{ConditionGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Da eine \textit{Comparison} etwa auch zwei \textit{Term} Objecte benötigt, wird von diesem an entsprechender Stelle der \textit{TermGenerationVisitor} aufgerufen. Beim Erzeugen einer WatchExpression passiert das gleiche, wobei es sich auch um reine Terme handeln kann, sodass ein \textit{ConditionGenerationVisitor} eventuell gar nicht gebraucht wird.
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standardmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
@@ -977,14 +1017,14 @@ int main(){
 \end{verbatim}
 
 Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
-Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
 Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
@@ -1290,8 +1330,39 @@ vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwisch
 sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
 
 
+\subsection{Gramamtik RDBF Format}
+\begin{verbatim}
+R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
+BLOCK : VARIABLE '{' NEWLINE
+	((STATEMENT | BLOCK | COMMENT) NEWLINE)*
+	NEWLINE '}';
+BLOCK_TEXT : VARIABLE '{' NEWLINE 'def_blockLen=' I_VALUE NEWLINE TEXT NEWLINE '}';
+	
+STATEMENT : VARIABLE '=' VALUE;
 
+COMMENT : '//' WORD;
+
+VALUE : (I_VALUE | F_VALUE | B_VALUE | S_VALUE);
+I_VALUE : NUMBER+;
+L_VALUE : NUMBER+ 'L';
+F_VALUE : NUMBER+ ('.' NUMBER*)? 'f';
+D_VALUE : NUMBER+ ('.' NUMBER*)?;
+B_VALUE : 'true' | 'false';
+S_VALUE : '\'' (WORD SPACE?)* '\'';
+
+TEXT : ((~[])* (SPACE | NEWLINE)?)*;
+WORD : (LITERAL | NUMBER | SPEC_CHAR)+;
+VARIABLE : (LITERAL | NUMBER | SPEC_CHAR_VAR)+;
+
+LITERAL : [A-Z] | [a-z];
+NUMBER : [0-9];
+SPEC_CHAR : ~('\'' | NEWLINE);
+SPEC_CHAR_VAR : '$' | '&' | '_';
+
+NEWLINE : '\n';
+SPACE : ' ';
+\end{verbatim}
 
 
 \end{document}

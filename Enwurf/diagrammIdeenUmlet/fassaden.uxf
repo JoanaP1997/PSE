@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>752</x>
+      <x>728</x>
       <y>128</y>
-      <w>264</w>
+      <w>312</w>
       <h>152</h>
     </coordinates>
     <panel_attributes>GuiFacade
@@ -17,7 +16,7 @@
 +showProgramText(int program, String text)
 +showInput(int program, String input)
 +showVariables(int program, List&lt;String&gt; vars)
-+stepBack()
++stepBack() ????
 +reset()
 +update()
 </panel_attributes>
@@ -29,7 +28,7 @@
       <x>832</x>
       <y>336</y>
       <w>408</w>
-      <h>456</h>
+      <h>496</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -77,7 +76,7 @@
       <x>72</x>
       <y>344</y>
       <w>512</w>
-      <h>336</h>
+      <h>416</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -203,14 +202,14 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
+      <x>1032</x>
       <y>208</y>
-      <w>88</w>
+      <w>64</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 </panel_attributes>
-    <additional_attributes>90.0;160.0;90.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;160.0;60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

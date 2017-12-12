@@ -351,7 +351,8 @@ m1=1</panel_attributes>
 TraceStatePosition
 --
 AFTERRETURN
-AFTERFUNCCALL</panel_attributes>
+AFTERFUNCCALL
+NOTSPECIAL</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
