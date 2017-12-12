@@ -505,35 +505,121 @@ Gibt den Text (Übersetzung) zu der übergebenen textID zurück.
 \paragraph{FileReader}%TODO
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedene Dateiformate.
+Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
 \item Methoden: \\
 \begin{itemize}
 \item loadConfigFile(File f) : ConfigurationFile \\
 Lädt die übergebene Datei als Konfigurationsdatei und gibt diese in der Struktur ConfigurationFile zurück.
-\item loadProperties(File f) : PropertiesFile \\
-Lädt die übergebene Datei als Einstellungsdatei und gibt diese in der Struktur PropertiesFile zurück.
 \item loadLanguage(File f) : LanguageFile \\
 Lädt die übergebene Datei als Sprachdatei und gibt diese in der Struktur LanguageFile zurück.
+\end{itemize}
+\end{itemize}
+
+\paragraph{PropertiesFileReader}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Dient als Schnittstelle zum Lesen einer Einstellungsdatei.
+\item Methoden: \\
+\begin{itemize}
+\item loadProperties(File f) : PropertiesFile \\
+Lädt die übergebene Datei als Einstellungsdatei und gibt diese in der Struktur PropertiesFile zurück.
 \end{itemize}
 \end{itemize}
 
 \paragraph{FileWriter}%TODO
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate.
+Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
 \item Methoden: \\
 \begin{itemize}
 \item saveConfig(ConfigurationFile f) \\
 Speichert die angegeben Konfigurationsdatei an der darin beschriebenen Stelle.
-\item saveProperties(PropertiesFile f) \\
-Speichert die angegeben Einstellungsdatei an der dafür vorgesehenen Standard Stelle.
 \item saveLanguageFile(LanguageFile f) \\
 Speichert die übergebene Sprachdatei im \enquote{/lang/} Verzeichnis des DIbuggers mit dem Dateinamen \enquote{kürzel _ sprachname .lang}.
 \end{itemize}
 \end{itemize}
 
+\paragraph{PropertiesFileWriter}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
+\item Methoden: \\
+\begin{itemize}
+\item saveProperties(PropertiesFile f) \\
+Speichert die angegeben Einstellungsdatei an der dafür vorgesehenen Standard Stelle.
+\end{itemize}
+\end{itemize}
+
 \subsubsection{Unterpaket FileHandler.RDBF}
-\paragraph{}
+\paragraph{RDBFMasterReader}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+\item Methoden: \\
+\begin{itemize}
+\item loadConfigFile(File f) : ConfigurationFile \\
+Liest eine Konfigurationsdatei als RDBFFile ein und übersetzt diese in die ConfigurationFile Klasse.
+\item  loadLanguageFile(File f) : LanguageFile \\
+Liest eine Sprachatei als RDBFFile ein und übersetzt diese in die LanguageFile Klasse.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFPropReader}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Lesen der Einstellungsdateien bereit.
+\item Methoden: \\
+\begin{itemize}
+\item readPropertiesFile(File f) : PropertiesFile \\
+Liest die angegebene Datei als in eine von JAVA Definierten Properties Klasse ein und übersetzt diese zu einer PropertiesFile.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFMasterWriter}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+\item Methoden: \\
+\item saveConfigFile(ConfigurationFile f) \\
+Erzeugt aus der übergebenen ConfigurationFile ein RDBFFile und speichert dieses an der gegebenen Stelle (in der ConfigurationFile) ab.
+\item saveLanguageFile(LanguageFile f) \\
+Erzeugt aus der übergebenen LanguageFile ein RDBFFile und speichert diese an der in FileWriter.saveLanguageFile(LanguageFile f) definierten Stelle.
+\begin{itemize}
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFPropWriter}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Speichern der Einstellungsdateien bereit.
+\item Methoden: \\
+\begin{itemize}
+\item savePropertiesFile(PropertiesFile f) \\
+Erzeugt aus der übergebenen PropertiesFile eine von JAVA spezifizierte Properties Klasse und speichert diese an der in PropertiesFile definierten Stelle ab.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFReader}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
+\item Methoden: \\
+\begin{itemize}
+\item loadRDBFFile(File f) : RDBFFile \\
+Liest die Datei an der übergebenen Stelle in ein RDBFFile ein.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFWriter}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit.
+\item Methoden: \\
+\begin{itemize}
+\item saveRDBFFile(RDBFFile f) \\
+Speichert das übergebene RDBFFile Objekt an der darin spezifizierten Stelle im RDBF Format ab.
+\end{itemize}
+\end{itemize}
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
 \paragraph{DIbuggerException}
