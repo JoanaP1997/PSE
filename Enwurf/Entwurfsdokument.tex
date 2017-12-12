@@ -535,7 +535,7 @@ Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schre
 \item saveConfig(ConfigurationFile f) \\
 Speichert die angegeben Konfigurationsdatei an der darin beschriebenen Stelle.
 \item saveLanguageFile(LanguageFile f) \\
-Speichert die übergebene Sprachdatei im \enquote{/lang/} Verzeichnis des DIbuggers mit dem Dateinamen \enquote{kürzel _ sprachname .lang}.
+Speichert die übergebene Sprachdatei im \enquote{/lang/} Verzeichnis des DIbuggers mit dem Dateinamen %\enquote{kürzel _ sprachname .lang}.
 \end{itemize}
 \end{itemize}
 
@@ -580,11 +580,11 @@ Liest die angegebene Datei als in eine von JAVA Definierten Properties Klasse ei
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 \item Methoden: \\
+\begin{itemize}
 \item saveConfigFile(ConfigurationFile f) \\
 Erzeugt aus der übergebenen ConfigurationFile ein RDBFFile und speichert dieses an der gegebenen Stelle (in der ConfigurationFile) ab.
 \item saveLanguageFile(LanguageFile f) \\
 Erzeugt aus der übergebenen LanguageFile ein RDBFFile und speichert diese an der in FileWriter.saveLanguageFile(LanguageFile f) definierten Stelle.
-\begin{itemize}
 \end{itemize}
 \end{itemize}
 
@@ -620,6 +620,108 @@ Stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit
 Speichert das übergebene RDBFFile Objekt an der darin spezifizierten Stelle im RDBF Format ab.
 \end{itemize}
 \end{itemize}
+
+\paragraph{RDBFParser}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Diese Klasse existiert als Singleton und übernimmt die Funktionalität, eingelesene Zeilen zu analysieren und zu interpretieren, um diese dann final zu Objekten zusammenzufassen.
+\item Öffentliche Konstanten: \\
+\begin{itemize}
+\item LINE\_ASSIGNMENT = 0 \\
+Indikator dafür, dass eine Zeile eine Zuweisung ist als int.
+\item LINE\_BLOCK = 1 \\
+Indiziert den Beginn eines Blocks in einer Zeile als int.
+\item LINE\_BLOCK\_TEXT = 2 \\
+Indikator für den Beginn eines Textblocks in einer Zeile als int.
+\end{itemize}
+\item Methoden: \\
+\begin{itemize}
+\item getInstance() : RDBFParser \\
+Als statische Methode gibt diese Methode die Singleton Instanz der Klasse zurück bzw. erschafft diese, falls sie noch nicht existiert.
+\item getBlockName(String line) : String \\
+Versucht aus der übergebenen Zeile den Block Namen zu beginn eines Blocks zurückzugeben.
+Falls die Zeile keinen Beginn eines Block enthält wird eine ParseBlockException geworfen.
+\item getDataType(String line) : int \\
+Versucht aus der übergebenen Zeile den Datentyp einer Zuweisung herauszufinden.
+Die Datentypen sind in der Klasse RDBFData beschrieben.
+Wirft eine ParseAssignmentException, falls die Zeile keine Zuweisung ist, oder der Datentyp nicht bekannt ist.
+\item getVariableName(String line) : String \\
+Aus der übergebenen Zeile wird der Variablenname einer Zuweisung herausgefiltert.
+Falls keine Zuweisungszeile übergeben wird, wird eine ParseAssignmentException geworfen.
+\item getValue(String line) : String \\
+Gibt den Wert einer Zuweisung zurück, falls die übergebene Zeile diese enthält, sonst wird eine ParseAssignmentException geworfen.
+\item evaluateLineType(String line) : int
+Analysiert die übergebene Zeile und gibt den Typ der Zeile als int zurück.
+Wirft eine InvalidLineTypeException, falls die Zeile von keinem bekannten Typ ist.
+Siehe \enquote{Öffentliche Konstanten} für genaue Spezifizierung der möglichen Rückgabewerte.
+\item getSValue(String s) : String \\
+Versucht die übergebene Zeichenkette als String zu interpretieren.
+Dabei wird eine ParseAssignmentException geworfen, wenn der Übergabewert nicht als String akzeptiert wird.
+\item getIValue(String s) : int \\
+Die übergebene Zeichenkette wird als 32bit Ganzzahl interpretiert.
+Wirft eine ParseAssignmentException, falls dies nicht gelingt.
+\item getLValue(String s) : long \\
+Gleiches Vorgehen wie getIValue(String s), jedoch mit der Interpretierung einer 64bit Ganzzahl.
+\item getFValue(String s) : float \\
+Versucht eine 32bit Fließkommazahl aus der übergebenen Zeichenkette zu extrahieren.
+Wirft eine ParseAssignmentException bei einem Fehlschlag.
+\item getDValue(String s) : double \\
+Interpretiert die Zeichenkette als 64bit Fließkommazahl mit dem Werfen einer ParseAssignmentException bei einem Fehler.
+\item getBValue(String s) : boolean \\
+Versucht die Zeichenkette als Boolesche Variabel aufzufassen und wirft bei auftreten eines Fehlers eine ParseAssignmentException.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFAdditions}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Abstrakte Klasse zum repräsentieren von RDBFFile und RDBFBlock, da diese sich nur in wenigen Punkten unterscheiden.
+\item Methoden: \\
+\begin{itemize}
+\item getBlocksByName(String identifier) : List<RDBFBlock> \\
+Gibt eine Liste aller Blöcke zurück, welche den selben Namen haben wie die übergebene Zeichenkette.
+\item getFirstBlockByName(String identifier) : RDBFBLock \\
+Gibt den zuerst gefundenen Block mit dem übergebenen Namen zurück, falls er existiert, sonst null.
+\item getDataByName(String identifier) : List<RDBFData> \\
+Gibt alle Daten mit dem übergebenen Namen als Liste zurück.
+\item getFirstDataByName(String identifier) : RDBFData \\
+Gibt das zuerst gefundene RDBFData Objekt mit dem korrespondierenden Namen zurück, oder null falls keines gefunden wurde.
+\end{itemize}
+\end{itemize}
+
+\paragraph{RDBFFile}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und Stützt sich dabei auf die Implementierung von RDBFAdditions.
+\end{itemize}
+
+\paragraph{RDBFBlock}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt einen in der RDBF Grammatik definierten Block dar. Dabei werden die Methoden von RDBFAdditions geerbt.
+\end{itemize}
+
+\paragraph{RDBFData}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Repräsentiert eine Zuweisung der RDBF Grammatik als Datenstruktur. Hierbei enthält diese einen Variablennamen, Wert und zusätzlich den Typ des Wertes.
+\item Öffentliche Konstanten: \\
+\begin{itemize}
+\item DATA\_STRING = 0 \\
+Indiziert, dass der Datenwert ein String ist.
+\item DATA\_INT = 1 \\
+Indiziert, dass der Datenwert eine 32bit Ganzzahl ist.
+\item DATA\_LONG = 2 \\
+Index für eine 64bit Ganzzahl.
+\item DATA\_FLOAT = 3 \\
+Index für eine 32bit Fließkommazahl.
+\item DATA\_DOUBLE = 4 \\
+Indiziert einen Datenwert als 64bit Fließkommazahl.
+\item DATA\_BOOLEAN = 5 \\
+Indiziert einen Datenwert als Boolesche Variable.
+\end{itemize}
+\end{itemize}
+
 
 \subsection{Klassen im Paket \enquote{Exceptions}} 
 \paragraph{DIbuggerException}
