@@ -812,6 +812,17 @@ Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPo
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\caption{Das Termkompositum im Entwurf}
+\label{Terme}
+\end{figure}
+\paragraph{Das Termkompositum}
+Kovarianz etc.
+\paragraph{Das Commandkompositum und Befehlsmuster}
+\paragraph{Das Visitorpattern}
+\paragraph{Der Traceiterator}
 \subsection{Patterns im Paket File Handler}
 Das Paket FileHandler.Facade stellt über vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien. Dadurch wird das Strategie Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden.
 Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist.
