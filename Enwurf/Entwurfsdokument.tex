@@ -815,6 +815,8 @@ Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPo
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
+\paragraph{Das Kompositum}
+Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
