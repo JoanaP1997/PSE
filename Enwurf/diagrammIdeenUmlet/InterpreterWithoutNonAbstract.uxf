@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <zoom_level>7</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>574</x>
-      <y>441</y>
-      <w>168</w>
-      <h>98</h>
+      <x>1680</x>
+      <y>590</y>
+      <w>120</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>TraceIterator
 --
@@ -17,10 +17,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
-      <y>147</y>
-      <w>343</w>
-      <h>154</h>
+      <x>1405</x>
+      <y>380</y>
+      <w>245</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>GenerationController
 --
@@ -40,10 +40,10 @@ Stack&lt;Scope&gt; stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>686</x>
-      <y>70</y>
-      <w>189</w>
-      <h>133</h>
+      <x>1760</x>
+      <y>325</y>
+      <w>135</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>CommandGenerationVisitor
 --
@@ -56,10 +56,10 @@ Stack&lt;Scope&gt; stack
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1008</x>
-      <y>217</y>
-      <w>252</w>
-      <h>133</h>
+      <x>1990</x>
+      <y>430</y>
+      <w>180</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>/Command/
 --
@@ -72,10 +72,10 @@ Command(GenerationControllor controller)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>252</x>
-      <y>441</y>
-      <w>196</w>
-      <h>98</h>
+      <x>1450</x>
+      <y>590</y>
+      <w>140</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Trace
 --
@@ -87,10 +87,10 @@ Command(GenerationControllor controller)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>112</y>
-      <w>175</w>
-      <h>98</h>
+      <x>1645</x>
+      <y>355</y>
+      <w>125</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 calls &gt;
@@ -101,10 +101,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>315</x>
-      <y>602</y>
-      <w>84</w>
-      <h>35</h>
+      <x>1495</x>
+      <y>705</y>
+      <w>60</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>TraceState
 --</panel_attributes>
@@ -113,10 +113,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>357</x>
-      <y>532</y>
-      <w>28</w>
-      <h>84</h>
+      <x>1525</x>
+      <y>655</y>
+      <w>20</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -126,10 +126,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>868</x>
-      <y>154</y>
-      <w>154</w>
-      <h>91</h>
+      <x>1890</x>
+      <y>385</y>
+      <w>110</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=-
 m2=*
@@ -139,10 +139,10 @@ creates &gt;</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>322</y>
-      <w>154</w>
-      <h>21</h>
+      <x>1270</x>
+      <y>505</y>
+      <w>110</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>AntlrParser.ParseTree
 bg=green</panel_attributes>
@@ -151,10 +151,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>14</y>
-      <w>203</w>
-      <h>21</h>
+      <x>1470</x>
+      <y>285</y>
+      <w>145</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>Debugger package
 bg=#00AAFF</panel_attributes>
@@ -163,10 +163,10 @@ bg=#00AAFF</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>147</x>
-      <y>294</y>
-      <w>189</w>
-      <h>63</h>
+      <x>1375</x>
+      <y>485</y>
+      <w>135</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 
@@ -178,10 +178,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>28</y>
-      <w>49</w>
-      <h>133</h>
+      <x>1540</x>
+      <y>295</y>
+      <w>35</w>
+      <h>95</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 call v</panel_attributes>
@@ -190,10 +190,10 @@ call v</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>252</y>
-      <w>315</w>
-      <h>112</h>
+      <x>1710</x>
+      <y>455</y>
+      <w>225</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Scope
 --
@@ -209,10 +209,10 @@ call v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>231</y>
-      <w>497</w>
-      <h>35</h>
+      <x>1645</x>
+      <y>440</y>
+      <w>355</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 m2=*
@@ -224,10 +224,10 @@ controlls &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>364</x>
-      <y>294</y>
-      <w>70</w>
-      <h>161</h>
+      <x>1530</x>
+      <y>485</y>
+      <w>50</w>
+      <h>115</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 creates &gt;
@@ -238,10 +238,10 @@ m2=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>273</y>
-      <w>105</w>
-      <h>35</h>
+      <x>1645</x>
+      <y>470</y>
+      <w>75</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=*
@@ -252,10 +252,10 @@ r2=stack</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>924</x>
-      <y>308</y>
-      <w>98</w>
-      <h>35</h>
+      <x>1930</x>
+      <y>495</y>
+      <w>70</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; knows
@@ -266,10 +266,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
-      <y>0</y>
-      <w>154</w>
-      <h>28</h>
+      <x>1810</x>
+      <y>275</y>
+      <w>110</w>
+      <h>20</h>
     </coordinates>
     <panel_attributes>TermGenerationVisitor
 bg=pink</panel_attributes>
@@ -278,10 +278,10 @@ bg=pink</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>854</x>
-      <y>21</y>
-      <w>63</w>
-      <h>63</h>
+      <x>1880</x>
+      <y>290</y>
+      <w>45</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 starts ^</panel_attributes>
@@ -290,10 +290,10 @@ starts ^</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>511</y>
-      <w>147</w>
-      <h>35</h>
+      <x>1585</x>
+      <y>640</y>
+      <w>105</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
@@ -304,10 +304,10 @@ creates &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>441</x>
-      <y>476</y>
-      <w>147</w>
-      <h>35</h>
+      <x>1585</x>
+      <y>615</y>
+      <w>105</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
@@ -317,10 +317,10 @@ m1=1
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>973</x>
-      <y>70</y>
-      <w>175</w>
-      <h>70</h>
+      <x>1965</x>
+      <y>325</y>
+      <w>125</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>Note..
 Für jede Ableitungsregel der Grammatik eine eigene 
@@ -330,10 +330,10 @@ visit-Methode</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>847</x>
-      <y>112</y>
-      <w>140</w>
-      <h>35</h>
+      <x>1875</x>
+      <y>355</y>
+      <w>100</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=.()
 
@@ -343,10 +343,10 @@ visit-Methode</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1463</x>
-      <y>896</y>
-      <w>280</w>
-      <h>70</h>
+      <x>2315</x>
+      <y>915</y>
+      <w>200</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>ConstantTerm
 --
@@ -359,10 +359,10 @@ visit-Methode</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1477</x>
-      <y>672</y>
-      <w>448</w>
-      <h>105</h>
+      <x>2325</x>
+      <y>755</y>
+      <w>320</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>/Term/
 --
@@ -375,10 +375,10 @@ visit-Methode</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1638</x>
-      <y>770</y>
-      <w>21</w>
-      <h>140</h>
+      <x>2440</x>
+      <y>825</y>
+      <w>15</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
@@ -386,10 +386,10 @@ visit-Methode</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1491</x>
-      <y>1036</y>
-      <w>238</w>
-      <h>175</h>
+      <x>2335</x>
+      <y>1015</y>
+      <w>170</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 TermValue
@@ -411,10 +411,10 @@ TermValue
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1603</x>
-      <y>959</y>
-      <w>49</w>
-      <h>91</h>
+      <x>2415</x>
+      <y>960</y>
+      <w>35</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1
@@ -424,10 +424,10 @@ r2=value</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1365</x>
-      <y>455</y>
-      <w>322</w>
-      <h>63</h>
+      <x>2245</x>
+      <y>600</y>
+      <w>230</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>/Comparison/
 --
@@ -439,10 +439,10 @@ r2=value</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1589</x>
-      <y>511</y>
-      <w>21</w>
-      <h>175</h>
+      <x>2405</x>
+      <y>640</y>
+      <w>15</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
@@ -450,10 +450,10 @@ r2=value</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1834</x>
-      <y>476</y>
-      <w>308</w>
-      <h>63</h>
+      <x>2580</x>
+      <y>615</y>
+      <w>220</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>/BinaryCondition/
 --
@@ -465,10 +465,10 @@ r2=value</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1890</x>
-      <y>532</y>
-      <w>21</w>
-      <h>154</h>
+      <x>2620</x>
+      <y>655</y>
+      <w>15</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
@@ -476,10 +476,10 @@ r2=value</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1750</x>
-      <y>504</y>
-      <w>98</w>
-      <h>182</h>
+      <x>2520</x>
+      <y>635</y>
+      <w>70</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=2
@@ -489,10 +489,10 @@ r2=children</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1519</x>
-      <y>511</y>
-      <w>63</w>
-      <h>175</h>
+      <x>2355</x>
+      <y>640</y>
+      <w>45</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=2
@@ -502,10 +502,10 @@ r2=children</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1918</x>
-      <y>721</y>
-      <w>252</w>
-      <h>231</h>
+      <x>2640</x>
+      <y>790</y>
+      <w>180</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=2
@@ -515,10 +515,10 @@ r2=left, right (children)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1638</x>
-      <y>770</y>
-      <w>168</w>
-      <h>175</h>
+      <x>2440</x>
+      <y>825</y>
+      <w>120</w>
+      <h>125</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;130.0;180.0;130.0;180.0;230.0;220.0;230.0</additional_attributes>
@@ -526,10 +526,10 @@ r2=left, right (children)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1792</x>
-      <y>896</y>
-      <w>343</w>
-      <h>63</h>
+      <x>2550</x>
+      <y>915</y>
+      <w>245</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>BinaryArithmeticTerm
 --
@@ -537,6 +537,195 @@ r2=left, right (children)</panel_attributes>
 /+evaluate(List&lt;TraceState&gt; states): TermValue/
 /+evaluate(Scope currentScope): TermValue/
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>470</y>
+      <w>280</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>TermGenerationVisitor
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>510</y>
+      <w>40</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+creates    
+m1=*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>725</x>
+      <y>340</y>
+      <w>260</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>WatchExpression
+--
+--
++WatchExpression(String specifier)
++WatchExpression(String specifier, List&lt;ScopeTuple&gt; scopes)
++evaluate(List&lt;TraceState&gt; states): String
++change(String specifier, List&lt;ScopeTuple&gt; scopes)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>350</y>
+      <w>270</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>ConditionalBreakpoint
+--
+--
++ConditionalBreakpoint(String specifier)
++ConditionalBreakpoint(String specifier, List&lt;ScopeTuple&gt; scopes)
++evaluate(List&lt;TraceState&gt; states): boolean
++change(String specifier, List&lt;ScopeTuple&gt; scopes)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>385</x>
+      <y>405</y>
+      <w>175</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=condition</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0;260.0;280.0;260.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>405</y>
+      <w>170</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+starts &gt;</panel_attributes>
+    <additional_attributes>320.0;130.0;320.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>445</x>
+      <y>240</y>
+      <w>230</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>Debugger package
+bg=#00AAFF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>395</x>
+      <y>250</y>
+      <w>170</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;140.0;320.0;140.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>250</y>
+      <w>315</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+creates</panel_attributes>
+    <additional_attributes>610.0;180.0;610.0;140.0;10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>610</x>
+      <y>395</y>
+      <w>245</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1
+r2=    expression</panel_attributes>
+    <additional_attributes>470.0;10.0;470.0;290.0;10.0;290.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>365</y>
+      <w>70</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>ScopeTuple
+--
+-int startLine
+-int endLine
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>525</x>
+      <y>370</y>
+      <w>75</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2..*
+r2=scopes</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>655</x>
+      <y>365</y>
+      <w>80</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=2..*
+r2=scopes</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>505</x>
+      <y>605</y>
+      <w>125</w>
+      <h>25</h>
+    </coordinates>
+    <panel_attributes>/Term/
+
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
