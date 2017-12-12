@@ -1300,8 +1300,39 @@ vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwisch
 sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
 
 
+\subsection{Gramamtik RDBF Format}
+\begin{verbatim}
+R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
+BLOCK : VARIABLE '{' NEWLINE
+	((STATEMENT | BLOCK | COMMENT) NEWLINE)*
+	NEWLINE '}';
+BLOCK_TEXT : VARIABLE '{' NEWLINE 'def_blockLen=' I_VALUE NEWLINE TEXT NEWLINE '}';
+	
+STATEMENT : VARIABLE '=' VALUE;
 
+COMMENT : '//' WORD;
+
+VALUE : (I_VALUE | F_VALUE | B_VALUE | S_VALUE);
+I_VALUE : NUMBER+;
+L_VALUE : NUMBER+ 'L';
+F_VALUE : NUMBER+ ('.' NUMBER*)? 'f';
+D_VALUE : NUMBER+ ('.' NUMBER*)?;
+B_VALUE : 'true' | 'false';
+S_VALUE : '\'' (WORD SPACE?)* '\'';
+
+TEXT : ((~[])* (SPACE | NEWLINE)?)*;
+WORD : (LITERAL | NUMBER | SPEC_CHAR)+;
+VARIABLE : (LITERAL | NUMBER | SPEC_CHAR_VAR)+;
+
+LITERAL : [A-Z] | [a-z];
+NUMBER : [0-9];
+SPEC_CHAR : ~('\'' | NEWLINE);
+SPEC_CHAR_VAR : '$' | '&' | '_';
+
+NEWLINE : '\n';
+SPACE : ' ';
+\end{verbatim}
 
 
 \end{document}
