@@ -812,6 +812,17 @@ Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPo
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\caption{Das Termkompositum im Entwurf}
+\label{Terme}
+\end{figure}
+\paragraph{Das Termkompositum}
+Kovarianz etc.
+\paragraph{Das Commandkompositum und Befehlsmuster}
+\paragraph{Das Visitorpattern}
+\paragraph{Der Traceiterator}
 \subsection{Patterns im Paket File Handler}
 Das Paket FileHandler.Facade stellt über vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien. Dadurch wird das Strategie Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden.
 Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist.
@@ -949,14 +960,9 @@ wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte an
 \subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
 In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
 \subsubsection{Erzeugung einer abstrakten Repräsentation für Watch-Expressions und bedingte Breakpoints}
-Eine Watch-Expression kann entweder aus einem Term bestehen, oder aus einer Bedingung. Ein bedingter Breakpoint hingegegen muss aus einer Bedingung bestehen. Der Zusammenhang von Bedingungen und Termen soll zunächst besprochen werden.
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
-\caption{Terme und Bedingungen}
-\label{Terme}
-\end{figure}
-In Diagramm \ref{Terme} sind der Übersichtlichkeit halber nur die abstrakten Klassen ohne Methoden oder Attribute zu sehen. So sind etwa die zahlreichen Unterklassen von \textit{Condition, Comparison} und  \textit{Term} ausgespart. Bei \textit{Term} und \textit{Condition} handelt es sich überdies um ein Kompositum. Dies wird genauer in \ref{Patterns} erklärt. Wichtig ist hierbei vor allem, dass ein Vergleich eine spezielle Bedingung darstellt, die zwei Terme enthält und diese miteinander vergleicht. Jede Expression ist auswertbar. So nimmt eine Bedingung stehts einen boolschen Wert an, während ein Term sich zu einem beliebigen Datentyp auswerten kann. 
+Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. Wie Terme in der Klassenstruktur aufgebaut sind, ist im Kapitel \ref{Patterns} genauer beschrieben. Zusätzlich enthalten Watch-Expressions und bedingte Breakpoints einen Gültigkeitsbereich in Form von mehreren \textit{ScopeTuple}-Instanzen. 
+\\
+In den hier abgebildeten Diagrammen sind der Übersichtlichkeit halber nur die für die Erklärung wichtigsten Klassen meist ohne Methoden oder Attribute zu sehen.
 Wir betrachten das Diagramm \ref{WEBBP} 
 \begin{figure}[!h]
 \centering
@@ -964,7 +970,7 @@ Wir betrachten das Diagramm \ref{WEBBP}
 \caption{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{figure}
-Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{ConditionGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Da eine \textit{Comparison} etwa auch zwei \textit{Term} Objecte benötigt, wird von diesem an entsprechender Stelle der \textit{TermGenerationVisitor} aufgerufen. Beim Erzeugen einer WatchExpression passiert das gleiche, wobei es sich auch um reine Terme handeln kann, sodass ein \textit{ConditionGenerationVisitor} eventuell gar nicht gebraucht wird.
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standartmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
