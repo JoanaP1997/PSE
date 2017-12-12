@@ -813,6 +813,8 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
 \subsection{Patterns im Paket File Handler}
+Das Paket FileHandler.Facade stellt über vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien. Dadurch wird das Strategie Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden.
+Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist.
 
 \newpage
 \section{Charakteristische Abläufe}\label{charAbl}
@@ -925,7 +927,7 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 \subsection{Generieren von Vorschlägen}%TODO
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
+\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
 \caption{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
 \end{figure}
 Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
