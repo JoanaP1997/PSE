@@ -381,14 +381,7 @@ Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \item Klassenbeschreibung: \\
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \end{itemize}
-\paragraph{Condition}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-
-\item Wichtige Methoden:\\
-
-\end{itemize}
-\paragraph{Comparison}
+\paragraph{ScopeTuple}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 
@@ -963,14 +956,14 @@ In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.I
 Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. Wie Terme in der Klassenstruktur aufgebaut sind, ist im Kapitel \ref{Patterns} genauer beschrieben. Zusätzlich enthalten Watch-Expressions und bedingte Breakpoints einen Gültigkeitsbereich in Form von mehreren \textit{ScopeTuple}-Instanzen. 
 \\
 In den hier abgebildeten Diagrammen sind der Übersichtlichkeit halber nur die für die Erklärung wichtigsten Klassen meist ohne Methoden oder Attribute zu sehen.
-Wir betrachten das Diagramm \ref{WEBBP} 
+Wir betrachten das Diagramm \ref{WEBBP}.  
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}
 \caption{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{figure}
-Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standartmäßig ist der Gültigkeitsbereich maximal.
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standardmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
@@ -994,14 +987,14 @@ int main(){
 \end{verbatim}
 
 Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
-Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in \ref{ParseTreeExample} zu sehen.
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}- Kompositum, siehe \ref{Patterns}). Dabei verwendet er zwei weitere Visitor, die ihm Bedingungen und Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
 Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
