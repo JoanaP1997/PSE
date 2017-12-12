@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>816</x>
-      <y>152</y>
+      <x>752</x>
+      <y>128</y>
       <w>264</w>
       <h>152</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>360</y>
+      <x>832</x>
+      <y>336</y>
       <w>408</w>
       <h>456</h>
     </coordinates>
@@ -74,8 +74,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>136</x>
-      <y>368</y>
+      <x>72</x>
+      <y>344</y>
       <w>512</w>
       <h>336</h>
     </coordinates>
@@ -115,8 +115,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>240</y>
+      <x>376</x>
+      <y>216</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -130,8 +130,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>320</y>
+      <x>464</x>
+      <y>296</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -141,8 +141,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>928</x>
-      <y>72</y>
+      <x>864</x>
+      <y>48</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -154,8 +154,8 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>688</x>
-      <y>304</y>
+      <x>624</x>
+      <y>280</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -167,8 +167,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>496</x>
-      <y>288</y>
+      <x>432</x>
+      <y>264</y>
       <w>208</w>
       <h>56</h>
     </coordinates>
@@ -178,8 +178,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>952</x>
-      <y>112</y>
+      <x>888</x>
+      <y>88</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -189,8 +189,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>80</y>
+      <x>464</x>
+      <y>56</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -203,8 +203,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1072</x>
-      <y>232</y>
+      <x>1008</x>
+      <y>208</y>
       <w>88</w>
       <h>144</h>
     </coordinates>
@@ -215,8 +215,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
-      <y>512</y>
+      <x>576</x>
+      <y>488</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
@@ -227,8 +227,8 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1448</x>
-      <y>464</y>
+      <x>1384</x>
+      <y>440</y>
       <w>320</w>
       <h>144</h>
     </coordinates>
@@ -249,8 +249,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1296</x>
-      <y>512</y>
+      <x>1232</x>
+      <y>488</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
