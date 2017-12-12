@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>7</zoom_level>
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>350</x>
-      <y>266</y>
-      <w>434</w>
-      <h>168</h>
+      <x>328</x>
+      <y>304</y>
+      <w>496</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>Control</panel_attributes>
     <additional_attributes/>
@@ -15,10 +14,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>175</x>
-      <y>476</y>
-      <w>364</w>
-      <h>273</h>
+      <x>128</x>
+      <y>544</y>
+      <w>416</w>
+      <h>312</h>
     </coordinates>
     <panel_attributes>File Handler</panel_attributes>
     <additional_attributes/>
@@ -26,10 +25,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>581</x>
-      <y>476</y>
-      <w>532</w>
-      <h>413</h>
+      <x>592</x>
+      <y>544</y>
+      <w>608</w>
+      <h>472</h>
     </coordinates>
     <panel_attributes>DebugLogic</panel_attributes>
     <additional_attributes/>
@@ -37,22 +36,22 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>427</y>
-      <w>56</w>
-      <h>84</h>
+      <x>360</x>
+      <y>488</y>
+      <w>72</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
-    <additional_attributes>20.0;10.0;18.0;100.0</additional_attributes>
+    <additional_attributes>20.0;10.0;18.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
-      <y>427</y>
-      <w>168</w>
-      <h>77</h>
+      <x>704</x>
+      <y>488</y>
+      <w>192</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -61,10 +60,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>602</x>
-      <y>504</y>
-      <w>504</w>
-      <h>119</h>
+      <x>616</x>
+      <y>576</y>
+      <w>576</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>Debugger</panel_attributes>
     <additional_attributes/>
@@ -72,10 +71,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>609</x>
-      <y>784</y>
-      <w>490</w>
-      <h>84</h>
+      <x>624</x>
+      <y>896</y>
+      <w>560</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>AntlrParser</panel_attributes>
     <additional_attributes/>
@@ -83,10 +82,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>616</y>
-      <w>49</w>
-      <h>56</h>
+      <x>888</x>
+      <y>704</y>
+      <w>64</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -95,10 +94,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>756</y>
-      <w>49</w>
-      <h>56</h>
+      <x>888</x>
+      <y>864</y>
+      <w>64</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -107,10 +106,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>392</x>
+      <x>376</x>
       <y>0</y>
-      <w>525</w>
-      <h>168</h>
+      <w>600</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>UserInterface</panel_attributes>
     <additional_attributes/>
@@ -118,10 +117,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>546</x>
-      <y>161</y>
-      <w>154</w>
-      <h>133</h>
+      <x>552</x>
+      <y>184</y>
+      <w>176</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -130,10 +129,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>847</x>
-      <y>161</y>
-      <w>112</w>
-      <h>343</h>
+      <x>896</x>
+      <y>184</y>
+      <w>128</w>
+      <h>392</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 &lt;&lt;observes&gt;&gt;</panel_attributes>
@@ -142,10 +141,10 @@
   <element>
     <type>com.baselet.element.old.element.Package</type>
     <coordinates>
-      <x>357</x>
-      <y>770</y>
-      <w>182</w>
-      <h>119</h>
+      <x>336</x>
+      <y>880</y>
+      <w>208</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>DIbuggerExceptions
 </panel_attributes>
@@ -154,10 +153,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>602</x>
-      <y>644</y>
-      <w>504</w>
-      <h>119</h>
+      <x>616</x>
+      <y>736</y>
+      <w>576</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>Interpreter</panel_attributes>
     <additional_attributes/>
