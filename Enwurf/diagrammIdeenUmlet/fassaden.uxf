@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -7,20 +6,21 @@
       <x>800</x>
       <y>144</y>
       <w>264</w>
-      <h>152</h>
+      <h>184</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
 --
 
 --
-+showProgramText(int program, String text)
-+showInput(int program, String input)
-+showVariables(int program, List&lt;String&gt; vars)
-+stepBack()
++stepBack()?????????
++showProgramText(String programText, int id)
 +reset()
++showInput(int program, String inputVariables)
++showVariables(int program, List&lt;String&gt; vars)
 +update()
-</panel_attributes>
++showError(String s)
++showWarning(String s)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
