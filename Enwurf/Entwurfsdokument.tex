@@ -970,7 +970,7 @@ Wir betrachten das Diagramm \ref{WEBBP}
 \caption{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{figure}
-Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{ConditionGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Da eine \textit{Comparison} etwa auch zwei \textit{Term} Objecte benötigt, wird von diesem an entsprechender Stelle der \textit{TermGenerationVisitor} aufgerufen. Beim Erzeugen einer WatchExpression passiert das gleiche, wobei es sich auch um reine Terme handeln kann, sodass ein \textit{ConditionGenerationVisitor} eventuell gar nicht gebraucht wird.
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standartmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{figure}[!h]
