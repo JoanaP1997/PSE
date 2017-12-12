@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
-      <y>144</y>
+      <x>752</x>
+      <y>112</y>
       <w>264</w>
       <h>152</h>
     </coordinates>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>352</y>
+      <x>832</x>
+      <y>320</y>
       <w>408</w>
-      <h>352</h>
+      <h>376</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -58,17 +58,20 @@
 +setMaximumIterations(int i);
 +setMaximumFunctionCalls(int i);
 +stepBack();
-+...methoden fuer Vorschlaege
+
+//Vorschlagsmethoden
++ suggestEquivalence() : String
++ suggestNoninterference() : String
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
-      <y>360</y>
+      <x>72</x>
+      <y>328</y>
       <w>512</w>
-      <h>304</h>
+      <h>336</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -89,19 +92,21 @@
 +getProgramCounter(): List&lt;int&gt;
 get...
 reset()
-+... Methdoen fuer Vorschlaege
+
 +setMaximumIterations(int i);
 +setMaximumFunctionCalls(int i);
 +deleteAllBreakpoints()
 
-</panel_attributes>
+//Vorschlagsmethoden
++ suggestEquivalence() : String
++ suggestNoninterference() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>424</x>
-      <y>232</y>
+      <x>376</x>
+      <y>200</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -115,8 +120,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>312</y>
+      <x>464</x>
+      <y>280</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -126,8 +131,8 @@ reset()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>912</x>
-      <y>64</y>
+      <x>864</x>
+      <y>32</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -139,8 +144,8 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>672</x>
-      <y>296</y>
+      <x>624</x>
+      <y>264</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -152,8 +157,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>280</y>
+      <x>432</x>
+      <y>248</y>
       <w>208</w>
       <h>56</h>
     </coordinates>
@@ -163,8 +168,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
-      <y>104</y>
+      <x>888</x>
+      <y>72</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -174,8 +179,8 @@ reset()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>512</x>
-      <y>72</y>
+      <x>464</x>
+      <y>40</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -188,8 +193,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>224</y>
+      <x>1008</x>
+      <y>192</y>
       <w>88</w>
       <h>144</h>
     </coordinates>
@@ -200,8 +205,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
-      <y>504</y>
+      <x>576</x>
+      <y>472</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
@@ -212,8 +217,8 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1432</x>
-      <y>456</y>
+      <x>1384</x>
+      <y>424</y>
       <w>320</w>
       <h>128</h>
     </coordinates>
@@ -232,8 +237,8 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
-      <y>504</y>
+      <x>1232</x>
+      <y>472</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
