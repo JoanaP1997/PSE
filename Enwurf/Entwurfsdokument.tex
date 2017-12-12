@@ -809,10 +809,10 @@ Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine 
 \paragraph{Das Fassadenpattern}
 Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
 \subsection{Patterns im Paket User Interface}
-Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem Kompositum. 
+Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert.
-Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar.
+Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar. %TODO eventuell Erklären welche vorteile das ergibt
 \subsection{Patterns im Paket Control}
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Das Kompositum}
@@ -836,10 +836,19 @@ Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zwe
 Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre Subklassen verwendet. Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auf Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
 \paragraph{Das Visitorpattern}
+Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
 \paragraph{Der Traceiterator}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
+\caption{Der Traceiterator}
+\label{TraceIterator}
+\end{figure}
+Wir betrachten Abbildung \ref{TraceIterator}.
+Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach aussen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \subsection{Patterns im Paket File Handler}
-Das Paket FileHandler.Facade stellt über vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien. Dadurch wird das Strategie Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden.
-Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist.
+Das Paket FileHandler.Facade stellt vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien bereit. Dadurch wird das \enquote{Strategie}-Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden. Somit dient die Verwendung des Musters vor allem der Erweiterbarkeit.\\
+Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
 
 \newpage
 \section{Charakteristische Abläufe}\label{charAbl}
