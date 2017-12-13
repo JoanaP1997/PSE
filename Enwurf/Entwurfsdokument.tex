@@ -1358,8 +1358,6 @@ arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 
 //LITERALE bzw TOKENS
 
-
-
 COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT:   '/*' .*? '*/' -> skip;
@@ -1377,7 +1375,6 @@ ASSIGN: '=';
 \end{verbatim}
 \subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints und Watch-Expressions}
 \begin{verbatim}
-
 grammar Terms;
 r: generalTerm;
 
@@ -1401,7 +1398,6 @@ comparison: left=term '<' right=term #LessComp
 	   | left=term '==' right=term #EqualComp
 	   | left=term '!=' right=term #NotEqualComp
 	;
-
 
 term : '-' inner = term #NegativeTerm
     | left = term '/' right = term #Division
