@@ -326,7 +326,7 @@ _/# getInstance() : ControlFacadeStateDebug;/_
     <coordinates>
       <x>672</x>
       <y>704</y>
-      <w>64</w>
+      <w>56</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
@@ -473,7 +473,7 @@ has v</panel_attributes>
     <coordinates>
       <x>392</x>
       <y>1488</y>
-      <w>208</w>
+      <w>184</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -485,7 +485,7 @@ trigger change in presentation v</panel_attributes>
     <coordinates>
       <x>1048</x>
       <y>1824</y>
-      <w>136</w>
+      <w>128</w>
       <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -518,6 +518,18 @@ ExceptionHandler
 --
 --
 handle(E exception);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1472</x>
+      <y>432</y>
+      <w>264</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Exceptions
+--</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
