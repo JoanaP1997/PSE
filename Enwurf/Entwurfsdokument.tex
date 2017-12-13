@@ -1170,7 +1170,34 @@ Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile g
 \end{figure}
 
 
-\section{Formale Spezifikation der Programmsprache und Speicherformate}\label{FormSpez}
+\section{Programmsprache und Speicherformat}\label{FormSpez}
+
+\subsection{Wlang}
+
+Wlang ist eine prozeduale, imperative Sprache, welche weder objektorientiert, noch einrückungsbasiert ist. \\
+Sie unterstützt die primitiven Datentypen int, long, float, double, char und boolean mit den selben Genauigkeiten wie Java.
+Außerdem sind  bis zu dreidimensionale Arrays dieser Datentypen möglich. \\
+Desweiteren unterstützt Wlang Kontrollstrukturen wie Funktionen und Prozeduren, die bedingten Ausführungen if, else if und else und while-Schleifen. \\
+Es muss in jedem Programm eine main-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können
+sowohl zeilenweise (//) als auch zeilenübergreifend (/*Kommentar*/) benutzt werden.
+Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich. \\
+Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang.
+
+
+
+
+\section{Änderung zum Pflichtenheft}
+Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
+
+
+
+
+\section{Anhang}
+%TODO UML-Klassendiagramm 
+Vollständiges großformatiges Klassendiagramm im Anhang. Ausschnitte/Teile können bereits
+vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwischen Klas-
+sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
+
 Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
 \subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax}
 \begin{verbatim}
@@ -1428,20 +1455,7 @@ NULLLITERAL: 'null';
 LONGLITERAL: ([1-9][0-9]* | '0' )'L';
 DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
-
 \end{verbatim}
-\section{Änderung zum Pflichtenheft}
-Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
-
-
-
-
-\section{Anhang}
-UML-Klassendiagramm 
-Vollständiges großformatiges Klassendiagramm im Anhang. Ausschnitte/Teile können bereits
-vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwischen Klas-
-sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
-
 
 \subsection{Gramamtik RDBF Format}
 \begin{verbatim}
