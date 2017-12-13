@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>11</zoom_level>
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>726</x>
-      <y>110</y>
-      <w>429</w>
-      <h>253</h>
+      <x>680</x>
+      <y>112</y>
+      <w>312</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
@@ -29,10 +28,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>869</x>
-      <y>396</y>
-      <w>561</w>
-      <h>682</h>
+      <x>784</x>
+      <y>320</y>
+      <w>408</w>
+      <h>496</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -77,10 +76,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>11</x>
-      <y>407</y>
-      <w>517</w>
-      <h>649</h>
+      <x>160</x>
+      <y>328</y>
+      <w>376</w>
+      <h>472</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -124,10 +123,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>242</x>
-      <y>231</y>
-      <w>264</w>
-      <h>121</h>
+      <x>328</x>
+      <y>200</y>
+      <w>192</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -139,10 +138,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>363</x>
-      <y>341</y>
-      <w>33</w>
-      <h>88</h>
+      <x>416</x>
+      <y>280</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -150,10 +149,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>913</x>
-      <y>0</y>
-      <w>110</w>
-      <h>66</h>
+      <x>816</x>
+      <y>32</y>
+      <w>80</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>/Observer/
 --
@@ -163,10 +162,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>561</x>
-      <y>319</y>
-      <w>143</w>
-      <h>77</h>
+      <x>560</x>
+      <y>264</y>
+      <w>104</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>for all o in observers {
 	o.update()
@@ -176,10 +175,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>319</x>
-      <y>297</y>
-      <w>264</w>
-      <h>77</h>
+      <x>384</x>
+      <y>248</y>
+      <w>192</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>220.0;50.0;10.0;10.0</additional_attributes>
@@ -187,10 +186,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>946</x>
-      <y>55</y>
-      <w>33</w>
-      <h>77</h>
+      <x>840</x>
+      <y>72</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -198,10 +197,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>363</x>
-      <y>11</y>
-      <w>572</w>
-      <h>242</h>
+      <x>416</x>
+      <y>40</y>
+      <w>416</w>
+      <h>176</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
@@ -212,10 +211,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1144</x>
-      <y>220</y>
-      <w>88</w>
-      <h>198</h>
+      <x>984</x>
+      <y>192</y>
+      <w>64</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 </panel_attributes>
@@ -224,10 +223,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>517</x>
-      <y>605</y>
-      <w>374</w>
-      <h>44</h>
+      <x>528</x>
+      <y>472</y>
+      <w>272</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
@@ -236,10 +235,10 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1628</x>
-      <y>539</y>
-      <w>440</w>
-      <h>198</h>
+      <x>1024</x>
+      <y>32</y>
+      <w>320</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>FileHandlerFacade
 --
@@ -258,13 +257,13 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1419</x>
-      <y>605</y>
-      <w>231</w>
-      <h>44</h>
+      <x>1136</x>
+      <y>168</y>
+      <w>24</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
   </element>
 </diagram>
