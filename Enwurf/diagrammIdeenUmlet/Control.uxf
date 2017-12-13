@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>8</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>464</x>
-      <y>784</y>
-      <w>440</w>
-      <h>528</h>
+      <x>567</x>
+      <y>756</y>
+      <w>495</w>
+      <h>612</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
 --
-+ ControlFacade(guiFacade : guiFacade);
++ ControlFacade(GuiFacade guiFacade);
 
 + setStepSize(int program, int size);
 + step(int type);
@@ -42,6 +42,8 @@
 + saveConfig(File configFile);
 + loadProgramText(File file);
 
++ getAvailableLanuages() : List&lt;String&gt;
+
 + setMaximumIterations(int i);
 + setMaximumFunctionCalls(int i);
 
@@ -49,31 +51,16 @@
 + suggestNonInterference();
 + suggestStepSize();
 
-+ changePresentationLanguage(String langId);</panel_attributes>
++ changeLanguage(String langId);</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>536</y>
-      <w>376</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>+ Methoden für Vorschläge
-
-*- fehlt: Language-Einlesen*
-*- fehlt: Parametertyp bei WatchExpressions, siehe ?????*
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1376</x>
-      <y>96</y>
-      <w>224</w>
-      <h>56</h>
+      <x>1593</x>
+      <y>0</y>
+      <w>252</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>...
 object.controller.step()
@@ -83,10 +70,10 @@ object.controller.step()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>704</x>
-      <y>808</y>
-      <w>232</w>
-      <h>40</h>
+      <x>837</x>
+      <y>801</y>
+      <w>261</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>270.0;30.0;10.0;10.0</additional_attributes>
@@ -94,10 +81,10 @@ object.controller.step()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>920</x>
-      <y>784</y>
-      <w>360</w>
-      <h>88</h>
+      <x>1080</x>
+      <y>774</y>
+      <w>405</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade : debugger.debuglogic::DebugLogicFacade
@@ -110,10 +97,10 @@ debugLogicFacade.attach(guiFacade);
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1040</x>
-      <y>112</y>
-      <w>352</w>
-      <h>24</h>
+      <x>1215</x>
+      <y>18</y>
+      <w>396</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>420.0;10.0;10.0;10.0</additional_attributes>
@@ -121,10 +108,10 @@ debugLogicFacade.attach(guiFacade);
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1264</x>
-      <y>1456</y>
-      <w>312</w>
-      <h>56</h>
+      <x>1467</x>
+      <y>1530</y>
+      <w>351</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade.setStepSize(int program, int size)
@@ -134,10 +121,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>1472</y>
-      <w>224</w>
-      <h>24</h>
+      <x>1233</x>
+      <y>1548</y>
+      <w>252</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
@@ -145,10 +132,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>848</x>
-      <y>1408</y>
-      <w>400</w>
-      <h>424</h>
+      <x>999</x>
+      <y>1476</y>
+      <w>450</w>
+      <h>477</h>
     </coordinates>
     <panel_attributes>DebugLogicController
 --
@@ -187,10 +174,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>824</x>
-      <y>1304</y>
-      <w>296</w>
-      <h>120</h>
+      <x>972</x>
+      <y>1359</y>
+      <w>333</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
@@ -201,10 +188,10 @@ r1=controller</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>1304</y>
-      <w>152</w>
-      <h>120</h>
+      <x>486</x>
+      <y>1359</y>
+      <w>171</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1
@@ -215,10 +202,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>272</x>
-      <y>1408</y>
-      <w>272</w>
-      <h>88</h>
+      <x>351</x>
+      <y>1476</y>
+      <w>306</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>FileHandlerInteractor
 --
@@ -230,143 +217,12 @@ r1=file handler interactor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>472</x>
-      <y>400</y>
-      <w>424</w>
-      <h>312</h>
-    </coordinates>
-    <panel_attributes>/ControlFacadeState/
---
---
-# switchState();
-/# getNextState();/
-# entry();
-# exit();
-
-# step(int type);
-# continue();
-# singleStep();
-# stepBack();
-
-# saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
-# startDebug();
-# stopDebug();
-# reset();
-
-# loadConfig(File configFile);
-# saveConfig(File configFile);
-# loadProgramText(File file);
-
-# setMaximumIterations(int i);
-# setMaximumFunctionCalls(int i);</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>112</x>
-      <y>0</y>
-      <w>424</w>
-      <h>272</h>
-    </coordinates>
-    <panel_attributes>ControlFacadeStateEdit
---
-_/- singleton : ControlFacadeStateEdit = null;/_
---
-&lt;&lt;create&gt;&gt; - ControlFacadeStateEdit();
-_/# getInstance() : ControlFacadeStateDebug;/_
-# init(ControlFacade object);
-
-# getNextState();
-
-# saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
-
-# startDebug();
-# reset();
-
-# loadConfig(File configFile);
-# saveConfig(File configFile);
-# loadProgramText(File file);
-
-# setMaximumIterations(int i);
-# setMaximumFunctionCalls(int i);</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>936</x>
-      <y>0</y>
-      <w>424</w>
-      <h>272</h>
-    </coordinates>
-    <panel_attributes>ControlFacadeStateDebug
---
-/- singleton : ControlFacadeStateDebug = null;/
---
-&lt;&lt;create&gt;&gt; - ControlFacadeStateDebug();
-_/# getInstance() : ControlFacadeStateDebug;/_
-# init(ControlFacade object);
-
-# getNextState();
-
-# step(int type);
-# continue();
-# singleStep();
-# stepBack();
-
-# stopDebug();
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>672</x>
-      <y>704</y>
-      <w>56</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-&gt;
-
-m1=1
-r1=current
-
-m2=2
-r2=object</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>312</x>
-      <y>264</y>
-      <w>384</w>
-      <h>152</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>460.0;170.0;460.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>672</x>
-      <y>264</y>
-      <w>488</w>
-      <h>152</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;120.0;590.0;120.0;590.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>912</x>
-      <y>568</y>
-      <w>360</w>
-      <h>56</h>
+      <x>1071</x>
+      <y>531</y>
+      <w>405</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>throw new java.lang::IllegalStateException();</panel_attributes>
     <additional_attributes/>
@@ -374,10 +230,10 @@ r2=object</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
-      <y>584</y>
-      <w>136</w>
-      <h>24</h>
+      <x>936</x>
+      <y>549</y>
+      <w>153</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
@@ -385,10 +241,10 @@ r2=object</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>912</x>
-      <y>400</y>
-      <w>360</w>
-      <h>88</h>
+      <x>1071</x>
+      <y>342</y>
+      <w>405</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>next :ControlFacadeState = getNextState()
 
@@ -401,10 +257,10 @@ if (next != this) then
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>416</y>
-      <w>352</w>
-      <h>32</h>
+      <x>693</x>
+      <y>360</y>
+      <w>396</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>420.0;10.0;10.0;20.0</additional_attributes>
@@ -412,10 +268,10 @@ if (next != this) then
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>920</x>
-      <y>888</y>
-      <w>360</w>
-      <h>64</h>
+      <x>1080</x>
+      <y>891</y>
+      <w>405</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>...
 current.step();
@@ -426,10 +282,10 @@ current.switchState();
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>568</x>
-      <y>848</y>
-      <w>368</w>
-      <h>88</h>
+      <x>684</x>
+      <y>846</y>
+      <w>414</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>440.0;90.0;10.0;10.0</additional_attributes>
@@ -437,10 +293,10 @@ current.switchState();
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>1528</y>
-      <w>248</w>
-      <h>24</h>
+      <x>135</x>
+      <y>1611</y>
+      <w>279</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>de.rd.filehandler.facade::LanguageFile</panel_attributes>
     <additional_attributes/>
@@ -448,10 +304,10 @@ current.switchState();
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>176</x>
-      <y>1488</y>
-      <w>144</w>
-      <h>56</h>
+      <x>243</x>
+      <y>1566</y>
+      <w>162</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has v</panel_attributes>
@@ -460,10 +316,10 @@ has v</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>1584</y>
-      <w>168</w>
-      <h>24</h>
+      <x>405</x>
+      <y>1674</y>
+      <w>189</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>userinterface::GuiFacade</panel_attributes>
     <additional_attributes/>
@@ -471,10 +327,10 @@ has v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>1488</y>
-      <w>184</w>
-      <h>112</h>
+      <x>486</x>
+      <y>1566</y>
+      <w>207</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 trigger change in presentation v</panel_attributes>
@@ -483,10 +339,10 @@ trigger change in presentation v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1048</x>
-      <y>1824</y>
-      <w>128</w>
-      <h>128</h>
+      <x>1224</x>
+      <y>1944</y>
+      <w>144</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 controls model via v
@@ -496,10 +352,10 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
-      <y>1936</y>
-      <w>272</w>
-      <h>24</h>
+      <x>1080</x>
+      <y>2070</y>
+      <w>306</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>debugger.debuglogic::DebugLogicFacade</panel_attributes>
     <additional_attributes/>
@@ -507,29 +363,41 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>960</y>
-      <w>312</w>
-      <h>72</h>
+      <x>90</x>
+      <y>963</y>
+      <w>351</w>
+      <h>81</h>
     </coordinates>
-    <panel_attributes>template=E &lt; java.lang::RuntimeException
-&lt;&lt;interface&gt;&gt;
-ExceptionHandler
+    <panel_attributes>ExceptionHandler
 --
 --
-handle(E exception);</panel_attributes>
++ Exceptionhandler(ControlFacade facade)
+
++ handle(Excepti exception);</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1472</x>
-      <y>432</y>
-      <w>264</w>
-      <h>192</h>
+      <x>1701</x>
+      <y>378</y>
+      <w>297</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>Exceptions
 --</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>999</y>
+      <w>153</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
 </diagram>

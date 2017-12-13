@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>8</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1168</x>
-      <y>400</y>
-      <w>168</w>
-      <h>152</h>
+      <x>1611</x>
+      <y>729</y>
+      <w>243</w>
+      <h>171</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-SuggestionStrategy
+    <panel_attributes>/RelationalSuggestion/
 --
 --
-+ suggest() : String</panel_attributes>
++ suggestWatchExpression() : String
++ suggestConditionalBreakpoint() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1000</x>
-      <y>680</y>
-      <w>232</w>
-      <h>80</h>
+      <x>1593</x>
+      <y>1044</y>
+      <w>261</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>EquivalenceSuggestionStrategy
+    <panel_attributes>SimpleRelationalSuggestion
 --
 --
-+ suggest() : String</panel_attributes>
++ suggestWatchExpression() : String
++ suggestConditionalBreakpoint() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1112</x>
-      <y>544</y>
-      <w>152</w>
-      <h>152</h>
+      <x>1701</x>
+      <y>891</y>
+      <w>27</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>170.0;10.0;170.0;80.0;10.0;80.0;10.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>376</y>
-      <w>520</w>
-      <h>416</h>
+      <x>396</x>
+      <y>711</y>
+      <w>585</w>
+      <h>468</h>
     </coordinates>
     <panel_attributes>DebugControl
 --
@@ -87,64 +88,46 @@ _+ STEP_BACK = 3 : int_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1288</x>
-      <y>680</y>
-      <w>232</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>NoninterferenceSuggestionStrategy
---
---
-+ suggest() : String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1240</x>
-      <y>544</y>
-      <w>160</w>
-      <h>152</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0;180.0;80.0;180.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>744</x>
-      <y>208</y>
-      <w>288</w>
-      <h>96</h>
+      <x>738</x>
+      <y>216</y>
+      <w>324</w>
+      <h>414</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
+//TODO Strategy Type Variables
 --
 + launchRun(List&lt;ProgramInput&gt; programs)
 
-//Vorschlagsmethoden
-+ suggestEquivalence() : String
-+ suggestNoninterference() : String</panel_attributes>
+//VorschägeValue
++ selectStepSizeStrategy()
++ selectInputValueStrategy()
++ selectRelationalExpressionStrategy()
+
++ suggestStepSize()
++ suggestInputValue() : String
++ suggestWatchExpression() : String
++ suggestConditionalBreakpoint() : String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
-      <y>160</y>
-      <w>24</w>
-      <h>64</h>
+      <x>891</x>
+      <y>90</y>
+      <w>27</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>792</x>
-      <y>80</y>
-      <w>192</w>
-      <h>88</h>
+      <y>0</y>
+      <w>216</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -156,61 +139,50 @@ _+ STEP_BACK = 3 : int_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>696</x>
-      <y>296</y>
-      <w>192</w>
-      <h>96</h>
+      <x>684</x>
+      <y>621</y>
+      <w>216</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 delegates</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;50.0;220.0;50.0;220.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>880</x>
-      <y>296</y>
-      <w>384</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-delegates</panel_attributes>
-    <additional_attributes>460.0;130.0;460.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>392</x>
-      <y>224</y>
-      <w>224</w>
-      <h>72</h>
+      <x>342</x>
+      <y>540</y>
+      <w>252</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>ProgramInput
 --
---
-+ getProgramText() : String
-+ getInputValues() : List&lt;String&gt;
-+ getProgramCounter() : int</panel_attributes>
+- text : String
+- input : List&lt;String&gt;
+- counter : int
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>608</x>
-      <y>248</y>
-      <w>152</w>
-      <h>24</h>
+      <x>585</x>
+      <y>558</y>
+      <w>90</w>
+      <h>171</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+&lt;&lt;uses&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;80.0;20.0;80.0;170.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>88</x>
-      <y>416</y>
-      <w>224</w>
-      <h>72</h>
+      <x>0</x>
+      <y>756</y>
+      <w>252</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>Breakpoint
 --
@@ -222,12 +194,146 @@ delegates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>440</y>
-      <w>152</w>
-      <h>24</h>
+      <x>243</x>
+      <y>783</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+m1=*
+m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1953</x>
+      <y>729</y>
+      <w>324</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>/InputValueSuggestion/
+--
+_+TYPE_CHAR = 0 : int_
+_+TYPE_INT = 1 : int_
+_+TYPE_LONG = 2 : int_
+_+TYPE_FLOAT = 3 : int_
+_+TYPE_DOUBLE = 4 : int_
+_+TYPE_BOOLEAN = 5 : int_
+--
++ suggest(String identifier, String range, int type) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>657</y>
+      <w>432</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>460.0;80.0;460.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1962</x>
+      <y>1044</y>
+      <w>324</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>SimpleInputSuggestion
+--
+--
++ suggest(String identifier, String range, int type) : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2106</x>
+      <y>891</y>
+      <w>27</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1152</x>
+      <y>729</y>
+      <w>324</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>/StepSizeSuggestion/
+--
+--
++ suggest(List&lt;String&gt; programText)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1152</x>
+      <y>1044</y>
+      <w>324</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>SimpleInputSuggestion
+--
+--
++ suggest(List&lt;String&gt; programText)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1305</x>
+      <y>891</y>
+      <w>27</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1701</x>
+      <y>657</y>
+      <w>432</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>460.0;80.0;460.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>891</x>
+      <y>621</y>
+      <w>432</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+delegates
+m1=1</panel_attributes>
+    <additional_attributes>460.0;120.0;460.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>315</x>
+      <y>675</y>
+      <w>135</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Assoziationen</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
