@@ -112,9 +112,9 @@
     </coordinates>
     <panel_attributes>RDBFParser
 --
-_+LINE_ASSIGNMENT = 0 : int_
-_+LINE_BLOCK = 1 : int_
-_+LINE_BLOCK_TEXT = 2 : int_
+_+ LINE_ASSIGNMENT = 0 : int_
+_+ LINE_BLOCK = 1 : int_
+_+ LINE_BLOCK_TEXT = 2 : int_
 
 - parser : RDBParser = null
 --
@@ -183,12 +183,12 @@ _+ getInstance() : RDBFBaseParser_
     </coordinates>
     <panel_attributes>RDBFData
 --
-_+DATA_STRING = 0 : int_
-_+DATA_INT = 1 : int_
-_+DATA_LONG = 2 : int_
-_+DATA_FLOAT = 3 : int_
-_+DATA_DOUBLE = 4 : int_
-_+DATA_BOOLEAN = 5 : int_
+_+ DATA_STRING = 0 : int_
+_+ DATA_INT = 1 : int_
+_+ DATA_LONG = 2 : int_
+_+ DATA_FLOAT = 3 : int_
+_+ DATA_DOUBLE = 4 : int_
+_+ DATA_BOOLEAN = 5 : int_
 
 --
 + getName() : String
