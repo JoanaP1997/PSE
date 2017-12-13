@@ -953,6 +953,8 @@ Die Control-Implementation wird durch entfallende eingebettete Zustandsspeicheru
 in Form von redundanten Abfragen in den Methoden der Fassade leichter wartbar und
 die Entkopplung des Systems wird gefördert. 
 \subsection{Patterns im Paket Debug Logic}
+\paragraph{Die Strategie für Vorschlagsgenerierung}
+Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
 \paragraph{Das Kompositum}
 Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
 \begin{figure}[!h]
