@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>728</x>
-      <y>128</y>
+      <y>176</y>
       <w>312</w>
-      <h>152</h>
+      <h>184</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
@@ -16,9 +17,12 @@
 +showProgramText(int program, String text)
 +showInput(int program, String input)
 +showVariables(int program, List&lt;String&gt; vars)
-+stepBack() ????
 +reset()
 +update()
++GUIFacade(MainInterface mainInterface)
++showError(String s)
++showWarning(String s)
++changeLanguage()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -26,7 +30,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>832</x>
-      <y>336</y>
+      <y>384</y>
       <w>408</w>
       <h>496</h>
     </coordinates>
@@ -74,7 +78,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>72</x>
-      <y>344</y>
+      <y>392</y>
       <w>512</w>
       <h>416</h>
     </coordinates>
@@ -115,7 +119,7 @@ reset()
     <id>UMLClass</id>
     <coordinates>
       <x>376</x>
-      <y>216</y>
+      <y>264</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -130,7 +134,7 @@ reset()
     <id>Relation</id>
     <coordinates>
       <x>464</x>
-      <y>296</y>
+      <y>344</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -141,7 +145,7 @@ reset()
     <id>UMLClass</id>
     <coordinates>
       <x>864</x>
-      <y>48</y>
+      <y>96</y>
       <w>80</w>
       <h>48</h>
     </coordinates>
@@ -153,8 +157,8 @@ reset()
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>624</x>
-      <y>280</y>
+      <x>608</x>
+      <y>328</y>
       <w>104</w>
       <h>56</h>
     </coordinates>
@@ -167,18 +171,18 @@ reset()
     <id>Relation</id>
     <coordinates>
       <x>432</x>
-      <y>264</y>
-      <w>208</w>
+      <y>312</y>
+      <w>192</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>240.0;50.0;10.0;10.0</additional_attributes>
+    <additional_attributes>220.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>888</x>
-      <y>88</y>
+      <y>136</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -189,7 +193,7 @@ reset()
     <id>Relation</id>
     <coordinates>
       <x>464</x>
-      <y>56</y>
+      <y>104</y>
       <w>416</w>
       <h>176</h>
     </coordinates>
@@ -203,7 +207,7 @@ r2= observers
     <id>Relation</id>
     <coordinates>
       <x>1032</x>
-      <y>208</y>
+      <y>256</y>
       <w>64</w>
       <h>144</h>
     </coordinates>
@@ -215,7 +219,7 @@ r2= observers
     <id>Relation</id>
     <coordinates>
       <x>576</x>
-      <y>488</y>
+      <y>536</y>
       <w>272</w>
       <h>32</h>
     </coordinates>
@@ -227,7 +231,7 @@ r2= observers
     <id>UMLClass</id>
     <coordinates>
       <x>1384</x>
-      <y>440</y>
+      <y>488</y>
       <w>320</w>
       <h>144</h>
     </coordinates>
@@ -249,7 +253,7 @@ r2= observers
     <id>Relation</id>
     <coordinates>
       <x>1232</x>
-      <y>488</y>
+      <y>536</y>
       <w>168</w>
       <h>32</h>
     </coordinates>
