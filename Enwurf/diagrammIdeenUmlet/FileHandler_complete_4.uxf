@@ -29,7 +29,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>456</y>
+      <y>468</y>
       <w>112</w>
       <h>52</h>
     </coordinates>
@@ -45,7 +45,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>720</x>
-      <y>428</y>
+      <y>440</y>
       <w>112</w>
       <h>80</h>
     </coordinates>
@@ -61,7 +61,7 @@
     <id>Relation</id>
     <coordinates>
       <x>668</x>
-      <y>464</y>
+      <y>476</y>
       <w>60</w>
       <h>28</h>
     </coordinates>
@@ -72,7 +72,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1096</x>
-      <y>508</y>
+      <y>520</y>
       <w>76</w>
       <h>60</h>
     </coordinates>
@@ -87,7 +87,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1212</x>
-      <y>408</y>
+      <y>420</y>
       <w>148</w>
       <h>104</h>
     </coordinates>
@@ -106,7 +106,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>956</x>
-      <y>340</y>
+      <y>352</y>
       <w>112</w>
       <h>152</h>
     </coordinates>
@@ -140,7 +140,7 @@ _+ getInstance() : RDBFBaseParser_
     <id>Relation</id>
     <coordinates>
       <x>1168</x>
-      <y>448</y>
+      <y>460</y>
       <w>52</w>
       <h>96</h>
     </coordinates>
@@ -151,7 +151,7 @@ _+ getInstance() : RDBFBaseParser_
     <id>UMLClass</id>
     <coordinates>
       <x>1380</x>
-      <y>380</y>
+      <y>392</y>
       <w>96</w>
       <h>60</h>
     </coordinates>
@@ -166,7 +166,7 @@ _+ getInstance() : RDBFBaseParser_
     <id>Relation</id>
     <coordinates>
       <x>1280</x>
-      <y>368</y>
+      <y>380</y>
       <w>156</w>
       <h>48</h>
     </coordinates>
@@ -177,7 +177,7 @@ _+ getInstance() : RDBFBaseParser_
     <id>UMLClass</id>
     <coordinates>
       <x>1384</x>
-      <y>464</y>
+      <y>476</y>
       <w>80</w>
       <h>80</h>
     </coordinates>
@@ -200,7 +200,7 @@ _+ DATA_BOOLEAN = 5 : int_
     <id>Relation</id>
     <coordinates>
       <x>1356</x>
-      <y>436</y>
+      <y>448</y>
       <w>88</w>
       <h>20</h>
     </coordinates>
@@ -212,7 +212,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>552</y>
+      <y>564</y>
       <w>112</w>
       <h>52</h>
     </coordinates>
@@ -228,7 +228,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>668</x>
-      <y>576</y>
+      <y>588</y>
       <w>60</w>
       <h>24</h>
     </coordinates>
@@ -239,7 +239,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>720</x>
-      <y>552</y>
+      <y>564</y>
       <w>112</w>
       <h>80</h>
     </coordinates>
@@ -255,7 +255,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>828</x>
-      <y>464</y>
+      <y>476</y>
       <w>148</w>
       <h>68</h>
     </coordinates>
@@ -266,7 +266,7 @@ m2=0..n</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>132</x>
-      <y>372</y>
+      <y>384</y>
       <w>572</w>
       <h>312</h>
     </coordinates>
@@ -277,7 +277,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>352</x>
-      <y>464</y>
+      <y>476</y>
       <w>160</w>
       <h>136</h>
     </coordinates>
@@ -299,7 +299,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>464</y>
+      <y>476</y>
       <w>152</w>
       <h>136</h>
     </coordinates>
@@ -327,7 +327,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>528</y>
+      <y>540</y>
       <w>72</w>
       <h>16</h>
     </coordinates>
@@ -339,7 +339,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>280</x>
-      <y>408</y>
+      <y>420</y>
       <w>164</w>
       <h>64</h>
     </coordinates>
@@ -351,7 +351,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>388</y>
+      <y>400</y>
       <w>144</w>
       <h>52</h>
     </coordinates>
@@ -370,7 +370,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>628</y>
+      <y>640</y>
       <w>144</w>
       <h>48</h>
     </coordinates>
@@ -383,7 +383,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>280</x>
-      <y>596</y>
+      <y>608</y>
       <w>164</w>
       <h>68</h>
     </coordinates>
@@ -395,7 +395,7 @@ m1=1..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>508</x>
-      <y>480</y>
+      <y>492</y>
       <w>60</w>
       <h>60</h>
     </coordinates>
@@ -406,7 +406,7 @@ m1=1..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>532</x>
-      <y>528</y>
+      <y>540</y>
       <w>36</w>
       <h>60</h>
     </coordinates>
@@ -417,7 +417,7 @@ m1=1..n</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>712</x>
-      <y>316</y>
+      <y>328</y>
       <w>788</w>
       <h>420</h>
     </coordinates>
@@ -428,7 +428,7 @@ m1=1..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1060</x>
-      <y>516</y>
+      <y>528</y>
       <w>24</w>
       <h>32</h>
     </coordinates>
@@ -439,7 +439,7 @@ m1=1..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1008</x>
-      <y>488</y>
+      <y>500</y>
       <w>12</w>
       <h>32</h>
     </coordinates>
@@ -450,7 +450,7 @@ m1=1..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1280</x>
-      <y>508</y>
+      <y>520</y>
       <w>160</w>
       <h>64</h>
     </coordinates>
@@ -462,7 +462,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>720</x>
-      <y>396</y>
+      <y>408</y>
       <w>108</w>
       <h>20</h>
     </coordinates>
@@ -476,7 +476,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>720</x>
-      <y>644</y>
+      <y>656</y>
       <w>108</w>
       <h>20</h>
     </coordinates>
@@ -490,7 +490,7 @@ m2=0..n</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>828</x>
-      <y>556</y>
+      <y>568</y>
       <w>148</w>
       <h>48</h>
     </coordinates>
@@ -501,7 +501,7 @@ m2=0..n</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>968</x>
-      <y>548</y>
+      <y>560</y>
       <w>96</w>
       <h>20</h>
     </coordinates>
@@ -515,7 +515,7 @@ m2=0..n</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>552</x>
-      <y>340</y>
+      <y>352</y>
       <w>100</w>
       <h>28</h>
     </coordinates>
@@ -529,7 +529,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>968</x>
-      <y>512</y>
+      <y>524</y>
       <w>96</w>
       <h>20</h>
     </coordinates>
@@ -543,7 +543,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>612</y>
+      <y>624</y>
       <w>112</w>
       <h>52</h>
     </coordinates>
@@ -558,7 +558,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>396</y>
+      <y>408</y>
       <w>112</w>
       <h>52</h>
     </coordinates>
@@ -573,7 +573,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>668</x>
-      <y>404</y>
+      <y>416</y>
       <w>60</w>
       <h>32</h>
     </coordinates>
@@ -584,7 +584,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>668</x>
-      <y>636</y>
+      <y>648</y>
       <w>60</w>
       <h>28</h>
     </coordinates>
@@ -595,7 +595,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>532</x>
-      <y>416</y>
+      <y>428</y>
       <w>36</w>
       <h>80</h>
     </coordinates>
@@ -606,7 +606,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>532</x>
-      <y>576</y>
+      <y>588</y>
       <w>36</w>
       <h>72</h>
     </coordinates>
@@ -617,7 +617,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>396</y>
+      <y>408</y>
       <w>100</w>
       <h>80</h>
     </coordinates>
@@ -628,7 +628,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>1056</x>
-      <y>216</y>
+      <y>228</y>
       <w>352</w>
       <h>100</h>
     </coordinates>
@@ -640,7 +640,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1060</x>
-      <y>300</y>
+      <y>312</y>
       <w>80</w>
       <h>12</h>
     </coordinates>
@@ -651,7 +651,7 @@ Strategie bei BRDFReader / Writer</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1188</x>
-      <y>228</y>
+      <y>240</y>
       <w>92</w>
       <h>32</h>
     </coordinates>
@@ -665,7 +665,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1092</x>
-      <y>256</y>
+      <y>268</y>
       <w>148</w>
       <h>52</h>
     </coordinates>
@@ -676,7 +676,7 @@ FileHandlerException
     <id>UMLClass</id>
     <coordinates>
       <x>1148</x>
-      <y>300</y>
+      <y>312</y>
       <w>80</w>
       <h>12</h>
     </coordinates>
@@ -687,7 +687,7 @@ FileHandlerException
     <id>UMLClass</id>
     <coordinates>
       <x>1236</x>
-      <y>300</y>
+      <y>312</y>
       <w>80</w>
       <h>12</h>
     </coordinates>
@@ -698,7 +698,7 @@ FileHandlerException
     <id>UMLClass</id>
     <coordinates>
       <x>1324</x>
-      <y>300</y>
+      <y>312</y>
       <w>80</w>
       <h>12</h>
     </coordinates>
@@ -709,7 +709,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1184</x>
-      <y>280</y>
+      <y>292</y>
       <w>12</w>
       <h>28</h>
     </coordinates>
@@ -720,7 +720,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1184</x>
-      <y>280</y>
+      <y>292</y>
       <w>104</w>
       <h>28</h>
     </coordinates>
@@ -731,7 +731,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1276</x>
-      <y>280</y>
+      <y>292</y>
       <w>96</w>
       <h>28</h>
     </coordinates>
@@ -742,7 +742,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1008</x>
-      <y>240</y>
+      <y>252</y>
       <w>188</w>
       <h>108</h>
     </coordinates>
@@ -754,7 +754,7 @@ FileHandlerException
     <id>Relation</id>
     <coordinates>
       <x>1060</x>
-      <y>536</y>
+      <y>548</y>
       <w>44</w>
       <h>32</h>
     </coordinates>
