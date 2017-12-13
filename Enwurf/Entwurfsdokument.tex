@@ -482,19 +482,17 @@ Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \item Klassenbeschreibung: \\
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \end{itemize}
-\paragraph{ScopeTuple}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-
-\item Wichtige Methoden:\\
-\end{itemize}
 \paragraph{Term}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Stellt eine Abstrakte Reräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen (siehe Kapitel \ref{Patterns}). Die Subklassen sind \textit{ConstantTerm, VariableRelationalTerm, VariableTerm, ArrayAccessRelationalTerm, ArrayAccessTerm, NegativeTerm, AdditionTerm, SubtractionTerm, MultiplicationTerm, DivisionTerm, ModuloTerm, NotCondition, OrCondition, AndCondition, MoreEqualComparison, MoreComparison, EqualComparison, NotEqualComparison, LessComparison} und \textit{LessEqualComparison}.
 \item Wichtige Methoden:\\
-
-
+\begin{itemize}
+\item[-]evaluate(List<TraceState> states): TermValue\\
+Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-]evaluate(Scope currentScope): TermValue\\
+Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei dem übergebenen \textit{Scope}-Objekt entnommen.
+\end{itemize}
 \end{itemize}
 \paragraph{WatchExpression}
 \begin{itemize}
