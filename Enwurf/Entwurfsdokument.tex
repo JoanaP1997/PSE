@@ -66,8 +66,7 @@ des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungs
 Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. 
 Das Entwurfsdokument beschreibt die Paketeinteilung, Beschreibung der Klassen und Abläufe und genaue Spezifikation der Abhängigkeiten und Kernkomponenten. 
 \\Die Implementierung während der Implementierungsphase (\textit{09.01.-02.02.2018}) wird anhand der Vorgaben in diesem Dokument durchgeführt. \\
-Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipien sicherstellen
-
+Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. 
 \vspace{1cm}
 \begin{figure}[!h]
 \centering
@@ -133,8 +132,8 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene
     Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt
     zu speichern oder zu löschen.\\
     Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie
-    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler} geben. 
-    %TODO Diesen komischen Satz noch zu einem sinnvollen, deutschen machen.
+    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler}. 
+
 \paragraph{Benutztrelation}
     \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
 
@@ -154,9 +153,7 @@ Diese repräsentieren die Dateien für Produkteinstellungen, Sprachen (Übersetz
 
 \end{itemize}
 \paragraph{Benutztrelation}
-Der FileHandler hat keine Unterpakete
-%TODO echt keine Zwick?  und steht an unterster Stelle der Benutztrelation.
-Somit entstehen auch keine Abhängigkeiten zu anderen Paketen.
+Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
@@ -1473,5 +1470,6 @@ SPACE : ' ';
 
 
 \end{document}
+\grid
 \grid
 \grid
