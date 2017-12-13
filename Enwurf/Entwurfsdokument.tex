@@ -1229,16 +1229,15 @@ Kommentare können durch das Kennzeichnen am Anfang einer Zeile mit \enquote{//}
 Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann in Kapitel 9.4 eingesehen werden. 
 
 \section{Änderung zum Pflichtenheft}
-Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
+\paragraph{Erweiterte Syntax für Watch-Expressions und bedinge Breakpoints}
+In Kapitel 12.8 des Pflichtenheftes wurde die Syntax der Watch-Expressions und bedingter Breakpoints durch eine kontextfreie Grammatik definiert. 
+In dieser Grammatik war kein bedingter Breakpoint der Form $A\&\&B$ bzw. $A||B$ oder $!A$ ableitbar. Diese Einschränkung ergab sich als während des Entwurfs als nicht notwendig und wird demnach aufgehoben. Eine genaue Definition der Watch-Expressions und bedingten Breakpoints in Form einer Antlr-Grammatik ist im Anhang zu finden. Insgesamt können diese auf syntaktischer Ebene aus beliebigen Termen bestehen. 
 
 
 
 
 \section{Anhang}
 %TODO UML-Klassendiagramm 
-Vollständiges großformatiges Klassendiagramm im Anhang. Ausschnitte/Teile können bereits
-vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwischen Klas-
-sen dabei bitte mit entsprechenden Pfeilen darstellen, statt nur durch Feldtypen.
 
 Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
 \subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax}
@@ -1246,6 +1245,7 @@ Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
 
 grammar Wlang;
 r: programm;
+
 
 programm: routine* mainRoutine;
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
@@ -1279,6 +1279,7 @@ statement:  ifState
 		| funcCall ';'	
 		| returnState;
 		
+
 funcCall: functionname = ID '(' args=filledArglist? ')' 
 	  |functionname = 'main' '(' args=filledArglist? ')'
 	;
@@ -1296,6 +1297,7 @@ dims: '['term']' #oneDims
 	| '['term']''['term']' #twoDims
 	| '['term']''['term']''['term']' #threeDims
 	;
+
 
 pureAssign: id = ID ASSIGN value = term ';';
 declareAssign: type = TYPE id = ID ASSIGN value = term ';';
@@ -1317,8 +1319,9 @@ condition: ID #IdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')' '||' '('condition')' #OrCondition
-	| '('condition')' '&&' '('condition')' #AndCondition
+	| '('condition')'#BracketCondition
+	| condition '&&' condition #AndCondition
+	| condition '||' condition #OrCondition
 	| '!'condition #NotCondition
 	;
 
@@ -1352,7 +1355,10 @@ arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
 		;
 
+
 //LITERALE bzw TOKENS
+
+
 
 COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
@@ -1369,20 +1375,21 @@ LONGLITERAL: ([1-9][0-9]* | '0' )'L';
 DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 \end{verbatim}
-\subsection{Kontextfreie Antlr-Grammatik für Syntax von Watch-Expressions}
+\subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints und Watch-Expressions}
 \begin{verbatim}
 
-grammar WatchExpressions;
-r: we;
+grammar Terms;
+r: generalTerm;
 
-we: condition | term
+generalTerm: condition | term;
 
 condition: ID #IdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')' '||' '('condition')' #OrCondition
-	| '('condition')' '&&' '('condition')' #AndCondition
+	| '('condition')'#BracketCondition
+	| condition '&&' condition #AndCondition
+	| condition '||' condition #OrCondition
 	| '!'condition #NotCondition
 	;
 	
@@ -1434,69 +1441,6 @@ LONGLITERAL: ([1-9][0-9]* | '0' )'L';
 DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 
-\end{verbatim}
-\subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints}
-\begin{verbatim}
-
-grammar Assertions;
-r: condition;
-
-condition: ID #IdCondition
-	| arrayAccess #ArrayAccessCondition
-	| comparison #ComparisonCondition
-	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')' '||' '('condition')' #OrCondition
-	| '('condition')' '&&' '('condition')' #AndCondition
-	| '!'condition #NotCondition
-	;
-
-//Bedingungen
-comparison: left=term '<' right=term #LessComp
-	   | left=term '<=' right=term #LessEqualComp
-	   | left=term '>' right=term #MoreComp
-	   | left=term '>=' right=term #MoreEqualComp
-	   | left=term '==' right=term #EqualComp
-	   | left=term '!=' right=term #NotEqualComp
-	;
-
-
-term : '-' inner = term #NegativeTerm
-    | left = term '/' right = term #Division
-	| left = term '*' right = term #Multiplication
-	| left = term '-' right = term #Subtraction
-	| left = term '+' right = term #Addition
-	| left = term '%' right = term #Modulo
-	|'('inner = term')' #Brackets
-    | INTLITERAL #IntLiteral
-	| FLOATLITERAL #FloatLiteral
-	| LONGLITERAL #LongLiteral
-	| DOUBLELITERAL #DoubleLiteral
-	| ID #ID
-	| CHARLITERAL #CharLiteral
-	| arrayAccess #ArrayAccessInTerm
-	;
-
-arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
-		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
-		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
-		;
-
-//LITERALE bzw TOKENS
-
-COMPOPERATOR:  '<'|'>'|'<='|'>='|'==';
-WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
-COMMENT:   '/*' .*? '*/' -> skip;
-LINE_COMMENT:   '//' ~[\r\n]* -> skip;
-TYPE: 'float' | 'int' | 'char' | 'boolean';
-ID : [A-Z]'.'([a-z]|[A-Z])+ ;
-INTLITERAL: [1-9][0-9]* | '0';
-FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
-CHARLITERAL: '\'' ~['\\\r\n] '\'';
-BOOLEANLITERAL:	'true'|	'false';
-NULLLITERAL: 'null';
-LONGLITERAL: ([1-9][0-9]* | '0' )'L';
-DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
-ASSIGN: '=';
 \end{verbatim}
 
 \subsection{Grammatik RDBF Format}
