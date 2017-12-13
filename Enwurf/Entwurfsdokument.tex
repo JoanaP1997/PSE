@@ -335,10 +335,98 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{Control}}
+    \paragraph{ControlFacade}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ControlFacade bietet eine Schnittstelle zum Paket Control.\\ 
+        \end{itemize}
 
+    \paragraph{ControlFacadeState}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ControlFacadeState dient der expliziten Zustandsspeicherung von ControlFacade.\\
+            \item Wichtige Methoden:\\
+                \begin{itemize}
+                    \item[-] switchState()\\
+                        switchState verursacht den Zustandsübergang des ControlFacade-Objekts in den
+                        nachfolgenden Zustand.\\
+                        Der nachfolgende Zustand kann dem Zustand des Objekts, den es beim Aufruf 
+                        der Methode hat gleichen.\\
 
+                    \item[-] entry()\\
+                        Die Funktion entry wird bei Zustandsübergang des ControlFacade-Objekts in
+                        den Zustand ausgeführt, den diese Klasse definiert.
+                \end{itemize}
+        \end{itemize}
 
+    \paragraph{ControlFacadeStateEdit}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ControlFacadeStateEdit ist ein ControlFacadeState, welcher den Editiermodus 
+                repräsentiert.\\
+                Ist das ControlFacade-Objekt in diesem Zustand, wird bei Aufrufen derer Funktionen,
+                welche dem Debugmodus zugeordnet sind, eine IllegalStateException geworfen.\\
+                Andernfalls wird an die Klassen FileHandlerInteractor und DebugLogicController 
+                delegiert.
+        \end{itemize}
 
+    \paragraph{ControlFacadeStateDebug}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ControlFacadeStateDebug ist ein ControlFacadeState, welcher den Debugmodus 
+                repräsentiert.\\
+                Analog zu ControlFacadeEdit wird bei Aufruf derer ControlFacade-Funktionen,
+                welche dem Editiermodus zugeordnet sind, eine IllegalStateException geworfen
+                und andernfalls an FileHandlerInteractor und DebugLogicController delegiert.\\
+        \end{itemize}
+                
+    \paragraph{FileHandlerInteractor}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                FileHandlerInteractor ist für das Speichern und Laden von Konfigurationsdateien,
+                sowie dem Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
+                \enquote{User Interace} enthält.
+            \item Wichtige Methoden:\\
+                \begin{itemize}
+                    \item[-] loadConfig(File configFile)\\
+                        loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
+                        am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
+                        ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
+                        wiederherstellen kann.\\
+
+                    \item[-] loadProgramText(File file)\\
+                        loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
+                        der in spezifizierter Datei enthalten ist, anzuzeigen.
+                \end{itemize}
+        \end{itemize}
+
+    \paragraph{DebugLogicController}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                DebugLogicController ist für die Modifikation der Daten des Modells und dem
+                Aufrufen von Debugmechanismen zuständig.\\
+
+            \item Wichtige Methoden:\\
+                \begin{itemize}
+                    \item[-] step(int type)\\
+                        step fordert \enquote{DebugLogic} dazu auf einen Schritt 
+                        eines bestimmten Types durchzuführen.\\
+
+                    \item[-] createWatchExpression(int id, String expr)\\
+
+                    \item[-] createCondBreakpoint(int id, String cond)\\
+
+                    \item[-] createSyncBreakpoint(int line)\\
+                        createSyncBreakpoint fordert \enquote{DebugLogic} dazu auf, einen
+                        Haltepunkt in allen Programmen an spezifizierter Zeile zu setzen.\\
+
+                    \item[-] startDebug()
+
+                    \item[-] suggestEquivalence() : String\\
+                        Fordert \enquote{DebugLogic} dazu auf, einen Vorschlag für eine
+                        Watch-Expression zu generieren und gibt diesen zurück.
+                \end{itemize}
+        \end{itemize}
 \subsection{Klassen im Paket \enquote{DebugLogic}}
 \subsubsection{Unterpaket Debugger}
 \subsubsection{Unterpaket Interpreter}
@@ -814,6 +902,14 @@ Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementier
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert.
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar. %TODO eventuell Erklären welche vorteile das ergibt
 \subsection{Patterns im Paket Control}
+Die Kontrollkomponente muss, je nachdem ob sich die Anwendung (DIbugger) im Debug- 
+oder Editiermodus befindet, bestimmte Änderungen am Modell zulassen (bei Anfragen
+zwischen Modell und Präsentation vermitteln), oder sie verwähren (nicht vermitteln)\\.
+Da während der Laufzeit der Anwendung zwischen beiden Modi gewechselt werden kann,
+bietet sich hier das Zustandsmuster an.\\
+Die Control-Implementation wird durch entfallende eingebettete Zustandsspeicherung
+in Form von redundanten Abfragen in den Methoden der Fassade leichter wartbar und
+die Entkopplung des Systems wird gefördert. 
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Das Kompositum}
 Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
