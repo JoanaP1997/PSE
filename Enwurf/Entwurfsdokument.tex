@@ -1219,6 +1219,15 @@ Antlr kann Java-Code produzieren, ist kostenlos und unter BSD-Lizenz veröffentl
 Obwohl es auch andere Parser-Generator gibt, die diese Anforderungen erfüllen, spricht für Antlr, dass es auf allen Betriebssystemen läuft, in eine Entwicklungsumgebung eingebunden werden kann, eine aktuelle Version mit gutem Support bereitstellt und viele Online-Ressourcen dazu verfügbar sind.
 Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Produkts sondern auch zukünftige Erweiterungen.
 
+\subsection{RDBF Speicherformat}
+RDBF ist ein nicht einrückungsbasiertes, imperatives Speicherformat, welches das Speichern von komplexen Blockstrukturen erlaubt.
+Eine Blockstruktur besteht aus einem Blocknamen und Rumpf, welcher in sich wieder mehrere Blöcke und Daten haben.
+Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser herausgefunden werden muss.
+Es werden die Datentypen String, int, long, float, double und boolean unterstützt.
+Weiter gibt es einen spezialisierten TextBlock, der nur einen Fließtext zum Speichern enthält.
+Kommentare können durch das Kennzeichnen am Anfang einer Zeile mit \enquote{//} erzeugt werden.
+Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann in Kapitel 9.4 eingesehen werden. 
+
 \section{Änderung zum Pflichtenheft}
 Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
 
@@ -1490,7 +1499,7 @@ DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 \end{verbatim}
 
-\subsection{Gramamtik RDBF Format}
+\subsection{Grammatik RDBF Format}
 \begin{verbatim}
 R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
