@@ -500,6 +500,83 @@ Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 
 \end{itemize}
 
+
+\subsubsection{Unterpaket \enquote{Exceptions}}
+
+\paragraph{DIbuggerLogicException}
+\begin{itemize}
+\item Beschreibung: \\
+Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
+\item Methoden: \\
+\begin{itemize}
+\item getID(): String \\
+Gibt den Identifikations-String der Exception zurück
+\item getOccurance(): List<String> \\
+Gibt eine Liste mit Strings zurück, die angibt, wo der Fehler aufgetreten ist
+\end{itemize}
+\end{itemize}
+
+Alle Klassen in diesem Paket implementieren die Schnittstelle DIbuggerLogicException. \\
+Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
+\paragraph{MissingReturnCallException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+\end{itemize}
+
+\paragraph{InvalidProgramException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
+\end{itemize}
+
+\paragraph{WrongArgumentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Abstrakte Klasse, die eine Fehlermeldung bei falscher Eingabe der Parameter beschreibt
+\end{itemize}
+
+\paragraph{WrongTypeArgumentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn ein Parameter einen falschen Typ hat
+\end{itemize}
+
+\paragraph{WrongNumberArgumentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben wird
+\end{itemize}
+
+\paragraph{ReturnTypeException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+\end{itemize}
+
+\paragraph{WrongTypeAssignmentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+\end{itemize}
+\paragraph{VariableNotFoundException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+\end{itemize}
+
+\paragraph{AlreadyDeclaredException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
+\end{itemize}
+
+\paragraph{RoutineNotFoundException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
+\end{itemize}
+
 \subsection{Klassen im Paket \enquote{FileHandler}}
 
 \subsubsection{Unterpaket FileHandler.Facade}
@@ -803,21 +880,20 @@ Indiziert einen Datenwert als Boolesche Variable.
 \end{itemize}
 \end{itemize}
 
+\subsubsection{Unterpaket \enquote{Exceptions}}
 
-\subsection{Klassen im Paket \enquote{Exceptions}} 
-\paragraph{DIbuggerException}
+\paragraph{Interface: DIbuggerFileHandlerException}
 \begin{itemize}
-\item Klassenbeschreibung: \\
-DIbuggerException ist eine abstrakte Klasse, für Exceptions, welche speziell auf dieses Produkt ausgelegt sind.
+\item Beschreibung: \\
+Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine DIbuggerException hat.
 \item Methoden: \\
 \begin{itemize}
 \item getID(): String \\
-Gibt eine Identifikationsmöglichkeit in Form einer Zeichenfolge zurück
-\item getOccurance(): List<String> \\
-Gibt eine Liste an Strings zurück, welche die Zeilen angeben, in welchen der Fehler aufgetreten ist
+Gibt den Identifikations-String der Exception zurück
 \end{itemize}
 \end{itemize}
 
+Alle Klassen in diesem Unterpaket implementieren die Schnittstelle DIbuggerFileHandlerException.
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
@@ -825,65 +901,6 @@ Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
 
 
-Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
-\paragraph{MissingReturnCallException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
-\end{itemize}
-
-\paragraph{InvalidProgramException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
-\end{itemize}
-
-\paragraph{WrongArgumentException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Abstrakte Klasse, die eine Fehlermeldung bei falscher Eingabe der Parameter beschreibt
-\end{itemize}
-
-\paragraph{WrongTypeArgumentException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn ein Parameter einen falschen Typ hat
-\end{itemize}
-
-\paragraph{WrongNumberArgumentException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben wird
-\end{itemize}
-
-\paragraph{ReturnTypeException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
-\end{itemize}
-
-\paragraph{WrongTypeAssignmentException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
-\end{itemize}
-\paragraph{VariableNotFoundException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
-\end{itemize}
-
-\paragraph{AlreadyDeclaredException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
-\end{itemize}
-
-\paragraph{RoutineNotFoundException}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
-\end{itemize}
 \section{Verwendete Design Patterns}\label{Patterns}
 \subsection{Global genutzte Patterns}
 \begin{figure}[!h]
