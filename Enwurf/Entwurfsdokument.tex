@@ -12,6 +12,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 \usepackage[nonumberlist]{glossaries}     % provides glossary commands
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{lscape}
 \newcommand\frage[1]{\textcolor{red}{#1}}
 
 
@@ -91,7 +92,19 @@ Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface
 Die \textit{DebugLogic} besteht aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
 \textit{AntlrParser}.\\
 Hierbei wird das Architekturmuster Model-View-Controller (MVC) eingesetzt, um einen flexiblen Programmentwurf zu ermöglichen und die Erweiterbarkeit des Produkts sicher zu stellen. Die Pakete \textit{DebugLogic} und \textit{FileHandler} sind hierbei das Modell, welches die darzustellenden Daten enthält. Das \textit{UserInterface} ist die Präsentationsschicht, welche Benutzereingaben annimmt und die darzustellenden Werte über ein Beobachtermuster erhält. Die Steuerung, welche Benutzereingaben von der Präsentationsschicht erhält und diese auswertet, wird vom \textit{Control}-Paket bereitgestellt. \\
-Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach aussen zur Verfügung. Die genauen Schnittstellen sind also durch diese Klassen definiert.
+Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach außen zur Verfügung (siehe Abbildung \ref{fig:fassaden}). Die genauen Schnittstellen sind also durch diese Klassen definiert.
+
+\newpage
+
+\begin{landscape}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.4]{diagrammIdeenUmlet/fassaden.pdf}
+\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
+\label{fig:fassaden}
+\end{figure}
+\end{landscape}
 
 \newpage
 
@@ -178,7 +191,7 @@ Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.
 \end{itemize}
 
 \subparagraph{Benutztrelation} 
-Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der in \ref{FormSpez} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen.
+Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der im Anhang gegebenen Grammatik für die Sprache WLang erzeugen zu lassen.
 
 %\subsubsection{TraceGenerator}
 %\subparagraph{Aufgaben}
@@ -210,7 +223,7 @@ Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um dam
 \subsubsection{Antlr Parser}
 Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind.
 \subparagraph{Aufgaben}
-Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der in \ref{FormSpez} gegebenen Grammatik.
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
 
 \subparagraph{Schnittstellen}
 \begin{itemize}
@@ -903,6 +916,7 @@ Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
 
 \section{Verwendete Design Patterns}\label{Patterns}
 \subsection{Global genutzte Patterns}
+%TODO doppelte Pattern-Grafik noch rausnehmen?
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/fassaden.pdf}
@@ -1186,11 +1200,10 @@ Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang.
 
 \subsection{Verwendung von Antlr}
 
-Wie bereits in Kapitel X und X beschrieben, benutzt der DIbugger im Paket …. Antlr.Parser extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren Parse-Tree umzuwandeln. Diese Klassen werden von dem frei verfügbaren Programm Antlr (Version 4) erzeugt.
-Ein Parse Tree (manchmal auch Syntax Tree genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt.
-Die Grammatik ist schmematisch in Abbildung XX dargestellt. Eine genauere, Antlr-kompatible Spezifikation der Grammatik findet sich im Anhang //LINK.
+Wie bereits im zweiten und dritten Kapitel beschrieben, benutzt der DIbugger im Paket \textit{DebugLogic.AntlrParser} extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren \textit{Parse Tree} umzuwandeln. Diese Klassen werden von dem frei verfügbaren Programm Antlr\textsuperscript{\textcopyright} (Version 4) erzeugt.
+Ein \textit{Parse Tree} (manchmal auch \textit{Syntax Tree} genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt. Die Spezifikation der Grammatik findet sich im Anhang.
 
-Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, die Grundfunktionen eines Lexers und Parsers bereitstellen.
+Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, wie einen Lexer, einen Parser, sowie einen Visitor und ein Visitor-Interface. Die Funktionalitä dieser Klassen wird im Unterpaket \textit{DebugLogic.Interpreter} genutzt und erweitert.
 
 %TODO wie und wo werden diese weiter modifiziert?
 
@@ -1212,7 +1225,7 @@ Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Pro
 
 
 
-\section{Anhang}
+\section{Anhang}\
 %TODO UML-Klassendiagramm 
 Vollständiges großformatiges Klassendiagramm im Anhang. Ausschnitte/Teile können bereits
 vorher verwendet werden, um Teilkomponenten zu beschreiben. Assoziationen zwischen Klas-
@@ -1477,7 +1490,7 @@ DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 \end{verbatim}
 
-\subsection{Gramamtik RDBF Format}
+\subsection{Grammatik RDBF Format}
 \begin{verbatim}
 R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
