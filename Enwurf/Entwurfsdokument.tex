@@ -494,17 +494,27 @@ Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Vari
 \paragraph{WatchExpression}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Eine Watch-Expression ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
 \item Wichtige Methoden:\\
-
+\begin{itemize}
+\item[-] evaluate(List<TraceState> states): String\\
+Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-] change(String specifier, List<ScopeTuple> scopes)\\
+Ändert den Ausdruck, der die Watch-Expression spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich der Watch-Expression.
+\end{itemize}
 
 \end{itemize}
 \paragraph{ConditionalBreakpoint}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Eine Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
 \item Wichtige Methoden:\\
-
+\begin{itemize}
+\item[-]evaluate(List<TraceState> states): boolean\\
+Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-]change(String specifier, List<ScopeTuple> scopes)\\
+Ändert den Ausdruck, der den Conditional Breakpoint spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich des Conditional Breakpoints.
+\end{itemize}
 
 \end{itemize}
 
