@@ -66,8 +66,7 @@ des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungs
 Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. 
 Das Entwurfsdokument beschreibt die Paketeinteilung, Beschreibung der Klassen und Abläufe und genaue Spezifikation der Abhängigkeiten und Kernkomponenten. 
 \\Die Implementierung während der Implementierungsphase (\textit{09.01.-02.02.2018}) wird anhand der Vorgaben in diesem Dokument durchgeführt. \\
-Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. %TODO wir sollten noch erklären, wie und wo genau wir diese Prinzipien sicherstellen
-
+Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. 
 \vspace{1cm}
 \begin{figure}[!h]
 \centering
@@ -133,8 +132,8 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene
     Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt
     zu speichern oder zu löschen.\\
     Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie
-    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler} geben. 
-    %TODO Diesen komischen Satz noch zu einem sinnvollen, deutschen machen.
+    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler}. 
+
 \paragraph{Benutztrelation}
     \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
 
@@ -154,9 +153,7 @@ Diese repräsentieren die Dateien für Produkteinstellungen, Sprachen (Übersetz
 
 \end{itemize}
 \paragraph{Benutztrelation}
-Der FileHandler hat keine Unterpakete
-%TODO echt keine Zwick?  und steht an unterster Stelle der Benutztrelation.
-Somit entstehen auch keine Abhängigkeiten zu anderen Paketen.
+Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
@@ -482,34 +479,42 @@ Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \item Klassenbeschreibung: \\
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \end{itemize}
-\paragraph{ScopeTuple}
-\begin{itemize}
-\item Klassenbeschreibung: \\
-
-\item Wichtige Methoden:\\
-\end{itemize}
 \paragraph{Term}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Stellt eine Abstrakte Reräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen (siehe Kapitel \ref{Patterns}). Die Subklassen sind \textit{ConstantTerm, VariableRelationalTerm, VariableTerm, ArrayAccessRelationalTerm, ArrayAccessTerm, NegativeTerm, AdditionTerm, SubtractionTerm, MultiplicationTerm, DivisionTerm, ModuloTerm, NotCondition, OrCondition, AndCondition, MoreEqualComparison, MoreComparison, EqualComparison, NotEqualComparison, LessComparison} und \textit{LessEqualComparison}.
 \item Wichtige Methoden:\\
-
-
+\begin{itemize}
+\item[-]evaluate(List<TraceState> states): TermValue\\
+Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-]evaluate(Scope currentScope): TermValue\\
+Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei dem übergebenen \textit{Scope}-Objekt entnommen.
+\end{itemize}
 \end{itemize}
 \paragraph{WatchExpression}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Eine Watch-Expression ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
 \item Wichtige Methoden:\\
-
+\begin{itemize}
+\item[-] evaluate(List<TraceState> states): String\\
+Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-] change(String specifier, List<ScopeTuple> scopes)\\
+Ändert den Ausdruck, der die Watch-Expression spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich der Watch-Expression.
+\end{itemize}
 
 \end{itemize}
 \paragraph{ConditionalBreakpoint}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-
+Eine Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
 \item Wichtige Methoden:\\
-
+\begin{itemize}
+\item[-]evaluate(List<TraceState> states): boolean\\
+Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
+\item[-]change(String specifier, List<ScopeTuple> scopes)\\
+Ändert den Ausdruck, der den Conditional Breakpoint spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich des Conditional Breakpoints.
+\end{itemize}
 
 \end{itemize}
 
@@ -1475,5 +1480,6 @@ SPACE : ' ';
 
 
 \end{document}
+\grid
 \grid
 \grid
