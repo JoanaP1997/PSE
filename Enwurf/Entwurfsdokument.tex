@@ -1184,7 +1184,27 @@ Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist 
 Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang.
 
 
+\subsection{Verwendung von Antlr}
 
+Wie bereits in Kapitel X und X beschrieben, benutzt der DIbugger im Paket …. Antlr.Parser extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren Parse-Tree umzuwandeln. Diese Klassen werden von dem frei verfügbaren Programm Antlr (Version 4) erzeugt.
+Ein Parse Tree (manchmal auch Syntax Tree genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt.
+Die Grammatik ist schmematisch in Abbildung XX dargestellt. Eine genauere, Antlr-kompatible Spezifikation der Grammatik findet sich im Anhang //LINK.
+
+Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, die Grundfunktionen eines Lexers und Parsers bereitstellen.
+
+%TODO wie und wo werden diese weiter modifiziert?
+
+\subsubsection{Vorteile der Verwendung eines Parser-Generators}
+Die Verwendung eines Parser-Generators wie Antlr im Allgemeinen hat mehrere Vorteile gegenüber einem “von Hand” geschriebenen Parser: Offensichtlich spart es Zeit und Ressourcen, die in die Entwicklung des eigentlichen Produktes gesteckt werden können. Nicht zu vernachlässigen ist auch, dass Änderungen an der Grammatik zunächst nur in der Grammatik selbst gemacht werden müssen und nicht sofort Änderungen in mehreren, möglicherweise sehr großen Klassen nach sich zieht. Zuletzt ermöglichen Parser-Generators wie Antlr, dass man ein Projekt auf einem Parser aufsetzt, der bereits von einer großen Gruppe an Nutzern getestet wurde, und so die Fehleranfälligkeit reduziert.
+
+
+\subsubsection{Anforderungen an den verwendeten Parser-Generator}
+
+Mindestanforderungen an einen Parser-Generator für dieses Projekt waren Java-Kompatibilität, Kostenfreiheit und eine offene Lizenz, die mit der vom DIbugger verwendeten Lizenz kompatibel ist.
+
+Antlr kann Java-Code produzieren, ist kostenlos und unter BSD-Lizenz veröffentlicht.
+Obwohl es auch andere Parser-Generator gibt, die diese Anforderungen erfüllen, spricht für Antlr, dass es auf allen Betriebssystemen läuft, in eine Entwicklungsumgebung eingebunden werden kann, eine aktuelle Version mit gutem Support bereitstellt und viele Online-Ressourcen dazu verfügbar sind.
+Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Produkts sondern auch zukünftige Erweiterungen.
 
 \section{Änderung zum Pflichtenheft}
 Änderungen zum Pflichtenheft, z.B. gekürzte Wunschkriterien.
