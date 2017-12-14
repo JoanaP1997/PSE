@@ -979,7 +979,7 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 %\begin{figure}[!h]
 \centering
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
-
+\captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 %\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{Terme}
 %\end{figure}
@@ -1000,13 +1000,13 @@ Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die
 \paragraph{Das Kompositum}
 Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
 \captionof{figure}{Das Termkompositum im Entwurf}
 \label{Terme}
 \end{center}
 
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
 \captionof{figure}{Die Klasse \textit{Command} als Kompositum}
 \label{Command}
 \end{center}
@@ -1018,6 +1018,7 @@ Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
 \paragraph{Das Visitorpattern}
 Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
+\newpage
 \paragraph{Der Traceiterator}
 \begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
@@ -1038,7 +1039,7 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 
 \subsection{Erster Programmaufruf}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Erster Programmaufruf}
 \end{center}
 Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
@@ -1052,7 +1053,7 @@ kann sich updaten.
 \newpage
 \subsection{Konfigurationsdatei laden}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
 \captionof{figure}{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
 \end{center}
 Wählt der Benutzer über den Menpeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus,
@@ -1067,7 +1068,7 @@ kann diese ebenfalls anzeigen
 \newpage
 \subsection{Konfigurationsdatei speichern}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
 \captionof{figure}{Sequenzdigramm: Speichern einer Konfigurationsdatei}
 \end{center}
 Möchte der Benutzer eine Konfigurationsdatei speichern, reicht das UserInterface den Speicherort
@@ -1078,7 +1079,7 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 \newpage
 \subsection{AF10: Hinzufügen von Programmen}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Programmen}
 \end{center}
 Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
@@ -1089,7 +1090,7 @@ an die DebugLogic weiter gibt.
 \newpage
 \subsection{AF20: Ändern von Programmen}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Ändern von Programmen}
 \end{center}
 Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
@@ -1104,7 +1105,7 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \newpage
 \subsection{AF30: Setzen von Breakpoints}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Setzen von Breakpoints}
 \end{center}
 Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
@@ -1120,7 +1121,7 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 \newpage
 \subsection{AF40: Hinzufügen von Watch-Expressions}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{center}
 Diese Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
@@ -1141,7 +1142,7 @@ Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach
 \newpage
 \subsection{AF50: Programme debuggen}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
+\includegraphics[width=0.9\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Debuggen von Programmen}
 \end{center}
 Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen.
