@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
@@ -7,6 +8,18 @@
       <y>810</y>
       <w>270</w>
       <h>190</h>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1969</x>
+      <y>1034</y>
+      <w>297</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>/RelationalSuggestion/
 --
@@ -18,10 +31,17 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1770</x>
       <y>1160</y>
       <w>290</w>
       <h>100</h>
+=======
+      <x>1947</x>
+      <y>1419</y>
+      <w>319</w>
+      <h>110</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>SimpleRelationalSuggestion
 --
@@ -33,10 +53,17 @@
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1890</x>
       <y>990</y>
       <w>30</w>
       <h>190</h>
+=======
+      <x>2079</x>
+      <y>1232</y>
+      <w>33</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
@@ -44,10 +71,17 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>440</x>
       <y>790</y>
       <w>650</w>
       <h>440</h>
+=======
+      <x>484</x>
+      <y>1012</y>
+      <w>715</w>
+      <h>484</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>DebugControl
 --
@@ -82,10 +116,17 @@ _+ STEP_BACK = 3 : int_
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>800</x>
       <y>240</y>
       <w>430</w>
       <h>460</h>
+=======
+      <x>880</x>
+      <y>220</y>
+      <w>550</w>
+      <h>693</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -95,37 +136,74 @@ _+ STRAT_REL_SIMPLE = 1 : int_
 _+ STRAT_INPUT_SIMPLE = 2 : int_
 
 --
-+ launchRun(List&lt;ProgramInput&gt; programs)
++ setStepSize(int program, int size)
++ step(int type)
++ singleStep(int programID)
++ continue()
 
-//VorschägeValue
-+ selectStepSizeStrategy()
-+ selectInputValueStrategy()
-+ selectRelationalExpressionStrategy()
++ createWatchExpression(int id, String expr)
++ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
++ deleteWatchExpression(int id)
 
-+ suggestStepSize(List&lt;String&gt; programText)
-+ suggestInputValue(String identifier, String range, int type) : String
++ createConditionalBreakpoint(int id, String cond)
++ changeConditionalBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteConditionalBreakpoint(int id)
+
++ createBreakpoint(int program, int line)
++ deleteBreakpoint(int program, int line)
+
++ launchRun(List&lt;DebugLogic.ProgramInput&gt; programInput)
++ getProgramCounter(): List&lt;int&gt;
+
++ reset()
+
++ setMaximumIterations(int i)
++ setMaximumFunctionCalls(int i)
++ deleteAllBreakpoints()
+
+//Vorschlagsmethoden
++ suggestStepSize(List&lt;String&gt; progrmText) : String
 + suggestWatchExpression() : String
-+ suggestConditionalBreakpoint() : String</panel_attributes>
++ suggestConditionalBreakpoint(): String
++ suggestInputValue(String identifier, String range, int type): String
+
++ selectStepSizeStrategy()
++ selectRelationalExpressionStrategy()
++ selectInputValueStrategy()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1000</x>
       <y>100</y>
       <w>30</w>
       <h>160</h>
+=======
+      <x>1100</x>
+      <y>110</y>
+      <w>33</w>
+      <h>132</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>890</x>
       <y>0</y>
       <w>240</w>
       <h>110</h>
+=======
+      <x>979</x>
+      <y>0</y>
+      <w>264</w>
+      <h>121</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -137,10 +215,17 @@ _+ STRAT_INPUT_SIMPLE = 2 : int_
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>760</x>
       <y>690</y>
       <w>240</w>
       <h>120</h>
+=======
+      <x>836</x>
+      <y>902</y>
+      <w>264</w>
+      <h>132</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;-
 delegates</panel_attributes>
@@ -149,10 +234,17 @@ delegates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>380</x>
       <y>600</y>
       <w>280</w>
       <h>90</h>
+=======
+      <x>418</x>
+      <y>803</y>
+      <w>308</w>
+      <h>99</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>ProgramInput
 --
@@ -165,10 +257,17 @@ delegates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>650</x>
       <y>620</y>
       <w>100</w>
       <h>190</h>
+=======
+      <x>715</x>
+      <y>825</y>
+      <w>110</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;uses&gt;&gt;</panel_attributes>
@@ -178,9 +277,15 @@ delegates</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
+<<<<<<< HEAD
       <y>840</y>
       <w>280</w>
       <h>90</h>
+=======
+      <y>1067</y>
+      <w>308</w>
+      <h>99</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>Breakpoint
 --
@@ -192,10 +297,17 @@ delegates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>270</x>
       <y>860</y>
       <w>190</w>
       <h>50</h>
+=======
+      <x>297</x>
+      <y>1089</y>
+      <w>209</w>
+      <h>55</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -206,10 +318,17 @@ list_breakpoints</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>2170</x>
       <y>810</y>
       <w>360</w>
       <h>190</h>
+=======
+      <x>2387</x>
+      <y>1034</y>
+      <w>396</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>/InputValueSuggestion/
 --
@@ -226,10 +345,17 @@ _+ TYPE_BOOLEAN = 5 : int_
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1440</x>
       <y>730</y>
       <w>490</w>
       <h>100</h>
+=======
+      <x>1584</x>
+      <y>946</y>
+      <w>528</w>
+      <h>110</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1</panel_attributes>
@@ -238,10 +364,17 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>2090</x>
       <y>1160</y>
       <w>450</w>
       <h>100</h>
+=======
+      <x>2299</x>
+      <y>1419</y>
+      <w>495</w>
+      <h>110</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>SimpleInputSuggestion
 --
@@ -252,10 +385,17 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>2340</x>
       <y>990</y>
       <w>30</w>
       <h>190</h>
+=======
+      <x>2574</x>
+      <y>1232</y>
+      <w>33</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
@@ -263,10 +403,17 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1280</x>
       <y>810</y>
       <w>360</w>
       <h>190</h>
+=======
+      <x>1408</x>
+      <y>1034</y>
+      <w>396</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>/StepSizeSuggestion/
 --
@@ -277,10 +424,17 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1280</x>
       <y>1160</y>
       <w>360</w>
       <h>100</h>
+=======
+      <x>1408</x>
+      <y>1419</y>
+      <w>396</w>
+      <h>110</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>SimpleInputSuggestion
 --
@@ -291,10 +445,17 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1450</x>
       <y>990</y>
       <w>30</w>
       <h>190</h>
+=======
+      <x>1595</x>
+      <y>1232</y>
+      <w>33</w>
+      <h>209</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
@@ -302,10 +463,17 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>1890</x>
       <y>730</y>
       <w>490</w>
       <h>100</h>
+=======
+      <x>2079</x>
+      <y>946</y>
+      <w>528</w>
+      <h>110</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1</panel_attributes>
@@ -314,10 +482,17 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>990</x>
       <y>690</y>
       <w>490</w>
       <h>140</h>
+=======
+      <x>1089</x>
+      <y>902</y>
+      <w>528</w>
+      <h>154</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=&lt;-
 delegates
@@ -328,9 +503,15 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
+<<<<<<< HEAD
       <y>1020</y>
       <w>230</w>
       <h>30</h>
+=======
+      <y>1265</y>
+      <w>253</w>
+      <h>33</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>Interpreter.WatchExpression</panel_attributes>
     <additional_attributes/>
@@ -339,9 +520,15 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
+<<<<<<< HEAD
       <y>1080</y>
       <w>230</w>
       <h>30</h>
+=======
+      <y>1331</y>
+      <w>253</w>
+      <h>33</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>Interpreter.ConditionalBreakpoint</panel_attributes>
     <additional_attributes/>
@@ -350,9 +537,15 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
+<<<<<<< HEAD
       <y>1140</y>
       <w>230</w>
       <h>30</h>
+=======
+      <y>1397</y>
+      <w>253</w>
+      <h>33</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>Interpreter.TraceIterator</panel_attributes>
     <additional_attributes/>
@@ -360,10 +553,17 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>220</x>
       <y>1020</y>
       <w>240</w>
       <h>50</h>
+=======
+      <x>242</x>
+      <y>1265</y>
+      <w>264</w>
+      <h>55</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -373,10 +573,17 @@ list_watchExpressions</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>220</x>
       <y>1070</y>
       <w>240</w>
       <h>50</h>
+=======
+      <x>242</x>
+      <y>1320</y>
+      <w>264</w>
+      <h>55</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -386,10 +593,17 @@ list_condBreakpoints</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
+<<<<<<< HEAD
       <x>220</x>
       <y>1130</y>
       <w>240</w>
       <h>50</h>
+=======
+      <x>242</x>
+      <y>1386</y>
+      <w>264</w>
+      <h>55</h>
+>>>>>>> baebeb9e77c8932fdee25eb759cf36a10e19af2e
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
