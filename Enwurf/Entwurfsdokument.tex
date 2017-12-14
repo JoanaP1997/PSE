@@ -563,60 +563,60 @@ Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (W
 \paragraph{MissingReturnCallException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
 \end{itemize}
 
 \paragraph{InvalidProgramException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
+Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
 \end{itemize}
 
 \paragraph{WrongArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Abstrakte Klasse, die eine Fehlermeldung bei falscher Eingabe der Parameter beschreibt
+Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird
 \end{itemize}
 
 \paragraph{WrongTypeArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn ein Parameter einen falschen Typ hat
+Ausnahme, die ausgelöst wird, wenn ein Parameter einen falschen Typ hat
 \end{itemize}
 
 \paragraph{WrongNumberArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben wird
+Ausnahme, die ausgelöst wird, wenn eine falsche Anzahl an Parametern übergeben wird
 \end{itemize}
 
 \paragraph{ReturnTypeException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
 \end{itemize}
 
 \paragraph{WrongTypeAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
 \end{itemize}
 \paragraph{VariableNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
 \end{itemize}
 
 \paragraph{AlreadyDeclaredException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
+Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \end{itemize}
 
 \paragraph{RoutineNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
+Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{FileHandler}}
@@ -941,25 +941,25 @@ Alle Klassen in diesem Unterpaket implementieren die Schnittstelle FileHandlerEx
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
+Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
 
 \paragraph{ParseBlockException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn beim Versuch einen Datenblock zu parsen ein Feler entsteht.
+Ausnahme, die ausgelöst wird, falls beim Versuch einen Datenblock zu parsen ein Feler entsteht.
 \end{itemize}
 
 \paragraph{ParseAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
+Ausnahme, die ausgelöst wird, falls beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
 \end{itemize}
 
 \paragraph{InvalidLineTypeException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
+Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
 \end{itemize}
 
 
