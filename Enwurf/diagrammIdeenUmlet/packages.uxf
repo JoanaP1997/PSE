@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>328</x>
+      <x>320</x>
       <y>304</y>
       <w>496</w>
       <h>192</h>
@@ -14,7 +15,7 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>128</x>
+      <x>120</x>
       <y>544</y>
       <w>416</w>
       <h>312</h>
@@ -25,7 +26,7 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>592</x>
+      <x>584</x>
       <y>544</y>
       <w>608</w>
       <h>472</h>
@@ -36,9 +37,9 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
+      <x>352</x>
       <y>488</y>
-      <w>72</w>
+      <w>64</w>
       <h>88</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
@@ -48,7 +49,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>704</x>
+      <x>696</x>
       <y>488</y>
       <w>192</w>
       <h>88</h>
@@ -60,7 +61,7 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>616</x>
+      <x>608</x>
       <y>576</y>
       <w>576</w>
       <h>136</h>
@@ -71,7 +72,7 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>624</x>
+      <x>616</x>
       <y>896</y>
       <w>560</w>
       <h>96</h>
@@ -82,9 +83,9 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>888</x>
+      <x>880</x>
       <y>704</y>
-      <w>64</w>
+      <w>56</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
@@ -94,9 +95,9 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>888</x>
+      <x>880</x>
       <y>864</y>
-      <w>64</w>
+      <w>56</w>
       <h>64</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
@@ -106,7 +107,7 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>376</x>
+      <x>368</x>
       <y>0</y>
       <w>600</w>
       <h>192</h>
@@ -117,7 +118,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>552</x>
+      <x>544</x>
       <y>184</y>
       <w>176</w>
       <h>152</h>
@@ -129,7 +130,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
+      <x>888</x>
       <y>184</y>
       <w>128</w>
       <h>392</h>
@@ -139,21 +140,9 @@
     <additional_attributes>140.0;470.0;140.0;250.0;10.0;250.0;10.0;10.0</additional_attributes>
   </element>
   <element>
-    <type>com.baselet.element.old.element.Package</type>
-    <coordinates>
-      <x>336</x>
-      <y>880</y>
-      <w>208</w>
-      <h>136</h>
-    </coordinates>
-    <panel_attributes>DIbuggerExceptions
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>616</x>
+      <x>608</x>
       <y>736</y>
       <w>576</w>
       <h>136</h>

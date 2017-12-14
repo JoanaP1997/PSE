@@ -122,9 +122,9 @@ _+ STRAT_INPUT_SIMPLE = 2 : int_
 + deleteAllBreakpoints()
 
 //Vorschlagsmethoden
-+ suggestStepSize(List&lt;String&gt; progrmText) : String
-+ suggestWatchExpression() : String
-+ suggestConditionalBreakpoint(): String
++ suggestStepSize(List&lt;String&gt; programText) : String
++ suggestWatchExpression(List&lt;String&gt; programText) : String
++ suggestConditionalBreakpoint(List&lt;String&gt; programText): String
 + suggestInputValue(String identifier, String range, int type): String
 
 + selectStepSizeStrategy(int id)

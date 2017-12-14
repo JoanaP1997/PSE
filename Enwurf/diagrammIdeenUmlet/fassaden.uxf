@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1105</x>
+      <x>1027</x>
       <y>130</y>
       <w>507</w>
       <h>299</h>
@@ -29,7 +29,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1274</x>
+      <x>1196</x>
       <y>468</y>
       <w>663</w>
       <h>949</h>
@@ -85,7 +85,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
+      <x>182</x>
       <y>481</y>
       <w>650</w>
       <h>767</h>
@@ -119,9 +119,9 @@
 + deleteAllBreakpoints()
 
 //Vorschlagsmethoden
-+ suggestStepSize(List&lt;String&gt; progrmText) : String
-+ suggestWatchExpression() : String
-+ suggestConditionalBreakpoint(): String
++ suggestStepSize(List&lt;String&gt; programText) : String
++ suggestWatchExpression(List&lt;String&gt; programText) : String
++ suggestConditionalBreakpoint(List&lt;String&gt; programText): String
 + suggestInputValue(String identifier, String range, int type): String
 
 + selectStepSizeStrategy(int id)
@@ -132,7 +132,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>533</x>
+      <x>455</x>
       <y>273</y>
       <w>312</w>
       <h>143</h>
@@ -147,7 +147,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>676</x>
+      <x>598</x>
       <y>403</y>
       <w>39</w>
       <h>104</h>
@@ -158,7 +158,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1326</x>
+      <x>1248</x>
       <y>0</y>
       <w>130</w>
       <h>78</h>
@@ -171,7 +171,7 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>910</x>
+      <x>832</x>
       <y>377</y>
       <w>169</w>
       <h>91</h>
@@ -184,7 +184,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>624</x>
+      <x>546</x>
       <y>351</y>
       <w>312</w>
       <h>91</h>
@@ -195,7 +195,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1365</x>
+      <x>1287</x>
       <y>65</y>
       <w>39</w>
       <h>91</h>
@@ -206,7 +206,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>676</x>
+      <x>598</x>
       <y>13</y>
       <w>676</w>
       <h>286</h>
@@ -220,7 +220,7 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1599</x>
+      <x>1521</x>
       <y>260</y>
       <w>104</w>
       <h>234</h>
@@ -232,7 +232,7 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>897</x>
+      <x>819</x>
       <y>715</y>
       <w>403</w>
       <h>52</h>
@@ -244,7 +244,7 @@ r2= observers
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1664</x>
+      <x>1586</x>
       <y>0</y>
       <w>520</w>
       <h>234</h>
@@ -266,7 +266,7 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1846</x>
+      <x>1768</x>
       <y>221</y>
       <w>39</w>
       <h>273</h>

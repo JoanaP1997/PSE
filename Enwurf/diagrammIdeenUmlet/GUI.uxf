@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>304</x>
+      <x>280</x>
       <y>448</y>
       <w>208</w>
       <h>88</h>
@@ -18,7 +18,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1048</x>
+      <x>1024</x>
       <y>464</y>
       <w>120</w>
       <h>40</h>
@@ -29,18 +29,18 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1064</x>
+      <x>1040</x>
       <y>616</y>
-      <w>80</w>
+      <w>88</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>WarningPopUp</panel_attributes>
+    <panel_attributes>DesicionPopUp</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1216</x>
+      <x>1192</x>
       <y>616</y>
       <w>128</w>
       <h>24</h>
@@ -51,7 +51,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>208</x>
+      <x>184</x>
       <y>344</y>
       <w>80</w>
       <h>24</h>
@@ -62,7 +62,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>208</x>
+      <x>184</x>
       <y>544</y>
       <w>80</w>
       <h>24</h>
@@ -73,7 +73,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1224</x>
+      <x>1200</x>
       <y>352</y>
       <w>80</w>
       <h>24</h>
@@ -84,7 +84,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
+      <x>264</x>
       <y>616</y>
       <w>128</w>
       <h>112</h>
@@ -103,7 +103,7 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1120</x>
+      <x>1096</x>
       <y>0</y>
       <w>256</w>
       <h>120</h>
@@ -121,7 +121,7 @@ Dekorierer in PopUp</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>568</x>
+      <x>544</x>
       <y>8</y>
       <w>112</w>
       <h>56</h>
@@ -134,7 +134,7 @@ Klassen</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>320</x>
+      <x>296</x>
       <y>8</y>
       <w>112</w>
       <h>56</h>
@@ -146,7 +146,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>904</x>
+      <x>880</x>
       <y>616</y>
       <w>80</w>
       <h>24</h>
@@ -157,7 +157,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>576</x>
+      <x>552</x>
       <y>160</y>
       <w>480</w>
       <h>160</h>
@@ -183,7 +183,7 @@ Debug-Modus ohne Text nicht startbar</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
+      <x>408</x>
       <y>616</y>
       <w>224</w>
       <h>176</h>
@@ -205,7 +205,7 @@ _+getCommandPanel(): CommandPanel_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>688</x>
+      <x>664</x>
       <y>616</y>
       <w>136</w>
       <h>64</h>
@@ -219,7 +219,7 @@ _+getCommandPanel(): CommandPanel_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>344</x>
+      <x>320</x>
       <y>816</y>
       <w>368</w>
       <h>128</h>
@@ -238,7 +238,7 @@ _+getWatchExpressionPanel(): WatchExpressionPanel_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>824</x>
+      <x>800</x>
       <y>816</y>
       <w>368</w>
       <h>136</h>
@@ -255,7 +255,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>776</x>
+      <x>752</x>
       <y>368</y>
       <w>112</w>
       <h>56</h>
@@ -268,7 +268,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
+      <x>256</x>
       <y>544</y>
       <w>272</w>
       <h>88</h>
@@ -279,7 +279,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
+      <x>256</x>
       <y>544</y>
       <w>96</w>
       <h>88</h>
@@ -290,7 +290,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
+      <x>256</x>
       <y>544</y>
       <w>496</w>
       <h>88</h>
@@ -301,7 +301,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
+      <x>256</x>
       <y>344</y>
       <w>152</w>
       <h>120</h>
@@ -312,7 +312,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1096</x>
+      <x>1072</x>
       <y>496</y>
       <w>208</w>
       <h>136</h>
@@ -323,7 +323,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
+      <x>912</x>
       <y>496</y>
       <w>184</w>
       <h>136</h>
@@ -334,7 +334,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1096</x>
+      <x>1072</x>
       <y>496</y>
       <w>24</w>
       <h>136</h>
@@ -345,7 +345,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1096</x>
+      <x>1072</x>
       <y>352</y>
       <w>144</w>
       <h>128</h>
@@ -356,7 +356,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>752</x>
+      <x>728</x>
       <y>672</y>
       <w>168</w>
       <h>160</h>
@@ -367,7 +367,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>664</x>
+      <x>640</x>
       <y>672</y>
       <w>112</w>
       <h>160</h>
@@ -378,7 +378,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>856</x>
       <y>392</y>
       <w>184</w>
       <h>96</h>
@@ -390,7 +390,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
+      <x>480</x>
       <y>392</y>
       <w>280</w>
       <h>104</h>
@@ -402,7 +402,7 @@ _+getCondBreakpointPanel(): CondBreakpointPanel_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
+      <x>480</x>
       <y>480</y>
       <w>560</w>
       <h>32</h>
@@ -414,7 +414,7 @@ calls &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
+      <x>416</x>
       <y>176</y>
       <w>152</w>
       <h>288</h>
@@ -428,7 +428,7 @@ m2=0..1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>88</x>
+      <x>64</x>
       <y>480</y>
       <w>232</w>
       <h>176</h>
@@ -442,7 +442,7 @@ has &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>24</x>
+      <x>0</x>
       <y>448</y>
       <w>424</w>
       <h>344</h>
@@ -456,7 +456,7 @@ has &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
+      <x>480</x>
       <y>504</y>
       <w>320</w>
       <h>128</h>
@@ -470,7 +470,7 @@ has &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1160</x>
+      <x>1136</x>
       <y>368</y>
       <w>128</w>
       <h>136</h>
@@ -481,7 +481,7 @@ has &gt;</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1136</x>
+      <x>1112</x>
       <y>256</y>
       <w>152</w>
       <h>56</h>
@@ -494,7 +494,7 @@ need a String in HTML form</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>704</x>
+      <x>680</x>
       <y>272</y>
       <w>448</w>
       <h>40</h>
@@ -507,7 +507,7 @@ need a String in HTML form</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1408</x>
+      <x>1384</x>
       <y>616</y>
       <w>144</w>
       <h>24</h>
@@ -518,7 +518,7 @@ need a String in HTML form</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1096</x>
+      <x>1072</x>
       <y>496</y>
       <w>416</w>
       <h>136</h>

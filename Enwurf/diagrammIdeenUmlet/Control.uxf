@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>8</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>24</y>
-      <w>232</w>
-      <h>40</h>
+      <x>1140</x>
+      <y>36</y>
+      <w>348</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>270.0;30.0;10.0;10.0</additional_attributes>
@@ -15,10 +15,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>976</x>
+      <x>1464</x>
       <y>0</y>
-      <w>360</w>
-      <h>104</h>
+      <w>540</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade : debuglogic.debugger::DebugLogicFacade
@@ -31,10 +31,10 @@ debugLogicFacade.attach(guiFacade);
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1320</x>
-      <y>832</y>
-      <w>312</w>
-      <h>56</h>
+      <x>1980</x>
+      <y>1248</y>
+      <w>468</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade.setStepSize(int program, int size)
@@ -44,10 +44,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1112</x>
-      <y>848</y>
-      <w>224</w>
-      <h>24</h>
+      <x>1668</x>
+      <y>1272</y>
+      <w>336</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
@@ -55,10 +55,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>904</x>
-      <y>784</y>
-      <w>400</w>
-      <h>496</h>
+      <x>1356</x>
+      <y>1176</y>
+      <w>600</w>
+      <h>744</h>
     </coordinates>
     <panel_attributes>DebugLogicController
 --
@@ -102,10 +102,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
-      <y>680</y>
-      <w>296</w>
-      <h>120</h>
+      <x>1320</x>
+      <y>1020</y>
+      <w>444</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
@@ -116,10 +116,10 @@ r1=controller</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>680</y>
-      <w>152</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1020</y>
+      <w>228</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1
@@ -130,10 +130,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>328</x>
-      <y>784</y>
-      <w>288</w>
-      <h>88</h>
+      <x>492</x>
+      <y>1176</y>
+      <w>432</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>FileHandlerInteractor
 --
@@ -147,10 +147,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>72</x>
-      <y>960</y>
-      <w>272</w>
-      <h>24</h>
+      <x>108</x>
+      <y>1440</y>
+      <w>408</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>de.rd.filehandler.facade::LanguageFile</panel_attributes>
     <additional_attributes/>
@@ -158,10 +158,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>376</x>
-      <y>960</y>
-      <w>192</w>
-      <h>24</h>
+      <x>564</x>
+      <y>1440</y>
+      <w>288</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>userinterface::GuiFacade</panel_attributes>
     <additional_attributes/>
@@ -169,10 +169,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>864</y>
-      <w>208</w>
-      <h>112</h>
+      <x>672</x>
+      <y>1296</y>
+      <w>276</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 trigger change in presentation v</panel_attributes>
@@ -181,10 +181,10 @@ trigger change in presentation v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1104</x>
-      <y>1272</y>
-      <w>136</w>
-      <h>224</h>
+      <x>1656</x>
+      <y>1908</y>
+      <w>192</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 controls model via v
@@ -194,10 +194,10 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>976</x>
-      <y>1480</y>
-      <w>272</w>
-      <h>24</h>
+      <x>1464</x>
+      <y>2220</y>
+      <w>408</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>debugger.debuglogic::DebugLogicFacade</panel_attributes>
     <additional_attributes/>
@@ -206,26 +206,26 @@ r1=model's facade</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>328</y>
-      <w>408</w>
-      <h>96</h>
+      <y>492</y>
+      <w>612</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>ExceptionHandler
 --
 --
 + Exceptionhandler(ControlFacade facade)
 
-+ handle(debuglogic.exceptions::MissingReturnCallException exception)
-...</panel_attributes>
++ handle(Exception exception)
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>360</y>
-      <w>136</w>
-      <h>32</h>
+      <x>600</x>
+      <y>540</y>
+      <w>204</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
 m1=1</panel_attributes>
@@ -234,10 +234,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>200</x>
-      <y>864</y>
-      <w>192</w>
-      <h>112</h>
+      <x>300</x>
+      <y>1296</y>
+      <w>288</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
@@ -246,10 +246,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
+      <x>780</x>
       <y>0</y>
-      <w>440</w>
-      <h>688</h>
+      <w>660</w>
+      <h>1032</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -266,11 +266,11 @@ m2=1</panel_attributes>
 + changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 + deleteWatchExpression(int id)
 
-+ createCondBreakpoint(int id, String cond)
-+ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
-+ deleteCondBreakpoint(int id)
++ createConditionalBreakpoint(int id, String cond)
++ changeConditionalBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteConditionalBreakpoint(int id)
 
-+ createSyncBreakpoint(int line)
++ createSynchronousBreakpoint(int line)
 + createBreakpoint(int program, int line)
 + deleteBreakpoint(int program, int line)
 + deleteAllBreakpoints()
@@ -280,8 +280,8 @@ m2=1</panel_attributes>
 + stopDebug()
 + reset()
 
-+ loadConfig(File configFile)
-+ saveConfig(File configFile)
++ loadConfiguration(File configFile)
++ saveConfiguration(File configFile)
 + loadProgramText(File file)
 
 + getAvailableLanuages() : List&lt;String&gt;
@@ -292,7 +292,7 @@ m2=1</panel_attributes>
 + suggestStepSize() : String
 + suggestWatchExpression() : String
 + suggestConditionalBreakpoint(): String
-+ suggestInputValue(): String
++ suggestInputValue(String id, String range, int type): String
 
 + selectStepSizeStrategy()
 + selectRelationalExpressionStrategy()
@@ -300,27 +300,5 @@ m2=1</panel_attributes>
 
 + changeLanguage(String langId)</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>0</x>
-      <y>440</y>
-      <w>376</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>Weitere Methoden zur Behandlung der in debuglogic.exceptions</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>24</x>
-      <y>392</y>
-      <w>48</w>
-      <h>64</h>
-    </coordinates>
-    <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>40.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
