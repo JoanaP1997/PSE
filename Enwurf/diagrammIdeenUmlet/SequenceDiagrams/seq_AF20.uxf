@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>8</zoom_level>
   <element>
     <id>UMLGeneric</id>
@@ -248,7 +247,7 @@ startDebug()</panel_attributes>
     <coordinates>
       <x>616</x>
       <y>440</y>
-      <w>216</w>
+      <w>224</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -410,7 +409,7 @@ saveText(Programme, Eingaben)</panel_attributes>
     <coordinates>
       <x>832</x>
       <y>496</y>
-      <w>112</w>
+      <w>120</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -426,7 +425,7 @@ notify()</panel_attributes>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-update()</panel_attributes>
+       update()</panel_attributes>
     <additional_attributes>10.0;20.0;530.0;20.0</additional_attributes>
   </element>
   <element>
