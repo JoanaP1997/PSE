@@ -192,7 +192,7 @@ r2=</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>861</x>
+      <x>819</x>
       <y>427</y>
       <w>133</w>
       <h>28</h>
@@ -207,11 +207,11 @@ _:ReturnCommand_
     <coordinates>
       <x>700</x>
       <y>385</y>
-      <w>238</w>
+      <w>196</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0;320.0;50.0;320.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;260.0;50.0;260.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -265,7 +265,7 @@ _:Condition_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1043</x>
+      <x>1001</x>
       <y>427</y>
       <w>133</w>
       <h>28</h>
@@ -278,7 +278,7 @@ _:Term_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>987</x>
+      <x>945</x>
       <y>434</y>
       <w>70</w>
       <h>21</h>
