@@ -350,27 +350,7 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
             \item Klassenbeschreibung:\\
                 ControlFacade bietet eine Schnittstelle zum Paket Control.\\ 
         \end{itemize}
-                
-    \paragraph{FileHandlerInteractor}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
-                sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
-                \enquote{User Interace} enthält.
-            \item Wichtige Methoden:\\
-                \begin{itemize}
-                    \item[-] loadConfig(File configFile)\\
-                        loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
-                        am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
-                        ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
-                        wiederherstellen kann.\\
-
-                    \item[-] loadProgramText(File file)\\
-                        loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
-                        der in spezifizierter Datei enthalten ist, anzuzeigen.
-                \end{itemize}
-        \end{itemize}
-
+ 
     \paragraph{DebugLogicController}
         \begin{itemize}
             \item Klassenbeschreibung:\\
@@ -396,6 +376,35 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
                     \item[-] suggestEquivalence() : String\\
                         Fordert \enquote{DebugLogic} dazu auf, einen Vorschlag für eine
                         Watch-Expression zu generieren und gibt diesen zurück.
+                \end{itemize}
+        \end{itemize}
+ 
+    \paragraph{ExceptionHandler}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ExceptionHandler dient zur Behandlung von beim Aufruf der Methoden
+                aus DebugLogic oder FileHandler ausgelösten Ausnahmen.\\
+                Insbesondere kann die Präsentation dazu aufgefordert werden, Benutzer der
+                Anwendung entsprechend über eine Fehlersituation zu informieren.
+        \end{itemize}
+              
+    \paragraph{FileHandlerInteractor}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
+                sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
+                \enquote{User Interace} enthält.
+            \item Wichtige Methoden:\\
+                \begin{itemize}
+                    \item[-] loadConfig(File configFile)\\
+                        loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
+                        am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
+                        ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
+                        wiederherstellen kann.\\
+
+                    \item[-] loadProgramText(File file)\\
+                        loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
+                        der in spezifizierter Datei enthalten ist, anzuzeigen.
                 \end{itemize}
         \end{itemize}
 \subsection{Klassen im Paket \enquote{DebugLogic}}
