@@ -4,7 +4,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>688</x>
+      <x>760</x>
       <y>24</y>
       <w>232</w>
       <h>40</h>
@@ -15,14 +15,14 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>904</x>
+      <x>976</x>
       <y>0</y>
       <w>360</w>
       <h>104</h>
     </coordinates>
     <panel_attributes>...
-debugLogicFacade : debugger.debuglogic::DebugLogicFacade
-    := new debugger.debuglogic::DebugLogicFacade()
+debugLogicFacade : debuglogic.debugger::DebugLogicFacade
+    := new debuglogic.debugger::DebugLogicFacade()
 ...
 debugLogicFacade.attach(guiFacade);
 ...</panel_attributes>
@@ -31,7 +31,7 @@ debugLogicFacade.attach(guiFacade);
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1248</x>
+      <x>1320</x>
       <y>832</y>
       <w>312</w>
       <h>56</h>
@@ -44,7 +44,7 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1040</x>
+      <x>1112</x>
       <y>848</y>
       <w>224</w>
       <h>24</h>
@@ -55,7 +55,7 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>832</x>
+      <x>904</x>
       <y>784</y>
       <w>400</w>
       <h>496</h>
@@ -102,7 +102,7 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>808</x>
+      <x>880</x>
       <y>680</y>
       <w>296</w>
       <h>120</h>
@@ -116,7 +116,7 @@ r1=controller</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
+      <x>448</x>
       <y>680</y>
       <w>152</w>
       <h>120</h>
@@ -130,7 +130,7 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>256</x>
+      <x>328</x>
       <y>784</y>
       <w>288</w>
       <h>88</h>
@@ -147,7 +147,7 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>72</x>
       <y>960</y>
       <w>272</w>
       <h>24</h>
@@ -158,7 +158,7 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>304</x>
+      <x>376</x>
       <y>960</y>
       <w>192</w>
       <h>24</h>
@@ -169,7 +169,7 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
+      <x>448</x>
       <y>864</y>
       <w>208</w>
       <h>112</h>
@@ -181,7 +181,7 @@ trigger change in presentation v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1032</x>
+      <x>1104</x>
       <y>1272</y>
       <w>136</w>
       <h>224</h>
@@ -194,7 +194,7 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>904</x>
+      <x>976</x>
       <y>1480</y>
       <w>272</w>
       <h>24</h>
@@ -205,23 +205,24 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>24</x>
+      <x>0</x>
       <y>328</y>
-      <w>312</w>
-      <h>72</h>
+      <w>408</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>ExceptionHandler
 --
 --
 + Exceptionhandler(ControlFacade facade)
 
-+ handle(Excepti exception)</panel_attributes>
++ handle(debuglogic.exceptions::MissingReturnCallException exception)
+...</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>328</x>
+      <x>400</x>
       <y>360</y>
       <w>136</w>
       <h>32</h>
@@ -233,7 +234,7 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>128</x>
+      <x>200</x>
       <y>864</y>
       <w>192</w>
       <h>112</h>
@@ -245,7 +246,7 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>448</x>
+      <x>520</x>
       <y>0</y>
       <w>440</w>
       <h>688</h>
@@ -299,5 +300,27 @@ m2=1</panel_attributes>
 
 + changeLanguage(String langId)</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>0</x>
+      <y>440</y>
+      <w>376</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Weitere Methoden zur Behandlung der in debuglogic.exceptions</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>24</x>
+      <y>392</y>
+      <w>48</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=.()</panel_attributes>
+    <additional_attributes>40.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

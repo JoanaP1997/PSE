@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
-  <zoom_level>6</zoom_level>
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>11</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>402</x>
-      <y>72</y>
-      <w>234</w>
-      <h>138</h>
+      <x>946</x>
+      <y>110</y>
+      <w>429</w>
+      <h>253</h>
     </coordinates>
     <panel_attributes>GuiFacade
 
@@ -29,14 +28,15 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>228</y>
-      <w>306</w>
-      <h>438</h>
+      <x>1089</x>
+      <y>396</y>
+      <w>671</w>
+      <h>891</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
 --
++ ControlFacade(GuiFacade guiFacade)
 + setStepSize(int program, int size)
 + step(int type)
 + continue()
@@ -47,11 +47,11 @@
 + changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 + deleteWatchExpression(int id)
 
-+ createCondBreakpoint(int id, String cond)
-+ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
-+ deleteCondBreakpoint(int id)
++ createConditionalBreakpoint(int id, String cond)
++ changeConditionalBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteConditionalBreakpoint(int id)
 
-+ createSyncBreakpoint(int line)
++ createSynchronousBreakpoint(int line)
 + createBreakpoint(int program, int line)
 + deleteBreakpoint(int program, int line)
 + deleteAllBreakpoints()
@@ -61,8 +61,8 @@
 + stopDebug()
 + reset()
 
-+ loadConfig(File configFile)
-+ saveConfig(File configFile)
++ loadConfiguration(File configFile)
++ saveConfiguration(File configFile)
 + loadProgramText(File file)
 
 + getAvailableLanuages() : List&lt;String&gt;
@@ -73,7 +73,7 @@
 + suggestStepSize() : String
 + suggestWatchExpression() : String
 + suggestConditionalBreakpoint(): String
-+ suggestInputValue(): String
++ suggestInputValue(String id, String range, int type): String
 
 + selectStepSizeStrategy()
 + selectRelationalExpressionStrategy()
@@ -85,10 +85,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
-      <y>234</y>
-      <w>282</w>
-      <h>354</h>
+      <x>187</x>
+      <y>407</y>
+      <w>682</w>
+      <h>693</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -102,9 +102,9 @@
 + changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
 + deleteWatchExpression(int id)
 
-+ createCondBreakpoint(int id, String cond)
-+ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
-+ deleteCondBreakpoint(int id)
++ createConditionalBreakpoint(int id, String cond)
++ changeConditionalBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteConditionalBreakpoint(int id)
 
 + createBreakpoint(int program, int line)
 + deleteBreakpoint(int program, int line)
@@ -119,23 +119,23 @@
 + deleteAllBreakpoints()
 
 //Vorschlagsmethoden
-+ suggestStepSize(List&lt;String&gt; progrmText) : String
-+ suggestWatchExpression() : String
-+ suggestConditionalBreakpoint(): String
++ suggestStepSize(List&lt;String&gt; programText): String
++ suggestWatchExpression(List&lt;String&gt; programText) : String
++ suggestConditionalBreakpoint(List&lt;String&gt; programText): String
 + suggestInputValue(String identifier, String range, int type): String
 
-+ selectStepSizeStrategy()
-+ selectRelationalExpressionStrategy()
-+ selectInputValueStrategy()</panel_attributes>
++ selectStepSizeStrategy(int id)
++ selectRelationalExpressionStrategy(int id)
++ selectInputValueStrategy(int id)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>138</x>
-      <y>138</y>
-      <w>144</w>
-      <h>66</h>
+      <x>462</x>
+      <y>231</y>
+      <w>264</w>
+      <h>121</h>
     </coordinates>
     <panel_attributes>/Subject/
 --
@@ -147,10 +147,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>204</x>
-      <y>198</y>
-      <w>18</w>
-      <h>48</h>
+      <x>583</x>
+      <y>341</y>
+      <w>33</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -158,10 +158,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>12</y>
-      <w>60</w>
-      <h>36</h>
+      <x>1133</x>
+      <y>0</y>
+      <w>110</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>/Observer/
 --
@@ -171,10 +171,10 @@
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>312</x>
-      <y>186</y>
-      <w>78</w>
-      <h>42</h>
+      <x>781</x>
+      <y>319</y>
+      <w>143</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>for all o in observers {
 	o.update()
@@ -184,10 +184,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>180</x>
-      <y>174</y>
-      <w>144</w>
-      <h>42</h>
+      <x>539</x>
+      <y>297</y>
+      <w>264</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>220.0;50.0;10.0;10.0</additional_attributes>
@@ -195,10 +195,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
-      <y>42</y>
-      <w>18</w>
-      <h>42</h>
+      <x>1166</x>
+      <y>55</y>
+      <w>33</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -206,10 +206,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>204</x>
-      <y>18</y>
-      <w>312</w>
-      <h>132</h>
+      <x>583</x>
+      <y>11</y>
+      <w>572</w>
+      <h>242</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
@@ -220,10 +220,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>132</y>
-      <w>48</w>
-      <h>108</h>
+      <x>1364</x>
+      <y>220</y>
+      <w>88</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>lt=&lt;-&gt;
 </panel_attributes>
@@ -232,22 +232,22 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>342</y>
-      <w>204</w>
-      <h>24</h>
+      <x>858</x>
+      <y>605</y>
+      <w>253</w>
+      <h>44</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
-    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;210.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>12</y>
-      <w>240</w>
-      <h>108</h>
+      <x>1419</x>
+      <y>0</y>
+      <w>440</w>
+      <h>198</h>
     </coordinates>
     <panel_attributes>FileHandlerFacade
 --
@@ -266,10 +266,10 @@ r2= observers
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>744</x>
-      <y>114</y>
-      <w>18</w>
-      <h>126</h>
+      <x>1573</x>
+      <y>187</y>
+      <w>33</w>
+      <h>231</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 </panel_attributes>
