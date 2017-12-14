@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1432</x>
-      <y>648</y>
+      <y>904</y>
       <w>216</w>
       <h>152</h>
     </coordinates>
@@ -20,7 +20,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>1416</x>
-      <y>928</y>
+      <y>1184</y>
       <w>232</w>
       <h>80</h>
     </coordinates>
@@ -35,7 +35,7 @@
     <id>Relation</id>
     <coordinates>
       <x>1512</x>
-      <y>792</y>
+      <y>1048</y>
       <w>24</w>
       <h>152</h>
     </coordinates>
@@ -46,7 +46,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>352</x>
-      <y>632</y>
+      <y>888</y>
       <w>520</w>
       <h>352</h>
     </coordinates>
@@ -84,9 +84,9 @@ _+ STEP_BACK = 3 : int_
     <id>UMLClass</id>
     <coordinates>
       <x>640</x>
-      <y>192</y>
-      <w>344</w>
-      <h>368</h>
+      <y>304</y>
+      <w>392</w>
+      <h>512</h>
     </coordinates>
     <panel_attributes>DebugLogicFacade
 --
@@ -96,35 +96,58 @@ _+ STRAT_REL_SIMPLE = 1 : int_
 _+ STRAT_INPUT_SIMPLE = 2 : int_
 
 --
-+ launchRun(List&lt;ProgramInput&gt; programs)
++ setStepSize(int program, int size)
++ step(int type)
++ singleStep(int programID)
++ continue()
 
-//VorschägeValue
-+ selectStepSizeStrategy()
-+ selectInputValueStrategy()
-+ selectRelationalExpressionStrategy()
++ createWatchExpression(int id, String expr)
++ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
++ deleteWatchExpression(int id)
 
-+ suggestStepSize(List&lt;String&gt; programText)
-+ suggestInputValue(String identifier, String range, int type) : String
++ createConditionalBreakpoint(int id, String cond)
++ changeConditionalBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteConditionalBreakpoint(int id)
+
++ createBreakpoint(int program, int line)
++ deleteBreakpoint(int program, int line)
+
++ launchRun(List&lt;DebugLogic.ProgramInput&gt; programInput)
++ getProgramCounter(): List&lt;int&gt;
+
++ reset()
+
++ setMaximumIterations(int i)
++ setMaximumFunctionCalls(int i)
++ deleteAllBreakpoints()
+
+//Vorschlagsmethoden
++ suggestStepSize(List&lt;String&gt; progrmText) : String
 + suggestWatchExpression() : String
-+ suggestConditionalBreakpoint() : String</panel_attributes>
++ suggestConditionalBreakpoint(): String
++ suggestInputValue(String identifier, String range, int type): String
+
++ selectStepSizeStrategy(int id)
++ selectRelationalExpressionStrategy(int id)
++ selectInputValueStrategy(int id)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>800</x>
-      <y>80</y>
+      <y>200</y>
       <w>24</w>
-      <h>128</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>712</x>
-      <y>0</y>
+      <y>120</y>
       <w>192</w>
       <h>88</h>
     </coordinates>
@@ -139,7 +162,7 @@ _+ STRAT_INPUT_SIMPLE = 2 : int_
     <id>Relation</id>
     <coordinates>
       <x>608</x>
-      <y>552</y>
+      <y>808</y>
       <w>192</w>
       <h>96</h>
     </coordinates>
@@ -151,7 +174,7 @@ delegates</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>304</x>
-      <y>480</y>
+      <y>736</y>
       <w>224</w>
       <h>72</h>
     </coordinates>
@@ -167,7 +190,7 @@ delegates</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>520</x>
-      <y>496</y>
+      <y>752</y>
       <w>80</w>
       <h>152</h>
     </coordinates>
@@ -179,7 +202,7 @@ delegates</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>672</y>
+      <y>928</y>
       <w>224</w>
       <h>72</h>
     </coordinates>
@@ -194,7 +217,7 @@ delegates</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>216</x>
-      <y>688</y>
+      <y>944</y>
       <w>152</w>
       <h>40</h>
     </coordinates>
@@ -208,7 +231,7 @@ list_breakpoints</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1736</x>
-      <y>648</y>
+      <y>904</y>
       <w>288</w>
       <h>152</h>
     </coordinates>
@@ -228,7 +251,7 @@ _+ TYPE_BOOLEAN = 5 : int_
     <id>Relation</id>
     <coordinates>
       <x>1152</x>
-      <y>584</y>
+      <y>840</y>
       <w>384</w>
       <h>80</h>
     </coordinates>
@@ -240,7 +263,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1672</x>
-      <y>928</y>
+      <y>1184</y>
       <w>360</w>
       <h>80</h>
     </coordinates>
@@ -254,7 +277,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1872</x>
-      <y>792</y>
+      <y>1048</y>
       <w>24</w>
       <h>152</h>
     </coordinates>
@@ -265,7 +288,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1024</x>
-      <y>648</y>
+      <y>904</y>
       <w>288</w>
       <h>152</h>
     </coordinates>
@@ -279,7 +302,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1024</x>
-      <y>928</y>
+      <y>1184</y>
       <w>288</w>
       <h>80</h>
     </coordinates>
@@ -293,7 +316,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1160</x>
-      <y>792</y>
+      <y>1048</y>
       <w>24</w>
       <h>152</h>
     </coordinates>
@@ -304,7 +327,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1512</x>
-      <y>584</y>
+      <y>840</y>
       <w>384</w>
       <h>80</h>
     </coordinates>
@@ -316,7 +339,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>792</x>
-      <y>552</y>
+      <y>808</y>
       <w>384</w>
       <h>112</h>
     </coordinates>
@@ -329,7 +352,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>816</y>
+      <y>1072</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -340,7 +363,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>864</y>
+      <y>1120</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -351,7 +374,7 @@ m1=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>0</x>
-      <y>912</y>
+      <y>1168</y>
       <w>184</w>
       <h>24</h>
     </coordinates>
@@ -362,7 +385,7 @@ m1=1</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>176</x>
-      <y>816</y>
+      <y>1072</y>
       <w>192</w>
       <h>40</h>
     </coordinates>
@@ -375,7 +398,7 @@ list_watchExpressions</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>176</x>
-      <y>856</y>
+      <y>1112</y>
       <w>192</w>
       <h>40</h>
     </coordinates>
@@ -388,7 +411,7 @@ list_condBreakpoints</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>176</x>
-      <y>904</y>
+      <y>1160</y>
       <w>192</w>
       <h>40</h>
     </coordinates>
