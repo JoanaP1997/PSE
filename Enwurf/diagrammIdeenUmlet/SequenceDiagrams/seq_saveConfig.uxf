@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>0</x>
-      <y>190</y>
+      <x>150</x>
+      <y>180</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -14,8 +15,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>270</x>
-      <y>410</y>
+      <x>420</x>
+      <y>400</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -25,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>230</x>
-      <y>190</y>
+      <x>380</x>
+      <y>180</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -36,8 +37,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>420</x>
-      <y>190</y>
+      <x>570</x>
+      <y>180</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -47,19 +48,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>280</y>
+      <x>640</x>
+      <y>270</y>
       <w>30</w>
-      <h>190</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>630</x>
-      <y>190</y>
+      <x>780</x>
+      <y>180</y>
       <w>180</w>
       <h>30</h>
     </coordinates>
@@ -69,19 +70,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>450</y>
+      <x>860</x>
+      <y>400</y>
       <w>30</w>
-      <h>60</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>270</x>
-      <y>240</y>
+      <x>420</x>
+      <y>230</y>
       <w>20</w>
       <h>180</h>
     </coordinates>
@@ -91,8 +92,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>490</x>
-      <y>240</y>
+      <x>640</x>
+      <y>230</y>
       <w>20</w>
       <h>50</h>
     </coordinates>
@@ -102,10 +103,10 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>710</x>
-      <y>350</y>
+      <x>860</x>
+      <y>340</y>
       <w>20</w>
-      <h>110</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -113,8 +114,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>50</x>
-      <y>220</y>
+      <x>200</x>
+      <y>210</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -125,8 +126,8 @@ saveConfig(File configFile)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>240</y>
+      <x>430</x>
+      <y>230</y>
       <w>230</w>
       <h>40</h>
     </coordinates>
@@ -137,8 +138,8 @@ getInfos...()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>260</y>
+      <x>430</x>
+      <y>250</y>
       <w>230</w>
       <h>40</h>
     </coordinates>
@@ -149,43 +150,20 @@ return infos</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>340</y>
+      <x>440</x>
+      <y>330</y>
       <w>440</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-saveConfig(configuration, File configFile)</panel_attributes>
+saveConfig(ConfigurationFile f)</panel_attributes>
     <additional_attributes>420.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>720</x>
-      <y>390</y>
-      <w>20</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>360</y>
-      <w>180</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-saveConfig()</panel_attributes>
-    <additional_attributes>20.0;30.0;70.0;30.0;70.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>280</x>
-      <y>340</y>
+      <x>430</x>
+      <y>330</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -195,9 +173,9 @@ saveConfig()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>280</y>
-      <w>210</w>
+      <x>430</x>
+      <y>270</y>
+      <w>200</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
@@ -207,8 +185,8 @@ makeConfig(infos)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>40</x>
-      <y>220</y>
+      <x>190</x>
+      <y>210</y>
       <w>20</w>
       <h>40</h>
     </coordinates>
@@ -218,8 +196,8 @@ makeConfig(infos)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>40</x>
-      <y>250</y>
+      <x>190</x>
+      <y>240</y>
       <w>30</w>
       <h>220</h>
     </coordinates>
@@ -229,8 +207,8 @@ makeConfig(infos)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>270</x>
-      <y>210</y>
+      <x>420</x>
+      <y>200</y>
       <w>30</w>
       <h>50</h>
     </coordinates>
@@ -240,8 +218,8 @@ makeConfig(infos)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>210</y>
+      <x>640</x>
+      <y>200</y>
       <w>30</w>
       <h>50</h>
     </coordinates>
@@ -251,8 +229,8 @@ makeConfig(infos)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>210</y>
+      <x>860</x>
+      <y>200</y>
       <w>30</w>
       <h>160</h>
     </coordinates>
