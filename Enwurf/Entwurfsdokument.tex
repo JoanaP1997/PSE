@@ -941,8 +941,8 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 \subsection{Patterns im Paket User Interface}
 Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
-Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert.
-Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar. %TODO eventuell Erklären welche vorteile das ergibt
+Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
+Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit konditionalen Breakpoints und Watch-Expressions arbeitet. 
 \subsection{Patterns im Paket Control}
 Die Kontrollkomponente muss, je nachdem ob sich die Anwendung (DIbugger) im Debug- 
 oder Editiermodus befindet, bestimmte Änderungen am Modell zulassen (bei Anfragen
