@@ -81,6 +81,7 @@ Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheim
 %Paketdiagramm, Erläuterung der Einteilungsentscheidung, Schnittstellen
 
 \subsection{Übersicht}
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
@@ -98,7 +99,7 @@ Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach außen zur V
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.4]{diagrammIdeenUmlet/fassaden.pdf}
+\includegraphics[scale=0.9]{diagrammIdeenUmlet/fassaden.pdf}
 \caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{fig:fassaden}
 \end{figure}
@@ -120,9 +121,9 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene
 
 \subsection{Control}
 \paragraph{Aufgaben}
-    Das Paket \textit{Control} entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\ 
+    Das Paket \textit{Control} entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\
     Es dient der Entgegennahme von Benutzerinteraktionen auf der Benutzeroberfläche und Steuerung der Interaktion zwischen den
-    Subsystemen \textit{UserInterface}  und \textit{DebugLogic}.\\
+    Subsystemen \textit{UserInterface} und \textit{DebugLogic}.\\
     Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket 
     \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
 \paragraph{Schnittstellen}
@@ -135,6 +136,7 @@ Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene
 
 \paragraph{Benutztrelation}
     \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
+
 \subsection{File Handler}
 \paragraph{Aufgaben}
 Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
@@ -154,12 +156,11 @@ Diese repräsentieren die Dateien für Produkteinstellungen, Sprachen (Übersetz
 Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
-Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. 
-Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \\ \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
-Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um \\ Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 \subparagraph{Schnittstellen}
 Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
@@ -169,7 +170,7 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 
 
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
-Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \\ \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 
 \subsubsection{Interpreter}
 Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
@@ -183,7 +184,7 @@ Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Feh
 Stellt einen Iterator über den Ausführungspfad eines gegebenen Programmes zur Verfügung. Erzeugt aus gegebenen Zeichenketten für Watch-Expressions und bedingte Breakpoints eine abstrakte Repräsentation, sodass diese dann leicht ausgewertet werden kann.
 
 \item Genutzte Funktionalität:\\
-Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \\ \textit{DebugLogic.AntlrParser}. 
+Nutzt Syntax-Prüfung und Syntaxbaum-Erzeugung des Subpakets \textit{DebugLogic.AntlrParser}. 
 \end{itemize}
 
 \subparagraph{Benutztrelation} 
@@ -219,7 +220,7 @@ Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um dam
 \subsubsection{Antlr Parser}
 Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind.
 \subparagraph{Aufgaben}
-Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und \\ Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
 
 \subparagraph{Schnittstellen}
 \begin{itemize}
@@ -975,13 +976,13 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 \section{Verwendete Design Patterns}\label{Patterns}
 \subsection{Global genutzte Patterns}
 %TODO doppelte Pattern-Grafik noch rausnehmen?
-\begin{figure}[!h]
+%\begin{figure}[!h]
 \centering
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
 
-\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
+%\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{Terme}
-\end{figure}
+%\end{figure}
 \paragraph{Das Observerpattern im MVC}
 Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine Zustandsänderung des Modells sofort erfährt und darauf reagieren kann, indem sie sich die von ihr zur Anzeige benötigten Daten holt. Da es der Erweiterbarkeit wegen auch möglich sein soll, einmal mehrere verschiedene dieser beobachtenden Viewkomponenten ein Modell beobachten zu lassen, empfiehlt sich das Entwurfsmuster \enquote{Observer}. Die von diesem Pattern zur Verfügung gestellte 1-zu-n Abhängigkeit passt damit hervorragend zur vorliegenden Problemstellung: Aus Gründen der Wiederverwendbarkeit darf das Modell nicht festsetzen, welche und wie viele solcher Beobachter es hat. Die allgemein definierten Schnittstellen \textit{Observer} und \textit{Subject} ermöglichen dies. 
 \paragraph{Das Fassadenpattern}
@@ -998,18 +999,17 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar,
 Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
 \paragraph{Das Kompositum}
 Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
-\caption{Das Termkompositum im Entwurf}
+\captionof{figure}{Das Termkompositum im Entwurf}
 \label{Terme}
-\end{figure}
-\begin{figure}[!h]
-\centering
+\end{center}
+
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
-\caption{Die Klasse \textit{Command} als Kompositum}
+\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
 \label{Command}
-\end{figure}
+\end{center}
 \paragraph{Das Termkompositum}
 Die Struktur eines Termes kann wie folgt beschrieben werden:
 Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
@@ -1019,12 +1019,11 @@ Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzu
 \paragraph{Das Visitorpattern}
 Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
 \paragraph{Der Traceiterator}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
-\caption{Der Traceiterator}
+\captionof{figure}{Der Traceiterator}
 \label{TraceIterator}
-\end{figure}
+\end{center}
 Wir betrachten Abbildung \ref{TraceIterator}.
 Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach aussen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \subsection{Patterns im Paket File Handler}
@@ -1038,11 +1037,10 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
  %TODO Auf Klassen oder Pakete in Beschreibung aller Klassen verweisen
 
 \subsection{Erster Programmaufruf}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
-\caption{Sequenzdiagramm: Erster Programmaufruf}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Erster Programmaufruf}
+\end{center}
 Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
 Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
 die DebugLogicFacade erstellt.
@@ -1053,11 +1051,10 @@ kann sich updaten.
 
 \newpage
 \subsection{Konfigurationsdatei laden}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
-\caption{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
+\end{center}
 Wählt der Benutzer über den Menpeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus,
 gibt das UserInterface diesen Befehl an die Control weiter, welche ein Configuration Objekt vom FileHandler 
 erhält. \\
@@ -1069,11 +1066,10 @@ kann diese ebenfalls anzeigen
 
 \newpage
 \subsection{Konfigurationsdatei speichern}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
-\caption{Sequenzdigramm: Speichern einer Konfigurationsdatei}
-\end{figure}
+\captionof{figure}{Sequenzdigramm: Speichern einer Konfigurationsdatei}
+\end{center}
 Möchte der Benutzer eine Konfigurationsdatei speichern, reicht das UserInterface den Speicherort
 an die ControlFacade weiter. Die Control sammelt die benötigten Daten in einer Configuration Instanz.
 Dieses Objekt wird mit dem angegebenen Speicherort an die FileHandlerFacade weitergegeben, welche 
@@ -1081,11 +1077,10 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 
 \newpage
 \subsection{AF10: Hinzufügen von Programmen}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\caption{Sequenzdiagramm: Hinzufügen von Programmen}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Hinzufügen von Programmen}
+\end{center}
 Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
 neues ProgramPanel. Nach jedem Einfügen und Ändern von Programmtext oder Eingabevariablen, gibt
 das UserInterface diese Informationen an die Control weiter, welche sie zu Start des Debugmodus
@@ -1093,11 +1088,10 @@ an die DebugLogic weiter gibt.
 
 \newpage
 \subsection{AF20: Ändern von Programmen}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
-\caption{Sequenzdiagramm: Ändern von Programmen}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Ändern von Programmen}
+\end{center}
 Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
 Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
 Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
@@ -1109,11 +1103,10 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 
 \newpage
 \subsection{AF30: Setzen von Breakpoints}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
-\caption{Sequenzdiagramm: Setzen von Breakpoints}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Setzen von Breakpoints}
+\end{center}
 Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
 diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
 Zeile an die DebugLogicFacade weitergibt.
@@ -1126,11 +1119,10 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 
 \newpage
 \subsection{AF40: Hinzufügen von Watch-Expressions}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
-\caption{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
+\end{center}
 Diese Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
 Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
 die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
@@ -1140,20 +1132,18 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 
 \newpage
 \subsection{Generieren von Vorschlägen}%TODO
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
-\caption{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
+\end{center}
 Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
 
 \newpage
 \subsection{AF50: Programme debuggen}
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
-\caption{Sequenzdiagramm: Debuggen von Programmen}
-\end{figure}
+\captionof{figure}{Sequenzdiagramm: Debuggen von Programmen}
+\end{center}
 Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen.
 Hierbei werden zuvor Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
 Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die Control startet 
@@ -1168,20 +1158,19 @@ Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer s
 \\
 In den hier abgebildeten Diagrammen sind der Übersichtlichkeit halber nur die für die Erklärung wichtigsten Klassen meist ohne Methoden oder Attribute zu sehen.
 Wir betrachten das Diagramm \ref{WEBBP}.  
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}
-\caption{Watch-Expressions und Bedingte Breakpoints}
+\captionof{figure}{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
-\end{figure}
+\end{center}
 Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standardmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 \subsubsection{Erzeugung des Traces}
-\begin{figure}[!h]
+\begin{center}
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
-\caption{An der Tracegenerierung beteiligte Klassen}
+\captionof{figure}{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
-\end{figure}
+\end{center}
 Gegeben sei das folgende (Wlang-)Programm:
 \begin{verbatim}
 int foo() {
@@ -1199,19 +1188,18 @@ int main(){
 
 Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
 Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
-\caption{Beispiel für einen Ableitungsbaum}
+\captionof{figure}{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
-\end{figure}
+\end{center}
 Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
 Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
-\begin{figure}[!h]
+\begin{center}
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
-\caption{Objektstruktur nach der Commanderzeugung}
+\captionof{figure}{Objektstruktur nach der Commanderzeugung}
 \label{CommandTreeExample}
-\end{figure}
+\end{center}
 Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
 Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
 Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
@@ -1231,11 +1219,10 @@ Dieses Problem besteht bei den Hauptpaketen nicht, da für die Kommunikation aus
 Der FileHandler stellt wiederum eine Ausnahme dar, da er mehrere Klassen zur Repräsentation und Interaktion zum Dateisystem bereitstellt.
 Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile gleichzeitig mit der FileHandlerFacade Klasse einsatzbereit sein.
 
-\begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=1.0\textwidth]{GanttDiagramm_withArrows.pdf}
-\caption{Gantt Diagramm: Zeitplanung der Implementierung}
-\end{figure}
+\captionof{figure}{Gantt Diagramm: Zeitplanung der Implementierung}
+\end{center}
 
 
 \section{Programmsprache, Antlr und Speicherformat}\label{FormSpez}
