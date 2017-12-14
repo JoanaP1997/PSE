@@ -116,32 +116,33 @@ Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte 
 \item Genutzte Schnittstellen:\\
 Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen.
 \end{itemize}
-\paragraph{Benutztrelation} Das Paket \textit{UserInterface} benutzt die Control-Fassade, um an jegliche, durch den Benutzer angeforderte, Information zu gelangen, bzw. das vom Benutzer geforderte auszuführen. %ich versteh den Satz nicht..
+\paragraph{Benutztrelation} Das Paket \textit{UserInterface} benutzt die Control-Fassade, um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben.
+% jegliche, durch den Benutzer angeforderte Information zu gelangen, bzw. das vom Benutzer Geforderte auszuführen. %ich versteh den Satz nicht..
 
 
 \subsection{Control}
 \paragraph{Aufgaben}
-    Das Paket \textit{Control} entspricht dem Kontrollsubsystem gemäß dem Architekturstil MVC.\\
-    Es dient der Entgegennahme von Benutzerinteraktionen auf der Benutzeroberfläche und Steuerung der Interaktion zwischen den
+    Das Paket \textit{Control} entspricht dem Kontroll-Teil des Architekturstils MVC.\\
+    Es dient der Entgegennahme von Benutzerinteraktionen auf dem \textit{UserInterface} und der Steuerung der Interaktion zwischen den
     Subsystemen \textit{UserInterface} und \textit{DebugLogic}.\\
     Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket 
     \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
 \paragraph{Schnittstellen}
     Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
-    Die Methoden verursachen Zustandsveränderung des Datenmodells \textit{DebugLogic}.\\
+    Die Methoden verursachen Zustandsveränderungen des Datenmodells \textit{DebugLogic}.\\
     Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt
-    zu speichern oder zu löschen.\\
+    zu speichern oder zu löschen. 
     Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie
-    das Starten eines Debugvorgangs, oder Durchführen eines Einzelschrittes. Zusätzlich steuert das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler}. 
+    das Starten eines Debugvorgangs, oder das Durchführen eines Einzelschrittes. Zusätzlich leitet das Paket Speicher- oder Ladeaufträge an das Paket \textit{FileHandler} weiter. 
 
 \paragraph{Benutztrelation}
     \textit{Control} benutzt die Pakete \textit{DebugLogic} und \textit{FileHandler}.%Warum?
 
 \subsection{File Handler}
 \paragraph{Aufgaben}
-Das Paket FileHandler stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
-Dabei wandelt dieser eine Konfigurationsdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
-Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also Zuweisungen und Blöcke.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
+Dabei wandelt der \textit{FileHandler} eine Konfigurationsdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
+Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
 Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
 \paragraph{Schnittstellen}
 \begin{itemize}
@@ -157,7 +158,7 @@ Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch Interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
 Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
@@ -233,10 +234,6 @@ Benötigt keine Schnittstellen anderer Programmpakete, da das Paket an unterster
 Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutztrelation. Somit entstehen keine Abhängigkeiten zu anderen Paketen.
 
 \section{Beschreibung wichtiger Klassen}\label{Klassen}
-Detaillierte Beschreibung aller Klassen. Das beinhaltet (JavaDoc) Beschreibungen zu allen Me-
-thoden, Konstruktoren, Packages und Klassen. Was hier nicht reingehört sind private Felder
-und Methoden. Das sind Implementierungsdetails.
-
 \subsection{Klassen im Paket \enquote{User Interface}}
 \paragraph{GUIFacade}
 \begin{itemize}
@@ -265,7 +262,7 @@ Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des ProgramPanels, die bei einem Subjekt angemeldet sind.
 \end{itemize}
@@ -275,7 +272,7 @@ Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu ei
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein CommandPanel ist ein Singleton, welches die Buttons zur Kontrolle des Debugvorgangs anzeigt. 
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getCommandPanel(): CommandPanel \\
 Gibt das aktuelle CommandPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
@@ -286,7 +283,7 @@ Gibt das aktuelle CommandPanel zurück, falls es schon existiert, sonst wird ein
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item update() \\ Teil des Beobachter-Entwurfsmusters, aktualisiert die Elemente des ExpressionPanels, die bei einem Subjekt angemeldet sind.
 \end{itemize}
@@ -296,7 +293,7 @@ Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein WatchExpressionPanel ist ein ExpressionPanel, welches Watch-Expressions anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
-\item Methoden :\\
+\item Methoden :
 \begin{itemize}
 \item getWatchExpressionPanel(): WatchExpressionPanel \\
 Gibt das aktuelle WatchExpressionPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
@@ -307,7 +304,7 @@ Gibt das aktuelle WatchExpressionPanel zurück, falls es schon existiert, sonst 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein CondBreakpointPanel ist ein ExpressionPanel, welches konditionale Breakpoints anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
-\item Methoden :\\
+\item Methoden :
 \begin{itemize}
 \item getConBreakpointPanel(): CondBreakpointPanel \\
 Gibt das aktuelle CondBreakpointPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
@@ -354,7 +351,7 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
     \paragraph{DebugLogicController}
         \begin{itemize}
             \item Klassenbeschreibung:\\
-                DebugLogicController ist für die Modifikation der Daten des Modells und dem
+                DebugLogicController ist für die Modifikation der Daten des Modells und das
                 Aufrufen von Debugmechanismen zuständig.\\
 
             \item Wichtige Methoden:\\
@@ -977,7 +974,6 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 \subsection{Global genutzte Patterns}
 %TODO doppelte Pattern-Grafik noch rausnehmen?
 %\begin{figure}[!h]
-\centering
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
 \captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 %\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
@@ -996,7 +992,7 @@ Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar,
     Beim Entwurf des Paketes Control wurden keine nennenswerten Entwurfsmuster verwendet.
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Die Strategie für Vorschlagsgenerierung}
-Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
+Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und \textit{InputValueSuggestion} realisiert.
 \paragraph{Das Kompositum}
 Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
 \begin{center}
@@ -1014,7 +1010,7 @@ Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpr
 Die Struktur eines Termes kann wie folgt beschrieben werden:
 Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
 \paragraph{Das Commandkompositum und Befehlsmuster}
-Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre Subklassen verwendet. Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auf Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
+Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre Subklassen verwendet. Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
 \paragraph{Das Visitorpattern}
 Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
@@ -1026,7 +1022,7 @@ Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmust
 \label{TraceIterator}
 \end{center}
 Wir betrachten Abbildung \ref{TraceIterator}.
-Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach aussen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
+Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \subsection{Patterns im Paket File Handler}
 Das Paket FileHandler.Facade stellt vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien bereit. Dadurch wird das \enquote{Strategie}-Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden. Somit dient die Verwendung des Musters vor allem der Erweiterbarkeit.\\
 Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
