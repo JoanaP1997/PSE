@@ -84,7 +84,7 @@ Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheim
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.35]{../Plichtenheft/Architektur.png} \\
+\includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
 \caption{Architekturdiagramm}
 \end{figure}
 Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}.
@@ -440,16 +440,73 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 \subsection{Klassen im Paket \enquote{DebugLogic}}
 \subsubsection{Unterpaket Debugger}
 \paragraph{DebugControl}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Koordiniert den Aufruf der Debugmechanismen.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] launchRun(List<ProgrammInput> programs) \\
+Startet einen Debuglauf mit den übergebenen Programmen
+\item[-] step(int type) \\
+Führt einen Schritt des angegebenen Typs durch
+\item[-] singleStep(int programmID) \\
+Führt einen Einzelschritt im angegebenen Programm durch
+\item[-] continue() \\
+Führt den Debuglauf in allen Programmen bis zum jeweils nächsten Breakpoint durch
+\item[-] create-, change- und delete-Methoden für bedingte Breakpoints und WatchExpressions
+\item[-] create-, deleteAll- und delete-Methode für Breakpoints
+\end{itemize}
+\end{itemize}
 \paragraph{ProgramInput}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext,
+Eingabevariablen und Identifikationsnummer.
+\end{itemize}
 \paragraph{Breakpoint}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
+\item[] Wichtige Methoden: \\
+\begin{itemize}
+\item[-] get-Methoden für die Zeile und den Identifikator des Programms
+\end{itemize}
+\end{itemize}
 \paragraph{StepsizeSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand der Programmtexte vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggest(List<String> programText)
+\end{itemize}
+\end{itemize}
 \paragraph{InputValueSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche eine Variable eines bestimmtem Typs
+innerhalb eines Bereichs vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggest(String identifier, String range, int type) : String
+\end{itemize}
+\end{itemize}
 \paragraph{RelationalSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder WatchExpressions vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggestWatchExpression() : String
+\item[-] suggestConditionalBreakpoint() : String
+\end{itemize}
+\end{itemize}
+
 \subsubsection{Unterpaket Interpreter}
 \paragraph{GenerationController}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Steuert die Erzeugung eines kompletten Programmverlaufs, siehe \ref{charAbl}.
+Steuert die Erzeugung eines kompletten Programmverlaufs, siehe Kapitel \ref{charAbl}.
 \item Wichtige Methoden:\\
 \begin{itemize}
 \item[-] generateTrace(String text, List<String> input): TraceIterator\\
@@ -460,7 +517,7 @@ Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über 
 \paragraph{CommandGenerationVisitor}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
 \item Wichtige Methoden:\\
 Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
 \end{itemize}
@@ -1175,7 +1232,7 @@ int main(){
 }
 \end{verbatim}
 
-Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
 Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
@@ -1183,8 +1240,8 @@ Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugun
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
-Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
 \caption{Objektstruktur nach der Commanderzeugung}
