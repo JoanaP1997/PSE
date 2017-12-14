@@ -84,7 +84,7 @@ Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheim
 
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.35]{../Plichtenheft/Architektur.png} \\
+\includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
 \caption{Architekturdiagramm}
 \end{figure}
 Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}.
@@ -157,12 +157,12 @@ Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
 Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 \subparagraph{Schnittstellen}
-Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
 %Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
 %Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
@@ -350,66 +350,7 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
             \item Klassenbeschreibung:\\
                 ControlFacade bietet eine Schnittstelle zum Paket Control.\\ 
         \end{itemize}
-
-    \paragraph{ControlFacadeState}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeState dient der expliziten Zustandsspeicherung von ControlFacade.\\
-            \item Wichtige Methoden:\\
-                \begin{itemize}
-                    \item[-] switchState()\\
-                        switchState verursacht den Zustandsübergang des ControlFacade-Objekts in den
-                        nachfolgenden Zustand.\\
-                        Der nachfolgende Zustand kann dem Zustand des Objekts, den es beim Aufruf 
-                        der Methode hat gleichen.\\
-
-                    \item[-] entry()\\
-                        Die Funktion entry wird bei Zustandsübergang des ControlFacade-Objekts in
-                        den Zustand ausgeführt, den diese Klasse definiert.
-                \end{itemize}
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateEdit}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateEdit ist ein ControlFacadeState, welcher den Editiermodus 
-                repräsentiert.\\
-                Ist das ControlFacade-Objekt in diesem Zustand, wird bei Aufrufen derer Funktionen,
-                welche dem Debugmodus zugeordnet sind, eine IllegalStateException geworfen.\\
-                Andernfalls wird an die Klassen FileHandlerInteractor und DebugLogicController 
-                delegiert.
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateDebug}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateDebug ist ein ControlFacadeState, welcher den Debugmodus 
-                repräsentiert.\\
-                Analog zu ControlFacadeEdit wird bei Aufruf derer ControlFacade-Funktionen,
-                welche dem Editiermodus zugeordnet sind, eine IllegalStateException geworfen
-                und andernfalls an FileHandlerInteractor und DebugLogicController delegiert.\\
-        \end{itemize}
-                
-    \paragraph{FileHandlerInteractor}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                FileHandlerInteractor ist für das Speichern und Laden von Konfigurationsdateien,
-                sowie dem Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
-                \enquote{User Interace} enthält.
-            \item Wichtige Methoden:\\
-                \begin{itemize}
-                    \item[-] loadConfig(File configFile)\\
-                        loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
-                        am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
-                        ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
-                        wiederherstellen kann.\\
-
-                    \item[-] loadProgramText(File file)\\
-                        loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
-                        der in spezifizierter Datei enthalten ist, anzuzeigen.
-                \end{itemize}
-        \end{itemize}
-
+ 
     \paragraph{DebugLogicController}
         \begin{itemize}
             \item Klassenbeschreibung:\\
@@ -437,19 +378,105 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
                         Watch-Expression zu generieren und gibt diesen zurück.
                 \end{itemize}
         \end{itemize}
+ 
+    \paragraph{ExceptionHandler}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                ExceptionHandler dient zur Behandlung von beim Aufruf der Methoden
+                aus DebugLogic oder FileHandler ausgelösten Ausnahmen.\\
+                Insbesondere kann die Präsentation dazu aufgefordert werden, Benutzer der
+                Anwendung entsprechend über eine Fehlersituation zu informieren.
+        \end{itemize}
+              
+    \paragraph{FileHandlerInteractor}
+        \begin{itemize}
+            \item Klassenbeschreibung:\\
+                FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
+                sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
+                \enquote{User Interace} enthält.
+            \item Wichtige Methoden:\\
+                \begin{itemize}
+                    \item[-] loadConfig(File configFile)\\
+                        loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
+                        am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
+                        ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
+                        wiederherstellen kann.\\
+
+                    \item[-] loadProgramText(File file)\\
+                        loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
+                        der in spezifizierter Datei enthalten ist, anzuzeigen.
+                \end{itemize}
+        \end{itemize}
 \subsection{Klassen im Paket \enquote{DebugLogic}}
 \subsubsection{Unterpaket Debugger}
 \paragraph{DebugControl}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Koordiniert den Aufruf der Debugmechanismen.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] launchRun(List<ProgrammInput> programs) \\
+Startet einen Debuglauf mit den übergebenen Programmen
+\item[-] step(int type) \\
+Führt einen Schritt des angegebenen Typs durch
+\item[-] singleStep(int programmID) \\
+Führt einen Einzelschritt im angegebenen Programm durch
+\item[-] continue() \\
+Führt den Debuglauf in allen Programmen bis zum jeweils nächsten Breakpoint durch
+\item[-] create-, change- und delete-Methoden für bedingte Breakpoints und WatchExpressions
+\item[-] create-, deleteAll- und delete-Methode für Breakpoints
+\end{itemize}
+\end{itemize}
 \paragraph{ProgramInput}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext,
+Eingabevariablen und Identifikationsnummer.
+\end{itemize}
 \paragraph{Breakpoint}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
+\item[] Wichtige Methoden: \\
+\begin{itemize}
+\item[-] get-Methoden für die Zeile und den Identifikator des Programms
+\end{itemize}
+\end{itemize}
 \paragraph{StepsizeSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand der Programmtexte vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggest(List<String> programText)
+\end{itemize}
+\end{itemize}
 \paragraph{InputValueSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche eine Variable eines bestimmtem Typs
+innerhalb eines Bereichs vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggest(String identifier, String range, int type) : String
+\end{itemize}
+\end{itemize}
 \paragraph{RelationalSuggestion}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder WatchExpressions vorschlägt.
+\item Wichtige Methoden: \\
+\begin{itemize}
+\item[-] suggestWatchExpression() : String
+\item[-] suggestConditionalBreakpoint() : String
+\end{itemize}
+\end{itemize}
+
 \subsubsection{Unterpaket Interpreter}
 \paragraph{GenerationController}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Steuert die Erzeugung eines kompletten Programmverlaufs, siehe \ref{charAbl}.
+Steuert die Erzeugung eines kompletten Programmverlaufs, siehe Kapitel \ref{charAbl}.
 \item Wichtige Methoden:\\
 \begin{itemize}
 \item[-] generateTrace(String text, List<String> input): TraceIterator\\
@@ -460,7 +487,7 @@ Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über 
 \paragraph{CommandGenerationVisitor}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
 \item Wichtige Methoden:\\
 Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
 \end{itemize}
@@ -545,60 +572,60 @@ Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (W
 \paragraph{MissingReturnCallException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
 \end{itemize}
 
 \paragraph{InvalidProgramException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
+Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
 \end{itemize}
 
 \paragraph{WrongArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Abstrakte Klasse, die eine Fehlermeldung bei falscher Eingabe der Parameter beschreibt
+Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird
 \end{itemize}
 
 \paragraph{WrongTypeArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn ein Parameter einen falschen Typ hat
+Ausnahme, die ausgelöst wird, wenn ein Parameter einen falschen Typ hat
 \end{itemize}
 
 \paragraph{WrongNumberArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben wird
+Ausnahme, die ausgelöst wird, wenn eine falsche Anzahl an Parametern übergeben wird
 \end{itemize}
 
 \paragraph{ReturnTypeException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
 \end{itemize}
 
 \paragraph{WrongTypeAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
 \end{itemize}
 \paragraph{VariableNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
 \end{itemize}
 
 \paragraph{AlreadyDeclaredException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
+Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \end{itemize}
 
 \paragraph{RoutineNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
+Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{FileHandler}}
@@ -614,6 +641,8 @@ Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurati
 Lädt die angegebene Datei als Konfigurationsdatei und gibt diese zurück.
 \item saveConfig(ConfigurationFile config) \\
 Speichert die angegebene Konfiguration an den darin gespeicherten Dateipfad.
+\item loadProgramText(File f) : String \\
+Lädt einen Programmtext aus einer Textdatei und gibt diesen als String zurück.
 \item getPropertiesFile() : PropertiesFile \\
 Gibt die im Voraus geladene Einstellungsdatei zurück.
 \item getLanguages() : List<String> \\
@@ -904,12 +933,12 @@ Indiziert einen Datenwert als Boolesche Variable.
 \end{itemize}
 \end{itemize}
 
-\subsubsection{Unterpaket \enquote{Exceptions}}
+\subsubsection{Unterpaket FileHandler.Exceptions}
 
-\paragraph{Interface: DIbuggerFileHandlerException}
+\paragraph{Interface: FileHandlerException}
 \begin{itemize}
 \item Beschreibung: \\
-Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine DIbuggerException hat.
+Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine FileHanderException hat.
 \item Methoden: \\
 \begin{itemize}
 \item getID(): String \\
@@ -917,12 +946,31 @@ Gibt den Identifikations-String der Exception zurück
 \end{itemize}
 \end{itemize}
 
-Alle Klassen in diesem Unterpaket implementieren die Schnittstelle DIbuggerFileHandlerException.
+Alle Klassen in diesem Unterpaket implementieren die Schnittstelle FileHandlerException.
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
+Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
+
+\paragraph{ParseBlockException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ausnahme, die ausgelöst wird, falls beim Versuch einen Datenblock zu parsen ein Feler entsteht.
+\end{itemize}
+
+\paragraph{ParseAssignmentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ausnahme, die ausgelöst wird, falls beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
+\end{itemize}
+
+\paragraph{InvalidLineTypeException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
+\end{itemize}
+
 
 
 \section{Verwendete Design Patterns}\label{Patterns}
@@ -930,28 +978,22 @@ Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
 %TODO doppelte Pattern-Grafik noch rausnehmen?
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/fassaden.pdf}
+\makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
+
 \caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{Terme}
 \end{figure}
 \paragraph{Das Observerpattern im MVC}
 Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine Zustandsänderung des Modells sofort erfährt und darauf reagieren kann, indem sie sich die von ihr zur Anzeige benötigten Daten holt. Da es der Erweiterbarkeit wegen auch möglich sein soll, einmal mehrere verschiedene dieser beobachtenden Viewkomponenten ein Modell beobachten zu lassen, empfiehlt sich das Entwurfsmuster \enquote{Observer}. Die von diesem Pattern zur Verfügung gestellte 1-zu-n Abhängigkeit passt damit hervorragend zur vorliegenden Problemstellung: Aus Gründen der Wiederverwendbarkeit darf das Modell nicht festsetzen, welche und wie viele solcher Beobachter es hat. Die allgemein definierten Schnittstellen \textit{Observer} und \textit{Subject} ermöglichen dies. 
 \paragraph{Das Fassadenpattern}
-Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
+Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in Abbildung \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
 \subsection{Patterns im Paket User Interface}
 Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit konditionalen Breakpoints und Watch-Expressions arbeitet. 
 \subsection{Patterns im Paket Control}
-Die Kontrollkomponente muss, je nachdem ob sich die Anwendung (DIbugger) im Debug- 
-oder Editiermodus befindet, bestimmte Änderungen am Modell zulassen (bei Anfragen
-zwischen Modell und Präsentation vermitteln), oder sie verwähren (nicht vermitteln)\\.
-Da während der Laufzeit der Anwendung zwischen beiden Modi gewechselt werden kann,
-bietet sich hier das Zustandsmuster an.\\
-Die Control-Implementation wird durch entfallende eingebettete Zustandsspeicherung
-in Form von redundanten Abfragen in den Methoden der Fassade leichter wartbar und
-die Entkopplung des Systems wird gefördert. 
+    Beim Entwurf des Paketes Control wurden keine nennenswerten Entwurfsmuster verwendet.
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Die Strategie für Vorschlagsgenerierung}
 Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
@@ -1101,7 +1143,7 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 \subsection{Generieren von Vorschlägen}%TODO
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
 \caption{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
 \end{figure}
 Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
@@ -1156,7 +1198,7 @@ int main(){
 }
 \end{verbatim}
 
-Die Zusammenarbeit der in \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
+Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
 Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{figure}[!h]
 \centering
@@ -1164,8 +1206,8 @@ Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugun
 \caption{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{figure}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in \ref{Terme} gegebenen Klassen erzeugen. 
-Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm \ref{CommandTreeExample} aus.
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
 \begin{figure}[!h]
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
 \caption{Objektstruktur nach der Commanderzeugung}
