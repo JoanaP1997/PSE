@@ -99,7 +99,7 @@ Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach außen zur V
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width =1.4 \textwidth]{diagrammIdeenUmlet/fassaden.pdf}
+\includegraphics[scale=0.9]{diagrammIdeenUmlet/fassaden.pdf}
 \caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{fig:fassaden}
 \end{figure}
@@ -973,13 +973,12 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 \section{Verwendete Design Patterns}\label{Patterns}
 \subsection{Global genutzte Patterns}
 %TODO doppelte Pattern-Grafik noch rausnehmen?
-\begin{figure}[!h]
+%\begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
-%\captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
-\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
+\captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
+%\caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{Terme}
-\end{figure}
-\newpage
+%\end{figure}
 \paragraph{Das Observerpattern im MVC}
 Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine Zustandsänderung des Modells sofort erfährt und darauf reagieren kann, indem sie sich die von ihr zur Anzeige benötigten Daten holt. Da es der Erweiterbarkeit wegen auch möglich sein soll, einmal mehrere verschiedene dieser beobachtenden Viewkomponenten ein Modell beobachten zu lassen, empfiehlt sich das Entwurfsmuster \enquote{Observer}. Die von diesem Pattern zur Verfügung gestellte 1-zu-n Abhängigkeit passt damit hervorragend zur vorliegenden Problemstellung: Aus Gründen der Wiederverwendbarkeit darf das Modell nicht festsetzen, welche und wie viele solcher Beobachter es hat. Die allgemein definierten Schnittstellen \textit{Observer} und \textit{Subject} ermöglichen dies. 
 \paragraph{Das Fassadenpattern}
@@ -1157,7 +1156,7 @@ Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer s
 In den hier abgebildeten Diagrammen sind der Übersichtlichkeit halber nur die für die Erklärung wichtigsten Klassen meist ohne Methoden oder Attribute zu sehen.
 Wir betrachten das Diagramm \ref{WEBBP}.  
 \begin{center}
-\makebox[\textwidth][c]{\includegraphics[width=1.45\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}}
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/WatchExpressions.pdf}
 \captionof{figure}{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{center}
@@ -1165,7 +1164,7 @@ Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu ei
 \newpage
 \subsubsection{Erzeugung des Traces}
 \begin{center}
-\makebox[\textwidth][c]{\includegraphics[width=1.44\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}}
+\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/TraceGenerationClasses.pdf}
 \captionof{figure}{An der Tracegenerierung beteiligte Klassen}
 \label{TraceGen}
 \end{center}
@@ -1187,17 +1186,17 @@ int main(){
 Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
 Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{center}
-\makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/ParseTreeExample.pdf}}
+\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}
 \captionof{figure}{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{center}
 Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen (\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
 Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
-\begin{figure}[!h]
+\begin{center}
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
-\caption{Objektstruktur nach der Commanderzeugung}
+\captionof{figure}{Objektstruktur nach der Commanderzeugung}
 \label{CommandTreeExample}
-\end{figure}
+\end{center}
 Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
 Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
 Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
@@ -1218,7 +1217,7 @@ Der FileHandler stellt wiederum eine Ausnahme dar, da er mehrere Klassen zur Rep
 Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile gleichzeitig mit der FileHandlerFacade Klasse einsatzbereit sein.
 
 \begin{center}
-\makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{GanttDiagramm_withArrows.pdf}}
+\includegraphics[width=1.0\textwidth]{GanttDiagramm_withArrows.pdf}
 \captionof{figure}{Gantt Diagramm: Zeitplanung der Implementierung}
 \end{center}
 
