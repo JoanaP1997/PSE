@@ -350,51 +350,12 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
             \item Klassenbeschreibung:\\
                 ControlFacade bietet eine Schnittstelle zum Paket Control.\\ 
         \end{itemize}
-
-    \paragraph{ControlFacadeState}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeState dient der expliziten Zustandsspeicherung von ControlFacade.\\
-            \item Wichtige Methoden:\\
-                \begin{itemize}
-                    \item[-] switchState()\\
-                        switchState verursacht den Zustandsübergang des ControlFacade-Objekts in den
-                        nachfolgenden Zustand.\\
-                        Der nachfolgende Zustand kann dem Zustand des Objekts, den es beim Aufruf 
-                        der Methode hat gleichen.\\
-
-                    \item[-] entry()\\
-                        Die Funktion entry wird bei Zustandsübergang des ControlFacade-Objekts in
-                        den Zustand ausgeführt, den diese Klasse definiert.
-                \end{itemize}
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateEdit}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateEdit ist ein ControlFacadeState, welcher den Editiermodus 
-                repräsentiert.\\
-                Ist das ControlFacade-Objekt in diesem Zustand, wird bei Aufrufen derer Funktionen,
-                welche dem Debugmodus zugeordnet sind, eine IllegalStateException geworfen.\\
-                Andernfalls wird an die Klassen FileHandlerInteractor und DebugLogicController 
-                delegiert.
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateDebug}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateDebug ist ein ControlFacadeState, welcher den Debugmodus 
-                repräsentiert.\\
-                Analog zu ControlFacadeEdit wird bei Aufruf derer ControlFacade-Funktionen,
-                welche dem Editiermodus zugeordnet sind, eine IllegalStateException geworfen
-                und andernfalls an FileHandlerInteractor und DebugLogicController delegiert.\\
-        \end{itemize}
                 
     \paragraph{FileHandlerInteractor}
         \begin{itemize}
             \item Klassenbeschreibung:\\
-                FileHandlerInteractor ist für das Speichern und Laden von Konfigurationsdateien,
-                sowie dem Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
+                FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
+                sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
                 \enquote{User Interace} enthält.
             \item Wichtige Methoden:\\
                 \begin{itemize}
@@ -944,14 +905,7 @@ Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementier
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit konditionalen Breakpoints und Watch-Expressions arbeitet. 
 \subsection{Patterns im Paket Control}
-Die Kontrollkomponente muss, je nachdem ob sich die Anwendung (DIbugger) im Debug- 
-oder Editiermodus befindet, bestimmte Änderungen am Modell zulassen (bei Anfragen
-zwischen Modell und Präsentation vermitteln), oder sie verwähren (nicht vermitteln)\\.
-Da während der Laufzeit der Anwendung zwischen beiden Modi gewechselt werden kann,
-bietet sich hier das Zustandsmuster an.\\
-Die Control-Implementation wird durch entfallende eingebettete Zustandsspeicherung
-in Form von redundanten Abfragen in den Methoden der Fassade leichter wartbar und
-die Entkopplung des Systems wird gefördert. 
+    Beim Entwurf des Paketes Control wurden keine nennenswerten Entwurfsmuster verwendet.
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Die Strategie für Vorschlagsgenerierung}
 Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
