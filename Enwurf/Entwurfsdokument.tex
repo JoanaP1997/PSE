@@ -904,12 +904,12 @@ Indiziert einen Datenwert als Boolesche Variable.
 \end{itemize}
 \end{itemize}
 
-\subsubsection{Unterpaket \enquote{Exceptions}}
+\subsubsection{Unterpaket FileHandler.Exceptions}
 
-\paragraph{Interface: DIbuggerFileHandlerException}
+\paragraph{Interface: FileHandlerException}
 \begin{itemize}
 \item Beschreibung: \\
-Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine DIbuggerException hat.
+Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine FileHanderException hat.
 \item Methoden: \\
 \begin{itemize}
 \item getID(): String \\
@@ -917,12 +917,31 @@ Gibt den Identifikations-String der Exception zurück
 \end{itemize}
 \end{itemize}
 
-Alle Klassen in diesem Unterpaket implementieren die Schnittstelle DIbuggerFileHandlerException.
+Alle Klassen in diesem Unterpaket implementieren die Schnittstelle FileHandlerException.
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
+
+\paragraph{ParseBlockException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn beim Versuch einen Datenblock zu parsen ein Feler entsteht.
+\end{itemize}
+
+\paragraph{ParseAssignmentException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
+\end{itemize}
+
+\paragraph{InvalidLineTypeException}
+\begin{itemize}
+\item Klassenbeschreibung: \\
+Fehlermeldung, die auftritt, wenn der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
+\end{itemize}
+
 
 
 \section{Verwendete Design Patterns}\label{Patterns}
