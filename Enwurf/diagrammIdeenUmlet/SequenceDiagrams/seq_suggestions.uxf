@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>30</x>
-      <y>72</y>
+      <x>18</x>
+      <y>96</y>
       <w>60</w>
       <h>18</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>336</x>
-      <y>72</y>
+      <x>324</x>
+      <y>96</y>
       <w>84</w>
       <h>18</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>636</x>
-      <y>72</y>
+      <x>624</x>
+      <y>96</y>
       <w>96</w>
       <h>18</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>870</x>
-      <y>72</y>
+      <x>858</x>
+      <y>96</y>
       <w>150</w>
       <h>18</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>54</x>
-      <y>84</y>
+      <x>42</x>
+      <y>108</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -59,8 +59,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>48</x>
-      <y>114</y>
+      <x>36</x>
+      <y>138</y>
       <w>18</w>
       <h>276</h>
     </coordinates>
@@ -70,8 +70,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>108</y>
+      <x>48</x>
+      <y>132</y>
       <w>324</w>
       <h>24</h>
     </coordinates>
@@ -82,8 +82,8 @@ suggestInputValue("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>372</x>
-      <y>120</y>
+      <x>360</x>
+      <y>144</y>
       <w>12</w>
       <h>54</h>
     </coordinates>
@@ -93,8 +93,8 @@ suggestInputValue("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>120</y>
+      <x>366</x>
+      <y>144</y>
       <w>312</w>
       <h>24</h>
     </coordinates>
@@ -105,8 +105,8 @@ suggestInputValue("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>678</x>
-      <y>132</y>
+      <x>666</x>
+      <y>156</y>
       <w>12</w>
       <h>30</h>
     </coordinates>
@@ -116,8 +116,8 @@ suggestInputValue("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>126</y>
+      <x>672</x>
+      <y>150</y>
       <w>264</w>
       <h>24</h>
     </coordinates>
@@ -128,8 +128,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>936</x>
-      <y>138</y>
+      <x>924</x>
+      <y>162</y>
       <w>12</w>
       <h>18</h>
     </coordinates>
@@ -139,8 +139,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>372</x>
-      <y>84</y>
+      <x>360</x>
+      <y>108</y>
       <w>18</w>
       <h>48</h>
     </coordinates>
@@ -150,8 +150,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>84</y>
+      <x>666</x>
+      <y>108</y>
       <w>18</w>
       <h>60</h>
     </coordinates>
@@ -161,8 +161,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
-      <y>84</y>
+      <x>924</x>
+      <y>108</y>
       <w>18</w>
       <h>66</h>
     </coordinates>
@@ -172,8 +172,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>144</y>
+      <x>672</x>
+      <y>168</y>
       <w>264</w>
       <h>24</h>
     </coordinates>
@@ -184,8 +184,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>150</y>
+      <x>366</x>
+      <y>174</y>
       <w>312</w>
       <h>24</h>
     </coordinates>
@@ -196,8 +196,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>162</y>
+      <x>48</x>
+      <y>186</y>
       <w>324</w>
       <h>24</h>
     </coordinates>
@@ -208,8 +208,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>372</x>
-      <y>168</y>
+      <x>360</x>
+      <y>192</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -219,8 +219,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>156</y>
+      <x>666</x>
+      <y>180</y>
       <w>18</w>
       <h>60</h>
     </coordinates>
@@ -230,8 +230,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
-      <y>150</y>
+      <x>924</x>
+      <y>174</y>
       <w>18</w>
       <h>240</h>
     </coordinates>
@@ -241,8 +241,8 @@ suggest("x", "[0,5]", InputValueSuggestion.TYPE_INT)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>186</y>
+      <x>48</x>
+      <y>210</y>
       <w>324</w>
       <h>24</h>
     </coordinates>
@@ -253,8 +253,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>372</x>
-      <y>198</y>
+      <x>360</x>
+      <y>222</y>
       <w>12</w>
       <h>54</h>
     </coordinates>
@@ -264,8 +264,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>198</y>
+      <x>366</x>
+      <y>222</y>
       <w>312</w>
       <h>24</h>
     </coordinates>
@@ -276,8 +276,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>678</x>
-      <y>210</y>
+      <x>666</x>
+      <y>234</y>
       <w>12</w>
       <h>30</h>
     </coordinates>
@@ -287,8 +287,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>228</y>
+      <x>366</x>
+      <y>252</y>
       <w>312</w>
       <h>24</h>
     </coordinates>
@@ -299,8 +299,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>240</y>
+      <x>48</x>
+      <y>264</y>
       <w>324</w>
       <h>24</h>
     </coordinates>
@@ -311,8 +311,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>372</x>
-      <y>246</y>
+      <x>360</x>
+      <y>270</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -322,8 +322,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>234</y>
+      <x>666</x>
+      <y>258</y>
       <w>18</w>
       <h>90</h>
     </coordinates>
@@ -333,8 +333,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>372</x>
-      <y>270</y>
+      <x>360</x>
+      <y>294</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -344,8 +344,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1104</x>
-      <y>72</y>
+      <x>1092</x>
+      <y>96</y>
       <w>150</w>
       <h>18</h>
     </coordinates>
@@ -355,8 +355,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1176</x>
-      <y>84</y>
+      <x>1164</x>
+      <y>108</y>
       <w>18</w>
       <h>144</h>
     </coordinates>
@@ -366,8 +366,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1176</x>
-      <y>216</y>
+      <x>1164</x>
+      <y>240</y>
       <w>12</w>
       <h>18</h>
     </coordinates>
@@ -377,8 +377,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>204</y>
+      <x>672</x>
+      <y>228</y>
       <w>504</w>
       <h>24</h>
     </coordinates>
@@ -389,8 +389,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>222</y>
+      <x>672</x>
+      <y>246</y>
       <w>504</w>
       <h>24</h>
     </coordinates>
@@ -401,8 +401,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>372</x>
-      <y>300</y>
+      <x>360</x>
+      <y>324</y>
       <w>12</w>
       <h>54</h>
     </coordinates>
@@ -412,8 +412,8 @@ suggestWatchExpression()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>300</y>
+      <x>366</x>
+      <y>324</y>
       <w>312</w>
       <h>24</h>
     </coordinates>
@@ -424,8 +424,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>678</x>
-      <y>312</y>
+      <x>666</x>
+      <y>336</y>
       <w>12</w>
       <h>30</h>
     </coordinates>
@@ -435,8 +435,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>336</y>
+      <x>366</x>
+      <y>360</y>
       <w>312</w>
       <h>18</h>
     </coordinates>
@@ -446,8 +446,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>348</y>
+      <x>48</x>
+      <y>372</y>
       <w>324</w>
       <h>18</h>
     </coordinates>
@@ -457,8 +457,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>372</x>
-      <y>348</y>
+      <x>360</x>
+      <y>372</y>
       <w>18</w>
       <h>48</h>
     </coordinates>
@@ -468,8 +468,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>678</x>
-      <y>336</y>
+      <x>666</x>
+      <y>360</y>
       <w>18</w>
       <h>60</h>
     </coordinates>
@@ -479,8 +479,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1398</x>
-      <y>318</y>
+      <x>1386</x>
+      <y>342</y>
       <w>12</w>
       <h>18</h>
     </coordinates>
@@ -490,8 +490,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>306</y>
+      <x>672</x>
+      <y>330</y>
       <w>726</w>
       <h>24</h>
     </coordinates>
@@ -502,8 +502,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>324</y>
+      <x>672</x>
+      <y>348</y>
       <w>726</w>
       <h>24</h>
     </coordinates>
@@ -514,8 +514,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>60</x>
-      <y>288</y>
+      <x>48</x>
+      <y>312</y>
       <w>324</w>
       <h>24</h>
     </coordinates>
@@ -526,8 +526,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1326</x>
-      <y>72</y>
+      <x>1314</x>
+      <y>96</y>
       <w>150</w>
       <h>18</h>
     </coordinates>
@@ -537,8 +537,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1398</x>
-      <y>84</y>
+      <x>1386</x>
+      <y>108</y>
       <w>18</w>
       <h>246</h>
     </coordinates>
@@ -548,8 +548,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1176</x>
-      <y>228</y>
+      <x>1164</x>
+      <y>252</y>
       <w>18</w>
       <h>156</h>
     </coordinates>
@@ -559,8 +559,8 @@ suggestStepSize(programs)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1398</x>
-      <y>330</y>
+      <x>1386</x>
+      <y>354</y>
       <w>18</w>
       <h>48</h>
     </coordinates>

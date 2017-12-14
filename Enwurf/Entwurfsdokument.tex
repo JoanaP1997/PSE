@@ -1134,7 +1134,7 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 \subsection{Generieren von Vorschlägen}%TODO
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
 \caption{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
 \end{figure}
 Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
