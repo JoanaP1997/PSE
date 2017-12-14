@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -239,9 +238,9 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1526</x>
+      <x>1463</x>
       <y>812</y>
-      <w>252</w>
+      <w>315</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>SimpleInputSuggestion
