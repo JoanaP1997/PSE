@@ -239,7 +239,7 @@ Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutzt
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item showProgramText(String programText, int id)\\ Ermöglicht es einen Programmtext in einem bestimmten Programmfeld (durch ID gekennzeichnet) anzuzeigen
 \item reset()\\ Ermöglicht es, alle angezeigten Elemente wieder in ihren Ursprungszustand zurückzusetzen
@@ -293,7 +293,7 @@ Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein WatchExpressionPanel ist ein ExpressionPanel, welches Watch-Expressions anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
-\item Methoden :
+\item Methoden:
 \begin{itemize}
 \item getWatchExpressionPanel(): WatchExpressionPanel \\
 Gibt das aktuelle WatchExpressionPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
@@ -304,7 +304,7 @@ Gibt das aktuelle WatchExpressionPanel zurück, falls es schon existiert, sonst 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Ein CondBreakpointPanel ist ein ExpressionPanel, welches konditionale Breakpoints anzeigt und verwaltbar macht. Diese Klasse ist ein Singleton.
-\item Methoden :
+\item Methoden:
 \begin{itemize}
 \item getConBreakpointPanel(): CondBreakpointPanel \\
 Gibt das aktuelle CondBreakpointPanel zurück, falls es schon existiert, sonst wird ein neues erstellt
@@ -354,19 +354,19 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
                 DebugLogicController ist für die Modifikation der Daten des Modells und das
                 Aufrufen von Debugmechanismen zuständig.\\
 
-            \item Wichtige Methoden:\\
+            \item Wichtige Methoden:
                 \begin{itemize}
                     \item[-] step(int type)\\
                         step fordert \enquote{DebugLogic} dazu auf einen Schritt 
-                        eines bestimmten Types durchzuführen.\\
+                        eines bestimmten Types durchzuführen.
 
-                    \item[-] createWatchExpression(int id, String expr)\\
+                    \item[-] createWatchExpression(int id, String expr)
 
-                    \item[-] createCondBreakpoint(int id, String cond)\\
+                    \item[-] createCondBreakpoint(int id, String cond)
 
                     \item[-] createSyncBreakpoint(int line)\\
                         createSyncBreakpoint fordert \enquote{DebugLogic} dazu auf, einen
-                        Haltepunkt in allen Programmen an spezifizierter Zeile zu setzen.\\
+                        Haltepunkt in allen Programmen an spezifizierter Zeile zu setzen.
 
                     \item[-] startDebug()
 
@@ -391,13 +391,13 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
                 FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
                 sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
                 \enquote{User Interace} enthält.
-            \item Wichtige Methoden:\\
+            \item Wichtige Methoden:
                 \begin{itemize}
                     \item[-] loadConfig(File configFile)\\
                         loadConfig dient dem Öffnen einer Konfiguration - Sie führt Änderungen
                         am Modell \enquote{DebugLogic} und der Präsentation so durch, dass
                         ein Benutzer von DIbugger eine einmal gespeicherte Sitzung
-                        wiederherstellen kann.\\
+                        wiederherstellen kann.
 
                     \item[-] loadProgramText(File file)\\
                         loadProgramText fordert die Präsentation dazu auf, einen Programmtext,
@@ -410,7 +410,7 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Koordiniert den Aufruf der Debugmechanismen.
-\item Wichtige Methoden: \\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] launchRun(List<ProgrammInput> programs) \\
 Startet einen Debuglauf mit den übergebenen Programmen
@@ -434,7 +434,7 @@ Eingabevariablen und Identifikationsnummer.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
-\item[] Wichtige Methoden: \\
+\item[] Wichtige Methoden:
 \begin{itemize}
 \item[-] get-Methoden für die Zeile und den Identifikator des Programms
 \end{itemize}
@@ -443,7 +443,7 @@ Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand der Programmtexte vorschlägt.
-\item Wichtige Methoden: \\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] suggest(List<String> programText)
 \end{itemize}
@@ -453,7 +453,7 @@ Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand de
 \item Klassenbeschreibung: \\
 Stellt das Grundgerüst einer Klasse dar, welche eine Variable eines bestimmtem Typs
 innerhalb eines Bereichs vorschlägt.
-\item Wichtige Methoden: \\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] suggest(String identifier, String range, int type) : String
 \end{itemize}
@@ -462,7 +462,7 @@ innerhalb eines Bereichs vorschlägt.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder WatchExpressions vorschlägt.
-\item Wichtige Methoden: \\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] suggestWatchExpression(List<String> programText) : String
 \item[-] suggestConditionalBreakpoint(List<String> programText) : String
@@ -474,7 +474,7 @@ Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder Watch
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Steuert die Erzeugung eines kompletten Programmverlaufs, siehe Kapitel \ref{charAbl}.
-\item Wichtige Methoden:\\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] generateTrace(String text, List<String> input): TraceIterator\\
 Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über alle angenommenen Zustände.
@@ -485,7 +485,7 @@ Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
-\item Wichtige Methoden:\\
+\item Wichtige Methoden:
 Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
 \end{itemize}
 \paragraph{Scope}
@@ -513,7 +513,7 @@ Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt eine Abstrakte Reräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen (siehe Kapitel \ref{Patterns}). Die Subklassen sind \textit{ConstantTerm, VariableRelationalTerm, VariableTerm, ArrayAccessRelationalTerm, ArrayAccessTerm, NegativeTerm, AdditionTerm, SubtractionTerm, MultiplicationTerm, DivisionTerm, ModuloTerm, NotCondition, OrCondition, AndCondition, MoreEqualComparison, MoreComparison, EqualComparison, NotEqualComparison, LessComparison} und \textit{LessEqualComparison}.
-\item Wichtige Methoden:\\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-]evaluate(List<TraceState> states): TermValue\\
 Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
@@ -525,7 +525,7 @@ Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Vari
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Eine Watch-Expression ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
-\item Wichtige Methoden:\\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-] evaluate(List<TraceState> states): String\\
 Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
@@ -538,7 +538,7 @@ Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. D
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Eine Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
-\item Wichtige Methoden:\\
+\item Wichtige Methoden:
 \begin{itemize}
 \item[-]evaluate(List<TraceState> states): boolean\\
 Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
@@ -555,7 +555,7 @@ Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurü
 \begin{itemize}
 \item Beschreibung: \\
 Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getID(): String \\
 Gibt den Identifikations-String der Exception zurück
@@ -632,7 +632,7 @@ Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welc
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurationsdateien.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item loadConfig(File file) : ConfigurationFile \\
 Lädt die angegebene Datei als Konfigurationsdatei und gibt diese zurück.
@@ -654,7 +654,7 @@ sonst wird eine LanguageNotFoundException geworfen.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Diese Klasse speichert eine Konfiguration des Debuggers.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getSystemFile() : File \\
 Gibt ein java.io.File Objekt zurück, welchen die Datei im Dateisystem des Nutzers repräsentiert.
@@ -686,7 +686,7 @@ Gibt eine Liste der Zeilen der Breakpoints für Programm programID zurück.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Diese Klasse speichert die Einstellungen des Debuggers.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getSelectedLanguage() : String \\
 Gibt den SprachIdentifier der eingestellten Sprache zurück.
@@ -703,7 +703,7 @@ Gibt die eingestelle Obergrenze für Funktionsaufrufe wieder.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt eine Übersetzung der GUI zu einer bestimmtem Sprache bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getTranslation(String textID) : String \\
 Gibt den Text (Übersetzung) zu der übergebenen textID zurück.
@@ -727,7 +727,7 @@ Lädt die übergebene Datei als Sprachdatei und gibt diese in der Struktur Langu
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle zum Lesen einer Einstellungsdatei.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item loadProperties(File f) : PropertiesFile \\
 Lädt die übergebene Datei als Einstellungsdatei und gibt diese in der Struktur PropertiesFile zurück.
@@ -738,7 +738,7 @@ Lädt die übergebene Datei als Einstellungsdatei und gibt diese in der Struktur
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item saveConfig(ConfigurationFile f) \\
 Speichert die angegeben Konfigurationsdatei an der darin beschriebenen Stelle.
@@ -751,7 +751,7 @@ Speichert die übergebene Sprachdatei im \enquote{/lang/} Verzeichnis des DIbugg
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item saveProperties(PropertiesFile f) \\
 Speichert die angegeben Einstellungsdatei an der dafür vorgesehenen Standard Stelle.
@@ -763,7 +763,7 @@ Speichert die angegeben Einstellungsdatei an der dafür vorgesehenen Standard St
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item loadConfigFile(File f) : ConfigurationFile \\
 Liest eine Konfigurationsdatei als RDBFFile ein und übersetzt diese in die ConfigurationFile Klasse.
@@ -776,7 +776,7 @@ Liest eine Sprachatei als RDBFFile ein und übersetzt diese in die LanguageFile 
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Lesen der Einstellungsdateien bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item readPropertiesFile(File f) : PropertiesFile \\
 Liest die angegebene Datei als in eine von JAVA Definierten Properties Klasse ein und übersetzt diese zu einer PropertiesFile.
@@ -787,7 +787,7 @@ Liest die angegebene Datei als in eine von JAVA Definierten Properties Klasse ei
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item saveConfigFile(ConfigurationFile f) \\
 Erzeugt aus der übergebenen ConfigurationFile ein RDBFFile und speichert dieses an der gegebenen Stelle (in der ConfigurationFile) ab.
@@ -800,7 +800,7 @@ Erzeugt aus der übergebenen LanguageFile ein RDBFFile und speichert diese an de
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Speichern der Einstellungsdateien bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item savePropertiesFile(PropertiesFile f) \\
 Erzeugt aus der übergebenen PropertiesFile eine von JAVA spezifizierte Properties Klasse und speichert diese an der in PropertiesFile definierten Stelle ab.
@@ -811,7 +811,7 @@ Erzeugt aus der übergebenen PropertiesFile eine von JAVA spezifizierte Properti
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item loadRDBFFile(File f) : RDBFFile \\
 Liest die Datei an der übergebenen Stelle in ein RDBFFile ein.
@@ -822,7 +822,7 @@ Liest die Datei an der übergebenen Stelle in ein RDBFFile ein.
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item saveRDBFFile(RDBFFile f) \\
 Speichert das übergebene RDBFFile Objekt an der darin spezifizierten Stelle im RDBF Format ab.
@@ -842,7 +842,7 @@ Indiziert den Beginn eines Blocks in einer Zeile als int.
 \item LINE\_BLOCK\_TEXT = 2 \\
 Indikator für den Beginn eines Textblocks in einer Zeile als int.
 \end{itemize}
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getInstance() : RDBFParser \\
 Als statische Methode gibt diese Methode die Singleton Instanz der Klasse zurück bzw. erschafft diese, falls sie noch nicht existiert.
@@ -884,7 +884,7 @@ Versucht die Zeichenkette als Boolesche Variabel aufzufassen und wirft bei auftr
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Abstrakte Klasse zum repräsentieren von RDBFFile und RDBFBlock, da diese sich nur in wenigen Punkten unterscheiden.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getBlocksByName(String identifier) : List<RDBFBlock> \\
 Gibt eine Liste aller Blöcke zurück, welche den selben Namen haben wie die übergebene Zeichenkette.
@@ -913,7 +913,7 @@ Stellt einen in der RDBF Grammatik definierten Block dar. Dabei werden die Metho
 \begin{itemize}
 \item Klassenbeschreibung: \\
 Repräsentiert eine Zuweisung der RDBF Grammatik als Datenstruktur. Hierbei enthält diese einen Variablennamen, Wert und zusätzlich den Typ des Wertes.
-\item Öffentliche Konstanten: \\
+\item Öffentliche Konstanten:
 \begin{itemize}
 \item DATA\_STRING = 0 \\
 Indiziert, dass der Datenwert ein String ist.
@@ -936,7 +936,7 @@ Indiziert einen Datenwert als Boolesche Variable.
 \begin{itemize}
 \item Beschreibung: \\
 Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine FileHanderException hat.
-\item Methoden: \\
+\item Methoden:
 \begin{itemize}
 \item getID(): String \\
 Gibt den Identifikations-String der Exception zurück
@@ -987,7 +987,7 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
-Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit konditionalen Breakpoints und Watch-Expressions arbeitet. 
+Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit bedingten Breakpoints und Watch-Expressions arbeitet. 
 \subsection{Patterns im Paket Control}
     Beim Entwurf des Paketes Control wurden keine nennenswerten Entwurfsmuster verwendet.
 \subsection{Patterns im Paket Debug Logic}
@@ -1081,7 +1081,7 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
 neues ProgramPanel. Nach jedem Einfügen und Ändern von Programmtext oder Eingabevariablen, gibt
 das UserInterface diese Informationen an die Control weiter, welche sie zu Start des Debugmodus
-an die DebugLogic weiter gibt.
+an die DebugLogic weitergibt.
 
 \newpage
 \subsection{AF20: Ändern von Programmen}
@@ -1107,7 +1107,7 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
 diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
 Zeile an die DebugLogicFacade weitergibt.
-Setzte der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
+Setzt der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
 MainInterface dies der ControlFacade mit. Die ControlFacade ruft für jedes Programm
 die Methode createBreakpoint der DebugLogicFacade auf.
 Beim hinzufügen von bedingten Breakpoints gibt das MainInterface die ID des Breakpoints
@@ -1120,7 +1120,7 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{center}
-Diese Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
+Die folgenden Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
 Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
 die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
 er die Bereichsbindung angibt, wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
@@ -1142,7 +1142,7 @@ Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach
 \captionof{figure}{Sequenzdiagramm: Debuggen von Programmen}
 \end{center}
 Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen.
-Hierbei werden zuvor Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
+Hierbei werden vor Start des DIbuggers Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
 Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die Control startet 
 den DebugLauf der DebugLogic.
 Wenn der Benutzer durch Weiter oder Schritt durch den DebugLauf navigiert, werden diese Befehle über
