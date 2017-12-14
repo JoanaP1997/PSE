@@ -157,12 +157,12 @@ Der FileHandler benutzt keine weiteren Subsysteme.
 
 \subsection{Debug Logic}
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsubsection{Debugger}
 \subparagraph{Aufgaben}
 Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 \subparagraph{Schnittstellen}
-Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
 \subparagraph{Benutztrelation} 
 %Das Subpaket benutzt die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}.
 %Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.TraceGenerator} bereitgestellten Iterator. 
@@ -350,51 +350,12 @@ Ein VariableSuggestionPopUp ist ein DebuggerPopUp, welches angezeigt wird, um da
             \item Klassenbeschreibung:\\
                 ControlFacade bietet eine Schnittstelle zum Paket Control.\\ 
         \end{itemize}
-
-    \paragraph{ControlFacadeState}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeState dient der expliziten Zustandsspeicherung von ControlFacade.\\
-            \item Wichtige Methoden:\\
-                \begin{itemize}
-                    \item[-] switchState()\\
-                        switchState verursacht den Zustandsübergang des ControlFacade-Objekts in den
-                        nachfolgenden Zustand.\\
-                        Der nachfolgende Zustand kann dem Zustand des Objekts, den es beim Aufruf 
-                        der Methode hat gleichen.\\
-
-                    \item[-] entry()\\
-                        Die Funktion entry wird bei Zustandsübergang des ControlFacade-Objekts in
-                        den Zustand ausgeführt, den diese Klasse definiert.
-                \end{itemize}
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateEdit}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateEdit ist ein ControlFacadeState, welcher den Editiermodus 
-                repräsentiert.\\
-                Ist das ControlFacade-Objekt in diesem Zustand, wird bei Aufrufen derer Funktionen,
-                welche dem Debugmodus zugeordnet sind, eine IllegalStateException geworfen.\\
-                Andernfalls wird an die Klassen FileHandlerInteractor und DebugLogicController 
-                delegiert.
-        \end{itemize}
-
-    \paragraph{ControlFacadeStateDebug}
-        \begin{itemize}
-            \item Klassenbeschreibung:\\
-                ControlFacadeStateDebug ist ein ControlFacadeState, welcher den Debugmodus 
-                repräsentiert.\\
-                Analog zu ControlFacadeEdit wird bei Aufruf derer ControlFacade-Funktionen,
-                welche dem Editiermodus zugeordnet sind, eine IllegalStateException geworfen
-                und andernfalls an FileHandlerInteractor und DebugLogicController delegiert.\\
-        \end{itemize}
                 
     \paragraph{FileHandlerInteractor}
         \begin{itemize}
             \item Klassenbeschreibung:\\
-                FileHandlerInteractor ist für das Speichern und Laden von Konfigurationsdateien,
-                sowie dem Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
+                FileHandlerInteractor verantwortlich für das Speichern und Laden von Konfigurationsdateien,
+                sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation 
                 \enquote{User Interace} enthält.
             \item Wichtige Methoden:\\
                 \begin{itemize}
@@ -602,60 +563,60 @@ Die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (W
 \paragraph{MissingReturnCallException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
 \end{itemize}
 
 \paragraph{InvalidProgramException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
+Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
 \end{itemize}
 
 \paragraph{WrongArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Abstrakte Klasse, die eine Fehlermeldung bei falscher Eingabe der Parameter beschreibt
+Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird
 \end{itemize}
 
 \paragraph{WrongTypeArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn ein Parameter einen falschen Typ hat
+Ausnahme, die ausgelöst wird, wenn ein Parameter einen falschen Typ hat
 \end{itemize}
 
 \paragraph{WrongNumberArgumentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine falsche Anzahl an Parametern übergeben wird
+Ausnahme, die ausgelöst wird, wenn eine falsche Anzahl an Parametern übergeben wird
 \end{itemize}
 
 \paragraph{ReturnTypeException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
 \end{itemize}
 
 \paragraph{WrongTypeAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
 \end{itemize}
 \paragraph{VariableNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
 \end{itemize}
 
 \paragraph{AlreadyDeclaredException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
+Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \end{itemize}
 
 \paragraph{RoutineNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Methode/Funktion aufgerufen wird, welche nicht existiert
+Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
 \end{itemize}
 
 \subsection{Klassen im Paket \enquote{FileHandler}}
@@ -980,25 +941,25 @@ Alle Klassen in diesem Unterpaket implementieren die Schnittstelle FileHandlerEx
 \paragraph{LanguageNotFoundException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn eine Sprachdatei nicht gefunden wurde.
+Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
 \end{itemize}
 
 \paragraph{ParseBlockException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn beim Versuch einen Datenblock zu parsen ein Feler entsteht.
+Ausnahme, die ausgelöst wird, falls beim Versuch einen Datenblock zu parsen ein Feler entsteht.
 \end{itemize}
 
 \paragraph{ParseAssignmentException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
+Ausnahme, die ausgelöst wird, falls beim Versuch eine Zuweisung zu parsen kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
 \end{itemize}
 
 \paragraph{InvalidLineTypeException}
 \begin{itemize}
 \item Klassenbeschreibung: \\
-Fehlermeldung, die auftritt, wenn der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
+Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
 \end{itemize}
 
 
@@ -1008,28 +969,22 @@ Fehlermeldung, die auftritt, wenn der Typ einer Zeile nicht existent ist, also k
 %TODO doppelte Pattern-Grafik noch rausnehmen?
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/fassaden.pdf}
+\makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
+
 \caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{Terme}
 \end{figure}
 \paragraph{Das Observerpattern im MVC}
 Im Rahmen einer MVC-Architektur, ist es notwendig, dass die Viewkomponente eine Zustandsänderung des Modells sofort erfährt und darauf reagieren kann, indem sie sich die von ihr zur Anzeige benötigten Daten holt. Da es der Erweiterbarkeit wegen auch möglich sein soll, einmal mehrere verschiedene dieser beobachtenden Viewkomponenten ein Modell beobachten zu lassen, empfiehlt sich das Entwurfsmuster \enquote{Observer}. Die von diesem Pattern zur Verfügung gestellte 1-zu-n Abhängigkeit passt damit hervorragend zur vorliegenden Problemstellung: Aus Gründen der Wiederverwendbarkeit darf das Modell nicht festsetzen, welche und wie viele solcher Beobachter es hat. Die allgemein definierten Schnittstellen \textit{Observer} und \textit{Subject} ermöglichen dies. 
 \paragraph{Das Fassadenpattern}
-Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
+Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist es von Nöten, Schnittstellen dieser Subsysteme zu definieren. Diese sollten fest sein und sich bei Änderung der internen Struktur eines Subsystems nicht ändern, sodass das Geheimnisprinzip eingehalten wird. Um zusätzlich die Abhängigkeiten der Pakete zwischeneinander im Sinne einer losen Kopplung gering zu halten, bietet sich das Entwurfsmuster \enquote{Facade} an. Jegliche Kommunikation zwischen den in Abbildung \ref{Packages} beschriebenen Paketen findet also über Fassaden statt. Das ermöglicht, die Schnittstellen des Paketes an einer Stelle zu definieren, und festgelegte Eintrittspunkte für die Kommunikation zwischen den Paketen zu bieten.
 \subsection{Patterns im Paket User Interface}
 Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
 Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
 Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
 Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit konditionalen Breakpoints und Watch-Expressions arbeitet. 
 \subsection{Patterns im Paket Control}
-Die Kontrollkomponente muss, je nachdem ob sich die Anwendung (DIbugger) im Debug- 
-oder Editiermodus befindet, bestimmte Änderungen am Modell zulassen (bei Anfragen
-zwischen Modell und Präsentation vermitteln), oder sie verwähren (nicht vermitteln)\\.
-Da während der Laufzeit der Anwendung zwischen beiden Modi gewechselt werden kann,
-bietet sich hier das Zustandsmuster an.\\
-Die Control-Implementation wird durch entfallende eingebettete Zustandsspeicherung
-in Form von redundanten Abfragen in den Methoden der Fassade leichter wartbar und
-die Entkopplung des Systems wird gefördert. 
+    Beim Entwurf des Paketes Control wurden keine nennenswerten Entwurfsmuster verwendet.
 \subsection{Patterns im Paket Debug Logic}
 \paragraph{Die Strategie für Vorschlagsgenerierung}
 Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und InputValueSuggestion realisiert.
