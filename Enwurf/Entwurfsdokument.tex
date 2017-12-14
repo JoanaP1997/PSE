@@ -1190,7 +1190,7 @@ Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugun
 \captionof{figure}{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{center}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen(\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen (\textit{Command}-Kompositum, siehe Kapitel \ref{Patterns}). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
 Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
 \begin{center}
 \includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}
@@ -1206,7 +1206,7 @@ Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \tex
 \subsection{Abhängigkeiten}
 Das Paketdiagramm besagt, dass FileHandler und DebugLogic nicht voneinader abhängen.
 Beide werden von der Control benutzt und müssen somit korrekt implementiert sein, bevor die Control richtig funktionieren kann. Weiter führt die Control Methoden der GUIFacade aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende Control.
-Die GUI hingegen ist stark von der Control abhängig und kann ohne diese nicht korrekte Daten anzeigen.
+Die GUI hingegen ist stark von der Control abhängig und kann ohne diese keine korrekten Daten anzeigen.
 
 %TODO Pakete der Debuglogic aktualisieren, da noch nicht fertig
 \subsection{Implementierung}
@@ -1259,12 +1259,12 @@ Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Pro
 
 \subsection{RDBF Speicherformat}
 RDBF ist ein nicht einrückungsbasiertes, imperatives Speicherformat, welches das Speichern von komplexen Blockstrukturen erlaubt.
-Eine Blockstruktur besteht aus einem Blocknamen und Rumpf, welcher in sich wieder mehrere Blöcke und Daten haben.
+Eine Blockstruktur besteht aus einem Blocknamen und Rumpf, welcher in sich wieder mehrere Blöcke und Daten hat.
 Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser herausgefunden werden muss.
 Es werden die Datentypen String, int, long, float, double und boolean unterstützt.
 Weiter gibt es einen spezialisierten TextBlock, der nur einen Fließtext zum Speichern enthält.
 Kommentare können durch das Kennzeichnen am Anfang einer Zeile mit \enquote{//} erzeugt werden.
-Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann in Kapitel 9.4 eingesehen werden. 
+Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann im Anhang eingesehen werden. 
 
 \section{Änderung zum Pflichtenheft}
 \paragraph{Erweiterte Syntax für Watch-Expressions und bedinge Breakpoints}
