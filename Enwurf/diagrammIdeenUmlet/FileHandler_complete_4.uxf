@@ -24,14 +24,14 @@
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>11</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1177</x>
-      <y>869</y>
-      <w>308</w>
-      <h>143</h>
+      <x>642</x>
+      <y>360</y>
+      <w>168</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>/ComplexFileReader/
 --
@@ -44,10 +44,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1617</x>
-      <y>792</y>
-      <w>308</w>
-      <h>220</h>
+      <x>882</x>
+      <y>318</y>
+      <w>168</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>RDBFMasterReader
 --
@@ -60,10 +60,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1474</x>
-      <y>891</y>
-      <w>165</w>
-      <h>77</h>
+      <x>804</x>
+      <y>372</y>
+      <w>90</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;50.0;60.0;50.0;60.0;10.0;130.0;10.0</additional_attributes>
@@ -71,10 +71,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2651</x>
-      <y>1012</y>
-      <w>209</w>
-      <h>165</h>
+      <x>1446</x>
+      <y>438</y>
+      <w>114</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>RDBFFile
 --
@@ -86,10 +86,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2970</x>
-      <y>737</y>
-      <w>407</w>
-      <h>286</h>
+      <x>1620</x>
+      <y>288</y>
+      <w>222</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>/RDBFAdditions/
 --
@@ -105,10 +105,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2266</x>
-      <y>550</y>
-      <w>308</w>
-      <h>418</h>
+      <x>1236</x>
+      <y>186</y>
+      <w>168</w>
+      <h>228</h>
     </coordinates>
     <panel_attributes>RDBFParser
 --
@@ -139,10 +139,10 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2849</x>
-      <y>847</y>
-      <w>143</w>
-      <h>264</h>
+      <x>1554</x>
+      <y>348</y>
+      <w>78</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>110.0;10.0;60.0;10.0;60.0;220.0;10.0;220.0</additional_attributes>
@@ -150,10 +150,10 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3432</x>
-      <y>660</y>
-      <w>264</w>
-      <h>165</h>
+      <x>1872</x>
+      <y>246</y>
+      <w>144</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>RDBFBlock
 --
@@ -165,10 +165,10 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3157</x>
-      <y>627</y>
-      <w>429</w>
-      <h>132</h>
+      <x>1722</x>
+      <y>228</y>
+      <w>234</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;100.0;10.0;10.0;370.0;10.0;370.0;30.0</additional_attributes>
@@ -176,10 +176,10 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3443</x>
-      <y>891</y>
-      <w>220</w>
-      <h>220</h>
+      <x>1878</x>
+      <y>372</y>
+      <w>120</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>RDBFData
 --
@@ -199,10 +199,10 @@ _+ DATA_BOOLEAN = 5 : int_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3366</x>
-      <y>814</y>
-      <w>242</w>
-      <h>55</h>
+      <x>1836</x>
+      <y>330</y>
+      <w>132</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=0..n</panel_attributes>
@@ -211,10 +211,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1177</x>
-      <y>1133</y>
-      <w>308</w>
-      <h>143</h>
+      <x>642</x>
+      <y>504</y>
+      <w>168</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>/ComplexFileWriter/
 --
@@ -227,10 +227,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1474</x>
-      <y>1199</y>
-      <w>165</w>
-      <h>66</h>
+      <x>804</x>
+      <y>540</y>
+      <w>90</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0;60.0;40.0;130.0;40.0</additional_attributes>
@@ -238,10 +238,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1617</x>
-      <y>1133</y>
-      <w>308</w>
-      <h>220</h>
+      <x>882</x>
+      <y>504</y>
+      <w>168</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>RDBFMasterWriter
 --
@@ -254,10 +254,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1914</x>
-      <y>891</y>
-      <w>407</w>
-      <h>187</h>
+      <x>1044</x>
+      <y>372</y>
+      <w>222</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>350.0;150.0;100.0;150.0;100.0;10.0;10.0;10.0</additional_attributes>
@@ -266,9 +266,9 @@ m2=0..n</panel_attributes>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
-      <y>638</y>
-      <w>1573</w>
-      <h>858</h>
+      <y>234</y>
+      <w>858</w>
+      <h>468</h>
     </coordinates>
     <panel_attributes>de.rd.FileHandler.Facade</panel_attributes>
     <additional_attributes/>
@@ -276,10 +276,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>605</x>
-      <y>891</y>
-      <w>440</w>
-      <h>374</h>
+      <x>330</x>
+      <y>372</y>
+      <w>240</w>
+      <h>204</h>
     </coordinates>
     <panel_attributes>FileHandlerFacade
 --
@@ -298,10 +298,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>22</x>
-      <y>891</y>
-      <w>418</w>
-      <h>374</h>
+      <x>12</x>
+      <y>372</y>
+      <w>228</w>
+      <h>204</h>
     </coordinates>
     <panel_attributes>ConfigurationFile
 --
@@ -326,10 +326,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>429</x>
-      <y>1067</y>
-      <w>198</w>
-      <h>44</h>
+      <x>234</x>
+      <y>468</y>
+      <w>108</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; erzeugt</panel_attributes>
@@ -338,10 +338,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>407</x>
-      <y>737</y>
-      <w>451</w>
-      <h>176</h>
+      <x>222</x>
+      <y>288</y>
+      <w>246</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1</panel_attributes>
@@ -350,10 +350,10 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>22</x>
-      <y>682</y>
-      <w>396</w>
-      <h>143</h>
+      <x>12</x>
+      <y>258</y>
+      <w>216</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>PropertiesFile
 --
@@ -369,10 +369,10 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>22</x>
-      <y>1342</y>
-      <w>396</w>
-      <h>132</h>
+      <x>12</x>
+      <y>618</y>
+      <w>216</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>LanguageFile
 --
@@ -382,10 +382,10 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>407</x>
-      <y>1254</y>
-      <w>451</w>
-      <h>187</h>
+      <x>222</x>
+      <y>570</y>
+      <w>246</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1..n</panel_attributes>
@@ -394,10 +394,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1034</x>
-      <y>935</y>
-      <w>165</w>
-      <h>165</h>
+      <x>564</x>
+      <y>396</y>
+      <w>90</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>130.0;10.0;70.0;10.0;70.0;130.0;10.0;130.0</additional_attributes>
@@ -405,10 +405,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>1067</y>
-      <w>99</w>
-      <h>165</h>
+      <x>600</x>
+      <y>468</y>
+      <w>54</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>70.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
@@ -416,10 +416,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1595</x>
-      <y>484</y>
-      <w>2167</w>
-      <h>1155</h>
+      <x>870</x>
+      <y>150</y>
+      <w>1182</w>
+      <h>630</h>
     </coordinates>
     <panel_attributes>de.rd.FileHandler.RDBF</panel_attributes>
     <additional_attributes/>
@@ -427,10 +427,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2552</x>
-      <y>1034</y>
-      <w>66</w>
-      <h>88</h>
+      <x>1392</x>
+      <y>450</y>
+      <w>36</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>40.0;60.0;40.0;10.0;10.0;10.0</additional_attributes>
@@ -438,10 +438,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2409</x>
-      <y>957</y>
-      <w>33</w>
-      <h>88</h>
+      <x>1314</x>
+      <y>408</y>
+      <w>18</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -449,10 +449,10 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3157</x>
-      <y>1012</y>
-      <w>440</w>
-      <h>176</h>
+      <x>1722</x>
+      <y>438</y>
+      <w>240</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=0..n</panel_attributes>
@@ -461,10 +461,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1617</x>
-      <y>704</y>
-      <w>297</w>
-      <h>55</h>
+      <x>882</x>
+      <y>270</y>
+      <w>162</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>RDBFPropReader
 --
@@ -475,10 +475,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1617</x>
-      <y>1386</y>
-      <w>297</w>
-      <h>55</h>
+      <x>882</x>
+      <y>642</y>
+      <w>162</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>RDBFPropWriter
 --
@@ -489,10 +489,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1914</x>
-      <y>1144</y>
-      <w>407</w>
-      <h>132</h>
+      <x>1044</x>
+      <y>510</y>
+      <w>222</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>350.0;10.0;100.0;10.0;100.0;100.0;10.0;100.0</additional_attributes>
@@ -500,10 +500,10 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2299</x>
-      <y>1122</y>
-      <w>264</w>
-      <h>55</h>
+      <x>1254</x>
+      <y>498</y>
+      <w>144</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>RDBFWriter
 --
@@ -512,26 +512,12 @@ m2=0..n</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1155</x>
-      <y>550</y>
-      <w>275</w>
-      <h>77</h>
-    </coordinates>
-    <panel_attributes>Strategie FileReader / FileWriter ???
-Abstrakte Fabrik Basis existiert
-mit ConfigFile... und FileReader???
-Strategie bei BRDFReader / Writer</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2299</x>
-      <y>1023</y>
-      <w>264</w>
-      <h>55</h>
+      <x>1254</x>
+      <y>444</y>
+      <w>144</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>RDBFReader
 --
@@ -542,10 +528,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1177</x>
-      <y>1298</y>
-      <w>308</w>
-      <h>143</h>
+      <x>642</x>
+      <y>594</y>
+      <w>168</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>/PropertiesFileWriter/
 --
@@ -557,10 +543,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1177</x>
-      <y>704</y>
-      <w>308</w>
-      <h>143</h>
+      <x>642</x>
+      <y>270</y>
+      <w>168</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>/PropertiesFileReader/
 --
@@ -572,10 +558,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1474</x>
-      <y>726</y>
-      <w>165</w>
-      <h>88</h>
+      <x>804</x>
+      <y>282</y>
+      <w>90</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;60.0;60.0;60.0;60.0;10.0;130.0;10.0</additional_attributes>
@@ -583,10 +569,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1474</x>
-      <y>1364</y>
-      <w>165</w>
-      <h>77</h>
+      <x>804</x>
+      <y>630</y>
+      <w>90</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0;60.0;50.0;130.0;50.0</additional_attributes>
@@ -594,10 +580,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>759</y>
-      <w>99</w>
-      <h>220</h>
+      <x>600</x>
+      <y>300</y>
+      <w>54</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0;10.0;180.0</additional_attributes>
@@ -605,10 +591,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>1199</y>
-      <w>99</w>
-      <h>198</h>
+      <x>600</x>
+      <y>540</y>
+      <w>54</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>70.0;160.0;10.0;160.0;10.0;10.0</additional_attributes>
@@ -616,10 +602,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2013</x>
-      <y>704</y>
-      <w>275</w>
-      <h>220</h>
+      <x>1098</x>
+      <y>270</y>
+      <w>150</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>230.0;10.0;10.0;10.0;10.0;180.0</additional_attributes>
@@ -627,10 +613,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>2541</x>
-      <y>209</y>
-      <w>968</w>
-      <h>275</h>
+      <x>1386</x>
+      <y>0</y>
+      <w>528</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>de.rd.FileHandler.Exceptions
 --</panel_attributes>
@@ -639,10 +625,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2552</x>
-      <y>440</y>
-      <w>220</w>
-      <h>33</h>
+      <x>1392</x>
+      <y>126</y>
+      <w>120</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>LanguageNotFoundException</panel_attributes>
     <additional_attributes/>
@@ -650,10 +636,10 @@ Strategie bei BRDFReader / Writer</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2904</x>
-      <y>242</y>
-      <w>253</w>
-      <h>88</h>
+      <x>1584</x>
+      <y>18</y>
+      <w>138</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 FileHandlerException
@@ -664,10 +650,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2640</x>
-      <y>319</y>
-      <w>407</w>
-      <h>143</h>
+      <x>1440</x>
+      <y>60</y>
+      <w>222</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>350.0;10.0;350.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
@@ -675,10 +661,10 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2794</x>
-      <y>440</y>
-      <w>220</w>
-      <h>33</h>
+      <x>1524</x>
+      <y>126</y>
+      <w>120</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>ParseBlockException</panel_attributes>
     <additional_attributes/>
@@ -686,10 +672,10 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3036</x>
-      <y>440</y>
-      <w>220</w>
-      <h>33</h>
+      <x>1656</x>
+      <y>126</y>
+      <w>120</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>ParseAssignmentException</panel_attributes>
     <additional_attributes/>
@@ -697,10 +683,10 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3278</x>
-      <y>440</y>
-      <w>220</w>
-      <h>33</h>
+      <x>1788</x>
+      <y>126</y>
+      <w>120</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>InvalidLineTypeException</panel_attributes>
     <additional_attributes/>
@@ -708,10 +694,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2893</x>
-      <y>385</y>
-      <w>33</w>
-      <h>77</h>
+      <x>1578</x>
+      <y>96</y>
+      <w>18</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -719,10 +705,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3014</x>
-      <y>385</y>
-      <w>165</w>
-      <h>77</h>
+      <x>1644</x>
+      <y>96</y>
+      <w>90</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0;130.0;50.0</additional_attributes>
@@ -730,10 +716,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3146</x>
-      <y>385</y>
-      <w>264</w>
-      <h>77</h>
+      <x>1716</x>
+      <y>96</y>
+      <w>144</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;220.0;10.0;220.0;50.0</additional_attributes>
@@ -741,10 +727,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2409</x>
-      <y>275</y>
-      <w>517</w>
-      <h>297</h>
+      <x>1314</x>
+      <y>36</y>
+      <w>282</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 &lt;&lt;throws&gt;&gt;</panel_attributes>
@@ -753,10 +739,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2552</x>
-      <y>1089</y>
-      <w>121</w>
-      <h>88</h>
+      <x>1392</x>
+      <y>480</y>
+      <w>66</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;40.0;10.0;40.0;60.0;10.0;60.0</additional_attributes>
@@ -764,10 +750,10 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3223</x>
-      <y>253</y>
-      <w>165</w>
-      <h>33</h>
+      <x>1758</x>
+      <y>24</y>
+      <w>90</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>java.lang.Exception</panel_attributes>
     <additional_attributes/>
@@ -775,10 +761,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3289</x>
-      <y>275</y>
-      <w>165</w>
-      <h>187</h>
+      <x>1794</x>
+      <y>36</y>
+      <w>90</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0;130.0;80.0;130.0;150.0</additional_attributes>
@@ -786,10 +772,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3179</x>
-      <y>275</y>
-      <w>143</w>
-      <h>187</h>
+      <x>1734</x>
+      <y>36</y>
+      <w>78</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>110.0;10.0;110.0;80.0;10.0;80.0;10.0;150.0</additional_attributes>
@@ -797,10 +783,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2937</x>
-      <y>275</y>
-      <w>385</w>
-      <h>187</h>
+      <x>1602</x>
+      <y>36</y>
+      <w>210</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>330.0;10.0;330.0;80.0;10.0;80.0;10.0;150.0</additional_attributes>
@@ -808,10 +794,10 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2695</x>
-      <y>275</y>
-      <w>627</w>
-      <h>187</h>
+      <x>1470</x>
+      <y>36</y>
+      <w>342</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>550.0;10.0;550.0;80.0;10.0;80.0;10.0;150.0</additional_attributes>
