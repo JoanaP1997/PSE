@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>400</y>
-      <w>160</w>
-      <h>15</h>
+      <x>688</x>
+      <y>24</y>
+      <w>232</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
-    <additional_attributes>300.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>270.0;30.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>730</x>
-      <y>375</y>
-      <w>225</w>
-      <h>65</h>
+      <x>904</x>
+      <y>0</y>
+      <w>360</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade : debugger.debuglogic::DebugLogicFacade
@@ -31,10 +31,10 @@ debugLogicFacade.attach(guiFacade);
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>910</x>
-      <y>840</y>
-      <w>195</w>
-      <h>35</h>
+      <x>1248</x>
+      <y>832</y>
+      <w>312</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>...
 debugLogicFacade.setStepSize(int program, int size)
@@ -44,10 +44,10 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>850</y>
-      <w>140</w>
-      <h>15</h>
+      <x>1040</x>
+      <y>848</y>
+      <w>224</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=.()</panel_attributes>
     <additional_attributes>260.0;10.0;10.0;10.0</additional_attributes>
@@ -55,52 +55,57 @@ debugLogicFacade.setStepSize(int program, int size)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>810</y>
-      <w>250</w>
-      <h>265</h>
+      <x>832</x>
+      <y>784</y>
+      <w>400</w>
+      <h>496</h>
     </coordinates>
     <panel_attributes>DebugLogicController
 --
 --
-&lt;&lt;create&gt;&gt; - DebugLogicController();
+&lt;&lt;create&gt;&gt; - DebugLogicController()
 
-+ setStepSize(int program, int size);
-+ step(int type);
-+ continue();
-+ singleStep();
-+ stepBack();
++ setStepSize(int program, int size)
++ step(int type)
++ continue()
++ singleStep()
++ stepBack()
 
-+ createWatchExpression(int id, String expr);
-+ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope);
-+ deleteWatchExpression(int id);
++ createWatchExpression(int id, String expr)
++ changeWatchExpression(int id, String expr, List&lt;ScopeTupel&gt; scope)
++ deleteWatchExpression(int id)
 
-+ createCondBreakpoint(int id, String cond);
-+ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope);
-+ deleteCondBreakpoint(int id);
++ createCondBreakpoint(int id, String cond)
++ changeCondBreakpoint(int id, String cond, List&lt;ScopeTupel&gt; scope)
++ deleteCondBreakpoint(int id)
 
-+ createSyncBreakpoint(int line);
-+ createBreakpoint(int program, int line);
-+ deleteBreakpoint(int program, int line);
-+ deleteAllBreakpoints();
++ createSyncBreakpoint(int line)
++ createBreakpoint(int program, int line)
++ deleteBreakpoint(int program, int line)
++ deleteAllBreakpoints()
 
-+ saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar);
-+ startDebug();
-+ stopDebug();
-+ reset();
++ saveText(List&lt;String&gt; programtexts, List&lt;String&gt; inputvar)
++ startDebug()
++ stopDebug()
++ reset()
 
-+ suggestEquivalence();
-+ suggestNonInterference();
-+ suggestStepSize();</panel_attributes>
++ suggestStepSize() : String
++ suggestWatchExpression() : String
++ suggestConditionalBreakpoint(): String
++ suggestInputValue(): String
+
++ selectStepSizeStrategy()
++ selectRelationalExpressionStrategy()
++ selectInputValueStrategy()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>635</x>
-      <y>745</y>
-      <w>185</w>
-      <h>75</h>
+      <x>808</x>
+      <y>680</y>
+      <w>296</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
@@ -111,10 +116,10 @@ r1=controller</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>365</x>
-      <y>745</y>
-      <w>95</w>
-      <h>75</h>
+      <x>376</x>
+      <y>680</y>
+      <w>152</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..1
@@ -125,27 +130,27 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>810</y>
-      <w>180</w>
-      <h>55</h>
+      <x>256</x>
+      <y>784</y>
+      <w>288</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>FileHandlerInteractor
 --
 --
-+ loadConfig(File configFile);
-+ saveConfig(File configFile);
-+ loadProgramText(File file);
-+ changePresentationLanguage(String langId)</panel_attributes>
++ loadConfig(File configFile)
++ saveConfig(File configFile)
++ loadProgramText(File file)
++ changeLanguage(String langId)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>135</x>
-      <y>920</y>
-      <w>170</w>
-      <h>15</h>
+      <x>0</x>
+      <y>960</y>
+      <w>272</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>de.rd.filehandler.facade::LanguageFile</panel_attributes>
     <additional_attributes/>
@@ -153,10 +158,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>920</y>
-      <w>120</w>
-      <h>15</h>
+      <x>304</x>
+      <y>960</y>
+      <w>192</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>userinterface::GuiFacade</panel_attributes>
     <additional_attributes/>
@@ -164,10 +169,10 @@ r1=file handler interactor</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>365</x>
-      <y>860</y>
-      <w>115</w>
-      <h>70</h>
+      <x>376</x>
+      <y>864</y>
+      <w>208</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 trigger change in presentation v</panel_attributes>
@@ -176,23 +181,23 @@ trigger change in presentation v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>775</x>
-      <y>1070</y>
-      <w>80</w>
-      <h>80</h>
+      <x>1032</x>
+      <y>1272</y>
+      <w>136</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 controls model via v
 r1=model's facade</panel_attributes>
-    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;260.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>695</x>
-      <y>1140</y>
-      <w>170</w>
-      <h>15</h>
+      <x>904</x>
+      <y>1480</y>
+      <w>272</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>debugger.debuglogic::DebugLogicFacade</panel_attributes>
     <additional_attributes/>
@@ -200,10 +205,10 @@ r1=model's facade</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>145</x>
-      <y>525</y>
-      <w>195</w>
-      <h>45</h>
+      <x>24</x>
+      <y>328</y>
+      <w>312</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>ExceptionHandler
 --
@@ -216,10 +221,10 @@ r1=model's facade</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>335</x>
-      <y>545</y>
-      <w>85</w>
-      <h>20</h>
+      <x>328</x>
+      <y>360</y>
+      <w>136</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
 m1=1</panel_attributes>
@@ -228,22 +233,22 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>215</x>
-      <y>860</y>
-      <w>115</w>
-      <h>70</h>
+      <x>128</x>
+      <y>864</y>
+      <w>192</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
-    <additional_attributes>210.0;10.0;210.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
+    <additional_attributes>220.0;10.0;220.0;60.0;10.0;60.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>385</y>
-      <w>275</w>
-      <h>365</h>
+      <x>448</x>
+      <y>0</y>
+      <w>440</w>
+      <h>688</h>
     </coordinates>
     <panel_attributes>ControlFacade
 --
@@ -283,9 +288,14 @@ m2=1</panel_attributes>
 + setMaximumIterations(int i)
 + setMaximumFunctionCalls(int i)
 
-+ suggestEquivalence()
-+ suggestNonInterference()
-+ suggestStepSize()
++ suggestStepSize() : String
++ suggestWatchExpression() : String
++ suggestConditionalBreakpoint(): String
++ suggestInputValue(): String
+
++ selectStepSizeStrategy()
++ selectRelationalExpressionStrategy()
++ selectInputValueStrategy()
 
 + changeLanguage(String langId)</panel_attributes>
     <additional_attributes/>
