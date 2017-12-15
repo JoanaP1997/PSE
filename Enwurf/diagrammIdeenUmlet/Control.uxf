@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>12</zoom_level>
   <element>
     <id>Relation</id>
@@ -171,7 +170,7 @@ r1=file handler interactor</panel_attributes>
     <coordinates>
       <x>672</x>
       <y>1296</y>
-      <w>276</w>
+      <w>312</w>
       <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -183,7 +182,7 @@ trigger change in presentation v</panel_attributes>
     <coordinates>
       <x>1656</x>
       <y>1908</y>
-      <w>192</w>
+      <w>204</w>
       <h>336</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -294,9 +293,9 @@ m2=1</panel_attributes>
 + suggestConditionalBreakpoint(): String
 + suggestInputValue(String id, String range, int type): String
 
-+ selectStepSizeStrategy()
-+ selectRelationalExpressionStrategy()
-+ selectInputValueStrategy()
++ selectStepSizeStrategy(int id)
++ selectRelationalExpressionStrategy(int id)
++ selectInputValueStrategy(int id)
 
 + changeLanguage(String langId)</panel_attributes>
     <additional_attributes/>
