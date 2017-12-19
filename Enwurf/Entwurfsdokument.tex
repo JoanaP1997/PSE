@@ -244,7 +244,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %\end{itemize}
 %\paragraph{Benutztrelation}
 %Der FileHandler benutzt keine weiteren Subsysteme.
-Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im %Model Teil des MVC-Konzepts an.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
 Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
 Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
 Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
@@ -256,7 +256,7 @@ Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produk
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht1.png}}
+\makebox[\textwidth][c]{\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht1.pdf}}
 \caption{Die Schnittstellen Fassade des File Handlers}
 \label{fig:facade_fileHandler}
 \end{figure}
@@ -835,7 +835,7 @@ Antlr kann Java-Code produzieren, ist kostenlos und unter BSD-Lizenz veröffentl
 Obwohl es auch andere Parser-Generator gibt, die diese Anforderungen erfüllen, spricht für Antlr, dass es auf allen Betriebssystemen läuft, in eine Entwicklungsumgebung eingebunden werden kann, eine aktuelle Version mit gutem Support bereitstellt und viele Online-Ressourcen dazu verfügbar sind.
 Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Produkts sondern auch zukünftige Erweiterungen.
 
-\subsection{RDBF Speicherformat}
+\subsection{Relational Debugger File (RDBF) Speicherformat}
 RDBF ist ein nicht einrückungsbasiertes, imperatives Speicherformat, welches das Speichern von komplexen Blockstrukturen erlaubt.
 Eine Blockstruktur besteht aus einem Blocknamen und Rumpf, welcher in sich wieder mehrere Blöcke und Daten hat.
 Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser herausgefunden werden muss.
@@ -1056,7 +1056,7 @@ ASSIGN: '=';
 
 \end{verbatim}
 
-\subsection{Grammatik RDBF Format} \label{RDBF}
+\subsection{Kontextfreie Grammatik RDBF Format} \label{RDBF}
 \begin{verbatim}
 R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
