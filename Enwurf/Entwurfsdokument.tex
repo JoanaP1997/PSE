@@ -90,6 +90,7 @@ Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach außen zur V
 
 
 \section{Global genutzte Entwurfsmuster}
+\label{GlobalePatterns}
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
 %\captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
@@ -298,16 +299,17 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 %Bei der Beschreibung der wichtigen Elemente an der Beschreibung im User %Interface orientieren, am besten gleich an der jeweiligen Stelle auf die %Patterns verweisen
 %Die bisherige Beschreibung der Patterns habe ich dir ans Ende des Kapitels %kopiert.
 Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der in Kapitel \ref{FormSpez} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht finden sich die Subpakete \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator}, die beide die Aufgabe haben, diese Ableitungsbäume durch Interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. Da beide Subpakete eine gemeinsame Schicht darstellen, findet hier auch ein hohes Maß an Kommunikation statt. \\ In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der im Anhang \ref{Anhang} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht findet sich das Subpaket \textit{DebugLogic.Interpreter}, das die Aufgabe hat, diese Ableitungsbäume durch Interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsection{Debugger}
 \subsubsection{Übersicht}
-%\subparagraph{Aufgaben}
-%Der Debugger nutzt die von den Subpaketen \textit{DebugLogic.TraceGenerator} und \textit{DebugLogic.RelationalExpressionGenerator} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
+Der Debugger nutzt die vom Subpaket \textit{DebugLogic.Interpreter} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 %\subparagraph{Schnittstellen}
-%Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{Klassen} der entsprechenden Fassadenklasse entnommen werden.
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{GlobalePatterns} der entsprechenden Fassadenklasse entnommen werden.
 %\subparagraph{Benutztrelation} 
-%Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
-%Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
+Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+Die Klassenstruktur ist in Abbildung %TODO dargestellt.
+Die Aktionen des Paketes sind von Anfragen gesteuert, das bedeutet, es geschieht nichts, ohne dass von aussen über die Klasse \textit{DebugLogicFacade} eine entprechende Anweisung als Methodenaufruf kommt. Deshalb hat diese Fassade auch für alle Debugmechanismen entsprechende Methoden, zum Beispiel zur Ausführung von Schritten in den Programmen.
 \subsubsection{Wichtige Elemente des Debugger}
 \paragraph{DebugControl}
 %\begin{itemize}
@@ -643,11 +645,13 @@ Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern vo
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Ändern von Programmen}
 \end{center}
-Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden und kehrt dadurch in den Editiermodus zurück (FA 180).
-Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
-Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu (FA 170), gibt das MainInterface diesen ebenfalls
+Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
+Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
+Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
+Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
 mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
-Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
+Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
+alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
 Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
 
 \newpage
@@ -656,7 +660,7 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Setzen von Breakpoints}
 \end{center}
-Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm (FA 80), reicht das MainInterface
+Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
 diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
 Zeile an die DebugLogicFacade weitergibt.
 Setzt der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
@@ -833,7 +837,7 @@ In dieser Grammatik war kein bedingter Breakpoint der Form $A\&\&B$ bzw. $A||B$ 
 
 
 \section{Anhang}
-%TODO UML-Klassendiagramm 
+\label{Anhang}
 
 Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
 \subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax}
