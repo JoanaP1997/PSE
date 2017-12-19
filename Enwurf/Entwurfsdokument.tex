@@ -822,27 +822,25 @@ Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile g
 
 \subsection{Wlang}
 
-Wlang ist eine prozeduale, imperative Sprache, welche weder objektorientiert, noch einrückungsbasiert ist. \\
+Wlang ist eine prozedurale, imperative Sprache, welche weder objektorientiert, noch einrückungsbasiert ist. \\
 Sie unterstützt die primitiven Datentypen int, long, float, double, char und boolean mit den selben Genauigkeiten wie Java.
 Außerdem sind  bis zu dreidimensionale Arrays dieser Datentypen möglich. \\
 Desweiteren unterstützt Wlang Kontrollstrukturen wie Funktionen und Prozeduren, die bedingten Ausführungen if, else if und else und while-Schleifen. \\
 Es muss in jedem Programm eine main-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können
 sowohl zeilenweise (//) als auch zeilenübergreifend (/*Kommentar*/) benutzt werden.
 Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich. \\
-Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang.
+Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang, in den Unterkapiteln \ref{wlanggrammatik} und \ref{breakpointgrammatik}.
 
 
 \subsection{Verwendung von Antlr}
 
 Wie bereits im zweiten und dritten Kapitel beschrieben, benutzt der DIbugger im Paket \textit{DebugLogic.AntlrParser} extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren \textit{Parse Tree} umzuwandeln. Diese Klassen werden von dem frei verfügbaren Programm Antlr\textsuperscript{\textcopyright} (Version 4) erzeugt.
-Ein \textit{Parse Tree} (manchmal auch \textit{Syntax Tree} genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt. Die Spezifikation der Grammatik findet sich im Anhang.
+Ein \textit{Parse Tree} (manchmal auch \textit{Syntax Tree} genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt. Die Spezifikation der Grammatik findet sich im Anhang, in den Unterkapiteln \ref{wlanggrammatik} und \ref{breakpointgrammatik}.
 
 Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, wie einen Lexer, einen Parser, sowie einen Visitor und ein Visitor-Interface. Die Funktionalität dieser Klassen wird im Unterpaket \textit{DebugLogic.Interpreter} genutzt und erweitert.
 
-%TODO wie und wo werden diese weiter modifiziert?
-
 \subsubsection{Vorteile der Verwendung eines Parser-Generators}
-Die Verwendung eines Parser-Generators wie Antlr im Allgemeinen hat mehrere Vorteile gegenüber einem “von Hand” geschriebenen Parser: Offensichtlich spart es Zeit und Ressourcen, die in die Entwicklung des eigentlichen Produktes gesteckt werden können. Nicht zu vernachlässigen ist auch, dass Änderungen an der Grammatik zunächst nur in der Grammatik selbst gemacht werden müssen und nicht sofort Änderungen in mehreren, möglicherweise sehr großen Klassen nach sich zieht. Zuletzt ermöglichen Parser-Generators wie Antlr, dass man ein Projekt auf einem Parser aufsetzt, der bereits von einer großen Gruppe an Nutzern getestet wurde, und so die Fehleranfälligkeit reduziert.
+Die Verwendung eines Parser-Generators wie Antlr im Allgemeinen hat mehrere Vorteile gegenüber einem “von Hand” geschriebenen Parser: Offensichtlich spart es Zeit und Ressourcen, die in die Entwicklung des eigentlichen Produktes gesteckt werden können. Nicht zu vernachlässigen ist auch, dass Änderungen an der Grammatik zunächst nur in der Grammatik selbst gemacht werden müssen und nicht sofort Änderungen in mehreren, möglicherweise sehr großen Klassen nach sich ziehen. Zuletzt ermöglichen Parser-Generatoren wie Antlr, dass man ein Projekt auf einem Parser aufsetzt, der bereits von einer großen Gruppe an Nutzern getestet wurde, und so die Fehleranfälligkeit reduziert.
 
 
 \subsubsection{Anforderungen an den verwendeten Parser-Generator}
@@ -860,7 +858,7 @@ Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser
 Es werden die Datentypen String, int, long, float, double und boolean unterstützt.
 Weiter gibt es einen spezialisierten TextBlock, der nur einen Fließtext zum Speichern enthält.
 Kommentare können durch das Kennzeichnen am Anfang einer Zeile mit \enquote{//} erzeugt werden.
-Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann im Anhang eingesehen werden. 
+Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann im Anhang unter \ref{RDBF} eingesehen werden. 
 
 \section{Änderung zum Pflichtenheft}
 \paragraph{Erweiterte Syntax für Watch-Expressions und bedinge Breakpoints}
@@ -874,7 +872,7 @@ In dieser Grammatik war kein bedingter Breakpoint der Form $A\&\&B$ bzw. $A||B$ 
 \label{Anhang}
 
 Startnichtterminal in den Grammatiken ist immer die Variable \textit{r}.
-\subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax}
+\subsection{Kontextfreie Antlr-Grammatik für WLang-Syntax} \label{wlanggrammatik}
 \begin{verbatim}
 
 grammar Wlang;
@@ -1007,7 +1005,7 @@ LONGLITERAL: ([1-9][0-9]* | '0' )'L';
 DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 \end{verbatim}
-\subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints und Watch-Expressions}
+\subsection{Kontextfreie Antlr-Grammatik für Syntax von bedingten Breakpoints und Watch-Expressions} \label{breakpointgrammatik}
 \begin{verbatim}
 grammar Terms;
 r: generalTerm;
@@ -1073,7 +1071,7 @@ ASSIGN: '=';
 
 \end{verbatim}
 
-\subsection{Grammatik RDBF Format}
+\subsection{Grammatik RDBF Format} \label{RDBF}
 \begin{verbatim}
 R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
