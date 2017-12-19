@@ -225,37 +225,62 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %\end{itemize}
 %\paragraph{Benutztrelation}
 %Der FileHandler benutzt keine weiteren Subsysteme.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, %Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im %Model Teil des MVC-Konzepts an.
+Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
+Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
+Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
+Einstellungsdateien werden mithilfe von Java's Properties Klasse realisiert.
+Da der FileHandler an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, lediglich werden mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
+Dafür werden Klassen für das interne RDBF Format beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um XML, Json,... erweitert werden.
+Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produkteinstellungen, Sprachen (Übersetzungen der GUI) und Konfigurationen angeboten und nach außen weitergegeben.
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
 \paragraph{FileHandlerFacade}
-Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurationsdateien.
+Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurations- und Einstellungsdateien.
 %bietet wofür Methoden an?
+Die Klasse beinhaltet alle aktuellen Sprachdateien.
+Sie bietet Methoden zum Lesen und Speichern von Konfigurationsdateien an. Dabei können auch Textdateien, die einen Programmtext enthalten gelesen werden.
+Weiter kann die aktuelle Einstellungsdatei abgerufen werden, sowie alle verfügbaren Sprachen und eine bestimmte Sprachdatei.
 \paragraph{ConfigurationFile}
 Diese Klasse speichert eine Konfiguration des Debuggers.
 %bietet wofür Methoden an?
+Dabei enthält diese Objekte für den Speicherort der Konfiguration, sowie Programmtexte, Schrittgrößen und Eingabewerte.
+Weiter wird der Status des Debuggers gespeichert, also die derzeitigen Programmzähler, Watch-Expressions, Breakpoints (einfach und bedingt), sowie der von die von der GUI abhängigen Konfiguration der Variableninspektors.
+Methoden zum Lesen und Schreiben dieser Attribute werden zur Verfügung gestellt. Dabei wird darauf geachtet, dass nicht zuviel von der internen Struktur der Klasse nach außen gegeben wird.
 \paragraph{PropertiesFile}
 Diese Klasse speichert die Einstellungen des Debuggers.
 %Beispiele / bietet wofür Methoden an?
+Darunter fallen Daten wie die ausgewählte Sprache, obere Grenzen für Iterationen und die zuletzt verwendete Konfigurationsdatei, falls diese existiert.
+Methoden für diese Attribute werden durch einfache Getter realisiert.
 \paragraph{LanguageFile}
-Stellt eine Übersetzung der GUI zu einer bestimmtem Sprache bereit.
 %ganzer Satz, bietet wofür Methoden an?
-\paragraph{FileReader}
-Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
+Stellt die Übersetzung in eine bestimmte Sprache zu den von einem User Interface angezeigten Texten bereit.
+Hierbei zählen nicht nur Anzeigeelemente, sondern auch geworfene Fehlermeldungen der unteren Schichten.
+Somit wird eine Methode zum transformieren einer Identität in einen Text bereitgestellt.
+
+%TODO Irgendwie eine Referenz der Strategie auf die nächsten 4 Klassen machen
+\paragraph{DBFileReader}
+Der DIbugger(DB) FileReader dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
 %bietet wofür Methoden an?
+Es werden hier nur abstrakte Methoden zum Lesen der oben genannten Dateien bereitgestellt.
 \paragraph{PropertiesFileReader}
-Dient als Schnittstelle zum Lesen einer Einstellungsdatei.
+Als abstrakte Klasse dient sie als Schnittstelle zum Lesen einer Einstellungsdatei und bietet hierbei nur eine abstrakte Methode zum Lesen dieser an.
 %ganzer Satz, bietet wofür Methoden an?
-\paragraph{FileWriter}
-Dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
+\paragraph{DBFileWriter}
+Diese Klasse dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
 %ganzer satz, bietet wofür Methoden an?
+Auch hier werden nur abstrakte Methoden angeboten, welche für das Scchreiben von oben genannten Dateien genutzt werden können.
 \paragraph{PropertiesFileWriter}
-Dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
-%du weißt schon...
+Der PropertiesFileWriter dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
+%du weißt schon... ja ganzer satzt und methoden
+Es wird eine abstrakte Methode angeboten, welche für das Schreiben einer Einstellungsdatei benutzt werden kann.
 \subsubsection{Unterpaket FileHandler.RDBF}
-\paragraph{RDBFMasterReader}
+Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der Konfigurations-, Einstellungs, und Sprachdateien formatiert im Relational Debugger Format (RDBF) Klassenstrukturen und Methoden an.
+%--------------------------TODO---------------------------------%
+\paragraph{RDBFDBReader}
 Stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
-%gilt ab sofort für alles was noch kommt.. scheiße ist das viel...
-\paragraph{RDBFPropReader}
+%gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
+\paragraph{RDBFDBReader}
 Stellt Funktionalität zum Lesen der Einstellungsdateien bereit.
 \paragraph{RDBFMasterWriter}
 Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
@@ -265,19 +290,28 @@ Stellt Funktionalität zum Speichern der Einstellungsdateien bereit.
 Stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
 \paragraph{RDBFWriter}
 Stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit.
+%---------------------------------------------------------------%
 \paragraph{RDBFParser}
 Diese Klasse existiert als Singleton und übernimmt die Funktionalität, eingelesene Zeilen zu analysieren und zu interpretieren, um diese dann final zu Objekten zusammenzufassen.
+Sie bietet Methoden zum herausfinden des Typs einer Zeile (Zuweisung, Block, Textblock), sowie eines Zuweisungswertes an.
+Damit können weitere Methoden benutzt werden, welche aus einer Zuweisung die Variable und den Wert herausfinden, bei einem Block den Blocknamen und den Wert einer Zuweisung in einen primitiven Datentyp von JAVA umwandelt.
 \paragraph{RDBFAdditions}
 Abstrakte Klasse zum repräsentieren von RDBFFile und RDBFBlock, da diese sich nur in wenigen Punkten unterscheiden.
+Hierfür werden eine Liste an Blöcken(RDBFBlock) und Daten(RDBFData) gespeichert und Getter-Methoden bereitgestellt.
+Diese können mithilfe von Blocknamen und Variablennamen Teillisten der obigen Attribute erstellen und zurückgeben.
 \paragraph{RDBFFile}
-Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und Stützt sich dabei auf die Implementierung von RDBFAdditions.
+Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und stützt sich dabei auf die Implementierung von RDBFAdditions.
+Sie speichert zusätzlich nur den Dateipfad der darzustellenden Datei.
 \paragraph{RDBFBlock}
 Stellt einen in der RDBF Grammatik definierten Block dar. Dabei werden die Methoden von RDBFAdditions geerbt.
+Die Klasse speichert zusätzlich zu beiden Listen nur den Namen des Blocks.
 \paragraph{RDBFData}
 Repräsentiert eine Zuweisung der RDBF Grammatik als Datenstruktur. Hierbei enthält diese einen Variablennamen, Wert und zusätzlich den Typ des Wertes.
+Einfache Getter und Setter Methoden für die Attribute existieren.
 \subsubsection{Unterpaket FileHandler.Exceptions}
 \paragraph{Interface: FileHandlerException}
-Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine FileHanderException hat.
+Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine FileHanderException haben.
+\\
 Alle Klassen in diesem Unterpaket implementieren die Schnittstelle FileHandlerException.
 \paragraph{LanguageNotFoundException}
 Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
