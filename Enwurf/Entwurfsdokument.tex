@@ -670,10 +670,10 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_WatchExpressionsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{center}
-Die folgenden Vorgänge sind für Watch-Expressions und bedingte Breakpoints identisch. \\
+Die folgenden Vorgänge sind für Watch-Expressions (FA 110) und bedingte Breakpoints (FA 90) identisch. \\
 Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
 die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
-er die Bereichsbindung angibt, wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
+er die Bereichsbindung angibt (FA  120, bzw. FA 100 für bedingte Breakpoints), wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
 Auch beim Löschen einer Watch-Expression über das entsprechende Menü der Benutzeroberfläche, erhält die
 DebugLogic diese Information über die Control und stoppt das Auswerten dieser Watch-Expression.
 
@@ -681,9 +681,15 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 \subsection{Generieren von Vorschlägen}%TODO
 \begin{center}
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
-\captionof{figure}{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions}
+\captionof{figure}{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions, bedingte Breakpoints, Schrittgrößen und Eingaben}
 \end{center}
-Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
+Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen (FA 270), so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
+\\
+Bedingte Breakpoints lassen sich auf die gleiche Weise generieren (FA 280).
+\\
+Schrittgrößen werden ähnlich vorgeschlagen (FA 300), hierbei werden der Control die Programme übergeben, welche diese an die DebugLogic weitergibt. Dies ist nötig, damit die Schrittgröße anhand der Programmcodes errechnet werden kann.
+\\
+Eingaben können ebenfalls ähnlich vorgeschlagen werden (FA 220), jedoch muss der Nutzer hier angeben, für welche Variable, für welchen Variablentyp und in welchem Intervall er einen Vorschlag erhalten möchte.
 
 \newpage
 \subsection{AF50: Programme debuggen}
@@ -691,11 +697,11 @@ Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen, so wird nach
 \includegraphics[width=0.9\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF50PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Debuggen von Programmen}
 \end{center}
-Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen.
+Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen (FA 10).
 Hierbei werden vor Start des DIbuggers Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
 Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die Control startet 
 den DebugLauf der DebugLogic.
-Wenn der Benutzer durch Weiter oder Schritt durch den DebugLauf navigiert, werden diese Befehle über
+Wenn der Benutzer durch Weiter (FA 130), Schritt (FA 20)oder Einzelschritt (FA 30) durch den DebugLauf navigiert, werden diese Befehle über
 die Control an die DebugLogic weitergegeben. Die Schritte werden von der DebugLogic ausgeführt, und anschließend
 wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
 \subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
