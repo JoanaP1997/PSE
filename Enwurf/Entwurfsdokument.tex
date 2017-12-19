@@ -183,14 +183,14 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
     Es dient der Entgegennahme von Benutzerinteraktionen auf dem \textit{UserInterface} und der Steuerung der Interaktion zwischen den Subsystemen \textit{UserInterface} und \textit{DebugLogic}.
     Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
     Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
-    \textit{Control} benutzt das Paket \textit{Debuglogic} um Zustandsveränderungen des Datenmodells auszulösen.
+    \textit{Control} benutzt das Paket \textit{Debuglogic}, um Zustandsveränderungen des Datenmodells auszulösen.
     Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt zu speichern oder zu löschen. 
     Weiter kann das Modell dazu aufgefordert werden, datenbezogene Aktionen auszuführen wie das Starten eines Debugvorgangs, oder das Durchführen eines Einzelschrittes. 
     Zum Ausführen von Speicher- und Ladeaufträgen benutzt \textit{Control} das Paket \textit{FileHandler}.
 \subsection{Wichtige Elemente der Control}
-    Um die Funktionalität des Paketes aufzuteilen wurden vier Klassen entworfen, die jeweils unterschiedliche Zuständigkeit besitzen.
+    Um die Funktionalität des Paketes aufzuteilen, wurden vier Klassen entworfen, die jeweils unterschiedliche Zuständigkeit besitzen.
 \paragraph{ControlFacade}
-    ControlFacade bietet eine Schnittstelle zum Paket Control.
+    \textit{ControlFacade} bietet eine Schnittstelle zum Paket \textit{Control}.
 
 \begin{figure}[!h]
     \makebox[\textwidth][c]{\includegraphics[width=0.75\textwidth]{diagrammIdeenUmlet/debuglogic_DebugLogicController.png}}
@@ -198,16 +198,16 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
     \label{fig:DebugLogicController}
 \end{figure}
 \paragraph{DebugLogicController}
-    DebugLogicController ist für die Modifikation der Daten des Modells und das Aufrufen von Debugmechanismen zuständig.\\
-    Über die bereitgestellten Methoden wird \enquote{DebugLogic} dazu aufgefordert Schritte durchzuführen, WatchExpressions oder Haltepunkte zu erstellen und zu entfernen, oder Vorschläge zu generieren.
-    Außerdem werden die Zustände \enquote{Debugmodus} und \enquote{Editiermodus} in \enquote{Control} implementiert, folglich bietet diese Klasse zwei Methoden zum Wechseln des aktuellen Modus.
+    \textit{DebugLogicController} ist für die Modifikation der Daten des Modells und das Aufrufen von Debugmechanismen zuständig.\\
+    Über die bereitgestellten Methoden wird \enquote{DebugLogic} dazu aufgefordert, Schritte durchzuführen, WatchExpressions oder Haltepunkte zu erstellen und zu entfernen oder Vorschläge zu generieren.
+    Außerdem werden die Zustände \enquote{Debugmodus} und \enquote{Editiermodus} in \textit{Control} implementiert, folglich bietet diese Klasse zwei Methoden zum Wechseln des aktuellen Modus.
 \paragraph{ExceptionHandler}
-    ExceptionHandler dient zur Behandlung von beim Aufruf der Methoden aus DebugLogic oder FileHandler ausgelösten Ausnahmen.\\
+    \textit{ExceptionHandler} dient zur Behandlung von beim Aufruf der Methoden aus DebugLogic oder FileHandler ausgelösten Ausnahmen.\\
     Insbesondere kann die Präsentation dazu aufgefordert werden, Benutzer der Anwendung entsprechend über eine Fehlersituation zu informieren.
 \paragraph{FileHandlerInteractor}
-    FileHandlerInteractor ist verantwortlich für das Speichern und Laden von Konfigurationsdateien, sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation des \enquote{User Interface} enthält.\\
+    \textit{FileHandlerInteractor} ist verantwortlich für das Speichern und Laden von Konfigurationsdateien, sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation des \textit{UserInterface} enthält.\\
     Dementsprechend besitzt die Klasse Methoden, durch welche das Wiederherstellen gespeicherter Sitzungen, oder das Laden eines Programmtextes ermöglicht wird.
-    Um dies zu ermöglichen werden sowohl das Modell modifiziert, als auch die Präsentation (direkt) aufgefordert die gebotene Darstellung zu verändern.
+    Um dies zu ermöglichen, werden sowohl das Modell modifiziert, als auch die Präsentation (direkt) aufgefordert die gebotene Darstellung zu verändern.
 
 \section{Das Paket \enquote{File Handler}}
 \label{FileHandler}
