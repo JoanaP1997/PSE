@@ -399,79 +399,25 @@ Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um dam
 Der Vorgang der Erzeugung des oben erwähnten Pfades wird genauer in \ref{TraceGen} erklärt.
 \subsubsection{Wichtige Elemente des Interpreters}
 \paragraph{GenerationController}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Steuert die Erzeugung eines kompletten Programmverlaufs, siehe Kapitel \ref{charAbl}.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] generateTrace(String text, List<String> input): TraceIterator\\
-%Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über alle angenommenen Zustände.
-%\end{itemize}
-%\end{itemize}
+Steuert die Erzeugung eines kompletten Programmverlaufs (Trace), siehe Kapitel \ref{charAbl}.
 \paragraph{CommandGenerationVisitor}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
-%\item Wichtige Methoden:
-%Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
-%\end{itemize}
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
 \paragraph{Scope}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
-%\end{itemize}
+Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
 \paragraph{Command}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.\\
-%Subklassen: \textit{WhileCommand, IfCommand, IfElseCommand, RoutineCommand, Assignment, DeclarationAssignment, Declaration, ReturnCommand, RoutineCall, ArrayElementAssignment, ArrayDeclarationAssignment, ArrayDeclaration}
-%\end{itemize}
+Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann. Es handelt sich hierbei um eine abstrakte Klasse, von der die, im folgenden UML-Diagramm dargestellten Klassen erben. Diese Art des Entwurfs ermöglicht eine erleichterte Erweiterung um Commands.
+%TODO UML Diagramm einfügen
 \paragraph{Trace}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt den kompletten Programmverlauf eines WLang-Programms dar.
-%\end{itemize}
+Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \paragraph{TraceState}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
-%\end{itemize}
+Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \paragraph{Term}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt eine Abstrakte Reräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen. Die Subklassen sind \textit{ConstantTerm, VariableRelationalTerm, VariableTerm, ArrayAccessRelationalTerm, ArrayAccessTerm, NegativeTerm, AdditionTerm, SubtractionTerm, MultiplicationTerm, DivisionTerm, ModuloTerm, NotCondition, OrCondition, AndCondition, MoreEqualComparison, MoreComparison, EqualComparison, NotEqualComparison, LessComparison} und \textit{LessEqualComparison}.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-]evaluate(List<TraceState> states): TermValue\\
-%Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-]evaluate(Scope currentScope): TermValue\\
-%Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei dem übergebenen \textit{Scope}-Objekt entnommen.
-%\end{itemize}
-%\end{itemize}
+Stellt eine Abstrakte Repräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen, da ein Term wieder aus Termen bestehen kann. Die Subklassen sind im folgenden UML-Diagramm zu sehen.
+%TODO UML Diagramm einfügen
 \paragraph{WatchExpression}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Eine Watch-Expression ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] evaluate(List<TraceState> states): String\\
-%Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-] change(String specifier, List<ScopeTuple> scopes)\\
-%Ändert den Ausdruck, der die Watch-Expression spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich der Watch-Expression.
-%\end{itemize}
-%\end{itemize}
+Diese Klasse repräsentiert eine Watch-Expression, welche ein Ausdruck über den Variablen verschiedener Programme ist, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
 \paragraph{ConditionalBreakpoint}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Eine Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-]evaluate(List<TraceState> states): boolean\\
-%Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-]change(String specifier, List<ScopeTuple> scopes)\\
-%Ändert den Ausdruck, der den Conditional Breakpoint spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich des Conditional Breakpoints.
-%\end{itemize}
-%\end{itemize}
+Ein Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
 
 \subsection{Antlr Parser}
 \subsubsection{Übersicht}
