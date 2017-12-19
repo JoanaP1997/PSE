@@ -643,13 +643,11 @@ Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern vo
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF20PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Ändern von Programmen}
 \end{center}
-Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
-Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
-Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
-Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
+Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden und kehrt dadurch in den Editiermodus zurück (FA 180).
+Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
+Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu (FA 170), gibt das MainInterface diesen ebenfalls
 mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
-Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
-alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
+Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
 Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
 
 \newpage
@@ -658,7 +656,7 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Setzen von Breakpoints}
 \end{center}
-Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
+Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm (FA 80), reicht das MainInterface
 diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
 Zeile an die DebugLogicFacade weitergibt.
 Setzt der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
