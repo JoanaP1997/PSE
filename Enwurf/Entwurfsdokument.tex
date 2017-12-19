@@ -421,89 +421,37 @@ Ein Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Pr
 
 \subsection{Antlr Parser}
 \subsubsection{Übersicht}
-Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind.
-%\subparagraph{Aufgaben}
-%Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
-%\subparagraph{Schnittstellen}
-%\begin{itemize}
-%\item Angebotene Funktionalität:\\
-%Prüft die textbasierten Eingaben des Nutzers auf Übereinstimmung mit der gegebenen Grammatik und erzeugt aus der Eingabe einen ablaufbaren Syntaxbaum, der dann vom Unterpaket \textit{DebugLogic.RelationalExpressionGenerator} weiter ausgewertet werden kann.
-%\item Genutzte Funktionalität:\\
-%Benötigt keine Schnittstellen anderer Programmpakete, da das Paket an unterster Stelle der Benutztrelation steht.
-%\end{itemize}
-%\subparagraph{Benutztrelation}
-%Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutztrelation. Somit entstehen keine Abhängigkeiten zu anderen Paketen.
+Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind. \\
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
+
 \subsubsection{Wichtige Elemente des Antlr Parser}
 %gibts nicht?
 
 \subsection{Exceptions}
 \subsubsection{Übersicht}
-%Das hier hatten wir vorher gar nicht - gut dass wir das jetzt merken
+Dieses Unterpaket enthält Klassen, die, für das Produkt spezifisch entwickelte, Exceptions darstellen. Um das Handling dieser Exceptions kümmert sich die \textit{Control}.
 \subsubsection{Wichtige Elemente des Exception-Unterpakets}
 \paragraph{DIbuggerLogicException}
-%\begin{itemize}
-%\item Beschreibung: \\
-%Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
-%\item Methoden:
-%\begin{itemize}
-%\item getID(): String \\
-%Gibt den Identifikations-String der Exception zurück
-%\item getOccurance(): List<String> \\
-%Gibt eine Liste mit Strings zurück, die angibt, wo der Fehler aufgetreten ist
-%\end{itemize}
-%\end{itemize}
-%Alle Klassen in diesem Paket implementieren die Schnittstelle %DIbuggerLogicException. \\
+Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
+Alle Klassen in diesem Paket implementieren diese Schnittstelle. 
 %die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
 \paragraph{MissingReturnCallException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
 \paragraph{InvalidProgramException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
 \paragraph{WrongArgumentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird
-%\end{itemize}
-\paragraph{WrongTypeArgumentException}
-%\begin{itemize}
-%item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn ein Parameter einen falschen Typ hat
-%\end{itemize}
-\paragraph{WrongNumberArgumentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn eine falsche Anzahl an Parametern übergeben wird
-%\end{itemize}
+Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird. Das UML-Diagramm stellt die Unterklassen dieser abstrakten Klasse dar.
+%TODO UML Diagramm
 \paragraph{ReturnTypeException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
-%\end{itemize}
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
 \paragraph{WrongTypeAssignmentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
 \paragraph{VariableNotFoundException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
 \paragraph{AlreadyDeclaredException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \paragraph{RoutineNotFoundException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
-%\end{itemize}
+Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
 
 %\subsection{Patterns im Paket Debug Logic}
 %\paragraph{Die Strategie für Vorschlagsgenerierung}
