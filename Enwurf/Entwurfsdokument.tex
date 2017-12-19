@@ -408,9 +408,9 @@ Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
 \paragraph{Command}
 Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.
 \\
-Für diese KLasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
+Für diese Klasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
 Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
-Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
+Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
 \begin{center}
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
 \captionof{figure}{Die Klasse \textit{Command} als Kompositum}
