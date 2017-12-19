@@ -377,67 +377,19 @@ Die Aktionen des Paketes sind von Anfragen gesteuert, das bedeutet, es geschieht
 Bei jeder Änderung des Zustandes des Debuggers wird nach dem Beobachtermuster die Methode \textit{notify()} der Fassade aufgerufen und so alle Beobachter benachrichtigt.
 \subsubsection{Wichtige Elemente des Debugger}
 \paragraph{DebugControl}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Koordiniert den Aufruf der Debugmechanismen.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] launchRun(List<ProgrammInput> programs) \\
-%Startet einen Debuglauf mit den übergebenen Programmen
-%\item[-] step(int type) \\
-%Führt einen Schritt des angegebenen Typs durch
-%\item[-] singleStep(int programmID) \\
-%Führt einen Einzelschritt im angegebenen Programm durch
-%\item[-] continue() \\
-%Führt den Debuglauf in allen Programmen bis zum jeweils nächsten Breakpoint durch
-%\item[-] create-, change- und delete-Methoden für bedingte Breakpoints und WatchExpressions
-%\item[-] create-, deleteAll- und delete-Methode für Breakpoints
-%\end{itemize}
-%\end{itemize}
+Die Klasse \textit{DebugControl} koordiniert den Aufruf der Debugmechanismen, wie Start, Schritte, Einzelschritte und Weiter, sowie das Erstellen, Ändern und Löschen von (bedingten) Breakpoints und Watch-Expressions.
 \paragraph{ProgramInput}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext,
-%Eingabevariablen und Identifikationsnummer.
-%\end{itemize}
+Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext, Eingabevariablen und Identifikationsnummer.
 \paragraph{Breakpoint}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
-%\item[] Wichtige Methoden:
-%\begin{itemize}
-%\item[-] get-Methoden für die Zeile und den Identifikator des Programms
-%\end{itemize}
-%\end{itemize}
+Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms.
 \paragraph{StepsizeSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand der Programmtexte vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggest(List<String> programText)
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung einer solchen abstrakten Klasse wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
 \paragraph{InputValueSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche eine Variable eines bestimmtem Typs
-%innerhalb eines Bereichs vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggest(String identifier, String range, int type) : String
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung einer abstrakten Klasse erleichtert.
+
 \paragraph{RelationalSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder WatchExpressions vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggestWatchExpression(List<String> programText) : String
-%\item[-] suggestConditionalBreakpoint(List<String> programText) : String
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch eine abstrakte Klasse die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
+
 
 \subsection{Interpreter}
 \subsubsection{Übersicht}
