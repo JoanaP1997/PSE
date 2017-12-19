@@ -616,7 +616,7 @@ Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als 
 kann diese ebenfalls anzeigen
 
 \newpage
-\subsection{Konfigurationsdatei speichern}
+\subsection{FA140: Konfigurationsdatei speichern}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
 \captionof{figure}{Sequenzdigramm: Speichern einer Konfigurationsdatei}
@@ -630,12 +630,12 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 \subsection{AF10: Hinzufügen von Programmen}
 \begin{center}
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
-\captionof{figure}{Sequenzdiagramm: Hinzufügen von Programmen}
+\captionof{figure}{Sequenzdiagramm: Hinzufügen von Programmen durch den Menüeintrag}
 \end{center}
 Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
-neues ProgramPanel. Nach jedem Einfügen und Ändern von Programmtext oder Eingabevariablen, gibt
-das UserInterface diese Informationen an die Control weiter, welche sie zu Start des Debugmodus
-an die DebugLogic weitergibt.
+neues ProgramPanel. Dies beschreibt die Funktionale Anforderung FA 170.
+Fügt er ein neues Programm hinzu, indem er in ein bereits vorhandenes ProgramPanel seinen Programmcode kopiert (FA 160) oder schreibt (FA 150), gibt das UserInterface die Informationen an die Control weiter.
+Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern von Programmtexten oder Eingabevariablen. Zum Start des Debugmodus gibt die Control alle diese Informationen an die DebugLogic weiter.
 
 \newpage
 \subsection{AF20: Ändern von Programmen}
