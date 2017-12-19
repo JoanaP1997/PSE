@@ -61,9 +61,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Pflichtenheft},%
 %Eventuell Fußnoten generieren
 \section{Einleitung}
 %Einleitung mit grobem Überblick. Dieser Abschnitt soll an das Pflichtenheft anschließen.
-Dieses Dokument dokumentiert die Ergebnisse der Entwurfsphase (\textit{28.11.-22.12.2017}) im Rahmen
-des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
-Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. 
+Dieses Dokument dokumentiert die Ergebnisse der Entwurfsphase (\textit{28.11.-22.12.2017}) im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
+Hierbei handelt es sich um den Entwurf des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert wurde. Aufgabe des \enquote{DIbuggers} ist es, dem Nutzer zu helfen, mehrere Programme gleichzeitig zu debuggen und interaktiv zu analysieren. \\
+Dabei wurde in den Anforderungskriterien unter anderem festgelgt, dass neben Konzepten eines herkömmlichen Debuggers wie Einzelschritten und Breakpoints, auch zusätzliche  Konzepte enthalten sein sollen, die den Umgang mit zwei oder mehr Programmläufen erleichtern. Beispiel für ein solches Konzept sind die Watch-Expressions, bei denen der Nutzer Zusammenhänge zwischen Variablen aus verschiedenen Programmen untersuchen kann. So soll das Finden relationaler Eigenschaften unterstützt werden. \\
+Dieses Dokument erläutert nun, wie diese Anforderungen softwaretechnisch umgesetzt werden sollen. Dazu wird zunächst ein Überblick über den Aufbau des gesamten Projektes gegeben (Kapitel \ref{Übersicht} und \ref{GlobalePatterns}) und dann die einzelnen Pakete, inklusive ihrer wichtigsten Klassen, erklärt (Kapitel \ref{UI}, \ref{Control}, \ref{FileHandler} und \ref{DebugLogic}). Für einen genaueren Einblick, wie die Pakete zusammenarbeiten, empfiehlt sich Kapitel \ref{charAbl} über charakteristische Abläufe.
+
 Das Entwurfsdokument beschreibt die Paketeinteilung, Beschreibung der Klassen und Abläufe und genaue Spezifikation der Abhängigkeiten und Kernkomponenten. 
 \\Die Implementierung während der Implementierungsphase (\textit{09.01.-02.02.2018}) wird anhand der Vorgaben in diesem Dokument durchgeführt. \\
 Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheimnisprinzip und Kapselungsprizip oder das Prinzip der losen Kopplung berücksichtigt. Wie genau die Einhaltung der Prinzipien sichergestellt wird, wird an den jeweiligen Stellen im Dokument erwähnt. 
@@ -76,15 +78,17 @@ Hierbei werden die aus der Softwaretechnik bekannten Prinzipien, wie etwa Geheim
 
 \newpage
 \section{Übersicht}
+\label{Übersicht}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
 \caption{Architekturdiagramm}
+\label{Architekturdiagramm}
 \end{figure}
 Das Produkt ist aufgeteilt in die Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}.
 Die \textit{DebugLogic} besteht aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und
-\textit{AntlrParser}.\\
+\textit{AntlrParser}.  (Siehe Abbildung \ref{Architekturdiagramm}.)\\
 Hierbei wird das Architekturmuster Model-View-Controller (MVC) eingesetzt, um einen flexiblen Programmentwurf zu ermöglichen und die Erweiterbarkeit des Produkts sicher zu stellen. Die Pakete \textit{DebugLogic} und \textit{FileHandler} sind hierbei das Modell, welches die darzustellenden Daten enthält. Das \textit{UserInterface} ist die Präsentationsschicht, welche Benutzereingaben annimmt und die darzustellenden Werte über ein Beobachtermuster erhält. Die Steuerung, welche Benutzereingaben von der Präsentationsschicht erhält und diese auswertet, wird vom \textit{Control}-Paket bereitgestellt. \\
 Alle Pakete stellen ihre Funktionalität über Fassadenklassen nach außen zur Verfügung (siehe Abbildung \ref{fig:fassaden}). Die genauen Schnittstellen sind also durch diese Klassen definiert.
 
@@ -105,7 +109,8 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 
 
 \newpage
-\section{User Interface}
+\section{Das Paket \enquote{User Interface}}
+\label{UI}
 %Hallo Joana, 
 %so passt du das Kapitel am besten an (viel fehlt nicht mehr):
 %brauchen wir noch mehr Klassendiagramme?
@@ -154,7 +159,8 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
 %Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit bedingten Breakpoints und Watch-Expressions arbeitet. 
 
-\section{Control}
+\section{Das Paket \enquote{Control}}
+\label{Control}
 %Hallo Etienne, bitte pass ein Kapitel so an, damit es zu den anderen passt:
 %Aus den Infos unter Übersicht einen schönen Fließtext machen, mit Hinblick auf %Gesamtfunktionalität.
 %Ganze Sätze zur Beschreibung der wichtigen Klassen (siehe User Interface, im 
@@ -204,7 +210,8 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %am Modell \enquote{DebugLogic} und der Präsentation so durch, dass ein Benutzer von DIbugger eine einmal gespeicherte Sitzung wiederherstellen kann.
 %\item[-] loadProgramText(File file)\\ loadProgramText fordert die Präsentation dazu auf, einen Programmtext, der in spezifizierter Datei enthalten ist, anzuzeigen.
 
-\section{File Handler}
+\section{Das Paket \enquote{File Handler}}
+\label{FileHandler}
 % Hallo Pascal, 
 %so passt du dein Kapitel am besten an, damit es zu den anderen passt:
 %- Übersicht: alle Paragraphen, Aufzählungen rausmachen und einen schönen %Blocktext daraus machen.
@@ -326,7 +333,8 @@ Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, als
 %Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
 
 
-\section{Debug Logic}
+\section{Das Paket \enquote{Debug Logic}}
+\label{DebugLogic}
 %Hallo Bene,
 %so passt du das Kapitel am Besten an, dass es zu den anderen passt:
 %Aus Aufgaben / Schnittstellen / Benutztrelation jeweils zur Übersicht einen %schönen Blocktext machen, Inhalt ist ja schon da.
@@ -641,9 +649,8 @@ gibt das UserInterface diesen Befehl an die Control weiter, welche ein Configura
 erhält. \\
 Die Control ruft anschließend Methoden der GUIFacade auf, um die Programmtexte, Eingabevariablen und
 die im Variableninspektor anzuzeigende Variablen anzuzeigen. Außerdem ruft die Control
-Mathoden der DebugLogicFacade auf, um für jedes Programm die Breakpoints, Watch-Expressions und
-Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als Observer benachrichtigt und
-kann diese ebenfalls anzeigen
+Methoden der DebugLogicFacade auf, um für jedes Programm die Breakpoints, Watch-Expressions und
+Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als Observer benachrichtigt und kann diese ebenfalls anzeigen.
 
 \newpage
 \subsection{FA140: Konfigurationsdatei speichern}
