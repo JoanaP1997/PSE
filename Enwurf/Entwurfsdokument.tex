@@ -225,7 +225,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %\end{itemize}
 %\paragraph{Benutztrelation}
 %Der FileHandler benutzt keine weiteren Subsysteme.
-Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, %Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im %Model Teil des MVC-Konzepts an.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im %Model Teil des MVC-Konzepts an.
 Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
 Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
 Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
@@ -233,8 +233,14 @@ Einstellungsdateien werden mithilfe von Java's Properties Klasse realisiert.
 Da der FileHandler an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, lediglich werden mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
 Dafür werden Klassen für das interne RDBF Format beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um XML, Json,... erweitert werden.
 Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produkteinstellungen, Sprachen (Übersetzungen der GUI) und Konfigurationen angeboten und nach außen weitergegeben.
+\newpage
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
+\begin{figure}[!h]
+\makebox[\textwidth][c]{\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht1.png}}
+\caption{Die Schnittstellen Fassade des File Handlers}
+\label{fig:facade_fileHandler}
+\end{figure}
 \paragraph{FileHandlerFacade}
 Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurations- und Einstellungsdateien.
 %bietet wofür Methoden an?
@@ -280,16 +286,20 @@ Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Sch
 \paragraph{RDBFDBReader}
 Stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 %gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
-\paragraph{RDBFDBReader}
-Stellt Funktionalität zum Lesen der Einstellungsdateien bereit.
-\paragraph{RDBFMasterWriter}
+Als konkrete Strategie werden die Methoden von der Klasse DBReader überschrieben.
+\paragraph{RDBFPropReader}
+Stellt Funktionalität zum Lesen der Einstellungsdatei bereit.
+\paragraph{RDBFDBWriter}
 Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 \paragraph{RDBFPropWriter}
-Stellt Funktionalität zum Speichern der Einstellungsdateien bereit.
+Stellt Funktionalität zum Speichern der Einstellungsdatei bereit.
+
 \paragraph{RDBFReader}
-Stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
+Diese Klasse stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
+Dabei wird eine Methode zum Einlesen einer RDBF Datei bereitgestellt, die ein RDBFFile zurückgibt.
 \paragraph{RDBFWriter}
-Stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit.
+Diese Klasse stellt Funktionalität zum Speichern von RDBFFile Objekten im RDBF Format bereit.
+Es wird nur eine Methode angeboten, welche eine virtuelle RDBF Datei auf das Dateisystem des Nutzers schreibt.
 %---------------------------------------------------------------%
 \paragraph{RDBFParser}
 Diese Klasse existiert als Singleton und übernimmt die Funktionalität, eingelesene Zeilen zu analysieren und zu interpretieren, um diese dann final zu Objekten zusammenzufassen.
@@ -297,7 +307,7 @@ Sie bietet Methoden zum herausfinden des Typs einer Zeile (Zuweisung, Block, Tex
 Damit können weitere Methoden benutzt werden, welche aus einer Zuweisung die Variable und den Wert herausfinden, bei einem Block den Blocknamen und den Wert einer Zuweisung in einen primitiven Datentyp von JAVA umwandelt.
 \paragraph{RDBFAdditions}
 Abstrakte Klasse zum repräsentieren von RDBFFile und RDBFBlock, da diese sich nur in wenigen Punkten unterscheiden.
-Hierfür werden eine Liste an Blöcken(RDBFBlock) und Daten(RDBFData) gespeichert und Getter-Methoden bereitgestellt.
+Hierfür werden eine Liste an Blöcken (RDBFBlock) und Daten (RDBFData) gespeichert und Getter-Methoden bereitgestellt.
 Diese können mithilfe von Blocknamen und Variablennamen Teillisten der obigen Attribute erstellen und zurückgeben.
 \paragraph{RDBFFile}
 Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und stützt sich dabei auf die Implementierung von RDBFAdditions.
