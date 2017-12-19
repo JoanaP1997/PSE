@@ -233,8 +233,8 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %Der FileHandler benutzt keine weiteren Subsysteme.
 Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
 Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
-Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
-Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
+Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats (siehe Anhang \ref{Anhang}) ist, also aus Zuweisungen und Blöcken.
+Weiter erzeugt der \textit{FileHandler} Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
 Einstellungsdateien werden mithilfe von Java's Properties Klasse realisiert.
 Da der FileHandler an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, lediglich werden mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
 Dafür werden Klassen für das interne RDBF Format beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um XML, Json,... erweitert werden.
@@ -248,7 +248,7 @@ Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produk
 \label{fig:facade_fileHandler}
 \end{figure}
 \paragraph{FileHandlerFacade}
-Speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurations- und Einstellungsdateien.
+Diese Klasse speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurations- und Einstellungsdateien.
 %bietet wofür Methoden an?
 Die Klasse beinhaltet alle aktuellen Sprachdateien.
 Sie bietet Methoden zum Lesen und Speichern von Konfigurationsdateien an. Dabei können auch Textdateien, die einen Programmtext enthalten gelesen werden.
@@ -266,7 +266,7 @@ Darunter fallen Daten wie die ausgewählte Sprache, obere Grenzen für Iteration
 Methoden für diese Attribute werden durch einfache Getter realisiert.
 \paragraph{LanguageFile}
 %ganzer Satz, bietet wofür Methoden an?
-Stellt die Übersetzung in eine bestimmte Sprache zu den von einem User Interface angezeigten Texten bereit.
+Diese Klasse stellt die Übersetzung in eine bestimmte Sprache zu den von einem User Interface angezeigten Texten bereit.
 Hierbei zählen nicht nur Anzeigeelemente, sondern auch geworfene Fehlermeldungen der unteren Schichten.
 Somit wird eine Methode zum transformieren einer Identität in einen Text bereitgestellt.
 
@@ -276,29 +276,29 @@ Der DIbugger(DB) FileReader dient als Schnittstelle von der FileHandlerFacade zu
 %bietet wofür Methoden an?
 Es werden hier nur abstrakte Methoden zum Lesen der oben genannten Dateien bereitgestellt.
 \paragraph{PropertiesFileReader}
-Als abstrakte Klasse dient sie als Schnittstelle zum Lesen einer Einstellungsdatei und bietet hierbei nur eine abstrakte Methode zum Lesen dieser an.
+Als abstrakte Klasse dient \textit{PropertiesFileReader} als Schnittstelle zum Lesen einer Einstellungsdatei und bietet hierbei nur eine abstrakte Methode zum Lesen dieser an.
 %ganzer Satz, bietet wofür Methoden an?
 \paragraph{DBFileWriter}
-Diese Klasse dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
+Diese Klasse dient als Schnittstelle von der \textit{FileHandlerFacade} zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
 %ganzer satz, bietet wofür Methoden an?
-Auch hier werden nur abstrakte Methoden angeboten, welche für das Scchreiben von oben genannten Dateien genutzt werden können.
+Auch hier werden nur abstrakte Methoden angeboten, welche für das Schreiben von oben genannten Dateien genutzt werden können.
 \paragraph{PropertiesFileWriter}
-Der PropertiesFileWriter dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
+Der \textit{PropertiesFileWriter} dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
 %du weißt schon... ja ganzer satzt und methoden
 Es wird eine abstrakte Methode angeboten, welche für das Schreiben einer Einstellungsdatei benutzt werden kann.
 \subsubsection{Unterpaket FileHandler.RDBF}
 Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der Konfigurations-, Einstellungs, und Sprachdateien formatiert im Relational Debugger Format (RDBF) Klassenstrukturen und Methoden an.
 %--------------------------TODO---------------------------------%
 \paragraph{RDBFDBReader}
-Stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+Diese Klasse stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 %gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
 Als konkrete Strategie werden die Methoden von der Klasse DBReader überschrieben.
 \paragraph{RDBFPropReader}
-Stellt Funktionalität zum Lesen der Einstellungsdatei bereit.
+Der \textit{RDBFPropReader} stellt Funktionalität zum Lesen der Einstellungsdatei bereit.
 \paragraph{RDBFDBWriter}
-Stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+Der \textit{RDBFDBWriter} stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 \paragraph{RDBFPropWriter}
-Stellt Funktionalität zum Speichern der Einstellungsdatei bereit.
+Diese Klasse stellt Funktionalität zum Speichern der Einstellungsdatei bereit.
 
 \paragraph{RDBFReader}
 Diese Klasse stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
