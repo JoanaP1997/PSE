@@ -231,7 +231,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %\end{itemize}
 %\paragraph{Benutztrelation}
 %Der FileHandler benutzt keine weiteren Subsysteme.
-Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im %Model Teil des MVC-Konzepts an.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
 Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
 Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats ist, also aus Zuweisungen und Blöcken.
 Weiter erzeugt der FileHandler Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
@@ -243,7 +243,7 @@ Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produk
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht1.png}}
+\makebox[\textwidth][c]{\includegraphics[width=0.95\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht1.pdf}}
 \caption{Die Schnittstellen Fassade des File Handlers}
 \label{fig:facade_fileHandler}
 \end{figure}
@@ -364,67 +364,19 @@ Die Aktionen des Paketes sind von Anfragen gesteuert, das bedeutet, es geschieht
 Bei jeder Änderung des Zustandes des Debuggers wird nach dem Beobachtermuster die Methode \textit{notify()} der Fassade aufgerufen und so alle Beobachter benachrichtigt.
 \subsubsection{Wichtige Elemente des Debugger}
 \paragraph{DebugControl}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Koordiniert den Aufruf der Debugmechanismen.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] launchRun(List<ProgrammInput> programs) \\
-%Startet einen Debuglauf mit den übergebenen Programmen
-%\item[-] step(int type) \\
-%Führt einen Schritt des angegebenen Typs durch
-%\item[-] singleStep(int programmID) \\
-%Führt einen Einzelschritt im angegebenen Programm durch
-%\item[-] continue() \\
-%Führt den Debuglauf in allen Programmen bis zum jeweils nächsten Breakpoint durch
-%\item[-] create-, change- und delete-Methoden für bedingte Breakpoints und WatchExpressions
-%\item[-] create-, deleteAll- und delete-Methode für Breakpoints
-%\end{itemize}
-%\end{itemize}
+Die Klasse \textit{DebugControl} koordiniert den Aufruf der Debugmechanismen, wie Start, Schritte, Einzelschritte und Weiter, sowie das Erstellen, Ändern und Löschen von (bedingten) Breakpoints und Watch-Expressions.
 \paragraph{ProgramInput}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext,
-%Eingabevariablen und Identifikationsnummer.
-%\end{itemize}
+Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Programmtext, Eingabevariablen und Identifikationsnummer.
 \paragraph{Breakpoint}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms
-%\item[] Wichtige Methoden:
-%\begin{itemize}
-%\item[-] get-Methoden für die Zeile und den Identifikator des Programms
-%\end{itemize}
-%\end{itemize}
+Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms.
 \paragraph{StepsizeSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche die Größe der Steps anhand der Programmtexte vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggest(List<String> programText)
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung eines Strategiemusters wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
 \paragraph{InputValueSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche eine Variable eines bestimmtem Typs
-%innerhalb eines Bereichs vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggest(String identifier, String range, int type) : String
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung eines Strategiemusters erleichtert.
+
 \paragraph{RelationalSuggestion}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt das Grundgerüst einer Klasse dar, welche bedingte Breakpoints oder WatchExpressions vorschlägt.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] suggestWatchExpression(List<String> programText) : String
-%\item[-] suggestConditionalBreakpoint(List<String> programText) : String
-%\end{itemize}
-%\end{itemize}
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
+
 
 \subsection{Interpreter}
 \subsubsection{Übersicht}
@@ -434,199 +386,85 @@ Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um dam
 Der Vorgang der Erzeugung des oben erwähnten Pfades wird genauer in \ref{TraceGen} erklärt.
 \subsubsection{Wichtige Elemente des Interpreters}
 \paragraph{GenerationController}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Steuert die Erzeugung eines kompletten Programmverlaufs, siehe Kapitel \ref{charAbl}.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] generateTrace(String text, List<String> input): TraceIterator\\
-%Führt das in text gegebene WLang-Programm aus und liefert einen Iterator über alle angenommenen Zustände.
-%\end{itemize}
-%\end{itemize}
+Steuert die Erzeugung eines kompletten Programmverlaufs (Trace), siehe Kapitel \ref{charAbl}.
 \paragraph{CommandGenerationVisitor}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen.
-%\item Wichtige Methoden:
-%Enthält visit-Methoden zu jedem Knoten im Ableitungsbaum.
-%\end{itemize}
+Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen. \\
+Um die Term- und Befehlsstrukturen zu erzeugen, wird  hier das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
 \paragraph{Scope}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
-%\end{itemize}
+Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
 \paragraph{Command}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.\\
-%Subklassen: \textit{WhileCommand, IfCommand, IfElseCommand, RoutineCommand, Assignment, DeclarationAssignment, Declaration, ReturnCommand, RoutineCall, ArrayElementAssignment, ArrayDeclarationAssignment, ArrayDeclaration}
-%\end{itemize}
+Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.
+\\
+Für diese Klasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
+Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
+Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
+\begin{center}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
+\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
+\label{Command}
+\end{center}
 \paragraph{Trace}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt den kompletten Programmverlauf eines WLang-Programms dar.
-%\end{itemize}
+Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \paragraph{TraceState}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
-%\end{itemize}
-\paragraph{Term}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Stellt eine Abstrakte Reräsentation eines arithmetischen bzw. logischen Terms dar. Die Klasse und ihre Subklassen sind nach dem Entwurfsmuster Kompositum entworfen. Die Subklassen sind \textit{ConstantTerm, VariableRelationalTerm, VariableTerm, ArrayAccessRelationalTerm, ArrayAccessTerm, NegativeTerm, AdditionTerm, SubtractionTerm, MultiplicationTerm, DivisionTerm, ModuloTerm, NotCondition, OrCondition, AndCondition, MoreEqualComparison, MoreComparison, EqualComparison, NotEqualComparison, LessComparison} und \textit{LessEqualComparison}.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-]evaluate(List<TraceState> states): TermValue\\
-%Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-]evaluate(Scope currentScope): TermValue\\
-%Diese Methode wertet den Term aus und gibt den Wert des Termes zurück. Die Variablenwerte im Term werden dabei dem übergebenen \textit{Scope}-Objekt entnommen.
-%\end{itemize}
-%\end{itemize}
-\paragraph{WatchExpression}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Eine Watch-Expression ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-] evaluate(List<TraceState> states): String\\
-%Wertet den Term der Watch-Expression aus und gibt den Wert als String zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-] change(String specifier, List<ScopeTuple> scopes)\\
-%Ändert den Ausdruck, der die Watch-Expression spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich der Watch-Expression.
-%\end{itemize}
-%\end{itemize}
-\paragraph{ConditionalBreakpoint}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Eine Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
-%\item Wichtige Methoden:
-%\begin{itemize}
-%\item[-]evaluate(List<TraceState> states): boolean\\
-%Wertet den Term des Conditional Breakpoints aus und gibt den Wahrheitswert zurück. Die Variablenwerte im Ausdruck werden dabei den in states gegebenen \textit{TraceState}-Instanzen entnommen.
-%\item[-]change(String specifier, List<ScopeTuple> scopes)\\
-%Ändert den Ausdruck, der den Conditional Breakpoint spezifiziert und für jedes Programm den entsprechenden Gültigkeitsbereich des Conditional Breakpoints.
-%\end{itemize}
-%\end{itemize}
-
-\subsection{Antlr Parser}
-\subsubsection{Übersicht}
-Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind.
-%\subparagraph{Aufgaben}
-%Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
-%\subparagraph{Schnittstellen}
-%\begin{itemize}
-%\item Angebotene Funktionalität:\\
-%Prüft die textbasierten Eingaben des Nutzers auf Übereinstimmung mit der gegebenen Grammatik und erzeugt aus der Eingabe einen ablaufbaren Syntaxbaum, der dann vom Unterpaket \textit{DebugLogic.RelationalExpressionGenerator} weiter ausgewertet werden kann.
-%\item Genutzte Funktionalität:\\
-%Benötigt keine Schnittstellen anderer Programmpakete, da das Paket an unterster Stelle der Benutztrelation steht.
-%\end{itemize}
-%\subparagraph{Benutztrelation}
-%Der Antlr Parser hat keine Unterpakete und steht an unterster Stelle der Benutztrelation. Somit entstehen keine Abhängigkeiten zu anderen Paketen.
-\subsubsection{Wichtige Elemente des Antlr Parser}
-%gibts nicht?
-
-\subsection{Exceptions}
-\subsubsection{Übersicht}
-%Das hier hatten wir vorher gar nicht - gut dass wir das jetzt merken
-\subsubsection{Wichtige Elemente des Exception-Unterpakets}
-\paragraph{DIbuggerLogicException}
-%\begin{itemize}
-%\item Beschreibung: \\
-%Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
-%\item Methoden:
-%\begin{itemize}
-%\item getID(): String \\
-%Gibt den Identifikations-String der Exception zurück
-%\item getOccurance(): List<String> \\
-%Gibt eine Liste mit Strings zurück, die angibt, wo der Fehler aufgetreten ist
-%\end{itemize}
-%\end{itemize}
-%Alle Klassen in diesem Paket implementieren die Schnittstelle %DIbuggerLogicException. \\
-%die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
-\paragraph{MissingReturnCallException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
-%\end{itemize}
-\paragraph{InvalidProgramException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
-%\end{itemize}
-\paragraph{WrongArgumentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird
-%\end{itemize}
-\paragraph{WrongTypeArgumentException}
-%\begin{itemize}
-%item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn ein Parameter einen falschen Typ hat
-%\end{itemize}
-\paragraph{WrongNumberArgumentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn eine falsche Anzahl an Parametern übergeben wird
-%\end{itemize}
-\paragraph{ReturnTypeException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
-%\end{itemize}
-\paragraph{WrongTypeAssignmentException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
-%\end{itemize}
-\paragraph{VariableNotFoundException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
-%\end{itemize}
-\paragraph{AlreadyDeclaredException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
-%\end{itemize}
-\paragraph{RoutineNotFoundException}
-%\begin{itemize}
-%\item Klassenbeschreibung: \\
-%Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
-%\end{itemize}
-
-%\subsection{Patterns im Paket Debug Logic}
-%\paragraph{Die Strategie für Vorschlagsgenerierung}
-%Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und \textit{InputValueSuggestion} realisiert.
-%\paragraph{Das Kompositum}
-%Das Entwurfsmuster \enquote{Kompositum} wird im Paket \textit{DebugLogic.Interpreter} ausgiebig verwendet. Aufgrund der in Programmiersprachen gegebenen Strukturen wie zum Beispiel Termen, die sich durch Baumstrukturen sowohl abbilden als auch einfach rekursiv auswerten lassen, empfiehlt sich dieses Pattern. Die inhärente Struktur solcher rekursiv definierbarer Strukture wird von einem \enquote{Kompositum} perfekt repräsentiert. Das Muster ermöglicht dabei den Nutzern der entsprechenden Klassen einen einheitlichen Umgang mit einzelnen und zusammengesetzten Objekten.
-%\begin{center}
-%\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
-%\captionof{figure}{Das Termkompositum im Entwurf}
-%\label{Terme}
-%\end{center}
-
-%\begin{center}
-%\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
-%\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
-%\label{Command}
-%\end{center}
-%\paragraph{Das Termkompositum}
-%Die Struktur eines Termes kann wie folgt beschrieben werden:
-%Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
-%\paragraph{Das Commandkompositum und Befehlsmuster}
-%Ein weiteres \enquote{Kompositum} wird für die Klasse \textit{Command} und ihre Subklassen verwendet. Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
-%Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
-%\paragraph{Das Visitorpattern}
-%Um die Term- und Befehlsstrukturen zu erzeugen, wird im Entwurf das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
-%\newpage
-%\paragraph{Der Traceiterator}
+Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
+\paragraph{Der Traceiterator}
 %\begin{center}
 %\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/%TraceIteratorPattern.pdf}
 %\captionof{figure}{Der Traceiterator}
 %\label{TraceIterator}
 %\end{center}
-%Wir betrachten Abbildung \ref{TraceIterator}.
-%Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
+%TODO UML Diagramm
+Wir betrachten Abbildung \ref{TraceIterator}.
+Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
+\paragraph{Term}
+Stellt eine Abstrakte Repräsentation eines arithmetischen bzw. logischen Terms dar. 
+\\
+Die Struktur eines Termes kann wie folgt beschrieben werden: \\
+Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
+\begin{center}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\captionof{figure}{Das Termkompositum im Entwurf}
+\label{Terme}
+\end{center}
+\paragraph{WatchExpression}
+Diese Klasse repräsentiert eine Watch-Expression, welche ein Ausdruck über den Variablen verschiedener Programme ist, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
+\paragraph{ConditionalBreakpoint}
+Ein Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
+
+\subsection{Antlr Parser}
+\subsubsection{Übersicht}
+Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind. \\
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
+
+\subsubsection{Wichtige Elemente des Antlr Parser}
+%gibts nicht?
+
+\subsection{Exceptions}
+\subsubsection{Übersicht}
+Dieses Unterpaket enthält Klassen, die, für das Produkt spezifisch entwickelte, Exceptions darstellen. Um das Handling dieser Exceptions kümmert sich die \textit{Control}.
+\subsubsection{Wichtige Elemente des Exception-Unterpakets}
+\paragraph{DIbuggerLogicException}
+Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
+Alle Klassen in diesem Paket implementieren diese Schnittstelle. 
+%die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
+\paragraph{MissingReturnCallException}
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+\paragraph{InvalidProgramException}
+Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
+\paragraph{WrongArgumentException}
+Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird. Das UML-Diagramm stellt die Unterklassen dieser abstrakten Klasse dar.
+%TODO UML Diagramm
+\paragraph{ReturnTypeException}
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+\paragraph{WrongTypeAssignmentException}
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+\paragraph{VariableNotFoundException}
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+\paragraph{AlreadyDeclaredException}
+Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
+\paragraph{RoutineNotFoundException}
+Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
+
 
 \newpage
 \section{Charakteristische Abläufe}\label{charAbl}
@@ -870,7 +708,7 @@ Antlr kann Java-Code produzieren, ist kostenlos und unter BSD-Lizenz veröffentl
 Obwohl es auch andere Parser-Generator gibt, die diese Anforderungen erfüllen, spricht für Antlr, dass es auf allen Betriebssystemen läuft, in eine Entwicklungsumgebung eingebunden werden kann, eine aktuelle Version mit gutem Support bereitstellt und viele Online-Ressourcen dazu verfügbar sind.
 Diese Faktoren erleichtern dabei nicht nur die gegenwärtige Entwicklung des Produkts sondern auch zukünftige Erweiterungen.
 
-\subsection{RDBF Speicherformat}
+\subsection{Relational Debugger File (RDBF) Speicherformat}
 RDBF ist ein nicht einrückungsbasiertes, imperatives Speicherformat, welches das Speichern von komplexen Blockstrukturen erlaubt.
 Eine Blockstruktur besteht aus einem Blocknamen und Rumpf, welcher in sich wieder mehrere Blöcke und Daten hat.
 Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser herausgefunden werden muss.
@@ -1091,7 +929,7 @@ ASSIGN: '=';
 
 \end{verbatim}
 
-\subsection{Grammatik RDBF Format} \label{RDBF}
+\subsection{Kontextfreie Grammatik RDBF Format} \label{RDBF}
 \begin{verbatim}
 R : ((STATEMENT | BLOCK | BLOCK_TEXT | COMMENT) NEWLINE)*;
 
