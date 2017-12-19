@@ -359,9 +359,16 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 %\subparagraph{Benutztrelation} 
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
-Die Klassenstruktur ist in Abbildung %TODO dargestellt.
+\begin{figure}[!h]
+\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
+\caption{Die Klassen des Paketes \textit{DebugLogic.Debugger}}
+\label{fig:debuggerOverview}
+\end{figure}
+Die Klassenstruktur ist in Abbildung \ref{fig:debuggerOverview} dargestellt.
 Die Aktionen des Paketes sind von Anfragen gesteuert, das bedeutet, es geschieht nichts, ohne dass von aussen über die Klasse \textit{DebugLogicFacade} eine entprechende Anweisung als Methodenaufruf kommt. Deshalb hat diese Fassade auch für alle Debugmechanismen entsprechende Methoden, zum Beispiel zur Ausführung von Schritten in den Programmen. \\
 Bei jeder Änderung des Zustandes des Debuggers wird nach dem Beobachtermuster die Methode \textit{notify()} der Fassade aufgerufen und so alle Beobachter benachrichtigt.
+Je nach Methodenaufruf in der \textit{DebugLogicFacade} wird die Anfrage an die \textit{DebugControl} oder an eine konkrete Ausprägung eines Vorschlagsinterfaces (zum Beispiel \textit{StepsizeSuggestion}) weitergeleitet. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und \textit{InputValueSuggestion} realisiert. \\
+Die konkreten Debugmechanismen werden in der Klasse \textit{DebugControl} gesteuert. So verwaltet diese etwa die vom Paket \textit{DebugLogic.Interpreter} bereitgestellten \textit{WatchExpression}-Instanzen oder die \textit{TraceIterator}-Objekte, um so Schritte auszuführen.
 \subsubsection{Wichtige Elemente des Debugger}
 \paragraph{DebugControl}
 Die Klasse \textit{DebugControl} koordiniert den Aufruf der Debugmechanismen, wie Start, Schritte, Einzelschritte und Weiter, sowie das Erstellen, Ändern und Löschen von (bedingten) Breakpoints und Watch-Expressions.
