@@ -28,12 +28,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
+      <x>726</x>
       <y>360</y>
       <w>168</w>
       <h>78</h>
     </coordinates>
-    <panel_attributes>/ComplexFileReader/
+    <panel_attributes>/DBFileReader/
 --
 
 --
@@ -44,12 +44,12 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
+      <x>966</x>
       <y>318</y>
       <w>168</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>RDBFMasterReader
+    <panel_attributes>RDBFDBReader
 --
 
 --
@@ -60,7 +60,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
+      <x>888</x>
       <y>372</y>
       <w>90</w>
       <h>42</h>
@@ -71,7 +71,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1446</x>
+      <x>1530</x>
       <y>438</y>
       <w>114</w>
       <h>90</h>
@@ -86,7 +86,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1620</x>
+      <x>1704</x>
       <y>288</y>
       <w>222</w>
       <h>156</h>
@@ -105,7 +105,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1236</x>
+      <x>1320</x>
       <y>186</y>
       <w>168</w>
       <h>228</h>
@@ -139,7 +139,7 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1554</x>
+      <x>1638</x>
       <y>348</y>
       <w>78</w>
       <h>144</h>
@@ -150,7 +150,7 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1872</x>
+      <x>1956</x>
       <y>246</y>
       <w>144</w>
       <h>90</h>
@@ -165,7 +165,7 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1722</x>
+      <x>1806</x>
       <y>228</y>
       <w>234</w>
       <h>72</h>
@@ -176,7 +176,7 @@ _+ getInstance() : RDBFBaseParser_
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1878</x>
+      <x>1962</x>
       <y>372</y>
       <w>120</w>
       <h>120</h>
@@ -199,7 +199,7 @@ _+ DATA_BOOLEAN = 5 : int_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1836</x>
+      <x>1920</x>
       <y>330</y>
       <w>132</w>
       <h>30</h>
@@ -211,12 +211,12 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
+      <x>726</x>
       <y>504</y>
       <w>168</w>
       <h>78</h>
     </coordinates>
-    <panel_attributes>/ComplexFileWriter/
+    <panel_attributes>/DBFileWriter/
 --
 
 --
@@ -227,7 +227,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
+      <x>888</x>
       <y>540</y>
       <w>90</w>
       <h>36</h>
@@ -238,12 +238,12 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
+      <x>966</x>
       <y>504</y>
       <w>168</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>RDBFMasterWriter
+    <panel_attributes>RDBFDBWriter
 --
 
 --
@@ -254,7 +254,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1044</x>
+      <x>1128</x>
       <y>372</y>
       <w>222</w>
       <h>102</h>
@@ -265,7 +265,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
+      <x>84</x>
       <y>234</y>
       <w>858</w>
       <h>468</h>
@@ -276,7 +276,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
+      <x>414</x>
       <y>372</y>
       <w>240</w>
       <h>204</h>
@@ -298,7 +298,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
+      <x>96</x>
       <y>372</y>
       <w>228</w>
       <h>204</h>
@@ -326,7 +326,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
+      <x>318</x>
       <y>468</y>
       <w>108</w>
       <h>24</h>
@@ -338,7 +338,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>222</x>
+      <x>306</x>
       <y>288</y>
       <w>246</w>
       <h>96</h>
@@ -350,7 +350,7 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
+      <x>96</x>
       <y>258</y>
       <w>216</w>
       <h>78</h>
@@ -369,7 +369,7 @@ m1=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>12</x>
+      <x>96</x>
       <y>618</y>
       <w>216</w>
       <h>72</h>
@@ -382,7 +382,7 @@ m1=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>222</x>
+      <x>306</x>
       <y>570</y>
       <w>246</w>
       <h>102</h>
@@ -394,7 +394,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>564</x>
+      <x>648</x>
       <y>396</y>
       <w>90</w>
       <h>90</h>
@@ -405,7 +405,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>684</x>
       <y>468</y>
       <w>54</w>
       <h>90</h>
@@ -416,7 +416,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>870</x>
+      <x>954</x>
       <y>150</y>
       <w>1182</w>
       <h>630</h>
@@ -427,7 +427,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1392</x>
+      <x>1476</x>
       <y>450</y>
       <w>36</w>
       <h>48</h>
@@ -438,7 +438,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1314</x>
+      <x>1398</x>
       <y>408</y>
       <w>18</w>
       <h>48</h>
@@ -449,7 +449,7 @@ m1=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1722</x>
+      <x>1806</x>
       <y>438</y>
       <w>240</w>
       <h>96</h>
@@ -461,7 +461,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
+      <x>966</x>
       <y>270</y>
       <w>162</w>
       <h>30</h>
@@ -475,7 +475,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>882</x>
+      <x>966</x>
       <y>642</y>
       <w>162</w>
       <h>30</h>
@@ -489,7 +489,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1044</x>
+      <x>1128</x>
       <y>510</y>
       <w>222</w>
       <h>72</h>
@@ -500,7 +500,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1254</x>
+      <x>1338</x>
       <y>498</y>
       <w>144</w>
       <h>30</h>
@@ -514,7 +514,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1254</x>
+      <x>1338</x>
       <y>444</y>
       <w>144</w>
       <h>30</h>
@@ -528,7 +528,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
+      <x>726</x>
       <y>594</y>
       <w>168</w>
       <h>78</h>
@@ -543,7 +543,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
+      <x>726</x>
       <y>270</y>
       <w>168</w>
       <h>78</h>
@@ -558,7 +558,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
+      <x>888</x>
       <y>282</y>
       <w>90</w>
       <h>48</h>
@@ -569,7 +569,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
+      <x>888</x>
       <y>630</y>
       <w>90</w>
       <h>42</h>
@@ -580,7 +580,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>684</x>
       <y>300</y>
       <w>54</w>
       <h>120</h>
@@ -591,7 +591,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>684</x>
       <y>540</y>
       <w>54</w>
       <h>108</h>
@@ -602,7 +602,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
+      <x>1182</x>
       <y>270</y>
       <w>150</w>
       <h>120</h>
@@ -613,7 +613,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1386</x>
+      <x>1470</x>
       <y>0</y>
       <w>528</w>
       <h>150</h>
@@ -625,7 +625,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1392</x>
+      <x>1476</x>
       <y>126</y>
       <w>120</w>
       <h>18</h>
@@ -636,7 +636,7 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1584</x>
+      <x>1668</x>
       <y>18</y>
       <w>138</w>
       <h>48</h>
@@ -650,7 +650,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
+      <x>1524</x>
       <y>60</y>
       <w>222</w>
       <h>78</h>
@@ -661,7 +661,7 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1524</x>
+      <x>1608</x>
       <y>126</y>
       <w>120</w>
       <h>18</h>
@@ -672,7 +672,7 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1656</x>
+      <x>1740</x>
       <y>126</y>
       <w>120</w>
       <h>18</h>
@@ -683,7 +683,7 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1788</x>
+      <x>1872</x>
       <y>126</y>
       <w>120</w>
       <h>18</h>
@@ -694,7 +694,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1578</x>
+      <x>1662</x>
       <y>96</y>
       <w>18</w>
       <h>42</h>
@@ -705,7 +705,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1644</x>
+      <x>1728</x>
       <y>96</y>
       <w>90</w>
       <h>42</h>
@@ -716,7 +716,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1716</x>
+      <x>1800</x>
       <y>96</y>
       <w>144</w>
       <h>42</h>
@@ -727,7 +727,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1314</x>
+      <x>1398</x>
       <y>36</y>
       <w>282</w>
       <h>162</h>
@@ -739,7 +739,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1392</x>
+      <x>1476</x>
       <y>480</y>
       <w>66</w>
       <h>48</h>
@@ -750,7 +750,7 @@ FileHandlerException
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1758</x>
+      <x>1842</x>
       <y>24</y>
       <w>90</w>
       <h>18</h>
@@ -761,7 +761,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1794</x>
+      <x>1878</x>
       <y>36</y>
       <w>90</w>
       <h>102</h>
@@ -772,7 +772,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1734</x>
+      <x>1818</x>
       <y>36</y>
       <w>78</w>
       <h>102</h>
@@ -783,7 +783,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1602</x>
+      <x>1686</x>
       <y>36</y>
       <w>210</w>
       <h>102</h>
@@ -794,7 +794,7 @@ FileHandlerException
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1470</x>
+      <x>1554</x>
       <y>36</y>
       <w>342</w>
       <h>102</h>
