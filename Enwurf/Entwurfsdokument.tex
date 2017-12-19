@@ -383,12 +383,12 @@ Kapselt die Informationen zu einem zu debuggenden Programm. Dazu gehören Progra
 \paragraph{Breakpoint}
 Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms.
 \paragraph{StepsizeSuggestion}
-Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung einer solchen abstrakten Klasse wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung eines Strategiemusters wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
 \paragraph{InputValueSuggestion}
-Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung einer abstrakten Klasse erleichtert.
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung eines Strategiemusters erleichtert.
 
 \paragraph{RelationalSuggestion}
-Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch eine abstrakte Klasse die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
 
 
 \subsection{Interpreter}
@@ -411,6 +411,11 @@ Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gem�
 Für diese KLasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
 Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt diese Arbeit zu kapseln. 
+\begin{center}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
+\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
+\label{Command}
+\end{center}
 \paragraph{Trace}
 Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \paragraph{TraceState}
@@ -429,6 +434,11 @@ Stellt eine Abstrakte Repräsentation eines arithmetischen bzw. logischen Terms 
 \\
 Die Struktur eines Termes kann wie folgt beschrieben werden: \\
 Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
+\begin{center}
+\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
+\captionof{figure}{Das Termkompositum im Entwurf}
+\label{Terme}
+\end{center}
 \paragraph{WatchExpression}
 Diese Klasse repräsentiert eine Watch-Expression, welche ein Ausdruck über den Variablen verschiedener Programme ist, der sich innerhalb seines Gültigkeitsbereiches zu einem bestimmten Wert auswertet.
 \paragraph{ConditionalBreakpoint}
@@ -467,24 +477,6 @@ Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darau
 Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \paragraph{RoutineNotFoundException}
 Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
-
-%\subsection{Patterns im Paket Debug Logic}
-%\paragraph{Die Strategie für Vorschlagsgenerierung}
-%Ein Teil des Subpaketes \textit{DebugLogic.Debugger} ist verantwortlich für die Erzeugung von Vorschlägen für Nutzereingaben, Watch-Expressions und bedingten Breakpoints oder Schrittgrößen. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und \textit{InputValueSuggestion} realisiert.
-%\begin{center}
-%\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/TermCondition.pdf}
-%\captionof{figure}{Das Termkompositum im Entwurf}
-%\label{Terme}
-%\end{center}
-
-%\begin{center}
-%\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
-%\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
-%\label{Command}
-%\end{center}
-
-
-
 
 
 \newpage
