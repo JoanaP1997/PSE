@@ -127,29 +127,29 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 \subsection{Übersicht}
 %Aufgaben, angebotene und genutze Schnittstellen , Benutztrealtion als Text
 Das Paket \textit{UserInterface} stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts. \\
-Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben.
+Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
+Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{javax.swing} benutzt. Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}.
 \subsection{Wichtige Elemente des User Interface}
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1.05\textwidth]{diagrammIdeenUmlet/GUIOverview.pdf}
+\includegraphics[width=1.1\textwidth]{diagrammIdeenUmlet/GUIOverview.pdf}
 \caption{Wichtige Anzeigeelemente des User Interface}
 \label{GUIOverview}
 \end{figure}
 \paragraph{GUIFacade}
 Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können. \\
 Die Fassade bietet Methoden um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit
-das User Interface zurückzusetzen.
+das User Interface zurückzusetzen. \\
+Außerdem wird die GUIFacade beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine update()-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
 \paragraph{MainInterface}
- Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps.
+ Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps. 
 \paragraph{ProgramPanel}
 Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
 Als Teil des Beobachter-Entwurfsmusters besitzt ein ProgramPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \paragraph{CommandPanel}
-Ein CommandPanel ist ein Singleton, welches die Buttons zur Kontrolle des Debugvorgangs anzeigt. 
-%Warum ein Singletion? noch einfügen
+Ein CommandPanel ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur ein mal benötigt wird, ist dieser als Singleton implementiert. 
 \paragraph{ExpressionPanel}
-Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel), welche als Singletons realisiert werden.
-%Warum Singleton? noch einfügen
+Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel). Diese werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu Sichern. \\
 Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \begin{figure}[!h]
 \centering
@@ -161,12 +161,6 @@ Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update(
 Ein DebuggerPopUp ist ein JDialog, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Diese Unterklassen, welche von DebuggerPopUp erben, sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
 Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, ein Dekorierer Entwurfsmuster mit JDialog dar.
 %Warum Dekorierer?
-
-%\subsection{Patterns im Paket User Interface}
-%Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
-%Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
-%Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
-%Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit bedingten Breakpoints und Watch-Expressions arbeitet. 
 
 \section{Das Paket \enquote{Control}}
 \label{Control}
