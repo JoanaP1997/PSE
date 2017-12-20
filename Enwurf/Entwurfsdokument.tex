@@ -79,7 +79,12 @@ Dieses Dokument erläutert nun, wie diese Anforderungen softwaretechnisch umgese
 \newpage
 \section{Übersicht}
 \label{Übersicht}
-
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Plichtenheft/Architektur.png} \\
+\caption{Architekturdiagramm}
+\label{Architekturdiagramm}
+\end{figure}
 Das Produkt ist aufgeteilt in die vier Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}. 
 Dabei hat jedes Paket seine eigene Aufgabe:
 \begin{itemize}
@@ -92,14 +97,7 @@ Dabei hat jedes Paket seine eigene Aufgabe:
 Klickt der Nutzer beispielsweise mit dem Debuggen beginnen und drückt den entsprechenden Knopf auf der Benutzeroberfläche, setzt die \textit{Control} diesen Befehl um, indem sie die notwendigen Schritte der \textit{DebugLogic} ausführt. Will der Nutzer seine Ergebnisse später speichern, drückt er wieder einen Knopf auf der Benutzeroberfläche und der Befehl wird wieder vom \textit{UserInterface} an die \textit{Control} weitergegeben, die dieses Mal zum Speichern den \textit{FileHandler} aufruft. In Abbildung \ref{Architekturdiagramm} sind die Pakete und die Benutzt-Relation dargestellt. \\
 Aus der Abbildung wird ebenfalls ersichtlich, dass die \textit{DebugLogic} aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und \textit{AntlrParser} besteht. Deren Funktionalität wird in Kapitel \ref{DebugLogic} dargelegt. \\
 
-\newpage
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
-\caption{Architekturdiagramm}
-\label{Architekturdiagramm}
-\end{figure}
 
 \newpage
 \section{Global genutzte Entwurfsmuster}
