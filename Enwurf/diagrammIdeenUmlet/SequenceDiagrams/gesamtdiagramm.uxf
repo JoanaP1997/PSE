@@ -1713,7 +1713,7 @@ group=2</panel_attributes>
     <panel_attributes>WatchExpressionPanel
 --
 _-singleton: WatchExpressionPanel = null_
--watchExpressions: Map&lt;Integer, Map&lt;String, String &gt; &gt;
+-watchExpressions: Map&lt;Integer, List&lt;ScopeTuple&gt; &gt;
 -evaluationLabels: List&lt;JLabel&gt;
 --
 _+getWatchExpressionPanel(): WatchExpressionPanel_
@@ -1733,7 +1733,7 @@ group=2</panel_attributes>
     <panel_attributes>CondBreakpointPanel
 --
 _-singleton: CondBreakpointPanel = null_
--condBreakpoints: Map&lt;Integer, Map&lt;String, String &gt; &gt;
+-condBreakpoints: Map&lt;Integer, List&lt;ScopeTuple&gt; &gt;
 -breakpointMarker: List&lt;JLabel&gt;
 --
 _+getCondBreakpointPanel(): CondBreakpointPanel_
