@@ -94,7 +94,7 @@ Dabei hat jedes Paket seine eigene Aufgabe:
 \item Der \textit{FileHandler} ist dazu da, Daten zu speichern und zu lesen.
 \end{itemize}
 
-Klickt der Nutzer beispielsweise mit dem Debuggen beginnen und drückt den entsprechenden Knopf auf der Benutzeroberfläche, setzt die \textit{Control} diesen Befehl um, indem sie die notwendigen Schritte der \textit{DebugLogic} ausführt. Will der Nutzer seine Ergebnisse später speichern, drückt er wieder einen Knopf auf der Benutzeroberfläche und der Befehl wird wieder vom \textit{UserInterface} an die \textit{Control} weitergegeben, die dieses Mal zum Speichern den \textit{FileHandler} aufruft. In Abbildung \ref{Architekturdiagramm} sind die Pakete und die Benutzt-Relation dargestellt. \\
+Möchte der Nutzer beispielsweise mit dem Debuggen beginnen und drückt den entsprechenden Knopf auf der Benutzeroberfläche, setzt die \textit{Control} diesen Befehl um, indem sie die notwendigen Schritte der \textit{DebugLogic} ausführt. Will der Nutzer seine Ergebnisse später speichern, drückt er wieder einen Knopf auf der Benutzeroberfläche und der Befehl wird wieder vom \textit{UserInterface} an die \textit{Control} weitergegeben, die dieses Mal zum Speichern den \textit{FileHandler} aufruft. In Abbildung \ref{Architekturdiagramm} sind die Pakete und die Benutztrelation dargestellt. \\
 Aus der Abbildung wird ebenfalls ersichtlich, dass die \textit{DebugLogic} aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und \textit{AntlrParser} besteht. Deren Funktionalität wird in Kapitel \ref{DebugLogic} dargelegt. \\
 
 
@@ -127,8 +127,8 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 \subsection{Übersicht}
 %Aufgaben, angebotene und genutze Schnittstellen , Benutztrealtion als Text
 Das Paket \textit{UserInterface} stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts. \\
-Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
-Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{javax.swing} benutzt. Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}.
+Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene Schnittstellen, um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
+Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{javax.swing} benutzt. Durch die Nutzung von Swing besteht der Grundaufbau des \textit{UserInterfaces} aus einem Kompositum.
 \subsection{Wichtige Elemente des User Interface}
 \begin{figure}[!h]
 \centering
@@ -137,10 +137,9 @@ Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{jav
 \label{GUIOverview}
 \end{figure}
 \paragraph{GUIFacade}
-Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können. \\
-Die Fassade bietet Methoden um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit
-das User Interface zurückzusetzen. \\
-Außerdem wird die GUIFacade beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine update()-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
+Die Fassade der Benutzeroberfläche (\textit{GUIFacade}) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket \textit{UserInterface} einfach ausgetauscht werden können. \\
+Die Fassade bietet Methoden an, um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit, das User Interface zurückzusetzen. \\
+Außerdem wird die \textit{GUIFacade} beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine \textit{update()}-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
 \paragraph{MainInterface}
  Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps. 
 \paragraph{ProgramPanel}
@@ -172,7 +171,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 \subsection{Übersicht}
     Das Paket \textit{Control} entspricht dem Kontroll-Teil des Architekturstils MVC.\\
     Es dient der Entgegennahme von Benutzerinteraktionen auf dem \textit{UserInterface} und der Steuerung der Interaktion zwischen den Subsystemen \textit{UserInterface} und \textit{DebugLogic}.
-    Schaltflächen, sowie Eingabefelder sind Teil des Kontrollsubsystems und werden im Paket \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
+    Schaltflächen, sowie Eingabefelder werden im Paket \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
     Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
     \textit{Control} benutzt das Paket \textit{Debuglogic}, um Zustandsveränderungen des Datenmodells auszulösen.
     Beispielsweise kann das Modell aufgefordert werden, einen eingegebenen Quelltext oder spezifizierten Haltepunkt zu speichern oder zu löschen. 
@@ -228,9 +227,8 @@ Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des S
 Weiter erzeugt der \textit{FileHandler} Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
 Einstellungsdateien werden mithilfe von Java's Properties Klasse realisiert.
 Da der FileHandler an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, lediglich werden mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
-Dafür werden Klassen für das interne RDBF Format beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um XML, Json,... erweitert werden.
+Dafür werden Klassen für das interne Relational Debugger Format (RDBF)  beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um andere Formate, wie \enquote{XML} oder \enquote{Json}, erweitert werden.
 Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produkteinstellungen, Sprachen (Übersetzungen der GUI) und Konfigurationen angeboten und nach außen weitergegeben.
-\newpage
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
 \begin{figure}[!h]
@@ -346,12 +344,12 @@ Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es
 \subsubsection{Übersicht}
 Der Debugger nutzt die vom Subpaket \textit{DebugLogic.Interpreter} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 %\subparagraph{Schnittstellen}
-Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{GlobalePatterns} der entsprechenden Fassadenklasse entnommen werden.
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{GlobalePatterns} der entsprechenden Fassadenklasse entnommen werden. \\
 %\subparagraph{Benutztrelation} 
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
+\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
 \caption{Die Klassen des Paketes \textit{DebugLogic.Debugger}}
 \label{fig:debuggerOverview}
 \end{figure}
@@ -360,7 +358,7 @@ Die Aktionen des Paketes sind von Anfragen gesteuert, das bedeutet, es geschieht
 Bei jeder Änderung des Zustandes des Debuggers wird nach dem Beobachtermuster die Methode \textit{notify()} der Fassade aufgerufen und so alle Beobachter benachrichtigt.
 Je nach Methodenaufruf in der \textit{DebugLogicFacade} wird die Anfrage an die \textit{DebugControl} oder an eine konkrete Ausprägung eines Vorschlagsinterfaces (zum Beispiel \textit{StepsizeSuggestion}) weitergeleitet. Da man das Verfahren, einen solchen Vorschlag zu generieren, beliebig komplex gestalten kann, sollen die verwendeten Algorithmen austauschbar und variabel gehalten werden. Dafür bietet sich das Entwurfsmuster \enquote{Strategie} besonders an. Im Entwurf wird es durch die Interfaces \textit{StepSizeSuggestion, RelationalSuggestion} und \textit{InputValueSuggestion} realisiert. \\
 Die konkreten Debugmechanismen werden in der Klasse \textit{DebugControl} gesteuert. So verwaltet diese etwa die vom Paket \textit{DebugLogic.Interpreter} bereitgestellten \textit{WatchExpression}-Instanzen oder die \textit{TraceIterator}-Objekte, um so Schritte auszuführen.
-\subsubsection{Wichtige Elemente des Debugger}
+\subsubsection{Wichtige Elemente des Debuggers}
 \paragraph{DebugControl}
 Die Klasse \textit{DebugControl} koordiniert den Aufruf der Debugmechanismen, wie Start, Schritte, Einzelschritte und Weiter, sowie das Erstellen, Ändern und Löschen von (bedingten) Breakpoints und Watch-Expressions.
 \paragraph{ProgramInput}
@@ -430,12 +428,8 @@ Diese Klasse repräsentiert eine Watch-Expression, welche ein Ausdruck über den
 Ein Conditional Breakpoint ist ein Ausdruck über den Variablen verschiedener Programme, der sich innerhalb seines Gültigkeitsbereiches zu einem booleschen Wert auswertet.
 
 \subsection{Antlr Parser}
-\subsubsection{Übersicht}
 Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis der WLang Grammatik generiert werden und somit nicht per Hand geschrieben sind. \\
-Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang gegebenen Grammatik.
-
-\subsubsection{Wichtige Elemente des Antlr Parser}
-%gibts nicht?
+Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang (Kapitel \ref{Anhang})  gegebenen Grammatik. Genauer wird die Verwendung des Antlr Parsers in Kapitel \ref{FormSpez} beschrieben.
 
 \subsection{Exceptions}
 \subsubsection{Übersicht}
@@ -475,7 +469,7 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Erster Programmaufruf}
 \end{center}
-Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbt.
+Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbst.
 Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
 die DebugLogicFacade erstellt.
 Die ControlFacade und DebugLogicFacade erstellen intern Instanzen der Klassen ihrer Pakete. \\
