@@ -260,23 +260,29 @@ Hierbei zählen nicht nur Anzeigeelemente, sondern auch geworfene Fehlermeldunge
 Somit wird eine Methode zum transformieren einer Identität in einen Text bereitgestellt.
 
 %TODO Irgendwie eine Referenz der Strategie auf die nächsten 4 Klassen machen
-\paragraph{DBFileReader}
-Der DIbugger(DB) FileReader dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
+%\paragraph{DBFileReader}
+%Der DIbugger(DB) FileReader dient als Schnittstelle von der FileHandlerFacade zum Dateisystem für das Lesen von verschiedenen Dateiformaten für Konfigurations- und Sprachdateien.
 %bietet wofür Methoden an?
-Es werden hier nur abstrakte Methoden zum Lesen der oben genannten Dateien bereitgestellt.
-\paragraph{PropertiesFileReader}
-Als abstrakte Klasse dient \textit{PropertiesFileReader} als Schnittstelle zum Lesen einer Einstellungsdatei und bietet hierbei nur eine abstrakte Methode zum Lesen dieser an.
+%Es werden hier nur abstrakte Methoden zum Lesen der oben genannten Dateien bereitgestellt.
+%\paragraph{PropertiesFileReader}
+%Als abstrakte Klasse dient \textit{PropertiesFileReader} als Schnittstelle zum Lesen einer Einstellungsdatei und bietet hierbei nur eine abstrakte Methode zum Lesen dieser an.
 %ganzer Satz, bietet wofür Methoden an?
-\paragraph{DBFileWriter}
-Diese Klasse dient als Schnittstelle von der \textit{FileHandlerFacade} zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
+%\paragraph{DBFileWriter}
+%Diese Klasse dient als Schnittstelle von der \textit{FileHandlerFacade} zum Dateisystem für das Schreiben in verschiedene Dateiformate von Konfigurations- und Sprachdateien.
 %ganzer satz, bietet wofür Methoden an?
-Auch hier werden nur abstrakte Methoden angeboten, welche für das Schreiben von oben genannten Dateien genutzt werden können.
-\paragraph{PropertiesFileWriter}
-Der \textit{PropertiesFileWriter} dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
+%Auch hier werden nur abstrakte Methoden angeboten, welche für das Schreiben von oben genannten Dateien genutzt werden können.
+%\paragraph{PropertiesFileWriter}
+%Der \textit{PropertiesFileWriter} dient als Schnittstelle zum Schreiben einer Einstellungsdatei.
 %du weißt schon... ja ganzer satzt und methoden
-Es wird eine abstrakte Methode angeboten, welche für das Schreiben einer Einstellungsdatei benutzt werden kann.
+%Es wird eine abstrakte Methode angeboten, welche für das Schreiben einer Einstellungsdatei benutzt werden kann.
+
+\paragraph{FileReader / Writer Klassen}
+Zum Lesen und Schreiben der Konfigurations-, Einstellungs- und Sprachdateien werden vier abstrakte Klassen \textit{DB(DIbugger)FileReader},\textit{PropertiesFileReader},\textit{DBFileWriter} und \textit{PropertiesFileWriter}
+angeboten. Diese stehen jeweils für die Basis einer Strategie und bieten zusammen abstrakte Methoden zum Lesen und Schreiben der oben genannten Dateien an.
+
 \subsubsection{Unterpaket FileHandler.RDBF}
 Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der Konfigurations-, Einstellungs, und Sprachdateien formatiert im Relational Debugger Format (RDBF) Klassenstrukturen und Methoden an.
+Das Speicherformat RDBF kann im Anhang \ref{RDBF} eingesehen werden.
 %--------------------------TODO---------------------------------%
 \paragraph{RDBFDBReader}
 Diese Klasse stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
@@ -318,18 +324,21 @@ Einfache Getter und Setter Methoden für die Attribute existieren.
 Dieses Interface sorgt dafür, dass alle Klassen im Unterpaket Exceptions des FileHandlers die benötigten Methoden für eine \textit{FileHanderException} haben.
 \\
 Alle Klassen in diesem Unterpaket implementieren die Schnittstelle \textit{FileHandlerException}.
-\paragraph{LanguageNotFoundException}
-Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
-\paragraph{ParseBlockException}
-Ausnahme, die ausgelöst wird, falls beim Versuch, einen Datenblock zu parsen, ein Feler entsteht.
-\paragraph{ParseAssignmentException}
-Ausnahme, die ausgelöst wird, falls beim Versuch, eine Zuweisung zu parsen, kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
-\paragraph{InvalidLineTypeException}
-Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
+%\paragraph{LanguageNotFoundException}
+%Ausnahme, die ausgelöst wird, falls eine Sprachdatei nicht gefunden wurde.
+%\paragraph{ParseBlockException}
+%Ausnahme, die ausgelöst wird, falls beim Versuch, einen Datenblock zu parsen, ein Feler entsteht.
+%\paragraph{ParseAssignmentException}
+%Ausnahme, die ausgelöst wird, falls beim Versuch, eine Zuweisung zu parsen, kein zulässiger Datentyp existiert oder die Syntax fehlerhaft ist.
+%\paragraph{InvalidLineTypeException}
+%Ausnahme, die ausgelöst wird, falls der Typ einer Zeile nicht existent ist, also kein DatenBlock, TextBlock oder Zuweisung ist.
 %\subsection{Patterns im Paket File Handler}
 %Das Paket FileHandler.Facade stellt vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien bereit. Dadurch wird das \enquote{Strategie}-Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden. Somit dient die Verwendung des Musters vor allem der Erweiterbarkeit.\\
 %Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
-
+Es existieren die Klassen LanguageNotFounrException, ParseBlockException, ParseAssignmentException und InvalidLineTypeException.
+Die LanguageNotFoundException tritt auf, falls eine nicht existente Sprache angefragt wird.
+Alle anderern Exceptions behandeln das Auftreten von Fehlern während dem Auslesen von einzelnen Zeilen.
+Dabei werden Methodenaufrufe auf falsche Zeilen, sowie syntaktisch falsche zeilen berügsichtigt.
 \newpage
 \section{Das Paket \enquote{Debug Logic}}
 \label{DebugLogic}
