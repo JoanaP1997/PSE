@@ -127,7 +127,7 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 \subsection{Übersicht}
 %Aufgaben, angebotene und genutze Schnittstellen , Benutztrealtion als Text
 Das Paket \textit{UserInterface} stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts. \\
-Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene Schnittstellen, um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
+Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotene Schnittstellen, um an Informationen zu gelangen, die der Benutzer anfordert, und um die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
 Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{javax.swing} benutzt. Durch die Nutzung von Swing besteht der Grundaufbau des \textit{UserInterfaces} aus einem Kompositum.
 \subsection{Wichtige Elemente des User Interface}
 \begin{figure}[!h]
@@ -137,19 +137,19 @@ Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{jav
 \label{GUIOverview}
 \end{figure}
 \paragraph{GUIFacade}
-Die Fassade der Benutzeroberfläche (\textit{GUIFacade}) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket \textit{UserInterface} einfach ausgetauscht werden können. \\
-Die Fassade bietet Methoden an, um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit, das User Interface zurückzusetzen. \\
+Die Fassade der Benutzeroberfläche (\textit{GUIFacade}) dient zur Kommunikation mit den anderen Paketen. Nur die Fassade ist mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket \textit{UserInterface} einfach ausgetauscht werden können. \\
+Die Fassade bietet Methoden an, um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit, die Benutzeroberfläche zurückzusetzen. \\
 Außerdem wird die \textit{GUIFacade} beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine \textit{update()}-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
 \paragraph{MainInterface}
- Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps. 
+ Das \textit{MainInterface} bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an \textit{ProgramPanels}, sowie ein \textit{CommandPanel} und je ein \textit{WatchExpressionPanel} bzw. \textit{CondBreakpointPanel}. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von \textit{DebuggerPopUps}. 
 \paragraph{ProgramPanel}
-Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
-Als Teil des Beobachter-Entwurfsmusters besitzt ein ProgramPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
+Ein \textit{ProgramPanel} ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
+Als Teil des Beobachter-Entwurfsmusters besitzt ein \textit{ProgramPanel} eine \textit{update()}-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \paragraph{CommandPanel}
-Ein CommandPanel ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur ein mal benötigt wird, ist dieser als Singleton implementiert. 
+Ein \textit{CommandPanel} ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur einmal benötigt wird, ist dieser als Singleton implementiert. 
 \paragraph{ExpressionPanel}
-Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel). Diese werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu Sichern. \\
-Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
+Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Im Pflichtenheft wurden als Ausdrücke Watch-Expressions und bedingte Breakpoints definiert. Um diese anzuzeigen wurden die nicht-abstrakten \textit{Expression}-Unterklassen \textit{WatchExpressionPanel} und \textit{CondBreakpointPanel} entworfen. Die Panels werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu sichern. \\
+Als Teil des Beobachter-Entwurfsmusters besitzt ein \textit{ExpressionPanel} eine \textit{update()}-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/GUIDekorierer.pdf}
@@ -157,8 +157,8 @@ Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update(
 \label{guidekorierer}
 \end{figure}
 \paragraph{DebuggerPopUp}
-Ein DebuggerPopUp ist ein JDialog, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Diese Unterklassen, welche von DebuggerPopUp erben, sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
-Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, ein Dekorierer Entwurfsmuster mit JDialog dar.
+Ein \textit{DebuggerPopUp} ist ein \textit{JDialog}, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen \textit{ErrorPopUp}, \textit{WarningPopUp}, \textit{ArrayValuePopUp} und \textit{VariableSuggestionPopUp} hat. Diese Unterklassen sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
+Die Klasse \textit{DebuggerPopUp} stellt, wie in Abbildung \ref{guidekorierer} zu sehen, ein Dekorierer-Entwurfsmuster mit \textit{JDialog} dar.
 %Warum Dekorierer?
 
 \section{Das Paket \enquote{Control}}
@@ -169,7 +169,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %Idealfall mit (kleinem) klassendiagramm und Erklärung, warum keine Patterns 
 %benötigt werden
 \subsection{Übersicht}
-    Das Paket \textit{Control} entspricht dem Kontroll-Teil des Architekturstils MVC.\\
+    Das Paket \textit{Control} entspricht dem Kontroll-Teil des Architekturmusters MVC.\\
     Es dient der Entgegennahme von Benutzerinteraktionen auf dem \textit{UserInterface} und der Steuerung der Interaktion zwischen den Subsystemen \textit{UserInterface} und \textit{DebugLogic}.
     Schaltflächen, sowie Eingabefelder werden im Paket \textit{UserInterface} mit Präsentationskomponenten wie dem Variableninspektor zusammengefasst.\\
     Die vom Paket bereitgestellten Methoden sind über eine Fassade aufrufbar.\\
@@ -180,7 +180,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 \subsection{Wichtige Elemente der Control}
     Um die Funktionalität des Paketes aufzuteilen, wurden vier Klassen entworfen, die jeweils unterschiedliche Zuständigkeit besitzen.
 \paragraph{ControlFacade}
-    \textit{ControlFacade} bietet eine Schnittstelle zum Paket \textit{Control}.
+    Die \textit{ControlFacade} bietet eine Schnittstelle zum Paket \textit{Control}.
 
 \begin{figure}[!h]
     \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/debuglogic_DebugLogicController.png}}
@@ -188,16 +188,16 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
     \label{fig:DebugLogicController}
 \end{figure}
 \paragraph{DebugLogicController}
-    \textit{DebugLogicController} ist für die Modifikation der Daten des Modells und das Aufrufen von Debugmechanismen zuständig.\\
-    Über die bereitgestellten Methoden wird \enquote{DebugLogic} dazu aufgefordert, Schritte durchzuführen, WatchExpressions oder Haltepunkte zu erstellen und zu entfernen oder Vorschläge zu generieren.
+   Der \textit{DebugLogicController} ist für die Modifikation der Daten des Modells und das Aufrufen von Debugmechanismen zuständig.\\
+    Über die bereitgestellten Methoden wird die \textit{DebugLogic} dazu aufgefordert, Schritte durchzuführen, Watch-Expressions oder Haltepunkte zu erstellen und zu entfernen oder Vorschläge zu generieren.
     Außerdem werden die Zustände \enquote{Debugmodus} und \enquote{Editiermodus} in \textit{Control} implementiert, folglich bietet diese Klasse zwei Methoden zum Wechseln des aktuellen Modus.
 \paragraph{ExceptionHandler}
-    \textit{ExceptionHandler} dient zur Behandlung von beim Aufruf der Methoden aus DebugLogic oder FileHandler ausgelösten Ausnahmen.\\
-    Insbesondere kann die Präsentation dazu aufgefordert werden, Benutzer der Anwendung entsprechend über eine Fehlersituation zu informieren.
+  Der \textit{ExceptionHandler} dient zur Behandlung von beim Aufruf der Methoden aus der \textit{DebugLogic} oder dem \textit{FileHandler} ausgelösten Ausnahmen.\\
+    Insbesondere kann die Präsentation dazu aufgefordert werden, den Nutzer der Anwendung entsprechend über eine Fehlersituation zu informieren.
 \paragraph{FileHandlerInteractor}
-    \textit{FileHandlerInteractor} ist verantwortlich für das Speichern und Laden von Konfigurationsdateien, sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation des \textit{UserInterface} enthält.\\
+  Der \textit{FileHandlerInteractor} ist verantwortlich für das Speichern und Laden von Konfigurationsdateien, sowie das Verwalten einer Sprachdatei, die Anzeigetexte für die Präsentation des \textit{UserInterface} enthält.\\
     Dementsprechend besitzt die Klasse Methoden, durch welche das Wiederherstellen gespeicherter Sitzungen, oder das Laden eines Programmtextes ermöglicht wird.
-    Um dies zu ermöglichen, werden sowohl das Modell modifiziert, als auch die Präsentation (direkt) aufgefordert die gebotene Darstellung zu verändern.
+    Um dies zu ermöglichen, werden sowohl das Modell modifiziert, als auch die Präsentation (direkt) aufgefordert, die gebotene Darstellung zu verändern.
 
 \section{Das Paket \enquote{File Handler}}
 \label{FileHandler}
@@ -221,14 +221,14 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
 %\end{itemize}
 %\paragraph{Benutztrelation}
 %Der FileHandler benutzt keine weiteren Subsysteme.
-Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model Teil des MVC-Konzepts an.
-Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um.
-Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats (siehe Anhang \ref{Anhang}) ist, also aus Zuweisungen und Blöcken.
-Weiter erzeugt der \textit{FileHandler} Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben.
-Einstellungsdateien werden mithilfe von Java's Properties Klasse realisiert.
-Da der FileHandler an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, lediglich werden mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
-Dafür werden Klassen für das interne Relational Debugger Format (RDBF)  beziehungsweise Java Properties bereitgestellt. Jedoch kann das Paket um andere Formate, wie \enquote{XML} oder \enquote{Json}, erweitert werden.
-Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produkteinstellungen, Sprachen (Übersetzungen der GUI) und Konfigurationen angeboten und nach außen weitergegeben.
+Das Paket \textit{FileHandler} stellt die Funktionalität zum Lesen, Schreiben, Parsen und Interpretieren von sämtlichen Dateien bereit und siedelt sich im Model-Teil des MVC-Konzepts an. \\
+Dabei wandelt der \textit{FileHandler} eine Konfigurations- oder Sprachdatei, welche auf dem Dateisystem gespeichert ist, in eine virtuelle Datei um. 
+Diese besteht aus einer Klassenstruktur, welche äquivalent zur Definition des Speicherformats (siehe Anhang \ref{Anhang}) ist, also aus Zuweisungen und Blöcken. \\
+Weiter erzeugt der \textit{FileHandler} Objekte der Konfigurations-, Sprach- und Einstellungsdateien und kann diese nach außen weitergeben. \\
+Einstellungsdateien werden mithilfe von Javas \textit{Properties} Klasse realisiert.
+Da der \textit{FileHandler} an unterster Stelle der Benutztrelation steht, benötigt er keine Schnittstellen anderer Programmpakete, es wird lediglich mindestens jeweils eine Klasse zum Lesen und Schreiben von Konfigurations-, Einstellungs- und Sprachdateien benötigt.
+Dafür werden Klassen für das interne \textit{Relational Debugger Format }(RDBF)  beziehungsweise Java \textit{Properties} bereitgestellt. Jedoch kann das Paket um andere Formate, wie \enquote{XML} oder \enquote{Json}, erweitert werden.
+Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produkteinstellungen, Sprachen (Übersetzungen der Benutzeroberfläche) und Konfigurationen angeboten und nach außen weitergegeben.
 \subsection{Wichtige Elemente des File Handlers}
 \subsubsection{Unterpaket FileHandler.Facade}
 \begin{figure}[!h]
@@ -240,13 +240,13 @@ Weiter werden eine Fassadenklasse und drei Klassen für das Speichern von Produk
 Diese Klasse speichert alle verfügbaren Sprachen und hilft bei der Erzeugung von Konfigurations- und Einstellungsdateien.
 %bietet wofür Methoden an?
 Die Klasse beinhaltet alle aktuellen Sprachdateien.
-Sie bietet Methoden zum Lesen und Speichern von Konfigurationsdateien an. Dabei können auch Textdateien, die einen Programmtext enthalten gelesen werden.
+Sie bietet Methoden zum Lesen und Speichern von Konfigurationsdateien an. Dabei können auch Textdateien, die einen Programmtext enthalten, gelesen werden.
 Weiter kann die aktuelle Einstellungsdatei abgerufen werden, sowie alle verfügbaren Sprachen und eine bestimmte Sprachdatei.
 \paragraph{ConfigurationFile}
 Diese Klasse speichert eine Konfiguration des Debuggers.
 %bietet wofür Methoden an?
 Dabei enthält diese Objekte für den Speicherort der Konfiguration, sowie Programmtexte, Schrittgrößen und Eingabewerte.
-Weiter wird der Status des Debuggers gespeichert, also die derzeitigen Programmzähler, Watch-Expressions, Breakpoints (einfach und bedingt), sowie der von die von der GUI abhängigen Konfiguration der Variableninspektors.
+Weiter wird der Status des Debuggers gespeichert, also die derzeitigen Programmzähler, Watch-Expressions, Breakpoints (einfach und bedingt), sowie die von der Benutzeroberfläche-abhängige Konfiguration des Variableninspektors.
 Methoden zum Lesen und Schreiben dieser Attribute werden zur Verfügung gestellt. Dabei wird darauf geachtet, dass nicht zuviel von der internen Struktur der Klasse nach außen gegeben wird.
 \paragraph{PropertiesFile}
 Diese Klasse speichert die Einstellungen des Debuggers.
@@ -255,8 +255,8 @@ Darunter fallen Daten wie die ausgewählte Sprache, obere Grenzen für Iteration
 Methoden für diese Attribute werden durch einfache Getter realisiert.
 \paragraph{LanguageFile}
 %ganzer Satz, bietet wofür Methoden an?
-Diese Klasse stellt die Übersetzung in eine bestimmte Sprache zu den von einem User Interface angezeigten Texten bereit.
-Hierbei zählen nicht nur Anzeigeelemente, sondern auch geworfene Fehlermeldungen der unteren Schichten.
+Diese Klasse stellt die Übersetzung in eine bestimmte Sprache zu den von einem \textit{UserInterface} angezeigten Texten bereit.
+Dazu zählen nicht nur Anzeigeelemente, sondern auch Fehlermeldungen, die in der \textit{DebugLogic} oder der \textit{Control} geworfen werden.
 Somit wird eine Methode zum transformieren einer Identität in einen Text bereitgestellt.
 
 %TODO Irgendwie eine Referenz der Strategie auf die nächsten 4 Klassen machen
@@ -277,15 +277,15 @@ Somit wird eine Methode zum transformieren einer Identität in einen Text bereit
 %Es wird eine abstrakte Methode angeboten, welche für das Schreiben einer Einstellungsdatei benutzt werden kann.
 
 \paragraph{FileReader / Writer Klassen}
-Zum Lesen und Schreiben der Konfigurations-, Einstellungs- und Sprachdateien werden vier abstrakte Klassen \textit{DB(DIbugger)FileReader},\textit{PropertiesFileReader},\textit{DBFileWriter} und \textit{PropertiesFileWriter}
+Zum Lesen und Schreiben der Konfigurations-, Einstellungs- und Sprachdateien werden vier abstrakte Klassen \textit{DB(DIbugger)FileReader}, \textit{PropertiesFileReader}, \textit{DBFileWriter} und \textit{PropertiesFileWriter}
 angeboten. Diese stehen jeweils für die Basis einer Strategie und bieten zusammen abstrakte Methoden zum Lesen und Schreiben der oben genannten Dateien an.
 
 \subsubsection{Unterpaket FileHandler.RDBF}
-Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der Konfigurations-, Einstellungs, und Sprachdateien formatiert im Relational Debugger Format (RDBF) Klassenstrukturen und Methoden an.
+Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der im \textit{Relational Debugger Format} (RDBF) formatierten Konfigurations-, Einstellungs, und Sprachdateien  Klassenstrukturen und Methoden an.
 Das Speicherformat RDBF kann im Anhang \ref{RDBF} eingesehen werden.
 %--------------------------TODO---------------------------------%
 \paragraph{RDBFDBReader}
-Diese Klasse stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+Diese Klasse (\textit{Relational Debugger Format Debugger Reader}) stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
 %gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
 Als konkrete Strategie werden die Methoden von der Klasse DBReader überschrieben.
 \paragraph{RDBFPropReader}
@@ -304,17 +304,17 @@ Es wird nur eine Methode angeboten, welche eine virtuelle RDBF Datei auf das Dat
 %---------------------------------------------------------------%
 \paragraph{RDBFParser}
 Diese Klasse existiert als Singleton und übernimmt die Funktionalität, eingelesene Zeilen zu analysieren und zu interpretieren, um diese dann final zu Objekten zusammenzufassen.
-Sie bietet Methoden zum herausfinden des Typs einer Zeile (Zuweisung, Block, Textblock), sowie eines Zuweisungswertes an.
-Damit können weitere Methoden benutzt werden, welche aus einer Zuweisung die Variable und den Wert herausfinden, bei einem Block den Blocknamen und den Wert einer Zuweisung in einen primitiven Datentyp von JAVA umwandelt.
+Sie bietet Methoden zum Herausfinden des Typs einer Zeile (Zuweisung, Block, Textblock), sowie eines Zuweisungswertes an.
+Damit können weitere Methoden benutzt werden, welche aus einer Zuweisung die Variable und den Wert herausfinden, bei einem Block den Blocknamen und den Wert einer Zuweisung in einen primitiven Datentyp von Java umwandelt.
 \paragraph{RDBFAdditions}
-Abstrakte Klasse zum repräsentieren von RDBFFile und RDBFBlock, da diese sich nur in wenigen Punkten unterscheiden.
-Hierfür werden eine Liste an Blöcken (RDBFBlock) und Daten (RDBFData) gespeichert und Getter-Methoden bereitgestellt.
+Abstrakte Klasse zum Repräsentieren von \textit{RDBFFile} und \textit{RDBFBlock}, da diese sich nur in wenigen Punkten unterscheiden.
+Hierfür werden eine Liste an Blöcken (\textit{RDBFBlock}) und Daten (\textit{RDBFData}) gespeichert und Getter-Methoden bereitgestellt.
 Diese können mithilfe von Blocknamen und Variablennamen Teillisten der obigen Attribute erstellen und zurückgeben.
 \paragraph{RDBFFile}
-Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und stützt sich dabei auf die Implementierung von RDBFAdditions.
+Repräsentiert eine RDBF Datei als schnell zugreifbare Objektstruktur und stützt sich dabei auf die Implementierung von \textit{RDBFAdditions}.
 Sie speichert zusätzlich nur den Dateipfad der darzustellenden Datei.
 \paragraph{RDBFBlock}
-Stellt einen in der RDBF Grammatik definierten Block dar. Dabei werden die Methoden von RDBFAdditions geerbt.
+Stellt einen in der RDBF Grammatik definierten Block dar. Dabei werden die Methoden von \textit{RDBFAdditions} geerbt.
 Die Klasse speichert zusätzlich zu beiden Listen nur den Namen des Blocks.
 \paragraph{RDBFData}
 Repräsentiert eine Zuweisung der RDBF Grammatik als Datenstruktur. Hierbei enthält diese einen Variablennamen, Wert und zusätzlich den Typ des Wertes.
@@ -335,10 +335,10 @@ Alle Klassen in diesem Unterpaket implementieren die Schnittstelle \textit{FileH
 %\subsection{Patterns im Paket File Handler}
 %Das Paket FileHandler.Facade stellt vier abstrakte Klassen zum Lesen und Schreiben von Sprach-, Einstellungs- und Konfigurationsdateien bereit. Dadurch wird das \enquote{Strategie}-Muster implementiert und vom Paket FileHandler.RDBF genutzt. Dabei wird für jede Abstrakte Klasse eine spezielle Strategie zur Verfügung gestellt. Jedoch können später weitere zum Lesen und Schreiben von anderer Dateiformaten, z.B. XML, Json... , implementiert werden. Somit dient die Verwendung des Musters vor allem der Erweiterbarkeit.\\
 %Das Entwurfsmuster Einzelstück (Singleton) wurde bei der Klasse RDBFParser verwendet, da diese keine Daten speichern muss und nur für das Lesen und richtige Interpretieren von Zeilen verantwortlich ist. So wird  ein globaler Zugriffspunkt bereitgestellt und es wird sichergestellt, dass stets nur ein Parser exisitiert.
-Es existieren die Klassen LanguageNotFounrException, ParseBlockException, ParseAssignmentException und InvalidLineTypeException.
-Die LanguageNotFoundException tritt auf, falls eine nicht existente Sprache angefragt wird.
-Alle anderern Exceptions behandeln das Auftreten von Fehlern während dem Auslesen von einzelnen Zeilen.
-Dabei werden Methodenaufrufe auf falsche Zeilen, sowie syntaktisch falsche zeilen berügsichtigt.
+Es existieren die Klassen \textit{LanguageNotFoundException}, \textit{ParseBlockException}, \textit{ParseAssignmentException} und \textit{InvalidLineTypeException}.
+Die \textit{LanguageNotFoundException} tritt auf, falls eine nicht-existente Sprache angefragt wird.
+Alle anderen Exceptions behandeln das Auftreten von Fehlern während des Auslesens einzelner Zeilen.
+Dabei werden Methodenaufrufe auf falsche Zeilen, sowie syntaktisch falsche Zeilen berücksichtigt.
 \newpage
 \section{Das Paket \enquote{Debug Logic}}
 \label{DebugLogic}
@@ -347,16 +347,16 @@ Dabei werden Methodenaufrufe auf falsche Zeilen, sowie syntaktisch falsche zeile
 %Aus Aufgaben / Schnittstellen / Benutztrelation jeweils zur Übersicht einen %schönen Blocktext machen, Inhalt ist ja schon da.
 %Bei der Beschreibung der wichtigen Elemente an der Beschreibung im User %Interface orientieren, am besten gleich an der jeweiligen Stelle auf die %Patterns verweisen
 %Die bisherige Beschreibung der Patterns habe ich dir ans Ende des Kapitels %kopiert.
-Das Paket \textit{DebugLogic} stellt den Model Teil der MVC Architektur dar. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur.\\
-Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der im Anhang \ref{Anhang} gegebenen Grammatiken.\\ Darauf aufbauend in der mittleren Schicht findet sich das Subpaket \textit{DebugLogic.Interpreter}, das die Aufgabe hat, diese Ableitungsbäume durch Interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
+Das Paket \textit{DebugLogic} gehört zum den Model-Teil der MVC Architektur. Die interne Struktur des Paketes ist eine intransparente 3-Schichten-Architektur, das heißt in der Hierarchie höher angesiedelte Schichten können nur auf die direkt darunterliegende Schicht zugreifen.\\
+Die unterste Schicht stellt das Subpaket \textit{DebugLogic.AntlrParser} dar. Es erzeugt aus einfachen Zeichenketten Ableitungsbäume nach den Ableitungsregeln der im Anhang \ref{Anhang} gegebenen Grammatiken.\\ Darauf aufbauend findet sich in der mittleren Schicht das Subpaket \textit{DebugLogic.Interpreter}, das die Aufgabe hat, diese Ableitungsbäume durch Interpretieren in eine abstrakte und leicht handhabbare Form zu bringen. In der obersten Schicht ist das Subpaket \textit{DebugLogic.Debugger} angesiedelt. Dieses nutzt die abstrakten Repräsentationen und führt den eigentlichen Debugprozess darauf aus.
 \subsection{Debugger}
 \subsubsection{Übersicht}
 Der Debugger nutzt die vom Subpaket \textit{DebugLogic.Interpreter} erzeugten Informationen, um Watch-Expressions und bedingte Breakpoints auszuwerten, sowie die üblichen Debugmechanismen zu steuern.
 %\subparagraph{Schnittstellen}
-Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die DebugLogic bereit. Diese können in Kapitel \ref{GlobalePatterns} der entsprechenden Fassadenklasse entnommen werden. \\
+Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die gleichen Schnittstellen wie die \textit{DebugLogic} bereit. Diese können in Kapitel \ref{GlobalePatterns} der entsprechenden Fassadenklasse entnommen werden. \\
 %\subparagraph{Benutztrelation} 
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
-Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
+Um Watch-Expressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
 \caption{Die Klassen des Paketes \textit{DebugLogic.Debugger}}
@@ -379,18 +379,18 @@ Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe 
 \paragraph{InputValueSuggestion}
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung eines Strategiemusters erleichtert.
 \paragraph{RelationalSuggestion}
-Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
+Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder Watch-Expressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
 
 
 \subsection{Interpreter}
 \subsubsection{Übersicht}
-Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert diese und stellt sie abstrakt dar.
+Dieses Paket ist dafür verantwortlich, die bereits vom \textit{DebugLogic.AntlrParser}  geparsten Nutzereingaben so zu verarbeiten, dass der \textit{DebugLogic.Debugger} damit weiterarbeiten kann. Nimmt das Paket vom \textit{DebugLogic.AntlrParser} den Quelltext eines (WLang-) Programms entgegen, erzeugt es einen Pfad über den gesamten Programmfluss des Programms, sodass später darüber iteriert werden kann. Nimmt das Paket Zeichenketten entgegen, die Watch-Expressions und bedingte Breakpoints beschreiben, interpretiert es diese und stellt sie abstrakt dar.
 Innerhalb dieses Paketes wird auch auf semantische Fehler geprüft, etwa das Fehlen eines return-Statements.\\
 Dieses Unterpaket benutzt das Unterpaket \textit{DebugLogic.AntlrParser}, um damit aus den reinen Zeichenketten einen Syntaxbaum gemäß der im Anhang \ref{Anhang} gegebenen Grammatik für die Sprache WLang erzeugen zu lassen.
 Der Vorgang der Erzeugung des oben erwähnten Pfades wird genauer in \ref{TraceGen} erklärt.
 \subsubsection{Wichtige Elemente des Interpreters}
 \paragraph{GenerationController}
-Steuert die Erzeugung eines kompletten Programmverlaufs (Trace), siehe Kapitel \ref{charAbl}.
+Steuert die Erzeugung eines kompletten Programmverlaufs (Trace), siehe den entsprechenden charakteristischen Ablauf in Kapitel \ref{charAbl}.
 \paragraph{CommandGenerationVisitor}
 Verwendet das Visitor Entwurfsmuster, um über einen Ableitungsbaum nach der in Kapitel \ref{FormSpez} gegebenen WLang-Grammatik zu gehen und dabei eine Menge von Commands zu erzeugen. \\
 Um die Term- und Befehlsstrukturen zu erzeugen, wird  hier das Entwurfsmuster \textit{Visitor} verwendet. Zum einen ermöglicht es, die von Antlr generierten \textit{ParseTree}-Objekte mit den von Antlr vorgegebenen Schnittstellen zu durchlaufen. Zum anderen bietet dieses Pattern die Möglichkeit, beliebige Operationen auf den Ableitungsbäumen auszuführen, ohne die von Antlr generierten Klassenstrukturen zu verändern. Die Nutzung dieses Patterns ist daher beim Umgang mit Antlr beinahe unumgänglich.
@@ -400,8 +400,8 @@ Kapselt aktuelle Variablenbelegung innerhalb eines Funktionsaufrufs.
 Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gemäß seiner Semantik verändern kann.
 \\
 Für diese Klasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
-Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
-Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
+Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessieren nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
+Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren, ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
@@ -409,7 +409,7 @@ Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzu
 \label{Command}
 \end{figure}
 \paragraph{Trace}
-Stellt den kompletten Programmverlauf eines WLang-Programms dar.
+Stellt den kompletten Programmverlauf eines WLang-Programms dar. Besteht aus \textit{TraceStates}.
 \paragraph{TraceState}
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \paragraph{Der Traceiterator}
@@ -422,7 +422,7 @@ Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 Wir betrachten Abbildung \ref{TraceIterator}.
 Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \paragraph{Term}
-Stellt eine Abstrakte Repräsentation eines arithmetischen bzw. logischen Terms dar. 
+Stellt eine abstrakte Repräsentation eines arithmetischen bzw. logischen Terms dar. 
 \\
 Die Struktur eines Termes kann wie folgt beschrieben werden: \\
 Konstanten und Variablen sind Terme. Sind $A$ und $B$ Terme und $\sigma$ ein zweistelliger Operator, dann ist auch $A\sigma B$ ein Term. Ist $\nabla$ ein einstelliger Operator, dann ist auch $\nabla A$ ein Term. Diese induktiv aufgebaute Struktur der Terme lässt sich in naheliegender Weise in eine Klassenstruktur übertragen, die in Abbildung \ref{Terme} dargestellt ist. Hier wird das Entwurfsmuster \enquote{Kompositum} verwendet. Der Vorteil besteht in der einfachen und einheitlichen Nutzung der Funktion \textit{evaluate()}. Diese gibt eine Instanz vom Typ \textit{TermValue} zurück. Die vollständige Funktionalität des vorliegenden Typsystems ist in den Implementierungen dieser Schnittstelle gekapselt. Einen Spezialfall von Termen stellen \textit{BinaryCondition} und \textit{Comparison} dar. Diese werten sich per Definition zu booleschen Werten aus. Das Liskovsche Substitutionsprinzip erlaubt Kovarianz in den Ausgabeparametern, weswegen es möglich ist, diesen Subklassen von \textit{Term} in den \textit{evaluate()}-Methoden den Rückgabetyp \textit{BooleanValue} zu geben, eine spezielle Implementierung des \textit{TermValue}-Interfaces.
@@ -594,7 +594,7 @@ Wenn der Benutzer durch Weiter (FA 130), Schritt (FA 20)oder Einzelschritt (FA 3
 die Control an die DebugLogic weitergegeben. Die Schritte werden von der DebugLogic ausgeführt, und anschließend
 wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
 \subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
-In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
+In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für Watch-Expressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
 \subsubsection{Erzeugung einer abstrakten Repräsentation für Watch-Expressions und bedingte Breakpoints}
 Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. 
 %Wie Terme in der Klassenstruktur aufgebaut sind, ist im Kapitel \ref{Patterns} %genauer beschrieben. 
