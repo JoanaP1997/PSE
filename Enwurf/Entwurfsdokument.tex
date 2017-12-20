@@ -79,7 +79,12 @@ Dieses Dokument erläutert nun, wie diese Anforderungen softwaretechnisch umgese
 \newpage
 \section{Übersicht}
 \label{Übersicht}
-
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Plichtenheft/Architektur.png} \\
+\caption{Architekturdiagramm}
+\label{Architekturdiagramm}
+\end{figure}
 Das Produkt ist aufgeteilt in die vier Pakete \textit{Control}, \textit{UserInterface}, \textit{FileHandler} und \textit{DebugLogic}. 
 Dabei hat jedes Paket seine eigene Aufgabe:
 \begin{itemize}
@@ -92,21 +97,13 @@ Dabei hat jedes Paket seine eigene Aufgabe:
 Klickt der Nutzer beispielsweise mit dem Debuggen beginnen und drückt den entsprechenden Knopf auf der Benutzeroberfläche, setzt die \textit{Control} diesen Befehl um, indem sie die notwendigen Schritte der \textit{DebugLogic} ausführt. Will der Nutzer seine Ergebnisse später speichern, drückt er wieder einen Knopf auf der Benutzeroberfläche und der Befehl wird wieder vom \textit{UserInterface} an die \textit{Control} weitergegeben, die dieses Mal zum Speichern den \textit{FileHandler} aufruft. In Abbildung \ref{Architekturdiagramm} sind die Pakete und die Benutzt-Relation dargestellt. \\
 Aus der Abbildung wird ebenfalls ersichtlich, dass die \textit{DebugLogic} aus den Unterpaketen \textit{Debugger}, \textit{Interpreter} und \textit{AntlrParser} besteht. Deren Funktionalität wird in Kapitel \ref{DebugLogic} dargelegt. \\
 
-\newpage
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.7\textwidth]{../Plichtenheft/Architektur.png} \\
-\caption{Architekturdiagramm}
-\label{Architekturdiagramm}
-\end{figure}
 
 \newpage
 \section{Global genutzte Entwurfsmuster}
 \label{GlobalePatterns}
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[width=1.42\textwidth]{diagrammIdeenUmlet/fassaden.pdf}}
-%\captionof{figure}{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \caption{Die Schnittstellen der Pakete durch Fassaden dargestellt}
 \label{fig:fassaden}
 \end{figure}
@@ -130,33 +127,33 @@ Durch die Einteilung des Systems in einzelne Subsysteme in Form von Paketen, ist
 \subsection{Übersicht}
 %Aufgaben, angebotene und genutze Schnittstellen , Benutztrealtion als Text
 Das Paket \textit{UserInterface} stellt die Möglichkeit zur Kommunikation des Nutzers mit dem Produkt dar. Hierbei dient dieses Paket als View Teil des MVC-Konzepts. \\
-Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben.
+Es wird eine Fassade angeboten, welche es ermöglicht, Variablen, Programmtexte und Eingaben anzuzeigen. Dieses Paket nutzt die Fassade des Paketes \textit{Control} und deren angebotenen Schnittstellen um an Informationen zu gelangen, die der Benutzer anfordert, und die Aktionen des Benutzers zur Ausführung weiterzugeben. \\
+Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{javax.swing} benutzt. Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}.
 \subsection{Wichtige Elemente des User Interface}
 \begin{figure}[!h]
 \centering
-%\includegraphics[width=1.05\textwidth]{diagrammIdeenUmlet/GUIOverview.pdf}
+\includegraphics[width=1.1\textwidth]{diagrammIdeenUmlet/GUIOverview.pdf}
 \caption{Wichtige Anzeigeelemente des User Interface}
 \label{GUIOverview}
 \end{figure}
 \paragraph{GUIFacade}
 Die Fassade der Benutzeroberfläche (GUIFacade) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket User Interface einfach ausgetauscht werden können. \\
 Die Fassade bietet Methoden um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit
-das User Interface zurückzusetzen.
+das User Interface zurückzusetzen. \\
+Außerdem wird die GUIFacade beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine update()-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
 \paragraph{MainInterface}
- Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps.
+ Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps. 
 \paragraph{ProgramPanel}
 Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
 Als Teil des Beobachter-Entwurfsmusters besitzt ein ProgramPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \paragraph{CommandPanel}
-Ein CommandPanel ist ein Singleton, welches die Buttons zur Kontrolle des Debugvorgangs anzeigt. 
-%Warum ein Singletion? noch einfügen
+Ein CommandPanel ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur ein mal benötigt wird, ist dieser als Singleton implementiert. 
 \paragraph{ExpressionPanel}
-Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel), welche als Singletons realisiert werden.
-%Warum Singleton? noch einfügen
+Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel). Diese werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu Sichern. \\
 Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \begin{figure}[!h]
 \centering
-%\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/GUIDekorierer.pdf}
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/GUIDekorierer.pdf}
 \caption{Realisierung des Entwurfsmusters Dekorierer in DebuggerPopUp}
 \label{guidekorierer}
 \end{figure}
@@ -164,12 +161,6 @@ Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update(
 Ein DebuggerPopUp ist ein JDialog, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Diese Unterklassen, welche von DebuggerPopUp erben, sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
 Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, ein Dekorierer Entwurfsmuster mit JDialog dar.
 %Warum Dekorierer?
-
-%\subsection{Patterns im Paket User Interface}
-%Durch die Nutzung von Swing besteht der Grundaufbau des User Interfaces aus einem \enquote{Kompositum}. 
-%Durch anonyme Instanzen von Action Listenern wird das Befehlsmuster implementiert. \\
-%Des Weiteren werden die Entwurfsmuster Vererbung (z.B. DebuggerPopUp und ErrorPopUp) und Beobachter (durch das MVC-Konzept vorgegeben) in den Klassen ExpressionPanel und ProgramPanel implementiert. Dies sorgt zum einen für die Vermeidung von Codeduplikationen, zum anderen müssen sich andere Klassen nicht darum kümmern, welche Informationen die benutzeroberfläche gerade braucht.\\
-%Die Klassen CondBreakpointPanel und WatchExpressionPanel stellen Singletons dar, damit der Nutzer immer eine einzige Stelle hat, an welcher er mit bedingten Breakpoints und Watch-Expressions arbeitet. 
 
 \section{Das Paket \enquote{Control}}
 \label{Control}
@@ -193,7 +184,7 @@ Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, 
     \textit{ControlFacade} bietet eine Schnittstelle zum Paket \textit{Control}.
 
 \begin{figure}[!h]
-    \makebox[\textwidth][c]{\includegraphics[width=0.75\textwidth]{diagrammIdeenUmlet/debuglogic_DebugLogicController.png}}
+    \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/debuglogic_DebugLogicController.png}}
     \caption{Die Klasse DebugLogicController}
     \label{fig:DebugLogicController}
 \end{figure}
@@ -360,7 +351,7 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
+%\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
 \caption{Die Klassen des Paketes \textit{DebugLogic.Debugger}}
 \label{fig:debuggerOverview}
 \end{figure}
@@ -380,7 +371,6 @@ Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms.
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung eines Strategiemusters wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
 \paragraph{InputValueSuggestion}
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung eines Strategiemusters erleichtert.
-
 \paragraph{RelationalSuggestion}
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
 
@@ -405,22 +395,23 @@ Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gem�
 Für diese Klasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
 Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
-\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
+\caption{Die Klasse \textit{Command} als Kompositum}
 \label{Command}
-\end{center}
+\end{figure}
 \paragraph{Trace}
 Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \paragraph{TraceState}
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \paragraph{Der Traceiterator}
-%\begin{center}
-%\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/%TraceIteratorPattern.pdf}
-%\captionof{figure}{Der Traceiterator}
-%\label{TraceIterator}
-%\end{center}
-%TODO UML Diagramm
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
+\caption{Der Traceiterator}
+\label{TraceIterator}
+\end{figure}
 Wir betrachten Abbildung \ref{TraceIterator}.
 Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \paragraph{Term}
