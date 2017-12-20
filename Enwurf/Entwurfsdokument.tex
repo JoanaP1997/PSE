@@ -359,7 +359,7 @@ Als oberste Schicht des Paketes \textit{DebugLogic} stellt dieses Subpaket die g
 Um die üblichen Debugmechanismen wie Schritte und Weiter durchführen zu können, nutzt dieses Subpaket den vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellten Trace-Iterator. 
 Um WatchExpressions und bedingte Breakpoints auszuwerten und zu repräsentieren, nutzt dieses Subpaket die vom Subpaket \textit{DebugLogic.Interpreter} bereitgestellte abstrakte Repräsentationen.
 \begin{figure}[!h]
-\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
+%\makebox[\textwidth][c]{\includegraphics[width=1\textwidth]{diagrammIdeenUmlet/DebuggerOverview.pdf}}
 \caption{Die Klassen des Paketes \textit{DebugLogic.Debugger}}
 \label{fig:debuggerOverview}
 \end{figure}
@@ -379,7 +379,6 @@ Kapselt die Informationen eines Breakpoints in einer Zeile eines Programms.
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche die Größe der Steps anhand der Programmtexte vorschlägt. Durch die Nutzung eines Strategiemusters wird das Erweitern des Produkts durch weitere Arten Vorschläge zu generieren erleichtert.
 \paragraph{InputValueSuggestion}
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche eine Variable eines bestimmtem Typs innerhalb eines Bereichs vorschlägt. Auch hier wird die Erweiterbarkeit des Produkts durch die Nutzung eines Strategiemusters erleichtert.
-
 \paragraph{RelationalSuggestion}
 Stellt das Grundgerüst einer Klasse dar (abstrakte Klasse), welche bedingte Breakpoints oder WatchExpressions vorschlägt. Hier wird ebenfalls durch Strategiemuster die Erweiterbarkeit des Produkts um weitere Arten der Vorschlagsgenerierung erleichtert.
 
@@ -404,22 +403,23 @@ Stellt einen ausführbaren Befehl dar, der die aktuellen Variablenzustände gem�
 Für diese Klasse und ihre Unterklassen wird ein \enquote{Kompositum} verwendet.
 Ein Auszug davon ist in Abbildung \ref{Command} zu sehen. Zunächst gibt es elementare Befehle, wie etwa eine einfache Zuweisung. Es gibt jedoch auch Befehle, wie etwa while- und if- Befehle, die mehrere Unterbefehle haben, und entscheiden müssen, ob und wie oft diese ausgeführt werden. Sie stellen also in diesem Fall Befehlskompositionen dar. Ein großer Vorteil dieser Modellierung besteht in der Nutzung der Methode \textit{run()}. Der Aufrufer eines Befehls muss nicht wissen, ob es sich um einen elementaren Zuweisungs- oder Deklarationsbefehl oder um einen komplexen zusammengesetzten Befehl wie etwa eine Schleife handelt. Ihn interessiert nur die während der Ausführung des Befehls angenommenen Zustände. Die Befehlsfunktionalität wird so weggekapselt. \\
 Einen Befehl als Objekt zu kapseln, um diesen in Warteschlangen zu fügen, aufzubewahren oder Empfänger damit zu parametrisieren ist der Zweck des Entwurfsmusters \enquote{Command}, das hier auch verwendet ist. Da die Befehle zunächst alle erzeugt und dann später ausgeführt werden. Die Ausführung der Befehle ist entsprechend komplex, da dabei etwa Typprüfungen stattfinden müssen (Näheres dazu ist in Kapitel \ref{charAbl} zu finden), weswegen es sich auch empfiehlt, diese Arbeit zu kapseln. 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/CommandComposite.pdf}
-\captionof{figure}{Die Klasse \textit{Command} als Kompositum}
+\caption{Die Klasse \textit{Command} als Kompositum}
 \label{Command}
-\end{center}
+\end{figure}
 \paragraph{Trace}
 Stellt den kompletten Programmverlauf eines WLang-Programms dar.
 \paragraph{TraceState}
 Stellt einen Zustand während des Programmverlaufs eines WLang-Programms dar.
 \paragraph{Der Traceiterator}
-%\begin{center}
-%\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/%TraceIteratorPattern.pdf}
-%\captionof{figure}{Der Traceiterator}
-%\label{TraceIterator}
-%\end{center}
-%TODO UML Diagramm
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/TraceIteratorPattern.pdf}
+\caption{Der Traceiterator}
+\label{TraceIterator}
+\end{figure}
 Wir betrachten Abbildung \ref{TraceIterator}.
 Grundkonzept des Debuggens ist die folgende Idee: Zunächst wird die komplette Ausführung eines Programmlaufes berechnet und dabei nach jedem ausgeführten Befehl der Zustand der Variablen gespeichert. Die Aggregation all dieser als \textit{TraceState}-Instanzen dargestellten Zustände ist ein sogenanntes \textit{Trace}-Objekt. Um es dem Paket \textit{DebugLogic.Debugger} zu ermöglichen, ohne Kenntnis der konkreten Darstellung dieses Traces über die \textit{TraceState}-Objekte zu iterieren, wird lediglich ein \textit{TraceIterator}-Objekt nach außen gegeben. Um dabei die volle von Java angebotene Funktionalität zu nutzen, werden die entsprechenden Java Schnittstellen implementiert. 
 \paragraph{Term}
