@@ -449,18 +449,18 @@ Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendige
 Alle Klassen in diesem Paket implementieren diese Schnittstelle. 
 %die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
 \paragraph{MissingReturnCallException}
-Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält.
+Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält
 \paragraph{InvalidProgramException}
 Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
 \paragraph{WrongArgumentException}
-Abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird. Das UML-Diagramm stellt die Unterklassen dieser abstrakten Klasse dar.
+\textit{WrongArgumentException} ist abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird. Das UML-Diagramm stellt die Unterklassen dieser abstrakten Klasse dar.
 %TODO UML Diagramm
 \paragraph{ReturnTypeException}
-Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird.
+Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird
 \paragraph{WrongTypeAssignmentException}
-Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind.
+Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind
 \paragraph{VariableNotFoundException}
-Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird.
+Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird
 \paragraph{AlreadyDeclaredException}
 Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
 \paragraph{RoutineNotFoundException}
@@ -478,13 +478,11 @@ Anwendungsfälle, anhand von Sequenzdiagrammen dargestellt und erklärt.
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_firstCallPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Erster Programmaufruf}
 \end{center}
-Wird das Produkt gestartet, erstellt die Main-Methode des MainInterface die GUIFacade und übergibt sich selbst.
-Die GUIFacade speichert das MainInterface und erstellt ihrerseits die ControlFacade, welche wiederum
-die DebugLogicFacade erstellt.
-Die ControlFacade und DebugLogicFacade erstellen intern Instanzen der Klassen ihrer Pakete. \\
-Die GUIFacade wird bei diesem Prozess bis zur DebugLogic weitergereicht, um dort als Observer angemeldet werden
-zu können. Wird später dann zum Beispiel ein Breakpoint hinzugefügt, wird die GUIFacade benachrichtigt und
-kann sich updaten.
+Wird das Produkt gestartet, erstellt die Main-Methode des \textit{MainInterface} die \textit{GUIFacade} und übergibt sich selbst.
+Die \textit{GUIFacade} speichert das \textit{MainInterface} und erstellt ihrerseits die \textit{ControlFacade}, welche wiederum die \textit{DebugLogicFacade} erstellt.
+Die \textit{ControlFacade} und \textit{DebugLogicFacade} erstellen intern Instanzen der Klassen ihrer Pakete. \\
+Die \textit{GUIFacade} wird bei diesem Prozess bis zur \textit{DebugLogic} weitergereicht, um dort als Observer angemeldet werden zu können. 
+Wird später dann zum Beispiel ein Breakpoint hinzugefügt, wird die \textit{GUIFacade} benachrichtigt und kann sich updaten.
 
 \newpage
 \subsection{Konfigurationsdatei laden}
@@ -492,13 +490,11 @@ kann sich updaten.
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_loadConfigPDF.pdf}
 \captionof{figure}{Sequenzdiagramm:  Laden einer Konfigurationsdatei}
 \end{center}
-Wählt der Benutzer über den Menüeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus,
-gibt das UserInterface diesen Befehl an die Control weiter, welche ein Configuration Objekt vom FileHandler 
-erhält. \\
-Die Control ruft anschließend Methoden der GUIFacade auf, um die Programmtexte, Eingabevariablen und
-die im Variableninspektor anzuzeigende Variablen anzuzeigen. Außerdem ruft die Control
-Methoden der DebugLogicFacade auf, um für jedes Programm die Breakpoints, Watch-Expressions und
-Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als Observer benachrichtigt und kann diese ebenfalls anzeigen.
+%  Nach jetzigem Stand müsste es vielleicht "[...] ein \textit{ConfigurationFile} Obekt vom FileHandler [...]" heißen?
+Wählt der Benutzer über den Menüeintrag \enquote{Konfigurationsdatei laden} eine Konfiguration aus, gibt das \textit{UserInterface} diesen Befehl an die \textit{Control} weiter, welche ein Configuration Objekt vom \textit{FileHandler} erhält. \\
+Die \textit{Control} ruft anschließend Methoden der \textit{GUIFacade} auf, um die Programmtexte, Eingabevariablen und die im Variableninspektor anzuzeigenden Variablen anzuzeigen. 
+Außerdem ruft die \textit{Control} Methoden der \textit{DebugLogicFacade} auf, um für jedes Programm die Breakpoints, Watch-Expressions und Schrittgrößen festzulegen. 
+Über diese Änderungen wird das \textit{UserInterface} als Observer benachrichtigt und kann diese ebenfalls anzeigen.
 
 \newpage
 \subsection{FA140: Konfigurationsdatei speichern}
@@ -506,10 +502,9 @@ Schrittgrößen festzulegen. Über diese Änderungen wird das UserInterface als 
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_saveConfigPDF.pdf}
 \captionof{figure}{Sequenzdigramm: Speichern einer Konfigurationsdatei}
 \end{center}
-Möchte der Benutzer eine Konfigurationsdatei speichern, reicht das UserInterface den Speicherort
-an die ControlFacade weiter. Die Control sammelt die benötigten Daten in einer Configuration Instanz.
-Dieses Objekt wird mit dem angegebenen Speicherort an die FileHandlerFacade weitergegeben, welche 
-dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
+Möchte der Benutzer eine Konfigurationsdatei speichern, reicht das \textit{UserInterface} den Speicherort an die \textit{ControlFacade} weiter. 
+Die \textit{Control} sammelt die benötigten Daten in einer Configuration Instanz.
+Dieses Objekt wird mit dem angegebenen Speicherort an die \textit{FileHandlerFacade} weitergegeben, welche dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 
 \newpage
 \subsection{AF10: Hinzufügen von Programmen}
@@ -517,10 +512,10 @@ dann die Konfigurationsdatei auf dem Rechner des Benutzers speichert.
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_AF10PDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Programmen durch den Menüeintrag}
 \end{center}
-Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das UserInterface ein
-neues ProgramPanel. Dies beschreibt die Funktionale Anforderung FA 170.
-Fügt er ein neues Programm hinzu, indem er in ein bereits vorhandenes ProgramPanel seinen Programmcode kopiert (FA 160) oder schreibt (FA 150), gibt das UserInterface die Informationen an die Control weiter.
-Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern von Programmtexten oder Eingabevariablen. Zum Start des Debugmodus gibt die Control alle diese Informationen an die DebugLogic weiter.
+Fügt der Benutzer über den Menüeintrag ein neues Programm hinzu, erstellt das \textit{UserInterface} ein neues ProgramPanel. 
+Dies beschreibt die Funktionale Anforderung FA 170.
+Fügt er ein neues Programm hinzu, indem er in ein bereits vorhandenes ProgramPanel seinen Programmcode kopiert (FA 160) oder schreibt (FA 150), gibt das \textit{UserInterface} die Informationen an die \textit{Control} weiter.
+Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern von Programmtexten oder Eingabevariablen. Zum Start des Debugmodus gibt die \textit{Control} alle diese Informationen an die \textit{DebugLogic} weiter.
 
 \newpage
 \subsection{AF20: Ändern von Programmen}
@@ -529,13 +524,10 @@ Diese Weitergabe von Informationen geschieht nach jedem Einfügen und Ändern vo
 \captionof{figure}{Sequenzdiagramm: Ändern von Programmen}
 \end{center}
 Möchte der Benutzer einen Programmtext editieren, muss er gegebenenfalls zunächst den Debugmodus beenden.
-Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des
-Textfelds klickt, gibt das MainInterface den neuen Programmtext und die Eingabeavariablen an die ControlFacade weiter. \\
-Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das MainInterface diesen ebenfalls
-mit den angegebenen Eingabevariablen an die ControlFacade weiter.\\
-Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das MainInterface erneut
-alle eingegebenen Texte weiter und ruft schließlich startDebug() der ControlFacade auf. Diese erstellt aus den gespeicherten Informationen
-Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet damit den Debug-Lauf.
+Anschließend lässt sich der Programmtext im Textfeld bearbeiten. Sobald der Benutzer außerhalb des Textfelds klickt, gibt das \textit{MainInterface} den neuen Programmtext und die Eingabeavariablen an die \textit{ControlFacade} weiter. \\
+Fügt der Benutzer einen neuen Programmtext durch Öffnen einer Datei hinzu, gibt das \textit{MainInterface} diesen ebenfalls mit den angegebenen Eingabevariablen an die \textit{ControlFacade} weiter.\\
+Sobald der Benutzer die Start-Schaltfläche auswählt um den Debugmodus zu starten, gibt das \textit{MainInterface} erneut alle eingegebenen Texte weiter und ruft schließlich \textit{startDebug} der \textit{ControlFacade} auf. 
+Diese Methode erstellt aus den gespeicherten Informationen Programm-Instanzen und gibt diese an die \textit{DebugLogicFacade} weiter und startet damit den Debug-Lauf.
 
 \newpage
 \subsection{AF30: Setzen von Breakpoints}
@@ -543,15 +535,11 @@ Programm-Instanzen und gibt diese an die DebugLogicFacade weiter und startet dam
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_breakpointsPDF.pdf}
 \captionof{figure}{Sequenzdiagramm: Setzen von Breakpoints}
 \end{center}
-Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das MainInterface
-diese Information an die ControlFacade weiter, welche dann createBreakpoint mit der Programm-ID und der
-Zeile an die DebugLogicFacade weitergibt.
-Setzt der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das
-MainInterface dies der ControlFacade mit. Die ControlFacade ruft für jedes Programm
-die Methode createBreakpoint der DebugLogicFacade auf.
-Beim hinzufügen von bedingten Breakpoints gibt das MainInterface die ID des Breakpoints
-und den vom Benutzer angegebenen Ausdruck an die ControlFacade weiter. Die Control reicht diese Informationen
-ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitpunkt auswertet.
+Setzt der Benutzer einen Breakpoint in eine Zeile in einem Programm, reicht das \textit{MainInterface} diese Information an die \textit{ControlFacade} weiter, welche dann \textit{createBreakpoint} mit der Programm-ID und der Zeile an die \textit{DebugLogicFacade} weitergibt.
+Setzt der Benutzer jedoch einen Breakpoint in allen Programmen, teilt das \textit{MainInterface} dies der \textit{ControlFacade} mit. 
+Die \textit{ControlFacade} ruft für jedes Programm die Methode \textit{createBreakpoint} der \textit{DebugLogicFacade} auf.
+Beim Hinzufügen von bedingten Breakpoints gibt das \textit{MainInterface} die ID des Breakpoints und den vom Benutzer angegebenen Ausdruck an die \textit{ControlFacade} weiter. 
+Die \textit{Control} reicht diese Informationen ihrerseits an die \textit{DebugLogicFacade} weiter, welche den Breakpoint ab diesem Zeitpunkt auswertet.
 
 \newpage
 \subsection{AF40: Hinzufügen von Watch-Expressions}
@@ -560,11 +548,9 @@ ihrerseits an die DebugLogicFacade weiter, welche den Breakpoint ab diesem Zeitp
 \captionof{figure}{Sequenzdiagramm: Hinzufügen von Watch-Expressions}
 \end{center}
 Die folgenden Vorgänge sind für Watch-Expressions (FA 110) und bedingte Breakpoints (FA 90) identisch. \\
-Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom MainInterface über 
-die Control an die DebugLogicFacade weitergegeben. Ändert der Benutzer die Watch-Expression, zB indem 
-er die Bereichsbindung angibt (FA  120, bzw. FA 100 für bedingte Breakpoints), wird dies ebenfalls über die Control an die DebugLogicFacade weitergegeben.
-Auch beim Löschen einer Watch-Expression über das entsprechende Menü der Benutzeroberfläche, erhält die
-DebugLogic diese Information über die Control und stoppt das Auswerten dieser Watch-Expression.
+Gibt der Benutzer eine neue Watch-Expression an, wird die Bedingung und die ID vom \textit{MainInterface} über die \textit{Control} an die \textit{DebugLogicFacade} weitergegeben. 
+Ändert der Benutzer die Watch-Expression, z.B. indem er die Bereichsbindung angibt (FA  120, bzw. FA 100 für bedingte Breakpoints), wird dies ebenfalls über die \textit{Control} an die \textit{DebugLogicFacade} weitergegeben.
+Auch beim Löschen einer Watch-Expression über das entsprechende Menü der Benutzeroberfläche, erhält die \textit{DebugLogic} diese Information über die \textit{Control} und stoppt das Auswerten dieser Watch-Expression.
 
 \newpage
 \subsection{Generieren von Vorschlägen}%TODO
@@ -572,11 +558,15 @@ DebugLogic diese Information über die Control und stoppt das Auswerten dieser W
 \includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/SequenceDiagrams/seq_suggestions.pdf}
 \captionof{figure}{Sequenzdiagramm: Generierung von Vorschlägen für Watch-Expressions, bedingte Breakpoints, Schrittgrößen und Eingaben}
 \end{center}
-Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen (FA 270), so wird nach Anklicken des dazugehörigen Buttons der Befehl über die ControlFacade zur DebugLogicControl weitergeleiten. Dort wird dieser an eine Vorschlagsstrategie (z.B. EquivalenceSuggestionStrategy) gesendet und dort verarbeitet. Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die GUIFacade zurückgegeben. Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
+Möchte der Benutzer sich eine Watch-Expression vorschlagen lassen (FA 270), so wird nach Anklicken des dazugehörigen Buttons der Befehl über die \textit{ControlFacade} zur \textit{DebugLogicControl} weitergeleitet. 
+Dort wird dieser an eine Vorschlagsstrategie (z.B. \textit{EquivalenceSuggestionStrategy}) gesendet und dort verarbeitet. 
+Nachdem ein Vorschlag generiert wurde wird dieser als Zeichenkette, welche die finale Watch-Expression Bedingung repräsentiert, an die \textit{GUIFacade} zurückgegeben. 
+Danach fügt die GUI wie in AF40 eine Watch-Expression mit der erhaltenen Bedingung hinzu.
 \\
 Bedingte Breakpoints lassen sich auf die gleiche Weise generieren (FA 280).
 \\
-Schrittgrößen werden ähnlich vorgeschlagen (FA 300), hierbei werden der Control die Programme übergeben, welche diese an die DebugLogic weitergibt. Dies ist nötig, damit die Schrittgröße anhand der Programmcodes errechnet werden kann.
+Schrittgrößen werden ähnlich vorgeschlagen (FA 300), hierbei werden der \textit{Control} die Programme übergeben, welche diese an die \textit{DebugLogic} weitergibt. 
+Dies ist nötig, damit die Schrittgröße anhand der Programmcodes errechnet werden kann.
 \\
 Eingaben können ebenfalls ähnlich vorgeschlagen werden (FA 220), jedoch muss der Nutzer hier angeben, für welche Variable, für welchen Variablentyp und in welchem Intervall er einen Vorschlag erhalten möchte.
 
@@ -588,15 +578,17 @@ Eingaben können ebenfalls ähnlich vorgeschlagen werden (FA 220), jedoch muss d
 \end{center}
 Dieses Sequenzdiagramm fasst die Schritte des Nutzers bei einem Debug-Lauf zusammen (FA 10).
 Hierbei werden vor Start des DIbuggers Programme hinzugefügt, die Schrittgröße geändert und Breakpoints hinzugefügt.
-Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die Control startet 
-den DebugLauf der DebugLogic.
-Wenn der Benutzer durch Weiter (FA 130), Schritt (FA 20)oder Einzelschritt (FA 30) durch den DebugLauf navigiert, werden diese Befehle über
-die Control an die DebugLogic weitergegeben. Die Schritte werden von der DebugLogic ausgeführt, und anschließend
-wird die GUIFacade als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
-\subsection{Erzeugung abstrakter Strukturen im Subpaket Interpreter}
-In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. Andererseits hat er die Aufgabe, den kompletten Programmverlauf(im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
+Sobald der Benutzer auf Start klickt, werden seine Eingaben final gespeichert und die \textit{Control} startet den Debug-Lauf der \textit{DebugLogic}.
+Wenn der Benutzer durch Weiter (FA 130), Schritt (FA 20)oder Einzelschritt (FA 30) durch den Debug-Lauf navigiert, werden diese Befehle über die \textit{Control} an die \textit{DebugLogic} weitergegeben. 
+Die Schritte werden von der \textit{DebugLogic} ausgeführt, und anschließend wird die \textit{GUIFacade} als Beobachter dazu aufgefordert, die aktualisierten Werte anzuzeigen.
+\subsection{Erzeugung abstrakter Strukturen im Subpaket \textit{Interpreter}}
+In diesem Abschnitt soll die Funktionalität des Subpaketes \textit{DebugLogic.Interpreter} beschrieben werden. 
+Der Interpreter hat im Wesentlichen zwei Aufgaben: Einerseits muss er für WatchExpressions und bedingte Breakpoints eine abstrakte Struktur aufbauen, die sich einfach auswerten lässt. 
+Andererseits hat er die Aufgabe, den kompletten Programmverlauf (im Folgenden \enquote{Trace})  eines Programmes zu berechnen und einen Iterator darüber bereitzustellen.
 \subsubsection{Erzeugung einer abstrakten Repräsentation für Watch-Expressions und bedingte Breakpoints}
-Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. 
+Watch-Expressions und bedingte Breakpoints bestehen immer aus einem vom Nutzer spezifizierten Ausdruck über den Variablen der vorkommenden Programme. 
+Syntaktisch handelt es sich bei diesem Ausdruck einfach um einen Term. 
+Semantisch muss aber bei bedingten Breakpoints sichergestellt sein, dass es sich um einen Term handelt, der sich zu einem Wahrheitswert auswertet. 
 %Wie Terme in der Klassenstruktur aufgebaut sind, ist im Kapitel \ref{Patterns} %genauer beschrieben. 
 Zusätzlich enthalten Watch-Expressions und bedingte Breakpoints einen Gültigkeitsbereich in Form von mehreren \textit{ScopeTuple}-Instanzen. 
 \\
@@ -607,7 +599,12 @@ Wir betrachten das Diagramm \ref{WEBBP}.
 \captionof{figure}{Watch-Expressions und Bedingte Breakpoints}
 \label{WEBBP}
 \end{center}
-Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. Beim Erzeugen einer WatchExpression passiert das gleiche. Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. Standardmäßig ist der Gültigkeitsbereich maximal.
+Das Debuggerpaket erzeugt einen neuen Bedingten Breakpoint und übergibt dazu eine Zeichenkette, die diesen spezifiziert. 
+Der Bedingte Breakpoint nutzt das Paket \textit{AntlrParser}, um einen Syntaxbaum zu erzeugen. 
+Dann wird ein \textit{TermGenerationVisitor} gestartet, der diesen Syntaxbaum abläuft und dabei eine \textit{Condition} erzeugt. 
+Beim Erzeugen einer WatchExpression passiert das Gleiche. 
+Die Gültigkeitsbereiche können entweder bei Erzeugung direkt mitübergeben werden oder erst später durch Aufruf der \textit{change()}-Methode hinzugefügt werden. 
+Standardmäßig ist der Gültigkeitsbereich maximal.
 \newpage
 
 \begin{landscape}
@@ -635,48 +632,77 @@ int main(){
 \end{verbatim}
 
 Die Zusammenarbeit der in Abbildung \ref{TraceGen} gegebenen Klassen soll nun an diesem Beispiel erklärt werden. 
-Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
+Die Klasse \textit{GenerationController} steuert das Verfahren der Traceerzeugung. 
+Sie bekommt in der Methode \textit{generateTrace()} den Quelltext und die Eingaben für diesen übergeben. 
+Zunächst wird vom Subpaket \textit{DebugLogic.AntlrParser} ein \textit{ParseTree} erzeugt. 
+Für obiges Beispielprogramm ist dieser in Abbildung \ref{ParseTreeExample} zu sehen.
 \begin{center}
 \makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/parseTreeExample.png}}
 \captionof{figure}{Beispiel für einen Ableitungsbaum}
 \label{ParseTreeExample}
 \end{center}
-Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen (\textit{Command}-Kompositum). Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
-Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
+Über diesen Baum läuft der \textit{CommandGenerationVisitor} und erzeugt für jede Routine einen Baum aus Befehlen (\textit{Command}-Kompositum). 
+Dabei verwendet er einen weiteren Visitor, die Terme in Form der in Kapitel \ref{Terme} gegebenen Klassen erzeugen. 
+Die Wurzeln dieser Bäume aus Befehlen werden im \textit{GenerationController} in der Map \textit{routines} gespeichert, sodass sie dann über ihren Routinennamen aufrufbar sind. 
+Die Objektstruktur nach diesem Schritt sieht dann wie im Objektdiagramm (Abbildung \ref{CommandTreeExample}) aus.
 \begin{figure}[!h]
 \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{diagrammIdeenUmlet/CommandTreeExample.pdf}}
 \caption{Objektstruktur nach der Commanderzeugung}
 \label{CommandTreeExample}
 \end{figure}
-Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. Dieser enthält lediglich die Eingabevariablen. Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
-Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
-Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. Die darauffolgenden Befehle erkennen dies vor ihrerer Ausfühurung und führen sich nicht weiter aus. \\
-Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. So gibt ein \textit{IfCommand}-Objekt also eine leere Liste zurück, falls die Bedingung nicht erfüllt ist, und die Konkatenation aller TraceStatelisten seiner Kinder sonst. Ein \textit{WhileCommand}-Objekt gibt dementsprechend die Listen seiner Kinder in wiederholter Form zurück. Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
+Die tatsächliche Ausführung der Commands folgt dann: Der \textit{GenerationController} enthält einen Stack aus \textit{Scope}-Objekten. 
+In diesen Objekten ist alles über die zum aktuellen Ausführungszeitpunkt vorhandenen Daten gespeichert, etwa die Datentypen oder Werte der Variablen. 
+Zu Beginn legt der \textit{GenerationController} einen \enquote{Urscope} auf seinen Stack. 
+Dieser enthält lediglich die Eingabevariablen. 
+Dann wird die \textit{run()}-Methode des Wurzelbefehls des Befehlsbaums der Mainroutine ausgeführt. 
+Jeder Befehl ändert dann entprechend seiner Semantik die Werte im aktuell obersten Scope auf dem Stack. 
+Dabei muss auch jeder Befehl eine entsprechende Typprüfung durchführen. 
+Ein \textit{IfCommand} beispielsweise prüft seine Bedingung und führt seine Kinderbefehle im Baum aus, falls die Bedingung wahr ist. \\
+Einen Spezialfall stellen die \textit{RoutineCall}-Commands dar. 
+Ein solcher Befehl muss sich beim \textit{GenerationController} den Wurzelbefehl der passenden Routine holen, diesem die Argumente in Form einer Liste von \textit{Term}-Objekten übergeben, und diesen dann ausführen. 
+Anschließend muss er sich vom \textit{GenerationController} den Rückgabewert holen. 
+Dieser Wurzelknoten ist ein Objekt der \textit{Command}-Subklasse \textit{RoutineCommmand}. 
+Solche Commands müssen bei Ausführung zunächst die Argumente holen, dann einen neues \textit{Scope}-Objekt auf den Stack legen, dann alle Kinder ausführen und danach den Scope wieder weglegen. 
+Hierbei muss im Falle einer Funktion auch geprüft werden, ob ein Rückgabewert vorhanden ist.\\
+Einen weiteren Spezialfall stellen \textit{ReturnCommand}-Objekte dar. 
+Sie müssen im \textit{GenerationController} den Rückgabewert setzen und diesem mitteilen, dass die Routine beendet ist. 
+Die darauffolgenden Befehle erkennen dies vor ihrerer Ausführung und führen sich nicht weiter aus. \\
+Insgesamt gibt jeder Befehl nach der \textit{run()}-Methode eine Liste von  \textit{TraceState}-Objekten zurück. 
+So gibt ein \textit{IfCommand}-Objekt also eine leere Liste zurück, falls die Bedingung nicht erfüllt ist, und die Konkatenation aller TraceStatelisten seiner Kinder sonst. 
+Ein \textit{WhileCommand}-Objekt gibt dementsprechend die Listen seiner Kinder in wiederholter Form zurück. 
+Die gesamte Liste verpackt der \textit{GenerationController} zu einem \textit{Trace}-Objekt und gibt einen \textit{TraceIterator} zurück.
 
 \newpage
 \section{Abhängigkeitseinteilung mit Blick auf die Implementierung}
 \label{implementierung}
 %Mit Blick auf den Implementierungsplan: Aufteilung in Klassen/Pakete, die unabhängig voneinander implementiert und getestet werden können.
 \subsection{Abhängigkeiten}
-Das Paketdiagramm besagt, dass FileHandler und DebugLogic nicht voneinader abhängen.
-Beide werden von der Control benutzt und müssen somit korrekt implementiert sein, bevor die Control richtig funktionieren kann. Weiter führt die Control Methoden der GUIFacade aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende Control.
-Die GUI hingegen ist stark von der Control abhängig und kann ohne diese keine korrekten Daten anzeigen.
+Das Paketdiagramm besagt, dass \textit{FileHandler} und \textit{DebugLogic} nicht voneinader abhängen.
+Beide werden von der \textit{Control} benutzt und müssen somit korrekt implementiert sein, bevor die \textit{Control} richtig funktionieren kann. 
+Weiter führt die \textit{Control} Methoden der \textit{GUIFacade} aus, ist aber nicht von derer Abhängig, da diese nicht relevant ist für eine funktionierende \textit{Control}.
+Die GUI hingegen ist stark von der \textit{Control} abhängig und kann ohne diese keine korrekten Daten anzeigen.
 
 %TODO Pakete der Debuglogic aktualisieren, da noch nicht fertig
 \subsection{Implementierung}
-Die Implementierung der Hauptpakete kann durch den von Fassaden geprägten Entwurf und dem MVC-Konzept gleichzeitig geschehen. Es ist jedoch sinnvoll das Exception Paket als erstes zu implementieren, um später keine Stellen im Quelltext suchen zu müssen, an denen Fehler auftreten können.
-Weiter sollten die Unterpakete der DebugLogic entsprechend der Benutztrelation implementiert werden, also zuerst AntlrParser, Interpreter und zum Schluss der Debugger.
-Dieses Problem besteht bei den Hauptpaketen nicht, da für die Kommunikation ausschließlich Fassaden benutzt werden. Diese können zur gleichzeitigen Implementierung der Pakete als Stummel pseudoerstellt werden, d.h. die Methoden sind leer und enthalten keine bzw. nur sehr wenig Funktionalität.\\
-Der FileHandler stellt wiederum eine Ausnahme dar, da er mehrere Klassen zur Repräsentation und Interaktion zum Dateisystem bereitstellt.
-Hierbei müssen die Klassen ConfigurationFile, PropertiesFile und LanguageFile gleichzeitig mit der FileHandlerFacade Klasse einsatzbereit sein.
+Die Implementierung der Hauptpakete kann durch den von Fassaden geprägten Entwurf und dem MVC-Konzept gleichzeitig geschehen. 
+Es ist jedoch sinnvoll das Exception Paket als erstes zu implementieren, um später keine Stellen im Quelltext suchen zu müssen, an denen Fehler auftreten können.
+Weiter sollten die Unterpakete der \textit{DebugLogic} entsprechend der Benutztrelation implementiert werden, also zuerst \textit{AntlrParser}, \textit{Interpreter} und zum Schluss der \textit{Debugger}.
+Dieses Problem besteht bei den Hauptpaketen nicht, da für die Kommunikation ausschließlich Fassaden benutzt werden. 
+Diese können zur gleichzeitigen Implementierung der Pakete als Stummel pseudoerstellt werden, d.h. die Methoden sind leer und enthalten keine bzw. nur sehr wenig Funktionalität.\\
+Der \textit{FileHandler} stellt wiederum eine Ausnahme dar, da er mehrere Klassen zur Repräsentation und Interaktion zum Dateisystem bereitstellt.
+Hierbei müssen die Klassen \textit{ConfigurationFile}, \textit{PropertiesFile} und \textit{LanguageFile} gleichzeitig mit der \textit{FileHandlerFacade} Klasse einsatzbereit sein.
 
 \begin{center}
 \makebox[\textwidth][c]{\includegraphics[width=1.15\textwidth]{GanttDiagramm_withArrows.pdf}}
 \captionof{figure}{Gantt-Diagramm: Zeitplanung der Implementierung}
 \end{center}
 
-Das obige Gantt-Diagramm beschreibt die vorläufige Zeitplanung der Implementierungsphase. Hierbei muss beachtet werden, dass die jeweiligen Verantwortlichen nur für die korrekte Implementierung des Pakets zuständig sind. Jedoch werden auch weitere Personen an diesen Paketen arbeiten.
-Geplant ist, dass nach fertiger Implementierung eines Paketes die jeweiligen Personen zu einem anderen, noch zu entwickelnden, Paket wechseln und dieses weiter implementieren, sowie Modultests dafür schreiben. Wichtig ist außerdem, dass Tests nicht nur von Personen geschrieben werden, die die zu testenden Methoden und Klassen implementiert haben, sondern auch von anderen. Dadurch können versehentliche Implementierungsfehler besser aufgedeckt und behoben werden.
+Das obige Gantt-Diagramm beschreibt die vorläufige Zeitplanung der Implementierungsphase. 
+Hierbei muss beachtet werden, dass die jeweiligen Verantwortlichen nur für die korrekte Implementierung des Pakets zuständig sind. 
+Jedoch werden auch weitere Personen an diesen Paketen arbeiten.
+Geplant ist, dass nach fertiger Implementierung eines Paketes die jeweiligen Personen zu einem anderen, noch zu entwickelnden, Paket wechseln und dieses weiter implementieren, sowie Modultests dafür schreiben. 
+Wichtig ist außerdem, dass Tests nicht nur von Personen geschrieben werden, die die zu testenden Methoden und Klassen implementiert haben, sondern auch von anderen. 
+Dadurch können versehentliche Implementierungsfehler besser aufgedeckt und behoben werden.
 
 %\newpage
 \section{Programmsprache, Antlr und Speicherformat}\label{FormSpez}
@@ -687,22 +713,27 @@ Wlang ist eine prozedurale, imperative Sprache, welche weder objektorientiert, n
 Sie unterstützt die primitiven Datentypen int, long, float, double, char und boolean mit den selben Genauigkeiten wie Java.
 Außerdem sind  bis zu dreidimensionale Arrays dieser Datentypen möglich. \\
 Desweiteren unterstützt Wlang Kontrollstrukturen wie Funktionen und Prozeduren, die bedingten Ausführungen if, else if und else und while-Schleifen. \\
-Es muss in jedem Programm eine main-Routine vorhanden sein, von der die Ausführung ausgeht. Routinen, die aufgerufen werden, müssen darüber stehen. Kommentare können
-sowohl zeilenweise (//) als auch zeilenübergreifend (/*Kommentar*/) benutzt werden.
-Sämtliche Variablen müssen innerhalb einer Routine stehen. Auch Rekursion ist möglich. \\
+Es muss in jedem Programm eine main-Routine vorhanden sein, von der die Ausführung ausgeht. 
+Routinen, die aufgerufen werden, müssen darüber stehen. 
+Kommentare können sowohl zeilenweise (//) als auch zeilenübergreifend (/*Kommentar*/) benutzt werden.
+Sämtliche Variablen müssen innerhalb einer Routine stehen. 
+Auch Rekursion ist möglich. \\
 Für die Definition der Kontextfreien Antlr-Grammatik siehe Anhang, in den Unterkapiteln \ref{wlanggrammatik} und \ref{breakpointgrammatik}.
-
 
 \subsection{Verwendung von Antlr}
 
-Wie bereits im zweiten und dritten Kapitel beschrieben, benutzt der DIbugger im Paket \textit{DebugLogic.AntlrParser} extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren \textit{Parse Tree} umzuwandeln. Diese Klassen werden von dem frei verfügbaren Programm Antlr\textsuperscript{\textcopyright} (Version 4) erzeugt.
-Ein \textit{Parse Tree} (manchmal auch \textit{Syntax Tree} genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt. Die Spezifikation der Grammatik findet sich im Anhang, in den Unterkapiteln \ref{wlanggrammatik} und \ref{breakpointgrammatik}.
+Wie bereits im zweiten und dritten Kapitel beschrieben, benutzt der DIbugger im Paket \textit{DebugLogic.AntlrParser} extern erzeugte Java-Klassen, um die textuelle Nutzer-Eingabe zu einem ablaufbaren \textit{Parse Tree} umzuwandeln. 
+Diese Klassen werden von dem frei verfügbaren Programm Antlr\textsuperscript{\textcopyright} (Version 4) erzeugt.
+Ein \textit{Parse Tree} (manchmal auch \textit{Syntax Tree} genannt) ist dabei ein Baum mit einer eindeutigen Wurzel, der die syntaktische Struktur eines Textes – in diesem Fall der Nutzereingabe – mit Hilfe einer kontextfreien Grammatik darstellt. 
+Die Spezifikation der Grammatik findet sich im Anhang, in den Unterkapiteln \ref{wlanggrammatik} und \ref{breakpointgrammatik}.
 
-Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, wie einen Lexer, einen Parser, sowie einen Visitor und ein Visitor-Interface. Die Funktionalität dieser Klassen wird im Unterpaket \textit{DebugLogic.Interpreter} genutzt und erweitert.
+Auf Basis der Grammatik generiert Antlr mehrere Java-Klassen, wie einen Lexer, einen Parser, sowie einen Visitor und ein Visitor-Interface. 
+Die Funktionalität dieser Klassen wird im Unterpaket \textit{DebugLogic.Interpreter} genutzt und erweitert.
 
 \subsubsection{Vorteile der Verwendung eines Parser-Generators}
-Die Verwendung eines Parser-Generators wie Antlr im Allgemeinen hat mehrere Vorteile gegenüber einem “von Hand” geschriebenen Parser: Offensichtlich spart es Zeit und Ressourcen, die in die Entwicklung des eigentlichen Produktes gesteckt werden können. Nicht zu vernachlässigen ist auch, dass Änderungen an der Grammatik zunächst nur in der Grammatik selbst gemacht werden müssen und nicht sofort Änderungen in mehreren, möglicherweise sehr großen Klassen nach sich ziehen. Zuletzt ermöglichen Parser-Generatoren wie Antlr, dass man ein Projekt auf einem Parser aufsetzt, der bereits von einer großen Gruppe an Nutzern getestet wurde, und so die Fehleranfälligkeit reduziert.
-
+Die Verwendung eines Parser-Generators wie Antlr im Allgemeinen hat mehrere Vorteile gegenüber einem “von Hand” geschriebenen Parser: Offensichtlich spart es Zeit und Ressourcen, die in die Entwicklung des eigentlichen Produktes gesteckt werden können. 
+Nicht zu vernachlässigen ist auch, dass Änderungen an der Grammatik zunächst nur in der Grammatik selbst gemacht werden müssen und nicht sofort Änderungen in mehreren, möglicherweise sehr großen Klassen nach sich ziehen. 
+Zuletzt ermöglichen Parser-Generatoren wie Antlr, dass man ein Projekt auf einem Parser aufsetzt, der bereits von einer großen Gruppe an Nutzern getestet wurde, und so die Fehleranfälligkeit reduziert.
 
 \subsubsection{Anforderungen an den verwendeten Parser-Generator}
 
@@ -719,13 +750,18 @@ Daten bestehen aus einem Namen, Wert und Typ, welcher aber erst von einem Parser
 Es werden die Datentypen String, int, long, float, double und boolean unterstützt.
 Weiter gibt es einen spezialisierten TextBlock, der nur einen Fließtext zum Speichern enthält.
 Kommentare können durch das Kennzeichnen am Anfang einer Zeile mit \enquote{//} erzeugt werden.
-Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. Diese kann im Anhang unter \ref{RDBF} eingesehen werden. 
+Das Speicherformat ist durch eine Kontextfreie Grammatik definiert. 
+Diese kann im Anhang unter \ref{RDBF} eingesehen werden. 
 
 \newpage
 \section{Änderung zum Pflichtenheft}
 \paragraph{Erweiterte Syntax für Watch-Expressions und bedinge Breakpoints}
 In Kapitel 12.8 des Pflichtenheftes wurde die Syntax der Watch-Expressions und bedingter Breakpoints durch eine kontextfreie Grammatik definiert, welche zu den Funktionalen Anforderungen FA90 und FA110 gehört.
-In dieser Grammatik war kein bedingter Breakpoint der Form $A\&\&B$ bzw. $A||B$ oder $!A$ ableitbar. Diese Einschränkung ergab sich als während des Entwurfs als nicht notwendig und wird demnach aufgehoben. Eine genaue Definition der Watch-Expressions und bedingten Breakpoints in Form einer Antlr-Grammatik ist im Anhang \ref{Anhang} zu finden. Insgesamt können diese auf syntaktischer Ebene aus beliebigen Termen bestehen. Dies ändert jedoch nichts an den Funktionalen Anforderungen FA90 und FA110, sondern nur an deren Umsetzung.
+In dieser Grammatik war kein bedingter Breakpoint der Form $A\&\&B$ bzw. $A||B$ oder $!A$ ableitbar. 
+Diese Einschränkung ergab sich, während des Entwurfs, als nicht notwendig und wird demnach aufgehoben. 
+Eine genaue Definition der Watch-Expressions und bedingten Breakpoints in Form einer Antlr-Grammatik ist im Anhang \ref{Anhang} zu finden. 
+Insgesamt können diese auf syntaktischer Ebene aus beliebigen Termen bestehen. 
+Dies ändert jedoch nichts an den Funktionalen Anforderungen FA90 und FA110, sondern nur an deren Umsetzung.
 
 
 
