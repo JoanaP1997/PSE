@@ -281,19 +281,31 @@ Zum Lesen und Schreiben der Konfigurations-, Einstellungs- und Sprachdateien wer
 angeboten. Diese stehen jeweils für die Basis einer Strategie und bieten zusammen abstrakte Methoden zum Lesen und Schreiben der oben genannten Dateien an.
 
 \subsubsection{Unterpaket FileHandler.RDBF}
+\begin{figure}[!h]
+\makebox[\textwidth][c]{\includegraphics[width=1.0\textwidth]{diagrammIdeenUmlet/Filehandler_Ansicht2.pdf}}
+\caption{Das Strategie Entwurfsmuster im FileHandler}
+\label{fig:debuggerOverview}
+\end{figure}
+
 Dieses Paket bietet als untergeordnete konkrete Strategie für das Lesen und Schreiben der Konfigurations-, Einstellungs, und Sprachdateien formatiert im Relational Debugger Format (RDBF) Klassenstrukturen und Methoden an.
 Das Speicherformat RDBF kann im Anhang \ref{RDBF} eingesehen werden.
 %--------------------------TODO---------------------------------%
-\paragraph{RDBFDBReader}
-Diese Klasse stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
-%gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
-Als konkrete Strategie werden die Methoden von der Klasse DBReader überschrieben.
-\paragraph{RDBFPropReader}
-Der \textit{RDBFPropReader} stellt Funktionalität zum Lesen der Einstellungsdatei bereit.
-\paragraph{RDBFDBWriter}
-Der \textit{RDBFDBWriter} stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
-\paragraph{RDBFPropWriter}
-Diese Klasse stellt Funktionalität zum Speichern der Einstellungsdatei bereit.
+%\paragraph{RDBFDBReader}
+%Diese Klasse stellt Funktionalität zum Lesen von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+%%gilt ab sofort für alles was noch kommt.. scheiße ist das viel... da hast du recht
+%Als konkrete Strategie werden die Methoden von der Klasse DBReader überschrieben.
+%\paragraph{RDBFPropReader}
+%Der \textit{RDBFPropReader} stellt Funktionalität zum Lesen der Einstellungsdatei bereit.
+%\paragraph{RDBFDBWriter}
+%Der \textit{RDBFDBWriter} stellt Funktionalität zum Schreiben von Sprach- und Konfigurationsdateien im RDBF Format bereit.
+%\paragraph{RDBFPropWriter}
+%Diese Klasse stellt Funktionalität zum Speichern der Einstellungsdatei bereit.
+
+\paragraph{Konkrete Strategien zu den oben gennanten FileReader / Writer Klassen}
+Als konkerete Implementierungen der DBFileReader, -Writer und PropertiesFileReader, -Writer Klassen werden vier Unterklassen angeboten.
+Nennenswert tragen sie den selben Klassennamen wie obige, jedoch mit Präfix RDBF.
+Die Klassen stellen jeweils eine Implementierung zum Lesen und Schreiben von Konfigurations- und Sprachdateien im RDBF Format, sowie Einstellungsdateien im Java Properties Format zur Verfügung.
+Dabei stellen sie eine konkrete Strategie dar, um somit Austauschbar und Erweiterbar für weitere Strategien wie XML und Json zu sein.
 
 \paragraph{RDBFReader}
 Diese Klasse stellt Funktionalität zum Lesen von Dateien im RDBF Format bereit.
