@@ -453,31 +453,8 @@ Dieses Paket beinhaltet nur Klassen, welche von der Antlr Bibliothek auf Basis d
 Dieses Unterpaket parst die Eingaben des Nutzers (d.h. sowohl Programmtexte als auch Variablen und Ausdrücke für bedingte Breakpoints und Watch-Expressions) gemäß der im Anhang (Kapitel \ref{Anhang})  gegebenen Grammatik. Genauer wird die Verwendung des Antlr Parsers in Kapitel \ref{FormSpez} beschrieben.
 
 \subsection{Exceptions}
-\subsubsection{Übersicht}
-Dieses Unterpaket enthält Klassen, die, für das Produkt spezifisch entwickelte, Exceptions darstellen. Um das Handling dieser Exceptions kümmert sich die \textit{Control}.
-\subsubsection{Wichtige Elemente des Exception-Unterpakets}
-\paragraph{DIbuggerLogicException}
-Dieses Interface sorgt dafür, dass alle Klassen in diesem Paket, die notwendigen Methoden implementieren.
-Alle Klassen in diesem Paket implementieren diese Schnittstelle. 
-%die folgenden Exceptions beziehen sich auf semantisch fehlerhafte eingegebene (WLang-)Programme.
-\paragraph{MissingReturnCallException}
-Ausnahme, die ausgelöst wird, falls eine Methode in WLang einen Rückgabewert verlangt aber kein return Statement enthält
-\paragraph{InvalidProgramException}
-Ausnahme, die ausgelöst wird, falls eine Programmdatei nicht korrekt ist oder das eingegebene Programm nicht dem Standard von WLang entspricht
-\paragraph{WrongArgumentException}
-\textit{WrongArgumentException} ist abstrakte Klasse und Ausnahme, die bei falscher Eingabe der Parameter ausgelöst wird. Das UML-Diagramm stellt die Unterklassen dieser abstrakten Klasse dar.
-%TODO UML Diagramm
-\paragraph{ReturnTypeException}
-Ausnahme, die ausgelöst wird, wenn in einer Methode ein falscher Rückgabewert (Typ) zurückgegeben wird
-\paragraph{WrongTypeAssignmentException}
-Ausnahme, die ausgelöst wird, falls in einer Zuweisung die Typen von Zielvariable und neuem Wert nicht kompatibel sind
-\paragraph{VariableNotFoundException}
-Ausnahme, die ausgelöst wird, falls eine Variable nicht vorhanden ist und darauf zugegriffen wird
-\paragraph{AlreadyDeclaredException}
-Ausnahme, die ausgelöst wird, falls eine Variable bereits deklariert wurde und versucht wird, dies zu wiederholen
-\paragraph{RoutineNotFoundException}
-Ausnahme, die ausgelöst wird, falls eine Methode/Funktion aufgerufen wird, welche nicht existiert
-
+Dieses Unterpaket enthält Klassen, die für das Produkt spezifisch entwickelte Exceptions darstellen. Um das Handling dieser Exceptions kümmert sich die \textit{Control}.\\
+Jeder Interpreter muss einiges an Fehlerüberprüfung durchführen. So müssen hier vor allem semantische Fehler in den vom Nutzer eingegebenen Programmen entdeckt werden. Dazu zählen das Fehlen eines Return-Statements (\textit{MissingReturnCallException}) oder eine im Typsystem nicht erlaubte Zuweisung (\textit{WrongTypeAssignmentException}), wie etwa \texttt{boolean x = 9.3f}. Auch Funktionsaufrufe mit falschen Argumenten (\textit{WrongArgumentExceptions}) oder nicht vorhandener Funktionen (\textit{RoutineNotFoundException}) werden hier abgefangen.
 
 \newpage
 \section{Charakteristische Abläufe}\label{charAbl}
