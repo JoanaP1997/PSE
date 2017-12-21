@@ -133,32 +133,32 @@ Für die Implementierung der Benutzeroberfläche wird die Bibliothek \textit{jav
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.1\textwidth]{diagrammIdeenUmlet/GUIOverview.pdf}
-\caption{Wichtige Anzeigeelemente des User Interface}
+\caption{Wichtige Anzeigeelemente des \textit{UserInterface}}
 \label{GUIOverview}
 \end{figure}
 \paragraph{GUIFacade}
 Die Fassade der Benutzeroberfläche (\textit{GUIFacade}) dient zur Kommunikation mit den anderen Paketen. Um die Benutzeroberfläche einfach austauschen zu können, ist nur die Fassade mit den anderen Paketen verbunden, sodass alle anderen Klassen im Paket \textit{UserInterface} einfach ausgetauscht werden können. \\
-Die Fassade bietet Methoden an, um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit, das User Interface zurückzusetzen. \\
+Die Fassade bietet Methoden an, um Programmtexte und Eingabevariablen, sowie Fehlermeldungen oder Warnungen anzeigen zu können, und bietet die Möglichkeit, das \textit{UserInterface} zurückzusetzen. \\
 Außerdem wird die \textit{GUIFacade} beim Start des Produkts im Rahmen des Beobachtermusters bei MVC (siehe Kapitel 3) bei der \textit{DebugLogic} als Beobachter angemeldet und besitzt eine \textit{update()}-Methode, über welche die Änderung der anzuzeigenden Daten gesteuert wird.
 \paragraph{MainInterface}
- Das MainInterface bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an ProgramPanels , sowie ein CommandPanel und je ein WatchExpression bzw. CondBreakpointPanel. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von DebuggerPopUps. 
+ Das \textit{MainInterface} bildet die Grundlage der Benutzeroberfläche. Diese Klasse enthält ein Liste an \textit{ProgramPanel}s , sowie ein \textit{CommandPanel} und je ein \textit{WatchExpression-} bzw. \textit{CondBreakpointPanel}. Sie ist verantwortlich für das Anzeigen von Menüs und diesen vier Panelarten, sowie für das Benachrichtigen des Benutzers mithilfe von \textit{DebuggerPopUps}. 
 \paragraph{ProgramPanel}
-Ein ProgramPanel ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
-Als Teil des Beobachter-Entwurfsmusters besitzt ein ProgramPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
+Ein \textit{ProgramPanel} ist eine Anzeigeeinheit, die alle wichtigen Informationen zu einem einzelnen Programm anzeigt. Hierzu zählen der Programmtext, die Eingabevariablen, die Schrittgröße, der Programmname und die aktuelle Variablenbelegung. \\
+Als Teil des Beobachter-Entwurfsmusters besitzt ein \textit{ProgramPanel} eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \paragraph{CommandPanel}
-Ein CommandPanel ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur ein mal benötigt wird, ist dieser als Singleton implementiert. 
+Ein \textit{CommandPanel} ist der Abschnitt, welcher die Buttons zur Kontrolle des Debugvorgangs anzeigt. Da ein solcher Kommandoblock nur ein mal benötigt wird, ist dieser als Singleton implementiert. 
 \paragraph{ExpressionPanel}
-Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (WatchExpressionPanel und CondBreakpointPanel). Diese werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu Sichern. \\
-Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine update()-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
+Bei dieser Klasse handelt es sich um eine abstrakte Klasse, welche das Anzeigen von Ausdrücken ermöglicht. Für die Ausdrücke WatchExpression und CondBreakpoint wurden nicht abstrakte Unterklassen entworfen (\textit{WatchExpressionPanel} und \textit{CondBreakpointPanel}). Diese werden als Singletons realisiert, um einen globalen Zugriffspunkt auf die Instanzen zu erhalten, und um die alleinige Existenz eines Exemplars pro Klasse zu Sichern. \\
+Als Teil des Beobachter-Entwurfsmusters besitzt ein ExpressionPanel eine \textit{update()}-Methode, um bei Änderung der anzuzeigenden Daten benachrichtigt werden zu können.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{diagrammIdeenUmlet/GUIDekorierer.pdf}
-\caption{Realisierung des Entwurfsmusters Dekorierer in DebuggerPopUp}
+\caption{Realisierung des Entwurfsmusters Dekorierer in \textit{DebuggerPopUp}}
 \label{guidekorierer}
 \end{figure}
 \paragraph{DebuggerPopUp}
-Ein DebuggerPopUp ist ein JDialog, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen ErrorPopUp, WarningPopUp, ArrayValuePopUp und VariableSuggestionPopUp hat. Diese Unterklassen, welche von DebuggerPopUp erben, sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
-Die Klasse DebuggerPopUp stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, ein Dekorierer Entwurfsmuster mit JDialog dar.
+Ein \textit{DebuggerPopUp} ist ein JDialog, welcher auf dieses Produkt ausgelegt ist. Es handelt sich um eine abstrakte Klasse, welche die nicht abstrakten Unterklassen \textit{ErrorPopUp}, \textit{WarningPopUp}, \textit{ArrayValuePopUp} und \textit{VariableSuggestionPopUp} hat. Diese Unterklassen, welche von \textit{DebuggerPopUp} erben, sind darauf ausgelegt Fehlermeldungen, Warnungen oder Variablenwerte anzuzeigen. \\ 
+Die Klasse \textit{DebuggerPopUp} stellt, wie in Abbildung \ref{guidekorierer} zu Sehen, ein Dekorierer Entwurfsmuster mit JDialog dar.
 %Warum Dekorierer?
 
 \section{Das Paket \enquote{Control}}
