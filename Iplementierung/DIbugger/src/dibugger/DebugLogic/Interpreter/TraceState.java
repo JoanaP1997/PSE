@@ -1,5 +1,5 @@
 package dibugger.DebugLogic.Interpreter;
 
-public class Stumb {
+public class TraceState {
 
 }
