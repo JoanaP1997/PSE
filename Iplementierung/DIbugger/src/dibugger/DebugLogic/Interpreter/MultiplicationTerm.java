@@ -1,10 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public final class MultiplicationTerm extends Term {
-	private Term left;
-	private Term right;
+/**
+ * Represents a Multiplication of two Terms. This is a special Binary Term.
+ * @author wagner
+ *
+ */
+public final class MultiplicationTerm extends BinaryArithmeticTerm {
 	public MultiplicationTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;

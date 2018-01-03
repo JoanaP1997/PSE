@@ -1,7 +1,11 @@
 package dibugger.DebugLogic.Interpreter;
 import java.util.List;
-
-public class NotEqualComparison extends Comparison {
+/**
+ * 
+ * @author wagner
+ *
+ */
+public final class NotEqualComparison extends Comparison {
 	public NotEqualComparison(Term leftOperand, Term rightOperand){
 		super(leftOperand, rightOperand);
 	}

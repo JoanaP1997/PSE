@@ -2,7 +2,7 @@ package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
 
-public class MoreComparison extends Comparison {
+public final class MoreComparison extends Comparison {
 	public MoreComparison(Term leftOperand, Term rightOperand){
 		super(leftOperand, rightOperand);
 	}

@@ -1,10 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public final class AdditionTerm extends Term {
-	private Term left;
-	private Term right;
+/**
+ * Represents a Addition of two Terms. This is a special Binary Term.
+ * @author wagner
+ *
+ */
+public final class AdditionTerm extends BinaryArithmeticTerm {
 	public AdditionTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;
