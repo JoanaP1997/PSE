@@ -1,7 +1,11 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
+/**
+ * 
+ * @author wagner
+ *
+ */
 public final class ConstantTerm extends Term {
 	private final TermValue value;
 	public ConstantTerm(TermValue value) {

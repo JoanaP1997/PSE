@@ -1,7 +1,11 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
+/**
+ * 
+ * @author wagner
+ *
+ */
 public abstract class Comparison extends Term{
 	protected Term leftOperand;
 	protected Term rightOperand;

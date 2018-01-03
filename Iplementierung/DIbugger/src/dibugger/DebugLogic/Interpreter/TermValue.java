@@ -1,5 +1,9 @@
 package dibugger.DebugLogic.Interpreter;
-
+/**
+ * Represents the Value of a Term (e.g. some Variable)
+ * @author wagner
+ *
+ */
 public interface TermValue {
 	public TermValue add(TermValue operand);
 	public TermValue mult(TermValue operand);

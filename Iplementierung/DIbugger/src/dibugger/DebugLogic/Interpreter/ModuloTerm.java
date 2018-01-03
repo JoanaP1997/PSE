@@ -1,10 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public final class ModuloTerm extends Term {
-	private Term left;
-	private Term right;
+/**
+ * Represents a the modulo Operation of two Terms. This is a special Binary Term.
+ * @author wagner
+ *
+ */
+public final class ModuloTerm extends BinaryArithmeticTerm {
 	public ModuloTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;

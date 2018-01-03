@@ -1,10 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public final class SubtractionTerm extends Term {
-	private Term left;
-	private Term right;
+/**
+ * Represents a Subtraction. This is a special Binary Term.
+ * @author wagner
+ *
+ */
+public final class SubtractionTerm extends BinaryArithmeticTerm {
 	public SubtractionTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;

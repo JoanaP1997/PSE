@@ -1,9 +1,11 @@
 package dibugger.DebugLogic.Interpreter;
 import java.util.List;
-
-public final class DivisionTerm extends Term {
-	private Term left;
-	private Term right;
+/**
+ * Represents a Division of two Terms. This is a special Binary Term.
+ * @author wagner
+ *
+ */
+public final class DivisionTerm extends BinaryArithmeticTerm {
 	public DivisionTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;

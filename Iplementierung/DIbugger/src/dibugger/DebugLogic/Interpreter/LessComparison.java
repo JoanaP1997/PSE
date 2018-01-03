@@ -1,8 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public class LessComparison extends Comparison {
+/**
+ * 
+ * @author wagner
+ *
+ */
+public final class LessComparison extends Comparison {
 	public LessComparison(Term leftOperand, Term rightOperand){
 		super(leftOperand, rightOperand);
 	}

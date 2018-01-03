@@ -1,8 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
-public class EqualComparison extends Comparison {
+/**
+ * 
+ * @author wagner
+ *
+ */
+public final class EqualComparison extends Comparison {
 	public EqualComparison(Term leftOperand, Term rightOperand){
 		super(leftOperand, rightOperand);
 	}
