@@ -62,32 +62,4 @@ public class RDBFReader {
 		return text.toString();
 	}
 	
-	
-	
-	
-	public static void main(String[] args){
-		RDBFReader reader = new RDBFReader();
-		try {
-			RDBFFile f = reader.loadRDBFFile(new File("res/testing/test.txt"));
-			System.out.println("-----File-----");
-			for(RDBFData d : f.getList_data()){
-				System.out.println(d.getName()+" "+d.getValue());
-			}
-			for(RDBFBlock b : f.getList_blocks()){
-				sysoutBlock(b);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	private static void sysoutBlock(RDBFBlock block){
-		System.out.println("-----"+block.getName()+"-----");
-		for(RDBFData d : block.getList_data()){
-			System.out.println(d.getName()+" "+d.getValue());
-		}
-		for(RDBFBlock b : block.getList_blocks()){
-			sysoutBlock(b);
-		}
-	}
-	
 }
