@@ -21,8 +21,8 @@ public class RDBFWriter {
 				writer.write(tab+data.getName()+"="+data.getValue()+"\n");
 			}
 			else{
-				writer.write("def_blockLen="+data.getValue().split("\n").length+"\n");
-				writer.write(data.getValue());
+				writer.write(tab+"def_blockLen="+data.getValue().split("\n").length+"\n");
+				writer.write(data.getValue()+"\n");
 			}
 		}
 		for(RDBFBlock block : ad.getList_blocks()){

@@ -1,0 +1,46 @@
+PROGRAM{
+	stepsize=4
+	lastExecLine=0
+	PROGRAMTEXT{
+		def_blockLen=7
+qdhdd 
+elsiu sqyvqtwg vwucbgu muodnw smlxr 
+gqxyjuyi 
+sofdrol 
+rgtfacj 
+axthsrt 
+ppqph xrdmh irkbwy 
+
+	}
+	INPUTVALUES{
+		ielucaow='5650L'
+		xnnqalj='false'
+		calxc='505552'
+		qxlnte='545648.5254'
+	}
+}
+PROGRAM{
+	stepsize=2
+	lastExecLine=0
+	PROGRAMTEXT{
+		def_blockLen=3
+wgfaxx 
+bvmyydt kmrqvok 
+xgifsust dpgahg yiylj rawpdu wjpysk oknwnji ootdmh iywpg 
+
+	}
+	INPUTVALUES{
+		cvatrl='554948L'
+	}
+}
+CONDBREAKPOINT{
+	expression='gjekuy'
+	SCOPE{
+		begin=7
+		end=13
+	}
+	SCOPE{
+		begin=10
+		end=20
+	}
+}

@@ -1,5 +1,7 @@
 package dibugger.FileHandler.Facade;
 
+import java.io.File;
+
 /**
  * 
  * @author Pascal
@@ -13,7 +15,11 @@ public class PropertiesFile {
 	private int maxFunctionCalls;
 	
 	public PropertiesFile() {
-		//TODO Default Values
+		//TODO Default Values from Pflichtenheft
+		selectedLanguage="english";
+		configFile="";
+		maxWhileIterations = 100;
+		maxFunctionCalls = 100;
 	}
 
 	public String getSelectedLanguage() {
@@ -43,5 +49,9 @@ public class PropertiesFile {
 	public void setMaxFunctionCalls(int maxFunctionCalls) {
 		this.maxFunctionCalls = maxFunctionCalls;
 	}	
+	
+	
+	//Default Location
+	public static final File DEFAULT_LOCATION = new File("config.cfg");
 	
 }

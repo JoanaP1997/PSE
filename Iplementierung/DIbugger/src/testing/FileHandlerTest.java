@@ -2,15 +2,26 @@ package testing;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.SplittableRandom;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import dibugger.FileHandler.Facade.ConfigurationFile;
+import dibugger.FileHandler.Facade.ConfigurationFile.IntTuple;
+import dibugger.FileHandler.Facade.ConfigurationFile.WCBExpression;
+import dibugger.FileHandler.Facade.PropertiesFile;
 import dibugger.FileHandler.RDBF.RDBFAdditions;
 import dibugger.FileHandler.RDBF.RDBFBlock;
+import dibugger.FileHandler.RDBF.RDBFDBWriter;
 import dibugger.FileHandler.RDBF.RDBFData;
 import dibugger.FileHandler.RDBF.RDBFFile;
+import dibugger.FileHandler.RDBF.RDBFPropReader;
+import dibugger.FileHandler.RDBF.RDBFPropWriter;
 import dibugger.FileHandler.RDBF.RDBFReader;
 import dibugger.FileHandler.RDBF.RDBFWriter;
 
@@ -37,6 +48,21 @@ public class FileHandlerTest {
 			sysoutBlock(b);
 		}
 	
+	}
+	
+	@Test
+	public void testProperties(){
+		RDBFPropReader reader = new RDBFPropReader();
+		PropertiesFile f = reader.loadProperties(PropertiesFile.DEFAULT_LOCATION);
+		RDBFPropWriter writer = new RDBFPropWriter();
+		writer.saveProperties(f);
+	}
+	
+	@Test
+	public void testRDBFConfig(){
+		RDBFDBWriter writer = new RDBFDBWriter();
+		ConfigurationFile f = generateConfig(new File("res/testing/config_test_out.rdbf"));
+		writer.saveConfigFile(f);
 	}
 	
 	private static void sysoutBlock(RDBFBlock block){
@@ -69,6 +95,16 @@ public class FileHandlerTest {
 		}
 		return s.toString();
 	}
+	private static String generateText(SplittableRandom rand){
+		StringBuilder s = new StringBuilder();
+		for(int i=0;i<rand.nextInt(9, 34);++i){
+			s.append(generateWord(rand)).append(" ");
+			if(rand.nextBoolean()){
+				s.append("\n");
+			}
+		}
+		return s.toString();
+	}
 	private static String generateNumber(SplittableRandom rand){
 		StringBuilder s = new StringBuilder();
 		for(int i=0;i<rand.nextInt(2, 5);++i){
@@ -97,5 +133,49 @@ public class FileHandlerTest {
 			return ""+rand.nextBoolean();
 		}
 		return "";
+	}
+	
+	private static ConfigurationFile generateConfig(File file){
+		ConfigurationFile f = new ConfigurationFile(file);
+		SplittableRandom rand = new SplittableRandom();
+		
+		for(int i=0;i<2;++i){
+			f.getList_programText().add(generateText(rand));
+			Map<String, String> input = new HashMap<String, String>();
+			for(int j=0;j<rand.nextInt(5);++j){
+				String val = generateValue(rand);
+				input.put(generateWord(rand), (val.startsWith("'") ? val.substring(1, val.length()-1) : val));
+			}
+			f.getList_inputValues().add(input);
+			f.getList_lastExecLine().add(0);
+			f.getList_programStepSize().add(rand.nextInt(1, 5));
+			List<String> insp = new ArrayList<String>();
+			for(int j=0;j<rand.nextInt(5);++j){
+				insp.add(generateWord(rand));
+			}
+			f.getList_varInspector().add(insp);
+			List<Integer> bp = new ArrayList<Integer>();
+			for(int j=0;j<rand.nextInt(5);++j){
+				bp.add(Integer.parseInt(generateNumber(rand)));
+			}
+			f.getList_breakpoints().add(bp);
+		}
+		f.setNumPrograms(2);
+		for(int i=0;i<rand.nextInt(4);++i){
+			WCBExpression we = f.new WCBExpression(generateWord(rand));
+			for(int j=0;j<rand.nextInt(1,3);++j){
+				we.getList_scopes().add(f.new IntTuple(rand.nextInt(8*j,8+8*j), rand.nextInt(8+8*j,16+8*j)));
+			}
+			f.getList_watchExpressions().add(we);
+		}
+		for(int i=0;i<rand.nextInt(4);++i){
+			WCBExpression cb = f.new WCBExpression(generateWord(rand));
+			for(int j=0;j<rand.nextInt(1,3);++j){
+				cb.getList_scopes().add(f.new IntTuple(rand.nextInt(8*j,8+8*j), rand.nextInt(8+8*j,16+8*j)));
+			}
+			f.getList_condBreakpoints().add(cb);
+		}
+		
+		return f;
 	}
 }
