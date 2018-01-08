@@ -3,7 +3,6 @@ package dibugger.UserInterface;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.metal.MetalBorders;
 import java.awt.*;
 
 public class ProgramPanel extends JPanel {
@@ -53,5 +52,9 @@ public class ProgramPanel extends JPanel {
 
 
 
+    }
+
+    public void update() {
+        //TODO
     }
 }

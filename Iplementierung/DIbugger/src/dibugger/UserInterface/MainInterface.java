@@ -4,12 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
  * @author joana & chiara
  */
 public class MainInterface extends javax.swing.JFrame {
+
+    ArrayList<ProgramPanel> programPanels;
+    ArrayList<ExpressionPanel> expressionPanels;
+
     private javax.swing.JMenu dateiMenu;
     private javax.swing.JMenu vorschläge;
     private javax.swing.JMenu settings;
@@ -36,6 +41,7 @@ public class MainInterface extends javax.swing.JFrame {
      * Creates new MainInterface
      */
     public MainInterface() {
+        new GUIFacade(this);
         initComponents();
     }
 
@@ -158,5 +164,15 @@ public class MainInterface extends javax.swing.JFrame {
 
         controlConstraints.gridy = 2;
         rightControlBar.add(watchExpPanel, controlConstraints);
+    }
+
+    void update() {
+        for (ProgramPanel p : programPanels) {
+            p.update();
+        }
+
+        for (ExpressionPanel e : expressionPanels) {
+            e.update();
+        }
     }
 }
