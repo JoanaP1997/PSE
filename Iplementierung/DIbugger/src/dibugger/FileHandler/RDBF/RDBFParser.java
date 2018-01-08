@@ -70,6 +70,7 @@ public class RDBFParser {
 	
 	
 	public int evaluateLineType(String line) throws InvalidLineTypeExeption{
+//		System.out.println(line);
 		if(line.matches("(\\w|$|&|\\_)+\\{")){
 			return LINE_BLOCK;
 		}
@@ -85,15 +86,16 @@ public class RDBFParser {
 		else if(line.matches("//([\\w[^'\n]]+)*")){
 			return LINE_COMMENT;
 		}
-		System.out.println(line);
+		else if(line.matches("")){
+			return LINE_EMPTY;
+		}
 		throw new InvalidLineTypeExeption();
 	}
 	
 	
 	public String getSValue(String s) throws ParseAssignmentException{
-		String[] s1 = s.split("'");
-		if(s1.length==3){
-			return s1[1];
+		if(s.startsWith("'") && s.endsWith("'")){
+			return s.substring(1, s.length()-1);
 		}
 		throw new ParseAssignmentException();
 	}
@@ -143,4 +145,5 @@ public class RDBFParser {
 	public static final int LINE_BLOCK_TEXT_LENGTH = 2;
 	public static final int LINE_BLOCK_END = 3;
 	public static final int LINE_COMMENT = 4;
+	public static final int LINE_EMPTY = 5;
 }

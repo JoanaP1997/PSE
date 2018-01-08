@@ -9,18 +9,15 @@ import dibugger.FileHandler.Exceptions.FileHandlerException;
 
 public class RDBFReader {
 	
-	public RDBFFile loadRDBFFile(File file) throws IOException{
+	public RDBFFile loadRDBFFile(File file) throws IOException, FileHandlerException{
 		if(!file.exists()){
 			throw new IOException();
 		}
 		RDBFFile f = new RDBFFile(file);
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		try {
-			readBlock(reader, f);
-		} catch (FileHandlerException e) {
-			//TODO something
-			//e.printStackTrace();
-		}
+		
+		readBlock(reader, f);
+		
 		reader.close();
 		return f;
 	}

@@ -13,7 +13,7 @@ public class ParseBlockException extends FileHandlerException{
 
 	@Override
 	public String getID() {
-		return "exc_parse_block";
+		return "fh_exc_parse_block";
 	}
 	
 }

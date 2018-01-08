@@ -1,5 +1,6 @@
 package dibugger.FileHandler.RDBF;
 
+import java.io.File;
 import java.io.IOException;
 
 import dibugger.FileHandler.Facade.ConfigurationFile;
@@ -11,6 +12,7 @@ import dibugger.FileHandler.Facade.LanguageFile;
 public class RDBFDBWriter extends DBFileWriter{
 
 	private RDBFWriter writer;
+	private static final String DEFAULT_LANG_FILE_PATH = "res/lang/";
 	
 	public RDBFDBWriter(){
 		writer = new RDBFWriter();
@@ -42,11 +44,13 @@ public class RDBFDBWriter extends DBFileWriter{
 			for(String var : f.getVariablesOfInspector(i)){
 				block.addData(new RDBFData("variable", "'"+var+"'"));
 			}
+			block_program.addBlock(block);
 			//Breakpoints
 			block = new RDBFBlock("BREAKPOINTS");
 			for(int line : f.getBreakpoints(i)){
 				block.addData(new RDBFData("line", ""+line));
 			}
+			block_program.addBlock(block);
 			
 			file.addBlock(block_program);
 		}
@@ -89,8 +93,20 @@ public class RDBFDBWriter extends DBFileWriter{
 	}
 
 	@Override
-	public void saveLanguageFile(LanguageFile f) {
-		//TODO
+	public void saveLanguageFile(LanguageFile file) {
+		RDBFFile f = new RDBFFile(new File(DEFAULT_LANG_FILE_PATH+file.getLangID()+".rdbf"));
+		f.addData(new RDBFData("langID", "'"+file.getLangID()+"'"));
+		f.addData(new RDBFData("langName", "'"+file.getName()+"'"));
+		for(String key : file.getMap_translations().keySet()){
+			RDBFBlock b = new RDBFBlock(key);
+			b.addData(new RDBFData("text", file.getTranslation(key), true));
+			f.addBlock(b);
+		}
+		try {
+			writer.saveRDBFFile(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

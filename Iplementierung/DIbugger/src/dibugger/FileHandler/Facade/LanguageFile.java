@@ -36,4 +36,15 @@ public class LanguageFile {
 	public String getName() {
 		return name;
 	}
+	
+	public void setLangID(String langID) {
+		this.langID = langID;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Map<String, String> getMap_translations() {
+		return map_translations;
+	}
 }

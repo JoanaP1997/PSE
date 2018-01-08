@@ -13,7 +13,7 @@ public class LanguageNotFoundException extends FileHandlerException{
 
 	@Override
 	public String getID() {
-		return "exc_lang_not_found";
+		return "fh_exc_lang_not_found";
 	}
 
 }

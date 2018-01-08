@@ -13,6 +13,6 @@ public class ParseAssignmentException extends FileHandlerException{
 
 	@Override
 	public String getID() {
-		return "exc_parse_assign";
+		return "fh_exc_parse_assign";
 	}
 }

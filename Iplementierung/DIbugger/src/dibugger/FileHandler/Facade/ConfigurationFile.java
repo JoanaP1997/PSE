@@ -132,6 +132,9 @@ public class ConfigurationFile {
 		this.numPrograms = numPrograms;
 	}
 
+	//Delegaters
+	
+	
 	//Private helper structs	
 	public class WCBExpression{
 		String expression;

@@ -13,7 +13,7 @@ public class InvalidLineTypeExeption extends FileHandlerException{
 	
 	@Override
 	public String getID() {
-		return "exc_invalid_line_type";
+		return "fh_exc_invalid_line_type";
 	}
 
 }

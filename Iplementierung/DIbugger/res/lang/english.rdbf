@@ -1,0 +1,136 @@
+langID='english'
+langName='English'
+ui_step{
+	def_blockLen=1
+Step
+
+}
+german{
+	def_blockLen=1
+German
+}
+fh_exc_parse_assign{
+	def_blockLen=1
+The File contains an wrong Assignment Line.
+
+}
+ui_values_out{
+	def_blockLen=1
+Output Values
+
+}
+ui_debug_run{
+	def_blockLen=1
+Start debugging
+
+}
+ui_debug_step_out{
+	def_blockLen=1
+Execute Step Out
+
+}
+ui_options{
+	def_blockLen=1
+Options
+
+}
+ui_watch_expression{
+	def_blockLen=1
+Watch Expression
+
+}
+ui_debug_step_back{
+	def_blockLen=1
+Execute Step Back
+
+}
+ui_var_inspector{
+	def_blockLen=1
+Variable Inspector
+
+}
+ui_debug_stop{
+	def_blockLen=1
+Stop debugging
+
+}
+ui_debug_step_single{
+	def_blockLen=1
+Execute Single Step
+
+}
+ui_suggestions{
+	def_blockLen=1
+Suggenstions
+
+}
+ui_help{
+	def_blockLen=1
+Help
+
+}
+ui_values_in{
+	def_blockLen=1
+Input Values
+
+}
+fh_exc_invalid_line_type{
+	def_blockLen=1
+The File contains a invalid Line Type.
+
+}
+ui_stepsize{
+	def_blockLen=1
+Stepsize
+
+}
+ui_debug_step_over{
+	def_blockLen=1
+Execute Step Over
+
+}
+ui_debug_step{
+	def_blockLen=1
+Execute Step
+
+}
+ui_cond_breakpoint{
+	def_blockLen=1
+Conditional Breakpoint
+
+}
+ui_save_config{
+	def_blockLen=1
+Save Configuration
+
+}
+ui_load_program_text{
+	def_blockLen=1
+Load Program Text
+
+}
+ui_exit{
+	def_blockLen=1
+Exit
+
+}
+fh_exc_parse_block{
+	def_blockLen=1
+The File contains a wrong Block Syntax.
+
+}
+fh_exc_lang_not_found{
+	def_blockLen=1
+Language Not Found.
+
+}
+ui_load_config{
+	def_blockLen=1
+Load Configuration
+
+}
+ui_debug_continue{
+	def_blockLen=1
+Continue
+
+}

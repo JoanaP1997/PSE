@@ -8,15 +8,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.SplittableRandom;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import dibugger.FileHandler.Exceptions.FileHandlerException;
 import dibugger.FileHandler.Facade.ConfigurationFile;
 import dibugger.FileHandler.Facade.ConfigurationFile.IntTuple;
 import dibugger.FileHandler.Facade.ConfigurationFile.WCBExpression;
+import dibugger.FileHandler.Facade.LanguageFile;
 import dibugger.FileHandler.Facade.PropertiesFile;
 import dibugger.FileHandler.RDBF.RDBFAdditions;
 import dibugger.FileHandler.RDBF.RDBFBlock;
+import dibugger.FileHandler.RDBF.RDBFDBReader;
 import dibugger.FileHandler.RDBF.RDBFDBWriter;
 import dibugger.FileHandler.RDBF.RDBFData;
 import dibugger.FileHandler.RDBF.RDBFFile;
@@ -36,16 +40,16 @@ public class FileHandlerTest {
 		writer.saveRDBFFile(f);
 	}
 	@Test
-	public void testRead() throws IOException{
+	public void testRead() throws IOException, FileHandlerException{
 		RDBFReader reader = new RDBFReader();
 		
-		RDBFFile f = reader.loadRDBFFile(new File("res/testing/test.txt"));
+		RDBFFile f = reader.loadRDBFFile(new File("res/testing/config_test_out.rdbf"));
 		System.out.println("-----File-----");
 		for(RDBFData d : f.getList_data()){
 			System.out.println(d.getName()+" "+d.getValue());
 		}
 		for(RDBFBlock b : f.getList_blocks()){
-			sysoutBlock(b);
+			sysoutBlock(b,"\t");
 		}
 	
 	}
@@ -59,19 +63,27 @@ public class FileHandlerTest {
 	}
 	
 	@Test
-	public void testRDBFConfig(){
+	public void testRDBFConfig() throws FileHandlerException{
 		RDBFDBWriter writer = new RDBFDBWriter();
 		ConfigurationFile f = generateConfig(new File("res/testing/config_test_out.rdbf"));
 		writer.saveConfigFile(f);
+		RDBFDBReader reader = new RDBFDBReader();
+		f = reader.loadConfigFile(f.getSystemFile());
 	}
 	
-	private static void sysoutBlock(RDBFBlock block){
-		System.out.println("-----"+block.getName()+"-----");
+	@Test
+	public void testRDBFLanguage() throws FileHandlerException{
+		RDBFDBReader reader = new RDBFDBReader();
+		LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.rdbf"));
+	}
+	
+	private static void sysoutBlock(RDBFBlock block, String tab){
+		System.out.println(tab+"-----"+block.getName()+"-----");
 		for(RDBFData d : block.getList_data()){
-			System.out.println(d.getName()+" "+d.getValue());
+			System.out.println(tab+d.getName()+" "+d.getValue());
 		}
 		for(RDBFBlock b : block.getList_blocks()){
-			sysoutBlock(b);
+			sysoutBlock(b, tab+"\t");
 		}
 	}
 	
