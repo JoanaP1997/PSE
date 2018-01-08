@@ -1,5 +1,7 @@
 package dibugger.UserInterface;
 
+import javax.swing.*;
+
 public class WatchExpressionPanel extends ExpressionPanel {
 
     private  WatchExpressionPanel singleton = null;

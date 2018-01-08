@@ -1,5 +1,7 @@
 package dibugger.UserInterface;
 
-public abstract class ExpressionPanel {
+import javax.swing.*;
+
+public abstract class ExpressionPanel extends JPanel {
     public abstract void update();
 }
