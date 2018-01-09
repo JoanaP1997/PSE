@@ -82,4 +82,9 @@ public class LanguageFile {
 	public Map<String, String> getMap_translations() {
 		return map_translations;
 	}
+	
+	/**
+	 * Default Folder filepath for language Files
+	 */
+	public static final String DEFAULT_LANG_FILE_PATH = "res/lang/";
 }

@@ -17,10 +17,6 @@ import dibugger.FileHandler.Facade.LanguageFile;
 public class RDBFDBWriter extends DBFileWriter{
 
 	private RDBFWriter writer;
-	/**
-	 * Default Folder filepath for language Files
-	 */
-	private static final String DEFAULT_LANG_FILE_PATH = "res/lang/";
 	
 	public RDBFDBWriter(){
 		writer = new RDBFWriter();
@@ -102,7 +98,7 @@ public class RDBFDBWriter extends DBFileWriter{
 
 	@Override
 	public void saveLanguageFile(LanguageFile file) {
-		RDBFFile f = new RDBFFile(new File(DEFAULT_LANG_FILE_PATH+file.getLangID()+".rdbf"));
+		RDBFFile f = new RDBFFile(new File(LanguageFile.DEFAULT_LANG_FILE_PATH+file.getLangID()+".rdbf"));
 		f.addData(new RDBFData("langID", "'"+file.getLangID()+"'"));
 		f.addData(new RDBFData("langName", "'"+file.getName()+"'"));
 		for(String key : file.getMap_translations().keySet()){
