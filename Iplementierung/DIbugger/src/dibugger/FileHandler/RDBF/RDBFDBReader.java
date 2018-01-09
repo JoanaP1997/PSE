@@ -15,6 +15,11 @@ import dibugger.FileHandler.Facade.ConfigurationFile.WCBExpression;
 import dibugger.FileHandler.Facade.DBFileReader;
 import dibugger.FileHandler.Facade.LanguageFile;
 
+/**
+ * Specific implementation of the {@linkplain DBFileReader} for the RDBF Format
+ * @author Pascal
+ *
+ */
 public class RDBFDBReader extends DBFileReader{
 	
 	private RDBFReader reader;

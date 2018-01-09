@@ -8,6 +8,11 @@ import java.util.Properties;
 import dibugger.FileHandler.Facade.PropertiesFile;
 import dibugger.FileHandler.Facade.PropertiesFileWriter;
 
+/**
+ * Specific implementation of {@linkplain PropertiesFileWriter} for java defined Properties Files
+ * @author Pascal
+ *
+ */
 public class RDBFPropWriter extends PropertiesFileWriter{
 	
 	@Override

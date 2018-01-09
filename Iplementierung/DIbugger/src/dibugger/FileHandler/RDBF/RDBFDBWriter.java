@@ -9,9 +9,17 @@ import dibugger.FileHandler.Facade.ConfigurationFile.WCBExpression;
 import dibugger.FileHandler.Facade.DBFileWriter;
 import dibugger.FileHandler.Facade.LanguageFile;
 
+/**
+ * SPecific implementation of the {@linkplain DBFileWriter} for the RDBF Format
+ * @author Pascal
+ *
+ */
 public class RDBFDBWriter extends DBFileWriter{
 
 	private RDBFWriter writer;
+	/**
+	 * Default Folder filepath for language Files
+	 */
 	private static final String DEFAULT_LANG_FILE_PATH = "res/lang/";
 	
 	public RDBFDBWriter(){
