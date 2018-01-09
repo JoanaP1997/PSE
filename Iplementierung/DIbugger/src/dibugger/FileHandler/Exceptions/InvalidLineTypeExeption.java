@@ -6,7 +6,7 @@ public class InvalidLineTypeExeption extends FileHandlerException{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	public InvalidLineTypeExeption() {
 
 	}
