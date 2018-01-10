@@ -171,17 +171,24 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	}
 	@Override
 	public Term visitOneDimArrayAccess(OneDimArrayAccessContext ctx) {
-	    return null;
+	    String id = ctx.id.getText();
+	    Term index = this.visit(ctx.index);
+	    return new ArrayAccessRelationalTerm(id, index);
 	}
 	@Override
 	public Term visitTwoDimArrayAccess(TwoDimArrayAccessContext ctx) {
-	// TODO Auto-generated method stub
-	return super.visitTwoDimArrayAccess(ctx);
+	    String id = ctx.id.getText();
+	    Term firstIndex = this.visit(ctx.firstIndex);
+	    Term secondIndex = this.visit(ctx.secondIndex);
+	    return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex);
 	}
 	@Override
 	public Term visitThreeDimArrayAccess(ThreeDimArrayAccessContext ctx) {
-	// TODO Auto-generated method stub
-	return super.visitThreeDimArrayAccess(ctx);
+	    String id = ctx.id.getText();
+	    Term firstIndex = this.visit(ctx.firstIndex);
+	    Term secondIndex = this.visit(ctx.secondIndex);
+	    Term thirdIndex = this.visit(ctx.thirdIndex);
+	    return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex, thirdIndex);
 	}
 	//Literals
 	@Override

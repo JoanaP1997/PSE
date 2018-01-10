@@ -42,7 +42,7 @@ term : '-' inner = term #NegativeTerm
 
 arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
-		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
 		;
 
 //LITERALE bzw TOKENS

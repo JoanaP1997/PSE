@@ -1041,7 +1041,7 @@ public class TermsParser extends Parser {
 	public static class ThreeDimArrayAccessContext extends ArrayAccessContext {
 		public Token id;
 		public TermContext firstIndex;
-		public TermContext secondtIndex;
+		public TermContext secondIndex;
 		public TermContext thirdIndex;
 		public TerminalNode ID() { return getToken(TermsParser.ID, 0); }
 		public List<TermContext> term() {
@@ -1128,7 +1128,7 @@ public class TermsParser extends Parser {
 				setState(121);
 				match(T__16);
 				setState(122);
-				((ThreeDimArrayAccessContext)_localctx).secondtIndex = term(0);
+				((ThreeDimArrayAccessContext)_localctx).secondIndex = term(0);
 				setState(123);
 				match(T__17);
 				setState(124);
