@@ -11,35 +11,43 @@ public final class ArrayAccessTerm extends Term {
     private Term indexA;
     private Term indexB;
     private Term indexC;
+    private String identifier;
+    
     /**
      * Constructor of an ArrayAccess on an onedimensional Array
+     * @param identifier
      * @param index
      */
-    public ArrayAccessTerm(Term index) {
-	DIM = 1;
+    public ArrayAccessTerm(String identifier, Term index) {
+	DIM = 1; 
 	this.indexA = index;
+	this.identifier = identifier;
     }
     /**
      * Constructor of an ArrayAccess on an twodimensional Array
+     * @param identifier
      * @param firstIndex
      * @param secondIndex
      */
-    public ArrayAccessTerm(Term firstIndex, Term secondIndex) {
+    public ArrayAccessTerm(String identifier, Term firstIndex, Term secondIndex) {
 	DIM = 2;
 	this.indexA = firstIndex;
 	this.indexB = secondIndex;
+	this.identifier = identifier;
     }
     /**
      * Constructor of an ArrayAccess on an threedimensional Array
+     * @param identifier
      * @param firstIndex
      * @param secondIndex
      * @param thirdIndex
      */
-    public ArrayAccessTerm(Term firstIndex, Term secondIndex, Term thirdIndex) {
+    public ArrayAccessTerm(String identifier, Term firstIndex, Term secondIndex, Term thirdIndex) {
 	DIM = 3;
 	this.indexA = firstIndex;
 	this.indexB = secondIndex;
 	this.indexC = thirdIndex;
+	this.identifier = identifier;
     }
     @Override
     public TermValue evaluate(List<TraceState> states) {

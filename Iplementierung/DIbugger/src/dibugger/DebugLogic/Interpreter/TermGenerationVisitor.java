@@ -28,8 +28,11 @@ import dibugger.DebugLogic.AntlrParser.TermsParser.MultiplicationContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.NegativeTermContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.NotConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.NotEqualCompContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.OneDimArrayAccessContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.OrConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.SubtractionContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.ThreeDimArrayAccessContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.TwoDimArrayAccessContext;
 
 /**
  * 
@@ -152,21 +155,33 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	    rightOp = this.visit(ctx.right);
 	    return new NotEqualComparison(leftOp,rightOp);
 	}
-	//General
+	//Array Access
 	@Override
 	public Term visitBrackets(BracketsContext ctx) {
 		return this.visit(ctx.inner);
 	}
-	
 	@Override
 	public Term visitArrayAccessCondition(ArrayAccessConditionContext ctx) {
-	// TODO Auto-generated method stub
-	return super.visitArrayAccessCondition(ctx);
+	    return this.visitChildren(ctx);
 	}
 	
 	@Override
 	public Term visitArrayAccessInTerm(ArrayAccessInTermContext ctx) {
-		return new VariableRelationalTerm(ctx.getText());
+	    return this.visitChildren(ctx);
+	}
+	@Override
+	public Term visitOneDimArrayAccess(OneDimArrayAccessContext ctx) {
+	    return null;
+	}
+	@Override
+	public Term visitTwoDimArrayAccess(TwoDimArrayAccessContext ctx) {
+	// TODO Auto-generated method stub
+	return super.visitTwoDimArrayAccess(ctx);
+	}
+	@Override
+	public Term visitThreeDimArrayAccess(ThreeDimArrayAccessContext ctx) {
+	// TODO Auto-generated method stub
+	return super.visitThreeDimArrayAccess(ctx);
 	}
 	//Literals
 	@Override
