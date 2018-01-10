@@ -1,5 +1,7 @@
 package dibugger.DebugLogic.Interpreter;
 
+import org.antlr.v4.runtime.tree.RuleNode;
+
 import dibugger.DebugLogic.AntlrParser.TermsBaseVisitor;
 import dibugger.DebugLogic.AntlrParser.TermsParser.AdditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.AndConditionContext;
@@ -7,14 +9,18 @@ import dibugger.DebugLogic.AntlrParser.TermsParser.ArrayAccessConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.ArrayAccessInTermContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.BracketConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.BracketsContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.CharLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.ComparisonConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.DivisionContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.DoubleLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.EqualCompContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.FloatLiteralContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.GeneralTermContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.IDContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.IntLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.LessCompContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.LessEqualCompContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.LongLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.ModuloContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.MoreCompContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.MoreEqualCompContext;
@@ -167,7 +173,18 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	public Term visitFloatLiteral(FloatLiteralContext ctx) {
 		return new ConstantTerm(new FloatValue((Float.parseFloat(ctx.getText()))));
 	}
-	
+	@Override
+	public Term visitDoubleLiteral(DoubleLiteralContext ctx) {
+	    	return new ConstantTerm(new DoubleValue(Double.parseDouble(ctx.getText())));
+	}
+	@Override
+	public Term visitLongLiteral(LongLiteralContext ctx) {
+	    	return new ConstantTerm(new LongValue(Long.parseLong(ctx.getText())));
+	}
+	@Override
+	public Term visitCharLiteral(CharLiteralContext ctx) {
+	    	return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
+	}
 	@Override
 	public Term visitID(IDContext ctx) {
 		return new VariableRelationalTerm(ctx.getText());

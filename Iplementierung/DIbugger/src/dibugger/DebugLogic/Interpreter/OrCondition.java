@@ -10,16 +10,15 @@ import java.util.List;
  *
  */
 public final class OrCondition extends BinaryCondition {
-
-    
     @Override
     public BooleanValue evaluate(List<TraceState> states) {
-	//TODOreturn this.leftOperand.evaluate(states).or();
+	boolean b = this.leftOperand.evaluate(states).or(this.rightOperand.evaluate(states));
+	return new BooleanValue(b);
     }
     @Override
     public BooleanValue evaluate(Scope currentScope) {
-	// TODO Auto-generated method stub
-	return null;
+	boolean b = this.leftOperand.evaluate(currentScope).or(this.rightOperand.evaluate(currentScope));
+	return new BooleanValue(b);
     }
 
 }
