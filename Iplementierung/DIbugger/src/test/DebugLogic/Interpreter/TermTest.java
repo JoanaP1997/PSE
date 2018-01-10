@@ -1,4 +1,4 @@
-package testing;
+package test.DebugLogic.Interpreter;
 
 import static org.junit.Assert.*;
 
