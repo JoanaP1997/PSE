@@ -1,10 +1,18 @@
 package dibugger.FileHandler.Facade;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import dibugger.FileHandler.Exceptions.FileHandlerException;
 import dibugger.FileHandler.Exceptions.LanguageNotFoundException;
+import dibugger.FileHandler.RDBF.RDBFDBReader;
+import dibugger.FileHandler.RDBF.RDBFDBWriter;
+import dibugger.FileHandler.RDBF.RDBFPropReader;
+import dibugger.FileHandler.RDBF.RDBFPropWriter;
 
 /**
  * 
@@ -15,10 +23,26 @@ public class FileHandlerFacade {
 	
 	private List<LanguageFile> list_languages;
 	
+	//Properties Reader / Writer
+	private RDBFPropReader reader_rdbf_prop;
+	private RDBFPropWriter writer_rdbf_prop;
 	
-	public FileHandlerFacade() {
-		list_languages = new ArrayList<LanguageFile>();
-		//TODO load language Files
+	//DBReader / Writer
+	private RDBFDBReader reader_rdbf_db;
+	private RDBFDBWriter writer_rdbf_db;
+
+	/**
+	 * @throws FileHandlerException see {@linkplain DBFileReader#loadLanguageFile(File)}
+	 */
+	public FileHandlerFacade() throws FileHandlerException {	
+		//Load all Languages probably not a good idea to load all Translations
+		list_languages = loadAllAvailableLanguages();
+		
+		reader_rdbf_prop = new RDBFPropReader();
+		writer_rdbf_prop = new RDBFPropWriter();
+		
+		reader_rdbf_db = new RDBFDBReader();
+		writer_rdbf_db = new RDBFDBWriter();
 	}
 	
 	/**
@@ -27,16 +51,17 @@ public class FileHandlerFacade {
 	 * @param config the Configuration to save
 	 */
 	public void saveConfig(ConfigurationFile config){
-		
+		writer_rdbf_db.saveConfigFile(config);
 	}
 	/**
 	 * Loads a ConfigurationFile given by a location on the filesystem.
 	 * @see ConfigurationFile
 	 * @param file the file to load.
 	 * @return a newly created ConfigurationFile
+	 * @throws FileHandlerException {@linkplain DBFileReader#loadConfigFile(File)}
 	 */
-	public ConfigurationFile loadConfig(File file){
-		return null;
+	public ConfigurationFile loadConfig(File file) throws FileHandlerException{
+		return reader_rdbf_db.loadConfigFile(file);
 	}
 	
 	/**
@@ -45,7 +70,19 @@ public class FileHandlerFacade {
 	 * @return a String representing a program text
 	 */
 	public String loadProgramText(File f){
-		return null;
+		try {
+			StringBuilder s = new StringBuilder();
+
+			for(String line : Files.readAllLines(Paths.get(f.toURI()))){
+				s.append(line).append("\n");
+			}
+			
+			return s.toString();
+		} catch (IOException e) {
+			//e.printStackTrace();
+			//TODO
+			return "INVALID_FILE";
+		}
 	}
 	
 	/**
@@ -54,7 +91,14 @@ public class FileHandlerFacade {
 	 * @return a PropertiesFile representing the properties of the DIBugger
 	 */
 	public PropertiesFile loadPropertiesFile(){
-		return null;
+		return reader_rdbf_prop.loadProperties(PropertiesFile.DEFAULT_LOCATION);
+	}
+	/**
+	 * Saves a given DIbugger Properties file
+	 * @param file the properties to save
+	 */
+	public void savePropertiesFile(PropertiesFile file){
+		writer_rdbf_prop.saveProperties(file);
 	}
 	
 	/**
@@ -83,6 +127,24 @@ public class FileHandlerFacade {
 			}
 		}
 		throw new LanguageNotFoundException();
+	}
+	
+	/**
+	 * help method to read all available languages
+	 * @return a list of all avilable LanguageFiles
+	 * @throws FileHandlerException see {@linkplain DBFileReader#loadLanguageFile(File)}
+	 */
+	private List<LanguageFile> loadAllAvailableLanguages() throws FileHandlerException{
+		List<LanguageFile> l = new ArrayList<LanguageFile>();
+		
+		File d = new File(LanguageFile.DEFAULT_LANG_FILE_PATH);
+		for(File f : d.listFiles()){
+			if(f.isFile()){
+				l.add(reader_rdbf_db.loadLanguageFile(f));
+			}
+		}
+		
+		return l;
 	}
 	
 }

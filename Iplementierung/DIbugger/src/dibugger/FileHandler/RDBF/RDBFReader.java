@@ -7,8 +7,20 @@ import java.io.IOException;
 
 import dibugger.FileHandler.Exceptions.FileHandlerException;
 
+/**
+ * Contains Methods for loading an RDBFFile
+ * @author Pascal
+ *
+ */
 public class RDBFReader {
 	
+	/**
+	 * load an RDBFFile from a given filesystem location
+	 * @param file the file location to load from
+	 * @return a new RDBFFile Structure representing the given File in Memory
+	 * @throws IOException if an error during file reading occurred {@linkplain BufferedReader#readLine()}, {@linkplain BufferedReader#close()}
+	 * @throws FileHandlerException if an error occurred during parsing {@linkplain RDBFParser}
+	 */
 	public RDBFFile loadRDBFFile(File file) throws IOException, FileHandlerException{
 		if(!file.exists()){
 			throw new IOException();
@@ -22,6 +34,13 @@ public class RDBFReader {
 		return f;
 	}
 	
+	/**
+	 * Helper method for reading block data
+	 * @param reader file reader
+	 * @param ad current block or file
+	 * @throws FileHandlerException same as {@linkplain #loadRDBFFile(File)}
+	 * @throws IOException same as {@linkplain #loadRDBFFile(File)}
+	 */
 	private void readBlock(BufferedReader reader, RDBFAdditions ad) throws FileHandlerException, IOException{
 		String line;
 		while((line = reader.readLine())!=null){

@@ -9,6 +9,11 @@ import java.util.Properties;
 import dibugger.FileHandler.Facade.PropertiesFile;
 import dibugger.FileHandler.Facade.PropertiesFileReader;
 
+/**
+ * Specific implementation of {@linkplain PropertiesFileReader} for java defined Properties Files
+ * @author Pascal
+ *
+ */
 public class RDBFPropReader extends PropertiesFileReader{
 	
 	@Override

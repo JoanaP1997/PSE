@@ -186,7 +186,7 @@ public class ConfigurationFile {
 	}
 	/**
 	 * 
-	 * -@return the list obejct containing all Watch Expressions
+	 * @return the list obejct containing all Watch Expressions
 	 */
 	public List<WCBExpression> getList_watchExpressions() {
 		return list_watchExpressions;
