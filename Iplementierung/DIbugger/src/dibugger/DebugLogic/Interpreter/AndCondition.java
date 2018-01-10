@@ -1,8 +1,21 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
+/**
+ * 
+ * @author wagner
+ * Represents the Conjunction of two terms.
+ */
 public final class AndCondition extends BinaryCondition {
+    /**
+     * Contructor
+     * @param left
+     * @param right
+     */
+    public AndCondition(Term left, Term right) {
+		this.leftOperand = left;
+		this.rightOperand = right;
+	}
     @Override
     public BooleanValue evaluate(List<TraceState> states) {
 	boolean b = this.leftOperand.evaluate(states).and(this.rightOperand.evaluate(states));
