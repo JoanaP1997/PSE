@@ -13,10 +13,10 @@ public final class MultiplicationTerm extends BinaryArithmeticTerm {
 	}
 	@Override
 	public TermValue evaluate(List<TraceState> states) {
-		return left.evaluate(states).mult(right.evaluate(states));
+		return left.evaluate(states).mul(right.evaluate(states));
 	}
 	@Override
 	public TermValue evaluate(Scope currentScope) {
-		return left.evaluate(currentScope).mult(right.evaluate(currentScope));
+		return left.evaluate(currentScope).mul(right.evaluate(currentScope));
 	}
 }
