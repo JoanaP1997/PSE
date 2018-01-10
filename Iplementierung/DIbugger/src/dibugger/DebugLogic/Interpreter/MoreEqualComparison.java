@@ -12,12 +12,12 @@ public final class MoreEqualComparison extends Comparison {
 	}
 	@Override
 	public BooleanValue evaluate(List<TraceState> states) {
-		return new BooleanValue(leftOperand.evaluate(states).moreEqual(rightOperand.evaluate(states)));
+		return new BooleanValue(leftOperand.evaluate(states).greaterEqual(rightOperand.evaluate(states)));
 	}
 
 	@Override
 	public BooleanValue evaluate(Scope currentScope) {
-		return new BooleanValue(leftOperand.evaluate(currentScope).moreEqual(rightOperand.evaluate(currentScope)));
+		return new BooleanValue(leftOperand.evaluate(currentScope).greaterEqual(rightOperand.evaluate(currentScope)));
 		
 	}
 }

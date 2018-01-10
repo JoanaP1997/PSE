@@ -9,12 +9,12 @@ public final class MoreComparison extends Comparison {
 
 	@Override
 	public BooleanValue evaluate(List<TraceState> states) {
-		return new BooleanValue(leftOperand.evaluate(states).more(rightOperand.evaluate(states)));
+		return new BooleanValue(leftOperand.evaluate(states).greaterThan(rightOperand.evaluate(states)));
 	}
 
 	@Override
 	public BooleanValue evaluate(Scope currentScope) {
-		return new BooleanValue(leftOperand.evaluate(currentScope).more(rightOperand.evaluate(currentScope)));
+		return new BooleanValue(leftOperand.evaluate(currentScope).greaterThan(rightOperand.evaluate(currentScope)));
 		
 	}
 }

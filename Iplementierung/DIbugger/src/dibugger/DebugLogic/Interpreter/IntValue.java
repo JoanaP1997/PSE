@@ -1,6 +1,11 @@
 package dibugger.DebugLogic.Interpreter;
 
-public class IntValue implements TermValue{
+/**
+ * 
+ * @author Pascal
+ *
+ */
+public class IntValue extends TermValue{
 	private int value; 
 	public IntValue(int val) {
 		this.value = val;
@@ -8,78 +13,61 @@ public class IntValue implements TermValue{
 	public Integer getValue(){
 		return this.value;
 	}
-	@Override
-	public String toString() {
-		return ""+this.value;
-	}
+	
 	@Override
 	public TermValue add(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return new IntValue(this.value+((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public TermValue mult(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return new IntValue(this.value*((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public TermValue div(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return new IntValue(this.value*((IntValue)operand).getValue());
-		}
-		return null;
-	}
-	@Override
-	public TermValue sub(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return new IntValue(this.value-((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public TermValue modulo(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return new IntValue(this.value%((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public boolean moreEqual(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return (this.value>=((IntValue)operand).getValue());
-		}
+	public TermValue sub(TermValue operand) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean greaterEqual(TermValue operand) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public boolean more(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return (this.value>((IntValue)operand).getValue());
-		}
+	public boolean greaterThan(TermValue operand) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean lessEqual(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return (this.value<=((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
-	public boolean less(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return (this.value<((IntValue)operand).getValue());
-		}
+	public boolean lessThan(TermValue operand) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean equal(TermValue operand) {
-		if(operand instanceof IntValue) {
-			return (this.value==((IntValue)operand).getValue());
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return null;
+	}
+	
 }

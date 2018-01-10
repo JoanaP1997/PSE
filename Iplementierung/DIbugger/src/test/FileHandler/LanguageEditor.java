@@ -1,4 +1,4 @@
-package testing;
+package test.FileHandler;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

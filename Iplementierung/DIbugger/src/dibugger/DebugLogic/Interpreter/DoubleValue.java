@@ -1,14 +1,21 @@
 package dibugger.DebugLogic.Interpreter;
 /**
  * 
- * @author wagner
+ * @author pascal
  *
  */
-public class DoubleValue implements TermValue {
+public class DoubleValue extends TermValue {
+
+	private double value;
+	
+	public DoubleValue(double value) {
+		this.value = value;
+		setType(Type.DOUBLE);
+	}
 
 	@Override
 	public TermValue add(TermValue operand) {
-		// TODO Auto-generated method stub
+		//TODO throw exception
 		return null;
 	}
 
@@ -37,13 +44,13 @@ public class DoubleValue implements TermValue {
 	}
 
 	@Override
-	public boolean moreEqual(TermValue operand) {
+	public boolean greaterEqual(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean more(TermValue operand) {
+	public boolean greaterThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -55,7 +62,7 @@ public class DoubleValue implements TermValue {
 	}
 
 	@Override
-	public boolean less(TermValue operand) {
+	public boolean lessThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -72,4 +79,8 @@ public class DoubleValue implements TermValue {
 		return null;
 	}
 
+	public double getValue() {
+		return value;
+	}
+	
 }

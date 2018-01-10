@@ -32,13 +32,13 @@ public class CharValue implements TermValue {
 	}
 
 	@Override
-	public boolean moreEqual(TermValue operand) {
+	public boolean greaterEqual(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean more(TermValue operand) {
+	public boolean greaterThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -50,7 +50,7 @@ public class CharValue implements TermValue {
 	}
 
 	@Override
-	public boolean less(TermValue operand) {
+	public boolean lessThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}

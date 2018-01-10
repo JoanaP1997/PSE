@@ -12,12 +12,12 @@ public final class LessComparison extends Comparison {
 	}
 	@Override
 	public BooleanValue evaluate(List<TraceState> states) {
-		return new BooleanValue(leftOperand.evaluate(states).less(rightOperand.evaluate(states)));
+		return new BooleanValue(leftOperand.evaluate(states).lessThan(rightOperand.evaluate(states)));
 	}
 
 	@Override
 	public BooleanValue evaluate(Scope currentScope) {
-		return new BooleanValue(leftOperand.evaluate(currentScope).less(rightOperand.evaluate(currentScope)));
+		return new BooleanValue(leftOperand.evaluate(currentScope).lessThan(rightOperand.evaluate(currentScope)));
 		
 	}
 }
