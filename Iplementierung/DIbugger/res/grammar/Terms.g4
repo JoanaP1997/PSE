@@ -8,10 +8,10 @@ condition: ID #IdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')'#BracketCondition
-	| condition '&&' condition #AndCondition
-	| condition '||' condition #OrCondition
-	| '!'condition #NotCondition
+	| '('inner = condition')'#BracketCondition
+	| left = condition '&&' right = condition #AndCondition
+	| left = condition '||' right = condition #OrCondition
+	| '!' inner = condition #NotCondition
 	;
 	
 //Bedingungen

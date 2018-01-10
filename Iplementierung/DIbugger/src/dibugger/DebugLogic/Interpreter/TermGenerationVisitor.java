@@ -80,30 +80,34 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	    innerTerm = this.visit(ctx.inner);
 	    return new NegativeTerm(innerTerm);
 	}
-	//Logic
+	//Boolean Terms
 	@Override
 	public Term visitAndCondition(AndConditionContext ctx) {
-	// TODO Auto-generated method stub
-	return super.visitAndCondition(ctx);
+	        Term leftTerm, rightTerm;
+		leftTerm = this.visit(ctx.left);
+		rightTerm = this.visit(ctx.right);
+		return new AndCondition(leftTerm, rightTerm);
 	}
 	@Override
 	public Term visitOrCondition(OrConditionContext ctx) {
-	// TODO Auto-generated method stub
-	return super.visitOrCondition(ctx);
+	    Term leftTerm, rightTerm;
+		leftTerm = this.visit(ctx.left);
+		rightTerm = this.visit(ctx.right);
+		return new OrCondition(leftTerm, rightTerm);
 	}
 	@Override
 	public Term visitNotCondition(NotConditionContext ctx) {
 	    Term innerTerm;
-	    innerTerm = this.visit(ctx.getChild(0));
+	    innerTerm = this.visit(ctx.inner);
 	    return new NotCondition(innerTerm);
 	}
 	@Override
 	public Term visitBracketCondition(BracketConditionContext ctx) {
-	    return this.visit(ctx.getChild(0));
+	    return this.visit(ctx.inner);
 	}
 	@Override
 	public Term visitComparisonCondition(ComparisonConditionContext ctx) {
-	    return this.visit(ctx.getChild(0));
+	    return this.visitChildren(ctx);
 	}
 	//Comparison
 	@Override
