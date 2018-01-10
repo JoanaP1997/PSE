@@ -4,16 +4,25 @@ package dibugger.DebugLogic.Interpreter;
  * @author wagner
  *
  */
-public interface TermValue {
-	public TermValue add(TermValue operand);
-	public TermValue mult(TermValue operand);
-	public TermValue div(TermValue operand);
-	public TermValue modulo(TermValue operand);
-	public TermValue sub(TermValue operand);
-	public boolean moreEqual(TermValue operand);
-	public boolean more(TermValue operand);
-	public boolean lessEqual(TermValue operand);
-	public boolean less(TermValue operand);
-	public boolean equal(TermValue operand);
-	public String toString();
+public abstract class TermValue {
+	private Type type;
+	
+	public abstract TermValue add(TermValue operand);
+	public abstract TermValue mult(TermValue operand);
+	public abstract TermValue div(TermValue operand);
+	public abstract TermValue modulo(TermValue operand);
+	public abstract TermValue sub(TermValue operand);
+	public abstract boolean greaterEqual(TermValue operand);
+	public abstract boolean greaterThan(TermValue operand);
+	public abstract boolean lessEqual(TermValue operand);
+	public abstract boolean lessThan(TermValue operand);
+	public abstract boolean equal(TermValue operand);
+	public abstract String toString();
+	
+	public Type getType(){
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
+	}
 }

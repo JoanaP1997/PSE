@@ -1,6 +1,16 @@
 package dibugger.DebugLogic.Interpreter;
 
-public class LongValue implements TermValue {
+/**
+ * 
+ * @author Pascal
+ *
+ */
+public class LongValue extends TermValue {
+
+	private long value;	
+	public LongValue(long value) {
+		this.value = value;
+	}
 
 	@Override
 	public TermValue add(TermValue operand) {
@@ -33,13 +43,13 @@ public class LongValue implements TermValue {
 	}
 
 	@Override
-	public boolean moreEqual(TermValue operand) {
+	public boolean greaterEqual(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean more(TermValue operand) {
+	public boolean greaterThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -51,7 +61,7 @@ public class LongValue implements TermValue {
 	}
 
 	@Override
-	public boolean less(TermValue operand) {
+	public boolean lessThan(TermValue operand) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -66,6 +76,10 @@ public class LongValue implements TermValue {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public long getValue() {
+		return value;
 	}
 
 }

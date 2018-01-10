@@ -1,4 +1,4 @@
-package testing;
+package test.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
