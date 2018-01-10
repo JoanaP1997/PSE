@@ -7,11 +7,8 @@ import java.util.List;
  *
  */
 public abstract class BinaryCondition extends Term {
-    @Override
-    public abstract BooleanValue evaluate(List<TraceState> states);
-
-    @Override
-    public abstract BooleanValue evaluate(Scope currentScope);
+    protected Term leftOperand;
+    protected Term rightOperand;
 	
 
 }
