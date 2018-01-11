@@ -8,7 +8,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private static WatchExpressionPanel singleton = null;
 
     private JLabel title;
-    private JTable list;
 
 
     private WatchExpressionPanel() {
@@ -34,15 +33,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
         title = new JLabel("WatchExpressions:");
         this.add(title, layout);
 
-
-        list = new JTable();
-        list.setCellSelectionEnabled(true);
-        list.setDragEnabled(true);
-        list.add(new JLabel("hi"));
-        list.add(new JLabel("huhu"));
-        JScrollPane scrollPane = new JScrollPane(list);
-        list.setFillsViewportHeight(true);
-        this.add(scrollPane, layout);
+        //TODO: JTable oder JList? -editierbar, muss Container für Auswertung enthalten können
 
     }
 

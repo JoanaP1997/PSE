@@ -27,11 +27,7 @@ public class MainInterface extends javax.swing.JFrame {
     private JPanel controlButtonsPanel;
     private JPanel watchExpPanel;
     private JPanel condBreakPanel;
-
-    private JLabel controlButtons;
-    private JLabel watchExps;
-    private JLabel condBreaks;
-
+    
     private JMenuItem newView;
     private JMenuItem loadConfig;
     private JMenuItem saveConfig;
@@ -138,9 +134,7 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void initRightControlBar() {
         condBreakPanel = new JPanel();
-        condBreaks = new JLabel();
-        condBreaks.setText("bedingte Breakpoints");
-        condBreakPanel.add(condBreaks);
+        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel());
 
         controlButtonsPanel = new JPanel();
         controlButtonsPanel.add(CommandPanel.getCommandPanel());
