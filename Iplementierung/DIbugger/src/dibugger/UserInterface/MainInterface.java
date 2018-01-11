@@ -27,11 +27,7 @@ public class MainInterface extends javax.swing.JFrame {
     private JPanel controlButtonsPanel;
     private JPanel watchExpPanel;
     private JPanel condBreakPanel;
-
-    private JLabel controlButtons;
-    private JLabel watchExps;
-    private JLabel condBreaks;
-
+    
     private JMenuItem newView;
     private JMenuItem loadConfig;
     private JMenuItem saveConfig;
@@ -58,13 +54,13 @@ public class MainInterface extends javax.swing.JFrame {
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel first = new JLabel("Erster Text");
+
         firstTextPanel.add(new ProgramPanel(1));
         constraints.gridx = 0;
         constraints.gridy = 0;
         this.add(firstTextPanel, constraints);
 
-        JLabel second = new JLabel("Zweiter Text");
+
         secondTextPanel.add(new ProgramPanel(2));
         constraints.gridx = 1;
         this.add(secondTextPanel, constraints);
@@ -81,14 +77,11 @@ public class MainInterface extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws Exception {
-        /* Set the Nimbus look and feel */
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+    public static void main(String args[]) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) { }
+
 
         MainInterface mface = new MainInterface();
         mface.setSize(800,800);
@@ -102,18 +95,9 @@ public class MainInterface extends javax.swing.JFrame {
         settings = new javax.swing.JMenu();
         help = new javax.swing.JMenu();
 
+        //Datei Menü
         dateiMenu.setText("Datei");
         menuBar.add(dateiMenu);
-
-        vorschläge.setText("Vorschläge");
-        menuBar.add(vorschläge);
-
-        settings.setText("Einstellungen");
-        menuBar.add(settings);
-
-        help.setText("?");
-        menuBar.add(help);
-
         newView = new JMenuItem();
         newView.setText("Neu..");
         loadConfig = new JMenuItem();
@@ -123,12 +107,23 @@ public class MainInterface extends javax.swing.JFrame {
         exit = new JMenuItem();
         exit.setText("DIbugger beenden");
 
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
+        //Vorschläge Menü
+        vorschläge.setText("Vorschläge");
+        menuBar.add(vorschläge);
+
+
+        //Einstellungen Menü
+        settings.setText("Einstellungen");
+        menuBar.add(settings);
+
+
+        //Hilfe Menü
+        help.setText("?");
+        menuBar.add(help);
+
+
+
+        exit.addActionListener(actionEvent -> System.exit(0));
 
         dateiMenu.add(newView);
         dateiMenu.add(loadConfig);
@@ -139,18 +134,13 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void initRightControlBar() {
         condBreakPanel = new JPanel();
-        condBreaks = new JLabel();
-        condBreaks.setText("bedingte Breakpoints");
-        condBreakPanel.add(condBreaks);
+        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel());
 
         controlButtonsPanel = new JPanel();
-        controlButtons = new JLabel();
-        controlButtons.setText("Control Buttons");
-        controlButtonsPanel.add(controlButtons);
+        controlButtonsPanel.add(CommandPanel.getCommandPanel());
 
         watchExpPanel = new JPanel();
-        watchExps = new JLabel("Watch Expressions");
-        watchExpPanel.add(watchExps);
+        watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel());
 
         rightControlBar.setLayout(new GridBagLayout());
         GridBagConstraints controlConstraints = new GridBagConstraints();

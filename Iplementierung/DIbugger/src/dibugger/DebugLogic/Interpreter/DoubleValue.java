@@ -14,73 +14,243 @@ public class DoubleValue extends TermValue {
 	}
 
 	@Override
-	public TermValue add(TermValue operand) {
+	public TermValue add(TermValue operand) {	
+		if(operand.getType()==Type.FLOAT){
+			return new DoubleValue(value+((FloatValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return new DoubleValue(value+((DoubleValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.INT){
+			return new DoubleValue(value+((IntValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.LONG){
+			return new DoubleValue(value+((LongValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.CHAR){
+			return new DoubleValue(value+((CharValue)operand).getValue());
+		}
 		//TODO throw exception
 		return null;
 	}
-
 	@Override
-	public TermValue mult(TermValue operand) {
-		// TODO Auto-generated method stub
+	public TermValue mul(TermValue operand) {
+		if(operand.getType()==Type.FLOAT){
+			return new DoubleValue(value*((FloatValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return new DoubleValue(value*((DoubleValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.INT){
+			return new DoubleValue(value*((IntValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.LONG){
+			return new DoubleValue(value*((LongValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.CHAR){
+			return new DoubleValue(value*((CharValue)operand).getValue());
+		}
 		return null;
 	}
 
 	@Override
 	public TermValue div(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return new DoubleValue(value/((FloatValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return new DoubleValue(value/((DoubleValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.INT){
+			return new DoubleValue(value/((IntValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.LONG){
+			return new DoubleValue(value/((LongValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.CHAR){
+			return new DoubleValue(value/((CharValue)operand).getValue());
+		}
 		return null;
 	}
 
 	@Override
-	public TermValue modulo(TermValue operand) {
-		// TODO Auto-generated method stub
+	public TermValue mod(TermValue operand) {
+		if(operand.getType()==Type.FLOAT){
+			return new DoubleValue(value%((FloatValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return new DoubleValue(value%((DoubleValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.INT){
+			return new DoubleValue(value%((IntValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.LONG){
+			return new DoubleValue(value%((LongValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.CHAR){
+			return new DoubleValue(value%((CharValue)operand).getValue());
+		}
 		return null;
 	}
 
 	@Override
 	public TermValue sub(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return new DoubleValue(value-((FloatValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return new DoubleValue(value-((DoubleValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.INT){
+			return new DoubleValue(value-((IntValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.LONG){
+			return new DoubleValue(value-((LongValue)operand).getValue());
+		}
+		else if(operand.getType()==Type.CHAR){
+			return new DoubleValue(value-((CharValue)operand).getValue());
+		}
 		return null;
 	}
 
+//	@Override
+//	public TermValue or(TermValue operand) {	
+//		return null;
+//	}
+//	
+//	@Override
+//	public TermValue not(TermValue operand) {
+//		return null;
+//	}
+//	
+//	@Override
+//	public TermValue and(TermValue operand) {
+//		return null;
+//	}
+	
 	@Override
 	public boolean greaterEqual(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return value>=((FloatValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return value>=((DoubleValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.INT){
+			return value>=((IntValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.LONG){
+			return value>=((LongValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.CHAR){
+			return value>=((CharValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean greaterThan(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return value>((FloatValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return value>((DoubleValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.INT){
+			return value>((IntValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.LONG){
+			return value>((LongValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.CHAR){
+			return value>((CharValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean lessEqual(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return value<=((FloatValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return value<=((DoubleValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.INT){
+			return value<=((IntValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.LONG){
+			return value<=((LongValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.CHAR){
+			return value<=((CharValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean lessThan(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return value<((FloatValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return value<((DoubleValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.INT){
+			return value<((IntValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.LONG){
+			return value<((LongValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.CHAR){
+			return value<((CharValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean equal(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.FLOAT){
+			return value==((FloatValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.DOUBLE){
+			return value==((DoubleValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.INT){
+			return value==((IntValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.LONG){
+			return value==((LongValue)operand).getValue();
+		}
+		else if(operand.getType()==Type.CHAR){
+			return value==((CharValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
+	public boolean or(TermValue operand) {
+		return false;
+	}
+	
+	@Override
+	public boolean and(TermValue operand) {
+		return false;
+	}
+	
+	@Override
+	public boolean not() {
+		return false;
+	}
+	
+	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return ""+this.value;
 	}
 
 	public double getValue() {
 		return value;
 	}
+
 	
 }

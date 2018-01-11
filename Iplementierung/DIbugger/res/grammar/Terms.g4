@@ -8,10 +8,10 @@ condition: ID #IdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')'#BracketCondition
-	| condition '&&' condition #AndCondition
-	| condition '||' condition #OrCondition
-	| '!'condition #NotCondition
+	| '('inner = condition')'#BracketCondition
+	| left = condition '&&' right = condition #AndCondition
+	| left = condition '||' right = condition #OrCondition
+	| '!' inner = condition #NotCondition
 	;
 	
 //Bedingungen
@@ -42,7 +42,7 @@ term : '-' inner = term #NegativeTerm
 
 arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
-		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
 		;
 
 //LITERALE bzw TOKENS

@@ -212,6 +212,7 @@ public class TermsParser extends Parser {
 		}
 	}
 	public static class BracketConditionContext extends ConditionContext {
+		public ConditionContext inner;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
@@ -241,6 +242,7 @@ public class TermsParser extends Parser {
 		}
 	}
 	public static class NotConditionContext extends ConditionContext {
+		public ConditionContext inner;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
@@ -252,6 +254,8 @@ public class TermsParser extends Parser {
 		}
 	}
 	public static class OrConditionContext extends ConditionContext {
+		public ConditionContext left;
+		public ConditionContext right;
 		public List<ConditionContext> condition() {
 			return getRuleContexts(ConditionContext.class);
 		}
@@ -266,6 +270,8 @@ public class TermsParser extends Parser {
 		}
 	}
 	public static class AndConditionContext extends ConditionContext {
+		public ConditionContext left;
+		public ConditionContext right;
 		public List<ConditionContext> condition() {
 			return getRuleContexts(ConditionContext.class);
 		}
@@ -343,7 +349,7 @@ public class TermsParser extends Parser {
 				setState(23);
 				match(T__0);
 				setState(24);
-				condition(0);
+				((BracketConditionContext)_localctx).inner = condition(0);
 				setState(25);
 				match(T__1);
 				}
@@ -356,7 +362,7 @@ public class TermsParser extends Parser {
 				setState(27);
 				match(T__4);
 				setState(28);
-				condition(1);
+				((NotConditionContext)_localctx).inner = condition(1);
 				}
 				break;
 			}
@@ -375,25 +381,27 @@ public class TermsParser extends Parser {
 					case 1:
 						{
 						_localctx = new AndConditionContext(new ConditionContext(_parentctx, _parentState));
+						((AndConditionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_condition);
 						setState(31);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(32);
 						match(T__2);
 						setState(33);
-						condition(4);
+						((AndConditionContext)_localctx).right = condition(4);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new OrConditionContext(new ConditionContext(_parentctx, _parentState));
+						((OrConditionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_condition);
 						setState(34);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(35);
 						match(T__3);
 						setState(36);
-						condition(3);
+						((OrConditionContext)_localctx).right = condition(3);
 						}
 						break;
 					}
@@ -1033,7 +1041,7 @@ public class TermsParser extends Parser {
 	public static class ThreeDimArrayAccessContext extends ArrayAccessContext {
 		public Token id;
 		public TermContext firstIndex;
-		public TermContext secondtIndex;
+		public TermContext secondIndex;
 		public TermContext thirdIndex;
 		public TerminalNode ID() { return getToken(TermsParser.ID, 0); }
 		public List<TermContext> term() {
@@ -1120,7 +1128,7 @@ public class TermsParser extends Parser {
 				setState(121);
 				match(T__16);
 				setState(122);
-				((ThreeDimArrayAccessContext)_localctx).secondtIndex = term(0);
+				((ThreeDimArrayAccessContext)_localctx).secondIndex = term(0);
 				setState(123);
 				match(T__17);
 				setState(124);

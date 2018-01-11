@@ -1,9 +1,16 @@
 package dibugger.DebugLogic.Interpreter;
 
-public class BooleanValue implements TermValue {
+/**
+ * 
+ * @author Pascal
+ *
+ */
+public class BooleanValue extends TermValue {
 	private boolean value;
+	
 	public BooleanValue(boolean value) {
 		this.value = value;
+		setType(Type.BOOLEAN);
 	}
 
 	@Override
@@ -13,7 +20,7 @@ public class BooleanValue implements TermValue {
 	}
 
 	@Override
-	public TermValue mult(TermValue operand) {
+	public TermValue mul(TermValue operand) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,7 +32,7 @@ public class BooleanValue implements TermValue {
 	}
 
 	@Override
-	public TermValue modulo(TermValue operand) {
+	public TermValue mod(TermValue operand) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -36,6 +43,24 @@ public class BooleanValue implements TermValue {
 		return null;
 	}
 
+//	@Override
+//	public TermValue or(TermValue operand) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public TermValue and(TermValue operand) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public TermValue not(TermValue operand) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	
 	@Override
 	public boolean greaterEqual(TermValue operand) {
 		// TODO Auto-generated method stub
@@ -62,14 +87,40 @@ public class BooleanValue implements TermValue {
 
 	@Override
 	public boolean equal(TermValue operand) {
-		// TODO Auto-generated method stub
+		if(operand.getType()==Type.BOOLEAN){
+			return value == ((BooleanValue)operand).getValue();
+		}
 		return false;
 	}
 
 	@Override
+	public boolean or(TermValue operand) {
+		if(operand.getType()==Type.BOOLEAN){
+			return value || ((BooleanValue) operand).getValue();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean and(TermValue operand) {
+		if(operand.getType()==Type.BOOLEAN){
+			return value && ((BooleanValue) operand).getValue();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean not() {
+		return !value;
+	}
+	
+	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return ""+this.value;
 	}
 
+	public boolean getValue(){
+		return value;
+	}
+	
 }
