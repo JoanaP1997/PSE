@@ -20,5 +20,11 @@ public class WatchExpressionTest {
 	assert(we.evaluate(null).equals("true"));
 	we.change("!!true", null);
 	assert(we.evaluate(null).equals("true"));
+	we.change("(5+3)*2 == 5+3*2", null);
+	assert(we.evaluate(null).equals("false"));
+	we.change("(5+3)*2!=16", null);
+	assert(we.evaluate(null).equals("false"));
+	we.change("3<1+3", null);
+	assert(we.evaluate(null).equals("true"));
     }
 }
