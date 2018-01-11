@@ -17,6 +17,7 @@ import dibugger.DebugLogic.AntlrParser.WlangParser.IfStateContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithBlockContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithSingleContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfelseStateContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.MainRoutineContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.PureAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.WhileStateContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithBlockContext;
@@ -27,6 +28,11 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     public CommandGenerationVisitor(GenerationController controller) {
 	this.controller = controller;
     }
+    //RoutineCommands
+   
+    
+    
+    
     //Array Commands
     @Override
     public Command visitArrayDeclaration(ArrayDeclarationContext ctx) {

@@ -14,5 +14,10 @@ public class IfCommand extends Command {
 	// TODO Auto-generated method stub
 	return null;
     }
+//bisher nur zu testzwecken vorhandene methode
+    public Command getChild(int i) {
+	// TODO Auto-generated method stub
+	return null;
+    }
 
 }
