@@ -40,8 +40,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
         list.setDragEnabled(true);
         list.add(new JLabel("hi"));
         list.add(new JLabel("huhu"));
-        this.add(list, layout);
-        //TODO liste vergrößern
+        JScrollPane scrollPane = new JScrollPane(list);
+        list.setFillsViewportHeight(true);
+        this.add(scrollPane, layout);
 
     }
 
