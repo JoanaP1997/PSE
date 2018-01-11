@@ -1,7 +1,7 @@
 package dibugger.DebugLogic.Interpreter;
 import java.util.List;
 /**
- * 
+ * Represents a Comparison in the Form "a!=b", where a and b are terms.
  * @author wagner
  *
  */

@@ -49,4 +49,12 @@ public class ScopeTuple {
     public void setEndLine(int endLine) {
 	this.endLine = endLine;
     }
+    /**
+     * Checks, wether the scope contains a certain line
+     * @param line
+     * @return boolean
+     */
+    public boolean contains(int line) {
+	return (this.startLine <= line && line <= this.endLine);
+    }
 }

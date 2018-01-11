@@ -1,16 +1,12 @@
 package dibugger.DebugLogic.Interpreter;
 
-/**
- * 
- * @author Pascal
- *
- */
-public class BooleanValue extends TermValue {
-	private boolean value;
+public class ArrayValue extends TermValue{
+
+	private TermValue[][][] value;
 	
-	public BooleanValue(boolean value) {
+	public ArrayValue(TermValue[][][] value) {
 		this.value = value;
-		setType(Type.BOOLEAN);
+		setType(Type.ARRAY);
 	}
 
 	@Override
@@ -60,7 +56,7 @@ public class BooleanValue extends TermValue {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
-	
+
 	@Override
 	public boolean greaterEqual(TermValue operand) {
 		// TODO Auto-generated method stub
@@ -87,40 +83,32 @@ public class BooleanValue extends TermValue {
 
 	@Override
 	public boolean equal(TermValue operand) {
-		if(operand.getType()==Type.BOOLEAN){
-			return value == ((BooleanValue)operand).getValue();
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 	@Override
 	public boolean or(TermValue operand) {
-		if(operand.getType()==Type.BOOLEAN){
-			return value || ((BooleanValue) operand).getValue();
-		}
 		return false;
 	}
 	
 	@Override
 	public boolean and(TermValue operand) {
-		if(operand.getType()==Type.BOOLEAN){
-			return value && ((BooleanValue) operand).getValue();
-		}
 		return false;
 	}
 	
 	@Override
 	public boolean not() {
-		return !value;
+		return false;
 	}
 	
 	@Override
 	public String toString() {
-		return ""+this.value;
-	}
-
-	public boolean getValue(){
-		return value;
+		return null;
 	}
 	
+	public TermValue[][][] getValue() {
+		return value;
+	}
+
 }

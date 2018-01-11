@@ -13,10 +13,10 @@ public final class ModuloTerm extends BinaryArithmeticTerm {
 	}
 	@Override
 	public TermValue evaluate(List<TraceState> states) {
-		return left.evaluate(states).modulo(right.evaluate(states));
+		return left.evaluate(states).mod(right.evaluate(states));
 	}
 	@Override
 	public TermValue evaluate(Scope currentScope) {
-		return left.evaluate(currentScope).modulo(right.evaluate(currentScope));
+		return left.evaluate(currentScope).mod(right.evaluate(currentScope));
 	}
 }

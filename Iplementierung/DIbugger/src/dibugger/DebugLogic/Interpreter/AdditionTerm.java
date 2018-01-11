@@ -7,7 +7,12 @@ import java.util.List;
  *
  */
 public final class AdditionTerm extends BinaryArithmeticTerm {
-	public AdditionTerm(Term left, Term right) {
+	/**
+	 * Contructor
+	 * @param left
+	 * @param right
+	 */
+    	public AdditionTerm(Term left, Term right) {
 		this.left = left;
 		this.right = right;
 	}
