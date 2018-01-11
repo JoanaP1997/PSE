@@ -39,9 +39,13 @@ public class ConditionalBreakpoint {
     public void change(String specifier, List<ScopeTuple> scopes){
 	this.specifier = specifier;
 	this.scopes = scopes;
+	this.createTerm();
     }
     public boolean evaluate(List<TraceState> states) {
-	//return this.condition.evaluate(states)./toBOOL;
+	TermValue result = this.condition.evaluate(states);
+	if (result.getType() == Type.BOOLEAN) {
+	    return ((BooleanValue)result).getValue();
+	}
 	return false;
     }
     private void createTerm(){

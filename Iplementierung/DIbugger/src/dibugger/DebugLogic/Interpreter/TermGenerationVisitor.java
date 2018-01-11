@@ -11,6 +11,7 @@ import dibugger.DebugLogic.AntlrParser.TermsParser.BracketConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.BracketsContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.CharLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.ComparisonConditionContext;
+import dibugger.DebugLogic.AntlrParser.TermsParser.ConstantConditionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.DivisionContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.DoubleLiteralContext;
 import dibugger.DebugLogic.AntlrParser.TermsParser.EqualCompContext;
@@ -214,6 +215,10 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	@Override
 	public Term visitID(IDContext ctx) {
 		return new VariableRelationalTerm(ctx.getText());
+	}
+	@Override
+	public Term visitConstantCondition(ConstantConditionContext ctx) {
+	    	return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
 	}
 	
 }

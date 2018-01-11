@@ -37,6 +37,7 @@ public class WatchExpression {
     public void change(String specifier, List<ScopeTuple> scopes){
 	this.specifier = specifier;
 	this.scopes = scopes;
+	this.createTerm();
     }
     public String evaluate(List<TraceState> states) {
 	//if(is in scope)

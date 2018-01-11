@@ -16,6 +16,7 @@ import dibugger.DebugLogic.Interpreter.IntValue;
 import dibugger.DebugLogic.Interpreter.ModuloTerm;
 import dibugger.DebugLogic.Interpreter.MultiplicationTerm;
 import dibugger.DebugLogic.Interpreter.NotCondition;
+import dibugger.DebugLogic.Interpreter.OrCondition;
 import dibugger.DebugLogic.Interpreter.Scope;
 import dibugger.DebugLogic.Interpreter.SubtractionTerm;
 import dibugger.DebugLogic.Interpreter.Term;
@@ -89,6 +90,14 @@ public class TermTest {
 		assert(notA.evaluate(currentScope).toString().equals("true"));
 		assert(notB.evaluate(currentScope).toString().equals("false"));
     }
+    @Test
+    public void OrConditionTermsTest(){
+	
+		Term or = new OrCondition(constantFalse, constantTrue);
+		//System.out.println(mod.evaluate(currentScope).toString());
+		assert(or.evaluate(currentScope).toString().equals("true"));
+    }
+    
     
 
 }
