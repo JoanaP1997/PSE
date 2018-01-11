@@ -7,7 +7,7 @@ import java.util.List;
  * Represents a runnalbe command in a WLANG program
  */
 public abstract class Command {
-    GenerationController controller;
+    protected GenerationController controller;
     public Command(GenerationController controller) {
 	this.controller = controller;
     }

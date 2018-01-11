@@ -3,10 +3,12 @@ package dibugger.DebugLogic.Interpreter;
 import java.util.List;
 
 public class Assignment extends Command {
-
-    public Assignment(GenerationController controller) {
+    private String identifier;
+    private Term term;
+    public Assignment(GenerationController controller, String identifier, Term term) {
 	super(controller);
-	// TODO Auto-generated constructor stub
+	this.identifier = identifier;
+	this.term = term;
     }
 
     @Override

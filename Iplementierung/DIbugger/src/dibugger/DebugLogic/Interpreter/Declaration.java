@@ -1,12 +1,16 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
-
+/**
+ * 
+ * @author wagner
+ *
+ */
 public class Declaration extends Command {
-
-    public Declaration(GenerationController controller) {
+    private String identifier;
+    public Declaration(GenerationController controller, String identifier) {
 	super(controller);
-	// TODO Auto-generated constructor stub
+	this.identifier = identifier;
     }
 
     @Override
