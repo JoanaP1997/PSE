@@ -3,6 +3,7 @@ package dibugger.DebugLogic.Interpreter;
 import java.util.List;
 
 import dibugger.DebugLogic.AntlrParser.WlangBaseVisitor;
+import dibugger.DebugLogic.AntlrParser.WlangParser.AndConditionContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclareAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignContext;
@@ -10,10 +11,16 @@ import dibugger.DebugLogic.AntlrParser.WlangParser.AssignmentContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.DeclarationContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.DeclareAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.FuncCallContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IfElseWithBlockContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IfElseWithSingleContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfStateContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithBlockContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithSingleContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfelseStateContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.PureAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.WhileStateContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithBlockContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithSingleContext;
 
 public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     private GenerationController controller;
@@ -59,18 +66,33 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     }
     //Composite Commands
     @Override
-    public Command visitWhileState(WhileStateContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitWhileState(ctx);
+    public Command visitWhileWithBlock(WhileWithBlockContext ctx) {
+	// TODO Auto-generated method stub
+        return super.visitWhileWithBlock(ctx);
     }
     @Override
-    public Command visitIfState(IfStateContext ctx) {
+    public Command visitWhileWithSingle(WhileWithSingleContext ctx) {
         // TODO Auto-generated method stub
-        return super.visitIfState(ctx);
+        return super.visitWhileWithSingle(ctx);
     }
     @Override
-    public Command visitIfelseState(IfelseStateContext ctx) {
+    public Command visitIfWithBlock(IfWithBlockContext ctx) {
         // TODO Auto-generated method stub
-        return super.visitIfelseState(ctx);
+        return super.visitIfWithBlock(ctx);
+    }
+    @Override
+    public Command visitIfWithSingle(IfWithSingleContext ctx) {
+        // TODO Auto-generated method stub
+        return super.visitIfWithSingle(ctx);
+    }
+    @Override
+    public Command visitIfElseWithBlock(IfElseWithBlockContext ctx) {
+        // TODO Auto-generated method stub
+        return super.visitIfElseWithBlock(ctx);
+    }
+    @Override
+    public Command visitIfElseWithSingle(IfElseWithSingleContext ctx) {
+        // TODO Auto-generated method stub
+        return super.visitIfElseWithSingle(ctx);
     }
 }

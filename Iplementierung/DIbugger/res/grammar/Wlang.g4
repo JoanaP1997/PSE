@@ -61,24 +61,24 @@ declaration: type = TYPE id = ID ';';
 returnState: 'return' returnvalue = term ';';
 
 //Kontrollstrukturen
-ifState: 'if' '(' condition ')' block
-	| 'if' '(' condition ')' statement
+ifState: 'if' '(' condition ')' content = block #ifWithBlock
+	| 'if' '('condition ')' content = statement #ifWithSingle
 	;
-ifelseState: ifState 'else' block
-	| ifState 'else' statement
+ifelseState: ifPart = ifState 'else' content = block #ifElseWithBlock
+	| ifPart = ifState 'else' content = statement #ifElseWithSingle
 	;
-whileState: 'while' '(' condition ')' block
-	| 'while' '(' condition ')' statement
+whileState: 'while' '(' condition ')' content = block #whileWithBlock
+	| 'while' '('condition ')' content = statement #whileWithSingle
 	;
 //Bedingungen
 condition: ID #IdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
-	| '('condition')'#BracketCondition
-	| condition '&&' condition #AndCondition
-	| condition '||' condition #OrCondition
-	| '!'condition #NotCondition
+	| '('inner = condition')'#BracketCondition
+	| left = condition '&&' right = condition #AndCondition
+	| left = condition '||' right = condition #OrCondition
+	| '!' inner = condition #NotCondition
 	;
 
 comparison: left=term '<' right=term #LessComp
@@ -95,7 +95,7 @@ term : '-' inner = term #NegativeTerm
 	| left = term '-' right = term #Subtraction
 	| left = term '+' right = term #Addition
 	| left = term '%' right = term #Modulo
-	|'('term')' #Brackets
+	|'('inner = term')' #Brackets
 	| FLOATLITERAL #FloatLiteral
 	| INTLITERAL #IntLiteral
 	| LONGLITERAL #LongLiteral
