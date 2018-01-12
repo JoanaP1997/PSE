@@ -125,11 +125,26 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssignment(WlangParser.AssignmentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#arrayDeclaration}.
+	 * Visit a parse tree produced by the {@code arrayDeclarationOneDim}
+	 * labeled alternative in {@link WlangParser#arrayDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArrayDeclaration(WlangParser.ArrayDeclarationContext ctx);
+	T visitArrayDeclarationOneDim(WlangParser.ArrayDeclarationOneDimContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayDeclarationTwoDim}
+	 * labeled alternative in {@link WlangParser#arrayDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayDeclarationTwoDim(WlangParser.ArrayDeclarationTwoDimContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayDeclarationThreeDim}
+	 * labeled alternative in {@link WlangParser#arrayDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayDeclarationThreeDim(WlangParser.ArrayDeclarationThreeDimContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WlangParser#arrayDeclareAssign}.
 	 * @param ctx the parse tree
@@ -137,11 +152,26 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayDeclareAssign(WlangParser.ArrayDeclareAssignContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#arrayElementAssign}.
+	 * Visit a parse tree produced by the {@code arrayElementAssignOneDim}
+	 * labeled alternative in {@link WlangParser#arrayElementAssign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArrayElementAssign(WlangParser.ArrayElementAssignContext ctx);
+	T visitArrayElementAssignOneDim(WlangParser.ArrayElementAssignOneDimContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayElementAssignTwoDim}
+	 * labeled alternative in {@link WlangParser#arrayElementAssign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayElementAssignTwoDim(WlangParser.ArrayElementAssignTwoDimContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code arrayElementAssignThreeDim}
+	 * labeled alternative in {@link WlangParser#arrayElementAssign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayElementAssignThreeDim(WlangParser.ArrayElementAssignThreeDimContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code oneDims}
 	 * labeled alternative in {@link WlangParser#dims}.

@@ -5,8 +5,14 @@ import java.util.List;
 import dibugger.DebugLogic.AntlrParser.WlangBaseVisitor;
 import dibugger.DebugLogic.AntlrParser.WlangParser.AndConditionContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationOneDimContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationThreeDimContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationTwoDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclareAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignOneDimContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignThreeDimContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignTwoDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.AssignmentContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.DeclarationContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.DeclareAssignContext;
@@ -35,19 +41,44 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     
     //Array Commands
     @Override
-    public Command visitArrayDeclaration(ArrayDeclarationContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitArrayDeclaration(ctx);
+    public Command visitArrayDeclarationOneDim(ArrayDeclarationOneDimContext ctx) {
+        String identifier = ctx.id.getText();
+        Term index = null;
+        // TODO : visit(ctx.index.) 
+
+        return new ArrayDeclaration(this.controller, identifier, index);
     }
     @Override
-    public Command visitArrayDeclareAssign(ArrayDeclareAssignContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitArrayDeclareAssign(ctx);
+    public Command visitArrayDeclarationTwoDim(ArrayDeclarationTwoDimContext ctx) {
+	String identifier = ctx.id.getText();
+        Term firstIndex = null;
+        Term secondIndex = null;
+        // TODO : visit(ctx.index.) 
+
+        return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex);  
     }
     @Override
-    public Command visitArrayElementAssign(ArrayElementAssignContext ctx) {
+    public Command visitArrayDeclarationThreeDim(ArrayDeclarationThreeDimContext ctx) {
+	String identifier = ctx.id.getText();
+        Term firstIndex = null;
+        Term secondIndex = null;
+        Term thirdIndex = null;
+        // TODO : visit(ctx.index.) 
+
+        return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex, thirdIndex);  
+    }
+    @Override
+    public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
+    }
+    @Override
+    public Command visitArrayElementAssignTwoDim(ArrayElementAssignTwoDimContext ctx) {
         // TODO Auto-generated method stub
-        return super.visitArrayElementAssign(ctx);
+        return super.visitArrayElementAssignTwoDim(ctx);
+    }
+    @Override
+    public Command visitArrayElementAssignThreeDim(ArrayElementAssignThreeDimContext ctx) {
+        // TODO Auto-generated method stub
+        return super.visitArrayElementAssignThreeDim(ctx);
     }
     //Assignments and Declaration
     @Override
