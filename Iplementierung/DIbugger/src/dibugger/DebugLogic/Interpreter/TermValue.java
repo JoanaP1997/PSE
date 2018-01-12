@@ -5,7 +5,7 @@ package dibugger.DebugLogic.Interpreter;
  *
  */
 public abstract class TermValue {
-	private Type type;
+	protected final Type type;
 	
 	public abstract TermValue add(TermValue operand);
 	public abstract TermValue mul(TermValue operand);

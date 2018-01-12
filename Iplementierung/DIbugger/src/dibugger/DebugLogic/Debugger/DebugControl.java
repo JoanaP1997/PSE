@@ -12,7 +12,7 @@ import dibugger.DebugLogic.Interpreter.WatchExpression;
 
 /**
  * Heart of the Debug-Logic. The logic for start / stop / continue and all steps is in this class.
- * Additionally the creation of breakpoints and watch expressions are handled here.
+ * Additionally the creation of breakpoints and watch expressions is handled here.
  * @author Pascal
  *
  */
@@ -95,7 +95,7 @@ public class DebugControl {
 	 */
 	public void createWatchExpression(int id, String expr){
 		map_watchExpressions.put(id, new WatchExpression(expr));
-		//TODO default Scope hinzufügen
+		//TODO default Scope hinzufï¿½gen
 	}
 	/**
 	 * changes the watch expression with a given id
