@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 /**
  * 
- * @author scheler
+ * @author wagner
  *
  */
 public class TraceState {

@@ -71,7 +71,15 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \subsection{UserInterface}
 \subsection{Control}
 \subsection{FileHandler}
++ FileHandlerFacade: savePropertiesFile()
 \subsection{DebugLogic}
+\subsubsection{Debugger}
++ DebugLogicFacade: extends Observable statt Subject
+* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String,
+
++ DebugControl: setStepSize(programID, stepSize); reset();
+\subsubsection{Interpreter}
+* TermValue: abstract class statt interface
 
 \section{Anhang}
 
