@@ -5,6 +5,19 @@ package dibugger.DebugLogic.Debugger;
  * @author Pascal
  *
  */
-public class DebugLogicFacade {
+public class DebugLogicFacade extends Subject{
 	
+	DebugControl debugControl;
+	
+	public DebugLogicFacade() {
+		super();
+		debugControl = new DebugControl();
+	}
+	
+	
+	
+	//Strtegy Types
+	public static final int STRAT_STEP_SIZE_SIMPLE = 0;
+	public static final int STRAT_REL_SIMPLE = 1;
+	public static final int STRAT_INPUT_SIMPLE = 2;
 }
