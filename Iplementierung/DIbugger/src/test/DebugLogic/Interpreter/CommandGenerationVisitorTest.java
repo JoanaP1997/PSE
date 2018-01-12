@@ -51,7 +51,6 @@ public class CommandGenerationVisitorTest {
 		assert(((IfCommand)((RoutineCommand)root).getChild(3)).getChild(0) instanceof Assignment);
 		assert(((RoutineCommand)root).getChild(4) instanceof ReturnCommand); 
     }
-    
     @Test
     public void structureWhileTest() {
 	String code = "void main(int x) {"
