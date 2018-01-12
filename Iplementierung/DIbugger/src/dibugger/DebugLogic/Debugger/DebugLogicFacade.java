@@ -27,64 +27,114 @@ public class DebugLogicFacade extends Observable{
 		suggest_relational = new SimpleRelationalSuggestion();
 	}
 	
-	
+	/**
+	 * @see DebugControl#setStepSize(int, int)
+	 */
 	public void setStepSize(int program, int size){
 		debugControl.setStepSize(program, size);
 	}
 	
+	/**
+	 * @see DebugControl#step(int)
+	 */
 	public void step(int type){
 		debugControl.step(type);
 	}
+	/**
+	 * @see DebugControl#singleStep(int)
+	 */
 	public void singleStep(int programID){
 		debugControl.singleStep(programID);
 	}
+	/**
+	 * @see DebugControl#continueDebug()
+	 */
 	public void continueDebug(){
 		debugControl.continueDebug();
 	}
 	
+	/**
+	 * @see DebugControl#createWatchExpression(int, String)
+	 */
 	public void createWatchExpression(int id, String expr){
 		debugControl.createWatchExpression(id, expr);
 	}
+	/**
+	 * @see DebugControl#changeWatchExpression(int, String, List)
+	 */
 	public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes){
-		debugControl.changewatchExpression(id, expr, scopes);
+		debugControl.changeWatchExpression(id, expr, scopes);
 	}
+	/**
+	 * @see DebugControl#deleteWatchExpression(int)
+	 */
 	public void deleteWatchExpression(int id){
 		debugControl.deleteWatchExpression(id);	
 	}
 	
+	/**
+	 * @see DebugControl#changeCondBreakpoint(int, String, List)
+	 */
 	public void createCondBreakpoint(int id, String cond){
 		debugControl.createCondBreakpoint(id, cond);
 	}
+	/**
+	 * @see DebugControl#changeCondBreakpoint(int, String, List)
+	 */
 	public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes){
 		debugControl.changeCondBreakpoint(id, cond, scopes);
 	}
+	/**
+	 * @see DebugControl#deleteCondBreakpoint(int)
+	 */
 	public void deleteCondBreakpoint(int id){
 		debugControl.deleteCondBreakpoint(id);	
 	}
 	
+	/**
+	 * @see DebugControl#createBreakpoint(int, int)
+	 */
 	public void createBreakpoint(int programID, int line){
 		debugControl.createBreakpoint(programID, line);
 	}
+	/**
+	 * @see DebugControl#deleteBreakpoint(int, int)
+	 */
 	public void deleteBreakpoint(int programID, int line){
 		debugControl.deleteBreakpoint(programID, line);
 	}
 	
+	/**
+	 * @see DebugControl#launchRun(List)
+	 */
 	public void launchRun(List<ProgramInput> programs){
 		debugControl.launchRun(programs);
 	}
 	
+	/**
+	 * @see DebugControl#getProgramCounter()
+	 */
 	public List<Integer> getProgramCounter(){
 		return debugControl.getProgramCounter();
 	}
 	
+	/**
+	 * @see DebugControl#reset()
+	 */
 	public void reset(){
 		debugControl.reset();
 	}
 	
+	/**
+	 * @see DebugControl#setMaximumIterations(int)
+	 */
 	public void setMaximumIterations(int count){
 		debugControl.setMaximumIterations(count);
 	}
 	
+	/**
+	 * @see DebugControl#setMaximumFunctionCalls(int)
+	 */
 	public void setMaximumFunctionCalls(int count){
 		debugControl.setMaximumFunctionCalls(count);
 	}
@@ -95,6 +145,9 @@ public class DebugLogicFacade extends Observable{
 	
 	
 	//Suggestions
+	/**
+	 * @see StepSizeSuggestion#suggest(List)
+	 */
 	public void suggestStepSize(List<String> programText){
 		suggest_stepsize.suggest(programText);
 	}
