@@ -1,13 +1,13 @@
 package dibugger.UserInterface;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 
 public class WatchExpressionPanel extends ExpressionPanel {
 
     private static WatchExpressionPanel singleton = null;
 
-    private JLabel title;
 
 
     private WatchExpressionPanel() {
@@ -27,11 +27,24 @@ public class WatchExpressionPanel extends ExpressionPanel {
     }
 
     private void initComponents() {
+
         LayoutManager layout = new GridLayout(0,1);
         this.setLayout(layout);
 
-        title = new JLabel("WatchExpressions:");
-        this.add(title, layout);
+        panelType = "Watch Expressions:";
+
+        String[] columnTitles = { panelType , "Auswertung" };
+        Object[][] dataEntries = { {"hier könnte ihre Expression stehen", "ausgewertet"}};
+        JTable table = new JTable(dataEntries, columnTitles);
+        table.setSize(200, 200);
+
+        JScrollPane tableContainer = new JScrollPane(table);
+        tableContainer.createVerticalScrollBar();
+
+        this.add(tableContainer, layout);
+
+
+
 
         //TODO: JTable oder JList? -editierbar, muss Container für Auswertung enthalten können
 
