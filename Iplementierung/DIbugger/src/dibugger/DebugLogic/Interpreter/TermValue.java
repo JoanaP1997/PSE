@@ -28,6 +28,8 @@ public abstract class TermValue {
 	public Type getType(){
 		return type;
 	}
+	
+	// TODO: Ulla: "Warum gibt es einen Setter?"
 	public void setType(Type type) {
 		this.type = type;
 	}
