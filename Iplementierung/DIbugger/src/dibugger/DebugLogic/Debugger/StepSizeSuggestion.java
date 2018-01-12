@@ -20,4 +20,8 @@ public abstract class StepSizeSuggestion {
 	 * @param programText list containing all program texts
 	 */
 	public abstract void suggest(List<String> programText);
+	
+	public DebugControl getDebugControl() {
+		return debugControl;
+	}
 }

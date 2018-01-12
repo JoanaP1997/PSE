@@ -6,6 +6,7 @@ import java.util.Map;
 
 import dibugger.DebugLogic.Interpreter.ConditionalBreakpoint;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
+import dibugger.DebugLogic.Interpreter.TraceIterator;
 import dibugger.DebugLogic.Interpreter.WatchExpression;
 
 /**
@@ -16,18 +17,21 @@ import dibugger.DebugLogic.Interpreter.WatchExpression;
  */
 public class DebugControl {
 	
+	private static final int DEF_IT = 100;
+	private static final int DEF_MAX_FUNC_CALLS = 100;
+	
 	private Map<Integer, WatchExpression> map_watchExpressions;	
 	private Map<Integer, ConditionalBreakpoint> map_condBreakpoints;
 	private List<List<Breakpoint>> list_breakpoints;
 	
-//	private List<TraceIterator> list_traceIterator;
+	private List<TraceIterator> list_traceIterator;
 	
 	private List<ProgramInput> list_programInput;
 	
 	private List<Integer> list_stepSize;
 	
-	private int maxIterations;
-	private int maxFunctionCalls;
+	private int maxIterations = DEF_IT;
+	private int maxFunctionCalls = DEF_MAX_FUNC_CALLS;
 	
 	public DebugControl(){
 		
@@ -100,10 +104,21 @@ public class DebugControl {
 		list_breakpoints.clear();
 	}
 	
+	public void reset(){
+		list_breakpoints.clear();
+		list_stepSize.clear();
+		list_programInput.clear();
+		list_traceIterator.clear();
+		map_watchExpressions.clear();
+		map_condBreakpoints.clear();
+		
+		maxIterations = DEF_IT;
+		maxFunctionCalls = DEF_MAX_FUNC_CALLS;
+	}
 	
 	public void setStepSize(int programID, int stepSize){
 		while(list_stepSize.size()<programID-1){
-			
+			list_stepSize.add(1);
 		}
 		list_stepSize.set(programID, stepSize);
 	}
