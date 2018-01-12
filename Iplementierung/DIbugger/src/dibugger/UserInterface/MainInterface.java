@@ -27,7 +27,7 @@ public class MainInterface extends javax.swing.JFrame {
     private JPanel controlButtonsPanel;
     private JPanel watchExpPanel;
     private JPanel condBreakPanel;
-    
+
     private JMenuItem newView;
     private JMenuItem loadConfig;
     private JMenuItem saveConfig;
@@ -48,27 +48,22 @@ public class MainInterface extends javax.swing.JFrame {
         secondTextPanel = new javax.swing.JPanel();
         rightControlBar = new javax.swing.JPanel();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
+        GridLayout layout = new GridLayout(1,0);
+        getContentPane().setLayout(layout);
         configureMenuBar();
 
-        constraints.fill = GridBagConstraints.HORIZONTAL;
 
 
         firstTextPanel.add(new ProgramPanel(1));
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        this.add(firstTextPanel, constraints);
+        this.add(firstTextPanel, layout);
 
 
         secondTextPanel.add(new ProgramPanel(2));
-        constraints.gridx = 1;
-        this.add(secondTextPanel, constraints);
+        this.add(secondTextPanel, layout);
 
         initRightControlBar();
 
-        constraints.gridx = 3;
-        this.add(rightControlBar, constraints);
+        this.add(rightControlBar, layout);
 
 
         pack();

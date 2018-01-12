@@ -16,45 +16,76 @@ public class ProgramPanel extends JPanel {
     JLabel stepsizelabel;
     JLabel inputvars;
 
+    JEditorPane codeField;
+
+    JPanel firstRow;
+    JPanel secondRow;
+    JPanel textEditorPanel;
+    JPanel variableInspectorPanel;
+
     public ProgramPanel(int identifier) {
         id = identifier;
         initComponents();
     }
 
     private void initComponents() {
-        this.setLayout(new GridBagLayout());
-        GridBagConstraints constraints = new GridBagConstraints();
-        this.setVisible(true);
+        GridLayout layout = new GridLayout(0, 1);
+        this.setLayout(layout);
+
+        GridLayout rowLayout = new GridLayout(1, 0);
+
+
+        //First row: id of programm (+ plus/minus Buttons)
+        firstRow = new JPanel();
+        firstRow.setLayout(rowLayout);
+
         identifier = new JLabel();
         identifier.setText("<html><body>Programm:<br>" + id + "</body></html>");
-        identifier.setBorder(new BevelBorder(BevelBorder.RAISED));
-        constraints.gridy = 0;
-        constraints.gridx = 0;
-        this.add(identifier, constraints);
+        identifier.setBorder(new LineBorder(Color.BLACK));
 
-        code = new JLabel();
-        code.setText(text);
-        code.setBorder(new LineBorder(new Color(0)));
-        constraints.gridy = 2;
-        constraints.fill = GridBagConstraints.BOTH;
-        this.add(code, constraints);
+        firstRow.add(identifier);
+        this.add(firstRow, layout);
 
-        inputvars = new JLabel("<html><body>Eingabevariablen:<br>" + inputVar + "</body></html>");
-        inputvars.setBorder(new LineBorder(new Color(0)));
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        this.add(inputvars, constraints);
+        //SecondRow: Stepsize and Input
+        secondRow = new JPanel();
+        secondRow.setLayout(rowLayout);
 
         stepsizelabel = new JLabel("<html><body>Stepsize:<br>" + stepSize + "</body></html>");
         stepsizelabel.setBorder(new LineBorder(new Color(0)));
-        constraints.gridx = 0;
-        this.add(stepsizelabel, constraints);
+        secondRow.add(stepsizelabel, rowLayout);
+
+        inputvars = new JLabel("<html><body>Eingabevariablen:<br>" + inputVar + "</body></html>");
+        inputvars.setBorder(new LineBorder(new Color(0)));
+        secondRow.add(inputvars, rowLayout);
 
 
+
+        this.add(secondRow, layout);
+
+
+        //Text editor panel
+        textEditorPanel = new JPanel();
+
+        codeField = new JEditorPane();
+        codeField.setSize(100, 100);
+        codeField.setBorder(new LineBorder(Color.BLACK));
+
+
+
+        this.add(codeField, layout);
+
+
+
+
+
+
+        this.setVisible(true);
 
     }
 
     public void update() {
         //TODO
     }
+
+
 }
