@@ -46,9 +46,18 @@ assignment: declareAssign
 			| pureAssign
 			;
 
-arrayDeclaration: type = TYPE dims id = ID ';';
+arrayDeclaration: type = TYPE '[' index = term']' id = ID ';' #arrayDeclarationOneDim
+					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' id = ID ';' #arrayDeclarationTwoDim
+					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' '[' index = term']' id = ID ';' #arrayDeclarationThreeDim
+					;
+					
 arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
-arrayElementAssign: arrayAccess ASSIGN value = term';';
+
+arrayElementAssign: id = ID '['index=term']'  ASSIGN value = term';' #arrayElementAssignOneDim
+		| id = ID '['firstIndex=term']' '['secondIndex=term']'  ASSIGN value = term';' #arrayElementAssignTwoDim
+		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']'  ASSIGN value = term';' #arrayElementAssignThreeDim
+		;
+
 dims: '['term']' #oneDims
 	| '['term']''['term']' #twoDims
 	| '['term']''['term']''['term']' #threeDims
