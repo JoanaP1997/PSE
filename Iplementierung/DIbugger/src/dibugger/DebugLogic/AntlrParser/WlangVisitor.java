@@ -188,23 +188,47 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnState(WlangParser.ReturnStateContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#ifState}.
+	 * Visit a parse tree produced by the {@code ifWithBlock}
+	 * labeled alternative in {@link WlangParser#ifState}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfState(WlangParser.IfStateContext ctx);
+	T visitIfWithBlock(WlangParser.IfWithBlockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#ifelseState}.
+	 * Visit a parse tree produced by the {@code ifWithSingle}
+	 * labeled alternative in {@link WlangParser#ifState}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfelseState(WlangParser.IfelseStateContext ctx);
+	T visitIfWithSingle(WlangParser.IfWithSingleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#whileState}.
+	 * Visit a parse tree produced by the {@code ifElseWithBlock}
+	 * labeled alternative in {@link WlangParser#ifelseState}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWhileState(WlangParser.WhileStateContext ctx);
+	T visitIfElseWithBlock(WlangParser.IfElseWithBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifElseWithSingle}
+	 * labeled alternative in {@link WlangParser#ifelseState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfElseWithSingle(WlangParser.IfElseWithSingleContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code whileWithBlock}
+	 * labeled alternative in {@link WlangParser#whileState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileWithBlock(WlangParser.WhileWithBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code whileWithSingle}
+	 * labeled alternative in {@link WlangParser#whileState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileWithSingle(WlangParser.WhileWithSingleContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ComparisonCondition}
 	 * labeled alternative in {@link WlangParser#condition}.

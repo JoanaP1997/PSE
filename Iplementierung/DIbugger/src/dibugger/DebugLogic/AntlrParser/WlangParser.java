@@ -1530,22 +1530,43 @@ public class WlangParser extends Parser {
 	}
 
 	public static class IfStateContext extends ParserRuleContext {
+		public IfStateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ifState; }
+	 
+		public IfStateContext() { }
+		public void copyFrom(IfStateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class IfWithBlockContext extends IfStateContext {
+		public BlockContext content;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
+		public IfWithBlockContext(IfStateContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfWithBlock(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IfWithSingleContext extends IfStateContext {
+		public StatementContext content;
+		public ConditionContext condition() {
+			return getRuleContext(ConditionContext.class,0);
+		}
 		public StatementContext statement() {
 			return getRuleContext(StatementContext.class,0);
 		}
-		public IfStateContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_ifState; }
+		public IfWithSingleContext(IfStateContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfState(this);
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfWithSingle(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1558,6 +1579,7 @@ public class WlangParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
+				_localctx = new IfWithBlockContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(229);
@@ -1569,10 +1591,11 @@ public class WlangParser extends Parser {
 				setState(232);
 				match(T__1);
 				setState(233);
-				block();
+				((IfWithBlockContext)_localctx).content = block();
 				}
 				break;
 			case 2:
+				_localctx = new IfWithSingleContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(235);
@@ -1584,7 +1607,7 @@ public class WlangParser extends Parser {
 				setState(238);
 				match(T__1);
 				setState(239);
-				statement();
+				((IfWithSingleContext)_localctx).content = statement();
 				}
 				break;
 			}
@@ -1601,22 +1624,45 @@ public class WlangParser extends Parser {
 	}
 
 	public static class IfelseStateContext extends ParserRuleContext {
+		public IfelseStateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_ifelseState; }
+	 
+		public IfelseStateContext() { }
+		public void copyFrom(IfelseStateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class IfElseWithBlockContext extends IfelseStateContext {
+		public IfStateContext ifPart;
+		public BlockContext content;
 		public IfStateContext ifState() {
 			return getRuleContext(IfStateContext.class,0);
 		}
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
+		public IfElseWithBlockContext(IfelseStateContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfElseWithBlock(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class IfElseWithSingleContext extends IfelseStateContext {
+		public IfStateContext ifPart;
+		public StatementContext content;
+		public IfStateContext ifState() {
+			return getRuleContext(IfStateContext.class,0);
+		}
 		public StatementContext statement() {
 			return getRuleContext(StatementContext.class,0);
 		}
-		public IfelseStateContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_ifelseState; }
+		public IfElseWithSingleContext(IfelseStateContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfelseState(this);
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitIfElseWithSingle(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1629,25 +1675,27 @@ public class WlangParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
 			case 1:
+				_localctx = new IfElseWithBlockContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(243);
-				ifState();
+				((IfElseWithBlockContext)_localctx).ifPart = ifState();
 				setState(244);
 				match(T__13);
 				setState(245);
-				block();
+				((IfElseWithBlockContext)_localctx).content = block();
 				}
 				break;
 			case 2:
+				_localctx = new IfElseWithSingleContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(247);
-				ifState();
+				((IfElseWithSingleContext)_localctx).ifPart = ifState();
 				setState(248);
 				match(T__13);
 				setState(249);
-				statement();
+				((IfElseWithSingleContext)_localctx).content = statement();
 				}
 				break;
 			}
@@ -1664,22 +1712,43 @@ public class WlangParser extends Parser {
 	}
 
 	public static class WhileStateContext extends ParserRuleContext {
+		public WhileStateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_whileState; }
+	 
+		public WhileStateContext() { }
+		public void copyFrom(WhileStateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class WhileWithBlockContext extends WhileStateContext {
+		public BlockContext content;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
+		public WhileWithBlockContext(WhileStateContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitWhileWithBlock(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WhileWithSingleContext extends WhileStateContext {
+		public StatementContext content;
+		public ConditionContext condition() {
+			return getRuleContext(ConditionContext.class,0);
+		}
 		public StatementContext statement() {
 			return getRuleContext(StatementContext.class,0);
 		}
-		public WhileStateContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_whileState; }
+		public WhileWithSingleContext(WhileStateContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitWhileState(this);
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitWhileWithSingle(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1692,6 +1761,7 @@ public class WlangParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
 			case 1:
+				_localctx = new WhileWithBlockContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(253);
@@ -1703,10 +1773,11 @@ public class WlangParser extends Parser {
 				setState(256);
 				match(T__1);
 				setState(257);
-				block();
+				((WhileWithBlockContext)_localctx).content = block();
 				}
 				break;
 			case 2:
+				_localctx = new WhileWithSingleContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(259);
@@ -1718,7 +1789,7 @@ public class WlangParser extends Parser {
 				setState(262);
 				match(T__1);
 				setState(263);
-				statement();
+				((WhileWithSingleContext)_localctx).content = statement();
 				}
 				break;
 			}
@@ -1768,6 +1839,7 @@ public class WlangParser extends Parser {
 		}
 	}
 	public static class BracketConditionContext extends ConditionContext {
+		public ConditionContext inner;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
@@ -1797,6 +1869,7 @@ public class WlangParser extends Parser {
 		}
 	}
 	public static class NotConditionContext extends ConditionContext {
+		public ConditionContext inner;
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
@@ -1808,6 +1881,8 @@ public class WlangParser extends Parser {
 		}
 	}
 	public static class OrConditionContext extends ConditionContext {
+		public ConditionContext left;
+		public ConditionContext right;
 		public List<ConditionContext> condition() {
 			return getRuleContexts(ConditionContext.class);
 		}
@@ -1822,6 +1897,8 @@ public class WlangParser extends Parser {
 		}
 	}
 	public static class AndConditionContext extends ConditionContext {
+		public ConditionContext left;
+		public ConditionContext right;
 		public List<ConditionContext> condition() {
 			return getRuleContexts(ConditionContext.class);
 		}
@@ -1899,7 +1976,7 @@ public class WlangParser extends Parser {
 				setState(272);
 				match(T__0);
 				setState(273);
-				condition(0);
+				((BracketConditionContext)_localctx).inner = condition(0);
 				setState(274);
 				match(T__1);
 				}
@@ -1912,7 +1989,7 @@ public class WlangParser extends Parser {
 				setState(276);
 				match(T__17);
 				setState(277);
-				condition(1);
+				((NotConditionContext)_localctx).inner = condition(1);
 				}
 				break;
 			}
@@ -1931,25 +2008,27 @@ public class WlangParser extends Parser {
 					case 1:
 						{
 						_localctx = new AndConditionContext(new ConditionContext(_parentctx, _parentState));
+						((AndConditionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_condition);
 						setState(280);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(281);
 						match(T__15);
 						setState(282);
-						condition(4);
+						((AndConditionContext)_localctx).right = condition(4);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new OrConditionContext(new ConditionContext(_parentctx, _parentState));
+						((OrConditionContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_condition);
 						setState(283);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(284);
 						match(T__16);
 						setState(285);
-						condition(3);
+						((OrConditionContext)_localctx).right = condition(3);
 						}
 						break;
 					}
@@ -2286,6 +2365,7 @@ public class WlangParser extends Parser {
 		}
 	}
 	public static class BracketsContext extends TermContext {
+		public TermContext inner;
 		public TermContext term() {
 			return getRuleContext(TermContext.class,0);
 		}
@@ -2401,7 +2481,7 @@ public class WlangParser extends Parser {
 				setState(320);
 				match(T__0);
 				setState(321);
-				term(0);
+				((BracketsContext)_localctx).inner = term(0);
 				setState(322);
 				match(T__1);
 				}
