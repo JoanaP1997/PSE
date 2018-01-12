@@ -24,6 +24,7 @@ public class DebugControl {
 	
 	private List<ProgramInput> list_programInput;
 	
+	private List<Integer> list_stepSize;
 	
 	private int maxIterations;
 	private int maxFunctionCalls;
@@ -79,7 +80,7 @@ public class DebugControl {
 	
 	
 	public void createBreakpoint(int program, int line){
-		while(list_breakpoints.size()<program){
+		while(list_breakpoints.size()<program-1){
 			list_breakpoints.add(new ArrayList<Breakpoint>());
 		}
 		list_breakpoints.get(program).add(new Breakpoint(line, program));
@@ -99,6 +100,13 @@ public class DebugControl {
 		list_breakpoints.clear();
 	}
 	
+	
+	public void setStepSize(int programID, int stepSize){
+		while(list_stepSize.size()<programID-1){
+			
+		}
+		list_stepSize.set(programID, stepSize);
+	}
 	
 	public List<Integer> getProgramCounter(){
 		List<Integer> l = new ArrayList<Integer>();
