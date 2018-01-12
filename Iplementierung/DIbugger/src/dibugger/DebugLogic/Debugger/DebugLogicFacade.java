@@ -1,13 +1,15 @@
 package dibugger.DebugLogic.Debugger;
 
+import java.util.Observable;
+
 /**
  * Facade class for the Debugger. It delegates functions calls to the DebugControl and / or Suggestion classes.
  * @author Pascal
  *
  */
-public class DebugLogicFacade extends Subject{
+public class DebugLogicFacade extends Observable{
 	
-	DebugControl debugControl;
+	private DebugControl debugControl;
 	
 	public DebugLogicFacade() {
 		super();
@@ -16,9 +18,15 @@ public class DebugLogicFacade extends Subject{
 	
 	
 	public void setStepSize(int program, int size){
-		
+		debugControl.setStepSize(program, size);
 	}
 	
+	
+	
+	@Override
+	public void notifyObservers(Object arg) {
+		
+	}
 	
 	//Strtegy Types
 	public static final int STRAT_STEP_SIZE_SIMPLE = 0;
