@@ -20,7 +20,7 @@ public class DebugControl {
 	private Map<Integer, ConditionalBreakpoint> map_condBreakpoints;
 	private List<List<Breakpoint>> list_breakpoints;
 	
-	private List<TraceIterator> list_traceIterator;
+//	private List<TraceIterator> list_traceIterator;
 	
 	private List<ProgramInput> list_programInput;
 	
@@ -105,6 +105,7 @@ public class DebugControl {
 		for(int i=0;i<list_programInput.size();++i){
 			l.add(list_programInput.get(i).getCounter());
 		}
+		return l;
 	}
 	
 	
