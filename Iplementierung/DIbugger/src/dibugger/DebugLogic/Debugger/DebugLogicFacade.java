@@ -15,6 +15,10 @@ public class DebugLogicFacade extends Subject{
 	}
 	
 	
+	public void setStepSize(int program, int size){
+		
+	}
+	
 	
 	//Strtegy Types
 	public static final int STRAT_STEP_SIZE_SIMPLE = 0;
