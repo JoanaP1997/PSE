@@ -19,21 +19,21 @@ import dibugger.DebugLogic.AntlrParser.TermsParser;
  *
  */
 public class ConditionalBreakpoint {
-    private String value;
+    private boolean value;
     private String specifier;
     private List<ScopeTuple> scopes;
     private Term condition;
     public ConditionalBreakpoint(String specifier) {
 	this.specifier = specifier;
 	this.scopes = new ArrayList<ScopeTuple>();
-	this.value = "?";
+	this.value = false;
 	this.createTerm();
 	
     }
     public ConditionalBreakpoint(String specifier, List<ScopeTuple> scopes) {
 	this.specifier = specifier;
 	this.scopes = scopes;
-	this.value = "?";
+	this.value = false;
 	this.createTerm();
     }
     public void change(String specifier, List<ScopeTuple> scopes){
@@ -42,11 +42,28 @@ public class ConditionalBreakpoint {
 	this.createTerm();
     }
     public boolean evaluate(List<TraceState> states) {
+	boolean isValid = true;
+	//check wether #states = #scopes
+	if (states.size() != this.scopes.size())
+	    isValid = false;
+	//check wether we are in the right scope
+	else if(!this.scopes.isEmpty()) {
+	    for(int i = 0; i<this.scopes.size(); ++i)
+		if(!this.scopes.get(i).contains(states.get(i).getLineNumber()))
+		    isValid = false;
+	}
+	if(isValid) {
+	    TermValue result = this.condition.evaluate(states);
+	    if (result.getType() == Type.BOOLEAN) {
+		return ((BooleanValue)result).getValue();
+	    }
+	    this.value = false;
+	}
 	TermValue result = this.condition.evaluate(states);
 	if (result.getType() == Type.BOOLEAN) {
 	    return ((BooleanValue)result).getValue();
 	}
-	return false;
+	return this.value;
     }
     private void createTerm(){
 	CharStream input = CharStreams.fromString(this.specifier);

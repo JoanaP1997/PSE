@@ -6,4 +6,9 @@ package dibugger.DebugLogic.Interpreter;
  */
 public class TraceState {
 
+    public int getLineNumber() {
+	// TODO Auto-generated method stub
+	return 0;
+    }
+
 }

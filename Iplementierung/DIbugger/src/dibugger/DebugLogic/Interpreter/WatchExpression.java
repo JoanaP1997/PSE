@@ -40,12 +40,19 @@ public class WatchExpression {
 	this.createTerm();
     }
     public String evaluate(List<TraceState> states) {
-	//if(is in scope)
-	return this.expression.evaluate(states).toString();
-	/*
-	 * else {
-	 * return this.value;}
-	 */
+	boolean isValid = true;
+	//check wether #states = #scopes
+	if (states.size() != this.scopes.size())
+	    isValid = false;
+	//check wether we are in the right scope
+	else if(!this.scopes.isEmpty()) {
+	    for(int i = 0; i<this.scopes.size(); ++i)
+		if(!this.scopes.get(i).contains(states.get(i).getLineNumber()))
+		    isValid = false;
+	}
+	if(isValid)
+	    this.value = this.expression.evaluate(states).toString();	 
+	return this.value;
     }
     private void createTerm(){
 	CharStream input = CharStreams.fromString(this.specifier);

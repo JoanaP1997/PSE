@@ -69,6 +69,8 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     }
     @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
+	return null;
+	//TODO
     }
     @Override
     public Command visitArrayElementAssignTwoDim(ArrayElementAssignTwoDimContext ctx) {
