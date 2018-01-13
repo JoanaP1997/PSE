@@ -9,18 +9,28 @@ import java.util.List;
  */
 public final class VariableRelationalTerm extends Term {
     private String identifier;
+    private int programId; 
     public VariableRelationalTerm(String identifier) {
-	this.identifier = identifier;
+	if(identifier.contains("\\.")) {
+	    //split into programId part and variable identifier 
+	    String [] parts = identifier.split("\\.");
+	    this.identifier = parts[1];
+	    char programIdChar = parts[0].charAt(0);
+	    this.programId = (int)programIdChar - (int)'A';
+	} else {
+	    this.programId = 0;
+	    this.identifier = identifier;
+	}
     }
     @Override
     public TermValue evaluate(List<TraceState> states) {
-	// TODO Auto-generated method stub
-	return null;
+	if (this.programId <= states.size())
+	    return states.get(this.programId).getValueOf(identifier);
+	return new CharValue('?');
     }
     @Override
     public TermValue evaluate(Scope currentScope) {
-	// TODO Auto-generated method stub
-	return null;
+	return new CharValue('?');
     }
 
 }
