@@ -66,15 +66,17 @@ public class DebugControl {
 	 * @param programs the programs to run
 	 */
 	public void launchRun(List<ProgramInput> programs){
-		//TODO
-		list_programInput = programs;
-		programCount = programs.size();
-		
 		list_traceIterator.clear();
-		for(int i=0;i<programCount;++i){
+		
+		generationController.setMaxFuncCalls(maxFunctionCalls);
+		generationController.setMaxIterations(maxIterations);
+		for(int i=0;i<programs.size();++i){
 			ProgramInput pi = programs.get(i);
 			list_traceIterator.add(generationController.generateTrace(pi.getText(), pi.getInputValues()));
 		}
+		
+		list_programInput = programs;
+		programCount = programs.size();
 	}
 	
 	/**
@@ -82,7 +84,7 @@ public class DebugControl {
 	 * @param type the type of the step (STEP_NORMAL,STEP_OVER,STEP_OUT,STEP_BACK)
 	 */
 	public void step(int type){
-		//TODO Step Over
+		//TODO implement Step Over
 		if(type==STEP_NORMAL || type==STEP_BACK){
 			int maxSteps = getMaximumOfList(list_stepSize);	
 			for(int stepID=0;stepID<maxSteps;++stepID){
