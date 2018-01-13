@@ -10,8 +10,8 @@ public class LongValue extends TermValue {
 	private long value;	
 	
 	public LongValue(long value) {
+		super(Type.LONG);
 		this.value = value;
-		setType(Type.LONG);
 	}
 
 	@Override

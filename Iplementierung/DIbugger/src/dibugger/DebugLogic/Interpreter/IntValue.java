@@ -10,8 +10,8 @@ public class IntValue extends TermValue{
 	private int value; 
 	
 	public IntValue(int val) {
+		super(Type.INT);
 		this.value = val;
-		setType(Type.INT);
 	}
 	
 	@Override

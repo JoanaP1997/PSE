@@ -10,8 +10,8 @@ public class CharValue extends TermValue {
 	private char value;
 	
 	public CharValue(char value) {
+		super(Type.CHAR);
 		this.value = value;
-		setType(Type.CHAR);
 	}
 
 	@Override

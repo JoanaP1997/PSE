@@ -5,7 +5,11 @@ package dibugger.DebugLogic.Interpreter;
  *
  */
 public abstract class TermValue {
-	protected Type type;
+	private final Type type;
+	
+	public TermValue(Type type) {
+		this.type = type;
+	}
 	
 	public abstract TermValue add(TermValue operand);
 	public abstract TermValue mul(TermValue operand);
@@ -27,9 +31,5 @@ public abstract class TermValue {
 	
 	public Type getType(){
 		return type;
-	}
-	
-	protected void setType(Type type) {
-		this.type = type;
 	}
 }
