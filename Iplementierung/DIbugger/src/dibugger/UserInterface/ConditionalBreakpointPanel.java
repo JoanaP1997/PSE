@@ -25,10 +25,21 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     }
 
     private void initComponents() {
-        LayoutManager layout = new GridLayout(0,1);
-        this.setLayout(layout);
 
-        title = new JLabel("ConditionalBreakpoints:");
-        this.add(title, layout);
+        panelType = "Conditional Breakpoints:";
+
+        String[] columnTitles = { panelType , "Auswertung" };
+        Object[][] dataEntries = { {"hier könnte ihre Expression stehen", "ausgewertet"}};
+        JTable table = new JTable(dataEntries, columnTitles);
+        table.setSize(50, 50);
+
+        JScrollPane tableContainer = new JScrollPane(table);
+        tableContainer.createVerticalScrollBar();
+        tableContainer.setSize(100, 100);
+
+        this.add(tableContainer);
+
+
+
     }
 }

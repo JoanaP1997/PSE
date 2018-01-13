@@ -28,20 +28,19 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     private void initComponents() {
 
-        LayoutManager layout = new GridLayout(0,1);
-        this.setLayout(layout);
-
         panelType = "Watch Expressions:";
 
-        String[] columnTitles = { panelType , "Auswertung" };
-        Object[][] dataEntries = { {"hier könnte ihre Expression stehen", "ausgewertet"}};
+        String[] columnTitles = {"Opt", panelType , "Auswertung" };
+        Object[][] dataEntries = { {new JComboBox<>() ,"hier könnte ihre Expression stehen", "ausgewertet"}};
         JTable table = new JTable(dataEntries, columnTitles);
-        table.setSize(200, 200);
+        table.setDragEnabled(true);
+        table.setSize(50, 50);
 
         JScrollPane tableContainer = new JScrollPane(table);
         tableContainer.createVerticalScrollBar();
+        tableContainer.setSize(150, 150);
 
-        this.add(tableContainer, layout);
+        this.add(tableContainer);
 
 
 

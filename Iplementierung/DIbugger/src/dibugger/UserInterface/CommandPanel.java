@@ -12,6 +12,7 @@ public class CommandPanel extends JPanel {
     private JButton stepOver;
     private JButton stepOut;
     private JButton stepBack;
+    private JButton continueDebug;
     private static CommandPanel singleton = null;
 
     private CommandPanel() {
@@ -20,27 +21,54 @@ public class CommandPanel extends JPanel {
     }
 
     private void initComponents() {
-        LayoutManager layout = new GridLayout(0, 2);
-        this.setLayout(layout);
+        GroupLayout groupLayout = new GroupLayout(this);
+        this.setLayout(groupLayout);
 
 
-        JButton start = new JButton("start");
-        this.add(start,layout);
+        JButton start = new JButton();
+        ImageIcon iconStart = new ImageIcon("res/play-arrow.png");
+        start.setIcon(iconStart);
 
-        JButton stop = new JButton(("stop"));
-        this.add(stop, layout);
+        JButton stop = new JButton();
+        ImageIcon iconStop = new ImageIcon("res/stop-button.png");
+        stop.setIcon(iconStop);
 
         JButton step = new JButton(("Step"));
-        this.add(step, layout);
 
         JButton stepOver = new JButton("StepOver");
-        this.add(stepOver);
 
         JButton stepOut = new JButton(("StepOut"));
-        this.add(stepOut, layout);
 
         JButton stepBack = new JButton("StepBack");
-        this.add(stepBack, layout);
+
+        JButton continueDebug = new JButton("Continue");
+
+        groupLayout.setHorizontalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(start)
+                                .addComponent(step)
+                                .addComponent(stepOut)
+                                .addComponent(continueDebug))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(stop)
+                                .addComponent(stepBack)
+                                .addComponent(stepOver))
+
+        );
+        groupLayout.setVerticalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(start)
+                                .addComponent(stop))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(step)
+                                .addComponent(stepBack))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(stepOut)
+                                .addComponent(stepOver))
+                        .addComponent(continueDebug)
+        );
     }
 
     public static CommandPanel getCommandPanel() {

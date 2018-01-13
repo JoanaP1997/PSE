@@ -48,25 +48,37 @@ public class MainInterface extends javax.swing.JFrame {
         secondTextPanel = new javax.swing.JPanel();
         rightControlBar = new javax.swing.JPanel();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        GridLayout layout = new GridLayout(1,0);
-        getContentPane().setLayout(layout);
+
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(groupLayout);
+
         configureMenuBar();
 
-
-
         firstTextPanel.add(new ProgramPanel(1));
-        this.add(firstTextPanel, layout);
-
-
         secondTextPanel.add(new ProgramPanel(2));
-        this.add(secondTextPanel, layout);
 
         initRightControlBar();
 
-        this.add(rightControlBar, layout);
+        groupLayout.setHorizontalGroup(
+                groupLayout.createSequentialGroup()
 
+                                .addComponent(firstTextPanel)
+                                .addComponent(secondTextPanel)
+                                .addComponent(rightControlBar)
 
-        pack();
+        );
+        groupLayout.setVerticalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(firstTextPanel)
+                        .addComponent(secondTextPanel)
+                        .addComponent(rightControlBar))
+        );
+
+        this.setTitle("DIbugger");
+        ImageIcon icon = new ImageIcon("res/logo_nongi.png");
+        this.setIconImage(icon.getImage());
+
     }
 
     /**
@@ -79,7 +91,7 @@ public class MainInterface extends javax.swing.JFrame {
 
 
         MainInterface mface = new MainInterface();
-        mface.setSize(800,800);
+        mface.setSize(1000,800);
         mface.setVisible(true);
     }
 
@@ -137,27 +149,25 @@ public class MainInterface extends javax.swing.JFrame {
         watchExpPanel = new JPanel();
         watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel());
 
-        rightControlBar.setLayout(new GridBagLayout());
-        GridBagConstraints controlConstraints = new GridBagConstraints();
-        controlConstraints.gridx = 0;
-        controlConstraints.gridy = 0;
+        GroupLayout groupLayout = new GroupLayout(rightControlBar);
+        rightControlBar.setLayout(groupLayout);
 
-        rightControlBar.add(controlButtonsPanel, controlConstraints);
+        groupLayout.setHorizontalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(controlButtonsPanel)
+                            .addComponent(watchExpPanel)
+                            .addComponent(condBreakPanel))
+        );
+        groupLayout.setVerticalGroup(
+                groupLayout.createSequentialGroup()
 
-        controlConstraints.gridy = 1;
-        rightControlBar.add(condBreakPanel, controlConstraints);
+                                .addComponent(controlButtonsPanel)
+                                .addComponent(watchExpPanel)
+                                .addComponent(condBreakPanel)
+        );
 
-        controlConstraints.gridy = 2;
-        rightControlBar.add(watchExpPanel, controlConstraints);
     }
 
-    void update() {
-        for (ProgramPanel p : programPanels) {
-            p.update();
-        }
 
-        for (ExpressionPanel e : expressionPanels) {
-            e.update();
-        }
-    }
 }

@@ -22,7 +22,7 @@ public class GUIFacade {
     }
 
     public void update() {
-        mainInterface.update();
+       //TODO
     }
 
     public void showError(String s) {

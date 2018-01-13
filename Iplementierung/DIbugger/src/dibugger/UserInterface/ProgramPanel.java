@@ -1,27 +1,20 @@
 package dibugger.UserInterface;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ProgramPanel extends JPanel {
+
     int id;
-    String inputVar = "default";
-    String stepSize = "1";
-    String text = "<html><body>Zeile 1<br>Zeile 2<br> Zeile 3<br> Zeile 4</body></html>";
 
-    JLabel identifier;
-    JLabel code;
-    JLabel stepsizelabel;
-    JLabel inputvars;
-
-    JEditorPane codeField;
-
-    JPanel firstRow;
-    JPanel secondRow;
-    JPanel textEditorPanel;
-    JPanel variableInspectorPanel;
+    private JLabel ProgramName;
+    private JLabel Stepsize;
+    private JTextField StepsizeInput;
+    private JLabel EingabevariablenLabel;
+    private JTextField EingabevariablenInput;
+    private JPanel VariableWindow;
+    private JScrollPane jScrollPane1;
+    private JTextPane TextPaneCode;
 
     public ProgramPanel(int identifier) {
         id = identifier;
@@ -29,63 +22,84 @@ public class ProgramPanel extends JPanel {
     }
 
     private void initComponents() {
-        GridLayout layout = new GridLayout(0, 1);
-        this.setLayout(layout);
+        ProgramName = new javax.swing.JLabel();
+        Stepsize = new javax.swing.JLabel();
+        StepsizeInput = new javax.swing.JTextField();
+        EingabevariablenLabel = new javax.swing.JLabel();
+        EingabevariablenInput = new javax.swing.JTextField();
+        VariableWindow = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextPaneCode = new javax.swing.JTextPane();
 
-        GridLayout rowLayout = new GridLayout(1, 0);
+        ProgramName.setText("Programm 1");
 
+        Stepsize.setText("Stepsize");
 
-        //First row: id of programm (+ plus/minus Buttons)
-        firstRow = new JPanel();
-        firstRow.setLayout(rowLayout);
+        StepsizeInput.setText("jTextField2");
+        StepsizeInput.addActionListener(this::StepsizeInputActionPerformed);
 
-        identifier = new JLabel();
-        identifier.setText("<html><body>Programm:<br>" + id + "</body></html>");
-        identifier.setBorder(new LineBorder(Color.BLACK));
+        EingabevariablenLabel.setText("Eingabevariablen:");
 
-        firstRow.add(identifier);
-        this.add(firstRow, layout);
+        EingabevariablenInput.setText("jTextField1");
+        EingabevariablenInput.addActionListener(this::EingabevariablenInputActionPerformed);
 
-        //SecondRow: Stepsize and Input
-        secondRow = new JPanel();
-        secondRow.setLayout(rowLayout);
+        javax.swing.GroupLayout VariableWindowLayout = new javax.swing.GroupLayout(VariableWindow);
+        VariableWindow.setLayout(VariableWindowLayout);
+        VariableWindowLayout.setHorizontalGroup(
+                VariableWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+        );
+        VariableWindowLayout.setVerticalGroup(
+                VariableWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 171, Short.MAX_VALUE)
+        );
 
-        stepsizelabel = new JLabel("<html><body>Stepsize:<br>" + stepSize + "</body></html>");
-        stepsizelabel.setBorder(new LineBorder(new Color(0)));
-        secondRow.add(stepsizelabel, rowLayout);
+        jScrollPane1.setViewportView(TextPaneCode);
 
-        inputvars = new JLabel("<html><body>Eingabevariablen:<br>" + inputVar + "</body></html>");
-        inputvars.setBorder(new LineBorder(new Color(0)));
-        secondRow.add(inputvars, rowLayout);
-
-
-
-        this.add(secondRow, layout);
-
-
-        //Text editor panel
-        textEditorPanel = new JPanel();
-
-        codeField = new JEditorPane();
-        codeField.setSize(100, 100);
-        codeField.setBorder(new LineBorder(Color.BLACK));
-
-
-
-        this.add(codeField, layout);
-
-
-
-
-
-
-        this.setVisible(true);
-
+        javax.swing.GroupLayout firstTextPanelLayout = new javax.swing.GroupLayout(this);
+        setLayout(firstTextPanelLayout);
+        firstTextPanelLayout.setHorizontalGroup(
+                firstTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(firstTextPanelLayout.createSequentialGroup()
+                                .addGroup(firstTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(firstTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(firstTextPanelLayout.createSequentialGroup()
+                                                        .addComponent(Stepsize)
+                                                        .addComponent(StepsizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(ProgramName)
+                                                .addComponent(EingabevariablenLabel)
+                                                .addComponent(EingabevariablenInput))
+                                        .addComponent(jScrollPane1)
+                                        .addComponent(VariableWindow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                )
+        );
+        firstTextPanelLayout.setVerticalGroup(
+                firstTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(firstTextPanelLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(ProgramName)
+                                .addGap(18, 18, 18)
+                                .addGroup(firstTextPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(Stepsize)
+                                        .addComponent(StepsizeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(EingabevariablenLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(EingabevariablenInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(VariableWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))
+        );
     }
 
-    public void update() {
-        //TODO
+    private void StepsizeInputActionPerformed(ActionEvent evt) {
+        // TODO add your handling code here:
     }
 
-
+    private void EingabevariablenInputActionPerformed(ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 }
+ 
