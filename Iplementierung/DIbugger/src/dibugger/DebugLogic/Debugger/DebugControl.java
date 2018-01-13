@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import dibugger.DebugLogic.Interpreter.ConditionalBreakpoint;
+import dibugger.DebugLogic.Interpreter.GenerationController;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
-import dibugger.DebugLogic.Interpreter.TraceIterator;
+import dibugger.DebugLogic.Interpreter.Trace.TraceIterator;
+import dibugger.DebugLogic.Interpreter.TraceState;
+import dibugger.DebugLogic.Interpreter.TraceStatePosition;
 import dibugger.DebugLogic.Interpreter.WatchExpression;
 
 /**
@@ -26,6 +29,7 @@ public class DebugControl {
 	private List<List<Breakpoint>> list_breakpoints;
 	
 	private List<TraceIterator> list_traceIterator;
+	private List<TraceState> list_currentTraceStates;
 	
 	private List<ProgramInput> list_programInput;
 	
@@ -36,6 +40,9 @@ public class DebugControl {
 	
 	private int programCount=0;
 	
+	//interpreter objects
+	private GenerationController generationController;
+	
 	/**
 	 * Creates a new debugControl without programs, watch expressions or breakpoints and default values
 	 */
@@ -44,11 +51,14 @@ public class DebugControl {
 		map_condBreakpoints = new HashMap<Integer, ConditionalBreakpoint>();
 		list_breakpoints = new ArrayList<List<Breakpoint>>();
 		
-//		list_traceIterator = new ArrayList<TraceIterator>();
+		list_traceIterator = new ArrayList<TraceIterator>();
+		list_currentTraceStates = new ArrayList<TraceState>();
 		
 		list_programInput = new ArrayList<ProgramInput>();
 		
 		list_stepSize = new ArrayList<Integer>();
+		
+		generationController = new GenerationController(DEF_IT, DEF_MAX_FUNC_CALLS);
 	}
 	
 	/**
@@ -56,8 +66,16 @@ public class DebugControl {
 	 * @param programs the programs to run
 	 */
 	public void launchRun(List<ProgramInput> programs){
-		//TODO
+		list_traceIterator.clear();
 		
+		generationController.setMaxFuncCalls(maxFunctionCalls);
+		generationController.setMaxIterations(maxIterations);
+		for(int i=0;i<programs.size();++i){
+			ProgramInput pi = programs.get(i);
+			list_traceIterator.add(generationController.generateTrace(pi.getText(), pi.getInputValues()));
+		}
+		
+		list_programInput = programs;
 		programCount = programs.size();
 	}
 	
@@ -66,15 +84,92 @@ public class DebugControl {
 	 * @param type the type of the step (STEP_NORMAL,STEP_OVER,STEP_OUT,STEP_BACK)
 	 */
 	public void step(int type){
-		//TODO
+		//TODO implement Step Over
+		if(type==STEP_NORMAL || type==STEP_BACK){
+			int maxSteps = getMaximumOfList(list_stepSize);	
+			for(int stepID=0;stepID<maxSteps;++stepID){
+				//Do step in all programs
+				boolean breakpointFound=false;
+				for(int i=0;i<programCount;++i){
+					int cpss = list_stepSize.get(i);
+					if(stepID<cpss){
+						//do step in program
+						singleStepNoEvaluation(i, type);
+					}
+					//evaluate breakpoints
+					breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+				}
+				//evaluate conditional breakpoints
+				breakpointFound = !breakpointFound ? evaluateConditionalBreakpoints() : true;
+				if(breakpointFound){
+					stepID=maxSteps;
+				}
+			}
+		}
+		else if(type==STEP_OUT){
+			boolean[] breaked = new boolean[programCount];
+			boolean forceStop = false;
+			//infinite loop till end of function
+			while(!checkBoolArrayOnValue(breaked, true) && !forceStop){
+				boolean breakpointFound=false;
+				for(int i=0;i<programCount;++i){
+					singleStepNoEvaluation(i, STEP_NORMAL);
+					TraceState state = list_currentTraceStates.get(i);
+					breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+					//only stop stepping when trace state is after a return call
+					if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
+						breaked[i]=true;
+					}
+				}
+				breakpointFound = evaluateConditionalBreakpoints();
+				if(breakpointFound){
+					forceStop=true;
+				}
+			}
+		}
 	}
 	
 	/**
 	 * Executes a normal step in a given program with size 1
-	 * @param programID the progeam to do a step
+	 * @param programID the program to do a step
 	 */
 	public void singleStep(int programID){
-		//TODO
+		singleStepNoEvaluation(programID, STEP_NORMAL);
+	}
+	/**
+	 * Executes a single step without evaluating breakpoints
+	 * @param programID
+	 */
+	private void singleStepNoEvaluation(int programID, int direction){
+		while(list_currentTraceStates.size()<programID){
+			list_currentTraceStates.add(null);
+		}
+		TraceIterator it = list_traceIterator.get(programID);
+		if((direction==STEP_NORMAL || direction==STEP_OVER || direction==STEP_OUT) && it.hasNext()){
+			list_currentTraceStates.set(programID, it.next());
+		}
+		else if(direction==STEP_BACK && it.hasPrev()){
+			list_currentTraceStates.set(programID, it.prev());
+		}
+	}
+	
+	private boolean evaluateBreakpoints(int programID){
+		TraceState state = list_currentTraceStates.get(programID);
+		for(Breakpoint bp : list_breakpoints.get(programID)){
+			if(bp.getLine()==state.getLineNumber()){
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean evaluateConditionalBreakpoints(){
+		for(int key : map_condBreakpoints.keySet()){
+			ConditionalBreakpoint cb = map_condBreakpoints.get(key);
+			if(cb.evaluate(list_currentTraceStates)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -234,6 +329,26 @@ public class DebugControl {
 	public void setMaximumFunctionCalls(int count){
 		this.maxFunctionCalls = count;
 	}
+	
+	
+	//private helper methods
+	private int getMaximumOfList(List<Integer> l){
+		int max=0;
+		for(int i=0;i<l.size();++i){
+			max = Math.max(max, l.get(i));
+		}
+		return max;
+	}
+	
+	private boolean checkBoolArrayOnValue(boolean[] array, boolean value){
+		for(int i=0;i<array.length;++i){
+			if(array[i]!=value){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	
 	//Step Types
 	/**

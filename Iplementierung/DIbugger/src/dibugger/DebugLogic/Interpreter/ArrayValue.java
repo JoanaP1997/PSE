@@ -5,8 +5,8 @@ public class ArrayValue extends TermValue{
 	private TermValue[][][] value;
 	
 	public ArrayValue(TermValue[][][] value) {
+		super(Type.ARRAY);
 		this.value = value;
-		setType(Type.ARRAY);
 	}
 
 	@Override

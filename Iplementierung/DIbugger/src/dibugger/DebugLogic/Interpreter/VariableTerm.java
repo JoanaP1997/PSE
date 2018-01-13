@@ -13,14 +13,12 @@ public final class VariableTerm extends Term {
     }
     @Override
     public TermValue evaluate(List<TraceState> states) {
-	// TODO Auto-generated method stub
-	return null;
+	return new CharValue('?');
     }
 
     @Override
     public TermValue evaluate(Scope currentScope) {
-	// TODO Auto-generated method stub
-	return null;
+	return currentScope.getValue(identifier);
     }
 
 }

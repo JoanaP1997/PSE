@@ -11,7 +11,11 @@ public class InvalidProgramException extends DIbuggerLogicException {
 	 * Default serialVersionUID.
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * Constructor of an InvalidProgramException.
+	 * @param occurrence the line of occurrence of the exception
+	 */
 	public InvalidProgramException(String occurrence) {
 		super(occurrence, "invalidProgramException");
 	}

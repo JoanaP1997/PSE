@@ -36,14 +36,14 @@ public class Trace {
 	}
 	
 	// TODO ggf. Klasse löschen
-/*	
-	*//**
+	
+	/**
 	 * Iterator over a trace.
 	 * Nested class due to encapsulation of implementation details of the trace.
 	 * 
 	 * @author scheler
 	 *
-	 *//*
+	 */
 	public class TraceIterator implements Iterator<TraceState> {
 		
 		private Trace trace;
@@ -56,7 +56,7 @@ public class Trace {
 		
 		@Override
 		public boolean hasNext() {
-			if trace.traceStates.
+			//if trace.traceStates.
 			return false;
 		}
 
@@ -76,5 +76,5 @@ public class Trace {
 			return null;
 		}
 
-	}	*/
+	}	
 }

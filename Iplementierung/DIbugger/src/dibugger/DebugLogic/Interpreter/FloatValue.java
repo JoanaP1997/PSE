@@ -6,10 +6,12 @@ package dibugger.DebugLogic.Interpreter;
  *
  */
 public final class FloatValue extends TermValue {
+	
 	private float value;
+	
 	public FloatValue(float val) {
+		super(Type.FLOAT);
 		this.value = val;
-		setType(Type.FLOAT);
 	}
 	@Override
 	public TermValue add(TermValue operand) {	

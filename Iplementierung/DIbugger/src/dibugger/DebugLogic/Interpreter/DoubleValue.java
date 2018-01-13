@@ -9,8 +9,8 @@ public class DoubleValue extends TermValue {
 	private double value;
 	
 	public DoubleValue(double value) {
+		super(Type.DOUBLE);
 		this.value = value;
-		setType(Type.DOUBLE);
 	}
 
 	@Override

@@ -9,8 +9,8 @@ public class BooleanValue extends TermValue {
 	private boolean value;
 	
 	public BooleanValue(boolean value) {
+		super(Type.BOOLEAN);
 		this.value = value;
-		setType(Type.BOOLEAN);
 	}
 
 	@Override
