@@ -7,7 +7,7 @@ import java.util.Map;
 
 import dibugger.DebugLogic.Interpreter.ConditionalBreakpoint;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
-import dibugger.DebugLogic.Interpreter.TraceIterator;
+import dibugger.DebugLogic.Interpreter.Trace.TraceIterator;
 import dibugger.DebugLogic.Interpreter.WatchExpression;
 
 /**

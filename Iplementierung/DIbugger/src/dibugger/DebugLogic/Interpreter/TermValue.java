@@ -5,7 +5,7 @@ package dibugger.DebugLogic.Interpreter;
  *
  */
 public abstract class TermValue {
-	protected final Type type;
+	protected Type type;
 	
 	public abstract TermValue add(TermValue operand);
 	public abstract TermValue mul(TermValue operand);
@@ -29,8 +29,7 @@ public abstract class TermValue {
 		return type;
 	}
 	
-	// TODO: Ulla: "Warum gibt es einen Setter?"
-	public void setType(Type type) {
+	protected void setType(Type type) {
 		this.type = type;
 	}
 }
