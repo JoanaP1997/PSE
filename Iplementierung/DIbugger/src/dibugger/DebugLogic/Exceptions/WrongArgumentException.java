@@ -7,8 +7,18 @@ package dibugger.DebugLogic.Exceptions;
  */
 public abstract class WrongArgumentException extends DIbuggerLogicException {
 
+	/**
+	 * Default serialVersionUID.
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Constructor for a WrongARgumentException.
+	 * @param occurrence the line of occurrence of the exception
+	 */
 	public WrongArgumentException(String occurrence, String id) {
 		super(occurrence, id);
+
 	}
 	
 }
