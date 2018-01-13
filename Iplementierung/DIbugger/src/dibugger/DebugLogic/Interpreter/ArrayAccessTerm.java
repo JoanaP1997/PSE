@@ -21,6 +21,9 @@ public final class ArrayAccessTerm extends Term {
     public ArrayAccessTerm(String identifier, Term index) {
 	DIM = 1; 
 	this.indexA = index;
+	//Dummy indices
+	this.indexB = new ConstantTerm(new IntValue(0));
+	this.indexC = this.indexB; //maybe you could make this more efficient by using one global 0 Term
 	this.identifier = identifier;
     }
     /**
@@ -33,6 +36,8 @@ public final class ArrayAccessTerm extends Term {
 	DIM = 2;
 	this.indexA = firstIndex;
 	this.indexB = secondIndex;
+	//Dummy index
+	this.indexC = new ConstantTerm(new IntValue(0));
 	this.identifier = identifier;
     }
     /**
@@ -51,14 +56,34 @@ public final class ArrayAccessTerm extends Term {
     }
     @Override
     public TermValue evaluate(List<TraceState> states) {
-	// TODO Auto-generated method stub
-	return null;
+	return new CharValue('?');
     }
 
     @Override
     public TermValue evaluate(Scope currentScope) {
-	// TODO Auto-generated method stub
-	return null;
+	TermValue t = currentScope.getValue(identifier); //get the Array
+	TermValue firstIndex = this.indexA.evaluate(currentScope);
+	TermValue secondIndex = this.indexB.evaluate(currentScope);
+	TermValue thirdIndex = this.indexC.evaluate(currentScope);
+	//Hope that this is an array and the indeces are Integers
+	if(t.getType() == Type.ARRAY && firstIndex.getType() == Type.INT 
+		&& secondIndex.getType() == Type.INT && thirdIndex.getType() == Type.INT) { 
+	    int i = ((IntValue)firstIndex).getValue();
+	    int j = ((IntValue)secondIndex).getValue();
+	    int k = ((IntValue)thirdIndex).getValue();
+	    TermValue [][][] array =   ((ArrayValue)t).getValue();
+	    //make sure that i,j,k are not out of bounds
+	    if(i < array.length) {
+		TermValue [][] innerArray = array[i];
+		if (j < innerArray.length) {
+		    TermValue[] innerInnerArray = innerArray[j];
+		    if (k < innerInnerArray.length) {
+			return innerInnerArray[k];
+		    }
+		}
+	    }
+	}
+	return new CharValue('?');
     }
 
 }
