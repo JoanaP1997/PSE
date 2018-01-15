@@ -22,83 +22,91 @@ import dibugger.DebugLogic.Interpreter.Scope;
 import dibugger.DebugLogic.Interpreter.SubtractionTerm;
 import dibugger.DebugLogic.Interpreter.Term;
 import dibugger.DebugLogic.Interpreter.TraceState;
+
 /**
  * 
  * @author wagner
  *
  */
 public class TermTest {
-    Term constantA, constantB, constantTrue, constantFalse;
-    Scope currentScope;
-    @Before
-    public void init() {
-	constantA = new ConstantTerm(new IntValue(5));
-	currentScope = new Scope();
-	constantB = new ConstantTerm(new IntValue(7));
-	constantTrue = new ConstantTerm(new BooleanValue(true));
-	constantFalse = new ConstantTerm(new BooleanValue(false));
-    }    
-    @Test
-    public void constantTermsTest() throws DIbuggerLogicException {
-	//Constant Term
-	assert(constantA.evaluate(currentScope).toString().equals("5"));
-	assert(constantB.evaluate(currentScope).toString().equals("7"));
-	assert(constantFalse.evaluate(currentScope).toString().equals("false"));
-	assert(constantTrue.evaluate(currentScope).toString().equals("true"));
-    }
-    @Test
-    public void multiplicationTermsTest() throws DIbuggerLogicException{
+	Term constantA, constantB, constantTrue, constantFalse;
+	Scope currentScope;
 
-	//Multiply
-	Term mult = new MultiplicationTerm(constantA, constantB);
-	assert(mult.evaluate(currentScope).toString().equals("35"));
-    }
-    @Test
-    public void divisionTermsTest() throws DIbuggerLogicException{
-	//Div
+	@Before
+	public void init() {
+		constantA = new ConstantTerm(new IntValue(5));
+		currentScope = new Scope();
+		constantB = new ConstantTerm(new IntValue(7));
+		constantTrue = new ConstantTerm(new BooleanValue(true));
+		constantFalse = new ConstantTerm(new BooleanValue(false));
+	}
+
+	@Test
+	public void constantTermsTest() throws DIbuggerLogicException {
+		// Constant Term
+		assert (constantA.evaluate(currentScope).toString().equals("5"));
+		assert (constantB.evaluate(currentScope).toString().equals("7"));
+		assert (constantFalse.evaluate(currentScope).toString().equals("false"));
+		assert (constantTrue.evaluate(currentScope).toString().equals("true"));
+	}
+
+	@Test
+	public void multiplicationTermsTest() throws DIbuggerLogicException {
+
+		// Multiply
+		Term mult = new MultiplicationTerm(constantA, constantB);
+		assert (mult.evaluate(currentScope).toString().equals("35"));
+	}
+
+	@Test
+	public void divisionTermsTest() throws DIbuggerLogicException {
+		// Div
 		Term div = new DivisionTerm(constantA, constantB);
-		//System.out.println(div.evaluate(currentScope).toString());
-		assert(div.evaluate(currentScope).toString().equals("0"));
-    }
-    @Test
-    public void additionTermsTest() throws DIbuggerLogicException{
-	
+		// System.out.println(div.evaluate(currentScope).toString());
+		assert (div.evaluate(currentScope).toString().equals("0"));
+	}
+
+	@Test
+	public void additionTermsTest() throws DIbuggerLogicException {
+
 		Term add = new AdditionTerm(constantA, constantB);
-		//System.out.println(div.evaluate(currentScope).toString());
-		assert(add.evaluate(currentScope).toString().equals("12"));
-    }
-    @Test
-    public void subtractionTermsTest() throws DIbuggerLogicException{
-	
+		// System.out.println(div.evaluate(currentScope).toString());
+		assert (add.evaluate(currentScope).toString().equals("12"));
+	}
+
+	@Test
+	public void subtractionTermsTest() throws DIbuggerLogicException {
+
 		Term sub = new SubtractionTerm(constantA, constantB);
-		//System.out.println(div.evaluate(currentScope).toString());
-		assert(sub.evaluate(currentScope).toString().equals("-2"));
-    }
-    @Test
-    public void moduloTermsTest() throws DIbuggerLogicException{
-	
+		// System.out.println(div.evaluate(currentScope).toString());
+		assert (sub.evaluate(currentScope).toString().equals("-2"));
+	}
+
+	@Test
+	public void moduloTermsTest() throws DIbuggerLogicException {
+
 		Term mod = new ModuloTerm(constantB, constantA);
-		//System.out.println(mod.evaluate(currentScope).toString());
-		assert(mod.evaluate(currentScope).toString().equals("2"));
-    }
-    ////////////////////////////////Boolean Terms/////////////////////////////
-    @Test
-    public void NotConditionTermsTest() throws DIbuggerLogicException{
-	
+		// System.out.println(mod.evaluate(currentScope).toString());
+		assert (mod.evaluate(currentScope).toString().equals("2"));
+	}
+
+	//////////////////////////////// Boolean Terms/////////////////////////////
+	@Test
+	public void NotConditionTermsTest() throws DIbuggerLogicException {
+
 		Term notA = new NotCondition(constantFalse);
 		Term notB = new NotCondition(constantTrue);
-		//System.out.println(mod.evaluate(currentScope).toString());
-		assert(notA.evaluate(currentScope).toString().equals("true"));
-		assert(notB.evaluate(currentScope).toString().equals("false"));
-    }
-    @Test
-    public void OrConditionTermsTest() throws DIbuggerLogicException{
-	
+		// System.out.println(mod.evaluate(currentScope).toString());
+		assert (notA.evaluate(currentScope).toString().equals("true"));
+		assert (notB.evaluate(currentScope).toString().equals("false"));
+	}
+
+	@Test
+	public void OrConditionTermsTest() throws DIbuggerLogicException {
+
 		Term or = new OrCondition(constantFalse, constantTrue);
-		//System.out.println(mod.evaluate(currentScope).toString());
-		assert(or.evaluate(currentScope).toString().equals("true"));
-    }
-    
-    
+		// System.out.println(mod.evaluate(currentScope).toString());
+		assert (or.evaluate(currentScope).toString().equals("true"));
+	}
 
 }
