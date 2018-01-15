@@ -1,25 +1,26 @@
 
 ErgebnisseBrainstorming3.11.
 ErgebnisseBrainstorming3.11.
-~$Aufgabenliste für Projekte1.xlsx
 ErgebnisseBrainstorming3.11.
-*.aux
-*.glo
-*.idx
-*.log
-*.toc
-*.ist
+Iplementierung/Implementierungsdokument.pdf
+Iplementierung/RemoteSystemsTempFiles
+Plichtenheft/Pflichtenheft.pdf
 *.acn
 *.acr
 *.alg
+*.aux
 *.bbl
 *.blg
 *.dvi
 *.glg
+*.glo
 *.gls
+*.idx
 *.ilg
 *.ind
+*.ist
 *.lof
+*.log
 *.lot
 *.maf
 *.mtc
@@ -27,5 +28,5 @@ ErgebnisseBrainstorming3.11.
 *.out
 *.swp
 *.synctex.gz
-Plichtenheft/Pflichtenheft.pdf
-Iplementierung/Implementierungsdokument.pdf
+*.toc
+~$Aufgabenliste für Projekte1.xlsx
