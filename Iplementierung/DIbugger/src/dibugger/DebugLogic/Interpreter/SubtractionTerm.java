@@ -1,6 +1,8 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
+
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 /**
  * Represents a Subtraction. This is a special Binary Term.
  * @author wagner
@@ -12,11 +14,11 @@ public final class SubtractionTerm extends BinaryArithmeticTerm {
 		this.right = right;
 	}
 	@Override
-	public TermValue evaluate(List<TraceState> states) {
+	public TermValue evaluate(List<TraceState> states) throws DIbuggerLogicException {
 		return left.evaluate(states).sub(right.evaluate(states));
 	}
 	@Override
-	public TermValue evaluate(Scope currentScope) {
+	public TermValue evaluate(Scope currentScope) throws DIbuggerLogicException {
 		return left.evaluate(currentScope).sub(right.evaluate(currentScope));
 	}
 }

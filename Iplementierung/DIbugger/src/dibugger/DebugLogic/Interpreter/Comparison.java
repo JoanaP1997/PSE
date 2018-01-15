@@ -1,6 +1,8 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
+
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 /**
  * 
  * @author wagner
@@ -13,6 +15,6 @@ public abstract class Comparison extends Term{
 		this.leftOperand = leftOperand;
 		this.rightOperand = rightOperand;
 	}
-	public abstract BooleanValue evaluate(List<TraceState> states);
-	public abstract BooleanValue evaluate(Scope currentScope);
+	public abstract BooleanValue evaluate(List<TraceState> states) throws DIbuggerLogicException;
+	public abstract BooleanValue evaluate(Scope currentScope) throws DIbuggerLogicException;
 }

@@ -5,12 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 import dibugger.DebugLogic.Interpreter.WatchExpression;
 
 public class WatchExpressionTest {
     WatchExpression we;
     @Test
-    public void constantTest() {
+    public void constantTest() throws DIbuggerLogicException {
 	we = new WatchExpression("3-2");
 	assert(we.evaluate(null).equals("1"));
 	we.change("(4%2)+3", null);

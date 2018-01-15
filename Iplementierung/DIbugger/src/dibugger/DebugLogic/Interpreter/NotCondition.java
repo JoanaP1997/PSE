@@ -1,6 +1,8 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
+
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 /**
  * Represents a Negation of a Term.
  * @author wagner
@@ -16,12 +18,12 @@ public final class NotCondition extends Term {
 	this.child = child;
     }
     @Override
-    public BooleanValue evaluate(List<TraceState> states) {
+    public BooleanValue evaluate(List<TraceState> states) throws DIbuggerLogicException {
 	return new BooleanValue(this.child.evaluate(states).not());
     }
 
     @Override
-    public BooleanValue evaluate(Scope currentScope) {
+    public BooleanValue evaluate(Scope currentScope) throws DIbuggerLogicException {
 	return new BooleanValue(this.child.evaluate(currentScope).not());
     }
 

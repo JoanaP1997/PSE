@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 import dibugger.DebugLogic.Interpreter.ConditionalBreakpoint;
 import dibugger.DebugLogic.Interpreter.GenerationController;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
@@ -84,7 +85,7 @@ public class DebugControl {
 	 * Executes a step defined by a given step type.
 	 * @param type the type of the step (STEP_NORMAL,STEP_OVER,STEP_OUT,STEP_BACK)
 	 */
-	public void step(int type){
+	public void step(int type) throws DIbuggerLogicException{
 		//TODO implement Step Over
 		if(type==STEP_NORMAL || type==STEP_BACK){
 			int maxSteps = getMaximumOfList(list_stepSize);	
@@ -173,7 +174,7 @@ public class DebugControl {
 		}
 		return false;
 	}
-	private boolean evaluateConditionalBreakpoints(){
+	private boolean evaluateConditionalBreakpoints() throws DIbuggerLogicException{
 		for(int key : map_condBreakpoints.keySet()){
 			ConditionalBreakpoint cb = map_condBreakpoints.get(key);
 			if(cb.evaluate(list_currentTraceStates)){
@@ -186,7 +187,7 @@ public class DebugControl {
 	/**
 	 * Continues the Debugging / Stepping in all programs until a Breakpoint or Conditional Breakpoint is reached.
 	 */
-	public void continueDebug(){
+	public void continueDebug() throws DIbuggerLogicException{
 		//TODO
 		for(int i=0;i<programCount;++i){
 			step(STEP_NORMAL);

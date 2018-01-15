@@ -3,6 +3,7 @@ package dibugger.DebugLogic.Debugger;
 import java.util.List;
 import java.util.Observable;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
 
 /**
@@ -37,7 +38,7 @@ public class DebugLogicFacade extends Observable{
 	/**
 	 * @see DebugControl#step(int)
 	 */
-	public void step(int type){
+	public void step(int type) throws DIbuggerLogicException{
 		debugControl.step(type);
 	}
 	/**
@@ -49,7 +50,7 @@ public class DebugLogicFacade extends Observable{
 	/**
 	 * @see DebugControl#continueDebug()
 	 */
-	public void continueDebug(){
+	public void continueDebug() throws DIbuggerLogicException{
 		debugControl.continueDebug();
 	}
 	

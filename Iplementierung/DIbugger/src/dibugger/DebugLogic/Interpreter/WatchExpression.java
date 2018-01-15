@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import dibugger.DebugLogic.AntlrParser.TermsLexer;
 import dibugger.DebugLogic.AntlrParser.TermsParser;
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 
 /**
  * 
@@ -39,7 +40,7 @@ public class WatchExpression {
 	this.scopes = scopes;
 	this.createTerm();
     }
-    public String evaluate(List<TraceState> states) {
+    public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
 	boolean isValid = true;
 	//check wether #states = #scopes
 	if (states.size() != this.scopes.size())

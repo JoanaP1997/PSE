@@ -2,6 +2,8 @@ package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
+
 /**
  * Represents an arrayaccess based on the arrays of multiple programs
  * 
@@ -67,7 +69,7 @@ public final class ArrayAccessRelationalTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(List<TraceState> states) {
+    public TermValue evaluate(List<TraceState> states) throws DIbuggerLogicException {
 	if (this.programId <= states.size()) {
 	    TermValue t = states.get(this.programId).getValueOf(identifier); //get the Array
 		TermValue firstIndex = this.indexA.evaluate(states);

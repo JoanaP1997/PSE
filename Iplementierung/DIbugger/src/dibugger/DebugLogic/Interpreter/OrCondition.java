@@ -5,6 +5,8 @@ package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
+
 /**
  * @author wagner
  * Represents the Disjunction of two Terms
@@ -20,12 +22,12 @@ public final class OrCondition extends BinaryCondition {
 	this.rightOperand = right;
     }
     @Override
-    public BooleanValue evaluate(List<TraceState> states) {
+    public BooleanValue evaluate(List<TraceState> states) throws DIbuggerLogicException {
 	boolean b = this.leftOperand.evaluate(states).or(this.rightOperand.evaluate(states));
 	return new BooleanValue(b);
     }
     @Override
-    public BooleanValue evaluate(Scope currentScope) {
+    public BooleanValue evaluate(Scope currentScope) throws DIbuggerLogicException {
 	boolean b = this.leftOperand.evaluate(currentScope).or(this.rightOperand.evaluate(currentScope));
 	return new BooleanValue(b);
     }

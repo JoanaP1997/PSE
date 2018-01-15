@@ -1,6 +1,8 @@
 package dibugger.DebugLogic.Interpreter;
 
 import java.util.List;
+
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 /**
  * Represents an arrayaccess based on the arrays of a single program.
  * @author wagner
@@ -60,7 +62,7 @@ public final class ArrayAccessTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(Scope currentScope) {
+    public TermValue evaluate(Scope currentScope) throws DIbuggerLogicException {
 	TermValue t = currentScope.getValue(identifier); //get the Array
 	TermValue firstIndex = this.indexA.evaluate(currentScope);
 	TermValue secondIndex = this.indexB.evaluate(currentScope);
