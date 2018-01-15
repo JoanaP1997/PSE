@@ -15,6 +15,8 @@ public class CommandPanel extends JPanel {
     private JButton continueDebug;
     private static CommandPanel singleton = null;
 
+    private static final int ICON_SIZE = 32;
+    
     private CommandPanel() {
         initComponents();
         this.setVisible(true);
@@ -27,10 +29,12 @@ public class CommandPanel extends JPanel {
 
         JButton start = new JButton();
         ImageIcon iconStart = new ImageIcon("res/play-arrow.png");
+        iconStart.setImage(iconStart.getImage().getScaledInstance(ICON_SIZE, ICON_SIZE,  Image.SCALE_SMOOTH ));
         start.setIcon(iconStart);
 
         JButton stop = new JButton();
         ImageIcon iconStop = new ImageIcon("res/stop-button.png");
+        iconStop.setImage(iconStop.getImage().getScaledInstance(ICON_SIZE, ICON_SIZE,  Image.SCALE_SMOOTH ));
         stop.setIcon(iconStop);
 
         JButton step = new JButton(("Step"));
