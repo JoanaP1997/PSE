@@ -73,6 +73,7 @@ public class DebugControl {
 		for(int i=0;i<programs.size();++i){
 			ProgramInput pi = programs.get(i);
 			list_traceIterator.add(generationController.generateTrace(pi.getText(), pi.getInputValues()));
+			jumpTraceIterator(i, pi.getCounter());
 		}
 		
 		list_programInput = programs;
@@ -147,9 +148,19 @@ public class DebugControl {
 		TraceIterator it = list_traceIterator.get(programID);
 		if((direction==STEP_NORMAL || direction==STEP_OVER || direction==STEP_OUT) && it.hasNext()){
 			list_currentTraceStates.set(programID, it.next());
+			list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter()+1);
 		}
 		else if(direction==STEP_BACK && it.hasPrev()){
 			list_currentTraceStates.set(programID, it.prev());
+			list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter()-1);
+		}
+	}
+	
+	private void jumpTraceIterator(int programID, int numberOfIterations){
+		for(int i=0;i<numberOfIterations;++i){
+			if(list_traceIterator.get(i).hasNext()){
+				list_traceIterator.get(programID).next();
+			}
 		}
 	}
 	
