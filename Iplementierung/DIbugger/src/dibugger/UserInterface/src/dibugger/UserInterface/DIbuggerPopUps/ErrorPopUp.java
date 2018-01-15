@@ -28,5 +28,5 @@ public class ErrorPopUp extends DIbuggerPopUp {
 
         this.setVisible(true);
     }
-    
+
 }

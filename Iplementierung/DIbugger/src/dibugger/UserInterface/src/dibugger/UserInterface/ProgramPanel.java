@@ -31,9 +31,9 @@ public class ProgramPanel extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TextPaneCode = new javax.swing.JTextPane();
 
-        ProgramName.setText("Programm 1");
+        ProgramName.setText("Programm: " + id);
 
-        Stepsize.setText("Stepsize");
+        Stepsize.setText("Stepsize: ");
 
         StepsizeInput.setText("jTextField2");
         StepsizeInput.addActionListener(this::StepsizeInputActionPerformed);
@@ -42,6 +42,7 @@ public class ProgramPanel extends JPanel {
 
         EingabevariablenInput.setText("jTextField1");
         EingabevariablenInput.addActionListener(this::EingabevariablenInputActionPerformed);
+
 
         javax.swing.GroupLayout VariableWindowLayout = new javax.swing.GroupLayout(VariableWindow);
         VariableWindow.setLayout(VariableWindowLayout);

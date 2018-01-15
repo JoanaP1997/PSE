@@ -1,0 +1,77 @@
+partType=3
+is_building_probe=false
+hasCustomProperties=true
+Location{
+	name='Main Room'
+	identifier='mainRoom'
+	x=0
+	y=0.2
+	z=18
+	lx=-1
+	ly=1.8
+	lz=0
+}
+LocationModule{
+	locIdentifier='mainRoom'
+	identifier='m_ship_start'
+	x=0
+	y=0.2
+	z=18
+	lx=1
+	ly=0
+	lz=0
+	cx=0.0
+	cy=1.0
+	cz=0.0
+}
+LocationModule{
+	locIdentifier='mainRoom'
+	identifier='m_market'
+	x=-2.5
+	y=0.2
+	z=-7.5
+	lx=-2.5
+	ly=1.1
+	lz=-8.0
+	cx=-2.5
+	cy=1.4
+	cz=-7.7
+}
+LocationModule{
+	locIdentifier='mainRoom'
+	identifier='m_ship_configurator'
+	x=0.0
+	y=0.2
+	z=-7.5
+	lx=0.0
+	ly=1.1
+	lz=-8.0
+	cx=0.0
+	cy=1.4
+	cz=-7.7
+}
+LocationModule{
+	locIdentifier='mainRoom'
+	identifier='m_part_market'
+	x=2.5
+	y=0.2
+	z=-7.5
+	lx=2.5
+	ly=1.1
+	lz=-8.0
+	cx=2.5
+	cy=1.4
+	cz=-7.7
+}
+Construction{
+	Ressource{
+		identifier='metal_Copper'
+		amount=50.0
+	}
+}
+Message{
+def_blockLen=3
+This is a great invention by all people.
+We are prout to anounce the new Burger BigBugger (Excavator not included).
+Come to Bugger King to try out this new creation.
+}

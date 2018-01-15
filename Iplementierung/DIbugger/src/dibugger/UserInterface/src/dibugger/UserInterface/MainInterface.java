@@ -20,18 +20,21 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JMenu settings;
     private javax.swing.JMenu help;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JPanel firstTextPanel;
-    private javax.swing.JPanel secondTextPanel;
     private javax.swing.JPanel rightControlBar;
 
     private JPanel controlButtonsPanel;
     private JPanel watchExpPanel;
     private JPanel condBreakPanel;
 
+    private JPanel codePanel;
+
     private JMenuItem newView;
+    private JMenuItem newProgram;
     private JMenuItem loadConfig;
     private JMenuItem saveConfig;
     private JMenuItem exit;
+
+    private  FlowLayout codePanelLayout;
 
     /**
      * Creates new MainInterface
@@ -44,8 +47,6 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void initComponents() {
 
-        firstTextPanel = new javax.swing.JPanel();
-        secondTextPanel = new javax.swing.JPanel();
         rightControlBar = new javax.swing.JPanel();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,25 +54,27 @@ public class MainInterface extends javax.swing.JFrame {
         getContentPane().setLayout(groupLayout);
 
         configureMenuBar();
-
-        firstTextPanel.add(new ProgramPanel(1));
-        secondTextPanel.add(new ProgramPanel(2));
+        programPanels = new ArrayList<>();
+        programPanels.add(new ProgramPanel(1));
+        programPanels.add(new ProgramPanel(2));
+        codePanel = new JPanel();
+        codePanelLayout = new FlowLayout();
+        codePanel.setLayout(codePanelLayout);
+        codePanel.add(programPanels.get(0), codePanelLayout);
+        codePanel.add(programPanels.get(1), codePanelLayout);
 
         initRightControlBar();
 
         groupLayout.setHorizontalGroup(
                 groupLayout.createSequentialGroup()
-
-                                .addComponent(firstTextPanel)
-                                .addComponent(secondTextPanel)
+                                .addComponent(codePanel)
                                 .addComponent(rightControlBar)
 
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(firstTextPanel)
-                        .addComponent(secondTextPanel)
+                        .addComponent(codePanel)
                         .addComponent(rightControlBar))
         );
 
@@ -106,14 +109,32 @@ public class MainInterface extends javax.swing.JFrame {
         dateiMenu.setText("Datei");
         menuBar.add(dateiMenu);
         newView = new JMenuItem();
-        newView.setText("Neu..");
+        newView.setText("Neu");
+        newView.addActionListener(actionEvent -> {
+            //TODO: Decision PoPUP -> wirklich? ja nein
+            dispose();
+            MainInterface.main(null);
+        });
+        newProgram = new JMenuItem();
+        newProgram.setText("Programm hinzufügen");
+        newProgram.addActionListener(actionEvent -> {
+            programPanels.add(new ProgramPanel(programPanels.size() + 1));
+            codePanel.add(programPanels.get(programPanels.size() - 1), codePanelLayout);
+            codePanel.updateUI();
+            //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
+        });
         loadConfig = new JMenuItem();
         loadConfig.setText("Konfigurationsdatei laden");
         saveConfig = new JMenuItem();
         saveConfig.setText("Aktuellen Lauf speichern");
         exit = new JMenuItem();
         exit.setText("DIbugger beenden");
-
+        exit.addActionListener(actionEvent -> System.exit(0));
+        dateiMenu.add(newView);
+        dateiMenu.add(newProgram);
+        dateiMenu.add(loadConfig);
+        dateiMenu.add(saveConfig);
+        dateiMenu.add(exit);
         //Vorschläge Menü
         vorschläge.setText("Vorschläge");
         menuBar.add(vorschläge);
@@ -130,12 +151,9 @@ public class MainInterface extends javax.swing.JFrame {
 
 
 
-        exit.addActionListener(actionEvent -> System.exit(0));
 
-        dateiMenu.add(newView);
-        dateiMenu.add(loadConfig);
-        dateiMenu.add(saveConfig);
-        dateiMenu.add(exit);
+
+
         setJMenuBar(menuBar);
     }
 
@@ -147,7 +165,7 @@ public class MainInterface extends javax.swing.JFrame {
         controlButtonsPanel.add(CommandPanel.getCommandPanel());
 
         watchExpPanel = new JPanel();
-        watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel());
+        watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel(this));
 
         GroupLayout groupLayout = new GroupLayout(rightControlBar);
         rightControlBar.setLayout(groupLayout);
@@ -161,12 +179,15 @@ public class MainInterface extends javax.swing.JFrame {
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
-
                                 .addComponent(controlButtonsPanel)
                                 .addComponent(watchExpPanel)
                                 .addComponent(condBreakPanel)
         );
 
+    }
+
+    public int getProgramCount() {
+        return programPanels.size();
     }
 
 
