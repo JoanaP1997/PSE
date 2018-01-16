@@ -2,6 +2,7 @@ package dibugger.Control;
 
 import java.util.Objects;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 import dibugger.FileHandler.Exceptions.FileHandlerException;
 import dibugger.FileHandler.Exceptions.LanguageNotFoundException;
 import dibugger.FileHandler.Facade.LanguageFile;
@@ -11,7 +12,7 @@ public class ExceptionHandler {
     private static final String NO_LANGUAGEFILE_FOUND = "Es konnte keine Sprachdatei zum Anzeigen von "
                                                     + "Texten der Benutzeroberfläche gefunden werden!"
                                                     + "Möglicherweise wurde DIBugger nicht korrekt "
-                                                    + "installiert. Bitte tuen Sie Dieses und Jenes";
+                                                    + "installiert. Bitte tuen Sie dieses und jenes";
     
     private GUIFacade guiFacade;
     private LanguageFile languageFile;
@@ -31,8 +32,12 @@ public class ExceptionHandler {
         this.languageFile = languageFile;
     }
     
+    public void handle(DIbuggerLogicException exception) {
+        guiFacade.showError(exception.getID());
+    }    
+    
     public void handle(FileHandlerException exception) {
-        /*  */
+        guiFacade.showError(exception.getID());
     }
     
     public void setLanguageFile(LanguageFile languageFile) {

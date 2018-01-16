@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
+import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
 import dibugger.FileHandler.Exceptions.FileHandlerException;
 import dibugger.UserInterface.GUIFacade;
@@ -28,142 +29,154 @@ public class ControlFacade {
     
 
     public void setStepSize(int programId, int size) {
-        throw new UnsupportedOperationException();
+        debugLogicController.setStepSize(programId, size);
     }
     
     public void step(int type) {
-        throw new UnsupportedOperationException();
+        try {
+            debugLogicController.step(type);
+        } catch (DIbuggerLogicException exception) {
+            exceptionHandler.handle(exception);
+        }
     }
     
     public void continueDebug() {
-        throw new UnsupportedOperationException();        
+        try {
+            debugLogicController.continueDebug();
+        } catch (DIbuggerLogicException exception) {
+            exceptionHandler.handle(exception);
+        }        
     }
     
     public void singleStep(int programId) {
-        throw new UnsupportedOperationException();        
+        debugLogicController.singleStep(programId);        
     }
     
     public void stepBack() {
-        throw new UnsupportedOperationException();        
+        try {
+            debugLogicController.stepBack();
+        } catch (DIbuggerLogicException exception) {
+            exceptionHandler.handle(exception);
+        }          
     }
 
     public void createWatchExpression(int watchExpressionId, String expression) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.createWatchExpression(watchExpressionId, expression);      
     }
     
     public void changeWatchExpression(int watchExpressionId, 
             String expression, 
-            List<ScopeTuple> scope) {
-        throw new UnsupportedOperationException();       
+            List<ScopeTuple> scopes) {
+        debugLogicController.changeWatchExpression(watchExpressionId, expression, scopes);       
     }
     
     public void deleteWatchExpression(int watchExpressionId) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.deleteWatchExpression(watchExpressionId);      
     }
     
     public void createConditionalBreakpoint(int breakPointId, String condition) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.createConditionalBreakpoint(breakPointId, condition);      
     }
     
     public void changeConditionalBreakpoint(int breakPointId, 
             String condition, 
-            List<ScopeTuple> scope) {
-        throw new UnsupportedOperationException();      
+            List<ScopeTuple> scopes) {
+        debugLogicController.changeConditionalBreakpoint(breakPointId, condition, scopes);      
     }
     
     public void deleteConditionalBreakpoint(int conditionalBreakPointId) {
-        throw new UnsupportedOperationException();     
+        debugLogicController.deleteConditionalBreakpoint(conditionalBreakPointId);     
     }
 
     public void createSynchronousBreakpoint(int line) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.createSynchronousBreakpoint(line);     
     }
     
     public void createBreakpoint(int programId, int line) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.createBreakpoint(programId, line);      
     }
     
     public void deleteBreakpoint(int programId, int line) {
-        throw new UnsupportedOperationException();   
+        debugLogicController.deleteBreakpoint(programId, line);   
     }
     
     public void deleteAllBreakpoints() {
-        throw new UnsupportedOperationException();       
+        debugLogicController.deleteAllBreakpoints();      
     }
 
     public void saveText(List<String> programTexts, List<String> inputVariables) {
-        throw new UnsupportedOperationException();     
+        debugLogicController.saveText(programTexts, inputVariables);     
     }
     
     public void startDebug() {
-        throw new UnsupportedOperationException();     
+        debugLogicController.startDebug();     
     }
     
     public void stopDebug() {
-        throw new UnsupportedOperationException();     
+        debugLogicController.stopDebug();     
     }
     
     public void reset() {
-        throw new UnsupportedOperationException();       
+        debugLogicController.reset();       
     }
 
     public void loadConfiguration(File configurationFile) {
-        throw new UnsupportedOperationException();      
+        fileHandlerInteractor.loadConfiguration(configurationFile);     
     }
     
     public void saveConfiguration(File configurationFile) {
-        throw new UnsupportedOperationException();       
+        fileHandlerInteractor.saveConfiguration(configurationFile);       
     }
     
     public void loadProgramText(File file) {
-        throw new UnsupportedOperationException();      
+        fileHandlerInteractor.loadProgramText(file);     
     }
 
     public List<String> getAvailableLanuages() {
-        throw new UnsupportedOperationException();     
+        return fileHandlerInteractor.getAvailableLanuages();    
     }
 
     
     public void setMaximumIterations(int maximum) {
-        throw new UnsupportedOperationException();    
+        debugLogicController.setMaximumIterations(maximum);    
     }
     
     public void setMaximumFunctionCalls(int maximum) {
-        throw new UnsupportedOperationException();      
+        debugLogicController.setMaximumFunctionCalls(maximum);      
     }
 
     public String suggestStepSize() {
-        throw new UnsupportedOperationException();      
+        return debugLogicController.suggestStepSize();      
     }
     
     public String suggestWatchExpression() {
-        throw new UnsupportedOperationException();       
+        return debugLogicController.suggestWatchExpression();      
     }
     
     public String suggestConditionalBreakpoint() {
-        throw new UnsupportedOperationException();      
+        return debugLogicController.suggestConditionalBreakpoint();      
     }
     
     //  Name "inputVariableId" überprüfen
     public String suggestInputValue(String inputVariableId, String range, int type) {
-        throw new UnsupportedOperationException();     
+        return debugLogicController.suggestInputValue(inputVariableId, range, type);     
     }
     
 
     public void selectStepSizeStrategy(int stepSizeStrategyId) {
-        throw new UnsupportedOperationException();     
+        debugLogicController.selectStepSizeStrategy(stepSizeStrategyId);     
     }
     
     public void selectRelationalExpressionStrategy(int expressionStrategyId) {
-        throw new UnsupportedOperationException();     
+        debugLogicController.selectRelationalExpressionStrategy(expressionStrategyId);     
     }
     
     public void selectInputValueStrategy(int inputValueStrategyId) {
-        throw new UnsupportedOperationException();       
+        debugLogicController.selectInputValueStrategy(inputValueStrategyId);      
     }
     
 
     public void changeLanguage(String languageId) {
-        throw new UnsupportedOperationException();      
+        fileHandlerInteractor.changeLanguage(languageId);      
     }
 }
