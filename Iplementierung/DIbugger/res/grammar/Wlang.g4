@@ -1,6 +1,7 @@
 
 grammar Wlang;
 r: programm;
+webppterm: condition | term;
 
 
 programm: routine* mainRoutine;
@@ -81,6 +82,7 @@ whileState: 'while' '(' condition ')' content = block #whileWithBlock
 	;
 //Bedingungen
 condition: ID #IdCondition
+	| REL_ID #RelIdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
 	| BOOLEANLITERAL #ConstantCondition
@@ -109,7 +111,8 @@ term : '-' inner = term #NegativeTerm
 	| INTLITERAL #IntLiteral
 	| LONGLITERAL #LongLiteral
 	| DOUBLELITERAL #DoubleLiteral
-	| ID #ID
+	| ID #Id
+	| REL_ID #RelId
 	| CHARLITERAL #CharLiteral
 	| funcCall #FunctionCallInTerm
 	| arrayAccess #ArrayAccessInTerm
@@ -117,7 +120,7 @@ term : '-' inner = term #NegativeTerm
 
 arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
-		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
 		;
 
 
@@ -131,6 +134,7 @@ COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT:   '//' ~[\r\n]* -> skip;
 TYPE: 'float' | 'int' | 'char' | 'boolean' | 'double' | 'long';
 ID : ([a-z]|[A-Z])+ ;
+REL_ID : [A-Z]'.'([a-z]|[A-Z])+ ;
 INTLITERAL: '-'? [1-9][0-9]* | '0';
 FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
 CHARLITERAL: '\'' ~['\\\r\n] '\'';

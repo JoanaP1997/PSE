@@ -11,8 +11,10 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import dibugger.DebugLogic.AntlrParser.TermsLexer;
-import dibugger.DebugLogic.AntlrParser.TermsParser;
+import dibugger.DebugLogic.AntlrParser.WlangLexer;
+import dibugger.DebugLogic.AntlrParser.WlangParser;
+import dibugger.DebugLogic.AntlrParser.WlangLexer;
+import dibugger.DebugLogic.AntlrParser.WlangParser;
 import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 
 /**
@@ -68,10 +70,11 @@ public class ConditionalBreakpoint {
     }
     private void createTerm(){
 	CharStream input = CharStreams.fromString(this.specifier);
-	TermsLexer lexer = new TermsLexer(input);
+	WlangLexer lexer = new WlangLexer(input);
 	CommonTokenStream tokens = new CommonTokenStream(lexer);
-	TermsParser parser = new TermsParser(tokens);
-        ParseTree tree = parser.r();
+	WlangParser parser = new WlangParser(tokens);
+	//Chose start rule
+        ParseTree tree = parser.webppterm();
 	TermGenerationVisitor visitor = new TermGenerationVisitor();
 	this.condition = visitor.visit(tree);
     }

@@ -1,39 +1,41 @@
 package dibugger.DebugLogic.Interpreter;
 
-import org.antlr.v4.runtime.tree.RuleNode;
+import dibugger.DebugLogic.AntlrParser.WlangBaseVisitor;
+import dibugger.DebugLogic.AntlrParser.WlangParser.AdditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.AndConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayAccessConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayAccessInTermContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.BracketConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.BracketsContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.CharLiteralContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ComparisonConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ConstantConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.DivisionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.DoubleLiteralContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.EqualCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.FloatLiteralContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IdConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IdContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.IntLiteralContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.LessCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.LessEqualCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.LongLiteralContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ModuloContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.MoreCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.MoreEqualCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.MultiplicationContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.NegativeTermContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.NotConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.NotEqualCompContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.OneDimArrayAccessContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.OrConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.RelIdConditionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.RelIdContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.SubtractionContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.ThreeDimArrayAccessContext;
+import dibugger.DebugLogic.AntlrParser.WlangParser.TwoDimArrayAccessContext;
 
-import dibugger.DebugLogic.AntlrParser.TermsBaseVisitor;
-import dibugger.DebugLogic.AntlrParser.TermsParser.AdditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.AndConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ArrayAccessConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ArrayAccessInTermContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.BracketConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.BracketsContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.CharLiteralContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ComparisonConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ConstantConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.DivisionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.DoubleLiteralContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.EqualCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.FloatLiteralContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.GeneralTermContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.IDContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.IntLiteralContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.LessCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.LessEqualCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.LongLiteralContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ModuloContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.MoreCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.MoreEqualCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.MultiplicationContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.NegativeTermContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.NotConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.NotEqualCompContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.OneDimArrayAccessContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.OrConditionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.SubtractionContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.ThreeDimArrayAccessContext;
-import dibugger.DebugLogic.AntlrParser.TermsParser.TwoDimArrayAccessContext;
+
 
 /**
  * 
@@ -41,7 +43,7 @@ import dibugger.DebugLogic.AntlrParser.TermsParser.TwoDimArrayAccessContext;
  *
  */
 
-public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
+public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 	//Arithmetic
     	@Override
 	public Term visitAddition(AdditionContext ctx) {
@@ -212,13 +214,26 @@ public class TermGenerationVisitor extends TermsBaseVisitor<Term> {
 	public Term visitCharLiteral(CharLiteralContext ctx) {
 	    	return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
 	}
+	//IDs and Constants
 	@Override
-	public Term visitID(IDContext ctx) {
-		return new VariableRelationalTerm(ctx.getText());
+	public Term visitId(IdContext ctx) {
+	    return new VariableTerm(ctx.getText());
+	}
+	@Override
+	public Term visitRelId(RelIdContext ctx) {
+	    return new VariableRelationalTerm(ctx.getText());
 	}
 	@Override
 	public Term visitConstantCondition(ConstantConditionContext ctx) {
 	    	return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
+	}
+	@Override
+	public Term visitIdCondition(IdConditionContext ctx) {
+	    return new VariableTerm(ctx.getText());
+	}
+	@Override
+	public Term visitRelIdCondition(RelIdConditionContext ctx) {
+	    return new VariableRelationalTerm(ctx.getText());
 	}
 	
 }

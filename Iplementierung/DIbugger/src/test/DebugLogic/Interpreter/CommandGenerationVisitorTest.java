@@ -8,8 +8,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 
-import dibugger.DebugLogic.AntlrParser.TermsLexer;
-import dibugger.DebugLogic.AntlrParser.TermsParser;
 import dibugger.DebugLogic.AntlrParser.WlangLexer;
 import dibugger.DebugLogic.AntlrParser.WlangParser;
 import dibugger.DebugLogic.Interpreter.Assignment;
