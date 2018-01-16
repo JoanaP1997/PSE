@@ -17,6 +17,12 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitR(WlangParser.RContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link WlangParser#webppterm}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWebppterm(WlangParser.WebpptermContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link WlangParser#programm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -302,6 +308,13 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotCondition(WlangParser.NotConditionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code RelIdCondition}
+	 * labeled alternative in {@link WlangParser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelIdCondition(WlangParser.RelIdConditionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code OrCondition}
 	 * labeled alternative in {@link WlangParser#condition}.
 	 * @param ctx the parse tree
@@ -407,6 +420,13 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitModulo(WlangParser.ModuloContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code RelId}
+	 * labeled alternative in {@link WlangParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelId(WlangParser.RelIdContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Subtraction}
 	 * labeled alternative in {@link WlangParser#term}.
 	 * @param ctx the parse tree
@@ -442,12 +462,12 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDoubleLiteral(WlangParser.DoubleLiteralContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ID}
+	 * Visit a parse tree produced by the {@code Id}
 	 * labeled alternative in {@link WlangParser#term}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitID(WlangParser.IDContext ctx);
+	T visitId(WlangParser.IdContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code ArrayAccessInTerm}
 	 * labeled alternative in {@link WlangParser#term}.
