@@ -1180,7 +1180,7 @@ public class WlangParser extends Parser {
 		public Token type;
 		public TermContext firstIndex;
 		public TermContext secondIndex;
-		public TermContext index;
+		public TermContext thirdIndex;
 		public Token id;
 		public TerminalNode TYPE() { return getToken(WlangParser.TYPE, 0); }
 		public List<TermContext> term() {
@@ -1268,7 +1268,7 @@ public class WlangParser extends Parser {
 				setState(199);
 				match(T__8);
 				setState(200);
-				((ArrayDeclarationThreeDimContext)_localctx).index = term(0);
+				((ArrayDeclarationThreeDimContext)_localctx).thirdIndex = term(0);
 				setState(201);
 				match(T__9);
 				setState(202);
@@ -1360,7 +1360,7 @@ public class WlangParser extends Parser {
 	public static class ArrayElementAssignThreeDimContext extends ArrayElementAssignContext {
 		public Token id;
 		public TermContext firstIndex;
-		public TermContext secondtIndex;
+		public TermContext secondIndex;
 		public TermContext thirdIndex;
 		public TermContext value;
 		public TerminalNode ASSIGN() { return getToken(WlangParser.ASSIGN, 0); }
@@ -1486,7 +1486,7 @@ public class WlangParser extends Parser {
 				setState(238);
 				match(T__8);
 				setState(239);
-				((ArrayElementAssignThreeDimContext)_localctx).secondtIndex = term(0);
+				((ArrayElementAssignThreeDimContext)_localctx).secondIndex = term(0);
 				setState(240);
 				match(T__9);
 				setState(241);

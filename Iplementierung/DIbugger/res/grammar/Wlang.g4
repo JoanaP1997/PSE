@@ -49,14 +49,14 @@ assignment: declareAssign
 
 arrayDeclaration: type = TYPE '[' index = term']' id = ID ';' #arrayDeclarationOneDim
 					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' id = ID ';' #arrayDeclarationTwoDim
-					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' '[' index = term']' id = ID ';' #arrayDeclarationThreeDim
+					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' '[' thirdIndex = term']' id = ID ';' #arrayDeclarationThreeDim
 					;
 					
 arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
 
 arrayElementAssign: id = ID '['index=term']'  ASSIGN value = term';' #arrayElementAssignOneDim
 		| id = ID '['firstIndex=term']' '['secondIndex=term']'  ASSIGN value = term';' #arrayElementAssignTwoDim
-		| id = ID '['firstIndex=term']' '['secondtIndex=term']' '['thirdIndex=term']'  ASSIGN value = term';' #arrayElementAssignThreeDim
+		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']'  ASSIGN value = term';' #arrayElementAssignThreeDim
 		;
 
 dims: '['term']' #oneDims

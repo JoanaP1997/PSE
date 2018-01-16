@@ -31,8 +31,10 @@ import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithSingleContext;
 
 public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     private GenerationController controller;
+    private TermGenerationVisitor termGenVisitor;
     public CommandGenerationVisitor(GenerationController controller) {
 	this.controller = controller;
+	this.termGenVisitor = new TermGenerationVisitor();
     }
     //RoutineCommands
    
@@ -43,60 +45,63 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     @Override
     public Command visitArrayDeclarationOneDim(ArrayDeclarationOneDimContext ctx) {
         String identifier = ctx.id.getText();
-        Term index = null;
-        // TODO : visit(ctx.index.) 
-
+        Term index = this.termGenVisitor.visit(ctx.index);
         return new ArrayDeclaration(this.controller, identifier, index);
     }
     @Override
     public Command visitArrayDeclarationTwoDim(ArrayDeclarationTwoDimContext ctx) {
 	String identifier = ctx.id.getText();
-        Term firstIndex = null;
-        Term secondIndex = null;
-        // TODO : visit(ctx.index.) 
-
+        Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
+        Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
         return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex);  
     }
     @Override
     public Command visitArrayDeclarationThreeDim(ArrayDeclarationThreeDimContext ctx) {
 	String identifier = ctx.id.getText();
-        Term firstIndex = null;
-        Term secondIndex = null;
-        Term thirdIndex = null;
-        // TODO : visit(ctx.index.) 
-
+        Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
+        Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
+        Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
         return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex, thirdIndex);  
     }
     @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
-	return null;
-	//TODO
+	String identifier = ctx.id.getText();
+	Term index = this.termGenVisitor.visit(ctx.index);
+	Term value = this.termGenVisitor.visit(ctx.value);
+	return new ArrayElementAssignment(this.controller, identifier, index, value);
     }
     @Override
     public Command visitArrayElementAssignTwoDim(ArrayElementAssignTwoDimContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitArrayElementAssignTwoDim(ctx);
+	String identifier = ctx.id.getText();
+	Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
+        Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
+	Term value = this.termGenVisitor.visit(ctx.value);
+	return new ArrayElementAssignment(this.controller, identifier, firstIndex, secondIndex, value);
     }
     @Override
     public Command visitArrayElementAssignThreeDim(ArrayElementAssignThreeDimContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitArrayElementAssignThreeDim(ctx);
+	String identifier = ctx.id.getText();
+	Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
+        Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
+        Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
+	Term value = this.termGenVisitor.visit(ctx.value);
+	return new ArrayElementAssignment(this.controller, identifier, firstIndex, secondIndex, thirdIndex, value);
     }
     //Assignments and Declaration
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
-	Term term = new TermGenerationVisitor().visit(ctx.value);//TODO hae wieso geht das?
-        return new Assignment(this.controller, ctx.id.getText(), term);
+	Term value = this.termGenVisitor.visit(ctx.value);
+        return new Assignment(this.controller, ctx.id.getText(), value);
     }
-    @Override
+  /*  @Override
     public Command visitDeclaration(DeclarationContext ctx) {
-        return new Declaration(this.controller, ctx.id.getText());
+        return new Declaration(this.controller, ctx.type. irgendwiedenenumwert ,ctx.id.getText());
     }
     @Override
     public Command visitDeclareAssign(DeclareAssignContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitDeclareAssign(ctx);
-    }
+	Term value = this.termGenVisitor.visit(ctx.value);
+        return new DeclarationAssignment(controller, ctx.type. irgendwiedenenumwert ,ctx.id.getText(), value )
+    }*/ //TODO
     //Function Call
     @Override
     public Command visitFuncCall(FuncCallContext ctx) {
