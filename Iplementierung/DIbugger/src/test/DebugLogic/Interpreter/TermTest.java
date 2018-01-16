@@ -2,6 +2,7 @@ package test.DebugLogic.Interpreter;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -13,6 +14,7 @@ import dibugger.DebugLogic.Interpreter.AdditionTerm;
 import dibugger.DebugLogic.Interpreter.BooleanValue;
 import dibugger.DebugLogic.Interpreter.ConstantTerm;
 import dibugger.DebugLogic.Interpreter.DivisionTerm;
+import dibugger.DebugLogic.Interpreter.FloatValue;
 import dibugger.DebugLogic.Interpreter.IntValue;
 import dibugger.DebugLogic.Interpreter.ModuloTerm;
 import dibugger.DebugLogic.Interpreter.MultiplicationTerm;
@@ -22,6 +24,9 @@ import dibugger.DebugLogic.Interpreter.Scope;
 import dibugger.DebugLogic.Interpreter.SubtractionTerm;
 import dibugger.DebugLogic.Interpreter.Term;
 import dibugger.DebugLogic.Interpreter.TraceState;
+import dibugger.DebugLogic.Interpreter.TraceStatePosition;
+import dibugger.DebugLogic.Interpreter.VariableRelationalTerm;
+import dibugger.DebugLogic.Interpreter.VariableTerm;
 
 /**
  * 
@@ -40,7 +45,36 @@ public class TermTest {
 		constantTrue = new ConstantTerm(new BooleanValue(true));
 		constantFalse = new ConstantTerm(new BooleanValue(false));
 	}
-
+	@Test
+	public void variableTermsTest() throws DIbuggerLogicException {
+	    Term variableA = new VariableTerm("a");
+	    Term variableB = new VariableTerm("b");
+	    Scope s = new Scope();
+	    s.setValue("a", new IntValue(42));
+	    s.setValue("b", new FloatValue(3.04f));
+	    assert (variableA.evaluate(s).toString().equals("42"));
+	    assert (variableB.evaluate(s).toString().equals("3.04"));
+	    Term addition = new AdditionTerm(variableA, variableB);
+	    assert (addition.evaluate(s).toString().equals("45.04"));
+	}
+	@Test
+	public void variableRelationalTermsTest() throws DIbuggerLogicException {
+	    Term variableA = new VariableRelationalTerm("A.a");
+	    Term variableB = new VariableRelationalTerm("B.b");
+	    List<TraceState> states = new ArrayList<TraceState>();
+	    Scope s = new Scope();
+	    s.setValue("a", new IntValue(42));
+	    TraceState stateInA = new TraceState(TraceStatePosition.NOTSPECIAL, 10, s);
+	    Scope t = new Scope();
+	    t.setValue("b", new FloatValue(3.04f));
+	    TraceState stateInB = new TraceState(TraceStatePosition.NOTSPECIAL, 10, t);
+	    states.add(stateInA);
+	    states.add(stateInB);
+	    assert (variableA.evaluate(states).toString().equals("42"));
+	    assert (variableB.evaluate(states).toString().equals("3.04"));
+	    Term addition = new AdditionTerm(variableA, variableB);
+	    assert (addition.evaluate(states).toString().equals("45.04"));
+	}
 	@Test
 	public void constantTermsTest() throws DIbuggerLogicException {
 		// Constant Term

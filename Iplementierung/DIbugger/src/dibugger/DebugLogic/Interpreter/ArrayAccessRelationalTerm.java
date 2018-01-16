@@ -29,9 +29,8 @@ public final class ArrayAccessRelationalTerm extends Term {
 	this.indexA = index;
 	// Dummy indices
 	this.indexB = new ConstantTerm(new IntValue(0));
-	this.indexC = this.indexB; // maybe you could make this more efficient
-	                           // by using one global 0 Term
-	splitId();
+	this.indexC = this.indexB; // maybe you could make this more efficient	                           // by using one global 0 Term
+	splitId(identifier);
     }
 
     /**
@@ -47,8 +46,7 @@ public final class ArrayAccessRelationalTerm extends Term {
 	this.indexB = secondIndex;
 	// Dummy index
 	this.indexC = new ConstantTerm(new IntValue(0));
-	this.identifier = identifier;
-	splitId();
+	splitId(identifier);
     }
 
     /**
@@ -64,13 +62,12 @@ public final class ArrayAccessRelationalTerm extends Term {
 	this.indexA = firstIndex;
 	this.indexB = secondIndex;
 	this.indexC = thirdIndex;
-	this.identifier = identifier;
-	splitId();
+	splitId(identifier);
     }
 
     @Override
     public TermValue evaluate(List<TraceState> states) throws DIbuggerLogicException {
-	if (this.programId <= states.size()) {
+	if (this.programId < states.size()) {
 	    TermValue t = states.get(this.programId).getValueOf(identifier); //get the Array
 		TermValue firstIndex = this.indexA.evaluate(states);
 		TermValue secondIndex = this.indexB.evaluate(states);
@@ -101,17 +98,19 @@ public final class ArrayAccessRelationalTerm extends Term {
     public TermValue evaluate(Scope currentScope) {
 	return new CharValue('?');
     }
+    private void splitId(String identifier) {
 
-    private void splitId() {
-	if (identifier.contains("\\.")) {
-	    // split into programId part and variable identifier
-	    String[] parts = identifier.split("\\.");
+	if(identifier.contains(".")) {
+	    //split into programId part and variable identifier 
+	    //here we must pass a regex into split(...), so we have to escape the dot
+	    String [] parts = identifier.split("\\.");
 	    this.identifier = parts[1];
 	    char programIdChar = parts[0].charAt(0);
-	    this.programId = (int) programIdChar - (int) 'A';
+	    //A should indicate the first (index 0) program
+	    this.programId = (int)programIdChar - (int)'A';
 	} else {
 	    this.programId = 0;
 	    this.identifier = identifier;
 	}
-    }
+      }
 }
