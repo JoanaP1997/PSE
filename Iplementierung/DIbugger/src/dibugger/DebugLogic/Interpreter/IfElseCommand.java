@@ -4,8 +4,8 @@ import java.util.List;
 
 public class IfElseCommand extends Command {
 
-    public IfElseCommand(GenerationController controller) {
-	super(controller);
+    public IfElseCommand(GenerationController controller, int linenumber) {
+	super(controller, linenumber);
 	// TODO Auto-generated constructor stub
     }
 

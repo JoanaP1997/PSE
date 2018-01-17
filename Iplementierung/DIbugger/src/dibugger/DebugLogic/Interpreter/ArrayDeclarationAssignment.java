@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ArrayDeclarationAssignment extends Command {
 
-    public ArrayDeclarationAssignment(GenerationController controller) {
-	super(controller);
+    public ArrayDeclarationAssignment(GenerationController controller, int linenumber) {
+	super(controller, linenumber);
 	// TODO Auto-generated constructor stub
     }
 

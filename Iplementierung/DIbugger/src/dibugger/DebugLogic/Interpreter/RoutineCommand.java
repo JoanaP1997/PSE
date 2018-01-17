@@ -40,7 +40,7 @@ public class RoutineCommand extends Command {
 			if (this.expectedTypes.get(i) != value.getType()) {
 				throw new WrongTypeArgumentException(this.linenumber);
 			}
-			values.put(key, value)
+			//values.put(key, value);
 		}
 			
 			
@@ -48,6 +48,7 @@ public class RoutineCommand extends Command {
 		//TODO für alle Kinder: run while nicht return value gesetzt
 		//TODO check: return value gesetzt, richtiger typ
 		//TODO generationController.popScope
+		return null;
 	}
 
 	public Command getChild(int i) {

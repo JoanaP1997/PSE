@@ -29,7 +29,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     
     
     //Array Commands
-    @Override
+  /*  @Override
     public Command visitArrayDeclarationOneDim(ArrayDeclarationOneDimContext ctx) {
         String identifier = ctx.id.getText();
         Term index = this.termGenVisitor.visit(ctx.index);
@@ -49,8 +49,8 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
         return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex, thirdIndex);  
-    }
-    @Override
+    }*/
+   /* @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
 	String identifier = ctx.id.getText();
 	Term index = this.termGenVisitor.visit(ctx.index);
@@ -73,7 +73,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
 	Term value = this.termGenVisitor.visit(ctx.value);
 	return new ArrayElementAssignment(this.controller, identifier, firstIndex, secondIndex, thirdIndex, value);
-    }
+    }*/
     //Assignments and Declaration
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
