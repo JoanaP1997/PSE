@@ -4,8 +4,10 @@ import dibugger.Control.ControlFacade;
 import dibugger.UserInterface.DIbuggerPopUps.ErrorPopUp;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GUIFacade {
+public class GUIFacade implements Observer {
     private MainInterface mainInterface;
     private ControlFacade controlFacade;
 
@@ -26,8 +28,9 @@ public class GUIFacade {
         //TODO
     }
 
-    public void update() {
-       //TODO
+    @Override
+    public void update(Observable observable, Object o) {
+        //TODO
     }
 
     public void showError(String s) {
@@ -41,4 +44,6 @@ public class GUIFacade {
     public void changeLanguage() {
         //TODO
     }
+
+
 }
