@@ -14,12 +14,16 @@ public class ProgramPanel extends JPanel {
     private JLabel ProgramName;
     private JLabel Stepsize;
     private JTextField StepsizeInput;
-    private JLabel EingabevariablenLabel;
-    private JTextField EingabevariablenInput;
-    private JPanel VariableWindow;
+    private JLabel inputvariablesLabel;
+    private JTextField inputvariableTextField;
+
     private JScrollPane codeScrollPane;
     private JTextArea codeArea;
     private JTextArea lines;
+
+    private JScrollPane variableInspectorScrollPane;
+    private JList<String> variableInspector;
+
 
     public ProgramPanel(int identifier) {
         id = identifier;
@@ -30,9 +34,8 @@ public class ProgramPanel extends JPanel {
         ProgramName = new JLabel();
         Stepsize = new JLabel();
         StepsizeInput = new JTextField();
-        EingabevariablenLabel = new JLabel();
-        EingabevariablenInput = new JTextField();
-        VariableWindow = new JPanel();
+        inputvariablesLabel = new JLabel();
+        inputvariableTextField = new JTextField();
         codeScrollPane = new JScrollPane();
 
         ProgramName.setText("Programm: " + id);
@@ -42,24 +45,15 @@ public class ProgramPanel extends JPanel {
         StepsizeInput.setText("jTextField2");
         StepsizeInput.addActionListener(this::StepsizeInputActionPerformed);
 
-        EingabevariablenLabel.setText("Eingabevariablen:");
+        inputvariablesLabel.setText("Eingabevariablen:");
 
-        EingabevariablenInput.setText("jTextField1");
-        EingabevariablenInput.addActionListener(this::EingabevariablenInputActionPerformed);
+        inputvariableTextField.setText("jTextField1");
+        inputvariableTextField.addActionListener(this::EingabevariablenInputActionPerformed);
 
-
-        GroupLayout VariableWindowLayout = new GroupLayout(VariableWindow);
-        VariableWindow.setLayout(VariableWindowLayout);
-        VariableWindowLayout.setHorizontalGroup(
-                VariableWindowLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
-        );
-        VariableWindowLayout.setVerticalGroup(
-                VariableWindowLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 171, Short.MAX_VALUE)
-        );
 
         initCodeArea();
+
+        initVariableInspector();
 
         GroupLayout firstTextPanelLayout = new GroupLayout(this);
         setLayout(firstTextPanelLayout);
@@ -72,30 +66,31 @@ public class ProgramPanel extends JPanel {
                                                         .addComponent(Stepsize)
                                                         .addComponent(StepsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(ProgramName)
-                                                .addComponent(EingabevariablenLabel)
-                                                .addComponent(EingabevariablenInput))
+                                                .addGroup(firstTextPanelLayout.createSequentialGroup()
+                                                        .addComponent(inputvariablesLabel)
+                                                        .addComponent(inputvariableTextField)))
                                         .addComponent(codeScrollPane)
-                                        .addComponent(VariableWindow, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(variableInspectorScrollPane))
                                 )
         );
         firstTextPanelLayout.setVerticalGroup(
                 firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(firstTextPanelLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
                                 .addComponent(ProgramName)
-                                .addGap(18, 18, 18)
+                                .addGap(15, 15, 15)
                                 .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(Stepsize)
                                         .addComponent(StepsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(EingabevariablenLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EingabevariablenInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
+                                .addGap(10, 10, 10)
+                                .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(inputvariablesLabel)
+                                        .addComponent(inputvariableTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
                                 .addComponent(codeScrollPane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(VariableWindow, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25))
+                                .addComponent(variableInspectorScrollPane)
+
+                                )
         );
     }
 
@@ -111,7 +106,7 @@ public class ProgramPanel extends JPanel {
         codeScrollPane = new JScrollPane();
         lines = new JTextArea("1");
         codeArea = new JTextArea();
-        lines.setBackground(Color.LIGHT_GRAY);
+        lines.setBackground(Color.YELLOW);
         lines.setEditable(false);
         codeArea.getDocument().addDocumentListener(new DocumentListener(){
             String getText(){
@@ -139,13 +134,22 @@ public class ProgramPanel extends JPanel {
             }
 
         });
-        codeArea.setTabSize(3);
-
+        codeArea.setTabSize(2);
         codeScrollPane.getViewport().add(codeArea);
         codeScrollPane.setRowHeaderView(lines);
-        codeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        codeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         codeScrollPane.setPreferredSize(new Dimension(400, 700));
+    }
 
+    private void initVariableInspector() {
+        variableInspector = new JList<>();
+        variableInspector.setDragEnabled(true);
+        variableInspector.setSelectionBackground(Color.YELLOW);
+
+        variableInspectorScrollPane = new JScrollPane();
+        variableInspectorScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
+        variableInspectorScrollPane.setViewportView(variableInspector);
     }
 }
  
