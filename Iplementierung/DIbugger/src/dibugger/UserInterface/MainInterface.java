@@ -52,8 +52,8 @@ public class MainInterface extends JFrame {
 
         configureMenuBar();
         programPanels = new ArrayList<>();
-        programPanels.add(new ProgramPanel(1));
-        programPanels.add(new ProgramPanel(2));
+        programPanels.add(new ProgramPanel("A"));
+        programPanels.add(new ProgramPanel("B"));
         codePanel = new JPanel();
         codePanelLayout = new FlowLayout();
         codePanel.setLayout(codePanelLayout);
@@ -71,7 +71,6 @@ public class MainInterface extends JFrame {
                 groupLayout.createSequentialGroup()
                                 .addComponent(codeScrollPane)
                                 .addComponent(rightControlBar)
-
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
@@ -120,7 +119,7 @@ public class MainInterface extends JFrame {
         newProgram = new JMenuItem();
         newProgram.setText("Programm hinzufügen");
         newProgram.addActionListener(actionEvent -> {
-            programPanels.add(new ProgramPanel(programPanels.size() + 1));
+            programPanels.add(new ProgramPanel(calcNextProgramID()));
             codePanel.add(programPanels.get(programPanels.size() - 1), codePanelLayout);
             codePanel.updateUI();
             //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
@@ -190,6 +189,10 @@ public class MainInterface extends JFrame {
 
     public int getProgramCount() {
         return programPanels.size();
+    }
+
+    private String calcNextProgramID() {
+        return "A";
     }
 
 

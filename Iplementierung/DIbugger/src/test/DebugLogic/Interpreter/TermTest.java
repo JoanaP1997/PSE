@@ -50,8 +50,8 @@ public class TermTest {
 	    Term variableA = new VariableTerm("a");
 	    Term variableB = new VariableTerm("b");
 	    Scope s = new Scope();
-	    s.setValue("a", new IntValue(42));
-	    s.setValue("b", new FloatValue(3.04f));
+	    s.setValueOf("a", new IntValue(42));
+	    s.setValueOf("b", new FloatValue(3.04f));
 	    assert (variableA.evaluate(s).toString().equals("42"));
 	    assert (variableB.evaluate(s).toString().equals("3.04"));
 	    Term addition = new AdditionTerm(variableA, variableB);
@@ -63,10 +63,10 @@ public class TermTest {
 	    Term variableB = new VariableRelationalTerm("B.b");
 	    List<TraceState> states = new ArrayList<TraceState>();
 	    Scope s = new Scope();
-	    s.setValue("a", new IntValue(42));
+	    s.setValueOf("a", new IntValue(42));
 	    TraceState stateInA = new TraceState(TraceStatePosition.NOTSPECIAL, 10, s);
 	    Scope t = new Scope();
-	    t.setValue("b", new FloatValue(3.04f));
+	    t.setValueOf("b", new FloatValue(3.04f));
 	    TraceState stateInB = new TraceState(TraceStatePosition.NOTSPECIAL, 10, t);
 	    states.add(stateInA);
 	    states.add(stateInB);
@@ -142,5 +142,4 @@ public class TermTest {
 		// System.out.println(mod.evaluate(currentScope).toString());
 		assert (or.evaluate(currentScope).toString().equals("true"));
 	}
-
 }
