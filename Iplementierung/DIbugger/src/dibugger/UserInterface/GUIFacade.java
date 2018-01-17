@@ -1,6 +1,6 @@
 package dibugger.UserInterface;
 
-import dibugger.Control.ControlFacade;
+//import dibugger.Control.ControlFacade;
 import dibugger.UserInterface.DIbuggerPopUps.DecisionPopUp;
 import dibugger.UserInterface.DIbuggerPopUps.ErrorPopUp;
 
@@ -10,7 +10,7 @@ import java.util.Observer;
 
 public class GUIFacade implements Observer {
     private MainInterface mainInterface;
-    private ControlFacade controlFacade;
+   // private ControlFacade controlFacade;
 
     public GUIFacade(MainInterface mainInterface) {
         this.mainInterface = mainInterface;

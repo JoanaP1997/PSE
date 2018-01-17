@@ -3,6 +3,8 @@ package dibugger.UserInterface;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -140,6 +142,56 @@ public class ProgramPanel extends JPanel {
             }
 
         });
+        codeArea.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                int line = 0;
+                if (mouseEvent.getClickCount() == 2) {
+                    try {
+                        line = codeArea.getLineOfOffset(codeArea.getCaretPosition());
+                    } catch (BadLocationException e) {
+
+                    }
+
+                    Document doc = lines.getDocument();
+                    Element root = doc.getDefaultRootElement();
+                    Element contentEl = root.getElement(line - 1);
+
+                    int start = contentEl.getStartOffset();
+                    int end = contentEl.getEndOffset();
+
+                    try {
+                        // remove words in the line (-1 to prevent removing newline character)
+                        doc.remove(start, end - start - 1);
+                        doc.insertString(start, "BP", null);
+                    } catch (BadLocationException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+        });
+
         codeArea.setTabSize(2);
         codeScrollPane.getViewport().add(codeArea);
         codeScrollPane.setRowHeaderView(lines);
