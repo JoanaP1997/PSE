@@ -37,7 +37,7 @@ public class MainInterface extends JFrame {
      * Creates new MainInterface
      */
     public MainInterface() {
-        //new GUIFacade(this);
+        new GUIFacade(this);
         initComponents();
     }
 
