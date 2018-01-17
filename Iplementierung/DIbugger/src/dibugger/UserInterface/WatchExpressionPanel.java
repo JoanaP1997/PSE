@@ -73,9 +73,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
                                });
         table.setSize(50, 50);
 
-        JScrollPane tableContainer = new JScrollPane(table);
+        JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tableContainer.setViewportView(table);
         tableContainer.createVerticalScrollBar();
-        tableContainer.setSize(150, 150);
+        tableContainer.setPreferredSize(new Dimension(290, 250));
 
         this.add(tableContainer);
 

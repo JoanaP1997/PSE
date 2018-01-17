@@ -1,15 +1,20 @@
 package dibugger.UserInterface;
 
+import dibugger.Control.ControlFacade;
+import dibugger.UserInterface.DIbuggerPopUps.ErrorPopUp;
+
 import java.util.List;
 
 public class GUIFacade {
     private MainInterface mainInterface;
+    private ControlFacade controlFacade;
 
     public GUIFacade(MainInterface mainInterface) {
         this.mainInterface = mainInterface;
+        controlFacade = new ControlFacade(this);
     }
 
-    public void showProgramText(String pprogramText, int id) {
+    public void showProgramText(String programText, int id) {
        //TODO
     }
 
@@ -26,11 +31,11 @@ public class GUIFacade {
     }
 
     public void showError(String s) {
-        //TODO
+        new ErrorPopUp(s);
     }
 
     public void showWarning(String s) {
-        //TODO
+        //TODO: Rückgabewert??
     }
 
     public void changeLanguage() {

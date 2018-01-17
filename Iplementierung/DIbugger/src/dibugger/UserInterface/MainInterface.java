@@ -2,31 +2,30 @@ package dibugger.UserInterface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  *
  * @author joana & chiara
  */
-public class MainInterface extends javax.swing.JFrame {
+public class MainInterface extends JFrame {
 
     ArrayList<ProgramPanel> programPanels;
-    ArrayList<ExpressionPanel> expressionPanels;
 
-    private javax.swing.JMenu dateiMenu;
-    private javax.swing.JMenu vorschläge;
-    private javax.swing.JMenu settings;
-    private javax.swing.JMenu help;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JPanel rightControlBar;
+    private JMenu fileMenu;
+    private JMenu suggestionMenu;
+    private JMenu settingsMenu;
+    private JMenu helpMenu;
+    
+    private JMenuBar menuBar;
+    private JPanel rightControlBar;
 
     private JPanel controlButtonsPanel;
     private JPanel watchExpPanel;
     private JPanel condBreakPanel;
 
     private JPanel codePanel;
+    private FlowLayout codePanelLayout;
 
     private JMenuItem newView;
     private JMenuItem newProgram;
@@ -34,21 +33,19 @@ public class MainInterface extends javax.swing.JFrame {
     private JMenuItem saveConfig;
     private JMenuItem exit;
 
-    private  FlowLayout codePanelLayout;
-
     /**
      * Creates new MainInterface
      */
     public MainInterface() {
-        new GUIFacade(this);
+        //new GUIFacade(this);
         initComponents();
     }
 
 
     private void initComponents() {
 
-        rightControlBar = new javax.swing.JPanel();
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        rightControlBar = new JPanel();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         getContentPane().setLayout(groupLayout);
@@ -62,10 +59,12 @@ public class MainInterface extends javax.swing.JFrame {
         codePanel.setLayout(codePanelLayout);
         codePanel.add(programPanels.get(0), codePanelLayout);
         codePanel.add(programPanels.get(1), codePanelLayout);
-        JScrollPane codeScrollPane = new JScrollPane( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+
+
+        JScrollPane codeScrollPane = new JScrollPane( JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS );
         codeScrollPane.setViewportView(codePanel);
-
+        codeScrollPane.setPreferredSize(new Dimension(800,1000));
         initRightControlBar();
 
         groupLayout.setHorizontalGroup(
@@ -102,15 +101,15 @@ public class MainInterface extends javax.swing.JFrame {
     }
 
     private void configureMenuBar() {
-        menuBar = new javax.swing.JMenuBar();
-        dateiMenu = new javax.swing.JMenu();
-        vorschläge = new javax.swing.JMenu();
-        settings = new javax.swing.JMenu();
-        help = new javax.swing.JMenu();
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu();
+        suggestionMenu = new JMenu();
+        settingsMenu = new JMenu();
+        helpMenu = new JMenu();
 
         //Datei Menü
-        dateiMenu.setText("Datei");
-        menuBar.add(dateiMenu);
+        fileMenu.setText("Datei");
+        menuBar.add(fileMenu);
         newView = new JMenuItem();
         newView.setText("Neu");
         newView.addActionListener(actionEvent -> {
@@ -133,24 +132,24 @@ public class MainInterface extends javax.swing.JFrame {
         exit = new JMenuItem();
         exit.setText("DIbugger beenden");
         exit.addActionListener(actionEvent -> System.exit(0));
-        dateiMenu.add(newView);
-        dateiMenu.add(newProgram);
-        dateiMenu.add(loadConfig);
-        dateiMenu.add(saveConfig);
-        dateiMenu.add(exit);
+        fileMenu.add(newView);
+        fileMenu.add(newProgram);
+        fileMenu.add(loadConfig);
+        fileMenu.add(saveConfig);
+        fileMenu.add(exit);
         //Vorschläge Menü
-        vorschläge.setText("Vorschläge");
-        menuBar.add(vorschläge);
+        suggestionMenu.setText("Vorschläge");
+        menuBar.add(suggestionMenu);
 
 
         //Einstellungen Menü
-        settings.setText("Einstellungen");
-        menuBar.add(settings);
+        settingsMenu.setText("Einstellungen");
+        menuBar.add(settingsMenu);
 
 
         //Hilfe Menü
-        help.setText("?");
-        menuBar.add(help);
+        helpMenu.setText("?");
+        menuBar.add(helpMenu);
 
 
 
@@ -186,7 +185,7 @@ public class MainInterface extends javax.swing.JFrame {
                                 .addComponent(watchExpPanel)
                                 .addComponent(condBreakPanel)
         );
-
+        rightControlBar.setPreferredSize(new Dimension(200, 1000));
     }
 
     public int getProgramCount() {

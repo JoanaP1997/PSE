@@ -31,11 +31,12 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         String[] columnTitles = { panelType , "Auswertung" };
         Object[][] dataEntries = { {"hier könnte ihre Expression stehen", "ausgewertet"}};
         JTable table = new JTable(dataEntries, columnTitles);
-        table.setSize(50, 50);
 
-        JScrollPane tableContainer = new JScrollPane(table);
+        JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED );
+        tableContainer.setViewportView(table);
         tableContainer.createVerticalScrollBar();
-        tableContainer.setSize(100, 100);
+        tableContainer.setPreferredSize(new Dimension(290, 250));
 
         this.add(tableContainer);
 
