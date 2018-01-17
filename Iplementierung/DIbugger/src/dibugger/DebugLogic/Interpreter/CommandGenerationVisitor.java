@@ -29,18 +29,18 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     
     
     //Array Commands
-  /*  @Override
+    @Override
     public Command visitArrayDeclarationOneDim(ArrayDeclarationOneDimContext ctx) {
         String identifier = ctx.id.getText();
         Term index = this.termGenVisitor.visit(ctx.index);
-        return new ArrayDeclaration(this.controller, identifier, index);
+        return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, index);
     }
     @Override
     public Command visitArrayDeclarationTwoDim(ArrayDeclarationTwoDimContext ctx) {
 	String identifier = ctx.id.getText();
         Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
         Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
-        return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex);  
+        return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex);  
     }
     @Override
     public Command visitArrayDeclarationThreeDim(ArrayDeclarationThreeDimContext ctx) {
@@ -48,14 +48,14 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
         Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
-        return new ArrayDeclaration(this.controller, identifier, firstIndex, secondIndex, thirdIndex);  
-    }*/
-   /* @Override
+        return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, thirdIndex);  
+    }
+    @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
 	String identifier = ctx.id.getText();
 	Term index = this.termGenVisitor.visit(ctx.index);
 	Term value = this.termGenVisitor.visit(ctx.value);
-	return new ArrayElementAssignment(this.controller, identifier, index, value);
+	return new ArrayElementAssignment(this.controller, ctx.id.getLine(), identifier, index, value);
     }
     @Override
     public Command visitArrayElementAssignTwoDim(ArrayElementAssignTwoDimContext ctx) {
@@ -63,7 +63,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
 	Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
         Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
 	Term value = this.termGenVisitor.visit(ctx.value);
-	return new ArrayElementAssignment(this.controller, identifier, firstIndex, secondIndex, value);
+	return new ArrayElementAssignment(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, value);
     }
     @Override
     public Command visitArrayElementAssignThreeDim(ArrayElementAssignThreeDimContext ctx) {
@@ -72,8 +72,8 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
 	Term value = this.termGenVisitor.visit(ctx.value);
-	return new ArrayElementAssignment(this.controller, identifier, firstIndex, secondIndex, thirdIndex, value);
-    }*/
+	return new ArrayElementAssignment(this.controller, ctx.id.getLine(),  identifier, firstIndex, secondIndex, thirdIndex, value);
+    }
     //Assignments and Declaration
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
