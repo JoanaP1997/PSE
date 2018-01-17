@@ -23,11 +23,12 @@ public abstract class DIbuggerLogicException extends Exception {
 	 * @param occurrence the line of occurrence of the exception
 	 * @param id the identifier of the exception for the corresponding string in the language file
 	 */
-	public DIbuggerLogicException (String occurrence, String id) {
+	public DIbuggerLogicException (int occurrence, String id) {
 		this.occurrences = new ArrayList<String>();
-		this.occurrences.add(occurrence);
+		this.occurrences.add("" + occurrence);
 		this.id = id;
 	}
+
 	
 	/**
 	 * Getter for the identifier of an exception.

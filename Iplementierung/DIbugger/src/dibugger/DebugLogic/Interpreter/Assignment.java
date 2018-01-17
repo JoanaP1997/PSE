@@ -1,10 +1,17 @@
 package dibugger.DebugLogic.Interpreter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
-import dibugger.DebugLogic.Exceptions.WrongTypeArgumentException;
+import dibugger.DebugLogic.Exceptions.VariableNotFoundException;
+import dibugger.DebugLogic.Exceptions.WrongTypeAssignmentException;
 
+/**
+ * Command to assign a value to an already declared variable.s
+ * @author scheler, wagner
+ *
+ */
 public class Assignment extends Command {
 	private String identifier;
 	private Term term;
@@ -17,14 +24,26 @@ public class Assignment extends Command {
 
 	@Override
 	public List<TraceState> run() throws DIbuggerLogicException {
-		// get scope
 		Scope scope = this.controller.getCurrentScope();
 		TermValue value = this.term.evaluate(scope);
+		Type type = scope.getTypeOf(identifier);
+		
+		// check if variable exists
+		if (type == null) {
+			throw new VariableNotFoundException(this.linenumber);
+		}
+		
 		// check type
-		if (scope.getTypeOf(this.identifier) != value.getType())
-			throw new WrongTypeArgumentException(this.linenumber);
-		scope.setValue(this.identifier, value);
-		return ;
+		if (type != value.getType()) {
+			throw new WrongTypeAssignmentException(this.linenumber);
+		}
+
+		// set value
+		scope.setValueOf(this.identifier, value);
+		
+		List<TraceState> traceStateList = new ArrayList<TraceState>();
+		traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
+		return traceStateList;
 	}
 
 }

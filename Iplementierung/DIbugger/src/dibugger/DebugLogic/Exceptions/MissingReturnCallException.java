@@ -18,7 +18,7 @@ public class MissingReturnCallException extends DIbuggerLogicException {
 	 * Constructor of a MissingReturnCallException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public MissingReturnCallException(String occurrence) {
+	public MissingReturnCallException(int occurrence) {
 		super(occurrence, "missingReturnCallException");
 	}
 
