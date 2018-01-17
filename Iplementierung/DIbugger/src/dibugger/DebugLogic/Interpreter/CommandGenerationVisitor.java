@@ -1,31 +1,18 @@
 package dibugger.DebugLogic.Interpreter;
 
-import java.util.List;
-
 import dibugger.DebugLogic.AntlrParser.WlangBaseVisitor;
-import dibugger.DebugLogic.AntlrParser.WlangParser.AndConditionContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationOneDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationThreeDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclarationTwoDimContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayDeclareAssignContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignOneDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignThreeDimContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.ArrayElementAssignTwoDimContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.AssignmentContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.DeclarationContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.DeclareAssignContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.FuncCallContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfElseWithBlockContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfElseWithSingleContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.IfStateContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithBlockContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.IfWithSingleContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.IfelseStateContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.MainRoutineContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.PureAssignContext;
-import dibugger.DebugLogic.AntlrParser.WlangParser.WhileStateContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithBlockContext;
 import dibugger.DebugLogic.AntlrParser.WlangParser.WhileWithSingleContext;
 
@@ -91,7 +78,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
 	Term value = this.termGenVisitor.visit(ctx.value);
-        return new Assignment(this.controller, ctx.id.getText(), value);
+        return new Assignment(this.controller, ctx.id.getLine(), ctx.id.getText(), value);
     }
   /*  @Override
     public Command visitDeclaration(DeclarationContext ctx) {
