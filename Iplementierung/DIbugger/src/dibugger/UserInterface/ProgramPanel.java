@@ -6,10 +6,13 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class ProgramPanel extends JPanel {
 
-    int id;
+    String id;
 
     private JLabel ProgramName;
     private JLabel Stepsize;
@@ -21,11 +24,12 @@ public class ProgramPanel extends JPanel {
     private JTextArea codeArea;
     private JTextArea lines;
 
+    private JPanel variableInspector;
     private JScrollPane variableInspectorScrollPane;
-    private JList<String> variableInspector;
+    private JList<String> variableInspectorList;
 
 
-    public ProgramPanel(int identifier) {
+    public ProgramPanel(String identifier) {
         id = identifier;
         initComponents();
     }
@@ -43,12 +47,14 @@ public class ProgramPanel extends JPanel {
         Stepsize.setText("Stepsize: ");
 
         StepsizeInput.setText("jTextField2");
+        StepsizeInput.setPreferredSize(new Dimension(40, 40));
         StepsizeInput.addActionListener(this::StepsizeInputActionPerformed);
 
-        inputvariablesLabel.setText("Eingabevariablen:");
+        inputvariablesLabel.setText("Eingabevariablen: ");
 
         inputvariableTextField.setText("jTextField1");
         inputvariableTextField.addActionListener(this::EingabevariablenInputActionPerformed);
+        inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
 
         initCodeArea();
@@ -70,7 +76,7 @@ public class ProgramPanel extends JPanel {
                                                         .addComponent(inputvariablesLabel)
                                                         .addComponent(inputvariableTextField)))
                                         .addComponent(codeScrollPane)
-                                        .addComponent(variableInspectorScrollPane))
+                                        .addComponent(variableInspector))
                                 )
         );
         firstTextPanelLayout.setVerticalGroup(
@@ -88,7 +94,7 @@ public class ProgramPanel extends JPanel {
                                 .addGap(10, 10, 10)
                                 .addComponent(codeScrollPane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(variableInspectorScrollPane)
+                                .addComponent(variableInspector)
 
                                 )
         );
@@ -142,14 +148,86 @@ public class ProgramPanel extends JPanel {
     }
 
     private void initVariableInspector() {
-        variableInspector = new JList<>();
-        variableInspector.setDragEnabled(true);
-        variableInspector.setSelectionBackground(Color.YELLOW);
+        variableInspector = new JPanel();
+
+        GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
+        variableInspector.setLayout(variableInspectorLayout);
+        String[] allData = {"x = true", "y = ?", "count = 42"};
+        String[] data = {"x = true", "y = ?", "count = 42"};
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (String s : data) {
+            listModel.addElement(s);
+        }
+        variableInspectorList = new JList<>(listModel);
+        variableInspectorList.setDragEnabled(true);
+        variableInspectorList.setSelectionBackground(Color.YELLOW);
+        variableInspectorList.setSelectionForeground(Color.BLACK);
+        variableInspectorList.setFixedCellHeight(20);
+        variableInspectorList.setToolTipText("Zelle markieren und mit Rechtsklick löschen");
+
+        variableInspectorList.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+                    listModel.remove(variableInspectorList.getSelectedIndex());
+                }
+                variableInspectorList.updateUI();
+                variableInspectorScrollPane.updateUI();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+        });
 
         variableInspectorScrollPane = new JScrollPane();
         variableInspectorScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
-        variableInspectorScrollPane.setViewportView(variableInspector);
+        variableInspectorScrollPane.setViewportView(variableInspectorList);
+
+        JButton showHiddenVariables = new JButton("Ausgeblendete Variablen anzeigen");
+        showHiddenVariables.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                listModel.clear();
+                for (String s : allData) {
+                    listModel.addElement(s);
+                }
+            }
+        });
+
+        JLabel varLabel = new JLabel("Variableninspektor");
+
+        variableInspectorLayout.setHorizontalGroup(
+                variableInspectorLayout.createParallelGroup()
+                        .addComponent(varLabel)
+                        .addComponent(showHiddenVariables)
+                        .addComponent(variableInspectorScrollPane)
+        );
+        variableInspectorLayout.setVerticalGroup(
+                variableInspectorLayout.createSequentialGroup()
+                        .addGroup(variableInspectorLayout.createSequentialGroup()
+                                .addComponent(varLabel)
+                                .addComponent(showHiddenVariables))
+                        .addComponent(variableInspectorScrollPane)
+        );
+
+
     }
 }
- 
