@@ -18,7 +18,7 @@ public final class VariableTerm extends Term {
 
     @Override
     public TermValue evaluate(Scope currentScope) {
-	return currentScope.getValue(identifier);
+	return currentScope.getValueOf(identifier);
     }
 
 }

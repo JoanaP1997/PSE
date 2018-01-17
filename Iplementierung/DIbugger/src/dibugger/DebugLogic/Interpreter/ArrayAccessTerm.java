@@ -63,7 +63,7 @@ public final class ArrayAccessTerm extends Term {
 
     @Override
     public TermValue evaluate(Scope currentScope) throws DIbuggerLogicException {
-	TermValue t = currentScope.getValue(identifier); //get the Array
+	TermValue t = currentScope.getValueOf(identifier); //get the Array
 	TermValue firstIndex = this.indexA.evaluate(currentScope);
 	TermValue secondIndex = this.indexB.evaluate(currentScope);
 	TermValue thirdIndex = this.indexC.evaluate(currentScope);

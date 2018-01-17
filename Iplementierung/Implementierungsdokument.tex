@@ -94,10 +94,9 @@ z.B. Gui-Facade
 + DebugControl: setStepSize(programID, stepSize); reset();
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
-Ursprünglich sollte der TraceIterator Umsetzung des TraceIterators mit einer gesonderten Klasse, die das Java-Interface Iterator implementiert \\
+Ursprünglich sollte der TraceIterator mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren, statt nur von Anfang bis Ende Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt lediglich eine Vereinfachung dar, in der statt einem einzelnen\\
 Änderung: Der Iterator über den Trace wurde mit Hilfe eines von Java bereitgestellen \textit{ListIterators} implementiert, den die Klasse \textit{Trace} mit ihrer \textit{iterator()}-Methode zurückgibt.
-* TermValue: abstract class statt interface \\
-* Listiterator: vereinfacht
+\paragraph{TermValue}abstract class statt interface \\
 
 \section{Anhang}
 

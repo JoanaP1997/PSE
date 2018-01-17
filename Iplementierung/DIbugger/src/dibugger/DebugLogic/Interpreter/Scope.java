@@ -19,9 +19,9 @@ public class Scope {
 	private int id;
 	private boolean routineFinished;
 	
-	// evtl. löschen; ist hier damit die Tests weiter laufen
 	public Scope() {
 		this.values = new HashMap<String, TermValue>();
+		this.types = new HashMap<String, Type>();
 		this.routineFinished = false;
 	}
 	
@@ -47,22 +47,69 @@ public class Scope {
 	
 	/**
 	 * Getter for the value of a variable inside the scope.
-	 * @param the identifier of the variable
-	 * @return the value
+	 * @param identifier the identifier of the variable
+	 * @return the value of the variable
 	 */
-	public TermValue getValue(String identifier) {
+	public TermValue getValueOf(String identifier) {
 		return this.values.get(identifier);
 	}
 	
 	/**
 	 * Setter for the value of a variable inside the scope.
-	 * @param identifier of the variable
-	 * @param value of the variable
+	 * @param identifier the identifier of the variable
+	 * @param value the value of the variable
 	 */
-	public void setValue(String identifier, TermValue value) {
+	public void setValueOf(String identifier, TermValue value) {
 		this.values.put(identifier, value);
-		// TODO evtl. Types gleich mit einfügen, siehe Frage im Trello
 	}
 
+	/**
+	 * Getter for the type of a variable inside the scope.
+	 * @param identifier the identifier of the variable
+	 * @return type the type of the variable
+	 */
+	public Type getTypeOf(String identifier) {
+		return this.types.get(identifier);
+	}
+
+	/**
+	 * Setter for the type of a variable inside the scope.
+	 * @param identifier the identifier of the variable
+	 * @param type the type to be set
+	 */
+	public void setTypeOf(String identifier, Type type) {
+		this.types.put(identifier, type);
+	}
+
+	/**
+	 * Getter for the expected return type of a scope.
+	 * @return the expectedReturnType
+	 */
+	public Type getExpectedReturnType() {
+		return expectedReturnType;
+	}
+
+	/**
+	 * Getter for the return value of a scope.
+	 * @return the returnValue
+	 */
+	public TermValue getReturnValue() {
+		return returnValue;
+	}
+
+	/**
+	 * Getter for the id of a scope.
+	 * @return the id
+	 */
+	public int getId() {
+		return this.id;
+	}
 	
+	/**
+	 * Returns true if the routine of the scope is finished. False otherwise.
+	 * @return the value of isRoutineFinished
+	 */
+	public boolean isRoutineFinished() {
+		return this.routineFinished;
+	}
 }
