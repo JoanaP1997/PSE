@@ -66,20 +66,38 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
 \section{Umsetzung von Entwurfsentscheidungen}
+\subsection{Model-View-Control}
 
-\section{Änderungen zum Etnwurf}
+\subsection{Singleton}
+z.B. Command Panel
+\subsection{Kompositum}
+z.B. while-Command
+\subsection{Fassade}
+z.B. Control-Facade
+\subsection{Strategie}
+z.B. FileWriter
+\subsection{Beobachter}
+z.B. Gui-Facade
+
+\section{Änderungen zum Entwurf}
+
 \subsection{UserInterface}
 \subsection{Control}
 \subsection{FileHandler}
 + FileHandlerFacade: savePropertiesFile()
 \subsection{DebugLogic}
 \subsubsection{Debugger}
+
 + DebugLogicFacade: extends Observable statt Subject
 * DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String,
 
 + DebugControl: setStepSize(programID, stepSize); reset();
 \subsubsection{Interpreter}
-* TermValue: abstract class statt interface
+\paragraph{TraceIterator}
+Ursprünglich sollte der TraceIterator Umsetzung des TraceIterators mit einer gesonderten Klasse, die das Java-Interface Iterator implementiert \\
+Änderung: Der Iterator über den Trace wurde mit Hilfe eines von Java bereitgestellen \textit{ListIterators} implementiert, den die Klasse \textit{Trace} mit ihrer \textit{iterator()}-Methode zurückgibt.
+* TermValue: abstract class statt interface \\
+* Listiterator: vereinfacht
 
 \section{Anhang}
 
