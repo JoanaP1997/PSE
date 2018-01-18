@@ -87,7 +87,6 @@ public class DebugControl {
 	 * @param type the type of the step (STEP_NORMAL,STEP_OVER,STEP_OUT,STEP_BACK)
 	 */
 	public void step(int type) throws DIbuggerLogicException{
-		//TODO implement Step Over
 		if(type==STEP_NORMAL || type==STEP_BACK){
 			int maxSteps = getMaximumOfList(list_stepSize);	
 			for(int stepID=0;stepID<maxSteps;++stepID){
@@ -116,18 +115,59 @@ public class DebugControl {
 			while(!checkBoolArrayOnValue(breaked, true) && !forceStop){
 				boolean breakpointFound=false;
 				for(int i=0;i<programCount;++i){
-					singleStepNoEvaluation(i, STEP_NORMAL);
-					TraceState state = list_currentTraceStates.get(i);
-					breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-					//only stop stepping when trace state is after a return call
-					if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
-						breaked[i]=true;
+					if(!breaked[i]){
+						singleStepNoEvaluation(i, STEP_NORMAL);
+						TraceState state = list_currentTraceStates.get(i);
+						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+						//only stop stepping when trace state is after a return call
+						if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
+							breaked[i]=true;
+						}
 					}
 				}
 				breakpointFound = evaluateConditionalBreakpoints();
 				if(breakpointFound){
 					forceStop=true;
 				}
+			}
+		}
+		else if(type==STEP_OVER){
+			int[] inline = new int[programCount];
+			boolean[] breaked = new boolean[programCount];
+			boolean first=true;
+			boolean forceStop = false;
+			while(!checkBoolArrayOnValue(breaked, true) && !forceStop){
+				boolean breakpointFound=false;
+				for(int i=0;i<programCount;++i){
+					if(!breaked[i]){
+						singleStepNoEvaluation(i, STEP_NORMAL);
+						TraceState state = list_currentTraceStates.get(i);
+						if(state.getPosition()==TraceStatePosition.AFTERFUNCCALL){
+							++inline[i];
+						}
+						else if(first){
+							breaked[i]=true;
+						}
+						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+						if(breakpointFound){
+							breaked[i]=true;
+						}
+						//only stop stepping when trace state is after the outer most return call
+						else if(state.getPosition()==TraceStatePosition.AFTERRETURN){
+							if(inline[i]==1){
+								breaked[i]=true;
+							}
+							else{
+								--inline[i];
+							}
+						}
+					}
+				}
+				breakpointFound = evaluateConditionalBreakpoints();
+				if(breakpointFound){
+					forceStop=true;
+				}
+				first=false;
 			}
 		}
 	}
@@ -203,7 +243,7 @@ public class DebugControl {
 	 */
 	public void createWatchExpression(int id, String expr){
 		list_watchExpressions.add(id, new WatchExpression(expr));
-		//TODO default Scope hinzuf�gen
+		//TODO add default Scope
 	}
 	/**
 	 * changes the watch expression with a given id
