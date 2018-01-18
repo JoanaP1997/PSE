@@ -1,5 +1,7 @@
 package dibugger.debuglogic.interpreter;
 
+import dibugger.debuglogic.exceptions.IncompatibleTypeException;
+
 /**
  * 
  * @author Pascal
@@ -15,7 +17,7 @@ public class CharValue extends TermValue {
 	}
 
 	@Override
-	public TermValue add(TermValue operand) {	
+	public TermValue add(TermValue operand) throws IncompatibleTypeException {	
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value+((FloatValue)operand).getValue());
 		}
@@ -31,8 +33,7 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value+((CharValue)operand).getValue()));
 		}
-		//TODO throw exception
-		return null;
+		throw new IncompatibleTypeException(-1, "lg_exc_term_add_char");
 	}
 	@Override
 	public TermValue mul(TermValue operand) {
