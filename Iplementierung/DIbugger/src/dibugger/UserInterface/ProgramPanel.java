@@ -4,13 +4,14 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProgramPanel extends JPanel {
 
@@ -22,9 +23,11 @@ public class ProgramPanel extends JPanel {
     private JLabel inputvariablesLabel;
     private JTextField inputvariableTextField;
 
+    private JPanel codePanel;
     private JScrollPane codeScrollPane;
-    private JTextArea codeArea;
+    private JTextArea codeTextArea;
     private JTextArea lines;
+    private List breakpointButtons;
 
     private JPanel variableInspector;
     private JScrollPane variableInspectorScrollPane;
@@ -77,7 +80,7 @@ public class ProgramPanel extends JPanel {
                                                 .addGroup(firstTextPanelLayout.createSequentialGroup()
                                                         .addComponent(inputvariablesLabel)
                                                         .addComponent(inputvariableTextField)))
-                                        .addComponent(codeScrollPane)
+                                        .addComponent(codePanel)
                                         .addComponent(variableInspector))
                                 )
         );
@@ -94,7 +97,7 @@ public class ProgramPanel extends JPanel {
                                         .addComponent(inputvariablesLabel)
                                         .addComponent(inputvariableTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
-                                .addComponent(codeScrollPane, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                .addComponent(codePanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(variableInspector)
 
@@ -113,13 +116,13 @@ public class ProgramPanel extends JPanel {
     private void initCodeArea() {
         codeScrollPane = new JScrollPane();
         lines = new JTextArea("1");
-        codeArea = new JTextArea();
+        codeTextArea = new JTextArea();
         lines.setBackground(Color.YELLOW);
         lines.setEditable(false);
-        codeArea.getDocument().addDocumentListener(new DocumentListener(){
+        codeTextArea.getDocument().addDocumentListener(new DocumentListener(){
             String getText(){
-                int caretPosition = codeArea.getDocument().getLength();
-                Element root = codeArea.getDocument().getDefaultRootElement();
+                int caretPosition = codeTextArea.getDocument().getLength();
+                Element root = codeTextArea.getDocument().getDefaultRootElement();
                 String text = "1" + System.getProperty("line.separator");
                 for(int i = 2; i < root.getElementIndex( caretPosition ) + 2; i++){
                     text += i + System.getProperty("line.separator");
@@ -142,32 +145,17 @@ public class ProgramPanel extends JPanel {
             }
 
         });
-        codeArea.addMouseListener(new MouseListener() {
+        codeTextArea.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 int line = 0;
                 if (mouseEvent.getClickCount() == 2) {
                     try {
-                        line = codeArea.getLineOfOffset(codeArea.getCaretPosition());
+                        line = codeTextArea.getLineOfOffset(codeTextArea.getCaretPosition());
+                        //TODO: Breakpoint einfügen
                     } catch (BadLocationException e) {
 
                     }
-
-                    Document doc = lines.getDocument();
-                    Element root = doc.getDefaultRootElement();
-                    Element contentEl = root.getElement(line - 1);
-
-                    int start = contentEl.getStartOffset();
-                    int end = contentEl.getEndOffset();
-
-                    try {
-                        // remove words in the line (-1 to prevent removing newline character)
-                        doc.remove(start, end - start - 1);
-                        doc.insertString(start, "BP", null);
-                    } catch (BadLocationException e) {
-                        e.printStackTrace();
-                    }
-
                 }
             }
 
@@ -191,12 +179,28 @@ public class ProgramPanel extends JPanel {
 
             }
         });
-
-        codeArea.setTabSize(2);
-        codeScrollPane.getViewport().add(codeArea);
+        codeTextArea.setTabSize(2);
+        codeScrollPane.getViewport().add(codeTextArea);
         codeScrollPane.setRowHeaderView(lines);
         codeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         codeScrollPane.setPreferredSize(new Dimension(400, 700));
+
+        codePanel = new JPanel();
+        FlowLayout codePanelLayout = new FlowLayout(FlowLayout.LEFT);
+        codePanel.setLayout(codePanelLayout);
+
+        JPanel breakpointButtonPanel = new JPanel(new FlowLayout());
+
+        breakpointButtons = new ArrayList<JRadioButton>();
+        breakpointButtons.add(new JRadioButton());
+
+        breakpointButtonPanel.add((JRadioButton)breakpointButtons.get(0));
+        breakpointButtonPanel.setVisible(true);
+        //TODO: Breakpoint stuff... Idee: List mit Radio Buttons, wenn geklickt NR in Liste rausfinden und BP weiter geben
+        codePanel.add(breakpointButtonPanel, codePanelLayout);
+        codePanel.add(codeScrollPane, codePanelLayout);
+
+
     }
 
     private void initVariableInspector() {
