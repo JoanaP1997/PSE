@@ -34,15 +34,15 @@ public class FileHandlerFacade {
 	/**
 	 * @throws FileHandlerException see {@linkplain DBFileReader#loadLanguageFile(File)}
 	 */
-	public FileHandlerFacade() throws FileHandlerException {	
-		//Load all Languages probably not a good idea to load all Translations
-		list_languages = loadAllAvailableLanguages();
-		
+	public FileHandlerFacade() throws FileHandlerException {			
 		reader_rdbf_prop = new RDBFPropReader();
 		writer_rdbf_prop = new RDBFPropWriter();
 		
 		reader_rdbf_db = new RDBFDBReader();
 		writer_rdbf_db = new RDBFDBWriter();
+		
+		//Load all Languages probably not a good idea to load all Translations
+		list_languages = loadAllAvailableLanguages();
 	}
 	
 	/**

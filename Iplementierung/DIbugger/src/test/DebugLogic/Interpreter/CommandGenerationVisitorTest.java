@@ -25,13 +25,13 @@ public class CommandGenerationVisitorTest {
 
     @Test
     public void structureIfTest() {
-	String code = "int main() {"
-		+ "int i;"
-		+ "i=2;"
-		+ "char c = 't';"
-		+ "if(i<c) "
-		+ "i=3;"
-		+ "return i;"
+	String code = "int main() { \n"
+		+ "int i; \n"
+		+ "i=2; \n"
+		+ "char c = 't'; \n"
+		+ "if(i<c) \n "
+		+ "i=3; \n"
+		+ "return i; \n"
 		+ "}";
 		CharStream input = CharStreams.fromString(code);
 		WlangLexer lexer = new WlangLexer(input);
@@ -51,13 +51,13 @@ public class CommandGenerationVisitorTest {
     }
     @Test
     public void structureWhileTest() {
-	String code = "void main(int x) {"
-		+ "int i = x+1;"
-		+ "while(i<100+x) {"
-		+ "x=2;"
-		+ "i=i+2;"
-		+ "}"
-		+ "return x;"
+	String code = "void main(int x) { \n"
+		+ "int i = x+1; \n"
+		+ "while(i<100+x) { \n"
+		+ "x=2; \n"
+		+ "i=i+2; \n"
+		+ "} \n"
+		+ "return x; \n"
 		+ "}";
 		CharStream input = CharStreams.fromString(code);
 		WlangLexer lexer = new WlangLexer(input);

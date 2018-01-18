@@ -6,7 +6,7 @@ import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
 
 /**
  * @author wagner
- * Represents a runnalbe command in a WLANG program
+ * Represents a runnable command in a WLANG program
  */
 public abstract class Command {
     protected GenerationController controller;

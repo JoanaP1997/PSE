@@ -16,7 +16,7 @@ public class WrongTypeAssignmentException extends DIbuggerLogicException {
 	 * Constructor for a WrongTypeAssignmentException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public WrongTypeAssignmentException(String occurrence) {
+	public WrongTypeAssignmentException(int occurrence) {
 		super(occurrence, "wrongTypeAssignmentException");
 	}
 

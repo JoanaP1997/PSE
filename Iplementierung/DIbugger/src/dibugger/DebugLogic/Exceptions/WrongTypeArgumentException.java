@@ -16,7 +16,7 @@ public class WrongTypeArgumentException extends WrongArgumentException {
 	 * Constructor for a WrongTypeArgumentException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public WrongTypeArgumentException(String occurrence) {
+	public WrongTypeArgumentException(int occurrence) {
 		super(occurrence, "wrongTypeArgumentException");
 	}
 

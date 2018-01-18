@@ -10,6 +10,7 @@ import dibugger.DebugLogic.Interpreter.ConditionalBreakpoint;
 import dibugger.DebugLogic.Interpreter.GenerationController;
 import dibugger.DebugLogic.Interpreter.ScopeTuple;
 import dibugger.DebugLogic.Interpreter.Trace.TraceIterator;
+import dibugger.FileHandler.Facade.ConfigurationFile.IntTuple;
 import dibugger.DebugLogic.Interpreter.TraceState;
 import dibugger.DebugLogic.Interpreter.TraceStatePosition;
 import dibugger.DebugLogic.Interpreter.WatchExpression;
@@ -25,8 +26,8 @@ public class DebugControl {
 	private static final int DEF_IT = 100;
 	private static final int DEF_MAX_FUNC_CALLS = 100;
 	
-	private Map<Integer, WatchExpression> map_watchExpressions;	
-	private Map<Integer, ConditionalBreakpoint> map_condBreakpoints;
+	private List<WatchExpression> list_watchExpressions;	
+	private List<ConditionalBreakpoint> list_condBreakpoints;
 	private List<List<Breakpoint>> list_breakpoints;
 	
 	private List<TraceIterator> list_traceIterator;
@@ -48,8 +49,8 @@ public class DebugControl {
 	 * Creates a new debugControl without programs, watch expressions or breakpoints and default values
 	 */
 	public DebugControl(){
-		map_watchExpressions = new HashMap<Integer, WatchExpression>();
-		map_condBreakpoints = new HashMap<Integer, ConditionalBreakpoint>();
+		list_watchExpressions = new ArrayList<WatchExpression>();
+		list_condBreakpoints = new ArrayList<ConditionalBreakpoint>();
 		list_breakpoints = new ArrayList<List<Breakpoint>>();
 		
 		list_traceIterator = new ArrayList<TraceIterator>();
@@ -86,7 +87,6 @@ public class DebugControl {
 	 * @param type the type of the step (STEP_NORMAL,STEP_OVER,STEP_OUT,STEP_BACK)
 	 */
 	public void step(int type) throws DIbuggerLogicException{
-		//TODO implement Step Over
 		if(type==STEP_NORMAL || type==STEP_BACK){
 			int maxSteps = getMaximumOfList(list_stepSize);	
 			for(int stepID=0;stepID<maxSteps;++stepID){
@@ -115,18 +115,59 @@ public class DebugControl {
 			while(!checkBoolArrayOnValue(breaked, true) && !forceStop){
 				boolean breakpointFound=false;
 				for(int i=0;i<programCount;++i){
-					singleStepNoEvaluation(i, STEP_NORMAL);
-					TraceState state = list_currentTraceStates.get(i);
-					breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-					//only stop stepping when trace state is after a return call
-					if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
-						breaked[i]=true;
+					if(!breaked[i]){
+						singleStepNoEvaluation(i, STEP_NORMAL);
+						TraceState state = list_currentTraceStates.get(i);
+						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+						//only stop stepping when trace state is after a return call
+						if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
+							breaked[i]=true;
+						}
 					}
 				}
 				breakpointFound = evaluateConditionalBreakpoints();
 				if(breakpointFound){
 					forceStop=true;
 				}
+			}
+		}
+		else if(type==STEP_OVER){
+			int[] inline = new int[programCount];
+			boolean[] breaked = new boolean[programCount];
+			boolean first=true;
+			boolean forceStop = false;
+			while(!checkBoolArrayOnValue(breaked, true) && !forceStop){
+				boolean breakpointFound=false;
+				for(int i=0;i<programCount;++i){
+					if(!breaked[i]){
+						singleStepNoEvaluation(i, STEP_NORMAL);
+						TraceState state = list_currentTraceStates.get(i);
+						if(state.getPosition()==TraceStatePosition.AFTERFUNCCALL){
+							++inline[i];
+						}
+						else if(first){
+							breaked[i]=true;
+						}
+						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
+						if(breakpointFound){
+							breaked[i]=true;
+						}
+						//only stop stepping when trace state is after the outer most return call
+						else if(state.getPosition()==TraceStatePosition.AFTERRETURN){
+							if(inline[i]==1){
+								breaked[i]=true;
+							}
+							else{
+								--inline[i];
+							}
+						}
+					}
+				}
+				breakpointFound = evaluateConditionalBreakpoints();
+				if(breakpointFound){
+					forceStop=true;
+				}
+				first=false;
 			}
 		}
 	}
@@ -175,8 +216,8 @@ public class DebugControl {
 		return false;
 	}
 	private boolean evaluateConditionalBreakpoints() throws DIbuggerLogicException{
-		for(int key : map_condBreakpoints.keySet()){
-			ConditionalBreakpoint cb = map_condBreakpoints.get(key);
+		for(int i=0;i<list_condBreakpoints.size();++i){
+			ConditionalBreakpoint cb = list_condBreakpoints.get(i);
 			if(cb.evaluate(list_currentTraceStates)){
 				return true;
 			}
@@ -201,8 +242,8 @@ public class DebugControl {
 	 * @param expr the expression of the watch expression
 	 */
 	public void createWatchExpression(int id, String expr){
-		map_watchExpressions.put(id, new WatchExpression(expr));
-		//TODO default Scope hinzuf�gen
+		list_watchExpressions.add(id, new WatchExpression(expr));
+		//TODO add default Scope
 	}
 	/**
 	 * changes the watch expression with a given id
@@ -211,7 +252,7 @@ public class DebugControl {
 	 * @param scopes a list of scopes for the new watch expression
 	 */
 	public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes){
-		WatchExpression e = map_watchExpressions.get(id);
+		WatchExpression e = list_watchExpressions.get(id);
 		if(e!=null){
 			e.change(expr, scopes);
 		}
@@ -221,7 +262,7 @@ public class DebugControl {
 	 * @param id the id of the watch expression
 	 */
 	public void deleteWatchExpression(int id){
-		map_watchExpressions.remove(id);
+		list_watchExpressions.remove(id);
 	}
 	
 	/**
@@ -230,7 +271,7 @@ public class DebugControl {
 	 * @param cond the condition of the breakpoint
 	 */
 	public void createCondBreakpoint(int id, String cond){
-		map_condBreakpoints.put(id, new ConditionalBreakpoint(cond));
+		list_condBreakpoints.add(id, new ConditionalBreakpoint(cond));
 		//TODO default scope
 	}
 	/**
@@ -240,7 +281,7 @@ public class DebugControl {
 	 * @param scopes a list of all scopes
 	 */
 	public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes){
-		ConditionalBreakpoint cb = map_condBreakpoints.get(id);
+		ConditionalBreakpoint cb = list_condBreakpoints.get(id);
 		if(cb!=null){
 			cb.change(cond, scopes);
 		}
@@ -250,7 +291,7 @@ public class DebugControl {
 	 * @param id the id of the breakpoint
 	 */
 	public void deleteCondBreakpoint(int id){
-		map_condBreakpoints.remove(id);
+		list_condBreakpoints.remove(id);
 	}
 	
 	/**
@@ -294,8 +335,8 @@ public class DebugControl {
 		list_stepSize.clear();
 		list_programInput.clear();
 		list_traceIterator.clear();
-		map_watchExpressions.clear();
-		map_condBreakpoints.clear();
+		list_watchExpressions.clear();
+		list_condBreakpoints.clear();
 		
 		maxIterations = DEF_IT;
 		maxFunctionCalls = DEF_MAX_FUNC_CALLS;
@@ -340,6 +381,93 @@ public class DebugControl {
 	 */
 	public void setMaximumFunctionCalls(int count){
 		this.maxFunctionCalls = count;
+	}
+	
+	//Getter
+	/**
+	 * 
+	 * @return the amount of conditional breakpoints
+	 */
+	public int getWatchExpressionSize(){
+		return list_watchExpressions.size();
+	}
+	/**
+	 * 
+	 * @return a list containing all expression of the watch expressions
+	 */
+	public List<String> getWatchExpressions(){
+		List<String> l = new ArrayList<String>();
+		for(int i=0;i<list_watchExpressions.size();++i){
+			l.add(list_watchExpressions.get(i).getSpecifier());
+		}
+		return l;
+	}
+	/**
+	 * Getter for the Scope Begin of a given Watch Expression
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope begins for the given watch expression.
+	 */
+	public List<Integer> getWEScopeBegin(int expressionID){
+		List<Integer> l = new ArrayList<Integer>();
+		for(ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()){
+			l.add(it.getStartLine());
+		}
+		return l;
+	}
+	/**
+	 * Getter for the Scope End of a given Watch Expression
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope ends for the given watch expression.
+	 */
+	public List<Integer> getWEScopeEnd(int expressionID){
+		List<Integer> l = new ArrayList<Integer>();
+		for(ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()){
+			l.add(it.getEndLine());
+		}
+		return l;
+	}
+	
+	/**
+	 * 
+	 * @return the amount of conditional breakpoints
+	 */
+	public int getConditionalBreakpointSize(){
+		return list_condBreakpoints.size();
+	}
+	/**
+	 * 
+	 * @return a list containing all conditions of the conditional breakpoints
+	 */
+	public List<String> getConditionalBreakpoints(){
+		List<String> l = new ArrayList<String>();
+		for(int i=0;i<list_condBreakpoints.size();++i){
+			l.add(list_condBreakpoints.get(i).getSpecifier());
+		}
+		return l;
+	}
+	/**
+	 * Getter for the Scope Begin of a given Conditional Breakpoint
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope begins for the given conditional breakpoint.
+	 */
+	public List<Integer> getCBScopeBegin(int expressionID){
+		List<Integer> l = new ArrayList<Integer>();
+		for(ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()){
+			l.add(it.getStartLine());
+		}
+		return l;
+	}
+	/**
+	 * Getter for the Scope end of a given Conditional Breakpoint
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope ends for the given conditional breakpoint.
+	 */
+	public List<Integer> getCBScopeEnd(int expressionID){
+		List<Integer> l = new ArrayList<Integer>();
+		for(ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()){
+			l.add(it.getEndLine());
+		}
+		return l;
 	}
 	
 	

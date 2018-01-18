@@ -112,4 +112,11 @@ public class Scope {
 	public boolean isRoutineFinished() {
 		return this.routineFinished;
 	}
+
+	/**
+	 * Sets the Routine to finished.
+	 */
+	public void routineIsFinished() {
+		this.routineFinished = true;
+	}
 }

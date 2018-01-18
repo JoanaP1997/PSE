@@ -16,7 +16,7 @@ public class InvalidProgramException extends DIbuggerLogicException {
 	 * Constructor of an InvalidProgramException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public InvalidProgramException(String occurrence) {
+	public InvalidProgramException(int occurrence) {
 		super(occurrence, "invalidProgramException");
 	}
 

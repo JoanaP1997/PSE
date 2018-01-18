@@ -84,6 +84,25 @@ public class ConfigurationFile {
 	public List<String> getVariablesOfInspector(int programID){
 		return list_varInspector.get(programID);
 	}
+	
+	/**
+	 * 
+	 * @return the amount of Watch Expressions
+	 */
+	public int getWatchExpressionSize(){
+		return list_watchExpressions.size();
+	}
+	/**
+	 * 
+	 * @return a list containing all expression of the watch expressions
+	 */
+	public List<String> getWatchExpressions(){
+		List<String> l = new ArrayList<String>();
+		for(int i=0;i<list_watchExpressions.size();++i){
+			l.add(list_watchExpressions.get(i).expression);
+		}
+		return l;
+	}
 	/**
 	 * Getter for the Scope Begin of a given Watch Expression
 	 * @param expressionID the id of the expression
@@ -105,6 +124,25 @@ public class ConfigurationFile {
 		List<Integer> l = new ArrayList<Integer>();
 		for(IntTuple it : list_watchExpressions.get(expressionID).list_scopes){
 			l.add(it.b);
+		}
+		return l;
+	}
+	
+	/**
+	 * 
+	 * @return the amount of conditional breakpoints
+	 */
+	public int getConditionalBreakpointSize(){
+		return list_condBreakpoints.size();
+	}
+	/**
+	 * 
+	 * @return a list containing all conditions of the conditional breakpoints
+	 */
+	public List<String> getConditionalBreakpoints(){
+		List<String> l = new ArrayList<String>();
+		for(int i=0;i<list_condBreakpoints.size();++i){
+			l.add(list_condBreakpoints.get(i).expression);
 		}
 		return l;
 	}
@@ -222,8 +260,8 @@ public class ConfigurationFile {
 	
 	//Private helper structs	
 	public class WCBExpression{
-		String expression;
-		List<IntTuple> list_scopes;
+		private String expression;
+		private List<IntTuple> list_scopes;
 		
 		public WCBExpression(String expression){
 			this.expression = expression;
@@ -239,7 +277,7 @@ public class ConfigurationFile {
 		}
 	}
 	public class IntTuple{
-		int a,b;
+		private int a,b;
 
 		public IntTuple(int a, int b) {
 			this.a = a;
