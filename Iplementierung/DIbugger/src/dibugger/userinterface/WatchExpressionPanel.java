@@ -1,0 +1,92 @@
+package dibugger.userinterface;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
+import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class WatchExpressionPanel extends ExpressionPanel {
+    private MainInterface mainInterface;
+
+    private static WatchExpressionPanel singleton = null;
+
+
+
+    private WatchExpressionPanel(MainInterface mainInterface) {
+        this.mainInterface = mainInterface;
+        initComponents();
+        this.setVisible(true);
+    }
+
+    public static WatchExpressionPanel getWatchExpressionPanel(MainInterface mainInterface) {
+        if (singleton == null) {
+            singleton = new WatchExpressionPanel(mainInterface);
+        }
+        return singleton;
+    }
+
+    public void update() {
+        //TODO
+    }
+
+    private void initComponents() {
+
+        panelType = "Watch Expressions:";
+
+        String[] columnTitles = {"Opt", panelType , "Auswertung" };
+        Object[][] dataEntries = { {"b","hier könnte ihre Expression stehen", "ausgewertet"}};
+        TableModel tableModel = new DefaultTableModel(dataEntries, columnTitles);
+        JTable table = new JTable(tableModel);
+        table.addMouseListener(new MouseListener() {
+                                   @Override
+                                   public void mouseClicked(MouseEvent mouseEvent) {
+                                       new ExpressionChangePopUp(mainInterface, "Expression");
+                                   }
+
+                                   @Override
+                                   public void mousePressed(MouseEvent mouseEvent) {
+
+                                   }
+
+                                   @Override
+                                   public void mouseReleased(MouseEvent mouseEvent) {
+
+                                   }
+
+                                   @Override
+                                   public void mouseEntered(MouseEvent mouseEvent) {
+
+                                   }
+
+                                   @Override
+                                   public void mouseExited(MouseEvent mouseEvent) {
+
+                                   }
+                               });
+        table.setSize(50, 50);
+
+        JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tableContainer.setViewportView(table);
+        tableContainer.createVerticalScrollBar();
+        tableContainer.setPreferredSize(new Dimension(290, 250));
+
+        this.add(tableContainer);
+
+
+
+
+        //TODO: JTable oder JList? -editierbar, muss Container für Auswertung enthalten können
+
+    }
+
+}
