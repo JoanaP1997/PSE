@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ProgramPanel extends JPanel {
 
-    String id;
+    private String id;
 
     private JLabel ProgramName;
     private JLabel Stepsize;
@@ -34,11 +34,18 @@ public class ProgramPanel extends JPanel {
     private JList<String> variableInspectorList;
 
 
+    /**
+     * Constructor for a nem ProgramPanel
+     * @param identifier identifier of program panel
+     */
     public ProgramPanel(String identifier) {
         id = identifier;
         initComponents();
     }
 
+    /**
+     * initializes main components of program panel
+     */
     private void initComponents() {
         ProgramName = new JLabel();
         Stepsize = new JLabel();
@@ -113,6 +120,9 @@ public class ProgramPanel extends JPanel {
         // TODO add your handling code here:
     }
 
+    /**
+     * initializes code area of program panel
+     */
     private void initCodeArea() {
         codeScrollPane = new JScrollPane();
         lines = new JTextArea("1");
@@ -203,12 +213,14 @@ public class ProgramPanel extends JPanel {
 
     }
 
+    /**
+     * initializes components of variable inspector
+     */
     private void initVariableInspector() {
         variableInspector = new JPanel();
 
         GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
         variableInspector.setLayout(variableInspectorLayout);
-        String[] allData = {"x = true", "y = ?", "count = 42"};
         String[] data = {"x = true", "y = ?", "count = 42"};
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (String s : data) {
@@ -262,7 +274,7 @@ public class ProgramPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 listModel.clear();
-                for (String s : allData) {
+                for (String s :data) {
                     listModel.addElement(s);
                 }
             }
@@ -284,6 +296,13 @@ public class ProgramPanel extends JPanel {
                         .addComponent(variableInspectorScrollPane)
         );
 
+    }
 
+    /**
+     * Getter-method for ID of the program panel
+     * @return identifier
+     */
+    public String getId() {
+        return id;
     }
 }
