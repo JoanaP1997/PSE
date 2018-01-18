@@ -17,8 +17,8 @@ public class ProgramPanel extends JPanel {
 
     private String id;
 
-    private JLabel ProgramName;
-    private JLabel Stepsize;
+    private JLabel programName;
+    private JLabel stepsize;
     private JTextField StepsizeInput;
     private JLabel inputvariablesLabel;
     private JTextField inputvariableTextField;
@@ -27,7 +27,7 @@ public class ProgramPanel extends JPanel {
     private JScrollPane codeScrollPane;
     private JTextArea codeTextArea;
     private JTextArea lines;
-    private List breakpointButtons;
+    private List<JRadioButton> breakpointButtons;
 
     private JPanel variableInspector;
     private JScrollPane variableInspectorScrollPane;
@@ -47,16 +47,16 @@ public class ProgramPanel extends JPanel {
      * initializes main components of program panel
      */
     private void initComponents() {
-        ProgramName = new JLabel();
-        Stepsize = new JLabel();
+        programName = new JLabel();
+        stepsize = new JLabel();
         StepsizeInput = new JTextField();
         inputvariablesLabel = new JLabel();
         inputvariableTextField = new JTextField();
         codeScrollPane = new JScrollPane();
 
-        ProgramName.setText("Programm: " + id);
+        programName.setText("Programm: " + id);
 
-        Stepsize.setText("Stepsize: ");
+        stepsize.setText("Stepsize: ");
 
         StepsizeInput.setText("jTextField2");
         StepsizeInput.setPreferredSize(new Dimension(40, 40));
@@ -81,9 +81,9 @@ public class ProgramPanel extends JPanel {
                                 .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(firstTextPanelLayout.createSequentialGroup()
-                                                        .addComponent(Stepsize)
+                                                        .addComponent(stepsize)
                                                         .addComponent(StepsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(ProgramName)
+                                                .addComponent(programName)
                                                 .addGroup(firstTextPanelLayout.createSequentialGroup()
                                                         .addComponent(inputvariablesLabel)
                                                         .addComponent(inputvariableTextField)))
@@ -94,10 +94,10 @@ public class ProgramPanel extends JPanel {
         firstTextPanelLayout.setVerticalGroup(
                 firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(firstTextPanelLayout.createSequentialGroup()
-                                .addComponent(ProgramName)
+                                .addComponent(programName)
                                 .addGap(15, 15, 15)
                                 .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(Stepsize)
+                                        .addComponent(stepsize)
                                         .addComponent(StepsizeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -124,6 +124,15 @@ public class ProgramPanel extends JPanel {
      * initializes code area of program panel
      */
     private void initCodeArea() {
+        JPanel breakpointButtonPanel = new JPanel();
+
+        GridBagLayout breakpointPanelLayout = new GridBagLayout();
+        breakpointButtonPanel.setLayout(breakpointPanelLayout);
+        GridBagConstraints breakpointConstraints = new GridBagConstraints();
+        breakpointConstraints.anchor = GridBagConstraints.NORTH;
+        breakpointConstraints.fill = GridBagConstraints.NONE;
+        breakpointConstraints.weighty = 1;
+
         codeScrollPane = new JScrollPane();
         lines = new JTextArea("1");
         codeTextArea = new JTextArea();
@@ -147,6 +156,11 @@ public class ProgramPanel extends JPanel {
             @Override
             public void insertUpdate(DocumentEvent de) {
                 lines.setText(getText());
+                breakpointButtons.add(new JRadioButton());
+                breakpointButtons.get(breakpointButtons.size()- 1).setPreferredSize(new Dimension(10,10));
+                breakpointConstraints.gridy = breakpointButtons.size()- 1;
+                breakpointButtonPanel.add(breakpointButtons.get(breakpointButtons.size()- 1), breakpointConstraints);
+                breakpointButtonPanel.updateUI();
             }
 
             @Override
@@ -155,56 +169,28 @@ public class ProgramPanel extends JPanel {
             }
 
         });
-        codeTextArea.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                int line = 0;
-                if (mouseEvent.getClickCount() == 2) {
-                    try {
-                        line = codeTextArea.getLineOfOffset(codeTextArea.getCaretPosition());
-                        //TODO: Breakpoint einfügen
-                    } catch (BadLocationException e) {
 
-                    }
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-
-            }
-        });
         codeTextArea.setTabSize(2);
         codeScrollPane.getViewport().add(codeTextArea);
         codeScrollPane.setRowHeaderView(lines);
+        codeScrollPane.setColumnHeaderView(breakpointButtonPanel);
         codeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         codeScrollPane.setPreferredSize(new Dimension(400, 700));
 
         codePanel = new JPanel();
-        FlowLayout codePanelLayout = new FlowLayout(FlowLayout.LEFT);
+        BoxLayout codePanelLayout = new BoxLayout(codePanel, BoxLayout.X_AXIS);
         codePanel.setLayout(codePanelLayout);
 
-        JPanel breakpointButtonPanel = new JPanel(new FlowLayout());
+
 
         breakpointButtons = new ArrayList<JRadioButton>();
         breakpointButtons.add(new JRadioButton());
-
-        breakpointButtonPanel.add((JRadioButton)breakpointButtons.get(0));
+        breakpointButtons.get(0).setPreferredSize(new Dimension(10,10));
+        breakpointConstraints.anchor = GridBagConstraints.NORTH;
+        breakpointConstraints.fill = GridBagConstraints.NONE;
+        breakpointConstraints.weighty = 1;
+        breakpointButtonPanel.setPreferredSize(new Dimension(10,400));
+        breakpointButtonPanel.add(breakpointButtons.get(0), breakpointConstraints);
         breakpointButtonPanel.setVisible(true);
         //TODO: Breakpoint stuff... Idee: List mit Radio Buttons, wenn geklickt NR in Liste rausfinden und BP weiter geben
         codePanel.add(breakpointButtonPanel, codePanelLayout);
