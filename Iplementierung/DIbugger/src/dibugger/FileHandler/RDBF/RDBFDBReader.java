@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 import dibugger.FileHandler.Exceptions.FileHandlerException;
+import dibugger.FileHandler.Exceptions.LanguageNotFoundException;
 import dibugger.FileHandler.Facade.ConfigurationFile;
 import dibugger.FileHandler.Facade.ConfigurationFile.WCBExpression;
 import dibugger.FileHandler.Facade.DBFileReader;
@@ -97,10 +98,11 @@ public class RDBFDBReader extends DBFileReader{
 			
 			return f;			
 		} catch (IOException e) {//TODO no stack trace
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new LanguageNotFoundException();
 		}		
 		
-		return null;
+		//return null;
 	}
 
 }

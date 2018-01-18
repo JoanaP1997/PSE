@@ -18,51 +18,68 @@ import dibugger.DebugLogic.Exceptions.DIbuggerLogicException;
  *
  */
 public class WatchExpression {
-    private String value;
-    private String specifier;
-    private List<ScopeTuple> scopes;
-    private Term expression;
-    public WatchExpression(String specifier) {
-	this.specifier = specifier;
-	this.scopes = new ArrayList<ScopeTuple>();
-	this.value = "?";
-	this.createTerm();
-	
-    }
-    public WatchExpression(String specifier, List<ScopeTuple> scopes) {
-	this.specifier = specifier;
-	this.scopes = scopes;
-	this.value = "?";
-	this.createTerm();
-    }
-    public void change(String specifier, List<ScopeTuple> scopes){
-	this.specifier = specifier;
-	this.scopes = scopes;
-	this.createTerm();
-    }
-    public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
-	boolean isValid = true;
-	//check wether #states = #scopes
-	if (states.size() != this.scopes.size())
-	    isValid = false;
-	//check wether we are in the right scope
-	else if(!this.scopes.isEmpty()) {
-	    for(int i = 0; i<this.scopes.size(); ++i)
-		if(!this.scopes.get(i).contains(states.get(i).getLineNumber()))
-		    isValid = false;
+	private String value;
+	private String specifier;
+	private List<ScopeTuple> scopes;
+	private Term expression;
+
+	public WatchExpression(String specifier) {
+		this.specifier = specifier;
+		this.scopes = new ArrayList<ScopeTuple>();
+		this.value = "?";
+		this.createTerm();
+
 	}
-	if(isValid)
-	    this.value = this.expression.evaluate(states).toString();	 
-	return this.value;
-    }
-    private void createTerm(){
-	CharStream input = CharStreams.fromString(this.specifier);
-	WlangLexer lexer = new WlangLexer(input);
-	CommonTokenStream tokens = new CommonTokenStream(lexer);
-	WlangParser parser = new WlangParser(tokens);
-	//Chose start rule
-        ParseTree tree = parser.webppterm();
-	TermGenerationVisitor visitor = new TermGenerationVisitor();
-	this.expression = visitor.visit(tree);
-    }
+
+	public WatchExpression(String specifier, List<ScopeTuple> scopes) {
+		this.specifier = specifier;
+		this.scopes = scopes;
+		this.value = "?";
+		this.createTerm();
+	}
+
+	public void change(String specifier, List<ScopeTuple> scopes) {
+		this.specifier = specifier;
+		this.scopes = scopes;
+		this.createTerm();
+	}
+
+	public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
+		boolean isValid = true;
+		// check wether #states = #scopes
+		if (states.size() != this.scopes.size())
+			isValid = false;
+		// check wether we are in the right scope
+		else if (!this.scopes.isEmpty()) {
+			for (int i = 0; i < this.scopes.size(); ++i)
+				if (!this.scopes.get(i).contains(states.get(i).getLineNumber()))
+					isValid = false;
+		}
+		if (isValid)
+			this.value = this.expression.evaluate(states).toString();
+		return this.value;
+	}
+
+	private void createTerm() {
+		CharStream input = CharStreams.fromString(this.specifier);
+		WlangLexer lexer = new WlangLexer(input);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		WlangParser parser = new WlangParser(tokens);
+		// Chose start rule
+		ParseTree tree = parser.webppterm();
+		TermGenerationVisitor visitor = new TermGenerationVisitor();
+		this.expression = visitor.visit(tree);
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public String getSpecifier() {
+		return specifier;
+	}
+
+	public List<ScopeTuple> getScopes() {
+		return scopes;
+	}
 }
