@@ -1,8 +1,8 @@
 package dibugger.DebugLogic.Interpreter;
 
 /**
- * Positions where a trace state can possibly located regarding its position in
- * a trace.
+ * Where a trace state can possibly be located regarding its position in a
+ * trace.
  *
  * @author scheler
  *
@@ -10,18 +10,19 @@ package dibugger.DebugLogic.Interpreter;
 public enum TraceStatePosition {
 
 	/**
-	 * The command previous to the one this trace state is corresponding to, is
-	 * a return statement. Relevant for "Step Out".
+	 * The state after the execution of the last command in a function call.
+	 * Relevant for "Step Out" and "Step Over".
 	 */
 	AFTERRETURN,
+
 	/**
-	 * The command previous to the one this trace state is corresponding to, is
-	 * a function call. Relevant for "Step Over".
+	 * The state after the execution of the first command of a function;
+	 * Relevant for "Step Over" in recursive functions.
 	 */
 	AFTERFUNCCALL,
 
 	/**
-	 * All other types of previous commands.
+	 * All other states.
 	 */
 	NOTSPECIAL;
 

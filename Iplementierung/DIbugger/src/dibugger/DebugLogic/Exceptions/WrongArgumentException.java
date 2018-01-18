@@ -16,7 +16,7 @@ public abstract class WrongArgumentException extends DIbuggerLogicException {
 	 * Constructor for a WrongARgumentException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public WrongArgumentException(String occurrence, String id) {
+	public WrongArgumentException(int occurrence, String id) {
 		super(occurrence, id);
 
 	}

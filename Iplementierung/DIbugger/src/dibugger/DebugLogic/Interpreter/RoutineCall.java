@@ -4,8 +4,8 @@ import java.util.List;
 
 public class RoutineCall extends Command {
 
-    public RoutineCall(GenerationController controller) {
-	super(controller);
+    public RoutineCall(GenerationController controller, int linenumber) {
+	super(controller, linenumber);
 	// TODO Auto-generated constructor stub
     }
 

@@ -4,8 +4,8 @@ import java.util.List;
 
 public class DeclarationAssignment extends Command {
 
-    public DeclarationAssignment(GenerationController controller) {
-	super(controller);
+    public DeclarationAssignment(GenerationController controller, int linenumber) {
+	super(controller, linenumber);
 	// TODO Auto-generated constructor stub
     }
 

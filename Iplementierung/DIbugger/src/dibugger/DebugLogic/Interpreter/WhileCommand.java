@@ -4,8 +4,8 @@ import java.util.List;
 
 public class WhileCommand extends Command {
 
-    public WhileCommand(GenerationController controller) {
-	super(controller);
+    public WhileCommand(GenerationController controller,int linenumber) {
+	super(controller, linenumber);
 	// TODO Auto-generated constructor stub
     }
 

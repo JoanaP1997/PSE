@@ -40,10 +40,19 @@ public class TraceState {
 	
 	/**
 	 * Returns the trace state position of the trace.
-	 * @return the trace state position (see TraceStatePosition)
+	 * @return the trace state position
 	 */
 	public TraceStatePosition getPosition() {
 		return this.position;
+	}
+	
+	/**
+	 * Setter for the trace state position of the trace.
+	 * @param the trace state position
+	 * @return 
+	 */
+	public void setPosition(TraceStatePosition position) {
+		this.position = position;
 	}
 	
 	/**

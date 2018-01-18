@@ -16,7 +16,7 @@ public class WrongNumberArgumentException extends WrongArgumentException {
 	 * Constructor for a WrongNumberArgumentException.
 	 * @param occurrence the line of occurrence of the exception
 	 */
-	public WrongNumberArgumentException(String occurrence) {
+	public WrongNumberArgumentException(int occurrence) {
 		super(occurrence, "wrongNumberArgumentException");
 	}
 

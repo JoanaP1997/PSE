@@ -1,6 +1,7 @@
 package dibugger.UserInterface;
 
-import dibugger.Control.ControlFacade;
+//import dibugger.Control.ControlFacade;
+import dibugger.UserInterface.DIbuggerPopUps.DecisionPopUp;
 import dibugger.UserInterface.DIbuggerPopUps.ErrorPopUp;
 
 import java.util.List;
@@ -9,11 +10,11 @@ import java.util.Observer;
 
 public class GUIFacade implements Observer {
     private MainInterface mainInterface;
-    private ControlFacade controlFacade;
+   // private ControlFacade controlFacade;
 
     public GUIFacade(MainInterface mainInterface) {
         this.mainInterface = mainInterface;
-        controlFacade = new ControlFacade(this);
+        //controlFacade = new ControlFacade(this);
     }
 
     public void showProgramText(String programText, int id) {
@@ -38,7 +39,7 @@ public class GUIFacade implements Observer {
     }
 
     public void showWarning(String s) {
-        //TODO: Rückgabewert??
+        new DecisionPopUp(s);
     }
 
     public void changeLanguage() {
