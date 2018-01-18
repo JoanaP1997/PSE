@@ -80,7 +80,7 @@ public class MainInterface extends JFrame {
         );
 
         this.setTitle("DIbugger");
-        ImageIcon icon = new ImageIcon("res/logo_nongi.png");
+        ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
         this.setIconImage(icon.getImage());
 
     }

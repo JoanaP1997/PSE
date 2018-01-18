@@ -26,11 +26,11 @@ public class CommandPanel extends JPanel {
 
 
         JButton start = new JButton();
-        ImageIcon iconStart = new ImageIcon("res/play-arrow.png");
+        ImageIcon iconStart = new ImageIcon("res/ui/play-arrow.png");
         start.setIcon(iconStart);
 
         JButton stop = new JButton();
-        ImageIcon iconStop = new ImageIcon("res/stop-button.png");
+        ImageIcon iconStop = new ImageIcon("res/ui/stop-button.png");
         stop.setIcon(iconStop);
 
         JButton step = new JButton(("Step"));
