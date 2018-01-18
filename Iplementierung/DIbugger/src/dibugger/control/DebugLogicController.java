@@ -93,14 +93,7 @@ public class DebugLogicController {
     public void saveText(List<String> programTexts, List<String> inputVariables) {
         throw new UnsupportedOperationException();     
     }
-    
-    public void startDebug() {
-        throw new UnsupportedOperationException();     
-    }
-    
-    public void stopDebug() {
-        throw new UnsupportedOperationException(); 
-    }
+
     
     public void reset() {
         debugLogicFacade.reset();       

@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Objects;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
-import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.debugLogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
+import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.userinterface.GUIFacade;
 
 public class ControlFacade {
+    private boolean isInDebugMode;
+    
     private DebugLogicController debugLogicController;
     private ExceptionHandler exceptionHandler;
     private FileHandlerInteractor fileHandlerInteractor;
@@ -27,12 +30,37 @@ public class ControlFacade {
     }
     
     
+    boolean isInDebugMode() {
+        return isInDebugMode();
+    }
+    
+    private void enableDebugMode() {
+        isInDebugMode = true;
+    }
+    
+    private void disableDebugMode() {
+        isInDebugMode = false;
+    }
+    
+    private void ensureInDebugMode() {
+        if (!isInDebugMode()) {
+            throw new IllegalStateException();
+        }
+    }
+    
+    private void ensureNotInDebugMode() {
+        if (isInDebugMode()) {
+            throw new IllegalStateException();
+        }
+    }
+    
 
     public void setStepSize(int programId, int size) {
         debugLogicController.setStepSize(programId, size);
     }
     
     public void step(int type) {
+        ensureInDebugMode();
         try {
             debugLogicController.step(type);
         } catch (DIbuggerLogicException exception) {
@@ -41,6 +69,7 @@ public class ControlFacade {
     }
     
     public void continueDebug() {
+        ensureInDebugMode();
         try {
             debugLogicController.continueDebug();
         } catch (DIbuggerLogicException exception) {
@@ -49,10 +78,12 @@ public class ControlFacade {
     }
     
     public void singleStep(int programId) {
+        ensureInDebugMode();
         debugLogicController.singleStep(programId);        
     }
     
     public void stepBack() {
+        ensureInDebugMode();
         try {
             debugLogicController.stepBack();
         } catch (DIbuggerLogicException exception) {
@@ -109,11 +140,11 @@ public class ControlFacade {
     }
     
     public void startDebug() {
-        debugLogicController.startDebug();     
+        enableDebugMode();     
     }
     
     public void stopDebug() {
-        debugLogicController.stopDebug();     
+        disableDebugMode();     
     }
     
     public void reset() {
@@ -121,7 +152,18 @@ public class ControlFacade {
     }
 
     public void loadConfiguration(File configurationFile) {
-        fileHandlerInteractor.loadConfiguration(configurationFile);     
+        ensureNotInDebugMode();
+        
+        ConfigurationFile configFile;
+        
+        try {
+            configFile = fileHandlerInteractor.loadConfigurationFile(configurationFile);
+            reset();
+            
+            fileHandlerInteractor.applyConfiguration(configFile);
+        } catch (FileHandlerException exception) {
+            exceptionHandler.handle(exception);
+        }     
     }
     
     public void saveConfiguration(File configurationFile) {
@@ -129,6 +171,7 @@ public class ControlFacade {
     }
     
     public void loadProgramText(File file) {
+        ensureNotInDebugMode();
         fileHandlerInteractor.loadProgramText(file);     
     }
 
@@ -157,7 +200,6 @@ public class ControlFacade {
         return debugLogicController.suggestConditionalBreakpoint();      
     }
     
-    //  Name "inputVariableId" überprüfen
     public String suggestInputValue(String inputVariableId, String range, int type) {
         return debugLogicController.suggestInputValue(inputVariableId, range, type);     
     }
@@ -175,7 +217,7 @@ public class ControlFacade {
         debugLogicController.selectInputValueStrategy(inputValueStrategyId);      
     }
     
-
+    
     public void changeLanguage(String languageId) {
         fileHandlerInteractor.changeLanguage(languageId);      
     }
