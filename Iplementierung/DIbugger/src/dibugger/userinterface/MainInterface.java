@@ -42,8 +42,10 @@ public class MainInterface extends JFrame {
     }
 
 
+    /**
+     * initializes the components of the main interface
+     */
     private void initComponents() {
-
         rightControlBar = new JPanel();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,9 @@ public class MainInterface extends JFrame {
         mface.setVisible(true);
     }
 
+    /**
+     * configures components of menu bar
+     */
     private void configureMenuBar() {
         menuBar = new JMenuBar();
         fileMenu = new JMenu();
@@ -158,6 +163,9 @@ public class MainInterface extends JFrame {
         setJMenuBar(menuBar);
     }
 
+    /**
+     * initializes right control bar
+     */
     private void initRightControlBar() {
         condBreakPanel = new JPanel();
         condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel());
@@ -187,10 +195,18 @@ public class MainInterface extends JFrame {
         rightControlBar.setPreferredSize(new Dimension(200, 1000));
     }
 
+    /**
+     * get method for the number of programPanels
+     * @return number of programPanels
+     */
     public int getProgramCount() {
         return programPanels.size();
     }
 
+    /**
+     * calculates ID for next ProgramPanel
+     * @return identifier of next program panel
+     */
     private String calcNextProgramID() {
         return "A";
     }
