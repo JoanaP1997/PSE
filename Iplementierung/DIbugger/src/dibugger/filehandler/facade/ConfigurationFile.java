@@ -2,6 +2,7 @@ package dibugger.filehandler.facade;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,6 +68,14 @@ public class ConfigurationFile {
 	 */
 	public String getInputValue(int programID, String identifier){
 		return list_inputValues.get(programID).get(identifier);
+	}
+	/**
+	 * Getter for all input identifiers of a given program
+	 * @param programID the programID
+	 * @return a list containing all identifiers for the input values
+	 */
+	public List<String> getInputValueIdentifiers(int programID){
+		return new ArrayList<String>(list_inputValues.get(programID).keySet());
 	}
 	/**
 	 * Getter for the last Execution Line of a given program
@@ -256,6 +265,58 @@ public class ConfigurationFile {
 	 */
 	public void setNumPrograms(int numPrograms) {
 		this.numPrograms = numPrograms;
+	}
+	
+	//contruction setters
+	public void setProgramText(int programID, String text){
+		while(list_programText.size()<programID){
+			list_programText.add("");
+		}
+		list_programText.set(programID, text);
+	}
+	public void setStepSize(int programID, int stepsize){
+		while(list_programStepSize.size()<programID){
+			list_programStepSize.add(0);
+		}
+		list_programStepSize.set(programID, stepsize);
+	}
+	public void setInputValue(int programID, String identifier, String value){
+		while(list_inputValues.size()<programID){
+			list_inputValues.add(new HashMap<String, String>());
+		}
+		list_inputValues.get(programID).put(identifier, value);
+	}
+	public void setLastExecutionLine(int programID, int execLine){
+		while(list_lastExecLine.size()<programID){
+			list_lastExecLine.add(0);
+		}
+		list_lastExecLine.set(programID, execLine);
+	}
+	public void setVariablesOfInspector(int programID, List<String> variables){
+		while(list_varInspector.size()<programID){
+			list_varInspector.add(new ArrayList<String>());
+		}
+		list_varInspector.set(programID, variables);
+	}
+	public void addWatchExpressions(String expression, List<Integer> scopeBegin, List<Integer> scopeEnd){
+		WCBExpression e = new WCBExpression(expression);
+		for(int i=0;i<Math.min(scopeBegin.size(), scopeEnd.size());++i){
+			e.list_scopes.add(new IntTuple(scopeBegin.get(i), scopeEnd.get(i)));
+		}
+		list_watchExpressions.add(e);
+	}
+	public void addConditionalBreakpoint(String condition, List<Integer> scopeBegin, List<Integer> scopeEnd){
+		WCBExpression e = new WCBExpression(condition);
+		for(int i=0;i<Math.min(scopeBegin.size(), scopeEnd.size());++i){
+			e.list_scopes.add(new IntTuple(scopeBegin.get(i), scopeEnd.get(i)));
+		}
+		list_condBreakpoints.add(e);
+	}
+	public void setBreakpoints(int programID, List<Integer> lines){
+		while(list_breakpoints.size()<programID){
+			list_breakpoints.add(new ArrayList<Integer>());
+		}
+		list_breakpoints.set(programID, lines);
 	}
 	
 	//Private helper structs	

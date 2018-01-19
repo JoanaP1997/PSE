@@ -242,7 +242,10 @@ public class DebugControl {
 	 * @param expr the expression of the watch expression
 	 */
 	public void createWatchExpression(int id, String expr){
-		list_watchExpressions.add(id, new WatchExpression(expr));
+		while(list_watchExpressions.size()<id){
+			list_watchExpressions.add(new WatchExpression(""));
+		}
+		list_watchExpressions.set(id, new WatchExpression(expr));
 		//TODO add default Scope
 	}
 	/**
@@ -426,6 +429,15 @@ public class DebugControl {
 		}
 		return l;
 	}
+	/**
+	 * Getter for the value of a watch expression
+	 * @param expressionID the id of the expression
+	 * @return the current Value of the expression
+	 * @throws DIbuggerLogicException {@linkplain WatchExpression#evaluate(List)}
+	 */
+	public String getWEValue(int expressionID) throws DIbuggerLogicException{
+		return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
+	}
 	
 	/**
 	 * 
@@ -469,7 +481,15 @@ public class DebugControl {
 		}
 		return l;
 	}
-	
+	/**
+	 * Getter for the value of a conditional breakpoint
+	 * @param breakpointID the id of the conditional breakpoint
+	 * @return the current Value of the condition
+	 * @throws DIbuggerLogicException {@linkplain ConditionalBreakpoint#evaluate(List)}
+	 */
+	public boolean getCBValue(int breakpointID) throws DIbuggerLogicException{
+		return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
+	}
 	
 	//private helper methods
 	private int getMaximumOfList(List<Integer> l){
