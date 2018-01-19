@@ -116,11 +116,11 @@ public class DebugControl {
 				boolean breakpointFound=false;
 				for(int i=0;i<programCount;++i){
 					if(!breaked[i]){
-						singleStepNoEvaluation(i, STEP_NORMAL);
+						boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
 						TraceState state = list_currentTraceStates.get(i);
 						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
 						//only stop stepping when trace state is after a return call
-						if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN){
+						if(breakpointFound || state.getPosition()==TraceStatePosition.AFTERRETURN || !iterated){
 							breaked[i]=true;
 						}
 					}
@@ -140,7 +140,7 @@ public class DebugControl {
 				boolean breakpointFound=false;
 				for(int i=0;i<programCount;++i){
 					if(!breaked[i]){
-						singleStepNoEvaluation(i, STEP_NORMAL);
+						boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
 						TraceState state = list_currentTraceStates.get(i);
 						if(state.getPosition()==TraceStatePosition.AFTERFUNCCALL){
 							++inline[i];
@@ -149,7 +149,7 @@ public class DebugControl {
 							breaked[i]=true;
 						}
 						breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-						if(breakpointFound){
+						if(breakpointFound | !iterated){
 							breaked[i]=true;
 						}
 						//only stop stepping when trace state is after the outer most return call
@@ -179,11 +179,37 @@ public class DebugControl {
 	public void singleStep(int programID){
 		singleStepNoEvaluation(programID, STEP_NORMAL);
 	}
+	
+	/**
+	 * Continues the Debugging / Stepping in all programs until a Breakpoint or Conditional Breakpoint is reached.
+	 */
+	public void continueDebug() throws DIbuggerLogicException{
+		boolean[] breaked=new boolean[programCount];
+		while(!checkBoolArrayOnValue(breaked, true)){
+			for(int i=0;i<programCount;++i){
+				if(!breaked[i]){
+					boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
+					if(!iterated){
+						breaked[i] = true;
+					}
+					//check breakpoints
+					breaked[i] = !breaked[i] ? evaluateBreakpoints(i) : true;
+				}
+			}
+			//evaluate conditional breakpoints
+			if(evaluateConditionalBreakpoints()){
+				for(int i=0;i<programCount;++i){
+					breaked[i]=true;
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Executes a single step without evaluating breakpoints
 	 * @param programID
 	 */
-	private void singleStepNoEvaluation(int programID, int direction){
+	private boolean singleStepNoEvaluation(int programID, int direction){
 		while(list_currentTraceStates.size()<programID){
 			list_currentTraceStates.add(null);
 		}
@@ -191,11 +217,14 @@ public class DebugControl {
 		if((direction==STEP_NORMAL || direction==STEP_OVER || direction==STEP_OUT) && it.hasNext()){
 			list_currentTraceStates.set(programID, it.next());
 			list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter()+1);
+			return true;
 		}
 		else if(direction==STEP_BACK && it.hasPrev()){
 			list_currentTraceStates.set(programID, it.prev());
 			list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter()-1);
+			return true;
 		}
+		return false;
 	}
 	
 	private void jumpTraceIterator(int programID, int numberOfIterations){
@@ -223,17 +252,6 @@ public class DebugControl {
 			}
 		}
 		return false;
-	}
-	
-	/**
-	 * Continues the Debugging / Stepping in all programs until a Breakpoint or Conditional Breakpoint is reached.
-	 */
-	public void continueDebug() throws DIbuggerLogicException{
-		//TODO
-		for(int i=0;i<programCount;++i){
-			step(STEP_NORMAL);
-			//TODO check breakpoints / cond breakpoints
-		}
 	}
 	
 	/**
@@ -359,7 +377,7 @@ public class DebugControl {
 	
 	/**
 	 * Getter for the current programCounter of all programs
-	 * @return list of integers representing all programCounters
+	 * @return a list of integers representing all programCounters
 	 */
 	public List<Integer> getProgramCounter(){
 		List<Integer> l = new ArrayList<Integer>();
@@ -369,6 +387,17 @@ public class DebugControl {
 		return l;
 	}
 	
+	/**
+	 * Getter for the current line of all programs
+	 * @return a list countaining the current execution line of all programs
+	 */
+	public List<Integer> getCurrentExecutionLines(){
+		List<Integer> l = new ArrayList<Integer>();
+		for(int i=0;i<programCount;++i){
+			l.add(list_currentTraceStates.get(i).getLineNumber());
+		}
+		return l;
+	}
 	
 	/**
 	 * Sets the maximum iteration count for loops (example: while loop)
