@@ -126,12 +126,9 @@ public class ProgramPanel extends JPanel {
     private void initCodeArea() {
         JPanel breakpointButtonPanel = new JPanel();
 
-        GridBagLayout breakpointPanelLayout = new GridBagLayout();
+        SpringLayout breakpointPanelLayout = new SpringLayout();
         breakpointButtonPanel.setLayout(breakpointPanelLayout);
-        GridBagConstraints breakpointConstraints = new GridBagConstraints();
-        breakpointConstraints.anchor = GridBagConstraints.NORTH;
-        breakpointConstraints.fill = GridBagConstraints.NONE;
-        breakpointConstraints.weighty = 1;
+
 
         codeScrollPane = new JScrollPane();
         lines = new JTextArea("1");
@@ -158,8 +155,13 @@ public class ProgramPanel extends JPanel {
                 lines.setText(getText());
                 breakpointButtons.add(new JRadioButton());
                 breakpointButtons.get(breakpointButtons.size()- 1).setPreferredSize(new Dimension(10,10));
-                breakpointConstraints.gridy = breakpointButtons.size()- 1;
-                breakpointButtonPanel.add(breakpointButtons.get(breakpointButtons.size()- 1), breakpointConstraints);
+                breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(breakpointButtons.size() - 1),
+                        0,
+                        SpringLayout.WEST, breakpointButtons.get(breakpointButtons.size() - 2));
+                breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(breakpointButtons.size() - 1),
+                        20,
+                        SpringLayout.NORTH, breakpointButtons.get(breakpointButtons.size() - 2));
+                breakpointButtonPanel.add(breakpointButtons.get(breakpointButtons.size() - 1));
                 breakpointButtonPanel.updateUI();
             }
 
@@ -186,13 +188,17 @@ public class ProgramPanel extends JPanel {
         breakpointButtons = new ArrayList<JRadioButton>();
         breakpointButtons.add(new JRadioButton());
         breakpointButtons.get(0).setPreferredSize(new Dimension(10,10));
-        breakpointConstraints.anchor = GridBagConstraints.NORTH;
-        breakpointConstraints.fill = GridBagConstraints.NONE;
-        breakpointConstraints.weighty = 1;
         breakpointButtonPanel.setPreferredSize(new Dimension(10,400));
-        breakpointButtonPanel.add(breakpointButtons.get(0), breakpointConstraints);
+        breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(0),
+                0,
+                SpringLayout.WEST, breakpointButtonPanel);
+        breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
+                3,
+                SpringLayout.NORTH, breakpointButtonPanel);
+        breakpointButtonPanel.add(breakpointButtons.get(0));
         breakpointButtonPanel.setVisible(true);
         //TODO: Breakpoint stuff... Idee: List mit Radio Buttons, wenn geklickt NR in Liste rausfinden und BP weiter geben
+
         codePanel.add(breakpointButtonPanel, codePanelLayout);
         codePanel.add(codeScrollPane, codePanelLayout);
 
