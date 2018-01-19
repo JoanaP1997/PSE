@@ -9,12 +9,15 @@ import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationTwoDimContext
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignOneDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignThreeDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignTwoDimContext;
+import dibugger.debuglogic.antlrparser.WlangParser.DeclarationContext;
+import dibugger.debuglogic.antlrparser.WlangParser.DeclareAssignContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FuncCallContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FunctionHeadContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfElseWithBlockContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfElseWithSingleContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfWithBlockContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfWithSingleContext;
+import dibugger.debuglogic.antlrparser.WlangParser.MainFunctionHeadContext;
 import dibugger.debuglogic.antlrparser.WlangParser.PureAssignContext;
 import dibugger.debuglogic.antlrparser.WlangParser.WhileWithBlockContext;
 import dibugger.debuglogic.antlrparser.WlangParser.WhileWithSingleContext;
@@ -28,7 +31,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     this.termGenVisitor = new TermGenerationVisitor();
   }
   // RoutineCommands
-
+  
   // Array Commands
   @Override
   public Command visitArrayDeclarationOneDim(ArrayDeclarationOneDimContext ctx) {
@@ -88,17 +91,16 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     Term value = this.termGenVisitor.visit(ctx.value);
     return new Assignment(this.controller, ctx.id.getLine(), ctx.id.getText(), value);
   }
-
-  /*
-   * @Override public Command visitDeclaration(DeclarationContext ctx) { return
-   * new Declaration(this.controller, ctx.type. irgendwiedenenumwert
-   * ,ctx.id.getText()); }
-   * 
-   * @Override public Command visitDeclareAssign(DeclareAssignContext ctx) {
-   * Term value = this.termGenVisitor.visit(ctx.value); return new
-   * DeclarationAssignment(controller, ctx.type. irgendwiedenenumwert
-   * ,ctx.id.getText(), value ) }
-   */ // TODO
+  @Override
+  public Command visitDeclaration(DeclarationContext ctx) {
+    //TODO TYPE
+    return new Declaration(this.controller, ctx.getStart().getLine(), ctx.id.getText(), Type.NULL);
+  }
+  @Override
+  public Command visitDeclareAssign(DeclareAssignContext ctx) {
+    Term value = this.termGenVisitor.visit(ctx.value);
+    return new DeclarationAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText(), Type.NULL, value);
+  }
   // Function Call
   @Override
   public Command visitFuncCall(FuncCallContext ctx) {
