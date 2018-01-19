@@ -1,5 +1,8 @@
 package dibugger.debuglogic.interpreter;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.IncompatibleTypeException;
+
 /**
  * 
  * @author Pascal
@@ -12,101 +15,74 @@ public class BooleanValue extends TermValue {
 		super(Type.BOOLEAN);
 		this.value = value;
 	}
-
-	@Override
-	public TermValue add(TermValue operand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TermValue mul(TermValue operand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TermValue div(TermValue operand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TermValue mod(TermValue operand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TermValue sub(TermValue operand) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-//	@Override
-//	public TermValue or(TermValue operand) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public TermValue and(TermValue operand) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public TermValue not(TermValue operand) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 	
 	@Override
-	public boolean greaterEqual(TermValue operand) {
-		// TODO Auto-generated method stub
-		return false;
+	public TermValue add(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_add");
 	}
 
 	@Override
-	public boolean greaterThan(TermValue operand) {
-		// TODO Auto-generated method stub
-		return false;
+	public TermValue mul(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_mul");
 	}
 
 	@Override
-	public boolean lessEqual(TermValue operand) {
-		// TODO Auto-generated method stub
-		return false;
+	public TermValue div(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_div");
 	}
 
 	@Override
-	public boolean lessThan(TermValue operand) {
-		// TODO Auto-generated method stub
-		return false;
+	public TermValue mod(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_mod");
 	}
 
 	@Override
-	public boolean equal(TermValue operand) {
+	public TermValue sub(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_sub");
+	}
+	
+	@Override
+	public boolean greaterEqual(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_ge");
+	}
+
+	@Override
+	public boolean greaterThan(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_gt");
+	}
+
+	@Override
+	public boolean lessEqual(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_le");
+	}
+
+	@Override
+	public boolean lessThan(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_lt");
+	}
+
+	@Override
+	public boolean equal(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.BOOLEAN){
 			return value == ((BooleanValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_eq");
 	}
 
 	@Override
-	public boolean or(TermValue operand) {
+	public boolean or(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.BOOLEAN){
 			return value || ((BooleanValue) operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_or");
 	}
 	
 	@Override
-	public boolean and(TermValue operand) {
+	public boolean and(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.BOOLEAN){
 			return value && ((BooleanValue) operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_and");
 	}
 	
 	@Override

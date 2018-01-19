@@ -1,5 +1,6 @@
 package dibugger.debuglogic.interpreter;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.IncompatibleTypeException;
 
 /**
@@ -17,7 +18,7 @@ public class CharValue extends TermValue {
 	}
 
 	@Override
-	public TermValue add(TermValue operand) throws IncompatibleTypeException {	
+	public TermValue add(TermValue operand) throws DIbuggerLogicException {	
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value+((FloatValue)operand).getValue());
 		}
@@ -33,10 +34,10 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value+((CharValue)operand).getValue()));
 		}
-		throw new IncompatibleTypeException(-1, "lg_exc_term_add_char");
+		throw new IncompatibleTypeException("db_it_exc_add");
 	}
 	@Override
-	public TermValue mul(TermValue operand) {
+	public TermValue mul(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value*((FloatValue)operand).getValue());
 		}
@@ -52,11 +53,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value*((CharValue)operand).getValue()));
 		}
-		return null;
+		throw new IncompatibleTypeException("db_it_exc_mul");
 	}
 
 	@Override
-	public TermValue div(TermValue operand) {
+	public TermValue div(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value/((FloatValue)operand).getValue());
 		}
@@ -72,11 +73,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value/((CharValue)operand).getValue()));
 		}
-		return null;
+		throw new IncompatibleTypeException("db_it_exc_div");
 	}
 
 	@Override
-	public TermValue mod(TermValue operand) {
+	public TermValue mod(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value%((FloatValue)operand).getValue());
 		}
@@ -92,11 +93,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value%((CharValue)operand).getValue()));
 		}
-		return null;
+		throw new IncompatibleTypeException("db_it_exc_mod");
 	}
 
 	@Override
-	public TermValue sub(TermValue operand) {
+	public TermValue sub(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return new FloatValue(value-((FloatValue)operand).getValue());
 		}
@@ -112,11 +113,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return new CharValue((char) (value-((CharValue)operand).getValue()));
 		}
-		return null;
+		throw new IncompatibleTypeException("db_it_exc_sub");
 	}
 
 //	@Override
-//	public TermValue or(TermValue operand) {	
+//	public TermValue or(TermValue operand) throws DIbuggerLogicException {	
 //		if(operand.getType()==Type.INT){
 //			return new IntValue(value | ((IntValue)operand).getValue());
 //		}
@@ -127,7 +128,7 @@ public class CharValue extends TermValue {
 //	}
 //	
 //	@Override
-//	public TermValue not(TermValue operand) {
+//	public TermValue not(TermValue operand) throws DIbuggerLogicException {
 //		if(operand.getType()==Type.INT){
 //			return new IntValue(~value);
 //		}
@@ -138,7 +139,7 @@ public class CharValue extends TermValue {
 //	}
 //	
 //	@Override
-//	public TermValue and(TermValue operand) {
+//	public TermValue and(TermValue operand) throws DIbuggerLogicException {
 //		if(operand.getType()==Type.INT){
 //			return new IntValue(value & ((IntValue)operand).getValue());
 //		}
@@ -149,7 +150,7 @@ public class CharValue extends TermValue {
 //	}
 	
 	@Override
-	public boolean greaterEqual(TermValue operand) {
+	public boolean greaterEqual(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return value>=((FloatValue)operand).getValue();
 		}
@@ -165,11 +166,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return value>=((CharValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_ge");
 	}
 
 	@Override
-	public boolean greaterThan(TermValue operand) {
+	public boolean greaterThan(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return value>((FloatValue)operand).getValue();
 		}
@@ -185,11 +186,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return value>((CharValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_gt");
 	}
 
 	@Override
-	public boolean lessEqual(TermValue operand) {
+	public boolean lessEqual(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return value<=((FloatValue)operand).getValue();
 		}
@@ -205,11 +206,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return value<=((CharValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_le");
 	}
 
 	@Override
-	public boolean lessThan(TermValue operand) {
+	public boolean lessThan(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return value<((FloatValue)operand).getValue();
 		}
@@ -225,11 +226,11 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return value<((CharValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_lt");
 	}
 
 	@Override
-	public boolean equal(TermValue operand) {
+	public boolean equal(TermValue operand) throws DIbuggerLogicException {
 		if(operand.getType()==Type.FLOAT){
 			return value==((FloatValue)operand).getValue();
 		}
@@ -245,22 +246,22 @@ public class CharValue extends TermValue {
 		else if(operand.getType()==Type.CHAR){
 			return value==((CharValue)operand).getValue();
 		}
-		return false;
+		throw new IncompatibleTypeException("db_it_exc_eq");
 	}
 	
 	@Override
-	public boolean or(TermValue operand) {
-		return false;
+	public boolean or(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_or");
 	}
 	
 	@Override
-	public boolean and(TermValue operand) {
-		return false;
+	public boolean and(TermValue operand) throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_and");
 	}
 	
 	@Override
-	public boolean not() {
-		return false;
+	public boolean not() throws DIbuggerLogicException {
+		throw new IncompatibleTypeException("db_it_exc_not");
 	}
 
 	@Override
