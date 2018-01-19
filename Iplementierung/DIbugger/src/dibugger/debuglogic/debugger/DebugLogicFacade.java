@@ -1,10 +1,13 @@
 package dibugger.debuglogic.debugger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.debuglogic.interpreter.WatchExpression;
 
 /**
  * Facade class for the Debugger. It delegates functions calls to the DebugControl and / or Suggestion classes.
@@ -120,6 +123,13 @@ public class DebugLogicFacade extends Observable{
 	}
 	
 	/**
+	 * @see DebugControl#getCurrentExecutionLines()
+	 */
+	public List<Integer> getCurrentExecutionLines(){
+		return debugControl.getCurrentExecutionLines();
+	}
+	
+	/**
 	 * @see DebugControl#reset()
 	 */
 	public void reset(){
@@ -152,30 +162,132 @@ public class DebugLogicFacade extends Observable{
 	public void suggestStepSize(List<String> programText){
 		suggest_stepsize.suggest(programText);
 	}
+	/**
+	 * @see RelationalSuggestion#suggestWatchExpression()
+	 */
 	public String suggestWatchExpression(){
 		return suggest_relational.suggestWatchExpression();
 	}
+	/**
+	 * @see RelationalSuggestion#suggestConditionalBreakpoint()
+	 */
 	public String suggestConditionalBreakpoint(){
 		return suggest_relational.suggestConditionalBreakpoint();
 	}
+	/**
+	 * @see InputValueSuggestion#suggest(String, String, int)
+	 */
 	public String suggestInputValue(String identifier, String range, int type){
 		return suggest_input.suggest(identifier, range, type);
 	}
 	
+	/**
+	 * Select a strategy to be used to suggest step sizes
+	 * @param id the strategy id to select
+	 */
 	public void selectStepSizeStrategy(int id){
 		if(id == STRAT_STEP_SIZE_SIMPLE){
 			suggest_stepsize = new SimpleStepSizeSuggestion(debugControl);
 		}
 	}
+	/**
+	 * Select a strategy to be used to suggest realtional expressions
+	 * @param id the strategy id to select
+	 */
 	public void selectRelationalStrategy(int id){
 		if(id == STRAT_REL_SIMPLE){
 			suggest_relational = new SimpleRelationalSuggestion();
 		}
 	}
+	/**
+	 * Select a strategy to be used to suggest input values
+	 * @param id the strategy id to select
+	 */
 	public void selectInputValueStrategy(int id){
 		if(id == STRAT_INPUT_SIMPLE){
 			suggest_input = new SimpleInputSuggestion();
 		}
+	}
+	
+	//Getter delegated to DebugControl
+	/**
+	 * 
+	 * @return the amount of conditional breakpoints
+	 */
+	public int getWatchExpressionSize(){
+		return debugControl.getWatchExpressionSize();
+	}
+	/**
+	 * 
+	 * @return a list containing all expression of the watch expressions
+	 */
+	public List<String> getWatchExpressions(){
+		return debugControl.getWatchExpressions();
+	}
+	/**
+	 * Getter for the Scope Begin of a given Watch Expression
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope begins for the given watch expression.
+	 */
+	public List<Integer> getWEScopeBegin(int expressionID){
+		return debugControl.getWEScopeBegin(expressionID);
+	}
+	/**
+	 * Getter for the Scope End of a given Watch Expression
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope ends for the given watch expression.
+	 */
+	public List<Integer> getWEScopeEnd(int expressionID){
+		return debugControl.getWEScopeEnd(expressionID);
+	}
+	/**
+	 * Getter for the value of a watch expression
+	 * @param expressionID the id of the expression
+	 * @return the current Value of the expression
+	 * @throws DIbuggerLogicException {@linkplain WatchExpression#evaluate(List)}
+	 */
+	public String getWEValue(int expressionID) throws DIbuggerLogicException{
+		return debugControl.getWEValue(expressionID);
+	}
+	
+	/**
+	 * 
+	 * @return the amount of conditional breakpoints
+	 */
+	public int getConditionalBreakpointSize(){
+		return debugControl.getConditionalBreakpointSize();
+	}
+	/**
+	 * 
+	 * @return a list containing all conditions of the conditional breakpoints
+	 */
+	public List<String> getConditionalBreakpoints(){
+		return debugControl.getConditionalBreakpoints();
+	}
+	/**
+	 * Getter for the Scope Begin of a given Conditional Breakpoint
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope begins for the given conditional breakpoint.
+	 */
+	public List<Integer> getCBScopeBegin(int expressionID){
+		return debugControl.getCBScopeBegin(expressionID);
+	}
+	/**
+	 * Getter for the Scope end of a given Conditional Breakpoint
+	 * @param expressionID the id of the expression
+	 * @return a List containing all Scope ends for the given conditional breakpoint.
+	 */
+	public List<Integer> getCBScopeEnd(int expressionID){
+		return debugControl.getCBScopeEnd(expressionID);
+	}
+	/**
+	 * Getter for the value of a conditional breakpoint
+	 * @param breakpointID the id of the conditional breakpoint
+	 * @return the current Value of the condition
+	 * @throws DIbuggerLogicException {@linkplain ConditionalBreakpoint#evaluate(List)}
+	 */
+	public boolean getCBValue(int breakpointID) throws DIbuggerLogicException{
+		return debugControl.getCBValue(breakpointID);
 	}
 	
 	//Strategy Types
