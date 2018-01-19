@@ -3,42 +3,62 @@ package dibugger.control;
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
+import java.util.Observable;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
+import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.filehandler.facade.FileHandlerFacade;
 import dibugger.filehandler.facade.LanguageFile;
+import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.userinterface.GUIFacade;
 
-public class FileHandlerInteractor {
+public class FileHandlerInteractor extends Observable {
     private static final String LANGUAGE_DEFAULT = "german";
     
     private FileHandlerFacade fileHandlerFacade;
     private GUIFacade guiFacade;
     
     private LanguageFile languageFile;
+    private PropertiesFile propertiesFile;
     
-    public FileHandlerInteractor(GUIFacade guiFacade) throws FileHandlerException {
+    private DebugLogicController debugLogicController;
+    
+    public FileHandlerInteractor(DebugLogicController debugLogicController, 
+            GUIFacade guiFacade) throws FileHandlerException {
         Objects.requireNonNull(guiFacade);
         this.guiFacade = guiFacade;
+        
+        Objects.requireNonNull(debugLogicController);
+        this.debugLogicController = debugLogicController;
         
         //  throws FileHandlerException
         fileHandlerFacade = new FileHandlerFacade();    
         
-        //  throws LanguageNotFoundException
-        languageFile = fileHandlerFacade.getLanguageFile(LANGUAGE_DEFAULT);
+        propertiesFile = fileHandlerFacade.loadPropertiesFile();
+        
+        //  throws LanuageNotFoundException
+        changeLanguage(propertiesFile.getSelectedLanguage());      
     }
     
     public LanguageFile getLanguageFile() {
         return languageFile;
     }
     
-    
-    public ConfigurationFile loadConfigurationFile(File configurationFile) throws FileHandlerException {
-        return fileHandlerFacade.loadConfig(configurationFile);     
+    private void setLanguageFile(LanguageFile languageFile) {
+        Objects.requireNonNull(languageFile);
+        this.languageFile = languageFile;
+        this.notifyObservers();
     }
     
-    public void applyConfiguration(ConfigurationFile configFile) {
+    
+    public void loadConfigurationFile(File configurationFile) throws FileHandlerException {
+        ConfigurationFile nextConfigFile = fileHandlerFacade.loadConfig(configurationFile);
+        debugLogicController.reset();
+        applyConfiguration(nextConfigFile);
+    }
+    
+    private void applyConfiguration(ConfigurationFile configFile) {
         throw new UnsupportedOperationException();
     }
     
@@ -47,7 +67,7 @@ public class FileHandlerInteractor {
     }
     
     public void loadProgramText(File file) {
-        throw new UnsupportedOperationException();      
+        throw new UnsupportedOperationException();
     }
 
     public List<String> getAvailableLanuages() {
@@ -55,7 +75,9 @@ public class FileHandlerInteractor {
         return fileHandlerFacade.getLanguages();     
     }   
     
-    public void changeLanguage(String languageId) {
-        throw new UnsupportedOperationException();      
+    public void changeLanguage(String languageId) throws LanguageNotFoundException {
+        LanguageFile nextLanguageFile = fileHandlerFacade.getLanguageFile(languageId);
+        setLanguageFile(nextLanguageFile);
+        guiFacade.changeLanguage();
     }
 }

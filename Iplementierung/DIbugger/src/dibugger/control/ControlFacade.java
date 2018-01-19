@@ -7,6 +7,7 @@ import java.util.Objects;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
+import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.userinterface.GUIFacade;
 
@@ -18,15 +19,16 @@ public class ControlFacade {
     private FileHandlerInteractor fileHandlerInteractor;
     
     public ControlFacade(GUIFacade guiFacade) {
+        disableDebugMode();
         Objects.requireNonNull(guiFacade);
-        debugLogicController = new DebugLogicController(guiFacade);
-        exceptionHandler = new ExceptionHandler(guiFacade);
+        debugLogicController = new DebugLogicController();
+        debugLogicController.attachToModel(guiFacade);
         try {
-            fileHandlerInteractor = new FileHandlerInteractor(guiFacade);
+            fileHandlerInteractor = new FileHandlerInteractor(debugLogicController, guiFacade);
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         }
-        exceptionHandler.setLanguageFile(fileHandlerInteractor.getLanguageFile());
+        exceptionHandler = new ExceptionHandler(guiFacade, fileHandlerInteractor);
     }
     
     
@@ -154,13 +156,8 @@ public class ControlFacade {
     public void loadConfiguration(File configurationFile) {
         ensureNotInDebugMode();
         
-        ConfigurationFile configFile;
-        
         try {
-            configFile = fileHandlerInteractor.loadConfigurationFile(configurationFile);
-            reset();
-            
-            fileHandlerInteractor.applyConfiguration(configFile);
+            fileHandlerInteractor.loadConfigurationFile(configurationFile);
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         }     
@@ -218,7 +215,11 @@ public class ControlFacade {
     }
     
     
-    public void changeLanguage(String languageId) {
-        fileHandlerInteractor.changeLanguage(languageId);      
+    public void changeLanguage(String languageId) {        
+        try {
+            fileHandlerInteractor.changeLanguage(languageId);
+        } catch (LanguageNotFoundException exception) {
+            exception.printStackTrace();
+        }
     }
 }

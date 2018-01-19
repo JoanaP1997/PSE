@@ -1,6 +1,8 @@
 package dibugger.control;
 
 import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.filehandler.exceptions.FileHandlerException;
@@ -8,40 +10,40 @@ import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 
-public class ExceptionHandler {
-    private static final String NO_LANGUAGEFILE_FOUND = "Es konnte keine Sprachdatei zum Anzeigen von "
-                                                    + "Texten der Benutzeroberfläche gefunden werden!"
-                                                    + "Möglicherweise wurde DIBugger nicht korrekt "
-                                                    + "installiert. Bitte tuen Sie dieses und jenes";
-    
+public class ExceptionHandler implements Observer {    
+    private FileHandlerInteractor fileHandlerInteractor;
     private GUIFacade guiFacade;
+    
     private LanguageFile languageFile;
     
-    public ExceptionHandler(GUIFacade guiFacade) {
-        //  LanguageFile object acts as sentinel
-        this(guiFacade, new LanguageFile("sentinel", "sentinel"));
-        
-        //  Elegantere Lösung für Zugriff auf id finden
-        languageFile.putTranslation((new LanguageNotFoundException()).getID(), NO_LANGUAGEFILE_FOUND);
-    }
-    
-    public ExceptionHandler(GUIFacade guiFacade, LanguageFile languageFile) {
+    public ExceptionHandler(GUIFacade guiFacade, 
+            FileHandlerInteractor fileHandlerInteractor) {
         Objects.requireNonNull(guiFacade);
         this.guiFacade = guiFacade;
-        Objects.requireNonNull(languageFile);
-        this.languageFile = languageFile;
+        Objects.requireNonNull(fileHandlerInteractor);
+        this.fileHandlerInteractor = fileHandlerInteractor;
+        setLanguageFile(fileHandlerInteractor.getLanguageFile());
     }
     
     public void handle(DIbuggerLogicException exception) {
-        guiFacade.showError(exception.getID());
+        String exceptionId = exception.getID();
+        guiFacade.showError(languageFile.getTranslation(exceptionId));
     }    
     
     public void handle(FileHandlerException exception) {
-        guiFacade.showError(exception.getID());
+        String exceptionId = exception.getID();
+        guiFacade.showError(exceptionId);
     }
     
     public void setLanguageFile(LanguageFile languageFile) {
         Objects.requireNonNull(languageFile);
         this.languageFile = languageFile;
+    }
+
+    @Override
+    public void update(Observable observable, Object argument) {
+        if (observable instanceof FileHandlerInteractor) {
+            setLanguageFile(fileHandlerInteractor.getLanguageFile());
+        }        
     }
 }

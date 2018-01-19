@@ -16,9 +16,9 @@ public class DebugLogicController {
         debugLogicFacade = new DebugLogicFacade();
     }
     
-    public DebugLogicController(GUIFacade guiFacade) {
-        this();
-//        debugLogicFacade.addObserver(guiFacade);
+    
+    public void attachToModel(GUIFacade guiFacade) {
+        debugLogicFacade.addObserver(guiFacade);
     }
     
     
