@@ -1,5 +1,7 @@
 package dibugger.debuglogic.interpreter;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import dibugger.debuglogic.antlrparser.WlangBaseVisitor;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationOneDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationThreeDimContext;
@@ -25,9 +27,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     this.controller = controller;
     this.termGenVisitor = new TermGenerationVisitor();
   }
-
   // RoutineCommands
-  
 
   // Array Commands
   @Override
@@ -42,8 +42,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     String identifier = ctx.id.getText();
     Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
     Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
-    return new ArrayDeclaration(this.controller, ctx.id.getLine(),
-        identifier, firstIndex, secondIndex);
+    return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex);
   }
 
   @Override
@@ -52,8 +51,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
     Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
     Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
-    return new ArrayDeclaration(this.controller, ctx.id.getLine(),
-        identifier, firstIndex, secondIndex, thirdIndex);
+    return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, thirdIndex);
   }
 
   @Override
@@ -70,8 +68,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     Term firstIndex = this.termGenVisitor.visit(ctx.firstIndex);
     Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
     Term value = this.termGenVisitor.visit(ctx.value);
-    return new ArrayElementAssignment(this.controller, ctx.id.getLine(), 
-        identifier, firstIndex, secondIndex, value);
+    return new ArrayElementAssignment(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, value);
   }
 
   @Override
@@ -81,8 +78,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     Term secondIndex = this.termGenVisitor.visit(ctx.secondIndex);
     Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
     Term value = this.termGenVisitor.visit(ctx.value);
-    return new ArrayElementAssignment(this.controller, ctx.id.getLine(), 
-        identifier, firstIndex, secondIndex,
+    return new ArrayElementAssignment(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex,
         thirdIndex, value);
   }
 
@@ -113,26 +109,42 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
   // Composite Commands
   @Override
   public Command visitWhileWithBlock(WhileWithBlockContext ctx) {
-    // TODO Auto-generated method stub
-    return super.visitWhileWithBlock(ctx);
+    Term condition = this.termGenVisitor.visit(ctx.condition());
+    WhileCommand whileCommand = new WhileCommand(this.controller, ctx.getStart().getLine(), condition);
+    // add child commands
+    for (ParseTree childCtx : ctx.content.children) {
+      whileCommand.addChild(visit(childCtx));
+    }
+    return whileCommand;
   }
 
   @Override
   public Command visitWhileWithSingle(WhileWithSingleContext ctx) {
-    // TODO Auto-generated method stub
-    return super.visitWhileWithSingle(ctx);
+    Term condition = this.termGenVisitor.visit(ctx.condition());
+    WhileCommand whileCommand = new WhileCommand(this.controller, ctx.getStart().getLine(), condition);
+    // add child command
+    whileCommand.addChild(visit(ctx.content));
+    return whileCommand;
   }
 
   @Override
   public Command visitIfWithBlock(IfWithBlockContext ctx) {
-    // TODO Auto-generated method stub
-    return super.visitIfWithBlock(ctx);
+    Term condition = this.termGenVisitor.visit(ctx.condition());
+    IfCommand ifCommand = new IfCommand(this.controller, ctx.getStart().getLine(), condition);
+    // add child commands
+    for (ParseTree childCtx : ctx.content.children) {
+      ifCommand.addChild(visit(childCtx));
+    }
+    return ifCommand;
   }
 
   @Override
   public Command visitIfWithSingle(IfWithSingleContext ctx) {
-    // TODO Auto-generated method stub
-    return super.visitIfWithSingle(ctx);
+    Term condition = this.termGenVisitor.visit(ctx.condition());
+    IfCommand ifCommand = new IfCommand(this.controller, ctx.getStart().getLine(), condition);
+    // add child command
+    ifCommand.addChild(visit(ctx.content));
+    return ifCommand;
   }
 
   @Override
