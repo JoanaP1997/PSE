@@ -19,10 +19,10 @@ public class FileHandlerInteractor extends Observable {
     private FileHandlerFacade fileHandlerFacade;
     private GUIFacade guiFacade;
     
+    private DebugLogicController debugLogicController;
+    
     private LanguageFile languageFile;
     private PropertiesFile propertiesFile;
-    
-    private DebugLogicController debugLogicController;
     
     public FileHandlerInteractor(DebugLogicController debugLogicController, 
             GUIFacade guiFacade) throws FileHandlerException {

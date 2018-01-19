@@ -43,7 +43,7 @@ public class ExceptionHandler implements Observer {
     @Override
     public void update(Observable observable, Object argument) {
         if (observable instanceof FileHandlerInteractor) {
-            setLanguageFile(fileHandlerInteractor.getLanguageFile());
+            setLanguageFile(((FileHandlerInteractor)observable).getLanguageFile());
         }        
     }
 }

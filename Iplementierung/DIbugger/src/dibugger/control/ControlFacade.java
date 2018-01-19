@@ -137,8 +137,8 @@ public class ControlFacade {
         debugLogicController.deleteAllBreakpoints();      
     }
 
-    public void saveText(List<String> programTexts, List<String> inputVariables) {
-        debugLogicController.saveText(programTexts, inputVariables);     
+    public void saveText(List<String> inputVariables, List<String> programTexts) {
+        debugLogicController.saveText(inputVariables, programTexts);     
     }
     
     public void startDebug() {
@@ -219,7 +219,7 @@ public class ControlFacade {
         try {
             fileHandlerInteractor.changeLanguage(languageId);
         } catch (LanguageNotFoundException exception) {
-            exception.printStackTrace();
+            exceptionHandler.handle(exception);
         }
     }
 }

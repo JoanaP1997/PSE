@@ -12,8 +12,11 @@ import dibugger.userinterface.GUIFacade;
 public class DebugLogicController {
     private DebugLogicFacade debugLogicFacade;
     
+    private TextInputBuffer inputBuffer;
+    
     public DebugLogicController() {
         debugLogicFacade = new DebugLogicFacade();
+        inputBuffer = new TextInputBuffer();
     }
     
     
@@ -90,8 +93,8 @@ public class DebugLogicController {
     }
     
 
-    public void saveText(List<String> programTexts, List<String> inputVariables) {
-        throw new UnsupportedOperationException();     
+    public void saveText(List<String> inputVariables, List<String> programTexts) {
+        inputBuffer.storeTextInput(inputVariables, programTexts);
     }
 
     
