@@ -3,13 +3,14 @@ package test.debuglogic.interpreter;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.FloatValue;
 import dibugger.debuglogic.interpreter.IntValue;
 
 public class TermValueTest {
 	
 	@Test
-	public void FloatValueTest(){
+	public void FloatValueTest() throws DIbuggerLogicException{
 		FloatValue v0 = new FloatValue(1.6f);
 		FloatValue v1 = new FloatValue(3.2f);
 		IntValue i0 = new IntValue(3);
