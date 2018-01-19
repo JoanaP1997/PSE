@@ -83,15 +83,23 @@ public class Scope {
 
 	/**
 	 * Getter for the expected return type of a scope.
-	 * @return the expectedReturnType
+	 * @return expectedReturnType the expected return type
 	 */
 	public Type getExpectedReturnType() {
 		return expectedReturnType;
 	}
 
 	/**
+	 * Setter for the return value of a scope.
+	 * @param returnValue the return value
+	 */
+	public void setReturnValue(TermValue returnValue) {
+	  this.returnValue = returnValue;
+	}
+	
+	/**
 	 * Getter for the return value of a scope.
-	 * @return the returnValue
+	 * @return returnValue the return value
 	 */
 	public TermValue getReturnValue() {
 		return returnValue;
@@ -99,7 +107,7 @@ public class Scope {
 
 	/**
 	 * Getter for the id of a scope.
-	 * @return the id
+	 * @return id the id
 	 */
 	public int getId() {
 		return this.id;
@@ -107,7 +115,7 @@ public class Scope {
 	
 	/**
 	 * Returns true if the routine of the scope is finished. False otherwise.
-	 * @return the value of isRoutineFinished
+	 * @return the value of routineFinished
 	 */
 	public boolean isRoutineFinished() {
 		return this.routineFinished;
