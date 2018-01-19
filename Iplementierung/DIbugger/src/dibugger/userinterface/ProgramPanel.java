@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,8 +26,8 @@ public class ProgramPanel extends JPanel {
 
     private JPanel codePanel;
     private JScrollPane codeScrollPane;
-    private JTextArea codeTextArea;
-    private JTextArea lines;
+    private JTextPane codeTextArea;
+    private JTextPane lines;
     private List<JRadioButton> breakpointButtons;
 
     private JPanel variableInspector;
@@ -131,8 +132,9 @@ public class ProgramPanel extends JPanel {
 
 
         codeScrollPane = new JScrollPane();
-        lines = new JTextArea("1");
-        codeTextArea = new JTextArea();
+        lines = new JTextPane();
+        lines.setText("1");
+        codeTextArea = new JTextPane();
         lines.setBackground(Color.YELLOW);
         lines.setEditable(false);
         codeTextArea.getDocument().addDocumentListener(new DocumentListener(){
@@ -168,11 +170,34 @@ public class ProgramPanel extends JPanel {
             @Override
             public void removeUpdate(DocumentEvent de) {
                 lines.setText(getText());
+                breakpointButtonPanel.removeAll();
+                breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(0),
+                        0,
+                        SpringLayout.WEST, breakpointButtonPanel);
+                breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
+                        3,
+                        SpringLayout.NORTH, breakpointButtonPanel);
+                breakpointButtonPanel.add(breakpointButtons.get(0));
+                int caretPosition = codeTextArea.getDocument().getLength();
+                Element root = codeTextArea.getDocument().getDefaultRootElement();
+                for(int i = 1; i < root.getElementIndex( caretPosition ) + 1; i++){
+                    breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(i),
+                            0,
+                            SpringLayout.WEST, breakpointButtons.get(i - 1));
+                    breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(i),
+                            20,
+                            SpringLayout.NORTH, breakpointButtons.get(i - 1));
+                    breakpointButtonPanel.add(breakpointButtons.get(i));
+                }
+                for (int i = root.getElementIndex( caretPosition); i < breakpointButtons.size(); i++) {
+                    breakpointButtons.remove(i);
+                }
+                breakpointButtonPanel.updateUI();
             }
 
         });
 
-        codeTextArea.setTabSize(2);
+
         codeScrollPane.getViewport().add(codeTextArea);
         codeScrollPane.setRowHeaderView(lines);
         codeScrollPane.setColumnHeaderView(breakpointButtonPanel);
@@ -197,8 +222,6 @@ public class ProgramPanel extends JPanel {
                 SpringLayout.NORTH, breakpointButtonPanel);
         breakpointButtonPanel.add(breakpointButtons.get(0));
         breakpointButtonPanel.setVisible(true);
-        //TODO: Breakpoint stuff... Idee: List mit Radio Buttons, wenn geklickt NR in Liste rausfinden und BP weiter geben
-
         codePanel.add(breakpointButtonPanel, codePanelLayout);
         codePanel.add(codeScrollPane, codePanelLayout);
 
@@ -297,4 +320,6 @@ public class ProgramPanel extends JPanel {
     public String getId() {
         return id;
     }
+
+
 }
