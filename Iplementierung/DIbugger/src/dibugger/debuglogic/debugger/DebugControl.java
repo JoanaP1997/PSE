@@ -359,7 +359,7 @@ public class DebugControl {
 	
 	/**
 	 * Getter for the current programCounter of all programs
-	 * @return list of integers representing all programCounters
+	 * @return a list of integers representing all programCounters
 	 */
 	public List<Integer> getProgramCounter(){
 		List<Integer> l = new ArrayList<Integer>();
@@ -369,6 +369,17 @@ public class DebugControl {
 		return l;
 	}
 	
+	/**
+	 * Getter for the current line of all programs
+	 * @return a list countaining the current execution line of all programs
+	 */
+	public List<Integer> getCurrentExecutionLines(){
+		List<Integer> l = new ArrayList<Integer>();
+		for(int i=0;i<programCount;++i){
+			l.add(list_currentTraceStates.get(i).getLineNumber());
+		}
+		return l;
+	}
 	
 	/**
 	 * Sets the maximum iteration count for loops (example: while loop)
