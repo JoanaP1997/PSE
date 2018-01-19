@@ -1,14 +1,11 @@
 package dibugger.userinterface.dibuggerpopups;
 
 import javax.swing.*;
-<<<<<<< HEAD:Iplementierung/DIbugger/src/dibugger/UserInterface/DIbuggerPopUps/ExpressionChangePopUp.java
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-=======
 
 import dibugger.userinterface.MainInterface;
 
->>>>>>> 6b0322bac787ec445679813482d6870e65e1a962:Iplementierung/DIbugger/src/dibugger/userinterface/dibuggerpopups/ExpressionChangePopUp.java
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
