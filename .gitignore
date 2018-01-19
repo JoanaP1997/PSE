@@ -12,6 +12,8 @@ Plichtenheft/Pflichtenheft.pdf
 *.bbl
 *.blg
 *.dvi
+*.fdb_latexmk
+*.fls
 *.glg
 *.glo
 *.gls

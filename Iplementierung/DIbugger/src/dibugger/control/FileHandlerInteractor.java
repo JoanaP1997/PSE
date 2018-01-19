@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
+import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.filehandler.facade.FileHandlerFacade;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
@@ -33,8 +34,12 @@ public class FileHandlerInteractor {
     }
     
     
-    public void loadConfiguration(File configurationFile) {
-        throw new UnsupportedOperationException();      
+    public ConfigurationFile loadConfigurationFile(File configurationFile) throws FileHandlerException {
+        return fileHandlerFacade.loadConfig(configurationFile);     
+    }
+    
+    public void applyConfiguration(ConfigurationFile configFile) {
+        throw new UnsupportedOperationException();
     }
     
     public void saveConfiguration(File configurationFile) {
