@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 
 public class WatchExpressionPanel extends ExpressionPanel {
     private MainInterface mainInterface;
+    private Object[][] dataEntries;
 
     private static WatchExpressionPanel singleton = null;
 
@@ -43,13 +44,29 @@ public class WatchExpressionPanel extends ExpressionPanel {
         panelType = "Watch Expressions:";
 
         String[] columnTitles = {"Opt", panelType , "Auswertung" };
-        Object[][] dataEntries = { {"b","hier könnte ihre Expression stehen", "ausgewertet"}};
+        dataEntries = new Object[1][3];
+        dataEntries[0][0] =  " ";
+        dataEntries[0][1] =  " ";
+        dataEntries[0][2] =  " ";
         TableModel tableModel = new DefaultTableModel(dataEntries, columnTitles);
         JTable table = new JTable(tableModel);
         table.addMouseListener(new MouseListener() {
                                    @Override
                                    public void mouseClicked(MouseEvent mouseEvent) {
-                                       new ExpressionChangePopUp(mainInterface, "Expression");
+                                       Point p = mouseEvent.getPoint();
+                                       if((table.rowAtPoint(p) == 0) & (table.columnAtPoint(p) == 0)) {
+                                           new ExpressionChangePopUp(mainInterface, "Expression");
+                                       } else if (table.columnAtPoint(p) != 0 & table.rowAtPoint(p) == 1){
+                                           //TODO: Watch-Expression hinzufügen
+                                           if (table.rowAtPoint(p) == dataEntries.length) {
+                                               //TODO: neue Zeile hinzufügen
+                                               int length = dataEntries.length;
+                                               dataEntries = new Object[length + 2][3];
+                                               getWatchExpressionPanel(mainInterface).updateUI();
+                                           }
+                                       } else if (table.columnAtPoint(p) != 0 & table.rowAtPoint(p) == 2) {
+                                           //TODO: Auswertung
+                                       }
                                    }
 
                                    @Override
