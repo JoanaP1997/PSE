@@ -156,7 +156,7 @@ public class ProgramPanel extends JPanel {
             public void insertUpdate(DocumentEvent de) {
                 lines.setText(getText());
                 breakpointButtons.add(new JRadioButton());
-                breakpointButtons.get(breakpointButtons.size()- 1).setPreferredSize(new Dimension(10,10));
+                breakpointButtons.get(breakpointButtons.size()- 1).setPreferredSize(new Dimension(15,15));
                 breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(breakpointButtons.size() - 1),
                         0,
                         SpringLayout.WEST, breakpointButtons.get(breakpointButtons.size() - 2));
@@ -210,10 +210,10 @@ public class ProgramPanel extends JPanel {
 
 
 
-        breakpointButtons = new ArrayList<JRadioButton>();
+        breakpointButtons = new ArrayList<>();
         breakpointButtons.add(new JRadioButton());
-        breakpointButtons.get(0).setPreferredSize(new Dimension(10,10));
-        breakpointButtonPanel.setPreferredSize(new Dimension(10,400));
+        breakpointButtons.get(0).setPreferredSize(new Dimension(15,15));
+        breakpointButtonPanel.setPreferredSize(new Dimension(15,400));
         breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(0),
                 0,
                 SpringLayout.WEST, breakpointButtonPanel);
@@ -222,7 +222,12 @@ public class ProgramPanel extends JPanel {
                 SpringLayout.NORTH, breakpointButtonPanel);
         breakpointButtonPanel.add(breakpointButtons.get(0));
         breakpointButtonPanel.setVisible(true);
-        codePanel.add(breakpointButtonPanel, codePanelLayout);
+
+        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane.add(breakpointButtonPanel);
+        layeredPane.add(codeTextArea);
+        codeScrollPane.setViewportView(layeredPane);
+        //codePanel.add(breakpointButtonPanel, codePanelLayout);
         codePanel.add(codeScrollPane, codePanelLayout);
 
 
