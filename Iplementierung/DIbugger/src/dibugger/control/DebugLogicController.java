@@ -2,9 +2,12 @@ package dibugger.control;
 
 import static dibugger.debuglogic.debugger.DebugControl.STEP_BACK;
 
+import java.util.Collection;
 import java.util.List;
 
+import dibugger.debuglogic.debugger.Breakpoint;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
+import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.GUIFacade;
@@ -24,9 +27,33 @@ public class DebugLogicController {
         debugLogicFacade.addObserver(guiFacade);
     }
     
+    public List<Breakpoint> getBreakpoints(int programNumber) {
+        return debugLogicFacade.getBreakpoints(programNumber);
+    }
     
-    public void setStepSize(int programId, int size) {
-        debugLogicFacade.setStepSize(programId, size);
+    public List<String> getConditionalBreakpoints(){
+        return debugLogicFacade.getConditionalBreakpoints();
+    }
+    
+    int getNumberOfBufferedPrograms() {
+        return inputBuffer.getNumberOfPrograms();
+    }
+    
+    int getNumberOfPrograms() {
+        return debugLogicFacade.getNumberOfPrograms();
+    }
+    
+    int getStepSize(int programNumber) {
+        return debugLogicFacade.getStepSize(programNumber);
+    }
+    
+    List<ProgramInput> getProgramInput() {
+        return inputBuffer.getProgramInput();
+    }
+    
+    
+    public void setStepSize(int numberOfProgram, int size) {
+        debugLogicFacade.setStepSize(numberOfProgram, size);
     }
     
     public void step(int type) throws DIbuggerLogicException {
@@ -37,8 +64,8 @@ public class DebugLogicController {
         debugLogicFacade.continueDebug();
     }
     
-    public void singleStep(int programId) {
-        debugLogicFacade.singleStep(programId);
+    public void singleStep(int numberOfProgram) {
+        debugLogicFacade.singleStep(numberOfProgram);
     }
     
     public void stepBack() throws DIbuggerLogicException {
@@ -48,6 +75,14 @@ public class DebugLogicController {
 
     public void createWatchExpression(int watchExpressionId, String expression) {
         debugLogicFacade.createWatchExpression(watchExpressionId, expression);      
+    }
+    
+    public void createWatchExpressions(Collection<String> expressions) {
+        int watchExpressionId = 0;
+        for (String expression : expressions) {
+            createWatchExpression(watchExpressionId, expression);
+            watchExpressionId++;
+        }
     }
     
     public void changeWatchExpression(int watchExpressionId, 
@@ -65,6 +100,14 @@ public class DebugLogicController {
         debugLogicFacade.createCondBreakpoint(breakPointId, condition);      
     }
     
+    void createConditionalBreakpoints(Collection<String> conditions) {
+        int breakpointId = 0;
+        for (String condition : conditions) {
+            createConditionalBreakpoint(breakpointId, condition);
+            breakpointId++;
+        }
+    }
+    
     public void changeConditionalBreakpoint(int breakPointId, 
             String condition, 
             List<ScopeTuple> scopes) {
@@ -80,12 +123,18 @@ public class DebugLogicController {
         throw new UnsupportedOperationException();      
     }
     
-    public void createBreakpoint(int programId, int line) {
-        debugLogicFacade.createBreakpoint(programId, line);      
+    public void createBreakpoint(int numberOfProgram, int line) {
+        debugLogicFacade.createBreakpoint(numberOfProgram, line);      
     }
     
-    public void deleteBreakpoint(int programId, int line) {
-        debugLogicFacade.deleteBreakpoint(programId, line);  
+    public void createBreakpoints(int numberOfProgram, Collection<Integer> lines) {
+        for (int line : lines) {
+            createBreakpoint(numberOfProgram, line);
+        }
+    }
+    
+    public void deleteBreakpoint(int numberOfProgram, int line) {
+        debugLogicFacade.deleteBreakpoint(numberOfProgram, line);  
     }
     
     public void deleteAllBreakpoints() {
@@ -113,7 +162,7 @@ public class DebugLogicController {
     
 
     public String suggestStepSize() {
-        throw new UnsupportedOperationException();      
+        throw new UnsupportedOperationException();
     }
     
     public String suggestWatchExpression() {

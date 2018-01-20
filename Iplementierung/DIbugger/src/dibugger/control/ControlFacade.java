@@ -28,7 +28,7 @@ public class ControlFacade {
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         }
-        exceptionHandler = new ExceptionHandler(guiFacade, fileHandlerInteractor);
+        exceptionHandler = new ExceptionHandler(fileHandlerInteractor, guiFacade);
     }
     
     
@@ -57,8 +57,8 @@ public class ControlFacade {
     }
     
 
-    public void setStepSize(int programId, int size) {
-        debugLogicController.setStepSize(programId, size);
+    public void setStepSize(int numberOfProgram, int size) {
+        debugLogicController.setStepSize(numberOfProgram, size);
     }
     
     public void step(int type) {
@@ -79,9 +79,9 @@ public class ControlFacade {
         }        
     }
     
-    public void singleStep(int programId) {
+    public void singleStep(int numberOfProgram) {
         ensureInDebugMode();
-        debugLogicController.singleStep(programId);        
+        debugLogicController.singleStep(numberOfProgram);        
     }
     
     public void stepBack() {
@@ -125,12 +125,12 @@ public class ControlFacade {
         debugLogicController.createSynchronousBreakpoint(line);     
     }
     
-    public void createBreakpoint(int programId, int line) {
-        debugLogicController.createBreakpoint(programId, line);      
+    public void createBreakpoint(int numberOfProgram, int line) {
+        debugLogicController.createBreakpoint(numberOfProgram, line);      
     }
     
-    public void deleteBreakpoint(int programId, int line) {
-        debugLogicController.deleteBreakpoint(programId, line);   
+    public void deleteBreakpoint(int numberOfProgram, int line) {
+        debugLogicController.deleteBreakpoint(numberOfProgram, line);   
     }
     
     public void deleteAllBreakpoints() {

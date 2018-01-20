@@ -27,6 +27,14 @@ public class GUIFacade implements Observer {
     public void showInput(int program, List<String> vars) {
         //TODO
     }
+    
+    public List<String> getVariablesOfInspector(int programNumber) {
+        throw new UnsupportedOperationException();
+    }
+    
+    public void showVariables(int numberOfProgram, List<String> variables) {
+        //TODO
+    }
 
     @Override
     public void update(Observable observable, Object o) {

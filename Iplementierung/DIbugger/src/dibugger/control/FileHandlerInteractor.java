@@ -1,10 +1,13 @@
 package dibugger.control;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Observable;
 
+import dibugger.debuglogic.debugger.Breakpoint;
+import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
@@ -59,15 +62,87 @@ public class FileHandlerInteractor extends Observable {
     }
     
     private void applyConfiguration(ConfigurationFile configFile) {
-        throw new UnsupportedOperationException();
+        int numberOfPrograms = configFile.getNumPrograms();
+        for (int i = 0; i < numberOfPrograms; i++) {
+            String programText = configFile.getProgramText(i);
+            guiFacade.showProgramText(programText, i);
+            
+            List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
+            List<String> variablesAndValues = new ArrayList<>();
+            
+            for (String identifier : inputValueIdentifiers) {
+                String inputValue = configFile.getInputValue(i, identifier);
+                variablesAndValues.add(identifier + " = " + inputValue);
+            }
+            guiFacade.showInput(i, variablesAndValues);
+            
+            List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
+            guiFacade.showVariables(i, variablesOfInspector);
+            
+            int stepSize = configFile.getStepSize(i);
+            debugLogicController.setStepSize(i, stepSize);
+            
+            List<Integer> lineNumbers = configFile.getBreakpoints(i);
+            debugLogicController.createBreakpoints(i, lineNumbers);
+            
+            List<String> conditions = configFile.getConditionalBreakpoints();
+            debugLogicController.createConditionalBreakpoints(conditions);
+            
+            List<String> expressions = configFile.getWatchExpressions();
+            debugLogicController.createWatchExpressions(expressions);
+        }
+        
     }
     
-    public void saveConfiguration(File configurationFile) {
-        throw new UnsupportedOperationException();       
+    public void saveConfiguration(File file) {
+        /*
+         *   Möglicher Fall: unterschiedliche Anzahl an Programmen im Modell und
+         *   zwischengespeichert in Kontrolle. Vielleicht inkonsistenter DIbugger-Zustand,
+         *   vielleicht anders damit umgehen als momentan und in dieser Methode.
+         */
+        
+        ConfigurationFile configurationFile = new ConfigurationFile(file);
+        int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
+        List<ProgramInput> currentInput = debugLogicController.getProgramInput();        
+        
+        for (int i = 0; i < numberOfBufferedPrograms; i++) {
+            ProgramInput input = currentInput.get(i);
+            configurationFile.setProgramInput(i, input);
+            
+            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(i);
+            configurationFile.setVariablesOfInspector(i, variablesOfInspector);          
+        }
+        
+        int numberOfPrograms = debugLogicController.getNumberOfPrograms();        
+        
+        for (int i = 0; i < numberOfPrograms; i++) {
+            int stepSize = debugLogicController.getStepSize(i);
+            configurationFile.setStepSize(i, stepSize);
+            
+            List<Breakpoint> breakpoints = debugLogicController.getBreakpoints(i);
+            List<Integer> lines = new ArrayList<>();
+            for (Breakpoint element: breakpoints) {
+                lines.add(element.getLine());
+            }
+            configurationFile.setBreakpoints(i, lines);
+        }
+        List<String> conditions = debugLogicController.getConditionalBreakpoints();
+        
+        //  evtl. getSizeOfConditionalBreakpoints benutzen
+        int numberOfConditionalBreakpoints = conditions.size(); 
+        
+        /*
+         *   Hier müssen noch bedingte Haltepunkte und WE's eingestellt werden,
+         *   vielleicht können vorher die Schnittstellen in DebugControl und
+         *   ConfigurationFile verändert werden (zB Zugriffsmethoden auf 
+         *   "Scope-Ebene" (also ScopeTuple nicht scopebegin/-end)?
+         */
     }
     
     public void loadProgramText(File file) {
-        throw new UnsupportedOperationException();
+        String programText = fileHandlerFacade.loadProgramText(file);
+        int numberOfPrograms = debugLogicController.getNumberOfPrograms();
+        guiFacade.showProgramText(programText, numberOfPrograms + 1);
     }
 
     public List<String> getAvailableLanuages() {

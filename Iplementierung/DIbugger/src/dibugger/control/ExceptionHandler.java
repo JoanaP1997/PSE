@@ -11,17 +11,15 @@ import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 
 public class ExceptionHandler implements Observer {    
-    private FileHandlerInteractor fileHandlerInteractor;
     private GUIFacade guiFacade;
     
     private LanguageFile languageFile;
     
-    public ExceptionHandler(GUIFacade guiFacade, 
-            FileHandlerInteractor fileHandlerInteractor) {
+    public ExceptionHandler(FileHandlerInteractor fileHandlerInteractor, 
+            GUIFacade guiFacade) {
         Objects.requireNonNull(guiFacade);
         this.guiFacade = guiFacade;
         Objects.requireNonNull(fileHandlerInteractor);
-        this.fileHandlerInteractor = fileHandlerInteractor;
         setLanguageFile(fileHandlerInteractor.getLanguageFile());
     }
     
