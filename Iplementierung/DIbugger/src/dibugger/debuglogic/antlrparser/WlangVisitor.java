@@ -413,6 +413,13 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFloatLiteral(WlangParser.FloatLiteralContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BooleanLiteral}
+	 * labeled alternative in {@link WlangParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanLiteral(WlangParser.BooleanLiteralContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Modulo}
 	 * labeled alternative in {@link WlangParser#term}.
 	 * @param ctx the parse tree
