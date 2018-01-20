@@ -22,8 +22,8 @@ mainRoutine: mainHead block;
 
 //Statements
 
-statements : statement statements #CompStatement 
-			| statement #SingleStatement
+statements : statement statements  
+			| statement
 			;
 statement:  ifState 
 		| ifelseState 

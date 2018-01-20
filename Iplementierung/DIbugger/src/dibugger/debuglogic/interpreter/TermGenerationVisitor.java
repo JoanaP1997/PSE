@@ -69,7 +69,6 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 
   @Override
   public Term visitSubtraction(SubtractionContext ctx) {
-    System.out.println("substr");
     Term leftTerm, rightTerm;
     leftTerm = this.visit(ctx.left);
     rightTerm = this.visit(ctx.right);
@@ -88,7 +87,6 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
   public Term visitNegativeTerm(NegativeTermContext ctx) {
     Term innerTerm;
     innerTerm = this.visit(ctx.inner);
-    System.out.println("neg");
     return new NegativeTerm(innerTerm);
   }
 
@@ -100,7 +98,6 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
     rightTerm = this.visit(ctx.right);
     return new AndCondition(leftTerm, rightTerm);
   }
-
   @Override
   public Term visitOrCondition(OrConditionContext ctx) {
     Term leftTerm, rightTerm;
@@ -238,7 +235,6 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 
   @Override
   public Term visitCharLiteral(CharLiteralContext ctx) {
-    System.out.println("charConst");
     return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
   }
   // IDs and Constants
@@ -254,7 +250,6 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 
   @Override
   public Term visitConstantCondition(ConstantConditionContext ctx) {
-    System.out.println("constCond");
     return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
   }
 

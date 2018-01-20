@@ -19,7 +19,7 @@ public enum Type {
    * @param string the string to be converted
    * @return the corresponding type, NULL if no match is found or if type is array.
    */
-	public Type fromStringToType(String string) {
+	public static Type fromStringToType(String string) {
 	  switch (string) {
 	  case "null": return NULL;
 	  case "int": return INT;

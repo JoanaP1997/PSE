@@ -93,19 +93,11 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMainRoutine(WlangParser.MainRoutineContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code CompStatement}
-	 * labeled alternative in {@link WlangParser#statements}.
+	 * Visit a parse tree produced by {@link WlangParser#statements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompStatement(WlangParser.CompStatementContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code SingleStatement}
-	 * labeled alternative in {@link WlangParser#statements}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSingleStatement(WlangParser.SingleStatementContext ctx);
+	T visitStatements(WlangParser.StatementsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WlangParser#statement}.
 	 * @param ctx the parse tree

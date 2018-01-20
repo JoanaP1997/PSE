@@ -66,8 +66,7 @@ public class WhileCommand extends Command {
 
   // MEthode nur zu Testzecken bisher
   public Command getChild(int i) {
-    // TODO Auto-generated method stub
-    return null;
+    return this.children.get(i);
   }
 
 }
