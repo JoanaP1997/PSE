@@ -70,7 +70,6 @@ public class WatchExpression {
     ParseTree tree = parser.webppterm();
     TermGenerationVisitor visitor = new TermGenerationVisitor();
     this.expression = visitor.visit(tree);
-    System.out.println(this.expression.getClass());
   }
 
   public String getValue() {

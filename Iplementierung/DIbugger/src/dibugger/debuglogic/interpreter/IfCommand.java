@@ -66,8 +66,7 @@ public class IfCommand extends Command {
   }
 
   public Command getChild(int i) {
-    // TODO Auto-generated method stub
-    return null;
+    return this.children.get(i);
   }
 
 }

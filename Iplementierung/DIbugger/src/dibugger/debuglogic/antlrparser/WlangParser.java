@@ -744,38 +744,19 @@ public class WlangParser extends Parser {
 	}
 
 	public static class StatementsContext extends ParserRuleContext {
-		public StatementsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_statements; }
-	 
-		public StatementsContext() { }
-		public void copyFrom(StatementsContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class SingleStatementContext extends StatementsContext {
-		public StatementContext statement() {
-			return getRuleContext(StatementContext.class,0);
-		}
-		public SingleStatementContext(StatementsContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitSingleStatement(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class CompStatementContext extends StatementsContext {
 		public StatementContext statement() {
 			return getRuleContext(StatementContext.class,0);
 		}
 		public StatementsContext statements() {
 			return getRuleContext(StatementsContext.class,0);
 		}
-		public CompStatementContext(StatementsContext ctx) { copyFrom(ctx); }
+		public StatementsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_statements; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitCompStatement(this);
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitStatements(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -788,7 +769,6 @@ public class WlangParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
-				_localctx = new CompStatementContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(133);
@@ -798,7 +778,6 @@ public class WlangParser extends Parser {
 				}
 				break;
 			case 2:
-				_localctx = new SingleStatementContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(136);
