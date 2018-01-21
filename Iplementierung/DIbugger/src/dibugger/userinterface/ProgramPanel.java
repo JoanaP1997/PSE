@@ -3,8 +3,6 @@ package dibugger.userinterface;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -151,7 +149,7 @@ public class ProgramPanel extends JPanel {
             }
             @Override
             public void changedUpdate(DocumentEvent de) {
-                lines.setText(getText());
+
             }
 
             @Override
@@ -160,7 +158,7 @@ public class ProgramPanel extends JPanel {
                 if (lineCount != breakpointButtons.size()) {
                     lines.setText(getText());
                     breakpointButtons.add(new JRadioButton());
-                    breakpointButtons.get(breakpointButtons.size() - 1).setPreferredSize(new Dimension(15, 15));
+                    breakpointButtons.get(breakpointButtons.size() - 1).setPreferredSize(new Dimension(20, 20));
                     breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(breakpointButtons.size() - 1),
                             0,
                             SpringLayout.WEST, breakpointButtons.get(breakpointButtons.size() - 2));
@@ -182,7 +180,7 @@ public class ProgramPanel extends JPanel {
                             0,
                             SpringLayout.WEST, breakpointButtonPanel);
                     breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
-                            3,
+                            1,
                             SpringLayout.NORTH, breakpointButtonPanel);
                     breakpointButtonPanel.add(breakpointButtons.get(0));
                     int caretPosition = codeTextArea.getDocument().getLength();
@@ -217,32 +215,32 @@ public class ProgramPanel extends JPanel {
         breakpointButtons = new ArrayList<>();
         breakpointButtons.add(new JRadioButton());
         breakpointButtons.get(0).setPreferredSize(new Dimension(20,20));
-        breakpointButtonPanel.setPreferredSize(new Dimension(20,400000000));
+        breakpointButtonPanel.setPreferredSize(new Dimension(20,100000000));
         breakpointPanelLayout.putConstraint(SpringLayout.WEST,  breakpointButtons.get(0),
                 0,
                 SpringLayout.WEST, breakpointButtonPanel);
         breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
-                3,
+                1,
                 SpringLayout.NORTH, breakpointButtonPanel);
         breakpointButtonPanel.add(breakpointButtons.get(0));
         breakpointButtonPanel.setVisible(true);
 
-        JLayeredPane rowheaderView = new JLayeredPane();
-        rowheaderView.setOpaque(true);
+        JLayeredPane rowHeaderView = new JLayeredPane();
+        rowHeaderView.setOpaque(true);
         SpringLayout headerLayout = new SpringLayout();
-        rowheaderView.setLayout(headerLayout);
+        rowHeaderView.setLayout(headerLayout);
         headerLayout.putConstraint(SpringLayout.WEST, lines,
                 20,
-                SpringLayout.WEST, rowheaderView);
+                SpringLayout.WEST, rowHeaderView);
         headerLayout.putConstraint(SpringLayout.WEST, breakpointButtonPanel,
                 0,
-                SpringLayout.WEST, rowheaderView);
-        rowheaderView.add(lines);
-        rowheaderView.setForeground(Color.LIGHT_GRAY);
-        rowheaderView.add(breakpointButtonPanel);
+                SpringLayout.WEST, rowHeaderView);
+        rowHeaderView.add(lines);
+        rowHeaderView.setForeground(Color.LIGHT_GRAY);
+        rowHeaderView.add(breakpointButtonPanel);
 
-        rowheaderView.setPreferredSize(new Dimension(50,100000000));
-        codeScrollPane.setRowHeaderView(rowheaderView);
+        rowHeaderView.setPreferredSize(new Dimension(50,100000000));
+        codeScrollPane.setRowHeaderView(rowHeaderView);
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
         codeScrollPane.setSize(400, 800);
         codePanel.add(codeScrollPane);
