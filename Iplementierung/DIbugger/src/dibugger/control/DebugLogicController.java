@@ -2,6 +2,7 @@ package dibugger.control;
 
 import static dibugger.debuglogic.debugger.DebugControl.STEP_BACK;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -72,7 +73,18 @@ public class DebugLogicController {
         step(STEP_BACK);        
     }
     
-
+    public List<String> getWatchExpressions(){
+        return debugLogicFacade.getWatchExpressions();
+    }
+    
+    public List<Integer> getWatchExpressionScopeBeginnnings(int expressionId){
+        return debugLogicFacade.getWEScopeBegin(expressionId);
+    }
+    
+    public List<Integer> getWatchExpressionScopeEnds(int expressionId){
+        return debugLogicFacade.getWEScopeEnd(expressionId);
+    }
+    
     public void createWatchExpression(int watchExpressionId, String expression) {
         debugLogicFacade.createWatchExpression(watchExpressionId, expression);      
     }
@@ -100,6 +112,14 @@ public class DebugLogicController {
         debugLogicFacade.createCondBreakpoint(breakPointId, condition);      
     }
     
+    public List<Integer> getConditionalBreakpointScopeBeginnings(int expressionId){
+        return debugLogicFacade.getCBScopeBegin(expressionId);
+    }
+    
+    public List<Integer> getConditionalBreakpointScopeEnds(int expressionId){
+        return debugLogicFacade.getCBScopeEnd(expressionId);
+    }
+    
     void createConditionalBreakpoints(Collection<String> conditions) {
         int breakpointId = 0;
         for (String condition : conditions) {
@@ -120,7 +140,10 @@ public class DebugLogicController {
     
 
     public void createSynchronousBreakpoint(int line) {
-        throw new UnsupportedOperationException();      
+        int numberOfPrograms = getNumberOfPrograms();
+        for (int i = 0; i < numberOfPrograms; i++) {
+            createBreakpoint(i, line);
+        }
     }
     
     public void createBreakpoint(int numberOfProgram, int line) {
@@ -145,7 +168,15 @@ public class DebugLogicController {
     public void saveText(List<String> inputVariables, List<String> programTexts) {
         inputBuffer.storeTextInput(inputVariables, programTexts);
     }
-
+    
+    
+    public void startDebug() {
+        debugLogicFacade.launchRun(getProgramInput());
+    }
+    
+    public void stopDebug() {
+        /*  */
+    }
     
     public void reset() {
         debugLogicFacade.reset();       
@@ -161,8 +192,14 @@ public class DebugLogicController {
     }
     
 
-    public String suggestStepSize() {
-        throw new UnsupportedOperationException();
+    public void suggestStepSize() {
+        List<ProgramInput> currentInput = getProgramInput();
+        List<String> programTexts = new ArrayList<>();
+        
+        //  programTexts containing null-objects is unlikely
+        currentInput.stream().map(programInput -> programInput.getText())
+            .forEach(text -> programTexts.add(text));
+        debugLogicFacade.suggestStepSize(programTexts);
     }
     
     public String suggestWatchExpression() {

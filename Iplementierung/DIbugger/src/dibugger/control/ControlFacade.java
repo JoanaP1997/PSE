@@ -33,7 +33,7 @@ public class ControlFacade {
     
     
     boolean isInDebugMode() {
-        return isInDebugMode();
+        return isInDebugMode;
     }
     
     private void enableDebugMode() {
@@ -142,11 +142,13 @@ public class ControlFacade {
     }
     
     public void startDebug() {
-        enableDebugMode();     
+        enableDebugMode();
+        debugLogicController.startDebug();
     }
     
     public void stopDebug() {
-        disableDebugMode();     
+        disableDebugMode();
+        debugLogicController.stopDebug();
     }
     
     public void reset() {
@@ -185,8 +187,8 @@ public class ControlFacade {
         debugLogicController.setMaximumFunctionCalls(maximum);      
     }
 
-    public String suggestStepSize() {
-        return debugLogicController.suggestStepSize();      
+    public void suggestStepSize() {
+        debugLogicController.suggestStepSize();      
     }
     
     public String suggestWatchExpression() {

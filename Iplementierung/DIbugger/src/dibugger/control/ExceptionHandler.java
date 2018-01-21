@@ -6,7 +6,6 @@ import java.util.Observer;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.filehandler.exceptions.FileHandlerException;
-import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 

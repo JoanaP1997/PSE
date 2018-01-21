@@ -76,6 +76,8 @@ public class FileHandlerInteractor extends Observable {
             }
             guiFacade.showInput(i, variablesAndValues);
             
+            //  "configFile.getLatestExecutionLine" muss noch verwendet werden
+            
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
             guiFacade.showVariables(i, variablesOfInspector);
             
@@ -98,13 +100,12 @@ public class FileHandlerInteractor extends Observable {
         /*
          *   Möglicher Fall: unterschiedliche Anzahl an Programmen im Modell und
          *   zwischengespeichert in Kontrolle. Vielleicht inkonsistenter DIbugger-Zustand,
-         *   vielleicht anders damit umgehen als momentan und in dieser Methode.
-         */
-        
+         *   vielleicht anders/überhaupt berücksichtigen.
+         */       
         ConfigurationFile configurationFile = new ConfigurationFile(file);
-        int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
         List<ProgramInput> currentInput = debugLogicController.getProgramInput();        
         
+        int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
         for (int i = 0; i < numberOfBufferedPrograms; i++) {
             ProgramInput input = currentInput.get(i);
             configurationFile.setProgramInput(i, input);
@@ -113,8 +114,9 @@ public class FileHandlerInteractor extends Observable {
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);          
         }
         
-        int numberOfPrograms = debugLogicController.getNumberOfPrograms();        
+        //  etwas wie "configurationFile.setLatestExecutionLines" muss noch verwendet werden
         
+        int numberOfPrograms = debugLogicController.getNumberOfPrograms();        
         for (int i = 0; i < numberOfPrograms; i++) {
             int stepSize = debugLogicController.getStepSize(i);
             configurationFile.setStepSize(i, stepSize);
@@ -130,18 +132,31 @@ public class FileHandlerInteractor extends Observable {
         
         //  evtl. getSizeOfConditionalBreakpoints benutzen
         int numberOfConditionalBreakpoints = conditions.size(); 
-        
         /*
-         *   Hier müssen noch bedingte Haltepunkte und WE's eingestellt werden,
-         *   vielleicht können vorher die Schnittstellen in DebugControl und
-         *   ConfigurationFile verändert werden (zB Zugriffsmethoden auf 
-         *   "Scope-Ebene" (also ScopeTuple nicht scopebegin/-end)?
+         *   Schnittstellen in DebugLogicController, DebugLogicFacade, DebugControl und 
+         *   ConfigurationFile sollten verändert werden - z.B. Zugriffsmethoden auf 
+         *   "Scope-Ebene" (also ScopeTuple nicht scopebegin/-end)
          */
+        for (int i = 0; i < numberOfConditionalBreakpoints; i++) {
+            String condition = conditions.get(i);
+            List<Integer> breakpointScopeBeginnings = debugLogicController.getConditionalBreakpointScopeBeginnings(i);
+            List<Integer> breakpointScopeEnds = debugLogicController.getConditionalBreakpointScopeEnds(i);
+            configurationFile.addConditionalBreakpoint(condition, breakpointScopeBeginnings, breakpointScopeEnds);
+        }
+        
+        List<String> expressions = debugLogicController.getWatchExpressions();
+        int numberOfExpressions = expressions.size();
+        for(int i = 0; i < numberOfExpressions; i++) {
+            String expression = expressions.get(i);
+            List<Integer> expressionScopeBeginnings = debugLogicController.getWatchExpressionScopeBeginnnings(i);
+            List<Integer> expressionScopeEnds = debugLogicController.getWatchExpressionScopeEnds(i);
+            configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);;
+        }
     }
     
     public void loadProgramText(File file) {
         String programText = fileHandlerFacade.loadProgramText(file);
-        int numberOfPrograms = debugLogicController.getNumberOfPrograms();
+        int numberOfPrograms = debugLogicController.getNumberOfBufferedPrograms();
         guiFacade.showProgramText(programText, numberOfPrograms + 1);
     }
 
