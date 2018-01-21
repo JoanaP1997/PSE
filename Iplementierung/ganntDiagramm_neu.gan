@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-12-29" view-index="0" gantt-divider-location="624" resource-divider-location="300" version="2.8.5" locale="de_DE">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Vorgang" width="200" order="0"/>
+        <field id="tpd4" name="Anfang" width="133" order="1"/>
+        <field id="tpd5" name="Ende" width="133" order="2"/>
+        <field id="tpc0" name="Verantwortliche" width="154" order="3"/>
+        <option id="color.recent"><![CDATA[#000000]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Ressource" width="210" order="0"/>
+        <field id="1" name="Rolle" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+            <taskproperty id="tpc0" name="Verantwortliche" type="custom" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="FileHandler" color="#000000" meeting="false" start="2018-01-08" duration="9" complete="0" expand="true">
+            <customproperty taskproperty-id="tpc0" value="Pascal"/>
+            <task id="14" name="Facade" meeting="false" start="2018-01-08" duration="9" complete="0" expand="true"/>
+            <task id="16" name="RDBF" meeting="false" start="2018-01-10" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="2" name="DebugLogic" color="#000000" meeting="false" start="2018-01-10" duration="14" complete="0" expand="true">
+            <customproperty taskproperty-id="tpc0" value="Pascal / Benedikt / Ulla"/>
+            <task id="4" name="Debugger" meeting="false" start="2018-01-12" duration="6" complete="0" expand="true">
+                <customproperty taskproperty-id="tpc0" value="Pascal"/>
+            </task>
+            <task id="5" name="Interpreter" color="#8cb6ce" meeting="false" start="2018-01-11" duration="13" complete="0" expand="true">
+                <customproperty taskproperty-id="tpc0" value="Benedikt / Ulla / (Pascal)"/>
+            </task>
+            <task id="6" name="Exceptions" color="#8cb6ce" meeting="false" start="2018-01-10" duration="3" complete="0" expand="true">
+                <customproperty taskproperty-id="tpc0" value="Ulla"/>
+            </task>
+        </task>
+        <task id="10" name="Control" color="#8cb6ce" meeting="false" start="2018-01-15" duration="8" complete="0" expand="true">
+            <customproperty taskproperty-id="tpc0" value="Etienne"/>
+        </task>
+        <task id="17" name="UserInterface" meeting="false" start="2018-01-08" duration="12" complete="0" expand="true">
+            <customproperty taskproperty-id="tpc0" value="Chiara / Joana"/>
+        </task>
+        <task id="19" name="Implementierungsdokument" meeting="false" start="2018-01-22" duration="7" complete="0" expand="true">
+            <customproperty taskproperty-id="tpc0" value=""/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
