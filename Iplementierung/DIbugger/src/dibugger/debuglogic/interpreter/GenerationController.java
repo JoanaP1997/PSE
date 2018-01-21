@@ -53,11 +53,15 @@ public class GenerationController {
   }
 
   public void pushScope(Scope scope) {
-    // MaxFuncCall ueberpruefen
-    this.scopes.push(scope);
+    if(this.currentScopeCount<this.maxFuncCalls) {
+      this.scopes.push(scope);
+      this.currentScopeCount++;
+    }
+    //else: Warnung
   }
 
   public Scope popScope() {
+    this.currentScopeCount--;
     return this.scopes.pop();
   }
 

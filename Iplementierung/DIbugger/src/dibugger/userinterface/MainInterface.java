@@ -19,6 +19,7 @@ public class MainInterface extends JFrame {
     private JMenu settingsMenu;
     private JMenu helpMenu;
     
+   
     private JMenuBar menuBar;
     private JPanel rightControlBar;
 
@@ -98,10 +99,14 @@ public class MainInterface extends JFrame {
      */
     public static void main(String args[]) {
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) { }
-
-
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+        }
         MainInterface mface = new MainInterface();
         mface.setSize(1200,800);
         mface.setVisible(true);

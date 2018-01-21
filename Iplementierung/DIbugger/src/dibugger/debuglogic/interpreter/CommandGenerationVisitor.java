@@ -320,7 +320,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
 
   @Override
   public Command visitIfElseWithSingle(IfElseWithSingleContext ctx) {
-    // TODO Auto-generated method stub
-    return super.visitIfElseWithSingle(ctx);
+  //TODO
+    return null;
   }
 }
