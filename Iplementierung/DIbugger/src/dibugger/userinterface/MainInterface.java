@@ -17,6 +17,7 @@ public class MainInterface extends JFrame {
     private JMenu settingsMenu;
     private JMenu helpMenu;
     
+   
     private JMenuBar menuBar;
     private JPanel rightControlBar;
 
