@@ -1,5 +1,7 @@
 package dibugger.userinterface;
 
+import sun.applet.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +16,10 @@ public class CommandPanel extends JPanel {
     private JButton stepBack;
     private JButton continueDebug;
     private static CommandPanel singleton = null;
+    private MainInterface mainInterface;
 
-    private CommandPanel() {
+    private CommandPanel(MainInterface mainInterface) {
+        this.mainInterface = mainInterface;
         initComponents();
         this.setVisible(true);
     }
@@ -71,10 +75,18 @@ public class CommandPanel extends JPanel {
         );
     }
 
-    public static CommandPanel getCommandPanel() {
+    public static CommandPanel getCommandPanel(MainInterface mainInterface) {
         if (singleton == null) {
-            singleton = new CommandPanel();
+            singleton = new CommandPanel(mainInterface);
         }
         return singleton;
+    }
+
+    public void stopDebug() {
+        mainInterface.getControlFacade().stopDebug();
+    }
+
+    public void continueWithDebug() {
+        mainInterface.getControlFacade().continueDebug();
     }
 }

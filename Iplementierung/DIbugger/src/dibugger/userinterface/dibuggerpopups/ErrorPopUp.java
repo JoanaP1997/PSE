@@ -1,13 +1,18 @@
 package dibugger.userinterface.dibuggerpopups;
 
 
+import dibugger.userinterface.CommandPanel;
+import dibugger.userinterface.MainInterface;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class ErrorPopUp extends DIbuggerPopUp {
 
-    public ErrorPopUp(String message) {
+    private MainInterface mainInterface;
+
+    public ErrorPopUp(String message, MainInterface mainInterface) {
         this.setSize(300, 100);
         this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         GridBagLayout layout = new GridBagLayout();
@@ -21,6 +26,7 @@ public class ErrorPopUp extends DIbuggerPopUp {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                CommandPanel.getCommandPanel(mainInterface).stopDebug();
                 dispose();
             }
         });

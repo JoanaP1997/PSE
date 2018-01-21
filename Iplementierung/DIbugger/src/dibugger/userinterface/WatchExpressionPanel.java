@@ -65,7 +65,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
                                        Point p = mouseEvent.getPoint();
                                        if( (table.columnAtPoint(p) == 0)) {
                                            //TODO: richtige ID übergeben
-                                           new ExpressionChangePopUp(mainInterface, "Expression", 1);
+                                           new ExpressionChangePopUp(mainInterface, "WatchExpression", 1, table);
                                        }
                                        if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
                                            Object[] newRow = {" ", "Fügen Sie hier Ihre neue Watch-Expression ein", " "};
@@ -110,6 +110,10 @@ public class WatchExpressionPanel extends ExpressionPanel {
         tableContainer.setPreferredSize(new Dimension(290, 250));
 
         this.add(tableContainer);
+
+    }
+
+    public void deleteEntry(int id) {
 
     }
 

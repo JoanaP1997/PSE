@@ -1,5 +1,7 @@
 package dibugger.userinterface;
 
+import dibugger.control.ControlFacade;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -33,12 +35,16 @@ public class MainInterface extends JFrame {
     private JMenuItem saveConfig;
     private JMenuItem exit;
 
+    private GUIFacade guiFacade;
+    private ControlFacade controlFacade;
+
     /**
      * Creates new MainInterface
      */
     public MainInterface() {
-        new GUIFacade(this);
+        guiFacade = new GUIFacade(this);
         initComponents();
+        controlFacade = new ControlFacade(guiFacade);
     }
 
 
@@ -168,10 +174,10 @@ public class MainInterface extends JFrame {
      */
     private void initRightControlBar() {
         condBreakPanel = new JPanel();
-        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel());
+        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel(this));
 
         controlButtonsPanel = new JPanel();
-        controlButtonsPanel.add(CommandPanel.getCommandPanel());
+        controlButtonsPanel.add(CommandPanel.getCommandPanel(this));
 
         watchExpPanel = new JPanel();
         watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel(this));
@@ -209,6 +215,10 @@ public class MainInterface extends JFrame {
      */
     private String calcNextProgramID() {
         return "A";
+    }
+
+    public ControlFacade getControlFacade() {
+        return controlFacade;
     }
 
 
