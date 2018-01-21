@@ -18,10 +18,12 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     JComboBox<String> optionChooser;
     JButton okButton;
     JScrollPane scrollPane;
+    int id;
 
 
     //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
-    public ExpressionChangePopUp(MainInterface mainInterface, String message) {
+    public ExpressionChangePopUp(MainInterface mainInterface, String message, int id) {
+        this.id = id;
         this.setSize(400, 400);
         this.setResizable(false);
         this.mainInterface = mainInterface;
