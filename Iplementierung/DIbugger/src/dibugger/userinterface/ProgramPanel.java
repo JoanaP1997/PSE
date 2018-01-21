@@ -135,8 +135,8 @@ public class ProgramPanel extends JPanel {
         codeTextArea = new JTextPane();
         lines.setBackground(Color.YELLOW);
         lines.setEditable(false);
-        lines.setFont(lines.getFont().deriveFont(8));
-        codeTextArea.setFont(codeTextArea.getFont().deriveFont(8));
+        lines.setFont(lines.getFont().deriveFont(16.509f));
+        codeTextArea.setFont(codeTextArea.getFont().deriveFont(16.509f));
         codeTextArea.getDocument().addDocumentListener(new DocumentListener(){
             String getText(){
                 int caretPosition = codeTextArea.getDocument().getLength();
@@ -236,10 +236,11 @@ public class ProgramPanel extends JPanel {
                 0,
                 SpringLayout.WEST, rowHeaderView);
         rowHeaderView.add(lines);
+        lines.setOpaque(true);
         rowHeaderView.setForeground(Color.LIGHT_GRAY);
         rowHeaderView.add(breakpointButtonPanel);
 
-        rowHeaderView.setPreferredSize(new Dimension(50,100000000));
+        rowHeaderView.setPreferredSize(new Dimension(60,100000000));
         codeScrollPane.setRowHeaderView(rowHeaderView);
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
         codeScrollPane.setSize(400, 800);
