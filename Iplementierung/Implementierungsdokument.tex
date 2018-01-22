@@ -60,8 +60,29 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \pagenumbering{arabic}
 
 \section{Einleitung}
+Dieses Dokument beschreibt die Ergebnisse der Implementierungsphase (\textit{08.01.-02.02.2018}) im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
+Hierbei handlet es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{../Plichtenheft/logo_nongi.png}
+\caption{Produktlogo}
+\end{figure}
 
 \section{Zeitablauf}
+Um eine reibungslose Implementierung zu ermöglichen muss ein gut durchdachter Zeitablauf existieren.
+Dieser wurde folgendermaße umgesetzt:\\
+Begonnen wurde mit dem \textit{FileHandler} und dem \textit{UserInterface}. Diese konnten unabhängig voneinander implementiert werden.
+Aus Zeitgründen verschob sich der Start der \textit{Control} Implementierung um wenige Tage.
+Die Unterpakete der \textit{DebugLogic} wurden in planmäßiger Reihenfolge begonnen. Dabei sei zu beachten, dass die \textit{DebugControl} nun parallel zum \textit{Interpreter} entwickelt worden ist.
+Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.
+Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}.
+Das nun folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1.0\textwidth]{ganntDiagramm_neu_crop.pdf}
+\caption{Gantt-Diagramm des Zeitverlaufes}
+\end{figure}
 
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
@@ -74,8 +95,28 @@ z.B. Command Panel
 z.B. while-Command
 \subsection{Fassade}
 z.B. Control-Facade
+
+\newpage
 \subsection{Strategie}
-z.B. FileWriter
+%z.B. FileWriter
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{document_data/strategy_uml_d.pdf}
+\begin{verbatim}
+public abstract class DBFileReader {
+    public abstract ConfigurationFile loadConfigFile(File f) throws FileHandlerException;
+    public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
+}
+\end{verbatim}
+\caption{Strategiemuster und Quelltext des DBFileReaders im Paket FileHandler}
+\label{fig:strategy_fh}
+\end{figure}
+Wie in Abbildung \ref{fig:strategy_fh} aufgezeigt, steht der DBFileReader für den \enquote{Kopf} des Strategiemusters.
+Dieser kann als abstrakte Klasse nicht erzeugt werden und stellt zwei abstrakte Methoden ohne Implementierung zur Verfügung.
+Dies müssen bei der Vererbung durch eine Unterklasse, z.B. RDBFDBFileReader, XMLDBFileReader, JsonDBFileReader usw., überschrieben und vollständig Implementiert werden.
+Dadurch können unter Vorraussetzung einer korrekten Implementierung der beiden Methoden weitere Dateiformate hinzugefügt werden.
+Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader und PropertiesFileWriter}. Sie sind ähnlich aufgebaut zu der hier gezeigten Klasse.
+
 \subsection{Beobachter}
 z.B. Gui-Facade
 
