@@ -1,7 +1,6 @@
 package dibugger.userinterface;
 
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
-import sun.applet.Main;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -116,3 +115,4 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         //TODO
     }
 }
+>>>>>>> 7fab3434425c54ce4256b1b9da2088906f5103b6

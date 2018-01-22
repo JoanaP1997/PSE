@@ -260,7 +260,7 @@ public class DebugControl {
 	 */
 	public void createWatchExpression(int id, String expr){
 		while(list_watchExpressions.size()-1<id){
-			list_watchExpressions.add(new WatchExpression(""));
+			list_watchExpressions.add(null);
 		}
 		list_watchExpressions.set(id, new WatchExpression(expr));
 		//TODO add default Scope
@@ -291,6 +291,9 @@ public class DebugControl {
 	 * @param cond the condition of the breakpoint
 	 */
 	public void createCondBreakpoint(int id, String cond){
+		while(list_condBreakpoints.size()-1<id){
+			list_condBreakpoints.add(null);
+		}
 		list_condBreakpoints.add(id, new ConditionalBreakpoint(cond));
 		//TODO default scope
 	}
