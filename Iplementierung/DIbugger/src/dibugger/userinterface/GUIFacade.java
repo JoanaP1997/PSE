@@ -22,7 +22,7 @@ public class GUIFacade implements Observer {
    */
   public GUIFacade(MainInterface mainInterface) {
     this.mainInterface = mainInterface;
-    controlFacade = new ControlFacade(this);
+    //controlFacade = new ControlFacade(this);
   }
 
   public void showProgramText(String programText, int id) {
