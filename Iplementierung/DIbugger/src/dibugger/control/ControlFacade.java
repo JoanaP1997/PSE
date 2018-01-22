@@ -7,6 +7,7 @@ import java.util.Objects;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
+import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.userinterface.GUIFacade;
 
@@ -18,20 +19,21 @@ public class ControlFacade {
     private FileHandlerInteractor fileHandlerInteractor;
     
     public ControlFacade(GUIFacade guiFacade) {
+        disableDebugMode();
         Objects.requireNonNull(guiFacade);
-        debugLogicController = new DebugLogicController(guiFacade);
-        exceptionHandler = new ExceptionHandler(guiFacade);
+        debugLogicController = new DebugLogicController();
+        debugLogicController.attachToModel(guiFacade);
         try {
-            fileHandlerInteractor = new FileHandlerInteractor(guiFacade);
+            fileHandlerInteractor = new FileHandlerInteractor(debugLogicController, guiFacade);
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         }
-        exceptionHandler.setLanguageFile(fileHandlerInteractor.getLanguageFile());
+        exceptionHandler = new ExceptionHandler(fileHandlerInteractor, guiFacade);
     }
     
     
     boolean isInDebugMode() {
-        return isInDebugMode();
+        return isInDebugMode;
     }
     
     private void enableDebugMode() {
@@ -55,8 +57,8 @@ public class ControlFacade {
     }
     
 
-    public void setStepSize(int programId, int size) {
-        debugLogicController.setStepSize(programId, size);
+    public void setStepSize(int numberOfProgram, int size) {
+        debugLogicController.setStepSize(numberOfProgram, size);
     }
     
     public void step(int type) {
@@ -77,9 +79,9 @@ public class ControlFacade {
         }        
     }
     
-    public void singleStep(int programId) {
+    public void singleStep(int numberOfProgram) {
         ensureInDebugMode();
-        debugLogicController.singleStep(programId);        
+        debugLogicController.singleStep(numberOfProgram);        
     }
     
     public void stepBack() {
@@ -123,28 +125,30 @@ public class ControlFacade {
         debugLogicController.createSynchronousBreakpoint(line);     
     }
     
-    public void createBreakpoint(int programId, int line) {
-        debugLogicController.createBreakpoint(programId, line);      
+    public void createBreakpoint(int numberOfProgram, int line) {
+        debugLogicController.createBreakpoint(numberOfProgram, line);      
     }
     
-    public void deleteBreakpoint(int programId, int line) {
-        debugLogicController.deleteBreakpoint(programId, line);   
+    public void deleteBreakpoint(int numberOfProgram, int line) {
+        debugLogicController.deleteBreakpoint(numberOfProgram, line);   
     }
     
     public void deleteAllBreakpoints() {
         debugLogicController.deleteAllBreakpoints();      
     }
 
-    public void saveText(List<String> programTexts, List<String> inputVariables) {
-        debugLogicController.saveText(programTexts, inputVariables);     
+    public void saveText(List<String> inputVariables, List<String> programTexts) {
+        debugLogicController.saveText(inputVariables, programTexts);     
     }
     
     public void startDebug() {
-        enableDebugMode();     
+        enableDebugMode();
+        debugLogicController.startDebug();
     }
     
     public void stopDebug() {
-        disableDebugMode();     
+        disableDebugMode();
+        debugLogicController.stopDebug();
     }
     
     public void reset() {
@@ -154,13 +158,8 @@ public class ControlFacade {
     public void loadConfiguration(File configurationFile) {
         ensureNotInDebugMode();
         
-        ConfigurationFile configFile;
-        
         try {
-            configFile = fileHandlerInteractor.loadConfigurationFile(configurationFile);
-            reset();
-            
-            fileHandlerInteractor.applyConfiguration(configFile);
+            fileHandlerInteractor.loadConfigurationFile(configurationFile);
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         }     
@@ -188,8 +187,8 @@ public class ControlFacade {
         debugLogicController.setMaximumFunctionCalls(maximum);      
     }
 
-    public String suggestStepSize() {
-        return debugLogicController.suggestStepSize();      
+    public void suggestStepSize() {
+        debugLogicController.suggestStepSize();      
     }
     
     public String suggestWatchExpression() {
@@ -218,7 +217,11 @@ public class ControlFacade {
     }
     
     
-    public void changeLanguage(String languageId) {
-        fileHandlerInteractor.changeLanguage(languageId);      
+    public void changeLanguage(String languageId) {        
+        try {
+            fileHandlerInteractor.changeLanguage(languageId);
+        } catch (LanguageNotFoundException exception) {
+            exceptionHandler.handle(exception);
+        }
     }
 }

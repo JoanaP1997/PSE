@@ -1,5 +1,7 @@
 package dibugger.userinterface;
 
+import dibugger.control.ControlFacade;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class MainInterface extends JFrame {
     private JMenu settingsMenu;
     private JMenu helpMenu;
     
+   
     private JMenuBar menuBar;
     private JPanel rightControlBar;
 
@@ -33,12 +36,16 @@ public class MainInterface extends JFrame {
     private JMenuItem saveConfig;
     private JMenuItem exit;
 
+    private GUIFacade guiFacade;
+    private ControlFacade controlFacade;
+
     /**
      * Creates new MainInterface
      */
     public MainInterface() {
-        new GUIFacade(this);
+        guiFacade = new GUIFacade(this);
         initComponents();
+        controlFacade = new ControlFacade(guiFacade);
     }
 
 
@@ -92,10 +99,14 @@ public class MainInterface extends JFrame {
      */
     public static void main(String args[]) {
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) { }
-
-
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+        }
         MainInterface mface = new MainInterface();
         mface.setSize(1200,800);
         mface.setVisible(true);
@@ -168,10 +179,10 @@ public class MainInterface extends JFrame {
      */
     private void initRightControlBar() {
         condBreakPanel = new JPanel();
-        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel());
+        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel(this));
 
         controlButtonsPanel = new JPanel();
-        controlButtonsPanel.add(CommandPanel.getCommandPanel());
+        controlButtonsPanel.add(CommandPanel.getCommandPanel(this));
 
         watchExpPanel = new JPanel();
         watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel(this));
@@ -209,6 +220,10 @@ public class MainInterface extends JFrame {
      */
     private String calcNextProgramID() {
         return "A";
+    }
+
+    public ControlFacade getControlFacade() {
+        return controlFacade;
     }
 
 

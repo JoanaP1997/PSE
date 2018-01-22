@@ -27,6 +27,14 @@ public class GUIFacade implements Observer {
     public void showInput(int program, List<String> vars) {
         //TODO
     }
+    
+    public List<String> getVariablesOfInspector(int programNumber) {
+        throw new UnsupportedOperationException();
+    }
+    
+    public void showVariables(int numberOfProgram, List<String> variables) {
+        //TODO
+    }
 
     @Override
     public void update(Observable observable, Object o) {
@@ -34,12 +42,13 @@ public class GUIFacade implements Observer {
     }
 
     public void showError(String s) {
-        new ErrorPopUp(s);
+        new ErrorPopUp(s, mainInterface);
     }
 
     public void showWarning(String s) {
-        new DecisionPopUp(s);
+        new DecisionPopUp(s, mainInterface);
     }
+    //TODO: Rückgabewert
 
     public void changeLanguage() {
         //TODO

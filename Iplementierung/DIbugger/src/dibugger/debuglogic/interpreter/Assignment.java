@@ -28,7 +28,6 @@ public class Assignment extends Command {
     Scope scope = this.controller.getCurrentScope();
     TermValue value = this.term.evaluate(scope);
     Type type = scope.getTypeOf(identifier);
-
     // check if variable exists
     if (type == null) {
       throw new VariableNotFoundException(this.linenumber);

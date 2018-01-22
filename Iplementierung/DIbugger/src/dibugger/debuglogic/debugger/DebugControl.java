@@ -362,6 +362,10 @@ public class DebugControl {
 		maxFunctionCalls = DEF_MAX_FUNC_CALLS;
 	}
 	
+	public int getNumberOfPrograms() {
+	    return programCount;
+	}
+	
 	/**
 	 * Sets the stepsize of a program
 	 * @param programID the program to change the stepsize
@@ -372,6 +376,13 @@ public class DebugControl {
 			list_stepSize.add(1);
 		}
 		list_stepSize.set(programID, stepSize);
+	}
+	
+	public int getStepSize(int programNumber) {
+	    if (programNumber < 1 || programNumber > getNumberOfPrograms()) {
+	        throw new IllegalArgumentException();
+	    }
+	    return list_stepSize.get(programNumber);
 	}
 	
 	/**
@@ -465,6 +476,11 @@ public class DebugControl {
 	 */
 	public String getWEValue(int expressionID) throws DIbuggerLogicException{
 		return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
+	}
+	
+	//  Alternativ können Zeilennummern zurückgg. werden
+	public List<Breakpoint> getBreakpoints(int programNumber) {
+	    throw new UnsupportedOperationException();
 	}
 	
 	/**

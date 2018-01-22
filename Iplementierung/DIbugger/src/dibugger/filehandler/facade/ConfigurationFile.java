@@ -2,9 +2,14 @@ package dibugger.filehandler.facade;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import dibugger.debuglogic.debugger.ProgramInput;
+import dibugger.debuglogic.debugger.VariableAndValue;
 
 /**
  * 
@@ -254,6 +259,18 @@ public class ConfigurationFile {
 	}
 	
 	//contruction setters
+	public void setProgramInput(int programNumber, ProgramInput programInput) {
+	    Objects.requireNonNull(programInput);
+	    
+	    String programText = programInput.getText();
+	    setProgramText(programNumber, programText);
+	    
+	    Collection<VariableAndValue> variablesAndValues = programInput.getVariablesAndValues();
+	    for (VariableAndValue element : variablesAndValues) {
+	        setInputValue(programNumber, element.getVariable(), element.getValue());
+	    }
+	}
+	
 	public void setProgramText(int programID, String text){
 		while(list_programText.size()<programID){
 			list_programText.add("");

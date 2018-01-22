@@ -210,6 +210,14 @@ public class DebugLogicFacade extends Observable{
 	}
 	
 	//Getter delegated to DebugControl
+	public int getNumberOfPrograms() {
+	    return debugControl.getNumberOfPrograms();
+	}
+	
+	public int getStepSize(int programNumber) {
+	    return debugControl.getStepSize(programNumber);
+	}
+	
 	/**
 	 * 
 	 * @return the amount of conditional breakpoints
@@ -248,6 +256,10 @@ public class DebugLogicFacade extends Observable{
 	 */
 	public String getWEValue(int expressionID) throws DIbuggerLogicException{
 		return debugControl.getWEValue(expressionID);
+	}
+	
+	public List<Breakpoint> getBreakpoints(int programNumber) {
+	    return debugControl.getBreakpoints(programNumber);
 	}
 	
 	/**

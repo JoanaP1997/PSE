@@ -1,5 +1,7 @@
 package dibugger.debuglogic.debugger;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -40,6 +42,31 @@ public class ProgramInput {
 	public List<String> getInputValues() {
 		return inputValues;
 	}
+	
+	public Collection<VariableAndValue> getVariablesAndValues() {
+	    List<VariableAndValue> variablesAndValues = new ArrayList<>();
+	    List<String> inputValues = getInputValues();
+	    
+	    for (String element : inputValues) {
+	        String[] splitInputValue = element.split(" = ");
+	        
+	        if (splitInputValue.length != 2) {
+	            /*
+	             *   Hier muss etwas anderes ausgelöst werden, vielleicht eine
+	             *   neue DIbuggerLogicException (, falls diese Methode und/oder 
+	             *   die Klasse VariableAndValue nicht bald verworfen werden)
+	             */
+	            throw new IllegalStateException();
+	        }
+	        
+	        String variable = splitInputValue[0];
+	        String value = splitInputValue[1];
+	        VariableAndValue variableAndValue = new VariableAndValue(variable, value);
+	        variablesAndValues.add(variableAndValue);
+	    }
+	    return variablesAndValues;
+	}
+	
 	/**
 	 * Setter for the input value list
 	 * @param inputValues the new list containing alll input values

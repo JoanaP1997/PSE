@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import dibugger.userinterface.ExpressionPanel;
 import dibugger.userinterface.MainInterface;
 
 import java.awt.*;
@@ -18,10 +19,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     JComboBox<String> optionChooser;
     JButton okButton;
     JScrollPane scrollPane;
-
+    int id;
+    JTable table;
 
     //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
-    public ExpressionChangePopUp(MainInterface mainInterface, String message) {
+    public ExpressionChangePopUp(MainInterface mainInterface, String message, int id,JTable table) {
+        this.id = id;
+        this.table = table;
         this.setSize(400, 400);
         this.setResizable(false);
         this.mainInterface = mainInterface;
@@ -54,7 +58,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (optionChooser.getSelectedItem() == "Löschen") {
-                    //TODO: Zeile löschen in Table, Löschen weiter geben an Control, dann Fenster schließen
+                    if (message.startsWith("WatchExpression")) {
+
+                        dispose();
+                        //TODO: Zeile löschen in Table, Löschen weiter geben an Control, dann Fenster schließen
+                    } else if (message.startsWith("ConditionalBreakpoint")) {
+                        mainInterface.getControlFacade().deleteConditionalBreakpoint(id);
+                    }
                 } else {
                     //TODO: neue Bereichsbindung überprüfen, weitergeben und so Zeug
 

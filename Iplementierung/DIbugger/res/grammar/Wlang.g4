@@ -22,8 +22,8 @@ mainRoutine: mainHead block;
 
 //Statements
 
-statements : statement statements #CompStatement 
-			| statement #SingleStatement
+statements : statement statements  
+			| statement
 			;
 statement:  ifState 
 		| ifelseState 
@@ -82,14 +82,14 @@ whileState: 'while' '(' condition ')' content = block #whileWithBlock
 	;
 //Bedingungen
 condition: ID #IdCondition
+	| BOOLEANLITERAL #ConstantCondition
+	| '!' inner = condition #NotCondition
 	| REL_ID #RelIdCondition
 	| arrayAccess #ArrayAccessCondition
 	| comparison #ComparisonCondition
-	| BOOLEANLITERAL #ConstantCondition
 	| '('inner = condition')'#BracketCondition
 	| left = condition '&&' right = condition #AndCondition
 	| left = condition '||' right = condition #OrCondition
-	| '!' inner = condition #NotCondition
 	;
 
 comparison: left=term '<' right=term #LessComp
@@ -101,7 +101,7 @@ comparison: left=term '<' right=term #LessComp
 	;
 
 term : '-' inner = term #NegativeTerm
-    | left = term '/' right = term #Division
+      | left = term '/' right = term #Division
 	| left = term '*' right = term #Multiplication
 	| left = term '-' right = term #Subtraction
 	| left = term '+' right = term #Addition
@@ -111,9 +111,10 @@ term : '-' inner = term #NegativeTerm
 	| INTLITERAL #IntLiteral
 	| LONGLITERAL #LongLiteral
 	| DOUBLELITERAL #DoubleLiteral
+	| BOOLEANLITERAL #BooleanLiteral
+	| CHARLITERAL #CharLiteral
 	| ID #Id
 	| REL_ID #RelId
-	| CHARLITERAL #CharLiteral
 	| funcCall #FunctionCallInTerm
 	| arrayAccess #ArrayAccessInTerm
 	;
@@ -133,13 +134,17 @@ WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT:   '//' ~[\r\n]* -> skip;
 TYPE: 'float' | 'int' | 'char' | 'boolean' | 'double' | 'long';
-ID : ([a-z]|[A-Z])+ ;
-REL_ID : [A-Z]'.'([a-z]|[A-Z])+ ;
-INTLITERAL: '-'? [1-9][0-9]* | '0';
+BOOLEANLITERAL:	'true' | 'false';
+INTLITERAL: DIGITNONZERO DIGIT* | '0';
+fragment DIGITNONZERO: '1'..'9';
+fragment DIGIT: '0'..'9';
 FLOATLITERAL: ([1-9][0-9]*'.'[0-9]+ | '0') 'f';
 CHARLITERAL: '\'' ~['\\\r\n] '\'';
-BOOLEANLITERAL:	'true'|	'false';
+
 NULLLITERAL: 'null';
 LONGLITERAL: ([1-9][0-9]* | '0' )'L';
 DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
+ID : ([a-z]|[A-Z])+ ;
+REL_ID : [A-Z]'.'([a-z]|[A-Z])+ ;
+
