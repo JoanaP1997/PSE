@@ -22,32 +22,32 @@ public class GUIFacade implements Observer {
    */
   public GUIFacade(MainInterface mainInterface) {
     this.mainInterface = mainInterface;
-    //controlFacade = new ControlFacade(this);
+    controlFacade = new ControlFacade(this);
   }
 
-  public void showProgramText(String programText, int id) {
-    //TODO
+  public void showProgramText(String programText, String programId) {
+    mainInterface.showProgramText(programText, programId);
   }
 
   public void reset() {
-    //TODO
+    mainInterface.reset();
   }
 
-  public void showInput(int program, List<String> vars) {
-    //TODO
+  public void showInput(String programId, List<String> vars) {
+    mainInterface.showInput(programId, vars);
   }
 
-  public List<String> getVariablesOfInspector(int programNumber) {
-    throw new UnsupportedOperationException();
+  public List<String> getVariablesOfInspector(String programId) {
+    return mainInterface.getVariablesOfInspector(programId);
   }
 
-  public void showVariables(int numberOfProgram, List<String> variables) {
-    //TODO
+  public void showVariables(String idOfProgram, List<String> variables) {
+    mainInterface.showVariables(idOfProgram, variables);
   }
 
   @Override
   public void update(Observable observable, Object o) {
-    //TODO
+    mainInterface.update(observable, o);
   }
 
   public void showError(String s) {
@@ -57,10 +57,10 @@ public class GUIFacade implements Observer {
   public void showWarning(String s) {
     new DecisionPopUp(s, mainInterface);
   }
-  //TODO: Rückgabewert
+
 
   public void changeLanguage() {
-    //TODO
+    mainInterface.changeLanguage();
   }
 
 

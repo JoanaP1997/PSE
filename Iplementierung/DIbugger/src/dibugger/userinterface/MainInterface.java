@@ -1,9 +1,12 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
+import dibugger.userinterface.dibuggerpopups.DecisionPopUp;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
 import java.awt.*;
+import java.util.List;
+import java.util.Observable;
 import java.util.TreeMap;
 import javax.swing.*;
 
@@ -40,15 +43,15 @@ public class MainInterface extends JFrame {
   private JMenuItem exit;
 
   private GUIFacade guiFacade;
-  //private ControlFacade controlFacade;
+  private ControlFacade controlFacade;
 
   /**
    * Creates new MainInterface.
    */
   public MainInterface() {
     guiFacade = new GUIFacade(this);
+    controlFacade = new ControlFacade(guiFacade);
     initComponents();
-    //controlFacade = new ControlFacade(guiFacade);
   }
 
 
@@ -237,6 +240,34 @@ public class MainInterface extends JFrame {
   public ControlFacade getControlFacade() {
     //return controlFacade;
     return null;
+  }
+
+  public void showProgramText(String programText, String programId) {
+    //TODO
+  }
+
+  public void reset() {
+    //TODO
+  }
+
+  public void showInput(String programId, List<String> vars) {
+    //TODO
+  }
+
+  public List<String> getVariablesOfInspector(String programNumber) {
+    throw new UnsupportedOperationException();
+  }
+
+  public void showVariables(String numberOfProgram, List<String> variables) {
+    //TODO
+  }
+
+  public void update(Observable observable, Object o) {
+    //TODO
+  }
+
+  public void changeLanguage() {
+    //TODO
   }
 
 
