@@ -4,12 +4,16 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.debuglogic.interpreter.WatchExpression;
 import dibugger.userinterface.ExpressionPanel;
 import dibugger.userinterface.MainInterface;
+import dibugger.userinterface.WatchExpressionPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ExpressionChangePopUp extends DIbuggerPopUp {
     JPanel scopeChangePanel;
@@ -21,10 +25,12 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     JScrollPane scrollPane;
     int id;
     JTable table;
+    ExpressionPanel panel;
 
     //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
-    public ExpressionChangePopUp(MainInterface mainInterface, String message, int id,JTable table) {
+    public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
         this.id = id;
+        this.panel = panel;
         this.table = table;
         this.setSize(400, 400);
         this.setResizable(false);
@@ -66,6 +72,18 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
                         mainInterface.getControlFacade().deleteConditionalBreakpoint(id);
                     }
                 } else {
+                    if (message.startsWith("WatchExpression")) {
+                        WatchExpressionPanel p = (WatchExpressionPanel)panel;
+                        int n = scopeChangePanel.getComponentCount();
+                        ArrayList<ScopeTuple> scopes = new ArrayList<>();
+                        for (int j = 0; j < n; j++) {
+                            int start = Integer.parseInt(((ProgramScopeChooser)scopeChangePanel.getComponent(j)).getStart());
+                            int end = Integer.parseInt((((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getEnd()));
+                            ScopeTuple scopeTuple = new ScopeTuple(start, end);
+                            scopes.add(scopeTuple);
+                        }
+                        p.saveScopes(id, scopes);
+                    }
                     //TODO: neue Bereichsbindung überprüfen, weitergeben und so Zeug
 
                 }
@@ -98,6 +116,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     private void showScopePanel() {
         BoxLayout layout = new BoxLayout(scopeChangePanel, BoxLayout.PAGE_AXIS);
         scopeChangePanel.setLayout(layout);
+        //TODO: ID richtig machen
         for (int x = 0; x < mainInterface.getProgramCount(); x++) {
             scopeChangePanel.add(new ProgramScopeChooser(x), layout);
         }
@@ -126,7 +145,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             end.setPreferredSize(new Dimension(50,20));
             labelStart = new JLabel("Program " + id + ": Start");
             labelStart.setPreferredSize(new Dimension(100, 20));
-            //TODO ID richtig machen
             labelEnd = new JLabel("End: ");
             labelEnd.setPreferredSize(new Dimension(30,20));
 
