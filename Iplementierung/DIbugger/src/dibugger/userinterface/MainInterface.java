@@ -1,8 +1,10 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
+import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
+
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.TreeMap;
 import javax.swing.*;
 
 
@@ -13,7 +15,7 @@ import javax.swing.*;
  */
 public class MainInterface extends JFrame {
 
-  ArrayList<ProgramPanel> programPanels;
+  TreeMap<String, ProgramPanel> programPanels;
 
   private JMenu fileMenu;
   private JMenu suggestionMenu;
@@ -38,7 +40,7 @@ public class MainInterface extends JFrame {
   private JMenuItem exit;
 
   private GUIFacade guiFacade;
-  private ControlFacade controlFacade;
+  //private ControlFacade controlFacade;
 
   /**
    * Creates new MainInterface.
@@ -46,7 +48,7 @@ public class MainInterface extends JFrame {
   public MainInterface() {
     guiFacade = new GUIFacade(this);
     initComponents();
-    controlFacade = new ControlFacade(guiFacade);
+    //controlFacade = new ControlFacade(guiFacade);
   }
 
 
@@ -61,14 +63,14 @@ public class MainInterface extends JFrame {
     getContentPane().setLayout(groupLayout);
 
     configureMenuBar();
-    programPanels = new ArrayList<>();
-    programPanels.add(new ProgramPanel("A"));
-    programPanels.add(new ProgramPanel("B"));
+    programPanels = new TreeMap<>();
+    programPanels.put("A", new ProgramPanel("A"));
+    programPanels.put("B", new ProgramPanel("B"));
     codePanel = new JPanel();
     codePanelLayout = new FlowLayout();
     codePanel.setLayout(codePanelLayout);
-    codePanel.add(programPanels.get(0), codePanelLayout);
-    codePanel.add(programPanels.get(1), codePanelLayout);
+    codePanel.add(programPanels.get("A"), codePanelLayout);
+    codePanel.add(programPanels.get("B"), codePanelLayout);
 
 
     JScrollPane codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -137,9 +139,15 @@ public class MainInterface extends JFrame {
     newProgram = new JMenuItem();
     newProgram.setText("Programm hinzufügen");
     newProgram.addActionListener(actionEvent -> {
-      programPanels.add(new ProgramPanel(calcNextProgramID()));
-      codePanel.add(programPanels.get(programPanels.size() - 1), codePanelLayout);
-      codePanel.updateUI();
+      if (programPanels.size() >= 26) {
+        new ErrorPopUp("Too many ProgramPanels", this);
+      } else {
+        String nextId = calcNextProgramId();
+        ProgramPanel newPanel = new ProgramPanel(nextId);
+        programPanels.put(nextId, newPanel);
+        codePanel.add(programPanels.get(nextId), codePanelLayout);
+        codePanel.updateUI();
+      }
       //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
     });
     loadConfig = new JMenuItem();
@@ -218,12 +226,17 @@ public class MainInterface extends JFrame {
    *
    * @return identifier of next program panel
    */
-  private String calcNextProgramID() {
-    return "A";
+  private String calcNextProgramId() {
+    String newId;
+    char[] lastId = programPanels.lastKey().toCharArray();
+    char newChar = (char) (lastId[lastId.length - 1] + 1);
+    newId = Character.toString(newChar);
+    return newId;
   }
 
   public ControlFacade getControlFacade() {
-    return controlFacade;
+    //return controlFacade;
+    return null;
   }
 
 
