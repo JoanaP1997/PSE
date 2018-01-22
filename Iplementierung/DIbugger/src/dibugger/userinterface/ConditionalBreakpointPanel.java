@@ -18,6 +18,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     private JLabel title;
     private MainInterface mainInterface;
     private Object[][] dataEntries;
+    private ConditionalBreakpointPanel thisCBP = this;
 
     private ConditionalBreakpointPanel(MainInterface mainInterface) {
         this.mainInterface = mainInterface;
@@ -58,7 +59,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
             public void mouseClicked(MouseEvent mouseEvent) {
                 Point p = mouseEvent.getPoint();
                 if(table.columnAtPoint(p) == 0) {
-                    new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", 1, table);
+                    new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", 1, table, thisCBP);
                 }
                 else if( (table.columnAtPoint(p) == 1)) {
                     //TODO: CB speichern
