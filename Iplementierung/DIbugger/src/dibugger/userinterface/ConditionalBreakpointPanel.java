@@ -1,7 +1,6 @@
 package dibugger.userinterface;
 
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
-import sun.applet.Main;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

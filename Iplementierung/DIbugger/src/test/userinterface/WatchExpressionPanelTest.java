@@ -1,4 +1,4 @@
-package dibugger.userinterface;
+package test.userinterface;
 
 import org.junit.Test;
 
