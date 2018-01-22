@@ -33,9 +33,7 @@ public class WhileCommand extends Command {
 
   @Override
   public List<TraceState> run() throws DIbuggerLogicException {
-
     Scope scope = this.controller.getCurrentScope();
-
     // check if condition is of type boolean
     TermValue value = this.condition.evaluate(scope);
     if (value.getType() != Type.BOOLEAN) {
@@ -43,7 +41,6 @@ public class WhileCommand extends Command {
     }
     List<TraceState> traceStateList = new ArrayList<TraceState>();
     traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
-
     // run the loop
     while (((BooleanValue) this.condition.evaluate(scope)).getValue()) {
       for (Command child : this.children) {
