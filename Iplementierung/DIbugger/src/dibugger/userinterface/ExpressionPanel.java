@@ -1,12 +1,18 @@
 package dibugger.userinterface;
 
-import javax.swing.*;
-import java.util.List;
+import javax.swing.JPanel;
 
+/**
+ * Abstract class.
+ */
 public abstract class ExpressionPanel extends JPanel {
 
-    String panelType = "ExpressionPanel";
-    public abstract void update();
+  String panelType = "ExpressionPanel";
+
+  /**
+   * update-Method for observer pattern.
+   */
+  public abstract void update();
 
 
 }
