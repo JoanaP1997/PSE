@@ -259,7 +259,7 @@ public class DebugControl {
 	 * @param expr the expression of the watch expression
 	 */
 	public void createWatchExpression(int id, String expr){
-		while(list_watchExpressions.size()<id){
+		while(list_watchExpressions.size()-1<id){
 			list_watchExpressions.add(new WatchExpression(""));
 		}
 		list_watchExpressions.set(id, new WatchExpression(expr));
@@ -320,7 +320,7 @@ public class DebugControl {
 	 * @param line the line where the breakpoint should be
 	 */
 	public void createBreakpoint(int program, int line){
-		while(list_breakpoints.size()<program-1){
+		while(list_breakpoints.size()-1<program){
 			list_breakpoints.add(new ArrayList<Breakpoint>());
 		}
 		list_breakpoints.get(program).add(new Breakpoint(line, program));
@@ -372,7 +372,7 @@ public class DebugControl {
 	 * @param stepSize the new stepsize to use while debugging
 	 */
 	public void setStepSize(int programID, int stepSize){
-		while(list_stepSize.size()<programID-1){
+		while(list_stepSize.size()-1<programID){
 			list_stepSize.add(1);
 		}
 		list_stepSize.set(programID, stepSize);
