@@ -116,7 +116,7 @@ Dieser kann als abstrakte Klasse nicht erzeugt werden und stellt zwei abstrakte 
 Dies müssen bei der Vererbung durch eine Unterklasse, z.B. RDBFDBFileReader, XMLDBFileReader, JsonDBFileReader usw., überschrieben und vollständig Implementiert werden.
 Dadurch können unter Vorraussetzung einer korrekten Implementierung der beiden Methoden weitere Dateiformate hinzugefügt werden.
 Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader und PropertiesFileWriter}. Sie sind ähnlich aufgebaut zu der hier gezeigten Klasse.
-
+\subsection{Besucher} BEschreibe die Grammatik zusammenfuehrung uws.
 \subsection{Beobachter}
 z.B. Gui-Facade
 
@@ -138,7 +138,7 @@ z.B. Gui-Facade
 Ursprünglich sollte der TraceIterator mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren, statt nur von Anfang bis Ende Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt lediglich eine Vereinfachung dar, in der statt einem einzelnen\\
 Änderung: Der Iterator über den Trace wurde mit Hilfe eines von Java bereitgestellen \textit{ListIterators} implementiert, den die Klasse \textit{Trace} mit ihrer \textit{iterator()}-Methode zurückgibt.
 \paragraph{TermValue}abstract class statt interface \\
-
+\paragraph{TraceState} zusätzliches Attribut: String programId, dabei auch GenerationController::generateTrace(.) hat deshalb zusätzliches Argument String programId
 \section{Anhang}
 
 \end{document}
