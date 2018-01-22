@@ -165,8 +165,8 @@ public class DebugLogicController {
     }
     
 
-    public void saveText(List<String> inputVariables, List<String> programTexts) {
-        inputBuffer.storeTextInput(inputVariables, programTexts);
+    public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
+        inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
     }
     
     

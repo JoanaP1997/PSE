@@ -38,7 +38,7 @@ public class GenerationController {
     this.returnValue = null;
   }
 
-  public TraceIterator generateTrace(String programText, List<String> input) {
+  public TraceIterator generateTrace(String programText, List<String> input, String programIdentifier) {
     return null;
   }
 
@@ -57,7 +57,7 @@ public class GenerationController {
       this.scopes.push(scope);
       this.currentScopeCount++;
     }
-    //else: Warnung
+    //else: Warnung-->Exception
   }
 
   public Scope popScope() {
