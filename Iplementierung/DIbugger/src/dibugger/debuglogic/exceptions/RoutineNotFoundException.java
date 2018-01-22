@@ -17,7 +17,7 @@ public class RoutineNotFoundException extends DIbuggerLogicException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public RoutineNotFoundException(int occurrence) {
-		super(occurrence, "routineNotFoundException");
+		super(occurrence, "dl_exc_routine_not_found");
 	}
 
 }

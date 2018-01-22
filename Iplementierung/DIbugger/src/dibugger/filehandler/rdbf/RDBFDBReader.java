@@ -15,7 +15,6 @@ import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.filehandler.facade.DBFileReader;
 import dibugger.filehandler.facade.LanguageFile;
-import dibugger.filehandler.facade.ConfigurationFile.WCBExpression;
 
 /**
  * Specific implementation of the {@linkplain DBFileReader} for the RDBF Format
@@ -63,20 +62,24 @@ public class RDBFDBReader extends DBFileReader{
 			l_b = f0.getBlocksByName("WATCHEXPR");
 			for(RDBFBlock b : l_b){
 				String expression = getInstance().getSValue(b.getFirstDataByName("expression").getValue());
-				WCBExpression e = f.new WCBExpression(expression);
+				List<Integer> lb = new ArrayList<Integer>();
+				List<Integer> le = new ArrayList<Integer>();
 				for(RDBFBlock b0 : b.getBlocksByName("SCOPE")){
-					e.getList_scopes().add(f.new IntTuple(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()), getInstance().getIValue(b0.getFirstDataByName("end").getValue())));
+					lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
+					lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
 				}
-				f.getList_watchExpressions().add(e);
+				f.addWatchExpressions(expression, lb, le);
 			}
 			l_b = f0.getBlocksByName("CONDBREAKPOINT");
 			for(RDBFBlock b : l_b){
 				String expression = getInstance().getSValue(b.getFirstDataByName("expression").getValue());
-				WCBExpression e = f.new WCBExpression(expression);
+				List<Integer> lb = new ArrayList<Integer>();
+				List<Integer> le = new ArrayList<Integer>();
 				for(RDBFBlock b0 : b.getBlocksByName("SCOPE")){
-					e.getList_scopes().add(f.new IntTuple(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()), getInstance().getIValue(b0.getFirstDataByName("end").getValue())));
+					lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
+					lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
 				}
-				f.getList_condBreakpoints().add(e);
+				f.addConditionalBreakpoint(expression, lb, le);
 			}
 			
 			return f;

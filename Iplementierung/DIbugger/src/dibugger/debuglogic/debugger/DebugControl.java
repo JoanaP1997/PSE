@@ -13,7 +13,6 @@ import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
 import dibugger.debuglogic.interpreter.WatchExpression;
 import dibugger.debuglogic.interpreter.Trace.TraceIterator;
-import dibugger.filehandler.facade.ConfigurationFile.IntTuple;
 
 /**
  * Heart of the Debug-Logic. The logic for start / stop / continue and all steps is in this class.

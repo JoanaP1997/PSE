@@ -17,7 +17,7 @@ public class WrongTypeArgumentException extends WrongArgumentException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public WrongTypeArgumentException(int occurrence) {
-		super(occurrence, "wrongTypeArgumentException");
+		super(occurrence, "dl_exc_wrong_type_argument");
 	}
 
 }

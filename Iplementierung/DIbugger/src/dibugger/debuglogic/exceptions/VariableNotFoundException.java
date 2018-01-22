@@ -17,7 +17,7 @@ public class VariableNotFoundException extends DIbuggerLogicException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public VariableNotFoundException(int occurrence) {
-		super(occurrence, "variableNotFoundException");
+		super(occurrence, "dl_exc_variable_not_found");
 	}
 
 }

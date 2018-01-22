@@ -17,7 +17,7 @@ public class WrongTypeAssignmentException extends DIbuggerLogicException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public WrongTypeAssignmentException(int occurrence) {
-		super(occurrence, "wrongTypeAssignmentException");
+		super(occurrence, "dl_exc_wrong_type_assignment");
 	}
 
 }

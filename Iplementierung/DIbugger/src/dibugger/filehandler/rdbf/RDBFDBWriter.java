@@ -2,12 +2,11 @@ package dibugger.filehandler.rdbf;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.filehandler.facade.DBFileWriter;
 import dibugger.filehandler.facade.LanguageFile;
-import dibugger.filehandler.facade.ConfigurationFile.IntTuple;
-import dibugger.filehandler.facade.ConfigurationFile.WCBExpression;
 
 /**
  * SPecific implementation of the {@linkplain DBFileWriter} for the RDBF Format
@@ -59,30 +58,36 @@ public class RDBFDBWriter extends DBFileWriter{
 			file.addBlock(block_program);
 		}
 		//WatchExpressions	
-		for(WCBExpression expr : f.getList_watchExpressions()){
+		List<String> l_expressions = f.getWatchExpressions();
+		for(int i=0;i<f.getWatchExpressionSize();++i){
 			RDBFBlock block_we = new RDBFBlock("WATCHEXPR");
 			//Expression
-			block_we.addData(new RDBFData("expression", "'"+expr.getExpression()+"'"));
-			//Scopes
-			for(IntTuple it : expr.getList_scopes()){
+			block_we.addData(new RDBFData("expression", "'"+l_expressions.get(i)+"'"));
+			//scopes
+			List<Integer> l_scopeBegin = f.getWEScopeBegin(i);
+			List<Integer> l_scopeEnd = f.getWEScopeEnd(i);
+			for(int j=0;j<l_scopeBegin.size();++j){
 				RDBFBlock block = new RDBFBlock("SCOPE");
-				block.addData(new RDBFData("begin", ""+it.getA()));
-				block.addData(new RDBFData("end", ""+it.getB()));
+				block.addData(new RDBFData("begin", ""+l_scopeBegin.get(j)));
+				block.addData(new RDBFData("end", ""+l_scopeEnd.get(j)));
 				block_we.addBlock(block);
 			}
 			
 			file.addBlock(block_we);
 		}
 		//CondBreakpoints
-		for(WCBExpression expr : f.getList_condBreakpoints()){
+		l_expressions = f.getConditionalBreakpoints();
+		for(int i=0;i<f.getConditionalBreakpointSize();++i){
 			RDBFBlock block_cb = new RDBFBlock("CONDBREAKPOINT");
-			//Expression
-			block_cb.addData(new RDBFData("expression", "'"+expr.getExpression()+"'"));
-			//Scopes
-			for(IntTuple it : expr.getList_scopes()){
+			//condition
+			block_cb.addData(new RDBFData("expression", "'"+l_expressions.get(i)+"'"));
+			//scopes
+			List<Integer> l_scopeBegin = f.getCBScopeBegin(i);
+			List<Integer> l_scopeEnd = f.getCBScopeEnd(i);
+			for(int j=0;j<l_scopeBegin.size();++j){
 				RDBFBlock block = new RDBFBlock("SCOPE");
-				block.addData(new RDBFData("begin", ""+it.getA()));
-				block.addData(new RDBFData("end", ""+it.getB()));
+				block.addData(new RDBFData("begin", ""+l_scopeBegin.get(j)));
+				block.addData(new RDBFData("end", ""+l_scopeEnd.get(j)));
 				block_cb.addBlock(block);
 			}
 			

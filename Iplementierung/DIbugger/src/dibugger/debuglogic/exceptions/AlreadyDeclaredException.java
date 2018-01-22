@@ -17,7 +17,7 @@ public class AlreadyDeclaredException extends DIbuggerLogicException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public AlreadyDeclaredException(int occurrence) {
-		super(occurrence, "alreadyDeclaredException");
+		super(occurrence, "dl_exc_already_declared");
 	}
 
 }

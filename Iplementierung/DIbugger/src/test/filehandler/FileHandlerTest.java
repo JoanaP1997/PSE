@@ -16,8 +16,6 @@ import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.facade.ConfigurationFile;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.filehandler.facade.PropertiesFile;
-import dibugger.filehandler.facade.ConfigurationFile.IntTuple;
-import dibugger.filehandler.facade.ConfigurationFile.WCBExpression;
 import dibugger.filehandler.rdbf.RDBFAdditions;
 import dibugger.filehandler.rdbf.RDBFBlock;
 import dibugger.filehandler.rdbf.RDBFDBReader;
@@ -74,7 +72,7 @@ public class FileHandlerTest {
 	@Test
 	public void testRDBFLanguage() throws FileHandlerException{
 		RDBFDBReader reader = new RDBFDBReader();
-		LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.rdbf"));
+		LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.txt"));
 	}
 	
 	private static void sysoutBlock(RDBFBlock block, String tab){
@@ -174,18 +172,22 @@ public class FileHandlerTest {
 		}
 		f.setNumPrograms(2);
 		for(int i=0;i<rand.nextInt(4);++i){
-			WCBExpression we = f.new WCBExpression(generateWord(rand));
+			List<Integer> lb = new ArrayList<Integer>();
+			List<Integer> le = new ArrayList<Integer>();
 			for(int j=0;j<rand.nextInt(1,3);++j){
-				we.getList_scopes().add(f.new IntTuple(rand.nextInt(8*j,8+8*j), rand.nextInt(8+8*j,16+8*j)));
+				lb.add(rand.nextInt(8*j,8+8*j));
+				le.add(rand.nextInt(8+8*j,16+8*j));
 			}
-			f.getList_watchExpressions().add(we);
+			f.addWatchExpressions(generateWord(rand), lb, le);
 		}
 		for(int i=0;i<rand.nextInt(4);++i){
-			WCBExpression cb = f.new WCBExpression(generateWord(rand));
+			List<Integer> lb = new ArrayList<Integer>();
+			List<Integer> le = new ArrayList<Integer>();
 			for(int j=0;j<rand.nextInt(1,3);++j){
-				cb.getList_scopes().add(f.new IntTuple(rand.nextInt(8*j,8+8*j), rand.nextInt(8+8*j,16+8*j)));
+				lb.add(rand.nextInt(8*j,8+8*j));
+				le.add(rand.nextInt(8+8*j,16+8*j));
 			}
-			f.getList_condBreakpoints().add(cb);
+			f.addConditionalBreakpoint(generateWord(rand), lb, le);
 		}
 		
 		return f;

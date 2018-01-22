@@ -17,7 +17,7 @@ public class WrongNumberArgumentException extends WrongArgumentException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public WrongNumberArgumentException(int occurrence) {
-		super(occurrence, "wrongNumberArgumentException");
+		super(occurrence, "dl_exc_wrong_number_argument");
 	}
 
 }

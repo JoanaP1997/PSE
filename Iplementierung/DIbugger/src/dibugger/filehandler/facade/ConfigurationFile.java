@@ -233,20 +233,6 @@ public class ConfigurationFile {
 	}
 	/**
 	 * 
-	 * @return the list obejct containing all Watch Expressions
-	 */
-	public List<WCBExpression> getList_watchExpressions() {
-		return list_watchExpressions;
-	}
-	/**
-	 * 
-	 * @return the list obejct containing all conditional breakpoints
-	 */
-	public List<WCBExpression> getList_condBreakpoints() {
-		return list_condBreakpoints;
-	}
-	/**
-	 * 
 	 * @return the list obejct containing all breakpoints.
 	 */
 	public List<List<Integer>> getList_breakpoints() {
@@ -320,7 +306,7 @@ public class ConfigurationFile {
 	}
 	
 	//Private helper structs	
-	public class WCBExpression{
+	private class WCBExpression{
 		private String expression;
 		private List<IntTuple> list_scopes;
 		
@@ -328,28 +314,13 @@ public class ConfigurationFile {
 			this.expression = expression;
 			list_scopes = new ArrayList<IntTuple>();
 		}
-
-		public String getExpression() {
-			return expression;
-		}
-		
-		public List<IntTuple> getList_scopes() {
-			return list_scopes;
-		}
 	}
-	public class IntTuple{
+	private class IntTuple{
 		private int a,b;
 
 		public IntTuple(int a, int b) {
 			this.a = a;
 			this.b = b;
-		}
-		
-		public int getA() {
-			return a;
-		}
-		public int getB() {
-			return b;
 		}
 	}
 	

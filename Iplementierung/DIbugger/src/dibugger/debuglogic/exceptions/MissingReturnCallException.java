@@ -19,7 +19,7 @@ public class MissingReturnCallException extends DIbuggerLogicException {
 	 * @param occurrence the line of occurrence of the exception
 	 */
 	public MissingReturnCallException(int occurrence) {
-		super(occurrence, "missingReturnCallException");
+		super(occurrence, "dl_exc_missing_return_call");
 	}
 
 }
