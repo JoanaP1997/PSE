@@ -1,230 +1,230 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.*;
+
+
 
 /**
- *
+ * MainInterface of the Dibugger including the main method.
  * @author joana & chiara
  */
 public class MainInterface extends JFrame {
 
-    ArrayList<ProgramPanel> programPanels;
+  ArrayList<ProgramPanel> programPanels;
 
-    private JMenu fileMenu;
-    private JMenu suggestionMenu;
-    private JMenu settingsMenu;
-    private JMenu helpMenu;
-    
-   
-    private JMenuBar menuBar;
-    private JPanel rightControlBar;
-
-    private JPanel controlButtonsPanel;
-    private JPanel watchExpPanel;
-    private JPanel condBreakPanel;
-
-    private JPanel codePanel;
-    private FlowLayout codePanelLayout;
-
-    private JMenuItem newView;
-    private JMenuItem newProgram;
-    private JMenuItem loadConfig;
-    private JMenuItem saveConfig;
-    private JMenuItem exit;
-
-    private GUIFacade guiFacade;
-    private ControlFacade controlFacade;
-
-    /**
-     * Creates new MainInterface
-     */
-    public MainInterface() {
-        guiFacade = new GUIFacade(this);
-        initComponents();
-        controlFacade = new ControlFacade(guiFacade);
-    }
+  private JMenu fileMenu;
+  private JMenu suggestionMenu;
+  private JMenu settingsMenu;
+  private JMenu helpMenu;
 
 
-    /**
-     * initializes the components of the main interface
-     */
-    private void initComponents() {
-        rightControlBar = new JPanel();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  private JMenuBar menuBar;
+  private JPanel rightControlBar;
 
-        GroupLayout groupLayout = new GroupLayout(getContentPane());
-        getContentPane().setLayout(groupLayout);
+  private JPanel controlButtonsPanel;
+  private JPanel watchExpPanel;
+  private JPanel condBreakPanel;
 
-        configureMenuBar();
-        programPanels = new ArrayList<>();
-        programPanels.add(new ProgramPanel("A"));
-        programPanels.add(new ProgramPanel("B"));
-        codePanel = new JPanel();
-        codePanelLayout = new FlowLayout();
-        codePanel.setLayout(codePanelLayout);
-        codePanel.add(programPanels.get(0), codePanelLayout);
-        codePanel.add(programPanels.get(1), codePanelLayout);
+  private JPanel codePanel;
+  private FlowLayout codePanelLayout;
+
+  private JMenuItem newView;
+  private JMenuItem newProgram;
+  private JMenuItem loadConfig;
+  private JMenuItem saveConfig;
+  private JMenuItem exit;
+
+  private GUIFacade guiFacade;
+  private ControlFacade controlFacade;
+
+  /**
+   * Creates new MainInterface.
+   */
+  public MainInterface() {
+    guiFacade = new GUIFacade(this);
+    initComponents();
+    controlFacade = new ControlFacade(guiFacade);
+  }
 
 
-        JScrollPane codeScrollPane = new JScrollPane( JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS );
-        codeScrollPane.setViewportView(codePanel);
-        codeScrollPane.setPreferredSize(new Dimension(800,1000));
-        initRightControlBar();
+  /**
+   * initializes the components of the main interface.
+   */
+  private void initComponents() {
+    rightControlBar = new JPanel();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        groupLayout.setHorizontalGroup(
-                groupLayout.createSequentialGroup()
-                                .addComponent(codeScrollPane)
-                                .addComponent(rightControlBar)
-        );
-        groupLayout.setVerticalGroup(
-                groupLayout.createSequentialGroup()
-                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(codeScrollPane)
-                        .addComponent(rightControlBar))
-        );
+    GroupLayout groupLayout = new GroupLayout(getContentPane());
+    getContentPane().setLayout(groupLayout);
 
-        this.setTitle("DIbugger");
-        ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
-        this.setIconImage(icon.getImage());
+    configureMenuBar();
+    programPanels = new ArrayList<>();
+    programPanels.add(new ProgramPanel("A"));
+    programPanels.add(new ProgramPanel("B"));
+    codePanel = new JPanel();
+    codePanelLayout = new FlowLayout();
+    codePanel.setLayout(codePanelLayout);
+    codePanel.add(programPanels.get(0), codePanelLayout);
+    codePanel.add(programPanels.get(1), codePanelLayout);
 
-    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
+    JScrollPane codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    codeScrollPane.setViewportView(codePanel);
+    codeScrollPane.setPreferredSize(new Dimension(800, 1000));
+    initRightControlBar();
+
+    groupLayout.setHorizontalGroup(
+        groupLayout.createSequentialGroup()
+            .addComponent(codeScrollPane)
+            .addComponent(rightControlBar)
+    );
+    groupLayout.setVerticalGroup(
+        groupLayout.createSequentialGroup()
+            .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(codeScrollPane)
+                .addComponent(rightControlBar))
+    );
+
+    this.setTitle("DIbugger");
+    ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
+    this.setIconImage(icon.getImage());
+
+  }
+
+  /**
+   * main method.
+   * @param args the command line arguments
+   */
+  public static void main(String[] args) {
+    try {
+      for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          UIManager.setLookAndFeel(info.getClassName());
+          break;
         }
-        MainInterface mface = new MainInterface();
-        mface.setSize(1200,800);
-        mface.setVisible(true);
+      }
+    } catch (Exception e) {
+      //do nothing
     }
+    MainInterface mainInterface = new MainInterface();
+    mainInterface.setSize(1200, 800);
+    mainInterface.setVisible(true);
+  }
 
-    /**
-     * configures components of menu bar
-     */
-    private void configureMenuBar() {
-        menuBar = new JMenuBar();
-        fileMenu = new JMenu();
-        suggestionMenu = new JMenu();
-        settingsMenu = new JMenu();
-        helpMenu = new JMenu();
+  /**
+   * configures components of menu bar.
+   */
+  private void configureMenuBar() {
+    menuBar = new JMenuBar();
+    fileMenu = new JMenu();
+    suggestionMenu = new JMenu();
+    settingsMenu = new JMenu();
+    helpMenu = new JMenu();
 
-        //Datei Menü
-        fileMenu.setText("Datei");
-        menuBar.add(fileMenu);
-        newView = new JMenuItem();
-        newView.setText("Neu");
-        newView.addActionListener(actionEvent -> {
-            //TODO: Decision PoPUP -> wirklich? ja nein
-            dispose();
-            MainInterface.main(null);
-        });
-        newProgram = new JMenuItem();
-        newProgram.setText("Programm hinzufügen");
-        newProgram.addActionListener(actionEvent -> {
-            programPanels.add(new ProgramPanel(calcNextProgramID()));
-            codePanel.add(programPanels.get(programPanels.size() - 1), codePanelLayout);
-            codePanel.updateUI();
-            //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
-        });
-        loadConfig = new JMenuItem();
-        loadConfig.setText("Konfigurationsdatei laden");
-        saveConfig = new JMenuItem();
-        saveConfig.setText("Aktuellen Lauf speichern");
-        exit = new JMenuItem();
-        exit.setText("DIbugger beenden");
-        exit.addActionListener(actionEvent -> System.exit(0));
-        fileMenu.add(newView);
-        fileMenu.add(newProgram);
-        fileMenu.add(loadConfig);
-        fileMenu.add(saveConfig);
-        fileMenu.add(exit);
-        //Vorschläge Menü
-        suggestionMenu.setText("Vorschläge");
-        menuBar.add(suggestionMenu);
-
-
-        //Einstellungen Menü
-        settingsMenu.setText("Einstellungen");
-        menuBar.add(settingsMenu);
+    //Datei Menü
+    fileMenu.setText("Datei");
+    menuBar.add(fileMenu);
+    newView = new JMenuItem();
+    newView.setText("Neu");
+    newView.addActionListener(actionEvent -> {
+      dispose();
+      MainInterface.main(null);
+    });
+    newProgram = new JMenuItem();
+    newProgram.setText("Programm hinzufügen");
+    newProgram.addActionListener(actionEvent -> {
+      programPanels.add(new ProgramPanel(calcNextProgramID()));
+      codePanel.add(programPanels.get(programPanels.size() - 1), codePanelLayout);
+      codePanel.updateUI();
+      //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
+    });
+    loadConfig = new JMenuItem();
+    loadConfig.setText("Konfigurationsdatei laden");
+    saveConfig = new JMenuItem();
+    saveConfig.setText("Aktuellen Lauf speichern");
+    exit = new JMenuItem();
+    exit.setText("DIbugger beenden");
+    exit.addActionListener(actionEvent -> System.exit(0));
+    fileMenu.add(newView);
+    fileMenu.add(newProgram);
+    fileMenu.add(loadConfig);
+    fileMenu.add(saveConfig);
+    fileMenu.add(exit);
+    //Vorschläge Menü
+    suggestionMenu.setText("Vorschläge");
+    menuBar.add(suggestionMenu);
 
 
-        //Hilfe Menü
-        helpMenu.setText("?");
-        menuBar.add(helpMenu);
+    //Einstellungen Menü
+    settingsMenu.setText("Einstellungen");
+    menuBar.add(settingsMenu);
 
 
+    //Hilfe Menü
+    helpMenu.setText("?");
+    menuBar.add(helpMenu);
 
 
+    setJMenuBar(menuBar);
+  }
 
+  /**
+   * initializes right control bar.
+   */
+  private void initRightControlBar() {
+    condBreakPanel = new JPanel();
+    condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel(this));
 
-        setJMenuBar(menuBar);
-    }
+    controlButtonsPanel = new JPanel();
+    controlButtonsPanel.add(CommandPanel.getCommandPanel(this));
 
-    /**
-     * initializes right control bar
-     */
-    private void initRightControlBar() {
-        condBreakPanel = new JPanel();
-        condBreakPanel.add(ConditionalBreakpointPanel.getConditionalBreakpointPanel(this));
+    watchExpPanel = new JPanel();
+    watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel(this));
 
-        controlButtonsPanel = new JPanel();
-        controlButtonsPanel.add(CommandPanel.getCommandPanel(this));
+    GroupLayout groupLayout = new GroupLayout(rightControlBar);
+    rightControlBar.setLayout(groupLayout);
 
-        watchExpPanel = new JPanel();
-        watchExpPanel.add(WatchExpressionPanel.getWatchExpressionPanel(this));
+    groupLayout.setHorizontalGroup(
+        groupLayout.createSequentialGroup()
+            .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(controlButtonsPanel)
+                .addComponent(watchExpPanel)
+                .addComponent(condBreakPanel))
+    );
+    groupLayout.setVerticalGroup(
+        groupLayout.createSequentialGroup()
+            .addComponent(controlButtonsPanel)
+            .addComponent(watchExpPanel)
+            .addComponent(condBreakPanel)
+    );
+    rightControlBar.setPreferredSize(new Dimension(200, 1000));
+  }
 
-        GroupLayout groupLayout = new GroupLayout(rightControlBar);
-        rightControlBar.setLayout(groupLayout);
+  /**
+   * get method for the number of programPanels.
+   *
+   * @return number of programPanels
+   */
+  public int getProgramCount() {
+    return programPanels.size();
+  }
 
-        groupLayout.setHorizontalGroup(
-                groupLayout.createSequentialGroup()
-                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(controlButtonsPanel)
-                            .addComponent(watchExpPanel)
-                            .addComponent(condBreakPanel))
-        );
-        groupLayout.setVerticalGroup(
-                groupLayout.createSequentialGroup()
-                                .addComponent(controlButtonsPanel)
-                                .addComponent(watchExpPanel)
-                                .addComponent(condBreakPanel)
-        );
-        rightControlBar.setPreferredSize(new Dimension(200, 1000));
-    }
+  /**
+   * calculates ID for next ProgramPanel.
+   *
+   * @return identifier of next program panel
+   */
+  private String calcNextProgramID() {
+    return "A";
+  }
 
-    /**
-     * get method for the number of programPanels
-     * @return number of programPanels
-     */
-    public int getProgramCount() {
-        return programPanels.size();
-    }
-
-    /**
-     * calculates ID for next ProgramPanel
-     * @return identifier of next program panel
-     */
-    private String calcNextProgramID() {
-        return "A";
-    }
-
-    public ControlFacade getControlFacade() {
-        return controlFacade;
-    }
+  public ControlFacade getControlFacade() {
+    return controlFacade;
+  }
 
 
 }
