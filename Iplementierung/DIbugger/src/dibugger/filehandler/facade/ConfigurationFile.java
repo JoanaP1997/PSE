@@ -267,6 +267,14 @@ public class ConfigurationFile {
 
     /**
      * 
+     * @return the list object containing all program nameIDs
+     */
+    public List<String> getList_programNamespace() {
+		return list_programNamespace;
+	}
+    
+    /**
+     * 
      * @return the list object containing all program step sizes.
      */
     public List<Integer> getList_programStepSize() {

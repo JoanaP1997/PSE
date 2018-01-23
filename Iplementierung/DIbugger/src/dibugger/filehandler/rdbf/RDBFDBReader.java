@@ -41,6 +41,7 @@ public class RDBFDBReader extends DBFileReader {
             // Load ProgramData
             for (RDBFBlock b : l_b) {
                 f.getList_programStepSize().add(getInstance().getIValue(b.getFirstDataByName("stepsize").getValue()));
+                f.getList_programNamespace().add(getInstance().getSValue(b.getFirstDataByName("name").getValue()));
                 f.getList_lastExecLine().add(getInstance().getIValue(b.getFirstDataByName("lastExecLine").getValue()));
                 f.getList_programText().add(b.getFirstBlockByName("PROGRAMTEXT").getFirstDataByName("text").getValue());
                 Map<String, String> map_input = new HashMap<String, String>();
