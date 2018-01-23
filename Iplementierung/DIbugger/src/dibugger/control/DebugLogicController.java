@@ -37,18 +37,19 @@ public class DebugLogicController {
 
     /*TODO private, public, protected???
     */
-//    public int getNumberOfBufferedPrograms() {
-//        return inputBuffer.getNumberOfPrograms();
-//    }
-//
-//    public int getNumberOfPrograms() {
-//        return debugLogicFacade.getNumberOfPrograms();
-//    }
-//
-//    public int getStepSize(int programNumber) {
-//        return debugLogicFacade.getStepSize(programNumber);
-//    }
+    public int getNumberOfBufferedPrograms() {
+        return inputBuffer.getNumberOfPrograms();
+    }
 
+    public int getNumberOfPrograms() {
+        return debugLogicFacade.getNumPrograms();
+    }
+
+    public int getStepSize(int programNumber) {
+        return debugLogicFacade.getStepSize(programNumber);
+    }
+    //END TODO
+    
     public List<ProgramInput> getProgramInput() {
         return inputBuffer.getProgramInput();
     }

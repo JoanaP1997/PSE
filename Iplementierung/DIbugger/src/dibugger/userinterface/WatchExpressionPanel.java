@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import dibugger.debuglogic.debugger.DebugLogicFacade;
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
@@ -47,7 +48,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
     public void update() {
         DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
         for (int i = 0; i <= currentHighestId; i++) {
-            dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+            try {
+				dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+			} catch (DIbuggerLogicException e) {
+				// TODO do something or not
+			}
             table.updateUI();
         }
         // TODO: check
