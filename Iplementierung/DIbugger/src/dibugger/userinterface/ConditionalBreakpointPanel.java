@@ -1,5 +1,6 @@
 package dibugger.userinterface;
 
+import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 
@@ -23,6 +24,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   private HashMap<Integer, Integer> idMap = new HashMap<>();
   private int currentHighestId = 0;
   private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
+  private JTable table;
 
   {
     thisCBP = this;
@@ -42,7 +44,12 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   }
 
   public void update() {
-    //TODO
+    DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
+    for(int i = 0; i <= currentHighestId; i++) {
+      dataEntries[i][2] = debugLogicFacade.getCBValue(i);
+      table.updateUI();
+    }
+    //TODO: check
   }
 
   private void initComponents() {
@@ -61,7 +68,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         return column == 1;
       }
     };
-    JTable table = new JTable(tableModel);
+    table = new JTable(tableModel);
     table.getColumnModel().getColumn(0).setPreferredWidth(5);
     table.getColumnModel().getColumn(1).setPreferredWidth(150);
     table.getColumnModel().getColumn(2).setPreferredWidth(5);
@@ -133,7 +140,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
   public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
     scopes.put(id, scopeTupels);
-    };
+    //TODO: weitergeben, evtl. schon bei MouseExcited
+    }
 
 
 public void reset() {

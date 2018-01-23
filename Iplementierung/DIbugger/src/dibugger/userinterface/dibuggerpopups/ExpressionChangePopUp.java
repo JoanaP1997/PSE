@@ -23,9 +23,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   int id;
   JTable table;
   ExpressionPanel panel;
+  String type;
 
-  //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
-  //TODO: Scopes am Anfang holen und anzeigen --> update()
   public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
 
     //init:
@@ -78,6 +77,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         } else {
           // save Scopes in scopes List:
           if (message.startsWith("WatchExpression")) {
+            type = "WatchExpression";
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             int n = scopeChangePanel.getComponentCount();
             ArrayList<ScopeTuple> scopes = new ArrayList<>();
@@ -89,6 +89,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             }
             p.saveScopes(id, scopes);
           } else if (message.startsWith("ConditionalBreakpoint")) {
+            type = "ConditionalBreakpoint";
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
             int n = scopeChangePanel.getComponentCount();
             ArrayList<ScopeTuple> scopes = new ArrayList<>();
@@ -100,7 +101,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             }
             p.saveScopes(id, scopes);
           }
-          //TODO: weitergeben
         }
       }
     });
@@ -162,6 +162,15 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelEnd = new JLabel("End: ");
       labelEnd.setPreferredSize(new Dimension(30, 20));
 
+    //init:
+      if (type.equals("WatchExpression")) {
+        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(id).toString());
+        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(id).toString());
+      } else if (type.equals("ConditionalBreakpoint")) {
+        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(id).toString());
+        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(id).toString());
+      }
+
 
       layout.setHgap(20);
       layout.setVgap(10);
@@ -186,5 +195,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       return end.getText();
     }
   }
+
+
 
 }

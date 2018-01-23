@@ -143,10 +143,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
         scopes.put(id, scopeTupels);
-        System.out.println(scopes.get(0).get(0).getStartLine());
-        System.out.println(scopes.get(0).get(0).getEndLine());
-        System.out.println(scopes.get(0).get(1).getStartLine());
-        System.out.println(scopes.get(0).get(1).getEndLine());
+        //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
     public void deleteEntry(int id) {
