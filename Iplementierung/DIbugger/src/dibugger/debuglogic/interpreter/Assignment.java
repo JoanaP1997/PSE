@@ -31,16 +31,16 @@ public class Assignment extends Command {
     // check if variable exists
     if (type == null) {
       throw new VariableNotFoundException(this.linenumber);
-    
-    // check type
-    if (type != value.getType()) {
-      throw new WrongTypeAssignmentException(this.linenumber);
     }
-    // set value
-    scope.setValueOf(this.identifier, value);
-    List<TraceState> traceStateList = new ArrayList<TraceState>();
-    traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
-    return traceStateList;
-  }
+      // check type
+      if (type != value.getType()) {
+        throw new WrongTypeAssignmentException(this.linenumber);
+      }
+      // set value
+      scope.setValueOf(this.identifier, value);
+      List<TraceState> traceStateList = new ArrayList<TraceState>();
+      traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
+      return traceStateList;
+    }
 
 }
