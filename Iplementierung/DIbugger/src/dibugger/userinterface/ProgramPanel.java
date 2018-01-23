@@ -31,6 +31,7 @@ public class ProgramPanel extends JPanel {
   private List<JRadioButton> breakpointButtons;
 
   private JPanel variableInspector;
+  DefaultListModel<String> listModel;
   private JScrollPane variableInspectorScrollPane;
   private JList<String> variableInspectorList;
 
@@ -270,7 +271,7 @@ public class ProgramPanel extends JPanel {
     GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
     variableInspector.setLayout(variableInspectorLayout);
     String[] data = {"x = true", "y = ?", "count = 42"};
-    DefaultListModel<String> listModel = new DefaultListModel<>();
+    listModel = new DefaultListModel<>();
     for (String s : data) {
       listModel.addElement(s);
     }
@@ -351,6 +352,31 @@ public class ProgramPanel extends JPanel {
    */
   public String getId() {
     return id;
+  }
+
+  public void setText(String programText) {
+    codeTextArea.setText(programText);
+    listModel.removeAllElements();
+    variableInspectorList.updateUI();
+  }
+
+  public void showVariables(List<String> variables) {
+    listModel.removeAllElements();
+    for (String s: variables) {
+      listModel.addElement(s);
+    }
+  }
+
+  public List<String> getInspectedVariables() {
+    ArrayList<String> inspectedVariables = new ArrayList<>();
+    for (int i = 0; i < listModel.size(); i++) {
+      inspectedVariables.add(listModel.get(i));
+    }
+    return inspectedVariables;
+  }
+
+  public void showInput(String input) {
+    inputvariableTextField.setText(input);
   }
 
 
