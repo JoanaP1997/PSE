@@ -27,7 +27,7 @@ public class DebugLogicController {
         debugLogicFacade.addObserver(guiFacade);
     }
 
-    public List<Breakpoint> getBreakpoints(int programNumber) {
+    public List<Integer> getBreakpoints(int programNumber) {
         return debugLogicFacade.getBreakpoints(programNumber);
     }
 
@@ -35,22 +35,24 @@ public class DebugLogicController {
         return debugLogicFacade.getConditionalBreakpoints();
     }
 
-    //TODO private, public, protected???
-//    int getNumberOfBufferedPrograms() {
+    /*TODO private, public, protected???
+    programAmount and stepsize getter from guiFacade
+    */
+//    public int getNumberOfBufferedPrograms() {
 //        return inputBuffer.getNumberOfPrograms();
 //    }
 //
-//    int getNumberOfPrograms() {
+//    public int getNumberOfPrograms() {
 //        return debugLogicFacade.getNumberOfPrograms();
 //    }
 //
-//    int getStepSize(int programNumber) {
+//    public int getStepSize(int programNumber) {
 //        return debugLogicFacade.getStepSize(programNumber);
 //    }
-//
-//    List<ProgramInput> getProgramInput() {
-//        return inputBuffer.getProgramInput();
-//    }
+
+    public List<ProgramInput> getProgramInput() {
+        return inputBuffer.getProgramInput();
+    }
 
     public void setStepSize(int numberOfProgram, int size) {
         debugLogicFacade.setStepSize(numberOfProgram, size);

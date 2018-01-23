@@ -334,6 +334,16 @@ public class DebugLogicFacade extends Observable {
         return debugControl.getCBValue(breakpointID);
     }
 
+    /**
+     * Getter for all breakpoints of a given program
+     * @param programID the program id
+     * @return a list containing all programs of program programID
+     */
+    public List<Integer> getBreakpoints(int programID){
+    	return debugControl.getBreakpoints(programID);
+    }
+    
+    
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;
     public static final int STRAT_REL_SIMPLE = 1;
