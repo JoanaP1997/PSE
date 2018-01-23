@@ -31,7 +31,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     private static WatchExpressionPanel singleton = null;
 
-
     private WatchExpressionPanel(MainInterface mainInterface) {
         this.mainInterface = mainInterface;
         initComponents();
@@ -47,11 +46,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     public void update() {
         DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
-        for(int i = 0; i <= currentHighestId; i++) {
+        for (int i = 0; i <= currentHighestId; i++) {
             dataEntries[i][2] = debugLogicFacade.getWEValue(i);
             table.updateUI();
         }
-        //TODO: check
+        // TODO: check
     }
 
     private void initComponents() {
@@ -60,11 +59,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
         panelType = "Watch Expressions:";
 
-        String[] columnTitles = {"Opt", panelType , "=" };
+        String[] columnTitles = { "Opt", panelType, "=" };
         dataEntries = new Object[1][3];
-        dataEntries[0][0] =  " ";
-        dataEntries[0][1] =  "5 = 5";
-        dataEntries[0][2] =  " ";
+        dataEntries[0][0] = " ";
+        dataEntries[0][1] = "5 = 5";
+        dataEntries[0][2] = " ";
         mainInterface.getControlFacade().createWatchExpression(0, "5 = 5");
         DefaultTableModel tableModel = new DefaultTableModel(dataEntries, columnTitles) {
             @Override
@@ -77,58 +76,58 @@ public class WatchExpressionPanel extends ExpressionPanel {
         table.getColumnModel().getColumn(1).setPreferredWidth(150);
         table.getColumnModel().getColumn(2).setPreferredWidth(10);
         table.addMouseListener(new MouseListener() {
-                                   @Override
-                                   public void mouseClicked(MouseEvent mouseEvent) {
-                                       Point p = mouseEvent.getPoint();
-                                       if( (table.columnAtPoint(p) == 0)) {
-                                           int row = table.rowAtPoint(p);
-                                           int id = idMap.get(row);
-                                           new ExpressionChangePopUp(mainInterface, "WatchExpression", id, table, thisWEP);
-                                       }
-                                       if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
-                                           int row = table.rowAtPoint(p) + 1;
-                                           idMap.put(row, currentHighestId + 1);
-                                           System.out.print(idMap.get(row));
-                                           currentHighestId ++;
-                                           Object[] newRow = {" ", "5 = 5", " "};
-                                           tableModel.addRow(newRow);
-                                           ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
-                                           dataAsList.addAll(Arrays.asList(dataEntries));
-                                           dataAsList.add(newRow);
-                                           dataEntries = new Object[dataAsList.size()][];
-                                           for(int j = 0; j < dataAsList.size(); j++) {
-                                               dataEntries[j] = dataAsList.get(j);
-                                           }
-                                           mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
-                                           getWatchExpressionPanel(mainInterface).updateUI();
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                Point p = mouseEvent.getPoint();
+                if ((table.columnAtPoint(p) == 0)) {
+                    int row = table.rowAtPoint(p);
+                    int id = idMap.get(row);
+                    new ExpressionChangePopUp(mainInterface, "WatchExpression", id, table, thisWEP);
+                }
+                if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
+                    int row = table.rowAtPoint(p) + 1;
+                    idMap.put(row, currentHighestId + 1);
+                    System.out.print(idMap.get(row));
+                    currentHighestId++;
+                    Object[] newRow = { " ", "5 = 5", " " };
+                    tableModel.addRow(newRow);
+                    ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
+                    dataAsList.addAll(Arrays.asList(dataEntries));
+                    dataAsList.add(newRow);
+                    dataEntries = new Object[dataAsList.size()][];
+                    for (int j = 0; j < dataAsList.size(); j++) {
+                        dataEntries[j] = dataAsList.get(j);
+                    }
+                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
+                    getWatchExpressionPanel(mainInterface).updateUI();
 
-                                       }
-                                   }
+                }
+            }
 
-                                   @Override
-                                   public void mousePressed(MouseEvent mouseEvent) {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
 
-                                   }
+            }
 
-                                   @Override
-                                   public void mouseReleased(MouseEvent mouseEvent) {
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
 
-                                   }
+            }
 
-                                   @Override
-                                   public void mouseEntered(MouseEvent mouseEvent) {
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
 
-                                   }
+            }
 
-                                   @Override
-                                   public void mouseExited(MouseEvent mouseEvent) {
-                                        for (int j = 0; j < table.getRowCount(); j++) {
-                                            mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
-                                                    table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+                for (int j = 0; j < table.getRowCount(); j++) {
+                    mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
+                            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
 
-                                        }
-                                   }
-                               });
+                }
+            }
+        });
         table.setSize(50, 50);
 
         JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -150,14 +149,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
     }
 
     public void deleteEntry(int id) {
-        //TODO
+        // TODO
     }
 
     public void reset() {
         singleton = new WatchExpressionPanel(mainInterface);
     }
 
-
-
 }
-

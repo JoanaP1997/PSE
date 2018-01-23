@@ -47,34 +47,23 @@ public class DecisionPopUp extends DIbuggerPopUp {
 
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(112, Short.MAX_VALUE)
-                                .addComponent(continueDebug)
-                                .addGap(18, 18, 18)
-                                .addComponent(StopDebug)
+                        .addGroup(layout.createSequentialGroup().addContainerGap(112, Short.MAX_VALUE)
+                                .addComponent(continueDebug).addGap(18, 18, 18).addComponent(StopDebug)
                                 .addContainerGap(112, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(messageText)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(messageText)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(continueDebug)
-                                        .addComponent(StopDebug))
-                                .addContainerGap(198, Short.MAX_VALUE))
-        );
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addGap(43, 43, 43).addComponent(messageText).addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(continueDebug).addComponent(StopDebug))
+                        .addContainerGap(198, Short.MAX_VALUE)));
 
         pack();
 
         this.setVisible(true);
     }
-
 
     public static void main(String[] args) {
         DecisionPopUp d = new DecisionPopUp("bla", new MainInterface());

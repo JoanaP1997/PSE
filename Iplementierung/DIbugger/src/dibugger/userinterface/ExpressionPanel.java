@@ -7,12 +7,11 @@ import javax.swing.JPanel;
  */
 public abstract class ExpressionPanel extends JPanel {
 
-  String panelType = "ExpressionPanel";
+    String panelType = "ExpressionPanel";
 
-  /**
-   * update-Method for observer pattern.
-   */
-  public abstract void update();
-
+    /**
+     * update-Method for observer pattern.
+     */
+    public abstract void update();
 
 }
