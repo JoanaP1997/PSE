@@ -9,94 +9,94 @@ import dibugger.debuglogic.exceptions.IncompatibleTypeException;
  *
  */
 public class BooleanValue extends TermValue {
-	private boolean value;
-	
-	public BooleanValue(boolean value) {
-		super(Type.BOOLEAN);
-		this.value = value;
-	}
-	
-	@Override
-	public TermValue add(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_add");
-	}
+    private boolean value;
 
-	@Override
-	public TermValue mul(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_mul");
-	}
+    public BooleanValue(boolean value) {
+        super(Type.BOOLEAN);
+        this.value = value;
+    }
 
-	@Override
-	public TermValue div(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_div");
-	}
+    @Override
+    public TermValue add(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_add");
+    }
 
-	@Override
-	public TermValue mod(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_mod");
-	}
+    @Override
+    public TermValue mul(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_mul");
+    }
 
-	@Override
-	public TermValue sub(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_sub");
-	}
-	
-	@Override
-	public boolean greaterEqual(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_ge");
-	}
+    @Override
+    public TermValue div(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_div");
+    }
 
-	@Override
-	public boolean greaterThan(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_gt");
-	}
+    @Override
+    public TermValue mod(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_mod");
+    }
 
-	@Override
-	public boolean lessEqual(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_le");
-	}
+    @Override
+    public TermValue sub(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_sub");
+    }
 
-	@Override
-	public boolean lessThan(TermValue operand) throws DIbuggerLogicException {
-		throw new IncompatibleTypeException("db_it_exc_lt");
-	}
+    @Override
+    public boolean greaterEqual(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_ge");
+    }
 
-	@Override
-	public boolean equal(TermValue operand) throws DIbuggerLogicException {
-		if(operand.getType()==Type.BOOLEAN){
-			return value == ((BooleanValue)operand).getValue();
-		}
-		throw new IncompatibleTypeException("db_it_exc_eq");
-	}
+    @Override
+    public boolean greaterThan(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_gt");
+    }
 
-	@Override
-	public boolean or(TermValue operand) throws DIbuggerLogicException {
-		if(operand.getType()==Type.BOOLEAN){
-			return value || ((BooleanValue) operand).getValue();
-		}
-		throw new IncompatibleTypeException("db_it_exc_or");
-	}
-	
-	@Override
-	public boolean and(TermValue operand) throws DIbuggerLogicException {
-		if(operand.getType()==Type.BOOLEAN){
-			return value && ((BooleanValue) operand).getValue();
-		}
-		throw new IncompatibleTypeException("db_it_exc_and");
-	}
-	
-	@Override
-	public boolean not() {
-		return !value;
-	}
-	
-	@Override
-	public String toString() {
-		return ""+this.value;
-	}
+    @Override
+    public boolean lessEqual(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_le");
+    }
 
-	public boolean getValue(){
-		return value;
-	}
-	
+    @Override
+    public boolean lessThan(TermValue operand) throws DIbuggerLogicException {
+        throw new IncompatibleTypeException("db_it_exc_lt");
+    }
+
+    @Override
+    public boolean equal(TermValue operand) throws DIbuggerLogicException {
+        if (operand.getType() == Type.BOOLEAN) {
+            return value == ((BooleanValue) operand).getValue();
+        }
+        throw new IncompatibleTypeException("db_it_exc_eq");
+    }
+
+    @Override
+    public boolean or(TermValue operand) throws DIbuggerLogicException {
+        if (operand.getType() == Type.BOOLEAN) {
+            return value || ((BooleanValue) operand).getValue();
+        }
+        throw new IncompatibleTypeException("db_it_exc_or");
+    }
+
+    @Override
+    public boolean and(TermValue operand) throws DIbuggerLogicException {
+        if (operand.getType() == Type.BOOLEAN) {
+            return value && ((BooleanValue) operand).getValue();
+        }
+        throw new IncompatibleTypeException("db_it_exc_and");
+    }
+
+    @Override
+    public boolean not() {
+        return !value;
+    }
+
+    @Override
+    public String toString() {
+        return "" + this.value;
+    }
+
+    public boolean getValue() {
+        return value;
+    }
+
 }

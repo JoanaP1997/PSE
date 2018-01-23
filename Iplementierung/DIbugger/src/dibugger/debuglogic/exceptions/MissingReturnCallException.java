@@ -9,17 +9,19 @@ package dibugger.debuglogic.exceptions;
  */
 public class MissingReturnCallException extends DIbuggerLogicException {
 
-	/**
-	 * Default serialVersionUID.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Default serialVersionUID.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor of a MissingReturnCallException.
-	 * @param occurrence the line of occurrence of the exception
-	 */
-	public MissingReturnCallException(int occurrence) {
-		super(occurrence, "dl_exc_missing_return_call");
-	}
+    /**
+     * Constructor of a MissingReturnCallException.
+     * 
+     * @param occurrence
+     *            the line of occurrence of the exception
+     */
+    public MissingReturnCallException(int occurrence) {
+        super(occurrence, "dl_exc_missing_return_call");
+    }
 
 }

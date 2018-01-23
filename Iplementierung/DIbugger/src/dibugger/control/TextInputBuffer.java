@@ -9,18 +9,18 @@ import dibugger.debuglogic.debugger.ProgramInput;
 public class TextInputBuffer {
     private List<String> inputTexts;
     private List<String> programTexts;
-    
+
     public TextInputBuffer() {
         /* */
     }
-    
+
     public int getNumberOfPrograms() {
         return programTexts.size();
     }
-    
+
     public List<ProgramInput> getProgramInput() {
-        assert(inputTexts.size() == programTexts.size());
-        
+        assert (inputTexts.size() == programTexts.size());
+
         List<ProgramInput> programs = new ArrayList<>();
         for (int i = 0; i < inputTexts.size(); i++) {
             String inputValuesString = inputTexts.get(i);
@@ -30,12 +30,13 @@ public class TextInputBuffer {
         }
         return programs;
     }
-    //TODO
-  public void storeTextInput(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
+
+    // TODO
+    public void storeTextInput(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
         if (inputTexts.size() != programTexts.size()) {
             /*
-             * Assume that inputVariables has entry for each program, even if user
-             * did not specify any for one specific program (using UI)
+             * Assume that inputVariables has entry for each program, even if
+             * user did not specify any for one specific program (using UI)
              */
             throw new IllegalArgumentException();
         }

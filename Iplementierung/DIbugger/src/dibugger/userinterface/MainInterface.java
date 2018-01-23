@@ -3,15 +3,16 @@ package dibugger.userinterface;
 import dibugger.control.ControlFacade;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 import javax.swing.*;
-
-
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.TreeMap;
 
 /**
  * MainInterface of the Dibugger including the main method.
+ *
  * @author joana & chiara
  */
 public class MainInterface extends JFrame {
@@ -22,7 +23,6 @@ public class MainInterface extends JFrame {
   private JMenu suggestionMenu;
   private JMenu settingsMenu;
   private JMenu helpMenu;
-
 
   private JMenuBar menuBar;
   private JPanel rightControlBar;
@@ -52,7 +52,6 @@ public class MainInterface extends JFrame {
     initComponents();
   }
 
-
   /**
    * initializes the components of the main interface.
    */
@@ -73,7 +72,6 @@ public class MainInterface extends JFrame {
     codePanel.add(programPanels.get("A"), codePanelLayout);
     codePanel.add(programPanels.get("B"), codePanelLayout);
 
-
     JScrollPane codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
         JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     codeScrollPane.setViewportView(codePanel);
@@ -81,16 +79,10 @@ public class MainInterface extends JFrame {
     initRightControlBar();
 
     groupLayout.setHorizontalGroup(
-        groupLayout.createSequentialGroup()
-            .addComponent(codeScrollPane)
-            .addComponent(rightControlBar)
-    );
-    groupLayout.setVerticalGroup(
-        groupLayout.createSequentialGroup()
-            .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(codeScrollPane)
-                .addComponent(rightControlBar))
-    );
+        groupLayout.createSequentialGroup().addComponent(codeScrollPane).addComponent(rightControlBar));
+    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
+        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
+            .addComponent(rightControlBar)));
 
     this.setTitle("DIbugger");
     ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
@@ -100,6 +92,7 @@ public class MainInterface extends JFrame {
 
   /**
    * main method.
+   *
    * @param args the command line arguments
    */
   public static void main(String[] args) {
@@ -111,7 +104,7 @@ public class MainInterface extends JFrame {
         }
       }
     } catch (Exception e) {
-      //do nothing
+      // do nothing
     }
     MainInterface mainInterface = new MainInterface();
     mainInterface.setSize(1200, 800);
@@ -128,7 +121,7 @@ public class MainInterface extends JFrame {
     settingsMenu = new JMenu();
     helpMenu = new JMenu();
 
-    //file menu
+    // file menu
     fileMenu.setText("Datei");
     menuBar.add(fileMenu);
     newView = new JMenuItem();
@@ -148,7 +141,7 @@ public class MainInterface extends JFrame {
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
       }
-      //TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
+      // TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
     });
     loadConfig = new JMenuItem();
     loadConfig.setText("Konfigurationsdatei laden");
@@ -162,20 +155,17 @@ public class MainInterface extends JFrame {
     fileMenu.add(loadConfig);
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
-    //menu for suggestions
+    // menu for suggestions
     suggestionMenu.setText("Vorschläge");
     menuBar.add(suggestionMenu);
 
-
-    //settings menu
+    // settings menu
     settingsMenu.setText("Einstellungen");
     menuBar.add(settingsMenu);
 
-
-    //help menu
+    // help menu
     helpMenu.setText("?");
     menuBar.add(helpMenu);
-
 
     setJMenuBar(menuBar);
   }
@@ -196,19 +186,11 @@ public class MainInterface extends JFrame {
     GroupLayout groupLayout = new GroupLayout(rightControlBar);
     rightControlBar.setLayout(groupLayout);
 
-    groupLayout.setHorizontalGroup(
-        groupLayout.createSequentialGroup()
-            .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(controlButtonsPanel)
-                .addComponent(watchExpPanel)
-                .addComponent(condBreakPanel))
-    );
-    groupLayout.setVerticalGroup(
-        groupLayout.createSequentialGroup()
-            .addComponent(controlButtonsPanel)
-            .addComponent(watchExpPanel)
-            .addComponent(condBreakPanel)
-    );
+    groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
+        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(controlButtonsPanel).addComponent(watchExpPanel).addComponent(condBreakPanel)));
+    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup().addComponent(controlButtonsPanel)
+        .addComponent(watchExpPanel).addComponent(condBreakPanel));
     rightControlBar.setPreferredSize(new Dimension(200, 1000));
   }
 
@@ -238,16 +220,6 @@ public class MainInterface extends JFrame {
     return controlFacade;
   }
 
-  public void showProgramText(String programText, String programId) {
-    for (String iD : programPanels.descendingKeySet()) {
-      if (iD.equals(programId)) {
-        programPanels.get(iD).setText(programText);
-        break;
-      }
-    }
-    programPanels.put(programId, new ProgramPanel(programText));
-
-  }
 
   public void reset() {
     CommandPanel.getCommandPanel(this).reset();
@@ -271,6 +243,18 @@ public class MainInterface extends JFrame {
     }
   }
 
+  public void showProgramText(String programText, String programId) {
+    for (String id : programPanels.descendingKeySet()) {
+      if (id.equals(programId)) {
+        programPanels.get(id).setText(programText);
+        break;
+      }
+    }
+    programPanels.put(programId, new ProgramPanel(programText));
+
+  }
+
+
   public List<String> getVariablesOfInspector(String programId) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
@@ -288,13 +272,11 @@ public class MainInterface extends JFrame {
     }
   }
 
+
   public void update(Observable observable, Object o) {
-    //TODO
+    // TODO
   }
 
-  public void changeLanguage() {
-    //TODO
-  }
 
   public void startDebug() {
     ArrayList<String> inputVars = new ArrayList<>();
@@ -309,5 +291,8 @@ public class MainInterface extends JFrame {
     controlFacade.saveText(inputVars, programTexts, programIds);
   }
 
+  public void changeLanguage() {
+    // TODO
+  }
 
 }
