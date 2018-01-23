@@ -260,30 +260,30 @@ public class MainInterface extends JFrame {
   }
 
   public void showInput(String programId, List<String> vars) {
-    for (String iD : programPanels.descendingKeySet()) {
-      if (iD.equals(programId)) {
+    for (String id : programPanels.descendingKeySet()) {
+      if (id.equals(programId)) {
         String input = "";
         for (String s : vars) {
           input += s + "; ";
         }
-        programPanels.get(iD).showInput(input);
+        programPanels.get(id).showInput(input);
       }
     }
   }
 
   public List<String> getVariablesOfInspector(String programId) {
-    for (String iD : programPanels.descendingKeySet()) {
-      if (iD.equals(programId)) {
-        return programPanels.get(iD).getInspectedVariables();
+    for (String id : programPanels.descendingKeySet()) {
+      if (id.equals(programId)) {
+        return programPanels.get(id).getInspectedVariables();
       }
     }
     return new ArrayList<>();
   }
 
   public void showVariables(String programId, List<String> variables) {
-    for (String iD : programPanels.descendingKeySet()) {
-      if (iD.equals(programId)) {
-        programPanels.get(iD).showVariables(variables);
+    for (String id : programPanels.descendingKeySet()) {
+      if (id.equals(programId)) {
+        programPanels.get(id).showVariables(variables);
       }
     }
   }
@@ -297,7 +297,16 @@ public class MainInterface extends JFrame {
   }
 
   public void startDebug() {
-
+    ArrayList<String> inputVars = new ArrayList<>();
+    ArrayList<String> programTexts = new ArrayList<>();
+    ArrayList<String> programIds = new ArrayList<>();
+    for (String id : programPanels.descendingKeySet()) {
+      programIds.add(id);
+      ProgramPanel current = programPanels.get(id);
+      programTexts.add(current.getText());
+      inputVars.add(current.getInputVars());
+    }
+    controlFacade.saveText(inputVars, programTexts, programIds);
   }
 
 

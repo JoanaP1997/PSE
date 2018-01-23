@@ -379,5 +379,13 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField.setText(input);
   }
 
+  public String getText() {
+    return codeTextArea.getText();
+  }
+
+  public String getInputVars() {
+    return inputvariableTextField.getText();
+  }
+
 
 }
