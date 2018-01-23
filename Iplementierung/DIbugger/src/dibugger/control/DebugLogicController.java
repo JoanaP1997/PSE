@@ -226,4 +226,8 @@ public class DebugLogicController {
     public void selectInputValueStrategy(int inputValueStrategyId) {
         debugLogicFacade.selectInputValueStrategy(inputValueStrategyId);       
     }
+
+    public DebugLogicFacade getDebugLogicFacade() {
+        return debugLogicFacade;
+    }
 }

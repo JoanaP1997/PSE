@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
+import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
@@ -214,5 +215,9 @@ public class ControlFacade {
     } catch (LanguageNotFoundException exception) {
       exceptionHandler.handle(exception);
     }
+  }
+
+  public DebugLogicFacade getDebugLogicFacade() {
+    return debugLogicController.getDebugLogicFacade();
   }
 }
