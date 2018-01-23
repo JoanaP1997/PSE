@@ -29,7 +29,7 @@ public class Assignment extends Command {
     TermValue value = this.term.evaluate(scope);
     Type type = scope.getTypeOf(identifier);
     // check if variable exists
-    if (type == null) {
+    if (type == null) 
       throw new VariableNotFoundException(this.linenumber);
     }
       // check type
