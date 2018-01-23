@@ -62,7 +62,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 
 \section{Einleitung}
 Dieses Dokument beschreibt die Ergebnisse der Implementierungsphase (\textit{08.01.-02.02.2018}) im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
-Hierbei handlet es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
+Hierbei handelt es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
 
 \begin{figure}[!h]
 \centering
@@ -91,8 +91,16 @@ Das nun folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \subsection{Model-View-Control}
 \subsection{Das Observerpattern}
 z.B. Gui-Facade
+\newpage
 \subsection{Singleton}
-z.B. Command Panel
+%z.B. Command Panel
+Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe Abbildung \ref{loadRDBF}, kann das Einlesen einer RDBF (Relational DIbugger File) Datei in einer kurzen Methoden geschehen.
+Über \texttt{evaluateLine} wird der Typ einer Zeile herausgefunden. Je nachdem, von welchem Typ diese Zeile dann ist, werden über das Singleton der Klasse RDBFParser unterschiedliche Methoden aufgerufen, um eine Zuweisung oder einen Block zu erstellen und in der Dateistruktur einzuordnen. Dies ist durch das Singleton einfach zu lösen.
+\begin{figure}[!h]
+\includegraphics[width=1.0\textwidth]{document_data/loadRDBFFile.png}
+\caption{Nutzung des Singletons der Klasse RDBFParser}
+\label{loadRDBF}
+\end{figure}
 
 \subsection{Fassade}
 z.B. Control-Facade
@@ -104,13 +112,13 @@ z.B. Control-Facade
 \centering
 \includegraphics[width=0.8\textwidth]{document_data/Strategy_uml_d.pdf}
 
-\begin{verbbox}
-public abstract class DBFileReader {
-    public abstract ConfigurationFile loadConfigFile(File f) throws FileHandlerException;
-    public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
-}
-\end{verbbox}
-\makebox[\textwidth][c]{\theverbbox}
+%\begin{verbbox}
+%public abstract class DBFileReader {
+%    public abstract ConfigurationFile loadConfigFile(File f) throws %FileHandlerException;
+%    public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
+%}
+%\end{verbbox}
+%\makebox[\textwidth][c]{\theverbbox}
 \caption{Strategiemuster und Quelltext des DBFileReaders im Paket FileHandler}
 \label{fig:strategy_fh}
 \end{figure}
@@ -119,6 +127,7 @@ Dieser kann als abstrakte Klasse nicht erzeugt werden und stellt zwei abstrakte 
 Dies müssen bei der Vererbung durch eine Unterklasse, z.B. RDBFDBFileReader, XMLDBFileReader, JsonDBFileReader usw., überschrieben und vollständig Implementiert werden.
 Dadurch können unter Vorraussetzung einer korrekten Implementierung der beiden Methoden weitere Dateiformate hinzugefügt werden.
 Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader und PropertiesFileWriter}. Sie sind ähnlich aufgebaut zu der hier gezeigten Klasse.
+
 \subsection{Die Visitor im Interpreter} Der Entwurf sah im Paket \textit{Interpreter} zwei Klassen vor, die das Visitor Pattern umsetzen. Die beiden Klassen \textit{CommandGenerationVisitor} und \textit{TermGenerationVisitor} sind Unterklassen der von Antlr generierten Klasse \textit{WlangBaseVisitor<T>}, wobei der Generic hier angibt, welchen Datentyp die visit-Methoden zurückgeben. Wie es der Name andeutet ist dies zum einen die Klasse \textit{Command} und zum anderen die Klasse \textit{Term}. 
 Da Terme sowohl während der Traceerzeugung (genauere Erklärung dazu ist im Entwurfsdokument Kapitel 8.10 zu finden) als auch innerhalb von Watch-Expressions und bedingten Breakpoints vorkommen, kam das Problem auf, dass der \textit{TermGenerationVisitor} zunächst sowohl vom \textit{TermsBaseVisitor} (für die im Entwurfsdokument Anhang 12.2 definierte Syntax der Watch-Expressions) als auch vom \textit{WlangBaseVisitor} (für die in Entwurfsdokument 12.1 definierte Wlang-Syntax) erben musste. In Java ist bekanntlich keine Mehrfachvererbung möglich. Zur Lösung des Problems wurden die Grammatiken zusammengefügt und entsprechend beim Verwenden eine andere Startregel angegeben. 
 \subsection{Nutzung der von Antlr generierten Klassen}
@@ -146,19 +155,27 @@ Zunächst wird in jedem Command der aktuelle \textit{Scope} vom hauptverantwortl
 * Identifikator der ProgramPanels ist String (A-Z) statt Integer (Grund: bessere Darstellung der zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints
 \subsection{Control}
 \subsection{FileHandler}
-+ FileHandlerFacade: savePropertiesFile()
+%+ FileHandlerFacade: savePropertiesFile()
+\paragraph{Exceptions Paket}
+Das Exceptions-Paket sah eine Oberklasse FileHandlerException als interface vor.
+Alle Unterklassen, welche diese Schnittstelle implementieren sollten von der Klasse java.lang.Exceptions erben. Da aber Schnittstellen in Java nicht geworfen werden können, wurde die Schnittstelle FileHandlerException zu einer abstrakten Klasse mit Erbschaft von java.lang.Exception.
 \subsection{DebugLogic}
 \subsubsection{Debugger}
+%+ DebugLogicFacade: extends Observable statt Subject \\
+%* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String \\
+%+ DebugControl: setStepSize(programID, stepSize); reset();
+\paragraph{Subject}
+Im Entwurf wurde die Klasse Subject spezifiziert. Sie ist Kontrollpunkt des Beobachtermusters zwischen GUI und DebugLogic. Da eine äquivalente Klasse aus Java, namentlich Observable, existiert, wurde die Klasse Subject nicht implementiert.
+Observable biete die gleichen Methoden an, wie unsere definierte Klasse.
+\paragraph{DebugLogicFacade}
+Diese Klasse erbt nun von der Java Klasse Observable anstatt von Subject.
+Aus den oben genannten Gründen kann somit auch auf die Implementierung der in Subject enthaltenen Methoden verzichtet werden.
 
-+ DebugLogicFacade: extends Observable statt Subject \\
-* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String \\
-+ DebugControl: setStepSize(programID, stepSize); reset();
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
 Ursprünglich sollte der TraceIterator mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren, statt nur von Anfang bis Ende Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt lediglich eine Vereinfachung dar, in der statt einem einzelnen\\
 Änderung: Der Iterator über den Trace wurde mit Hilfe eines von Java bereitgestellen \textit{ListIterators} implementiert, den die Klasse \textit{Trace} mit ihrer \textit{iterator()}-Methode zurückgibt.
 \paragraph{TermValue}abstract class statt interface \\
 \paragraph{TraceState} zusätzliches Attribut: String programId, dabei auch GenerationController::generateTrace(.) hat deshalb zusätzliches Argument String programId
-\section{Anhang}
 
 \end{document}
