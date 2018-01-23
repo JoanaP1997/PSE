@@ -38,7 +38,7 @@ public class DebugControl {
     private int maxIterations = DEF_IT;
     private int maxFunctionCalls = DEF_MAX_FUNC_CALLS;
 
-    private int numPrograms = 0;
+    private int numPrograms;
 
     // interpreter objects
     private GenerationController generationController;
