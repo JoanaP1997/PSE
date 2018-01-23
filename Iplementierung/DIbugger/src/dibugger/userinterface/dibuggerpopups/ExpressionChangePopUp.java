@@ -24,6 +24,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   ExpressionPanel panel;
 
   //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
+  //TODO: Scopes am Anfang holen und anzeigen --> update()
   public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
     this.id = id;
     this.panel = panel;

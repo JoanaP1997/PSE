@@ -136,7 +136,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     };
 
 
-
+public void reset() {
+  singleton = new ConditionalBreakpointPanel(mainInterface);
+}
 
   public void deleteEntry(int id) {
     //TODO
