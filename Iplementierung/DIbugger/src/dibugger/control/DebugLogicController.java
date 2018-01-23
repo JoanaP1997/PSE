@@ -35,21 +35,22 @@ public class DebugLogicController {
         return debugLogicFacade.getConditionalBreakpoints();
     }
 
-    int getNumberOfBufferedPrograms() {
-        return inputBuffer.getNumberOfPrograms();
-    }
-
-    int getNumberOfPrograms() {
-        return debugLogicFacade.getNumberOfPrograms();
-    }
-
-    int getStepSize(int programNumber) {
-        return debugLogicFacade.getStepSize(programNumber);
-    }
-
-    List<ProgramInput> getProgramInput() {
-        return inputBuffer.getProgramInput();
-    }
+    //TODO private, public, protected???
+//    int getNumberOfBufferedPrograms() {
+//        return inputBuffer.getNumberOfPrograms();
+//    }
+//
+//    int getNumberOfPrograms() {
+//        return debugLogicFacade.getNumberOfPrograms();
+//    }
+//
+//    int getStepSize(int programNumber) {
+//        return debugLogicFacade.getStepSize(programNumber);
+//    }
+//
+//    List<ProgramInput> getProgramInput() {
+//        return inputBuffer.getProgramInput();
+//    }
 
     public void setStepSize(int numberOfProgram, int size) {
         debugLogicFacade.setStepSize(numberOfProgram, size);

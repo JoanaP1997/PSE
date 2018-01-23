@@ -17,8 +17,6 @@ import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.userinterface.GUIFacade;
 
 public class FileHandlerInteractor extends Observable {
-    private static final String LANGUAGE_DEFAULT = "german";
-
     private FileHandlerFacade fileHandlerFacade;
     private GUIFacade guiFacade;
 
