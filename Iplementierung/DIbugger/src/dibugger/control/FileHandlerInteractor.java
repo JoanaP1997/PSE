@@ -17,8 +17,6 @@ import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.userinterface.GUIFacade;
 
 public class FileHandlerInteractor extends Observable {
-    private static final String LANGUAGE_DEFAULT = "german";
-
     private FileHandlerFacade fileHandlerFacade;
     private GUIFacade guiFacade;
 
@@ -110,7 +108,7 @@ public class FileHandlerInteractor extends Observable {
         int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
         for (int i = 0; i < numberOfBufferedPrograms; i++) {
             ProgramInput input = currentInput.get(i);
-            configurationFile.setProgramInput(i, input);
+//            configurationFile.setProgramInput(i, input);//TODO NOPE
 
             // TODO not temporary value "A", use from configuration file
             List<String> variablesOfInspector = guiFacade.getVariablesOfInspector("A");
@@ -126,12 +124,12 @@ public class FileHandlerInteractor extends Observable {
             int stepSize = debugLogicController.getStepSize(i);
             configurationFile.setStepSize(i, stepSize);
 
-            List<Breakpoint> breakpoints = debugLogicController.getBreakpoints(i);
-            List<Integer> lines = new ArrayList<>();
-            for (Breakpoint element : breakpoints) {
-                lines.add(element.getLine());
-            }
-            configurationFile.setBreakpoints(i, lines);
+//            List<Breakpoint> breakpoints = debugLogicController.getBreakpoints(i);//TODO INT
+//            List<Integer> lines = new ArrayList<>();
+//            for (Breakpoint element : breakpoints) {
+//                lines.add(element.getLine());
+//            }
+//            configurationFile.setBreakpoints(i, lines);
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 

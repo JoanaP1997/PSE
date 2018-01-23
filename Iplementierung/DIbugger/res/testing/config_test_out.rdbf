@@ -1,61 +1,70 @@
 PROGRAM{
-	stepsize=1
+	stepsize=3
+	name='gxnshae'
 	lastExecLine=0
 	PROGRAMTEXT{
-		def_blockLen=9
-jewhtlk 
-mcwwg hfsabbjx nqdwknmo 
-xwouls 
-shtng cmujcj 
-rfdctx ppnxun 
-xxcoiy anwksa dcjome 
-urvjgiyg jdcgucb orbcso 
-cwjhilc 
-dnvcjw 
-
+		def_blockLen=12
+wntuask 
+csfffe vdayhc qogrta 
+vfooe flxvlb 
+awlyo 
+vvnrcc 
+iaals 
+efalhu 
+vhiiha 
+ynkfyon 
+ebifxid 
+fkqoqti txvmbj qsgusk 
+keoqxkj 
 	}
 	INPUTVALUES{
-		nptokvg='564955.5556'
-		mbvealm='5149'
 	}
 	VARINSPECTOR{
+		variable='puljniq'
 	}
 	BREAKPOINTS{
-		line=5653
-		line=56505552
+		line=54555056
 	}
 }
 PROGRAM{
-	stepsize=1
+	stepsize=3
+	name='cuoym'
 	lastExecLine=0
 	PROGRAMTEXT{
-		def_blockLen=6
-mehpxk fspagtp 
-gfysyo 
-wyymf ciajovo 
-gtqrlu 
-jxebjd hnuyr tpjjmkbi 
-fyhhrtt mhaishej 
+		def_blockLen=5
+okpnutd 
+qaqsh absyn kwqganp 
+bncnxy njcjk cpqdlq 
+qdnywep tgmajkjr yuxtuv lwyihs enwtqpf 
+aawdek 
 	}
 	INPUTVALUES{
-		olqgcr='5249.565453f'
-		ocnucxxa='true'
-		evrku='5053'
+		bxtnyva='5152.505649'
+		jyccoxt='534850.5154f'
 	}
 	VARINSPECTOR{
-		variable='lyrxxn'
-		variable='mgfedcq'
-		variable='xtejgf'
 	}
 	BREAKPOINTS{
-		line=53505454
-		line=5552
+		line=5350
+		line=5554
+		line=4850
+	}
+}
+WATCHEXPR{
+	expression='wxxanv'
+	SCOPE{
+		begin=0
+		end=12
 	}
 }
 CONDBREAKPOINT{
-	expression='dmlun'
+	expression='sbiloog'
 	SCOPE{
 		begin=1
-		end=14
+		end=9
+	}
+	SCOPE{
+		begin=15
+		end=22
 	}
 }

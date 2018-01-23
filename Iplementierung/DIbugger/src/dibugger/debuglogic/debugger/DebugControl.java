@@ -38,7 +38,7 @@ public class DebugControl {
     private int maxIterations = DEF_IT;
     private int maxFunctionCalls = DEF_MAX_FUNC_CALLS;
 
-    private int programCount = 0;
+    private int numPrograms;
 
     // interpreter objects
     private GenerationController generationController;
@@ -82,7 +82,7 @@ public class DebugControl {
         }
 
         list_programInput = programs;
-        programCount = programs.size();
+        numPrograms = programs.size();
     }
 
     /**
@@ -98,7 +98,7 @@ public class DebugControl {
             for (int stepID = 0; stepID < maxSteps; ++stepID) {
                 // Do step in all programs
                 boolean breakpointFound = false;
-                for (int i = 0; i < programCount; ++i) {
+                for (int i = 0; i < numPrograms; ++i) {
                     int cpss = list_stepSize.get(i);
                     if (stepID < cpss) {
                         // do step in program
@@ -114,12 +114,12 @@ public class DebugControl {
                 }
             }
         } else if (type == STEP_OUT) {
-            boolean[] breaked = new boolean[programCount];
+            boolean[] breaked = new boolean[numPrograms];
             boolean forceStop = false;
             // infinite loop till end of function
             while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
                 boolean breakpointFound = false;
-                for (int i = 0; i < programCount; ++i) {
+                for (int i = 0; i < numPrograms; ++i) {
                     if (!breaked[i]) {
                         boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                         TraceState state = list_currentTraceStates.get(i);
@@ -137,13 +137,13 @@ public class DebugControl {
                 }
             }
         } else if (type == STEP_OVER) {
-            int[] inline = new int[programCount];
-            boolean[] breaked = new boolean[programCount];
+            int[] inline = new int[numPrograms];
+            boolean[] breaked = new boolean[numPrograms];
             boolean first = true;
             boolean forceStop = false;
             while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
                 boolean breakpointFound = false;
-                for (int i = 0; i < programCount; ++i) {
+                for (int i = 0; i < numPrograms; ++i) {
                     if (!breaked[i]) {
                         boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                         TraceState state = list_currentTraceStates.get(i);
@@ -191,9 +191,9 @@ public class DebugControl {
      * Conditional Breakpoint is reached.
      */
     public void continueDebug() throws DIbuggerLogicException {
-        boolean[] breaked = new boolean[programCount];
+        boolean[] breaked = new boolean[numPrograms];
         while (!checkBoolArrayOnValue(breaked, true)) {
-            for (int i = 0; i < programCount; ++i) {
+            for (int i = 0; i < numPrograms; ++i) {
                 if (!breaked[i]) {
                     boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                     if (!iterated) {
@@ -205,7 +205,7 @@ public class DebugControl {
             }
             // evaluate conditional breakpoints
             if (evaluateConditionalBreakpoints()) {
-                for (int i = 0; i < programCount; ++i) {
+                for (int i = 0; i < numPrograms; ++i) {
                     breaked[i] = true;
                 }
             }
@@ -289,10 +289,12 @@ public class DebugControl {
      *            a list of scopes for the new watch expression
      */
     public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
-        WatchExpression e = list_watchExpressions.get(id);
-        if (e != null) {
-            e.change(expr, scopes);
-        }
+	    if(id<list_watchExpressions.size()){
+    		WatchExpression e = list_watchExpressions.get(id);
+	        if (e != null) {
+	            e.change(expr, scopes);
+	        }
+    	}
     }
 
     /**
@@ -332,10 +334,12 @@ public class DebugControl {
      *            a list of all scopes
      */
     public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
-        ConditionalBreakpoint cb = list_condBreakpoints.get(id);
-        if (cb != null) {
-            cb.change(cond, scopes);
-        }
+    	if(id<list_condBreakpoints.size()){
+	        ConditionalBreakpoint cb = list_condBreakpoints.get(id);
+	        if (cb != null) {
+	            cb.change(cond, scopes);
+	        }
+    	}
     }
 
     /**
@@ -403,10 +407,6 @@ public class DebugControl {
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }
 
-    public int getNumberOfPrograms() {
-        return programCount;
-    }
-
     /**
      * Sets the stepsize of a program
      * 
@@ -422,13 +422,6 @@ public class DebugControl {
         list_stepSize.set(programID, stepSize);
     }
 
-    public int getStepSize(int programNumber) {
-        if (programNumber < 1 || programNumber > getNumberOfPrograms()) {
-            throw new IllegalArgumentException();
-        }
-        return list_stepSize.get(programNumber);
-    }
-
     /**
      * Getter for the current programCounter of all programs
      * 
@@ -436,7 +429,7 @@ public class DebugControl {
      */
     public List<Integer> getProgramCounter() {
         List<Integer> l = new ArrayList<Integer>();
-        for (int i = 0; i < programCount; ++i) {
+        for (int i = 0; i < numPrograms; ++i) {
             l.add(list_programInput.get(i).getCounter());
         }
         return l;
@@ -449,7 +442,7 @@ public class DebugControl {
      */
     public List<Integer> getCurrentExecutionLines() {
         List<Integer> l = new ArrayList<Integer>();
-        for (int i = 0; i < programCount; ++i) {
+        for (int i = 0; i < numPrograms; ++i) {
             l.add(list_currentTraceStates.get(i).getLineNumber());
         }
         return l;
@@ -540,11 +533,6 @@ public class DebugControl {
         return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
     }
 
-    // Alternativ können Zeilennummern zurückgg. werden
-    public List<Breakpoint> getBreakpoints(int programNumber) {
-        throw new UnsupportedOperationException();
-    }
-
     /**
      * 
      * @return the amount of conditional breakpoints
@@ -610,6 +598,38 @@ public class DebugControl {
         return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
     }
 
+    /**
+     * Getter for all breakpoints of a given program
+     * @param programID the program id
+     * @return a list containing all programs of program programID
+     */
+    public List<Integer> getBreakpoints(int programID){
+    	List<Integer> l = new ArrayList<Integer>();
+    	List<Breakpoint> l_p = list_breakpoints.get(programID);
+    	for(int i=0;i<l_p.size();++i){
+    		l.add(l_p.get(i).getLine());
+    	}
+    	return l;
+    }
+    
+    /**
+     * Getter for the amount of programs
+     * @return the amount of programs
+     */
+    public int getNumPrograms(){
+    	return numPrograms;
+    }
+    
+    /**
+     * Getter for the stepSize of a given program
+     * @param programID the program ID
+     * @return the step size of program programID
+     */
+    public int getStepSize(int programID){
+    	return list_stepSize.get(programID);
+    }
+    
+    
     // private helper methods
     private int getMaximumOfList(List<Integer> l) {
         int max = 0;

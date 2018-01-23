@@ -31,6 +31,8 @@ public class RDBFDBWriter extends DBFileWriter {
             RDBFBlock block_program = new RDBFBlock("PROGRAM");
             // Program StepSize
             block_program.addData(new RDBFData("stepsize", "" + f.getStepSize(i)));
+            // Program nameID
+            block_program.addData(new RDBFData("name",	"'"+f.getProgramNameID(i)+"'"));
             // Last Exec Line
             block_program.addData(new RDBFData("lastExecLine", "" + f.getLatestExecutionLine(i)));
             // Program Text

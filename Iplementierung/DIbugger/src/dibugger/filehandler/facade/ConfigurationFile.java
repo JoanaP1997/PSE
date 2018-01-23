@@ -2,14 +2,9 @@ package dibugger.filehandler.facade;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
-import dibugger.debuglogic.debugger.ProgramInput;
-import dibugger.debuglogic.debugger.VariableAndValue;
 
 /**
  * 
@@ -21,6 +16,7 @@ public class ConfigurationFile {
     private File systemFile;
 
     private List<String> list_programText;
+    private List<String> list_programNamespace;
     private List<Integer> list_programStepSize;
     private List<Map<String, String>> list_inputValues;
     private List<Integer> list_lastExecLine;
@@ -37,6 +33,7 @@ public class ConfigurationFile {
         systemFile = file;
         // TODO create Lists
         list_programText = new ArrayList<String>();
+        list_programNamespace = new ArrayList<String>();
         list_programStepSize = new ArrayList<Integer>();
         list_inputValues = new ArrayList<Map<String, String>>();
         list_lastExecLine = new ArrayList<Integer>();
@@ -60,6 +57,17 @@ public class ConfigurationFile {
         return list_programText.get(programID);
     }
 
+    /**
+     * Getter for the program name id of program programID
+     * 
+     * @param programID
+     *            the ID of the program
+     * @return program name id corresponding to the given programID
+     */
+    public String getProgramNameID(int programID){
+        return list_programNamespace.get(programID);
+    }
+    
     /**
      * Getter for the StepSize of program programID
      * 
@@ -254,6 +262,14 @@ public class ConfigurationFile {
 
     /**
      * 
+     * @return the list object containing all program nameIDs
+     */
+    public List<String> getList_programNamespace() {
+		return list_programNamespace;
+	}
+    
+    /**
+     * 
      * @return the list object containing all program step sizes.
      */
     public List<Integer> getList_programStepSize() {
@@ -311,24 +327,18 @@ public class ConfigurationFile {
         this.numPrograms = numPrograms;
     }
 
-    // contruction setters
-    public void setProgramInput(int programNumber, ProgramInput programInput) {
-        Objects.requireNonNull(programInput);
-
-        String programText = programInput.getText();
-        setProgramText(programNumber, programText);
-
-        Collection<VariableAndValue> variablesAndValues = programInput.getVariablesAndValues();
-        for (VariableAndValue element : variablesAndValues) {
-            setInputValue(programNumber, element.getVariable(), element.getValue());
-        }
-    }
-
     public void setProgramText(int programID, String text) {
         while (list_programText.size() < programID) {
             list_programText.add("");
         }
         list_programText.set(programID, text);
+    }
+    
+    public void setProgramNameID(int programID, String name) {
+        while (list_programNamespace.size() < programID) {
+            list_programNamespace.add("");//TODO Check if empty string is valid
+        }
+        list_programNamespace.set(programID, name);
     }
 
     public void setStepSize(int programID, int stepsize) {

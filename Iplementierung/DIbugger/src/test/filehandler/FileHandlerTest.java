@@ -151,6 +151,7 @@ public class FileHandlerTest {
 
         for (int i = 0; i < 2; ++i) {
             f.getList_programText().add(generateText(rand));
+            f.getList_programNamespace().add(generateWord(rand));
             Map<String, String> input = new HashMap<String, String>();
             for (int j = 0; j < rand.nextInt(5); ++j) {
                 String val = generateValue(rand);
