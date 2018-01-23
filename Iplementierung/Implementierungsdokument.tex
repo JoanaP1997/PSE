@@ -12,6 +12,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \usepackage[nonumberlist]{glossaries}     % provides glossary commands
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{verbatimbox}
 \usepackage{lscape}
 \newcommand\frage[1]{\textcolor{red}{#1}}
 
@@ -102,12 +103,14 @@ z.B. Control-Facade
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{document_data/Strategy_uml_d.pdf}
-\begin{verbatim}
+
+\begin{verbbox}
 public abstract class DBFileReader {
     public abstract ConfigurationFile loadConfigFile(File f) throws FileHandlerException;
     public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
 }
-\end{verbatim}
+\end{verbbox}
+\makebox[\textwidth][c]{\theverbbox}
 \caption{Strategiemuster und Quelltext des DBFileReaders im Paket FileHandler}
 \label{fig:strategy_fh}
 \end{figure}
@@ -138,15 +141,17 @@ Zunächst wird in jedem Command der aktuelle \textit{Scope} vom hauptverantwortl
 \section{Änderungen zum Entwurf}
 
 \subsection{UserInterface}
++ DIbuggerPopUp ExpressionChangePopUp für Löschen und Ändern der Bereichsbindung (Grund: sonst Unübersichtlichkeit) \\
+- DIbuggerPopUp ArrayValuePopUp (Grund: Übersichtlicher mit Scrollbalken im Variableninspektor) \\
+* Identifikator der ProgramPanels ist String (A-Z) statt Integer (Grund: bessere Darstellung der zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints
 \subsection{Control}
 \subsection{FileHandler}
 + FileHandlerFacade: savePropertiesFile()
 \subsection{DebugLogic}
 \subsubsection{Debugger}
 
-+ DebugLogicFacade: extends Observable statt Subject
-* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String,
-
++ DebugLogicFacade: extends Observable statt Subject \\
+* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String \\
 + DebugControl: setStepSize(programID, stepSize); reset();
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
