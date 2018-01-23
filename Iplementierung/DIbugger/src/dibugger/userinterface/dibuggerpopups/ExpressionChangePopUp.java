@@ -1,6 +1,7 @@
 package dibugger.userinterface.dibuggerpopups;
 
 import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.userinterface.ConditionalBreakpointPanel;
 import dibugger.userinterface.ExpressionPanel;
 import dibugger.userinterface.MainInterface;
 import dibugger.userinterface.WatchExpressionPanel;
@@ -26,6 +27,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   //TODO: bei löschen Panel von Bereichsbindung wieder entfernen
   //TODO: Scopes am Anfang holen und anzeigen --> update()
   public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
+
+    //init:
     this.id = id;
     this.panel = panel;
     this.table = table;
@@ -37,6 +40,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     groupLayout = new GroupLayout(getContentPane());
     getContentPane().setLayout(groupLayout);
 
+    //Selection::
     title = new JLabel(message);
     optionChooser = new JComboBox<>();
     optionChooser.addItem("Löschen");
@@ -61,14 +65,18 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
         if (optionChooser.getSelectedItem() == "Löschen") {
+          //delete a row and the WE or CB:
           if (message.startsWith("WatchExpression")) {
-
+            WatchExpressionPanel p = (WatchExpressionPanel) panel;
+            p.deleteEntry(id);
             dispose();
-            //TODO: Zeile löschen in Table, Löschen weiter geben an Control, dann Fenster schließen
           } else if (message.startsWith("ConditionalBreakpoint")) {
-            mainInterface.getControlFacade().deleteConditionalBreakpoint(id);
+            ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
+            p.deleteEntry(id);
+            dispose();
           }
         } else {
+          // save Scopes in scopes List:
           if (message.startsWith("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             int n = scopeChangePanel.getComponentCount();
@@ -80,13 +88,22 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
               scopes.add(scopeTuple);
             }
             p.saveScopes(id, scopes);
+          } else if (message.startsWith("ConditionalBreakpoint")) {
+            ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
+            int n = scopeChangePanel.getComponentCount();
+            ArrayList<ScopeTuple> scopes = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+              int start = Integer.parseInt(((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getStart());
+              int end = Integer.parseInt((((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getEnd()));
+              ScopeTuple scopeTuple = new ScopeTuple(start, end);
+              scopes.add(scopeTuple);
+            }
+            p.saveScopes(id, scopes);
           }
-          //TODO: neue Bereichsbindung überprüfen, weitergeben und so Zeug
-
+          //TODO: weitergeben
         }
       }
     });
-    setPopUpLayout();
   }
 
   private void setPopUpLayout() {
