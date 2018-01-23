@@ -14,6 +14,7 @@ public class ProgramInput {
 	private String text;
 	private List<String> inputValues;
 	private int counter;
+	private String programID;
 
 	public ProgramInput(String text, List<String> inputValues, int counter) {
 		this.text = text;
@@ -88,4 +89,22 @@ public class ProgramInput {
 	public void setCounter(int counter) {
 		this.counter = counter;
 	}
+
+	/**
+	 * 
+	 * @return the program id of this input, etc. "A"
+	 */
+	public String getProgramID() {
+		return programID;
+	}
+
+	/**
+	 * Setter for the program id, etc "A"
+	 * @param programID the new program id of this input
+	 */
+	public void setProgramID(String programID) {
+		this.programID = programID;
+	}
+	
+	
 }
