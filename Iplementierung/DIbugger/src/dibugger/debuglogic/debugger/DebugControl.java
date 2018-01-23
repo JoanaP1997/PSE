@@ -289,10 +289,12 @@ public class DebugControl {
      *            a list of scopes for the new watch expression
      */
     public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
-        WatchExpression e = list_watchExpressions.get(id);
-        if (e != null) {
-            e.change(expr, scopes);
-        }
+	    if(id<list_watchExpressions.size()){
+    		WatchExpression e = list_watchExpressions.get(id);
+	        if (e != null) {
+	            e.change(expr, scopes);
+	        }
+    	}
     }
 
     /**
@@ -332,10 +334,12 @@ public class DebugControl {
      *            a list of all scopes
      */
     public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
-        ConditionalBreakpoint cb = list_condBreakpoints.get(id);
-        if (cb != null) {
-            cb.change(cond, scopes);
-        }
+    	if(id<list_condBreakpoints.size()){
+	        ConditionalBreakpoint cb = list_condBreakpoints.get(id);
+	        if (cb != null) {
+	            cb.change(cond, scopes);
+	        }
+    	}
     }
 
     /**
