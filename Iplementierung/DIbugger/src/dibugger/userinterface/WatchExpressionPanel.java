@@ -7,6 +7,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
@@ -26,8 +27,10 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private int currentHighestId = 0;
     private WatchExpressionPanel thisWEP = this;
     private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
+    private JTable table;
 
     private static WatchExpressionPanel singleton = null;
+
 
     private WatchExpressionPanel(MainInterface mainInterface) {
         this.mainInterface = mainInterface;
@@ -43,7 +46,12 @@ public class WatchExpressionPanel extends ExpressionPanel {
     }
 
     public void update() {
-        //TODO
+        DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
+        for(int i = 0; i <= currentHighestId; i++) {
+            dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+            table.updateUI();
+        }
+        //TODO: check
     }
 
     private void initComponents() {
@@ -64,7 +72,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 return column == 1;
             }
         };
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
         table.getColumnModel().getColumn(0).setPreferredWidth(5);
         table.getColumnModel().getColumn(1).setPreferredWidth(150);
         table.getColumnModel().getColumn(2).setPreferredWidth(10);
@@ -143,6 +151,10 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     public void deleteEntry(int id) {
         //TODO
+    }
+
+    public void reset() {
+        singleton = new WatchExpressionPanel(mainInterface);
     }
 
 

@@ -1,13 +1,11 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
-import dibugger.userinterface.dibuggerpopups.DecisionPopUp;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
 import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Observable;
-import java.util.TreeMap;
 import javax.swing.*;
 
 
@@ -130,14 +128,13 @@ public class MainInterface extends JFrame {
     settingsMenu = new JMenu();
     helpMenu = new JMenu();
 
-    //Datei Menü
+    //file menu
     fileMenu.setText("Datei");
     menuBar.add(fileMenu);
     newView = new JMenuItem();
     newView.setText("Neu");
     newView.addActionListener(actionEvent -> {
-      dispose();
-      MainInterface.main(null);
+      reset();
     });
     newProgram = new JMenuItem();
     newProgram.setText("Programm hinzufügen");
@@ -165,17 +162,17 @@ public class MainInterface extends JFrame {
     fileMenu.add(loadConfig);
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
-    //Vorschläge Menü
+    //menu for suggestions
     suggestionMenu.setText("Vorschläge");
     menuBar.add(suggestionMenu);
 
 
-    //Einstellungen Menü
+    //settings menu
     settingsMenu.setText("Einstellungen");
     menuBar.add(settingsMenu);
 
 
-    //Hilfe Menü
+    //help menu
     helpMenu.setText("?");
     menuBar.add(helpMenu);
 
@@ -242,23 +239,53 @@ public class MainInterface extends JFrame {
   }
 
   public void showProgramText(String programText, String programId) {
-    //TODO
+    for (String iD : programPanels.descendingKeySet()) {
+      if (iD.equals(programId)) {
+        programPanels.get(iD).setText(programText);
+        break;
+      }
+    }
+    programPanels.put(programId, new ProgramPanel(programText));
+
   }
 
   public void reset() {
-    //TODO
+    CommandPanel.getCommandPanel(this).reset();
+    programPanels.clear();
+    programPanels.put("A", new ProgramPanel("A"));
+    programPanels.put("B", new ProgramPanel("B"));
+    WatchExpressionPanel.getWatchExpressionPanel(this).reset();
+    ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
+
   }
 
   public void showInput(String programId, List<String> vars) {
-    //TODO
+    for (String iD : programPanels.descendingKeySet()) {
+      if (iD.equals(programId)) {
+        String input = "";
+        for (String s : vars) {
+          input += s + "; ";
+        }
+        programPanels.get(iD).showInput(input);
+      }
+    }
   }
 
-  public List<String> getVariablesOfInspector(String programNumber) {
-    throw new UnsupportedOperationException();
+  public List<String> getVariablesOfInspector(String programId) {
+    for (String iD : programPanels.descendingKeySet()) {
+      if (iD.equals(programId)) {
+        return programPanels.get(iD).getInspectedVariables();
+      }
+    }
+    return new ArrayList<>();
   }
 
-  public void showVariables(String numberOfProgram, List<String> variables) {
-    //TODO
+  public void showVariables(String programId, List<String> variables) {
+    for (String iD : programPanels.descendingKeySet()) {
+      if (iD.equals(programId)) {
+        programPanels.get(iD).showVariables(variables);
+      }
+    }
   }
 
   public void update(Observable observable, Object o) {
@@ -267,6 +294,10 @@ public class MainInterface extends JFrame {
 
   public void changeLanguage() {
     //TODO
+  }
+
+  public void startDebug() {
+
   }
 
 
