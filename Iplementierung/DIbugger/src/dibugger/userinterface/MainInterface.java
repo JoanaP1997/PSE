@@ -250,10 +250,12 @@ public class MainInterface extends JFrame {
   }
 
   public void reset() {
-    //CommandPanel, WatchExpressionPanel, BreakpointPanel zurücksetzen
+    CommandPanel.getCommandPanel(this).reset();
     programPanels.clear();
     programPanels.put("A", new ProgramPanel("A"));
     programPanels.put("B", new ProgramPanel("B"));
+    WatchExpressionPanel.getWatchExpressionPanel(this).reset();
+    ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
   }
 
@@ -292,6 +294,10 @@ public class MainInterface extends JFrame {
 
   public void changeLanguage() {
     //TODO
+  }
+
+  public void startDebug() {
+
   }
 
 
