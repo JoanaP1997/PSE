@@ -65,12 +65,8 @@ public class FileHandlerInteractor extends Observable {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programText = configFile.getProgramText(i);
-<<<<<<< HEAD
-            guiFacade.showProgramText(programText, Integer.toString(i));
-=======
             //TODO not temporary value "A", use from configuration file
             guiFacade.showProgramText(programText, "A");
->>>>>>> error-fix-branch
             
             List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
             List<String> variablesAndValues = new ArrayList<>();
@@ -79,22 +75,14 @@ public class FileHandlerInteractor extends Observable {
                 String inputValue = configFile.getInputValue(i, identifier);
                 variablesAndValues.add(identifier + " = " + inputValue);
             }
-<<<<<<< HEAD
-            guiFacade.showInput(Integer.toString(i), variablesAndValues);
-=======
           //TODO not temporary value "A", use from configuration file
             guiFacade.showInput("A", variablesAndValues);
->>>>>>> error-fix-branch
             
             //  "configFile.getLatestExecutionLine" muss noch verwendet werden
             
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
-<<<<<<< HEAD
-            guiFacade.showVariables(Integer.toString(i), variablesOfInspector);
-=======
           //TODO not temporary value "A", use from configuration file
             guiFacade.showVariables("A", variablesOfInspector);
->>>>>>> error-fix-branch
             
             int stepSize = configFile.getStepSize(i);
             debugLogicController.setStepSize(i, stepSize);
@@ -125,12 +113,10 @@ public class FileHandlerInteractor extends Observable {
             ProgramInput input = currentInput.get(i);
             configurationFile.setProgramInput(i, input);
             
-<<<<<<< HEAD
-            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(Integer.toString(i));
-=======
+
           //TODO not temporary value "A", use from configuration file
             List<String> variablesOfInspector = guiFacade.getVariablesOfInspector("A");
->>>>>>> error-fix-branch
+
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);          
         }
         
@@ -177,12 +163,10 @@ public class FileHandlerInteractor extends Observable {
     public void loadProgramText(File file) {
         String programText = fileHandlerFacade.loadProgramText(file);
         int numberOfPrograms = debugLogicController.getNumberOfBufferedPrograms();
-<<<<<<< HEAD
-        guiFacade.showProgramText(programText, Integer.toString(numberOfPrograms + 1));
-=======
+
       //TODO no temporary value "A"
         guiFacade.showProgramText(programText, "A");
->>>>>>> error-fix-branch
+
     }
 
     public List<String> getAvailableLanuages() {

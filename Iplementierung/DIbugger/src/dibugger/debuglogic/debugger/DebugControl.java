@@ -73,11 +73,8 @@ public class DebugControl {
 		generationController.setMaxIterations(maxIterations);
 		for(int i=0;i<programs.size();++i){
 			ProgramInput pi = programs.get(i);
-<<<<<<< HEAD
-			list_traceIterator.add(generationController.generateTrace(pi.getText(), pi.getInputValues(), "A"));
-=======
+			
 			list_traceIterator.add(generationController.generateTrace(pi.getText(), pi.getInputValues(), pi.getProgramID()));
->>>>>>> error-fix-branch
 			jumpTraceIterator(i, pi.getCounter());
 		}
 		

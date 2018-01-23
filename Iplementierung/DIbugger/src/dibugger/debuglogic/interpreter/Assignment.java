@@ -31,7 +31,7 @@ public class Assignment extends Command {
     // check if variable exists
     if (type == null) 
       throw new VariableNotFoundException(this.linenumber);
-    }
+    
       // check type
       if (type != value.getType()) {
         throw new WrongTypeAssignmentException(this.linenumber);
