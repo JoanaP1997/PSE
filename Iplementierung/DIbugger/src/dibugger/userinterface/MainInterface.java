@@ -238,8 +238,7 @@ public class MainInterface extends JFrame {
   }
 
   public ControlFacade getControlFacade() {
-    //return controlFacade;
-    return null;
+    return controlFacade;
   }
 
   public void showProgramText(String programText, String programId) {
