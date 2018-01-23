@@ -608,6 +608,23 @@ public class DebugControl {
     	return l;
     }
     
+    /**
+     * Getter for the amount of programs
+     * @return the amount of programs
+     */
+    public int getNumPrograms(){
+    	return numPrograms;
+    }
+    
+    /**
+     * Getter for the stepSize of a given program
+     * @param programID the program ID
+     * @return the step size of program programID
+     */
+    public int getStepSize(int programID){
+    	return list_stepSize.get(programID);
+    }
+    
     
     // private helper methods
     private int getMaximumOfList(List<Integer> l) {

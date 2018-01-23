@@ -343,6 +343,23 @@ public class DebugLogicFacade extends Observable {
     	return debugControl.getBreakpoints(programID);
     }
     
+    /**
+     * Getter for the amount of programs
+     * @return the amount of programs
+     */
+    public int getNumPrograms(){
+    	return debugControl.getNumPrograms();
+    }
+    
+    /**
+     * Getter for the stepSize of a given program
+     * @param programID the program ID
+     * @return the step size of program programID
+     */
+    public int getStepSize(int programID){
+    	return debugControl.getStepSize(programID);
+    }
+    
     
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;

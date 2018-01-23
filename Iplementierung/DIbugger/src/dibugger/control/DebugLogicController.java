@@ -36,7 +36,6 @@ public class DebugLogicController {
     }
 
     /*TODO private, public, protected???
-    programAmount and stepsize getter from guiFacade
     */
 //    public int getNumberOfBufferedPrograms() {
 //        return inputBuffer.getNumberOfPrograms();
