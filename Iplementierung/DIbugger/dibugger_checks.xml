@@ -30,7 +30,10 @@
       <property name="option" value="TEXT"/>
       <property name="tokens" value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     </module>
-    <module name="NeedBraces"/>
+    <module name="NeedBraces">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="LeftCurly">
       <property name="maxLineLength" value="100"/>
     </module>
@@ -83,6 +86,7 @@
       <property name="severity" value="ignore"/>
       <property name="allowedAbbreviationLength" value="1"/>
       <property name="ignoreFinal" value="false"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>
@@ -135,6 +139,7 @@
       <property name="ordered" value="false"/>
       <property name="caseSensitive" value="false"/>
     </module>
+    <module name="NeedBraces"/>
   </module>
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
