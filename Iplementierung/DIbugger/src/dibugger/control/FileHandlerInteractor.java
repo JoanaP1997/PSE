@@ -65,7 +65,7 @@ public class FileHandlerInteractor extends Observable {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programText = configFile.getProgramText(i);
-            guiFacade.showProgramText(programText, i);
+            guiFacade.showProgramText(programText, Integer.toString(i));
             
             List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
             List<String> variablesAndValues = new ArrayList<>();
@@ -74,12 +74,12 @@ public class FileHandlerInteractor extends Observable {
                 String inputValue = configFile.getInputValue(i, identifier);
                 variablesAndValues.add(identifier + " = " + inputValue);
             }
-            guiFacade.showInput(i, variablesAndValues);
+            guiFacade.showInput(Integer.toString(i), variablesAndValues);
             
             //  "configFile.getLatestExecutionLine" muss noch verwendet werden
             
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
-            guiFacade.showVariables(i, variablesOfInspector);
+            guiFacade.showVariables(Integer.toString(i), variablesOfInspector);
             
             int stepSize = configFile.getStepSize(i);
             debugLogicController.setStepSize(i, stepSize);
@@ -110,7 +110,7 @@ public class FileHandlerInteractor extends Observable {
             ProgramInput input = currentInput.get(i);
             configurationFile.setProgramInput(i, input);
             
-            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(i);
+            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(Integer.toString(i));
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);          
         }
         
@@ -157,7 +157,7 @@ public class FileHandlerInteractor extends Observable {
     public void loadProgramText(File file) {
         String programText = fileHandlerFacade.loadProgramText(file);
         int numberOfPrograms = debugLogicController.getNumberOfBufferedPrograms();
-        guiFacade.showProgramText(programText, numberOfPrograms + 1);
+        guiFacade.showProgramText(programText, Integer.toString(numberOfPrograms + 1));
     }
 
     public List<String> getAvailableLanuages() {
