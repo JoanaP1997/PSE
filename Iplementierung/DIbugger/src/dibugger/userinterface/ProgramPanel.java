@@ -1,18 +1,15 @@
 package dibugger.userinterface;
 
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Element;
-
-
-
 
 public class ProgramPanel extends JPanel {
 
@@ -34,7 +31,6 @@ public class ProgramPanel extends JPanel {
   DefaultListModel<String> listModel;
   private JScrollPane variableInspectorScrollPane;
   private JList<String> variableInspectorList;
-
 
   /**
    * Constructor for a nem ProgramPanel.
@@ -71,54 +67,36 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField.addActionListener(this::variableInputActionPerformed);
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
-
     initCodeArea();
 
     initVariableInspector();
 
     GroupLayout firstTextPanelLayout = new GroupLayout(this);
     setLayout(firstTextPanelLayout);
-    firstTextPanelLayout.setHorizontalGroup(
-        firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(firstTextPanelLayout.createSequentialGroup()
-                .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(firstTextPanelLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING, false)
-                        .addGroup(firstTextPanelLayout.createSequentialGroup()
-                            .addComponent(stepsize)
-                            .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(programName)
-                        .addGroup(firstTextPanelLayout.createSequentialGroup()
-                            .addComponent(inputvariablesLabel)
-                            .addComponent(inputvariableTextField)))
-                    .addComponent(codePanel)
-                    .addComponent(variableInspector))
-            )
-    );
-    firstTextPanelLayout.setVerticalGroup(
-        firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(firstTextPanelLayout.createSequentialGroup()
-                .addComponent(programName)
-                .addGap(15, 15, 15)
-                .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(stepsize)
+    firstTextPanelLayout.setHorizontalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        .addGroup(firstTextPanelLayout.createSequentialGroup().addGroup(firstTextPanelLayout
+            .createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepsize)
                     .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputvariablesLabel)
-                    .addComponent(inputvariableTextField,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(codePanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(variableInspector)
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(programName)
+                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputvariablesLabel)
+                    .addComponent(inputvariableTextField)))
+            .addComponent(codePanel).addComponent(variableInspector))));
+    firstTextPanelLayout.setVerticalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName).addGap(15, 15, 15)
+            .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(stepsize).addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
+                    GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            .addGap(10, 10, 10)
+            .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(inputvariablesLabel).addComponent(inputvariableTextField,
+                    GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            .addGap(10, 10, 10).addComponent(codePanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(variableInspector)
 
-            )
-    );
+        ));
   }
 
   private void stepsizeInputActionPerformed(ActionEvent evt) {
@@ -137,7 +115,6 @@ public class ProgramPanel extends JPanel {
 
     SpringLayout breakpointPanelLayout = new SpringLayout();
     breakpointButtonPanel.setLayout(breakpointPanelLayout);
-
 
     codeScrollPane = new JScrollPane();
     lines = new JTextPane();
@@ -169,14 +146,13 @@ public class ProgramPanel extends JPanel {
         if (lineCount != breakpointButtons.size()) {
           lines.setText(getText());
           breakpointButtons.add(new JRadioButton());
-          breakpointButtons.get(breakpointButtons.size() - 1)
-              .setPreferredSize(new Dimension(20, 20));
+          breakpointButtons.get(breakpointButtons.size() - 1).setPreferredSize(new Dimension(20, 20));
           breakpointPanelLayout.putConstraint(SpringLayout.WEST,
-              breakpointButtons.get(breakpointButtons.size() - 1), 0,
-              SpringLayout.WEST, breakpointButtons.get(breakpointButtons.size() - 2));
+              breakpointButtons.get(breakpointButtons.size() - 1), 0, SpringLayout.WEST,
+              breakpointButtons.get(breakpointButtons.size() - 2));
           breakpointPanelLayout.putConstraint(SpringLayout.NORTH,
-              breakpointButtons.get(breakpointButtons.size() - 1), 20,
-              SpringLayout.NORTH, breakpointButtons.get(breakpointButtons.size() - 2));
+              breakpointButtons.get(breakpointButtons.size() - 1), 20, SpringLayout.NORTH,
+              breakpointButtons.get(breakpointButtons.size() - 2));
           breakpointButtonPanel.add(breakpointButtons.get(breakpointButtons.size() - 1));
           breakpointButtonPanel.updateUI();
         }
@@ -188,26 +164,21 @@ public class ProgramPanel extends JPanel {
         if (lineCount != breakpointButtons.size()) {
           lines.setText(getText());
           breakpointButtonPanel.removeAll();
-          breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0),
-              0,
+          breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0), 0,
               SpringLayout.WEST, breakpointButtonPanel);
-          breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
-              1,
+          breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0), 1,
               SpringLayout.NORTH, breakpointButtonPanel);
           breakpointButtonPanel.add(breakpointButtons.get(0));
           int caretPosition = codeTextArea.getDocument().getLength();
           Element root = codeTextArea.getDocument().getDefaultRootElement();
           for (int i = 1; i < root.getElementIndex(caretPosition) + 1; i++) {
-            breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(i),
-                0,
+            breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(i), 0,
                 SpringLayout.WEST, breakpointButtons.get(i - 1));
-            breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(i),
-                20,
+            breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(i), 20,
                 SpringLayout.NORTH, breakpointButtons.get(i - 1));
             breakpointButtonPanel.add(breakpointButtons.get(i));
           }
-          for (int i = root.getElementIndex(caretPosition);
-               i < breakpointButtons.size(); i++) {
+          for (int i = root.getElementIndex(caretPosition); i < breakpointButtons.size(); i++) {
             breakpointButtons.remove(i);
           }
           breakpointButtonPanel.updateUI();
@@ -224,17 +195,14 @@ public class ProgramPanel extends JPanel {
 
     codePanel = new JPanel();
 
-
     breakpointButtons = new ArrayList<>();
     breakpointButtons.add(new JRadioButton());
     breakpointButtons.get(0).setPreferredSize(new Dimension(20, 20));
     breakpointButtonPanel.setPreferredSize(new Dimension(20, 100000000));
-    breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0),
-        0,
-        SpringLayout.WEST, breakpointButtonPanel);
-    breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0),
-        1,
-        SpringLayout.NORTH, breakpointButtonPanel);
+    breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0), 0, SpringLayout.WEST,
+        breakpointButtonPanel);
+    breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0), 1, SpringLayout.NORTH,
+        breakpointButtonPanel);
     breakpointButtonPanel.add(breakpointButtons.get(0));
     breakpointButtonPanel.setVisible(true);
 
@@ -242,12 +210,8 @@ public class ProgramPanel extends JPanel {
     rowHeaderView.setOpaque(true);
     SpringLayout headerLayout = new SpringLayout();
     rowHeaderView.setLayout(headerLayout);
-    headerLayout.putConstraint(SpringLayout.WEST, lines,
-        20,
-        SpringLayout.WEST, rowHeaderView);
-    headerLayout.putConstraint(SpringLayout.WEST, breakpointButtonPanel,
-        0,
-        SpringLayout.WEST, rowHeaderView);
+    headerLayout.putConstraint(SpringLayout.WEST, lines, 20, SpringLayout.WEST, rowHeaderView);
+    headerLayout.putConstraint(SpringLayout.WEST, breakpointButtonPanel, 0, SpringLayout.WEST, rowHeaderView);
     rowHeaderView.add(lines);
     lines.setOpaque(true);
     rowHeaderView.setForeground(Color.LIGHT_GRAY);
@@ -258,7 +222,6 @@ public class ProgramPanel extends JPanel {
     codeScrollPane.setPreferredSize(new Dimension(400, 300));
     codeScrollPane.setSize(400, 800);
     codePanel.add(codeScrollPane);
-
 
   }
 
@@ -314,8 +277,7 @@ public class ProgramPanel extends JPanel {
     });
 
     variableInspectorScrollPane = new JScrollPane();
-    variableInspectorScrollPane
-        .setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+    variableInspectorScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
     variableInspectorScrollPane.setViewportView(variableInspectorList);
 
@@ -329,19 +291,13 @@ public class ProgramPanel extends JPanel {
 
     JLabel varLabel = new JLabel("Variableninspektor");
 
-    variableInspectorLayout.setHorizontalGroup(
-        variableInspectorLayout.createParallelGroup()
-            .addComponent(varLabel)
-            .addComponent(showHiddenVariables)
-            .addComponent(variableInspectorScrollPane)
-    );
-    variableInspectorLayout.setVerticalGroup(
-        variableInspectorLayout.createSequentialGroup()
-            .addGroup(variableInspectorLayout.createSequentialGroup()
-                .addComponent(varLabel)
-                .addComponent(showHiddenVariables))
-            .addComponent(variableInspectorScrollPane)
-    );
+    variableInspectorLayout.setHorizontalGroup(variableInspectorLayout.createParallelGroup().addComponent(varLabel)
+        .addComponent(showHiddenVariables).addComponent(variableInspectorScrollPane));
+    variableInspectorLayout
+        .setVerticalGroup(variableInspectorLayout
+            .createSequentialGroup().addGroup(variableInspectorLayout.createSequentialGroup()
+                .addComponent(varLabel).addComponent(showHiddenVariables))
+            .addComponent(variableInspectorScrollPane));
 
   }
 
@@ -362,7 +318,7 @@ public class ProgramPanel extends JPanel {
 
   public void showVariables(List<String> variables) {
     listModel.removeAllElements();
-    for (String s: variables) {
+    for (String s : variables) {
       listModel.addElement(s);
     }
   }
@@ -373,6 +329,15 @@ public class ProgramPanel extends JPanel {
       inspectedVariables.add(listModel.get(i));
     }
     return inspectedVariables;
+  }
+
+
+  public String getText() {
+    return codeTextArea.getText();
+  }
+
+  public String getInputVars() {
+    return inputvariableTextField.getText();
   }
 
   public void showInput(String input) {

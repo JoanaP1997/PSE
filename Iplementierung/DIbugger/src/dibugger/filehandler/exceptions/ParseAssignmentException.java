@@ -1,18 +1,18 @@
 package dibugger.filehandler.exceptions;
 
-public class ParseAssignmentException extends FileHandlerException{
+public class ParseAssignmentException extends FileHandlerException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public ParseAssignmentException() {
-		
-	}
+    public ParseAssignmentException() {
 
-	@Override
-	public String getID() {
-		return "fh_exc_parse_assign";
-	}
+    }
+
+    @Override
+    public String getID() {
+        return "fh_exc_parse_assign";
+    }
 }

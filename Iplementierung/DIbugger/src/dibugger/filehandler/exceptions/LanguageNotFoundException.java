@@ -1,19 +1,19 @@
 package dibugger.filehandler.exceptions;
 
-public class LanguageNotFoundException extends FileHandlerException{
+public class LanguageNotFoundException extends FileHandlerException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public LanguageNotFoundException() {
-		
-	}
+    public LanguageNotFoundException() {
 
-	@Override
-	public String getID() {
-		return "fh_exc_lang_not_found";
-	}
+    }
+
+    @Override
+    public String getID() {
+        return "fh_exc_lang_not_found";
+    }
 
 }

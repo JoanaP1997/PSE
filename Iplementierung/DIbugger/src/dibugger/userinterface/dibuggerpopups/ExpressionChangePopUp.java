@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ExpressionChangePopUp extends DIbuggerPopUp {
+<<<<<<< HEAD
   JPanel scopeChangePanel;
   MainInterface mainInterface;
   GroupLayout groupLayout;
@@ -184,18 +185,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
       this.setVisible(true);
       this.updateUI();
+
     }
-
-
-    public String getStart() {
-      return begin.getText();
-    }
-
-    public String getEnd() {
-      return end.getText();
-    }
-  }
-
 
 
 }

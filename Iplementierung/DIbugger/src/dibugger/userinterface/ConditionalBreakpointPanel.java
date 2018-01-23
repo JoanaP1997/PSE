@@ -105,37 +105,35 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
       }
 
-      @Override
-      public void mouseReleased(MouseEvent mouseEvent) {
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
 
-      }
+            }
 
-      @Override
-      public void mouseEntered(MouseEvent mouseEvent) {
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
 
-      }
+            }
 
-      @Override
-      public void mouseExited(MouseEvent mouseEvent) {
-        for (int j = 0; j < table.getRowCount(); j++) {
-          mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
-              table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+                for (int j = 0; j < table.getRowCount(); j++) {
+                    mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
+                            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
 
-        }
-      }
-    });
+                }
+            }
+        });
 
+        JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tableContainer.setViewportView(table);
+        tableContainer.createVerticalScrollBar();
+        tableContainer.setPreferredSize(new Dimension(290, 250));
 
-    JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    tableContainer.setViewportView(table);
-    tableContainer.createVerticalScrollBar();
-    tableContainer.setPreferredSize(new Dimension(290, 250));
+        this.add(tableContainer);
 
-    this.add(tableContainer);
-
-  }
-
+    }
 
 
   public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
@@ -143,12 +141,11 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
+    public void reset() {
+        singleton = new ConditionalBreakpointPanel(mainInterface);
+    }
 
-public void reset() {
-  singleton = new ConditionalBreakpointPanel(mainInterface);
-}
-
-  public void deleteEntry(int id) {
-    //TODO
-  }
+    public void deleteEntry(int id) {
+        // TODO
+    }
 }

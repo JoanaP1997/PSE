@@ -2,19 +2,20 @@ package dibugger.debuglogic.debugger;
 
 /**
  * class to suggest watch expressions or conditional breakpoints very simple.
+ * 
  * @author Pascal
  *
  */
-public class SimpleRelationalSuggestion extends RelationalSuggestion{
+public class SimpleRelationalSuggestion extends RelationalSuggestion {
 
-	@Override
-	public String suggestWatchExpression() {
-		return null;
-	}
+    @Override
+    public String suggestWatchExpression() {
+        return null;
+    }
 
-	@Override
-	public String suggestConditionalBreakpoint() {
-		return null;
-	}
+    @Override
+    public String suggestConditionalBreakpoint() {
+        return null;
+    }
 
 }
