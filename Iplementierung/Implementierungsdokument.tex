@@ -64,6 +64,9 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 Dieses Dokument beschreibt die Ergebnisse der Implementierungsphase (\textit{08.01.-02.02.2018}) im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
 Hierbei handelt es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
 
+Das eigentliche Produkt dieser Phase ist über folgendes GitHub-Repository verfügbar: \href{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung}{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung} \\
+Die abgegebene Version wurde mit \textit{"v0"} getaggt.
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{../Plichtenheft/logo_nongi.png}
@@ -72,13 +75,13 @@ Hierbei handelt es sich um die Implementierung des Produkts \textit{DIbugger}, w
 
 \section{Zeitablauf}
 Um eine reibungslose Implementierung zu ermöglichen, muss ein gut durchdachter Zeitablauf existieren.
-Dieser wurde folgendermaße umgesetzt:\\
+Dieser wurde folgendermaßen umgesetzt:\\
 Begonnen wurde mit dem \textit{FileHandler} und dem \textit{UserInterface}. Diese konnten unabhängig voneinander implementiert werden.
 Aus Zeitgründen verschob sich der Start der \textit{Control} Implementierung um wenige Tage.
-Die Unterpakete der \textit{DebugLogic} wurden in planmäßiger Reihenfolge begonnen. Dabei sei zu beachten, dass die \textit{DebugControl} nun parallel zum \textit{Interpreter} entwickelt worden ist.
+Die Unterpakete der \textit{DebugLogic} wurden in planmäßiger Reihenfolge begonnen. Dabei wurde die \textit{DebugControl} nun parallel zum \textit{Interpreter} entwickelt.
 %Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.%
-Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}. Insgesamt gestaltete sich aber auch die Benutzeroberfläche des Paketes \textit{UserInterface} als etwas aufwändiger.
-Das nun folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
+Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}. Insgesamt gestaltete sich aber auch die Benutzeroberfläche des Paketes \textit{UserInterface} zeitintensiver als erwartet.
+Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.0\textwidth]{ganntDiagramm_neu_crop.pdf}
@@ -87,6 +90,76 @@ Das nun folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
+Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft.
+
+	\subsection{Produktdaten}
+	Konfigurations-, Sprach- und Einstellungsdateien erfüllen die Funktionalität, die im Pflichtenheft unter 4.2.1 definiert wurde.
+%		\begin{itemize}
+%		
+%		
+%			\item[/PD10/] Konfigurationsdateien: \\
+%			Diese Dateien speichern eine Konfiguration des Produkts. 
+%			Hierzu gehört der aktuelle Status der Benutzeroberfläche (Eingabewerte, Schrittgrößen, Variablenauswahl, Programmtexte, Breakpoints, bedingte Breakpoints, Watch-Expressions) und der Programme.
+%			Hier werden dann zusätzlich die aktuellen Positionen in den Programmabläufen gespeichert.
+%			
+%			\item[/PD20/] Sprachdateien: \\
+%			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
+%			Dazu gehören die Texte der GUI-Elemente und Tooltips.
+%			
+%			\item[/PD30/] Einstellungsdatei: \\
+%			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.  
+%			\end{itemize}
+			
+			 
+		\subsection{Produktleistungen}
+		%Zeitverhalten, Genauigkeit, Fehlertoleranz
+		\begin{itemize}
+		\item[/PL10/] Zeitverhalten: \\
+		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne spürbare Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne spürbare Verzögerung möglich. \\
+		Den Debugmodus zu starten dauert unter 5 Sekunden. 
+		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
+		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
+		\item[/PL20/] Genauigkeit: \\
+		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch in WLang. 
+
+		\item[/PL30/] Fehlertoleranz: \\
+		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
+		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus aus dem Editiermodus bei korrektem Programmtext zu jeder Zeit ermöglicht.
+		Über andere Arten von Fehlern wird der Benutzer mittels Pop-Ups informiert.
+		\end{itemize}
+		
+		Unter dem Punkt \enquote{Qualitätsanforderungen an das System} wurde im Pflichtenheft außerdem genannt:
+		\begin{itemize}
+		\item Richtigkeit: \\
+		Die Richtigkeit wurde im Pflichtenheft als sehr relevant eingestuft. Die Implementierung hat dies so weit wie möglich berücksichtigt. Die tatsächliche Umsetzung kann allerdings erst während der Qualitätssicherung sichergestellt werden.
+		\end{itemize}
+		
+		\subsection{Weitere nichtfunktionale Anforderungen}
+		%Benutzbarkeit, Wartbarkeit, Erweiterbarkeit, Gesetze/Normen/Sicherheit/Urheberrecht, Robustheit
+		\begin{itemize}
+		\item[/NA10/]Erweiterbarkeit: \\
+		Die Erweiterbarkeit wurde durch klare Pakettrennung, Fassadenklassen als Eintrittstellen in die Pakete und die Definition von Interfaces und abstrakten Klassen (z.B. die abstrakte Klasse \textit{InputValueSuggestion} im Paket \textit{debuglogic.debugger}) sichergestellt und erleichtert.
+		\item[/NA20/]Wartbarkeit: \\
+		Zunächst fördert die eben dargelegte Umsetzung der Erweiterbarkeit natürlich auch die Wartbarkeit des Produktes. Während der Implementierung wurde außerdem auf eine vollständige und verständliche Dokumentierung Wert gelegt. Die Einarbeitungszeit in den Programmcode wird so verringert.
+		\item[/NA30/]Urheberrecht: \\
+		Die geplante Open Source Lizenz \href{https://www.gnu.org/licenses/gpl-3.0.de.html}{GNU GPL 3 (GNU General Public License)} wurde im GitHub-Repository als Lizenz eingetragen.
+		
+		\item[/NA40/] Sicherheit: \\
+		Da das Produkt keine Netzwerkverbindung nutzt, verbleiben die vom Benutzer eingegebenen Daten zumindest im Zuständigkeitsbereichs des Programmes ausschließlich auf dem Rechner des Benutzers.
+		\item[/NA50/]Benutzerfreundlichkeit: \\
+		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
+		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
+		\end{itemize}
+		
+				Unter dem Punkt \enquote{Qualitätsanforderungen an die Benutzeroberfläche} wurden im Pflichtenheft außerdem genannt:
+				\begin{itemize}
+				\item Verständlichkeit \\
+				\item Übersichtlichkeit \\
+				\item Erlernbarkeit \\
+				\item Modifizierbarkeit \\
+				
+				\end{itemize}
+		
 \section{Umsetzung von Entwurfsentscheidungen}
 \subsection{Model-View-Control}
 \subsection{Das Observerpattern}
@@ -131,7 +204,7 @@ Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader und
 \subsection{Die Visitor im Interpreter} Der Entwurf sah im Paket \textit{Interpreter} zwei Klassen vor, die das Visitor Pattern umsetzen. Die beiden Klassen \textit{CommandGenerationVisitor} und \textit{TermGenerationVisitor} sind Unterklassen der von Antlr generierten Klasse \textit{WlangBaseVisitor<T>}, wobei der Generic hier angibt, welchen Datentyp die visit-Methoden zurückgeben. Wie es der Name andeutet ist dies zum einen die Klasse \textit{Command} und zum anderen die Klasse \textit{Term}. 
 Da Terme sowohl während der Traceerzeugung (genauere Erklärung dazu ist im Entwurfsdokument Kapitel 8.10 zu finden) als auch innerhalb von Watch-Expressions und bedingten Breakpoints vorkommen, kam das Problem auf, dass der \textit{TermGenerationVisitor} zunächst sowohl vom \textit{TermsBaseVisitor} (für die im Entwurfsdokument Anhang 12.2 definierte Syntax der Watch-Expressions) als auch vom \textit{WlangBaseVisitor} (für die in Entwurfsdokument 12.1 definierte Wlang-Syntax) erben musste. In Java ist bekanntlich keine Mehrfachvererbung möglich. Zur Lösung des Problems wurden die Grammatiken zusammengefügt und entsprechend beim Verwenden eine andere Startregel angegeben. 
 \subsection{Nutzung der von Antlr generierten Klassen}
-In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Diese ist sehr kompfortabel und weicht bei der Nutzung für die Tracegenerierung lediglich in Zeilen 70-72 ab. Hier wird dann eine andere Startregel ausgewählt und der \textit{CommandGenerationVisitor} genutzt. Im abgebildeten Code ist vorher in \texttt{this.specifier} der String, der die Watch-Expression spezifiziert. Die Klassen \textit{WlangLexer} und \textit{WlangParser} erzeugen dann einen Ableitungsbaum, den \textit{ParseTree}. Über diesen werden die oben angesprochenen Visitor geschickt.
+In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Diese ist sehr kompfortabel und weicht bei der Nutzung für die Tracegenerierung lediglich in Zeilen 70-72 ab. Hier wird dann eine andere Startregel ausgewählt und der \textit{CommandGenerationVisitor} genutzt. Im abgebildeten Code ist vorher in \texttt{this.specifier} der String gespeichert worden, der die Watch-Expression spezifiziert. Die Klassen \textit{WlangLexer} und \textit{WlangParser} erzeugen dann einen Ableitungsbaum, den \textit{ParseTree}. Über diesen werden die oben angesprochenen Visitor geschickt.
 \begin{figure}[!h]
 \includegraphics[width=0.7\textwidth]{document_data/createTerm.png}
 \caption{Aufrufen der von Antlr erzeugten Klassen}
@@ -173,9 +246,9 @@ Aus den oben genannten Gründen kann somit auch auf die Implementierung der in S
 
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
-Ursprünglich sollte der TraceIterator mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren, statt nur von Anfang bis Ende Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt lediglich eine Vereinfachung dar, in der statt einem einzelnen\\
-Änderung: Der Iterator über den Trace wurde mit Hilfe eines von Java bereitgestellen \textit{ListIterators} implementiert, den die Klasse \textit{Trace} mit ihrer \textit{iterator()}-Methode zurückgibt.
-\paragraph{TermValue}abstract class statt interface \\
+Ursprünglich sollte der \textit{TraceIterator} mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren. Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt somit lediglich eine Vereinfachung dar.
+\paragraph{TermValue}
+Die Klasse \textit{TermValue}, die ursprünglich als Interface implementiert werden sollte, ist nun eine abstrakte Klasse. So kann die Methode \textit{getType} einmal an zentraler Stelle für alle Unterklassen definiert werden und Code-Duplikate werden vermieden.
 \paragraph{TraceState} zusätzliches Attribut: String programId, dabei auch GenerationController::generateTrace(.) hat deshalb zusätzliches Argument String programId
 
 \end{document}
