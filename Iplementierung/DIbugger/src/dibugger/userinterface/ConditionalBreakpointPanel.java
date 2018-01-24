@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * class that represents a ConditionalBreakpointPanel where the user can see, edit and delete his conditional breakpoints.
+ */
 public class ConditionalBreakpointPanel extends ExpressionPanel {
 
   private static ConditionalBreakpointPanel singleton = null;
