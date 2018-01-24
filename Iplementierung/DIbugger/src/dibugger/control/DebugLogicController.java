@@ -163,7 +163,7 @@ public class DebugLogicController {
         inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
     }
 
-    public void startDebug() {
+    public void startDebug() throws DIbuggerLogicException {
         debugLogicFacade.launchRun(getProgramInput());
     }
 

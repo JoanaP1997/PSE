@@ -1,6 +1,7 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
 import javax.swing.*;
@@ -314,7 +315,11 @@ public class MainInterface extends JFrame {
    */
   void startDebug() {
     saveText();
-    controlFacade.startDebug();
+    try {
+        controlFacade.startDebug();
+    } catch (DIbuggerLogicException e) {
+        // TODO do something with exceptions
+    }
   }
 
   /**
