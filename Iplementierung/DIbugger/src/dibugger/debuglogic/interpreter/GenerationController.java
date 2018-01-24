@@ -6,6 +6,7 @@ package dibugger.debuglogic.interpreter;
  *
  */
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -20,6 +21,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 
 public class GenerationController {
   private Map<String, RoutineCommand> routines;
@@ -30,6 +32,10 @@ public class GenerationController {
   private int maxFuncCalls;
 
   private int currentScopeCount;
+  
+  
+  private CommandGenerationVisitor commandGenerator;
+  private TermGenerationVisitor termGenerator;
 
   /**
    * Constructs a GenerationController Object with the given limitations.
@@ -70,15 +76,29 @@ public class GenerationController {
     scopes.push(firstScope);
     
 
-    // = mainTree.accept(commandGenerator);
     
     // run main routine
     RoutineCommand mainRoutine = routines.get("main");
-   // mainRoutine.
+    ArrayList<Term> args = new ArrayList<Term>();
+    List<Type> expectedTypes = mainRoutine.getExpectedTypes();
+    List<String> identifiers = mainRoutine.getIdentifiersOfArgs();
+    for(int i = 0; i<identifiers.size(); ++i) {
+      //add argument to args
+      String id = identifiers.get(i);
+      //find this id in the users input
+      boolean found = false;
+      for (String s : input) {
+        if (getIdentifierOfInput(s).equals(id)) {
+          args.add(getTermFromInput(s));
+          found = true;
+        }
+      }
+      if(!found) { //then there is no input for this parameter
+        args.add(getDefaultTerm(expectedTypes.get(i)));
+      }
+    }
     
-  //  for ()
-    
-  //  mainRoutine.setArgs(args);
+    mainRoutine.setArgs(args);
     List<TraceState> traceStates = mainRoutine.run();
     Trace trace = new Trace(traceStates, programIdentifier);
     
@@ -86,6 +106,19 @@ public class GenerationController {
     // return iterator over trace
     return trace.iterator(); 
     }
+
+  private String getIdentifierOfInput(String s) throws DIbuggerLogicException {
+    if (!s.contains("=")) {
+      throw new SyntaxException();
+    }
+    // delete all whitespaces
+    String newString = s.replaceAll("\\s", "");
+    return newString.split("=")[0];
+  }
+
+  private Term getDefaultTerm(Type type) {
+    return type.getDefault();
+  }
 
   /**
    * Returns the current Scope during Runtime of TraceGeneration
@@ -138,8 +171,21 @@ public class GenerationController {
     return this.maxFuncCalls;
   }
   
-  private TermValue getTermFromString(String input) {
-    // TODO implement
-    return null;
+  private Term getTermFromInput(String input) throws DIbuggerLogicException {
+    if (!input.contains("=")) {
+      throw new SyntaxException();
+    }
+    // delete all whitespaces
+    String newString = input.replaceAll("\\s", "");
+    newString = newString.split("=")[1];
+    
+    // create parse tree
+    CharStream stream = CharStreams.fromString(newString);
+    WlangLexer lexer = new WlangLexer(stream);
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    WlangParser parser = new WlangParser(tokens);
+    ParseTree tree = parser.term();
+    return termGenerator.visit(tree);
+    
   }
 }
