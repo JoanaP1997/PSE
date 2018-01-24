@@ -84,7 +84,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         if (table.columnAtPoint(p) == 0) {
           int row = table.rowAtPoint(p);
           int id = idMap.get(row);
-          new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", id, table, thisCBP);
+          new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", row, table, thisCBP, id);
         } else if ((table.columnAtPoint(p) == 1)) {
           //TODO: CB speichern
         }

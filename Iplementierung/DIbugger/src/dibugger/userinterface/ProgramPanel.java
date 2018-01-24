@@ -152,7 +152,7 @@ public class ProgramPanel extends JPanel {
       @Override
       public void insertUpdate(DocumentEvent de) {
         int lineCount = codeTextArea.getText().split(System.getProperty("line.separator")).length;
-        if (lineCount != breakpointButtons.size()) {
+        if (lineCount != lines.getText().split(System.getProperty("line.separator")).length) {
           lines.setText(getText());
           breakpointButtons.add(new JRadioButton());
           breakpointButtons.get(breakpointButtons.size() - 1).setPreferredSize(new Dimension(20, 20));
@@ -170,7 +170,7 @@ public class ProgramPanel extends JPanel {
       @Override
       public void removeUpdate(DocumentEvent de) {
         int lineCount = codeTextArea.getText().split(System.getProperty("line.separator")).length;
-        if (lineCount != breakpointButtons.size()) {
+        if (lineCount != lines.getText().split(System.getProperty("line.separator")).length) {
           lines.setText(getText());
           breakpointButtonPanel.removeAll();
           breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0), 0,

@@ -24,11 +24,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   int id;
   JTable table;
   ExpressionPanel panel;
-  String type;
+  String type = "";
+  int WEid;
 
-  public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel) {
+  public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel, int WEid) {
     //init:
     this.id = row;
+    this.WEid =WEid;
     this.panel = panel;
     this.table = table;
     this.setSize(400, 400);
@@ -38,6 +40,12 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     this.setModalityType(ModalityType.APPLICATION_MODAL);
     groupLayout = new GroupLayout(getContentPane());
     getContentPane().setLayout(groupLayout);
+
+    if(message.startsWith("WatchExpression")) {
+      this.type = "WatchExpression";
+    } else if (message.startsWith("ConditionalBreakpoint")) {
+      this.type = "ConditionalBreakpoint";
+    }
 
     //Selection::
     title = new JLabel(message);
@@ -76,8 +84,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           }
         } else {
           // save Scopes in scopes List:
-          if (message.startsWith("WatchExpression")) {
-            type = "WatchExpression";
+          if (type.equals("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             int n = scopeChangePanel.getComponentCount();
             ArrayList<ScopeTuple> scopes = new ArrayList<>();
@@ -88,8 +95,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
               scopes.add(scopeTuple);
             }
             p.saveScopes(row, scopes);
-          } else if (message.startsWith("ConditionalBreakpoint")) {
-            type = "ConditionalBreakpoint";
+          } else if (type.equals("ConditionalBreakpoint")) {
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
             int n = scopeChangePanel.getComponentCount();
             ArrayList<ScopeTuple> scopes = new ArrayList<>();
@@ -168,13 +174,16 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       //TODO
 
       if (type.equals("WatchExpression")) {
-        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(id).toString());
-        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(id).toString());
+        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(WEid).toString());
+        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(WEid).toString());
       } else if (type.equals("ConditionalBreakpoint")) {
-        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(id).toString());
-        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(id).toString());
+        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(WEid).toString());
+        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(WEid).toString());
       }
-      
+
+
+
+
       layout.setHgap(20);
       layout.setVgap(10);
       this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
