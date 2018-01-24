@@ -199,7 +199,7 @@ public class MainInterface extends JFrame {
    *
    * @return number of programPanels
    */
-  int getProgramCount() {
+  public int getProgramCount() {
     return programPanels.size();
   }
 
