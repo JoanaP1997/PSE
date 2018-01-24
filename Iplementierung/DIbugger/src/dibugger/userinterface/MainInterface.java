@@ -11,7 +11,7 @@ import java.util.Observable;
 import java.util.TreeMap;
 
 /**
- * MainInterface of the Dibugger including the main method.
+ * MainInterface of the DIbugger including the main method.
  *
  * @author joana & chiara
  */
@@ -48,7 +48,7 @@ public class MainInterface extends JFrame {
    */
   public MainInterface() {
     guiFacade = new GUIFacade(this);
-    controlFacade = new ControlFacade(guiFacade);
+    controlFacade = guiFacade.getControlFacade();
     initComponents();
   }
 
