@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -165,8 +164,9 @@ public class ProgramPanel extends JPanel {
     codeTextArea = new JTextPane();
     lines.setBackground(Color.YELLOW);
     lines.setEditable(false);
-    lines.setFont(lines.getFont().deriveFont(16.509f));
-    codeTextArea.setFont(codeTextArea.getFont().deriveFont(16.509f));
+    Font font = new Font("SansSerif",Font.PLAIN,14);
+    lines.setFont(font);
+    codeTextArea.setFont(font);
     codeTextArea.getDocument().addDocumentListener(new DocumentListener() {
       String getText() {
         int caretPosition = codeTextArea.getDocument().getLength();
