@@ -2,6 +2,8 @@ package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.GenerationController;
@@ -9,7 +11,6 @@ import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
 import dibugger.debuglogic.interpreter.WatchExpression;
-import dibugger.debuglogic.interpreter.Trace.TraceIterator;
 
 /**
  * Heart of the Debug-Logic. The logic for start / stop / continue and all steps
@@ -28,7 +29,7 @@ public class DebugControl {
     private List<ConditionalBreakpoint> list_condBreakpoints;
     private List<List<Breakpoint>> list_breakpoints;
 
-    private List<TraceIterator> list_traceIterator;
+    private List<ListIterator<TraceState>> list_traceIterator;
     private List<TraceState> list_currentTraceStates;
 
     private List<ProgramInput> list_programInput;
@@ -52,7 +53,7 @@ public class DebugControl {
         list_condBreakpoints = new ArrayList<ConditionalBreakpoint>();
         list_breakpoints = new ArrayList<List<Breakpoint>>();
 
-        list_traceIterator = new ArrayList<TraceIterator>();
+        list_traceIterator = new ArrayList<ListIterator<TraceState>>();
         list_currentTraceStates = new ArrayList<TraceState>();
 
         list_programInput = new ArrayList<ProgramInput>();
@@ -221,13 +222,13 @@ public class DebugControl {
         while (list_currentTraceStates.size() < programID) {
             list_currentTraceStates.add(null);
         }
-        TraceIterator it = list_traceIterator.get(programID);
+        ListIterator<TraceState> it = list_traceIterator.get(programID);
         if ((direction == STEP_NORMAL || direction == STEP_OVER || direction == STEP_OUT) && it.hasNext()) {
             list_currentTraceStates.set(programID, it.next());
             list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter() + 1);
             return true;
-        } else if (direction == STEP_BACK && it.hasPrev()) {
-            list_currentTraceStates.set(programID, it.prev());
+        } else if (direction == STEP_BACK && it.hasPrevious()) {
+            list_currentTraceStates.set(programID, it.previous());
             list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter() - 1);
             return true;
         }
@@ -289,12 +290,12 @@ public class DebugControl {
      *            a list of scopes for the new watch expression
      */
     public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
-	    if(id<list_watchExpressions.size()){
-    		WatchExpression e = list_watchExpressions.get(id);
-	        if (e != null) {
-	            e.change(expr, scopes);
-	        }
-    	}
+        if (id < list_watchExpressions.size()) {
+            WatchExpression e = list_watchExpressions.get(id);
+            if (e != null) {
+                e.change(expr, scopes);
+            }
+        }
     }
 
     /**
@@ -334,12 +335,12 @@ public class DebugControl {
      *            a list of all scopes
      */
     public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
-    	if(id<list_condBreakpoints.size()){
-	        ConditionalBreakpoint cb = list_condBreakpoints.get(id);
-	        if (cb != null) {
-	            cb.change(cond, scopes);
-	        }
-    	}
+        if (id < list_condBreakpoints.size()) {
+            ConditionalBreakpoint cb = list_condBreakpoints.get(id);
+            if (cb != null) {
+                cb.change(cond, scopes);
+            }
+        }
     }
 
     /**
@@ -499,12 +500,11 @@ public class DebugControl {
      */
     public List<Integer> getWEScopeBegin(int expressionID) {
         List<Integer> l = new ArrayList<Integer>();
-        System.err.println(list_watchExpressions.get(expressionID).getScopes());
         for (ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()) {
             l.add(it.getStartLine());
         }
-        if(l.size()==0){
-            for(int i=0;i<list_programInput.size();++i){
+        if (l.size() == 0) {
+            for (int i = 0; i < list_programInput.size(); ++i) {
                 l.add(1);
             }
         }
@@ -523,8 +523,8 @@ public class DebugControl {
         for (ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()) {
             l.add(it.getEndLine());
         }
-        if(l.size()==0){
-            for(int i=0;i<list_programInput.size();++i){
+        if (l.size() == 0) {
+            for (int i = 0; i < list_programInput.size(); ++i) {
                 l.add(list_programInput.get(i).getText().split("\n").length);
             }
         }
@@ -577,8 +577,8 @@ public class DebugControl {
         for (ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()) {
             l.add(it.getStartLine());
         }
-        if(l.size()==0){
-            for(int i=0;i<list_programInput.size();++i){
+        if (l.size() == 0) {
+            for (int i = 0; i < list_programInput.size(); ++i) {
                 l.add(1);
             }
         }
@@ -598,8 +598,8 @@ public class DebugControl {
         for (ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()) {
             l.add(it.getEndLine());
         }
-        if(l.size()==0){
-            for(int i=0;i<list_programInput.size();++i){
+        if (l.size() == 0) {
+            for (int i = 0; i < list_programInput.size(); ++i) {
                 l.add(list_programInput.get(i).getText().split("\n").length);
             }
         }
@@ -621,55 +621,72 @@ public class DebugControl {
 
     /**
      * Getter for all breakpoints of a given program
-     * @param programID the program id
+     * 
+     * @param programID
+     *            the program id
      * @return a list containing all programs of program programID
      */
-    public List<Integer> getBreakpoints(int programID){
-    	List<Integer> l = new ArrayList<Integer>();
-    	List<Breakpoint> l_p = list_breakpoints.get(programID);
-    	for(int i=0;i<l_p.size();++i){
-    		l.add(l_p.get(i).getLine());
-    	}
-    	return l;
+    public List<Integer> getBreakpoints(int programID) {
+        List<Integer> l = new ArrayList<Integer>();
+        List<Breakpoint> l_p = list_breakpoints.get(programID);
+        for (int i = 0; i < l_p.size(); ++i) {
+            l.add(l_p.get(i).getLine());
+        }
+        return l;
     }
-    
+
     /**
      * Getter for the amount of programs
+     * 
      * @return the amount of programs
      */
-    public int getNumPrograms(){
-    	return numPrograms;
+    public int getNumPrograms() {
+        return numPrograms;
     }
-    
+
     /**
      * Getter for the stepSize of a given program
-     * @param programID the program ID
+     * 
+     * @param programID
+     *            the program ID
      * @return the step size of program programID
      */
-    public int getStepSize(int programID){
-    	return list_stepSize.get(programID);
+    public int getStepSize(int programID) {
+        return list_stepSize.get(programID);
     }
-    
-    
+
     /**
      * Returns the value of a specified variable.
-     * @param variable the variable to get the value from
+     * 
+     * @param variable
+     *            the variable to get the value from
      * @return the value of the given variable
      */
     public String getValueOf(String programNameID, String variable) {
-        //TODO
-        return null;
+        for(int i=0;i<list_currentTraceStates.size();++i){
+            TraceState state = list_currentTraceStates.get(i);
+            if(state.getProgramId().equals(variable)){
+                return state.getValueOf(variable).toString();
+            }
+        }
+        return "?";
     }
-    
+
     /**
      * Returns all current variables.
+     * 
      * @return list containing all variables
      */
     public List<String> getAllVariables(String programNameID) {
-        return null;
+        for(int i=0;i<list_currentTraceStates.size();++i){
+            TraceState state = list_currentTraceStates.get(i);
+            if(state.getProgramId().equals(programNameID)){
+                return new ArrayList<String>(state.getAllVariableIdentifiers());
+            }
+        }
+        return new ArrayList<String>();
     }
-    
-    
+
     // private helper methods
     private int getMaximumOfList(List<Integer> l) {
         int max = 0;

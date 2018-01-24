@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * class that represents a ConditionalBreakpointPanel where the user can see, edit and delete his conditional breakpoints.
+ */
 public class ConditionalBreakpointPanel extends ExpressionPanel {
 
   private static ConditionalBreakpointPanel singleton = null;
-
-  private JLabel title;
   private MainInterface mainInterface;
   private Object[][] dataEntries;
   private ConditionalBreakpointPanel thisCBP;
@@ -26,6 +27,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   private int currentHighestId = 0;
   private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
   private JTable table;
+  private DefaultTableModel tableModel;
 
   {
     thisCBP = this;
@@ -37,6 +39,12 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     this.setVisible(true);
   }
 
+  /**
+   * method that implements the singleton aspect of this class.
+   * @param mainInterface MainInterface on which the ConditionalBreakpointPanel is used
+   * @return the ConditionalBreakpointPanel (if it does not exists it creates a new one,
+   * if it exists you get the existing one)
+   */
   public static ConditionalBreakpointPanel getConditionalBreakpointPanel(MainInterface mainInterface) {
     if (singleton == null) {
       singleton = new ConditionalBreakpointPanel(mainInterface);
@@ -44,6 +52,11 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     return singleton;
   }
 
+  /**
+   * update Method that implements the observer pattern
+   * is called by the model part of the mvc pattern
+   * updates the important values that are calculated by the model part
+   */
   public void update() {
     DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
     for(int i = 0; i <= currentHighestId; i++) {
@@ -67,7 +80,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     dataEntries[0][0] = " ";
     dataEntries[0][1] = "5 = 5";
     dataEntries[0][2] = "true";
-    DefaultTableModel tableModel = new DefaultTableModel(dataEntries, columnTitles) {
+    tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override
       public boolean isCellEditable(int row, int column) {
         return column == 1;
@@ -88,21 +101,10 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         } else if ((table.columnAtPoint(p) == 1)) {
           //TODO: CB speichern
         }
-        if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
-          int row = table.rowAtPoint(p) + 1;
-          idMap.put(row, currentHighestId + 1);
-          currentHighestId++;
-          Object[] newRow = {" ", "5 = 5 ", ""};
-          tableModel.addRow(newRow);
-          ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
-          dataAsList.addAll(Arrays.asList(dataEntries));
-          dataAsList.add(newRow);
-          dataEntries = new Object[dataAsList.size()][];
-          for (int j = 0; j < dataAsList.size(); j++) {
-            dataEntries[j] = dataAsList.get(j);
-          }
-          mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 = 5");
+        if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
+          addRow(p);
         }
+        saveCBs();
       }
 
       @Override
@@ -110,47 +112,87 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
       }
 
-            @Override
-            public void mouseReleased(MouseEvent mouseEvent) {
+      @Override
+      public void mouseReleased(MouseEvent mouseEvent) {
 
-            }
+      }
 
-            @Override
-            public void mouseEntered(MouseEvent mouseEvent) {
+      @Override
+      public void mouseEntered(MouseEvent mouseEvent) {
 
-            }
+      }
 
-            @Override
-            public void mouseExited(MouseEvent mouseEvent) {
-                for (int j = 0; j < table.getRowCount(); j++) {
-                    mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
-                            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+      @Override
+      public void mouseExited(MouseEvent mouseEvent) {
 
-                }
-            }
-        });
+      }
+    });
 
-        JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+    JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        tableContainer.setViewportView(table);
-        tableContainer.createVerticalScrollBar();
-        tableContainer.setPreferredSize(new Dimension(290, 250));
+    tableContainer.setViewportView(table);
+    tableContainer.createVerticalScrollBar();
+    tableContainer.setPreferredSize(new Dimension(290, 250));
 
-        this.add(tableContainer);
+    this.add(tableContainer);
 
-    }
+  }
 
-
+  /**
+   * method to save the scopes of a ConditionalBreakpoint
+   * @param id ID of the ConditionalBreakpoint
+   * @param scopeTupels Tuple with (start, end)
+   */
   public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
     scopes.put(id, scopeTupels);
     //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
-    public void reset() {
+  /**
+   * method to reset the ConditionalBreakpointPanel
+   */
+  public void reset() {
         singleton = new ConditionalBreakpointPanel(mainInterface);
     }
 
-    public void deleteEntry(int id) {
-        // TODO
+  /**
+   * method to delete an entry of the ConditionalBreakpointPanel
+   * @param rowToDelete row that should be deleted
+   */
+  public void deleteEntry(int rowToDelete) {
+    ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
+    if(dataEntriesAsList.size() > 1) {
+      tableModel.removeRow(rowToDelete);
+      dataEntriesAsList.remove(rowToDelete);
+      for (int row: idMap.keySet()) {
+        if (row > rowToDelete) {
+          idMap.put(row - 1, idMap.get(row));
+        }
+      }
     }
+    dataEntriesAsList.toArray(dataEntries);
+  }
+
+  private void addRow(Point p) {
+    int row = table.rowAtPoint(p) + 1;
+    idMap.put(row, currentHighestId + 1);
+    currentHighestId++;
+    Object[] newRow = {" ", "5 = 5 ", ""};
+    tableModel.addRow(newRow);
+    ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
+    dataAsList.addAll(Arrays.asList(dataEntries));
+    dataAsList.add(newRow);
+    dataEntries = new Object[dataAsList.size()][];
+    for (int j = 0; j < dataAsList.size(); j++) {
+      dataEntries[j] = dataAsList.get(j);
+    }
+    mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 = 5");
+  }
+
+  private void saveCBs() {
+    for (int j = 0; j < table.getRowCount(); j++) {
+      mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
+          table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+    }
+  }
 }

@@ -192,12 +192,12 @@ public class DebugLogicController {
         debugLogicFacade.suggestStepSize(programTexts);
     }
 
-    public String suggestWatchExpression(List<String> programText) {
-        return debugLogicFacade.suggestWatchExpression(programText);
+    public String suggestWatchExpression(List<ProgramInput> programInput) {
+        return debugLogicFacade.suggestWatchExpression(programInput);
     }
 
-    public String suggestConditionalBreakpoint(List<String> programText) {
-        return debugLogicFacade.suggestConditionalBreakpoint(programText);
+    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
+        return debugLogicFacade.suggestConditionalBreakpoint(programInput);
     }
 
     public String suggestInputValue(String inputVariableId, String range, int type) {

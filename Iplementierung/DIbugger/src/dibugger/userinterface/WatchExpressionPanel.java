@@ -24,6 +24,7 @@ import java.util.Vector;
 //TODO: delete muss geändert werden: NullPointerFehler, falsche Zeile wird gelöscht
 
 public class WatchExpressionPanel extends ExpressionPanel {
+
     private MainInterface mainInterface;
     private Object[][] dataEntries;
     private HashMap<Integer, Integer> idMap = new HashMap<>();
