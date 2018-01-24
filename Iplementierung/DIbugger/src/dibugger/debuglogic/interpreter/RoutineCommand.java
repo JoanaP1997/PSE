@@ -134,4 +134,12 @@ public class RoutineCommand extends Command {
     public Command getChild(int i) {
         return this.children.get(i);
     }
+    
+    /**
+     * Getter for the name of a routine.
+     * @return the name of the routine
+     */
+    public String getName() {
+      return this.name;
+    }
 }
