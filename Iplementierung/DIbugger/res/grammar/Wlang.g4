@@ -1,10 +1,7 @@
 
 grammar Wlang;
-r: programm;
 webppterm: condition | term;
-
-
-programm: routine* mainRoutine;
+program: routine* mainRoutine;
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
 			| 'void' id =ID '('args=arglist?')' #ProcedureHead
 			;
