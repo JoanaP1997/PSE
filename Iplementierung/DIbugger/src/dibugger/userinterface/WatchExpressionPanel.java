@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
 
+//TODO: delete muss geändert werden: NullPointerFehler, falsche Zeile wird gelöscht
+
 public class WatchExpressionPanel extends ExpressionPanel {
     private MainInterface mainInterface;
     private Object[][] dataEntries;
@@ -29,6 +31,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private WatchExpressionPanel thisWEP = this;
     private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
     private JTable table;
+    private DefaultTableModel tableModel;
 
     private static WatchExpressionPanel singleton = null;
 
@@ -70,7 +73,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
         dataEntries[0][1] = "5 = 5";
         dataEntries[0][2] = " ";
         mainInterface.getControlFacade().createWatchExpression(0, "5 = 5");
-        DefaultTableModel tableModel = new DefaultTableModel(dataEntries, columnTitles) {
+        tableModel = new DefaultTableModel(dataEntries, columnTitles) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return column == 1;
@@ -92,7 +95,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
                     int row = table.rowAtPoint(p) + 1;
                     idMap.put(row, currentHighestId + 1);
-                    System.out.print(idMap.get(row));
                     currentHighestId++;
                     Object[] newRow = { " ", "5 = 5", " " };
                     tableModel.addRow(newRow);
@@ -107,6 +109,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
                     getWatchExpressionPanel(mainInterface).updateUI();
 
                 }
+                saveWEs();
             }
 
             @Override
@@ -126,11 +129,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
             @Override
             public void mouseExited(MouseEvent mouseEvent) {
-                for (int j = 0; j < table.getRowCount(); j++) {
-                    mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
-                            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
-
-                }
             }
         });
         table.setSize(50, 50);
@@ -150,12 +148,34 @@ public class WatchExpressionPanel extends ExpressionPanel {
         //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
-    public void deleteEntry(int id) {
-        // TODO
+    public void deleteEntry(int rowToDelete) {
+      ArrayList<Object[]> dataEntriesAsList = new ArrayList<Object[]>(Arrays.asList(dataEntries));
+        if (dataEntries.length > 1) {
+          dataEntriesAsList.remove(rowToDelete);
+          tableModel.removeRow(dataEntries.length - 1);
+          int deletedRow = idMap.get(rowToDelete);
+          idMap.remove(deletedRow);
+          dataEntriesAsList.toArray(new Object[dataEntriesAsList.size()]);
+          for (int row: idMap.keySet()) {
+            System.out.print(rowToDelete);
+            System.out.print(idMap.get(rowToDelete));
+            if (deletedRow > rowToDelete) {
+              idMap.put(row -1, idMap.get(row));
+            }
+          }
+        }
     }
 
     public void reset() {
         singleton = new WatchExpressionPanel(mainInterface);
+    }
+
+    public void saveWEs() {
+      for (int j = 0; j < table.getRowCount(); j++) {
+        mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
+            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+
+      }
     }
 
 }
