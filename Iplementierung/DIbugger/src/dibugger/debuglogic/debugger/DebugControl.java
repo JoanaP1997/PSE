@@ -68,8 +68,9 @@ public class DebugControl {
      * 
      * @param programs
      *            the programs to run
+     * @throws DIbuggerLogicException {@linkplain GenerationController#generateTrace(String, List, String)}
      */
-    public void launchRun(List<ProgramInput> programs) {
+    public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         list_traceIterator.clear();
 
         generationController.setMaxFuncCalls(maxFunctionCalls);
