@@ -234,6 +234,9 @@ public class MainInterface extends JFrame {
     programPanels.clear();
     programPanels.put("A", new ProgramPanel("A", this));
     programPanels.put("B", new ProgramPanel("B", this));
+    codePanel.removeAll();
+    codePanel.add(programPanels.get("A"), codePanelLayout);
+    codePanel.add(programPanels.get("B"), codePanelLayout);
     WatchExpressionPanel.getWatchExpressionPanel(this).reset();
     ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
@@ -366,4 +369,6 @@ public class MainInterface extends JFrame {
       codePanel.updateUI();
     }
   }
+
+
 }

@@ -96,7 +96,7 @@ public class ProgramPanel extends JPanel {
         int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
           File file = fileChooser.getSelectedFile();
-          //TODO: do seomething
+          codeTextArea.setText(controlFacade.loadProgramText(file));
 
         }
       }
