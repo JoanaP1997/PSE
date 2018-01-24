@@ -57,7 +57,7 @@ public class ConditionalBreakpoint {
                 if (!this.scopes.get(i).contains(states.get(i).getLineNumber()))
                     isValid = false;
         }
-        if (isValid) {
+        if (isValid || this.scopes.isEmpty()) {
             TermValue result = this.condition.evaluate(states);
             if (result.getType() == Type.BOOLEAN) {
                 return ((BooleanValue) result).getValue();
