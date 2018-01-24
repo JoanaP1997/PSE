@@ -174,15 +174,15 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see RelationalSuggestion#suggestWatchExpression()
      */
-    public String suggestWatchExpression() {
-        return suggest_relational.suggestWatchExpression();
+    public String suggestWatchExpression(List<String> programText) {
+        return suggest_relational.suggestWatchExpression(programText);
     }
 
     /**
      * @see RelationalSuggestion#suggestConditionalBreakpoint()
      */
-    public String suggestConditionalBreakpoint() {
-        return suggest_relational.suggestConditionalBreakpoint();
+    public String suggestConditionalBreakpoint(List<String> programText) {
+        return suggest_relational.suggestConditionalBreakpoint(programText);
     }
 
     /**
@@ -366,18 +366,16 @@ public class DebugLogicFacade extends Observable {
      * @param variable variable
      * @return schnitzel
      */
-    public String getValueOf(String variable) {
-        return "Schnitzel";
-        //TODO: Schnitzel wegmachen (Auch im Javadoc)
+    public String getValueOf(String programNameID, String variable) {
+        return debugControl.getValueOf(programNameID, variable);
     }
 
     /**
      * Returns all current variables.
-     * @return variable list
+     * @return list containing all variables
      */
-    public List<String> getAllVariables() {
-        return new ArrayList<String>();
-        //TODO: implementieren
+    public List<String> getAllVariables(String programNameID) {
+        return debugControl.getAllVariables(programNameID);
     }
     
     

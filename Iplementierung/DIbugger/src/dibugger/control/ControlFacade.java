@@ -27,7 +27,7 @@ public class ControlFacade {
         try {
             fileHandlerInteractor = new FileHandlerInteractor(debugLogicController, guiFacade);
         } catch (FileHandlerException exception) {
-            exceptionHandler.handle(exception);
+            System.exit(0);
         }
         exceptionHandler = new ExceptionHandler(fileHandlerInteractor, guiFacade);
     }
@@ -185,12 +185,12 @@ public class ControlFacade {
         debugLogicController.suggestStepSize();
     }
 
-    public String suggestWatchExpression() {
-        return debugLogicController.suggestWatchExpression();
+    public String suggestWatchExpression(List<String> programText) {
+        return debugLogicController.suggestWatchExpression(programText);
     }
 
-    public String suggestConditionalBreakpoint() {
-        return debugLogicController.suggestConditionalBreakpoint();
+    public String suggestConditionalBreakpoint(List<String> programText) {
+        return debugLogicController.suggestConditionalBreakpoint(programText);
     }
 
     public String suggestInputValue(String inputVariableId, String range, int type) {
