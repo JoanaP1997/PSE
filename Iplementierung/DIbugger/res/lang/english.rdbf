@@ -8,6 +8,7 @@ Step
 german{
 	def_blockLen=1
 German
+
 }
 fh_exc_parse_assign{
 	def_blockLen=1
@@ -18,6 +19,14 @@ ui_values_out{
 	def_blockLen=1
 Output Values
 
+}
+db_it_exc_le{
+	def_blockLen=1
+The "less equal" comparison has one ore more incompatible types.
+}
+db_it_exc_add{
+	def_blockLen=1
+The "add" operation has one or more incopatibly types
 }
 ui_debug_run{
 	def_blockLen=1
@@ -34,10 +43,26 @@ ui_options{
 Options
 
 }
+db_it_exc_not{
+	def_blockLen=1
+The "not" operation has one ore more incompatible types.
+}
 ui_watch_expression{
 	def_blockLen=1
 Watch Expression
 
+}
+db_it_exc_and{
+	def_blockLen=1
+The "and" operation has one ore more incompatible types.
+}
+db_it_exc_eq{
+	def_blockLen=1
+The "equal" comparison has one ore more incompatible types.
+}
+db_it_exc_gt{
+	def_blockLen=1
+The "greater than" comparison has one or more incopatibly types
 }
 ui_debug_step_back{
 	def_blockLen=1
@@ -54,6 +79,10 @@ ui_debug_stop{
 Stop debugging
 
 }
+db_it_exc_div{
+	def_blockLen=1
+The "div" operation has one or more incopatibly types
+}
 ui_debug_step_single{
 	def_blockLen=1
 Execute Single Step
@@ -64,6 +93,18 @@ ui_suggestions{
 Suggenstions
 
 }
+db_it_exc_mul{
+	def_blockLen=1
+The "mul" operation has one or more incopatibly types
+}
+db_it_exc_mod{
+	def_blockLen=1
+The "mod" operation has one or more incopatibly types
+}
+db_it_exc_or{
+	def_blockLen=1
+The "or" operation has one ore more incompatible types.
+}
 ui_help{
 	def_blockLen=1
 Help
@@ -73,6 +114,14 @@ ui_values_in{
 	def_blockLen=1
 Input Values
 
+}
+db_it_exc_ge{
+	def_blockLen=1
+The "greater equal" comparison has one or more incopatibly types
+}
+db_it_exc_sub{
+	def_blockLen=1
+The "sub" operation has one or more incopatibly types
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
@@ -103,6 +152,10 @@ ui_save_config{
 	def_blockLen=1
 Save Configuration
 
+}
+db_it_exc_lt{
+	def_blockLen=1
+The "less than" comparison has one ore more incompatible types.
 }
 ui_load_program_text{
 	def_blockLen=1
