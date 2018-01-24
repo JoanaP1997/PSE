@@ -21,8 +21,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Vector;
 
-//TODO: delete muss geändert werden: NullPointerFehler, falsche Zeile wird gelöscht
-
+/**
+ * class that represents a WatchExpressionPanel where a user can see, edit and delete his watch-expressions
+ */
 public class WatchExpressionPanel extends ExpressionPanel {
 
     private MainInterface mainInterface;
@@ -42,6 +43,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
         this.setVisible(true);
     }
 
+  /**
+   * method that implements the singleton pattern of this class
+   * @param mainInterface MainInterface on which this panel should be displayed
+   * @return a WatchExpressionPanel (a new one if none existed, the existing one if there exists one)
+   */
     public static WatchExpressionPanel getWatchExpressionPanel(MainInterface mainInterface) {
         if (singleton == null) {
             singleton = new WatchExpressionPanel(mainInterface);
@@ -49,7 +55,12 @@ public class WatchExpressionPanel extends ExpressionPanel {
         return singleton;
     }
 
-    public void update() {
+  /**
+   * method that implements the observer pattern
+   * is called by the model part of the mvc pattern
+   * updates the important values that are calculated by the model part
+   */
+  public void update() {
         DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
         for (int i = 0; i <= currentHighestId; i++) {
             try {
@@ -131,12 +142,21 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     }
 
+  /**
+   * method to save the scopes of a watch-expression
+   * @param id ID of the watch-expression
+   * @param scopeTupels scopeTupel of the type (start, end) of the watch-expression
+   */
     public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
         scopes.put(id, scopeTupels);
         //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
-    public void deleteEntry(int rowToDelete) {
+  /**
+   * method to delete an entry in the WatchExpressionPanel, deletes the watch-expression that is displayed in this row
+   * @param rowToDelete row as int (from 0 to n) in which the watch-expression is to be deleted
+   */
+  public void deleteEntry(int rowToDelete) {
       ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
         if(dataEntriesAsList.size() > 1) {
           tableModel.removeRow(rowToDelete);
@@ -150,11 +170,17 @@ public class WatchExpressionPanel extends ExpressionPanel {
         dataEntriesAsList.toArray(dataEntries);
     }
 
-    public void reset() {
+  /**
+   * method to reset the WatchExpressionPanel
+   */
+  public void reset() {
         singleton = new WatchExpressionPanel(mainInterface);
     }
 
-    public void saveWEs() {
+  /**
+   * method to save all the watch-expressions that are displayed in this WatchExpressionPanel
+   */
+  public void saveWEs() {
       for (int j = 0; j < table.getRowCount(); j++) {
         mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
             table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
