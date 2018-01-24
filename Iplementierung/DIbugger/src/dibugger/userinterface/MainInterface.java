@@ -313,6 +313,11 @@ public class MainInterface extends JFrame {
    * Starts the debug mode.
    */
   public void startDebug() {
+    saveText();
+    controlFacade.startDebug();
+  }
+
+  void saveText() {
     ArrayList<String> inputVars = new ArrayList<>();
     ArrayList<String> programTexts = new ArrayList<>();
     ArrayList<String> programIds = new ArrayList<>();
@@ -323,7 +328,6 @@ public class MainInterface extends JFrame {
       inputVars.add(current.getInputVars());
     }
     controlFacade.saveText(inputVars, programTexts, programIds);
-    controlFacade.startDebug();
   }
 
   /**
