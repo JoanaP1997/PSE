@@ -219,6 +219,7 @@ public class MainInterface extends JFrame {
 
   /**
    * getter for the control facade.
+   *
    * @return control facade
    */
   public ControlFacade getControlFacade() {
@@ -240,8 +241,9 @@ public class MainInterface extends JFrame {
 
   /**
    * Makes a specified ProgramPanel show a certain input variable String.
+   *
    * @param programId program ID
-   * @param vars new input String
+   * @param vars      new input String
    */
   void showInput(String programId, List<String> vars) {
     for (String id : programPanels.descendingKeySet()) {
@@ -257,8 +259,9 @@ public class MainInterface extends JFrame {
 
   /**
    * Makes a specified ProgramPanel show a new program text.
+   *
    * @param programText program text
-   * @param programId program ID
+   * @param programId   program ID
    */
   void showProgramText(String programText, String programId) {
     for (String id : programPanels.descendingKeySet()) {
@@ -273,6 +276,7 @@ public class MainInterface extends JFrame {
 
   /**
    * Returns the inspected variables of a certain ProgramPanel.
+   *
    * @param programId programs ID
    * @return List of Strings containing the variables
    */
@@ -287,6 +291,7 @@ public class MainInterface extends JFrame {
 
   /**
    * Let's a specified ProgramPanel show new Variables.
+   *
    * @param programId programs ID
    * @param variables new variables
    */
@@ -300,8 +305,9 @@ public class MainInterface extends JFrame {
 
   /**
    * update-method as part of the obbserver pattern.
+   *
    * @param observable DebugLogicFacade
-   * @param o Object o
+   * @param o          Object o
    */
   void update(Observable observable, Object o) {
     for (ProgramPanel panel : programPanels.values()) {
@@ -316,9 +322,9 @@ public class MainInterface extends JFrame {
   void startDebug() {
     saveText();
     try {
-        controlFacade.startDebug();
+      controlFacade.startDebug();
     } catch (DIbuggerLogicException e) {
-        // TODO do something with exceptions
+      // TODO do something with exceptions
     }
   }
 
@@ -347,6 +353,7 @@ public class MainInterface extends JFrame {
 
   /**
    * deletes a single ProgramPanel, if there are more than 2.
+   *
    * @param id id of the deleted ProgramPanel
    */
   void deleteProgramPanel(String id) {
