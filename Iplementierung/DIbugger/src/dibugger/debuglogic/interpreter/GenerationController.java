@@ -1,7 +1,7 @@
 package dibugger.debuglogic.interpreter;
 /**
  * 
- * @author wagner
+ * @author wagner, scheler
  *
  *
  */
@@ -19,7 +19,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
-import dibugger.debuglogic.interpreter.Trace.TraceIterator;
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 
 public class GenerationController {
   private Map<String, RoutineCommand> routines;
@@ -46,7 +46,7 @@ public class GenerationController {
     this.returnValue = null;
   }
 
-  public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier) {
+  public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier) throws DIbuggerLogicException {
     // TODO split texts into routines?
     // hand program text and inputs to the AntlrParser
     
