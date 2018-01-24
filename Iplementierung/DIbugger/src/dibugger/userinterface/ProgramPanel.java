@@ -17,6 +17,7 @@ import java.util.List;
 public class ProgramPanel extends JPanel {
 
   private String id;
+  private MainInterface mainInterface;
   private ControlFacade controlFacade;
 
   private JLabel programName;
@@ -45,6 +46,7 @@ public class ProgramPanel extends JPanel {
    */
   public ProgramPanel(String identifier, MainInterface mainInterface) {
     id = identifier;
+    this.mainInterface = mainInterface;
     controlFacade = mainInterface.getControlFacade();
     initComponents();
   }
@@ -107,11 +109,11 @@ public class ProgramPanel extends JPanel {
   }
 
   private void stepsizeInputActionPerformed(ActionEvent evt) {
-    // TODO add your handling code here:
+    mainInterface.saveText();
   }
 
   private void variableInputActionPerformed(ActionEvent evt) {
-    // TODO add your handling code here:
+    mainInterface.saveText();
   }
 
   /**
