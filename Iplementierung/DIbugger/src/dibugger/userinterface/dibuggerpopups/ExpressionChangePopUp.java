@@ -26,9 +26,9 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   ExpressionPanel panel;
   String type;
 
-  public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
+  public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel) {
     //init:
-    this.id = id;
+    this.id = row;
     this.panel = panel;
     this.table = table;
     this.setSize(400, 400);
@@ -67,11 +67,11 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           //delete a row and the WE or CB:
           if (message.startsWith("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
-            p.deleteEntry(id);
+            p.deleteEntry(row);
             dispose();
           } else if (message.startsWith("ConditionalBreakpoint")) {
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
-            p.deleteEntry(id);
+            p.deleteEntry(row);
             dispose();
           }
         } else {
@@ -87,7 +87,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
               ScopeTuple scopeTuple = new ScopeTuple(start, end);
               scopes.add(scopeTuple);
             }
-            p.saveScopes(id, scopes);
+            p.saveScopes(row, scopes);
           } else if (message.startsWith("ConditionalBreakpoint")) {
             type = "ConditionalBreakpoint";
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
@@ -99,7 +99,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
               ScopeTuple scopeTuple = new ScopeTuple(start, end);
               scopes.add(scopeTuple);
             }
-            p.saveScopes(id, scopes);
+            p.saveScopes(row, scopes);
           }
         }
       }
@@ -166,7 +166,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
       //init:
       //TODO
-      /**
+
       if (type.equals("WatchExpression")) {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(id).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(id).toString());
@@ -174,9 +174,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(id).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(id).toString());
       }
-       */
-
-
+      
       layout.setHgap(20);
       layout.setVgap(10);
       this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
