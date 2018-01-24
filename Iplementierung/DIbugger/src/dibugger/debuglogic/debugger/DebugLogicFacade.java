@@ -117,9 +117,10 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
+     * @throws DIbuggerLogicException {@linkplain DebugControl#launchRun(List)}
      * @see DebugControl#launchRun(List)
      */
-    public void launchRun(List<ProgramInput> programs) {
+    public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         debugControl.launchRun(programs);
     }
 

@@ -137,7 +137,7 @@ public class ControlFacade {
         debugLogicController.saveText(inputVariables, programTexts, programIdentifiers);
     }
 
-    public void startDebug() {
+    public void startDebug() throws DIbuggerLogicException {
         enableDebugMode();
         debugLogicController.startDebug();
     }
