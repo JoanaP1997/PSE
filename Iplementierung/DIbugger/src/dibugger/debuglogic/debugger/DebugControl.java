@@ -502,6 +502,11 @@ public class DebugControl {
         for (ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()) {
             l.add(it.getStartLine());
         }
+        if(l.size()==0){
+            for(int i=0;i<list_programInput.size();++i){
+                l.add(1);
+            }
+        }
         return l;
     }
 
@@ -516,6 +521,11 @@ public class DebugControl {
         List<Integer> l = new ArrayList<Integer>();
         for (ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()) {
             l.add(it.getEndLine());
+        }
+        if(l.size()==0){
+            for(int i=0;i<list_programInput.size();++i){
+                l.add(list_programInput.get(i).getText().split("\n").length);
+            }
         }
         return l;
     }
@@ -566,6 +576,11 @@ public class DebugControl {
         for (ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()) {
             l.add(it.getStartLine());
         }
+        if(l.size()==0){
+            for(int i=0;i<list_programInput.size();++i){
+                l.add(1);
+            }
+        }
         return l;
     }
 
@@ -581,6 +596,11 @@ public class DebugControl {
         List<Integer> l = new ArrayList<Integer>();
         for (ScopeTuple it : list_condBreakpoints.get(expressionID).getScopes()) {
             l.add(it.getEndLine());
+        }
+        if(l.size()==0){
+            for(int i=0;i<list_programInput.size();++i){
+                l.add(list_programInput.get(i).getText().split("\n").length);
+            }
         }
         return l;
     }
@@ -627,6 +647,25 @@ public class DebugControl {
      */
     public int getStepSize(int programID){
     	return list_stepSize.get(programID);
+    }
+    
+    
+    /**
+     * Returns the value of a specified variable.
+     * @param variable the variable to get the value from
+     * @return the value of the given variable
+     */
+    public String getValueOf(String programNameID, String variable) {
+        //TODO
+        return null;
+    }
+    
+    /**
+     * Returns all current variables.
+     * @return list containing all variables
+     */
+    public List<String> getAllVariables(String programNameID) {
+        return null;
     }
     
     

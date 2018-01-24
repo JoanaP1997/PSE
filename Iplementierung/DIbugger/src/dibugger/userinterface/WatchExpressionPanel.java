@@ -89,25 +89,11 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 Point p = mouseEvent.getPoint();
                 if ((table.columnAtPoint(p) == 0)) {
                     int row = table.rowAtPoint(p);
-                    int id = idMap.get(row);
-                    new ExpressionChangePopUp(mainInterface, "WatchExpression", id, table, thisWEP);
+                    new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, thisWEP);
                 }
-                if (table.rowAtPoint(p) == dataEntries.length - 1 & table.columnAtPoint(p) == 1) {
-                    int row = table.rowAtPoint(p) + 1;
-                    idMap.put(row, currentHighestId + 1);
-                    currentHighestId++;
-                    Object[] newRow = { " ", "5 = 5", " " };
-                    tableModel.addRow(newRow);
-                    ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
-                    dataAsList.addAll(Arrays.asList(dataEntries));
-                    dataAsList.add(newRow);
-                    dataEntries = new Object[dataAsList.size()][];
-                    for (int j = 0; j < dataAsList.size(); j++) {
-                        dataEntries[j] = dataAsList.get(j);
-                    }
-                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
+                if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
+                    addRow(p);
                     getWatchExpressionPanel(mainInterface).updateUI();
-
                 }
                 saveWEs();
             }
@@ -149,21 +135,17 @@ public class WatchExpressionPanel extends ExpressionPanel {
     }
 
     public void deleteEntry(int rowToDelete) {
-      ArrayList<Object[]> dataEntriesAsList = new ArrayList<Object[]>(Arrays.asList(dataEntries));
-        if (dataEntries.length > 1) {
+      ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
+        if(dataEntriesAsList.size() > 1) {
+          tableModel.removeRow(rowToDelete);
           dataEntriesAsList.remove(rowToDelete);
-          tableModel.removeRow(dataEntries.length - 1);
-          int deletedRow = idMap.get(rowToDelete);
-          idMap.remove(deletedRow);
-          dataEntriesAsList.toArray(new Object[dataEntriesAsList.size()]);
           for (int row: idMap.keySet()) {
-            System.out.print(rowToDelete);
-            System.out.print(idMap.get(rowToDelete));
-            if (deletedRow > rowToDelete) {
-              idMap.put(row -1, idMap.get(row));
+            if (row > rowToDelete) {
+              idMap.put(row - 1, idMap.get(row));
             }
           }
         }
+        dataEntriesAsList.toArray(dataEntries);
     }
 
     public void reset() {
@@ -174,8 +156,23 @@ public class WatchExpressionPanel extends ExpressionPanel {
       for (int j = 0; j < table.getRowCount(); j++) {
         mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
             table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
-
       }
+    }
+
+    private void addRow(Point p) {
+      int row = table.rowAtPoint(p) + 1;
+      idMap.put(row, currentHighestId + 1);
+      currentHighestId++;
+      Object[] newRow = { " ", "5 = 5", " " };
+      tableModel.addRow(newRow);
+      ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
+      dataAsList.addAll(Arrays.asList(dataEntries));
+      dataAsList.add(newRow);
+      dataEntries = new Object[dataAsList.size()][];
+      for (int j = 0; j < dataAsList.size(); j++) {
+        dataEntries[j] = dataAsList.get(j);
+      }
+      mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
     }
 
 }

@@ -114,18 +114,17 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		\subsection{Produktleistungen}
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
-		\item[/PL10/] Zeitverhalten: \\
-		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne spürbare Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne spürbare Verzögerung möglich. \\
-		Den Debugmodus zu starten dauert unter 5 Sekunden. 
-		% Kann man das so lassen? Oder dauert Trace-Generierung länger?
-		% Pop-Up mit "Trace wird generiert. Dies kann einen Moment dauern"
+		\item[/PL10/] Zeitverhalten: \\ NN
+%		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne spürbare Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne spürbare Verzögerung möglich. \\
+		%Den Debugmodus zu starten dauert unter 5 Sekunden. 
+
 		\item[/PL20/] Genauigkeit: \\
 		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch in WLang. 
 
-		\item[/PL30/] Fehlertoleranz: \\
-		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
-		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus aus dem Editiermodus bei korrektem Programmtext zu jeder Zeit ermöglicht.
-		Über andere Arten von Fehlern wird der Benutzer mittels Pop-Ups informiert.
+		\item[/PL30/] Fehlertoleranz: \\ NN
+%		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
+%		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus aus dem Editiermodus bei korrektem Programmtext zu jeder Zeit ermöglicht.
+%		Über andere Arten von Fehlern wird der Benutzer mittels Pop-Ups informiert.
 		\end{itemize}
 		
 		Unter dem Punkt \enquote{Qualitätsanforderungen an das System} wurde im Pflichtenheft außerdem genannt:
@@ -154,9 +153,13 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 				Unter dem Punkt \enquote{Qualitätsanforderungen an die Benutzeroberfläche} wurden im Pflichtenheft außerdem genannt:
 				\begin{itemize}
 				\item Verständlichkeit \\
+				NN
 				\item Übersichtlichkeit \\
+				NN
 				\item Erlernbarkeit \\
+				NN
 				\item Modifizierbarkeit \\
+				NN
 				
 				\end{itemize}
 		
@@ -246,9 +249,11 @@ Aus den oben genannten Gründen kann somit auch auf die Implementierung der in S
 
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
-Ursprünglich sollte der \textit{TraceIterator} mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die TraceState-Liste innerhalb der Klasse Trace verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren. Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode iterator() der Klasse Trace aufgerufen. Diese Entwurfsänderung stellt somit lediglich eine Vereinfachung dar.
+Ursprünglich sollte der \textit{TraceIterator} mit Hilfe einer gesonderten Klasse gleichen Namens umgesetzt werden. In der Implementierung wird er nun mittels eines Java-ListIterators über die \textit{TraceState}-Liste innerhalb der Klasse \textit{Trace} verwirklicht. Dieser bietet dieselben Funktionalitäten, kann also in zwei Richtungen iterieren. Um einen Iterator über den Trace zu erhalten, wird weiterhin die Methode \textit{iterator()} der Klasse \textit{Trace} aufgerufen. Diese Entwurfsänderung stellt somit lediglich eine Vereinfachung dar.
 \paragraph{TermValue}
-Die Klasse \textit{TermValue}, die ursprünglich als Interface implementiert werden sollte, ist nun eine abstrakte Klasse. So kann die Methode \textit{getType} einmal an zentraler Stelle für alle Unterklassen definiert werden und Code-Duplikate werden vermieden.
-\paragraph{TraceState} zusätzliches Attribut: String programId, dabei auch GenerationController::generateTrace(.) hat deshalb zusätzliches Argument String programId
+Die Klasse \textit{TermValue}, die ursprünglich als Interface implementiert werden sollte, ist nun eine abstrakte Klasse. So kann die Methode \textit{getType()} einmal an zentraler Stelle für alle Unterklassen definiert werden und Code-Duplikate werden vermieden.
+\paragraph{TraceState}
+In der Klasse \textit{TraceState} wurde das Attribut String programId ergänzt. Dies ist nötig, damit WatchExpressions - die nur TraceStates und keine Traces kennen - wissen, zu welchem Programm welcher TraceState gehört. Dies hat auch eine Änderung in den Klassen \textit{Trace} und \textit{GenerationController} zu Folge. Die Klasse \textit{Trace} übernimmt die Aufgabe, die eben beschriebene \textit{programId} in alle \textit{TraceStates} eines \textit{Traces} einzutragen, und nimmt dazu in ihrem Konstruktor einen weiteren Parameter entgegen. Da der \textit{Trace} diese Information vom  \textit{GenerationController} bekommt, wird auch in Letzterem der Konstruktor erweitert.
+ 
 
 \end{document}

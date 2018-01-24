@@ -11,7 +11,7 @@ import java.util.Observable;
 import java.util.TreeMap;
 
 /**
- * MainInterface of the Dibugger including the main method.
+ * MainInterface of the DIbugger including the main method.
  *
  * @author joana & chiara
  */
@@ -48,7 +48,7 @@ public class MainInterface extends JFrame {
    */
   public MainInterface() {
     guiFacade = new GUIFacade(this);
-    controlFacade = new ControlFacade(guiFacade);
+    controlFacade = guiFacade.getControlFacade();
     initComponents();
   }
 
@@ -64,8 +64,8 @@ public class MainInterface extends JFrame {
 
     configureMenuBar();
     programPanels = new TreeMap<>();
-    programPanels.put("A", new ProgramPanel("A"));
-    programPanels.put("B", new ProgramPanel("B"));
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
     codePanel = new JPanel();
     codePanelLayout = new FlowLayout();
     codePanel.setLayout(codePanelLayout);
@@ -136,7 +136,7 @@ public class MainInterface extends JFrame {
         new ErrorPopUp("Too many ProgramPanels", this);
       } else {
         String nextId = calcNextProgramId();
-        ProgramPanel newPanel = new ProgramPanel(nextId);
+        ProgramPanel newPanel = new ProgramPanel(nextId, this);
         programPanels.put(nextId, newPanel);
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
@@ -199,7 +199,7 @@ public class MainInterface extends JFrame {
    *
    * @return number of programPanels
    */
-  public int getProgramCount() {
+  int getProgramCount() {
     return programPanels.size();
   }
 
@@ -227,11 +227,11 @@ public class MainInterface extends JFrame {
   /**
    * Resets the user interface.
    */
-  public void reset() {
+  void reset() {
     CommandPanel.getCommandPanel(this).reset();
     programPanels.clear();
-    programPanels.put("A", new ProgramPanel("A"));
-    programPanels.put("B", new ProgramPanel("B"));
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
     WatchExpressionPanel.getWatchExpressionPanel(this).reset();
     ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
@@ -242,7 +242,7 @@ public class MainInterface extends JFrame {
    * @param programId program ID
    * @param vars new input String
    */
-  public void showInput(String programId, List<String> vars) {
+  void showInput(String programId, List<String> vars) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
         String input = "";
@@ -259,14 +259,14 @@ public class MainInterface extends JFrame {
    * @param programText program text
    * @param programId program ID
    */
-  public void showProgramText(String programText, String programId) {
+  void showProgramText(String programText, String programId) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
         programPanels.get(id).setText(programText);
         break;
       }
     }
-    programPanels.put(programId, new ProgramPanel(programText));
+    programPanels.put(programId, new ProgramPanel(programText, this));
 
   }
 
@@ -275,7 +275,7 @@ public class MainInterface extends JFrame {
    * @param programId programs ID
    * @return List of Strings containing the variables
    */
-  public List<String> getVariablesOfInspector(String programId) {
+  List<String> getVariablesOfInspector(String programId) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
         return programPanels.get(id).getInspectedVariables();
@@ -289,7 +289,7 @@ public class MainInterface extends JFrame {
    * @param programId programs ID
    * @param variables new variables
    */
-  public void showVariables(String programId, List<String> variables) {
+  void showVariables(String programId, List<String> variables) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
         programPanels.get(id).showVariables(variables);
@@ -302,7 +302,7 @@ public class MainInterface extends JFrame {
    * @param observable DebugLogicFacade
    * @param o Object o
    */
-  public void update(Observable observable, Object o) {
+  void update(Observable observable, Object o) {
     for (ProgramPanel panel : programPanels.values()) {
       panel.update(observable);
     }
@@ -312,7 +312,15 @@ public class MainInterface extends JFrame {
   /**
    * Starts the debug mode.
    */
-  public void startDebug() {
+  void startDebug() {
+    saveText();
+    controlFacade.startDebug();
+  }
+
+  /**
+   * saves the current code inputs in the control facade.
+   */
+  void saveText() {
     ArrayList<String> inputVars = new ArrayList<>();
     ArrayList<String> programTexts = new ArrayList<>();
     ArrayList<String> programIds = new ArrayList<>();
@@ -323,7 +331,6 @@ public class MainInterface extends JFrame {
       inputVars.add(current.getInputVars());
     }
     controlFacade.saveText(inputVars, programTexts, programIds);
-    controlFacade.startDebug();
   }
 
   /**
