@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ExpressionChangePopUp extends DIbuggerPopUp {
-<<<<<<< HEAD
+
   JPanel scopeChangePanel;
   MainInterface mainInterface;
   GroupLayout groupLayout;
@@ -105,6 +105,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         }
       }
     });
+
   }
 
   private void setPopUpLayout() {
@@ -163,7 +164,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelEnd = new JLabel("End: ");
       labelEnd.setPreferredSize(new Dimension(30, 20));
 
-    //init:
+      //init:
       if (type.equals("WatchExpression")) {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(id).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(id).toString());
@@ -188,5 +189,14 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
     }
 
+    public String getStart() {
+      return begin.getText();
+    }
+
+    public String getEnd() {
+      return end.getText();
+    }
+
+  }
 
 }
