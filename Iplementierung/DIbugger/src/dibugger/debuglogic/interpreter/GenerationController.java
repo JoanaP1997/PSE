@@ -47,9 +47,7 @@ public class GenerationController {
   }
 
   public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier) throws DIbuggerLogicException {
-    // TODO split texts into routines?
-    // hand program text and inputs to the AntlrParser
-    
+    // create parsetree
     CharStream stream = CharStreams.fromString(programText);
     WlangLexer lexer = new WlangLexer(stream);
     CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -58,7 +56,6 @@ public class GenerationController {
     CommandGenerationVisitor commandGenerator = new CommandGenerationVisitor(this);
     TermGenerationVisitor termGenerator = new TermGenerationVisitor();
     
-    // 
     int childCount = mainTree.getChildCount();
     
     // add names of routines and routine commands to the map "routines"
@@ -128,9 +125,17 @@ public class GenerationController {
   public void setMaxIterations(int maxIterations) {
     this.maxIterations = maxIterations;
   }
+  
+  public int getMaxIterations() {
+    return this.maxIterations;
+  }
 
   public void setMaxFuncCalls(int maxFuncCalls) {
     this.maxFuncCalls = maxFuncCalls;
+  }
+  
+  public int getMaxFuncCalls() {
+    return this.maxFuncCalls;
   }
   
   private TermValue getTermFromString(String input) {

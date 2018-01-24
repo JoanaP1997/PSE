@@ -41,11 +41,15 @@ public class WhileCommand extends Command {
         }
         List<TraceState> traceStateList = new ArrayList<TraceState>();
         traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
+        
+        int counter = 0;
+        
         // run the loop
-        while (((BooleanValue) this.condition.evaluate(scope)).getValue()) {
+        while ((((BooleanValue) this.condition.evaluate(scope)).getValue()) && (counter < this.controller.getMaxIterations())) {
             for (Command child : this.children) {
                 traceStateList.addAll(child.run());
             }
+            counter++;   
         }
         return traceStateList;
     }
