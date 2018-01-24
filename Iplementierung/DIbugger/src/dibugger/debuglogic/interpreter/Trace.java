@@ -14,17 +14,17 @@ import java.util.ListIterator;
 public class Trace {
 
     private List<TraceState> traceStates;
+    private String programId;
 
     /**
-     * Constructor for an empty trace.
+     * Constructor for a Trace.
+     * @param programId the id of the program the TraceState corresponds to
      */
-    public Trace() {
+    public Trace(String programId) {
         this.traceStates = new ArrayList<TraceState>();
+        this.programId = programId;
     }
 
-    // TODO evtl. löschen - je nach Implementierungsentscheidung im
-    // GenerationController
-    // TODO entsprechend oben einen entsprechenden Konstruktor einfügen
     /**
      * Attaches a trace state to the end of the trace.
      * 
@@ -38,4 +38,5 @@ public class Trace {
     public ListIterator<TraceState> iterator() {
         return this.traceStates.listIterator();
     }
+    
 }
