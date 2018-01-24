@@ -1,6 +1,7 @@
 package dibugger.debuglogic.interpreter;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * A state of trace. Part of the trace. Saves the variables after the execution
@@ -14,7 +15,7 @@ public class TraceState {
     private HashMap<String, TermValue> vars;
     private TraceStatePosition position;
     private int lineNumber;
-
+    private String programId;
     /**
      * Constructor for a new TraceState.
      * 
@@ -72,5 +73,26 @@ public class TraceState {
      */
     public int getLineNumber() {
         return this.lineNumber;
+    }
+    /**
+     * Sets the id of the program, the state belongs to.
+     * @param id
+     */
+    public void setProgramId(String id) {
+      this.programId = id;
+    }
+    /**
+     * Getter for the program id
+     * @return the id of the program, the state belongs to.
+     */
+    public String getProgramId() {
+      return this.programId;
+    }
+    /**
+     * Returns the Variables existing in this state.
+     * @return the identifiers of the variables
+     */
+    public Set<String> getAllVariableIdentifiers() {
+      return this.vars.keySet();
     }
 }
