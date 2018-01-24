@@ -118,7 +118,7 @@ public class DebugLogicController {
         return debugLogicFacade.getCBScopeEnd(expressionId);
     }
 
-    void createConditionalBreakpoints(Collection<String> conditions) {
+    void createConditionalBreakpoints(List<String> conditions) {
         int breakpointId = 0;
         for (String condition : conditions) {
             createConditionalBreakpoint(breakpointId, condition);
@@ -145,7 +145,7 @@ public class DebugLogicController {
         debugLogicFacade.createBreakpoint(numberOfProgram, line);
     }
 
-    public void createBreakpoints(int numberOfProgram, Collection<Integer> lines) {
+    public void createBreakpoints(int numberOfProgram, List<Integer> lines) {
         for (int line : lines) {
             createBreakpoint(numberOfProgram, line);
         }

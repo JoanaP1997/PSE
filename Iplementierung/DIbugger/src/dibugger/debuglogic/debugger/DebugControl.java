@@ -499,6 +499,7 @@ public class DebugControl {
      */
     public List<Integer> getWEScopeBegin(int expressionID) {
         List<Integer> l = new ArrayList<Integer>();
+        System.err.println(list_watchExpressions.get(expressionID).getScopes());
         for (ScopeTuple it : list_watchExpressions.get(expressionID).getScopes()) {
             l.add(it.getStartLine());
         }
