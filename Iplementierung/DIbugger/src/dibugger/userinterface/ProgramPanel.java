@@ -78,9 +78,11 @@ public class ProgramPanel extends JPanel {
 
     JButton loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
+    iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
     loadFile.setIcon(iconLoad);
     JButton delete = new JButton();
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
+    deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
     delete.setIcon(deleteIcon);
     initCodeArea();
 
