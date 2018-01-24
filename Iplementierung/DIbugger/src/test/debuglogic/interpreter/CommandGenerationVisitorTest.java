@@ -31,7 +31,7 @@ public class CommandGenerationVisitorTest {
         WlangLexer lexer = new WlangLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         WlangParser parser = new WlangParser(tokens);
-        ParseTree tree = parser.r();
+        ParseTree tree = parser.program();
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
 
@@ -52,7 +52,7 @@ public class CommandGenerationVisitorTest {
         WlangLexer lexer = new WlangLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         WlangParser parser = new WlangParser(tokens);
-        ParseTree tree = parser.r();
+        ParseTree tree = parser.program();
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
         assert (root instanceof RoutineCommand);
