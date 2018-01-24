@@ -142,4 +142,12 @@ public class RoutineCommand extends Command {
     public String getName() {
       return this.name;
     }
+    
+    public List<Type> getExpectedTypes() {
+      return this.expectedTypes;
+    }
+    
+    public List<String> getIdentifiersOfArgs() {
+      return this.identifiers;
+    }
 }
