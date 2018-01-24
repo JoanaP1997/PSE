@@ -64,8 +64,8 @@ public class MainInterface extends JFrame {
 
     configureMenuBar();
     programPanels = new TreeMap<>();
-    programPanels.put("A", new ProgramPanel("A"));
-    programPanels.put("B", new ProgramPanel("B"));
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
     codePanel = new JPanel();
     codePanelLayout = new FlowLayout();
     codePanel.setLayout(codePanelLayout);
@@ -136,7 +136,7 @@ public class MainInterface extends JFrame {
         new ErrorPopUp("Too many ProgramPanels", this);
       } else {
         String nextId = calcNextProgramId();
-        ProgramPanel newPanel = new ProgramPanel(nextId);
+        ProgramPanel newPanel = new ProgramPanel(nextId, this);
         programPanels.put(nextId, newPanel);
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
@@ -230,8 +230,8 @@ public class MainInterface extends JFrame {
   public void reset() {
     CommandPanel.getCommandPanel(this).reset();
     programPanels.clear();
-    programPanels.put("A", new ProgramPanel("A"));
-    programPanels.put("B", new ProgramPanel("B"));
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
     WatchExpressionPanel.getWatchExpressionPanel(this).reset();
     ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
@@ -266,7 +266,7 @@ public class MainInterface extends JFrame {
         break;
       }
     }
-    programPanels.put(programId, new ProgramPanel(programText));
+    programPanels.put(programId, new ProgramPanel(programText, this));
 
   }
 

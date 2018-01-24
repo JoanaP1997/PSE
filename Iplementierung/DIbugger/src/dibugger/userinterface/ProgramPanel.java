@@ -1,5 +1,6 @@
 package dibugger.userinterface;
 
+import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProgramPanel extends JPanel {
 
   private String id;
+  private ControlFacade controlFacade;
 
   private JLabel programName;
   private JLabel stepsize;
@@ -30,9 +32,9 @@ public class ProgramPanel extends JPanel {
   private List<JRadioButton> breakpointButtons;
 
   private JPanel variableInspector;
-  TreeMap<String, String> variableValueMap;
-  List<String> shownVariables;
-  DefaultListModel<String> listModel;
+  private TreeMap<String, String> variableValueMap;
+  private List<String> shownVariables;
+  private DefaultListModel<String> listModel;
   private JScrollPane variableInspectorScrollPane;
   private JList<String> variableInspectorList;
 
@@ -41,8 +43,9 @@ public class ProgramPanel extends JPanel {
    *
    * @param identifier identifier of program panel
    */
-  public ProgramPanel(String identifier) {
+  public ProgramPanel(String identifier, MainInterface mainInterface) {
     id = identifier;
+    controlFacade = mainInterface.getControlFacade();
     initComponents();
   }
 
