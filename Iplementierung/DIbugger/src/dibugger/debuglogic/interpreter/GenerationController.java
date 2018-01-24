@@ -8,6 +8,7 @@ package dibugger.debuglogic.interpreter;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Stack;
 
@@ -45,7 +46,7 @@ public class GenerationController {
     this.returnValue = null;
   }
 
-  public TraceIterator generateTrace(String programText, List<String> input, String programIdentifier) {
+  public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier) {
     // TODO split texts into routines?
     // hand program text and inputs to the AntlrParser
     
@@ -59,10 +60,12 @@ public class GenerationController {
     
     // 
     int childCount = mainTree.getChildCount();
+    
+    // add names of routines and routine commands to the map "routines"
     for (int i = 0; i < childCount; i++) {
       ParseTree childTree = mainTree.getChild(i);
-      commandGenerator.visit(childTree);
-      // TODO add names of routines and routine (/ routine tree root) commands to the map "routines"
+      RoutineCommand command = (RoutineCommand) commandGenerator.visit(childTree);
+      this.routines.put(command.getName(), command);
     }
     
     // initialize scope stack
@@ -73,11 +76,18 @@ public class GenerationController {
     // = mainTree.accept(commandGenerator);
     
     // run main routine
-    List<TraceState> trace; // = ...
+    RoutineCommand mainRoutine = routines.get("main");
+   // mainRoutine.
+    
+  //  for ()
+    
+  //  mainRoutine.setArgs(args);
+    List<TraceState> traceStates = mainRoutine.run();
+    Trace trace = new Trace(traceStates, programIdentifier);
+    
      
     // return iterator over trace
-    // return trace.iterator(); 
-    return null;
+    return trace.iterator(); 
     }
 
   /**
