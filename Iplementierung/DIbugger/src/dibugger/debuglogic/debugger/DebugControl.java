@@ -2,6 +2,8 @@ package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.GenerationController;
@@ -9,7 +11,6 @@ import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
 import dibugger.debuglogic.interpreter.WatchExpression;
-import dibugger.debuglogic.interpreter.Trace.TraceIterator;
 
 /**
  * Heart of the Debug-Logic. The logic for start / stop / continue and all steps
@@ -28,7 +29,7 @@ public class DebugControl {
     private List<ConditionalBreakpoint> list_condBreakpoints;
     private List<List<Breakpoint>> list_breakpoints;
 
-    private List<TraceIterator> list_traceIterator;
+    private List<ListIterator<TraceState>> list_traceIterator;
     private List<TraceState> list_currentTraceStates;
 
     private List<ProgramInput> list_programInput;
@@ -52,7 +53,7 @@ public class DebugControl {
         list_condBreakpoints = new ArrayList<ConditionalBreakpoint>();
         list_breakpoints = new ArrayList<List<Breakpoint>>();
 
-        list_traceIterator = new ArrayList<TraceIterator>();
+        list_traceIterator = new ArrayList<ListIterator<TraceState>>();
         list_currentTraceStates = new ArrayList<TraceState>();
 
         list_programInput = new ArrayList<ProgramInput>();
@@ -221,13 +222,13 @@ public class DebugControl {
         while (list_currentTraceStates.size() < programID) {
             list_currentTraceStates.add(null);
         }
-        TraceIterator it = list_traceIterator.get(programID);
+        ListIterator<TraceState> it = list_traceIterator.get(programID);
         if ((direction == STEP_NORMAL || direction == STEP_OVER || direction == STEP_OUT) && it.hasNext()) {
             list_currentTraceStates.set(programID, it.next());
             list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter() + 1);
             return true;
-        } else if (direction == STEP_BACK && it.hasPrev()) {
-            list_currentTraceStates.set(programID, it.prev());
+        } else if (direction == STEP_BACK && it.hasPrevious()) {
+            list_currentTraceStates.set(programID, it.previous());
             list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter() - 1);
             return true;
         }

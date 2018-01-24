@@ -3,6 +3,7 @@ package dibugger.debuglogic.interpreter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A trace of a program. Consists of trace states.
@@ -34,50 +35,7 @@ public class Trace {
         this.traceStates.add(traceState);
     }
 
-    public Iterator<TraceState> iterator() {
+    public ListIterator<TraceState> iterator() {
         return this.traceStates.listIterator();
-    }
-
-    // TODO ggf. Klasse löschen
-
-    /**
-     * Iterator over a trace. Nested class due to encapsulation of
-     * implementation details of the trace.
-     * 
-     * @author scheler
-     *
-     */
-    public class TraceIterator implements Iterator<TraceState> {
-
-        private Trace trace;
-        private Iterator<TraceState> iterator;
-
-        private TraceIterator(Trace trace) {
-            this.trace = trace;
-            this.iterator = this.trace.iterator();
-        }
-
-        @Override
-        public boolean hasNext() {
-            // if trace.traceStates.
-            return false;
-        }
-
-        @Override
-        public TraceState next() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        public boolean hasPrev() {
-            // TODO implement
-            return false;
-        }
-
-        public TraceState prev() {
-            // TODO implement
-            return null;
-        }
-
     }
 }
