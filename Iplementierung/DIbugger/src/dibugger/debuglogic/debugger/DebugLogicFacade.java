@@ -1,6 +1,5 @@
 package dibugger.debuglogic.debugger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -228,7 +227,7 @@ public class DebugLogicFacade extends Observable {
         }
     }
 
-    // Getter delegated to DebugControl    
+    // Getter delegated to DebugControl
     /**
      * 
      * @return the amount of conditional breakpoints
@@ -336,34 +335,40 @@ public class DebugLogicFacade extends Observable {
 
     /**
      * Getter for all breakpoints of a given program
-     * @param programID the program id
+     * 
+     * @param programID
+     *            the program id
      * @return a list containing all programs of program programID
      */
-    public List<Integer> getBreakpoints(int programID){
-    	return debugControl.getBreakpoints(programID);
-    }
-    
-    /**
-     * Getter for the amount of programs
-     * @return the amount of programs
-     */
-    public int getNumPrograms(){
-    	return debugControl.getNumPrograms();
-    }
-    
-    /**
-     * Getter for the stepSize of a given program
-     * @param programID the program ID
-     * @return the step size of program programID
-     */
-    public int getStepSize(int programID){
-    	return debugControl.getStepSize(programID);
+    public List<Integer> getBreakpoints(int programID) {
+        return debugControl.getBreakpoints(programID);
     }
 
+    /**
+     * Getter for the amount of programs
+     * 
+     * @return the amount of programs
+     */
+    public int getNumPrograms() {
+        return debugControl.getNumPrograms();
+    }
+
+    /**
+     * Getter for the stepSize of a given program
+     * 
+     * @param programID
+     *            the program ID
+     * @return the step size of program programID
+     */
+    public int getStepSize(int programID) {
+        return debugControl.getStepSize(programID);
+    }
 
     /**
      * Returns the value of a specified variable.
-     * @param variable variable
+     * 
+     * @param variable
+     *            variable
      * @return schnitzel
      */
     public String getValueOf(String programNameID, String variable) {
@@ -372,13 +377,13 @@ public class DebugLogicFacade extends Observable {
 
     /**
      * Returns all current variables.
+     * 
      * @return list containing all variables
      */
     public List<String> getAllVariables(String programNameID) {
         return debugControl.getAllVariables(programNameID);
     }
-    
-    
+
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;
     public static final int STRAT_REL_SIMPLE = 1;
