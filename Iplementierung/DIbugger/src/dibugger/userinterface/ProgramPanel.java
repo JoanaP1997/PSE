@@ -76,6 +76,12 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField.addActionListener(this::variableInputActionPerformed);
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
+    JButton loadFile = new JButton();
+    ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
+    loadFile.setIcon(iconLoad);
+    JButton delete = new JButton();
+    ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
+    delete.setIcon(deleteIcon);
     initCodeArea();
 
     initVariableInspector();
@@ -89,15 +95,19 @@ public class ProgramPanel extends JPanel {
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepsize)
                     .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addComponent(programName)
+                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
+                    .addGap(150, 150, 150).addComponent(loadFile).addComponent(delete))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputvariablesLabel)
                     .addComponent(inputvariableTextField)))
             .addComponent(codePanel).addComponent(variableInspector))));
     firstTextPanelLayout.setVerticalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-        .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName).addGap(15, 15, 15)
+        .addGroup(firstTextPanelLayout.createSequentialGroup()
+            .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(programName).addComponent(loadFile).addComponent(delete)).addGap(15, 15, 15)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(stepsize).addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
                     GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+
             .addGap(10, 10, 10)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(inputvariablesLabel).addComponent(inputvariableTextField,
