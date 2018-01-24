@@ -12,25 +12,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * class that represents a PopUp that is a menu for an ExpressionPanel.
+ * Holds the components to let the user delete an Expression or define the scope of an Expression.
+ */
 public class ExpressionChangePopUp extends DIbuggerPopUp {
 
-  JPanel scopeChangePanel;
-  MainInterface mainInterface;
-  GroupLayout groupLayout;
-  JLabel title;
-  JComboBox<String> optionChooser;
-  JButton okButton;
-  JScrollPane scrollPane;
-  int id;
-  JTable table;
-  ExpressionPanel panel;
-  String type = "";
-  int WEid;
+  private JPanel scopeChangePanel;
+  private MainInterface mainInterface;
+  private GroupLayout groupLayout;
+  private JLabel title;
+  private JComboBox<String> optionChooser;
+  private JButton okButton;
+  private JScrollPane scrollPane;
+  private int id;
+  private JTable table;
+  private ExpressionPanel panel;
+  private String type = "";
+  private int WEid;
 
-  public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel, int WEid) {
+  /**
+   * constructor for an ExpressionChangePopUp, should only be called by ExpressionPanels
+   * @param mainInterface MainInterface of the ExpressionPanel that calls the constructor
+   * @param message String that gives useful information about the ExpressionPanel that calls this constructor
+   * @param row int that represents the row in which the Expression stands in the table
+   * @param table JTable in which the Expressions are displayed
+   * @param panel ExpressionPanel that calls the constructor
+   * @param Eid Expression ID of the Expression that calls the constructor
+   */
+  public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel, int Eid) {
+
     //init:
     this.id = row;
-    this.WEid =WEid;
+    this.WEid =Eid;
     this.panel = panel;
     this.table = table;
     this.setSize(400, 400);
@@ -46,7 +60,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     } else if (message.startsWith("ConditionalBreakpoint")) {
       this.type = "ConditionalBreakpoint";
     }
-
 
     //Selection::
     title = new JLabel(message);
@@ -64,11 +77,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       }
     });
 
+    //init Swing Components
     scopeChangePanel = new JPanel();
     scrollPane = new JScrollPane(scopeChangePanel);
     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     okButton = new JButton("Ok");
+
     //TODO: actionListener darf nicht auf ok liegen
     okButton.addActionListener(new ActionListener() {
       @Override
@@ -140,11 +155,10 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   private void showScopePanel() {
     BoxLayout layout = new BoxLayout(scopeChangePanel, BoxLayout.PAGE_AXIS);
     scopeChangePanel.setLayout(layout);
-    //TODO: ID richtig machen
+    //TODO: ID richtig machen (nicht von 0 bis n, sondern als String A bis Z)
     for (int x = 0; x < mainInterface.getProgramCount(); x++) {
       scopeChangePanel.add(new ProgramScopeChooser(x), layout);
     }
-    //setPopUpLayout();
     scopeChangePanel.updateUI();
   }
 
@@ -161,6 +175,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     JLabel labelEnd;
 
     ProgramScopeChooser(int id) {
+      //init:
       layout = new FlowLayout();
       this.setLayout(layout);
       begin = new JTextField();
@@ -172,9 +187,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelEnd = new JLabel("End: ");
       labelEnd.setPreferredSize(new Dimension(30, 20));
 
-      //init:
-      //TODO
-
       if (type.equals("WatchExpression")) {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(WEid).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(WEid).toString());
@@ -183,28 +195,34 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(WEid).toString());
       }
 
-
-
-
+      //set look:
       layout.setHgap(20);
       layout.setVgap(10);
       this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
       this.revalidate();
-
       this.add(labelStart);
       this.add(begin);
       this.add(labelEnd);
       this.add(end);
 
+      //set visible:
       this.setVisible(true);
       this.updateUI();
 
     }
 
+    /**
+     * method to get the values set for the start of a scope by the user
+     * @return String that should be a number
+     */
     public String getStart() {
       return begin.getText();
     }
 
+    /**
+     * method to get the values set for the end of a scope by the user
+     * @return String that should be a number
+     */
     public String getEnd() {
       return end.getText();
     }
