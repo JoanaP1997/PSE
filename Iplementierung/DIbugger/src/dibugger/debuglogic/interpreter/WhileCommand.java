@@ -1,6 +1,7 @@
 package dibugger.debuglogic.interpreter;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.ExceededMaxIterationsException;
 import dibugger.debuglogic.exceptions.WrongTypeArgumentException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,11 @@ public class WhileCommand extends Command {
             }
             counter++;   
         }
+        
+        if (counter >= this.controller.getMaxIterations()) {
+          throw new ExceededMaxIterationsException(this.linenumber);
+        }
+        
         return traceStateList;
     }
 

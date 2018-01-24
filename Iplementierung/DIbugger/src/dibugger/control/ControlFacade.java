@@ -165,9 +165,9 @@ public class ControlFacade {
         fileHandlerInteractor.saveConfiguration(configurationFile);
     }
 
-    public void loadProgramText(File file) {
+    public String loadProgramText(File file) {
         ensureNotInDebugMode();
-        fileHandlerInteractor.loadProgramText(file);
+        return fileHandlerInteractor.loadProgramText(file);
     }
 
     public List<String> getAvailableLanuages() {

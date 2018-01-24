@@ -6,13 +6,18 @@ import dibugger.debuglogic.debugger.DebugLogicFacade;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Document;
 import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.TreeMap;
 
 public class ProgramPanel extends JPanel {
 
@@ -66,24 +71,41 @@ public class ProgramPanel extends JPanel {
 
     stepsize.setText("Stepsize: ");
 
-    stepsizeInput.setText("jTextField2");
+    stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
     stepsizeInput.addActionListener(this::stepsizeInputActionPerformed);
 
     inputvariablesLabel.setText("Eingabevariablen: ");
 
-    inputvariableTextField.setText("jTextField1");
+    inputvariableTextField.setText("");
     inputvariableTextField.addActionListener(this::variableInputActionPerformed);
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
     JButton loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
     iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "java files (*.java)", "java", "text files (*.txt)", "txt");
+
+    fileChooser.setDialogTitle("New ProgramPanel");
+    fileChooser.setFileFilter(filter);
     loadFile.setIcon(iconLoad);
+    loadFile.addActionListener(actionEvent -> {
+      if (actionEvent.getSource() == loadFile) {
+        int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+          File file = fileChooser.getSelectedFile();
+          codeTextArea.setText(controlFacade.loadProgramText(file));
+
+        }
+      }
+    });
     JButton delete = new JButton();
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
     deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
     delete.setIcon(deleteIcon);
+    delete.addActionListener(actionEvent -> mainInterface.deleteProgramPanel(id));
     initCodeArea();
 
     initVariableInspector();
@@ -351,6 +373,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Shows the variables of the List in the variable inspector panel.
+   *
    * @param variables displayed variables
    */
   public void showVariables(List<String> variables) {
@@ -375,6 +398,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Returns the current text of the code text area.
+   *
    * @return current text
    */
   public String getText() {
@@ -392,6 +416,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Shows a new input String.
+   *
    * @param input new input String
    */
   public void showInput(String input) {
@@ -400,6 +425,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * updates the ProgramPanels variable inspector pane.
+   *
    * @param debugLogicFacade Observable
    */
   public void update(Observable debugLogicFacade) {
@@ -410,9 +436,9 @@ public class ProgramPanel extends JPanel {
       if (!variableValueMap.containsKey(currentVariable)) {
         shownVariables.add(currentVariable);
       }
-      variableValueMap.put(currentVariable, logicFacade.getValueOf(id,currentVariable));
+      variableValueMap.put(currentVariable, logicFacade.getValueOf(id, currentVariable));
     }
-    for (String variable : shownVariables)  {
+    for (String variable : shownVariables) {
       listModel.addElement(variableValueMap.get(variable));
     }
     variableInspectorList.updateUI();

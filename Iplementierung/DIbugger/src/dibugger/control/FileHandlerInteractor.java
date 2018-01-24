@@ -159,13 +159,8 @@ public class FileHandlerInteractor extends Observable {
         }
     }
 
-    public void loadProgramText(File file) {
-        String programText = fileHandlerFacade.loadProgramText(file);
-        int numberOfPrograms = debugLogicController.getNumberOfBufferedPrograms();
-
-        // TODO no temporary value "A"
-        guiFacade.showProgramText(programText, "A");
-
+    public String loadProgramText(File file) {
+        return fileHandlerFacade.loadProgramText(file);
     }
 
     public List<String> getAvailableLanuages() {
