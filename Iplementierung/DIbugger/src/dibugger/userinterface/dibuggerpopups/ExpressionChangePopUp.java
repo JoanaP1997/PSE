@@ -47,6 +47,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       this.type = "ConditionalBreakpoint";
     }
 
+
     //Selection::
     title = new JLabel(message);
     optionChooser = new JComboBox<>();
@@ -68,6 +69,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     okButton = new JButton("Ok");
+    //TODO: actionListener darf nicht auf ok liegen
     okButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
@@ -82,7 +84,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             p.deleteEntry(row);
             dispose();
           }
-        } else {
+        } else if(optionChooser.getSelectedItem() == "Bereichsbindung anpassen"){
           // save Scopes in scopes List:
           if (type.equals("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
