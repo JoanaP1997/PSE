@@ -345,4 +345,18 @@ public class MainInterface extends JFrame {
     // TODO
   }
 
+  /**
+   * deletes a single ProgramPanel, if there are more than 2.
+   * @param id id of the deleted ProgramPanel
+   */
+  void deleteProgramPanel(String id) {
+    if (programPanels.size() > 2) {
+      programPanels.remove(id);
+      codePanel.removeAll();
+      for (ProgramPanel p : programPanels.values()) {
+        codePanel.add(p, codePanelLayout);
+      }
+      codePanel.updateUI();
+    }
+  }
 }

@@ -84,6 +84,7 @@ public class ProgramPanel extends JPanel {
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
     deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
     delete.setIcon(deleteIcon);
+    delete.addActionListener(actionEvent -> mainInterface.deleteProgramPanel(id));
     initCodeArea();
 
     initVariableInspector();
