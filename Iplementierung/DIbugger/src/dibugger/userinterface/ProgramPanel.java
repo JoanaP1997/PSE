@@ -1,5 +1,7 @@
 package dibugger.userinterface;
 
+import dibugger.debuglogic.debugger.DebugLogicFacade;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -8,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 public class ProgramPanel extends JPanel {
@@ -28,6 +30,8 @@ public class ProgramPanel extends JPanel {
   private List<JRadioButton> breakpointButtons;
 
   private JPanel variableInspector;
+  TreeMap<String, String> variableValueMap;
+  List<String> shownVariables;
   DefaultListModel<String> listModel;
   private JScrollPane variableInspectorScrollPane;
   private JList<String> variableInspectorList;
@@ -233,11 +237,10 @@ public class ProgramPanel extends JPanel {
 
     GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
     variableInspector.setLayout(variableInspectorLayout);
-    String[] data = {"x = true", "y = ?", "count = 42"};
+    variableValueMap = new TreeMap<>();
+    shownVariables = new ArrayList<>();
     listModel = new DefaultListModel<>();
-    for (String s : data) {
-      listModel.addElement(s);
-    }
+
     variableInspectorList = new JList<>(listModel);
     variableInspectorList.setDragEnabled(true);
     variableInspectorList.setSelectionBackground(Color.YELLOW);
@@ -249,6 +252,11 @@ public class ProgramPanel extends JPanel {
       @Override
       public void mouseClicked(MouseEvent mouseEvent) {
         if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+          for (int i = 0; i < shownVariables.size(); i++) {
+            if (shownVariables.get(i).equals(variableInspectorList.getSelectedValue())) {
+              shownVariables.remove(variableInspectorList.getSelectedValue());
+            }
+          }
           listModel.remove(variableInspectorList.getSelectedIndex());
         }
         variableInspectorList.updateUI();
@@ -284,9 +292,12 @@ public class ProgramPanel extends JPanel {
     JButton showHiddenVariables = new JButton("Ausgeblendete Variablen anzeigen");
     showHiddenVariables.addActionListener(actionEvent -> {
       listModel.clear();
-      for (String s : data) {
-        listModel.addElement(s);
+      shownVariables.clear();
+      for (String variable : variableValueMap.keySet()) {
+        shownVariables.add(variable);
+        listModel.addElement(variableValueMap.get(variable));
       }
+      variableInspectorList.updateUI();
     });
 
     JLabel varLabel = new JLabel("Variableninspektor");
@@ -310,38 +321,85 @@ public class ProgramPanel extends JPanel {
     return id;
   }
 
+  /**
+   * Sets the program text.
+   *
+   * @param programText new program text
+   */
   public void setText(String programText) {
     codeTextArea.setText(programText);
-    listModel.removeAllElements();
+    listModel.clear();
     variableInspectorList.updateUI();
   }
 
+  /**
+   * Shows the variables of the List in the variable inspector panel.
+   * @param variables displayed variables
+   */
   public void showVariables(List<String> variables) {
-    listModel.removeAllElements();
+    listModel.clear();
+    variableValueMap.clear();
+    shownVariables = variables;
     for (String s : variables) {
       listModel.addElement(s);
+      variableValueMap.put(s, s + " = ");
     }
+    variableInspectorList.updateUI();
   }
 
+  /**
+   * Returns the currently inspected variables.
+   *
+   * @return inspected variables in an ArrayList
+   */
   public List<String> getInspectedVariables() {
-    ArrayList<String> inspectedVariables = new ArrayList<>();
-    for (int i = 0; i < listModel.size(); i++) {
-      inspectedVariables.add(listModel.get(i));
-    }
-    return inspectedVariables;
+    return shownVariables;
   }
 
-
+  /**
+   * Returns the current text of the code text area.
+   * @return current text
+   */
   public String getText() {
     return codeTextArea.getText();
   }
 
+  /**
+   * Returns the input variables.
+   *
+   * @return input variable string
+   */
   public String getInputVars() {
     return inputvariableTextField.getText();
   }
 
+  /**
+   * Shows a new input String.
+   * @param input new input String
+   */
   public void showInput(String input) {
     inputvariableTextField.setText(input);
+  }
+
+  /**
+   * updates the ProgramPanels variable inspector pane.
+   * @param debugLogicFacade Observable
+   */
+  public void update(Observable debugLogicFacade) {
+    //update variable inspector
+    DebugLogicFacade logicFacade = (DebugLogicFacade) debugLogicFacade;
+    listModel.clear();
+    for (String currentVariable : ((DebugLogicFacade) debugLogicFacade).getAllVariables()) {
+      if (!variableValueMap.containsKey(currentVariable)) {
+        shownVariables.add(currentVariable);
+      }
+      variableValueMap.put(currentVariable, logicFacade.getValueOf(currentVariable));
+    }
+    for (String variable : shownVariables)  {
+      listModel.addElement(variableValueMap.get(variable));
+    }
+    variableInspectorList.updateUI();
+
   }
 
 

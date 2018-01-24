@@ -359,6 +359,26 @@ public class DebugLogicFacade extends Observable {
     public int getStepSize(int programID){
     	return debugControl.getStepSize(programID);
     }
+
+
+    /**
+     * Returns the value of a specified variable.
+     * @param variable variable
+     * @return schnitzel
+     */
+    public String getValueOf(String variable) {
+        return "Schnitzel";
+        //TODO: Schnitzel wegmachen (Auch im Javadoc)
+    }
+
+    /**
+     * Returns all current variables.
+     * @return variable list
+     */
+    public List<String> getAllVariables() {
+        return new ArrayList<String>();
+        //TODO: implementieren
+    }
     
     
     // Strategy Types
