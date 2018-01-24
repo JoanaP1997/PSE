@@ -389,11 +389,11 @@ public class ProgramPanel extends JPanel {
     //update variable inspector
     DebugLogicFacade logicFacade = (DebugLogicFacade) debugLogicFacade;
     listModel.clear();
-    for (String currentVariable : ((DebugLogicFacade) debugLogicFacade).getAllVariables()) {
+    for (String currentVariable : ((DebugLogicFacade) debugLogicFacade).getAllVariables(id)) {
       if (!variableValueMap.containsKey(currentVariable)) {
         shownVariables.add(currentVariable);
       }
-      variableValueMap.put(currentVariable, logicFacade.getValueOf(currentVariable));
+      variableValueMap.put(currentVariable, logicFacade.getValueOf(id,currentVariable));
     }
     for (String variable : shownVariables)  {
       listModel.addElement(variableValueMap.get(variable));
