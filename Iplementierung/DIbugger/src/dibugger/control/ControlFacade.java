@@ -27,7 +27,7 @@ public class ControlFacade {
         try {
             fileHandlerInteractor = new FileHandlerInteractor(debugLogicController, guiFacade);
         } catch (FileHandlerException exception) {
-            exceptionHandler.handle(exception);
+            System.exit(0);
         }
         exceptionHandler = new ExceptionHandler(fileHandlerInteractor, guiFacade);
     }
