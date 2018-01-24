@@ -39,7 +39,7 @@ public class DebugLogicController {
         return inputBuffer.getNumberOfPrograms();
     }
 
-    public int getNumberOfPrograms() {
+    int getNumberOfPrograms() {
         return debugLogicFacade.getNumPrograms();
     }
 
@@ -69,6 +69,14 @@ public class DebugLogicController {
 
     public void stepBack() throws DIbuggerLogicException {
         step(STEP_BACK);
+    }
+    
+    public List<String> getAllVariables(String programId) {
+        return debugLogicFacade.getAllVariables(programId);
+    }
+    
+    public String getValueOf(String programId, String variable) {
+        return debugLogicFacade.getValueOf(programId, variable);
     }
 
     public List<String> getWatchExpressions() {

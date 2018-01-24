@@ -61,9 +61,10 @@ public class FileHandlerInteractor extends Observable {
     private void applyConfiguration(ConfigurationFile configFile) {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
+            String programIdentifier = configFile.getProgramNameID(i);
             String programText = configFile.getProgramText(i);
-            // TODO not temporary value "A", use from configuration file
-            guiFacade.showProgramText(programText, "A");
+            
+            guiFacade.showProgramText(programText, programIdentifier);
 
             List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
             List<String> variablesAndValues = new ArrayList<>();
@@ -72,14 +73,12 @@ public class FileHandlerInteractor extends Observable {
                 String inputValue = configFile.getInputValue(i, identifier);
                 variablesAndValues.add(identifier + " = " + inputValue);
             }
-            // TODO not temporary value "A", use from configuration file
-            guiFacade.showInput("A", variablesAndValues);
-
-            // "configFile.getLatestExecutionLine" muss noch verwendet werden
+            guiFacade.showInput(programIdentifier, variablesAndValues);
 
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
-            // TODO not temporary value "A", use from configuration file
-            guiFacade.showVariables("A", variablesOfInspector);
+            guiFacade.showVariables(programIdentifier, variablesOfInspector);
+            
+            // "configFile.getLatestExecutionLine" muss noch verwendet werden
 
             int stepSize = configFile.getStepSize(i);
             debugLogicController.setStepSize(i, stepSize);
@@ -108,28 +107,42 @@ public class FileHandlerInteractor extends Observable {
         int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
         for (int i = 0; i < numberOfBufferedPrograms; i++) {
             ProgramInput input = currentInput.get(i);
-//            configurationFile.setProgramInput(i, input);//TODO NOPE
+            
+            String bufferedProgramIdentifier = input.getProgramID();
+            configurationFile.setProgramNameID(i, bufferedProgramIdentifier);
+            
+            String programText = input.getText();
+            configurationFile.setProgramText(i, programText);
+            
+            List<String> variableAssignments = input.getInputValues();
 
-            // TODO not temporary value "A", use from configuration file
-            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector("A");
-
+            for (String assignment : variableAssignments) {
+                String[] variableAndValue = assignment.split(" = ");
+                if (variableAndValue.length != 2) {
+                    throw new IllegalStateException();
+                }
+                String variable = variableAndValue[0];
+                String value = variableAndValue[1];
+                configurationFile.setInputValue(i, variable, value);
+            }
+                        
+            List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(bufferedProgramIdentifier);
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);
         }
 
-        // etwas wie "configurationFile.setLatestExecutionLines" muss noch
-        // verwendet werden
+        // "configurationFile.setLatestExecutionLines" muss noch verwendet werden
 
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             int stepSize = debugLogicController.getStepSize(i);
             configurationFile.setStepSize(i, stepSize);
-
-//            List<Breakpoint> breakpoints = debugLogicController.getBreakpoints(i);//TODO INT
-//            List<Integer> lines = new ArrayList<>();
-//            for (Breakpoint element : breakpoints) {
-//                lines.add(element.getLine());
-//            }
-//            configurationFile.setBreakpoints(i, lines);
+            
+            List<Integer> breakpoints = debugLogicController.getBreakpoints(i);
+            List<Integer> lines = new ArrayList<>();
+            for (Integer element : breakpoints) {
+                lines.add(element);
+            }
+            configurationFile.setBreakpoints(i, lines);
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 
@@ -155,7 +168,6 @@ public class FileHandlerInteractor extends Observable {
             List<Integer> expressionScopeBeginnings = debugLogicController.getWatchExpressionScopeBeginnnings(i);
             List<Integer> expressionScopeEnds = debugLogicController.getWatchExpressionScopeEnds(i);
             configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
-            ;
         }
     }
 
@@ -164,8 +176,7 @@ public class FileHandlerInteractor extends Observable {
     }
 
     public List<String> getAvailableLanuages() {
-        // Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall
-        // "null")
+        // Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
 
