@@ -59,8 +59,8 @@ public class GenerationController {
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     WlangParser parser = new WlangParser(tokens);
     ParseTree mainTree = parser.program();
-    CommandGenerationVisitor commandGenerator = new CommandGenerationVisitor(this);
-    TermGenerationVisitor termGenerator = new TermGenerationVisitor();
+    this.commandGenerator = new CommandGenerationVisitor(this);
+    this.termGenerator = new TermGenerationVisitor();
     
     int childCount = mainTree.getChildCount();
     
