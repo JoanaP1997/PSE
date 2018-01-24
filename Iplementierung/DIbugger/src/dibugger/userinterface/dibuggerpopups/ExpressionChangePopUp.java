@@ -27,7 +27,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   String type;
 
   public ExpressionChangePopUp(MainInterface mainInterface, String message, int id, JTable table, ExpressionPanel panel) {
-
     //init:
     this.id = id;
     this.panel = panel;
@@ -106,6 +105,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       }
     });
 
+    setPopUpLayout();
   }
 
   private void setPopUpLayout() {
@@ -136,8 +136,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     for (int x = 0; x < mainInterface.getProgramCount(); x++) {
       scopeChangePanel.add(new ProgramScopeChooser(x), layout);
     }
-    setPopUpLayout();
-
+    //setPopUpLayout();
+    scopeChangePanel.updateUI();
   }
 
   private void hideScopePanel() {
@@ -165,6 +165,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelEnd.setPreferredSize(new Dimension(30, 20));
 
       //init:
+      //TODO
+      /**
       if (type.equals("WatchExpression")) {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(id).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(id).toString());
@@ -172,6 +174,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(id).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(id).toString());
       }
+       */
 
 
       layout.setHgap(20);
