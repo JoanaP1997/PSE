@@ -216,11 +216,17 @@ public class MainInterface extends JFrame {
     return newId;
   }
 
+  /**
+   * getter for the control facade.
+   * @return control facade
+   */
   public ControlFacade getControlFacade() {
     return controlFacade;
   }
 
-
+  /**
+   * Resets the user interface.
+   */
   public void reset() {
     CommandPanel.getCommandPanel(this).reset();
     programPanels.clear();
@@ -231,6 +237,11 @@ public class MainInterface extends JFrame {
 
   }
 
+  /**
+   * Makes a specified ProgramPanel show a certain input variable String.
+   * @param programId program ID
+   * @param vars new input String
+   */
   public void showInput(String programId, List<String> vars) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
@@ -243,6 +254,11 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * Makes a specified ProgramPanel show a new program text.
+   * @param programText program text
+   * @param programId program ID
+   */
   public void showProgramText(String programText, String programId) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
@@ -254,7 +270,11 @@ public class MainInterface extends JFrame {
 
   }
 
-
+  /**
+   * Returns the inspected variables of a certain ProgramPanel.
+   * @param programId programs ID
+   * @return List of Strings containing the variables
+   */
   public List<String> getVariablesOfInspector(String programId) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
@@ -264,6 +284,11 @@ public class MainInterface extends JFrame {
     return new ArrayList<>();
   }
 
+  /**
+   * Let's a specified ProgramPanel show new Variables.
+   * @param programId programs ID
+   * @param variables new variables
+   */
   public void showVariables(String programId, List<String> variables) {
     for (String id : programPanels.descendingKeySet()) {
       if (id.equals(programId)) {
@@ -272,12 +297,21 @@ public class MainInterface extends JFrame {
     }
   }
 
-
+  /**
+   * update-method as part of the obbserver pattern.
+   * @param observable DebugLogicFacade
+   * @param o Object o
+   */
   public void update(Observable observable, Object o) {
-    // TODO
+    for (ProgramPanel panel : programPanels.values()) {
+      panel.update(observable);
+    }
+    //TODO: alles andere updaten
   }
 
-
+  /**
+   * Starts the debug mode.
+   */
   public void startDebug() {
     ArrayList<String> inputVars = new ArrayList<>();
     ArrayList<String> programTexts = new ArrayList<>();
@@ -289,8 +323,12 @@ public class MainInterface extends JFrame {
       inputVars.add(current.getInputVars());
     }
     controlFacade.saveText(inputVars, programTexts, programIds);
+    controlFacade.startDebug();
   }
 
+  /**
+   * Change of language.
+   */
   public void changeLanguage() {
     // TODO
   }
