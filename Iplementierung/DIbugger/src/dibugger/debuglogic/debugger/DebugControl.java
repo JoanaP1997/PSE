@@ -630,6 +630,25 @@ public class DebugControl {
     }
     
     
+    /**
+     * Returns the value of a specified variable.
+     * @param variable the variable to get the value from
+     * @return the value of the given variable
+     */
+    public String getValueOf(String programNameID, String variable) {
+        //TODO
+        return null;
+    }
+    
+    /**
+     * Returns all current variables.
+     * @return list containing all variables
+     */
+    public List<String> getAllVariables(String programNameID) {
+        return null;
+    }
+    
+    
     // private helper methods
     private int getMaximumOfList(List<Integer> l) {
         int max = 0;
