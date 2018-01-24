@@ -53,21 +53,23 @@ public class GenerationController {
     WlangLexer lexer = new WlangLexer(stream);
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     WlangParser parser = new WlangParser(tokens);
-    ParseTree mainTree = parser.r();
+    ParseTree mainTree = parser.program();
+    CommandGenerationVisitor commandGenerator = new CommandGenerationVisitor(this);
+    TermGenerationVisitor termGenerator = new TermGenerationVisitor();
+    
     // 
     int childCount = mainTree.getChildCount();
     for (int i = 0; i < childCount; i++) {
       ParseTree childTree = mainTree.getChild(i);
+      commandGenerator.visit(childTree);
       // TODO add names of routines and routine (/ routine tree root) commands to the map "routines"
     }
     
     // initialize scope stack
     Scope firstScope = new Scope();
-    // TODO firstScope.setValueOf(identifier, value);
     scopes.push(firstScope);
     
-    CommandGenerationVisitor commandGenerator = new CommandGenerationVisitor(this);
-    TermGenerationVisitor termGenerator = new TermGenerationVisitor();
+
     // = mainTree.accept(commandGenerator);
     
     // run main routine
@@ -119,5 +121,10 @@ public class GenerationController {
 
   public void setMaxFuncCalls(int maxFuncCalls) {
     this.maxFuncCalls = maxFuncCalls;
+  }
+  
+  private TermValue getTermFromString(String input) {
+    // TODO implement
+    return null;
   }
 }
