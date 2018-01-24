@@ -45,19 +45,17 @@ public class WatchExpression {
     }
 
     public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
-        boolean isValid = true;
-        
+        boolean isValid = true;   
         // check whether #states = #scopes
         if (states.size() != this.scopes.size())
             isValid = false;
-
         // check whether we are in the right scope
         else if (!this.scopes.isEmpty()) {
             for (int i = 0; i < this.scopes.size(); ++i)
                 if (!this.scopes.get(i).contains(states.get(i).getLineNumber()))
                     isValid = false;
         }
-        if (isValid)
+        if (isValid || this.scopes.isEmpty())
             this.value = this.expression.evaluate(states).toString();
         return this.value;
     }

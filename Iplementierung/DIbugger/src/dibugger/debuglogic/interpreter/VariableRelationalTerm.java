@@ -10,7 +10,7 @@ import java.util.List;
  */
 public final class VariableRelationalTerm extends Term {
     private String identifier;
-    private int programId;
+    private String programId;
 
     public VariableRelationalTerm(String identifier) {
         if (identifier.contains(".")) {
@@ -19,19 +19,21 @@ public final class VariableRelationalTerm extends Term {
             // the dot
             String[] parts = identifier.split("\\.");
             this.identifier = parts[1];
-            char programIdChar = parts[0].charAt(0);
-            // A should indicate the first (index 0) program
-            this.programId = (int) programIdChar - (int) 'A';
+            this.programId = parts[0];
         } else {
-            this.programId = 0;
+            this.programId = "A";
             this.identifier = identifier;
         }
     }
 
     @Override
     public TermValue evaluate(List<TraceState> states) {
-        if (this.programId < states.size())
-            return states.get(this.programId).getValueOf(identifier);
+        //find the state the variable belongs to
+        for(TraceState state : states) {
+          if (state.getProgramId().equals(this.programId)) {
+            return state.getValueOf(identifier);
+          }
+        }
         return new CharValue('?');
     }
 
