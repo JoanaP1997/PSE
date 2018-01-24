@@ -9,17 +9,23 @@ import java.util.List;
  *
  */
 public abstract class RelationalSuggestion {
+    DebugControl debugControl;
+    
+    public RelationalSuggestion(DebugControl debugControl){
+        this.debugControl = debugControl;
+    }
+    
     /**
      * suggests a watch expression for the DIbugger.
      * 
      * @return String representing the expression.
      */
-    public abstract String suggestWatchExpression(List<String> programText);
+    public abstract String suggestWatchExpression(List<ProgramInput> programInput);
 
     /**
      * suggests a conditional Breakpoint for the DIbugger.
      * 
      * @return String representing the condition.
      */
-    public abstract String suggestConditionalBreakpoint(List<String> programText);
+    public abstract String suggestConditionalBreakpoint(List<ProgramInput> programInput);
 }

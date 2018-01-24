@@ -10,14 +10,19 @@ import java.util.List;
  */
 public class SimpleRelationalSuggestion extends RelationalSuggestion {
 
+    public SimpleRelationalSuggestion(DebugControl debugControl) {
+        super(debugControl);
+    }
+
     @Override
-    public String suggestWatchExpression(List<String> programText) {
+    public String suggestWatchExpression(List<ProgramInput> programInput) {
+        //debugControl.launchRun(programInput);
         return "A.x";
     }
 
     @Override
-    public String suggestConditionalBreakpoint(List<String> programText) {
-        return "A.x=A.x";
+    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
+        return "A.x = A.x";
     }
 
 }

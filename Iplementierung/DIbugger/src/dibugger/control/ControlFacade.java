@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import dibugger.debuglogic.debugger.DebugLogicFacade;
+import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
@@ -185,12 +186,12 @@ public class ControlFacade {
         debugLogicController.suggestStepSize();
     }
 
-    public String suggestWatchExpression(List<String> programText) {
-        return debugLogicController.suggestWatchExpression(programText);
+    public String suggestWatchExpression(List<ProgramInput> programInput) {
+        return debugLogicController.suggestWatchExpression(programInput);
     }
 
-    public String suggestConditionalBreakpoint(List<String> programText) {
-        return debugLogicController.suggestConditionalBreakpoint(programText);
+    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
+        return debugLogicController.suggestConditionalBreakpoint(programInput);
     }
 
     public String suggestInputValue(String inputVariableId, String range, int type) {

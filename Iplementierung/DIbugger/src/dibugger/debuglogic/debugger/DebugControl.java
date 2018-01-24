@@ -662,8 +662,13 @@ public class DebugControl {
      * @return the value of the given variable
      */
     public String getValueOf(String programNameID, String variable) {
-        // TODO
-        return null;
+        for(int i=0;i<list_currentTraceStates.size();++i){
+            TraceState state = list_currentTraceStates.get(i);
+            if(state.getProgramId().equals(variable)){
+                return state.getValueOf(variable).toString();
+            }
+        }
+        return "?";
     }
 
     /**
@@ -672,7 +677,13 @@ public class DebugControl {
      * @return list containing all variables
      */
     public List<String> getAllVariables(String programNameID) {
-        return null;
+        for(int i=0;i<list_currentTraceStates.size();++i){
+            TraceState state = list_currentTraceStates.get(i);
+            if(state.getProgramId().equals(programNameID)){
+                return new ArrayList<String>(state.getAllVariableIdentifiers());
+            }
+        }
+        return new ArrayList<String>();
     }
 
     // private helper methods

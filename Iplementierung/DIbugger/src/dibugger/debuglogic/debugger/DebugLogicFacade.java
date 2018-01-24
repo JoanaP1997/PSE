@@ -29,7 +29,7 @@ public class DebugLogicFacade extends Observable {
 
         suggest_stepsize = new SimpleStepSizeSuggestion(debugControl);
         suggest_input = new SimpleInputSuggestion();
-        suggest_relational = new SimpleRelationalSuggestion();
+        suggest_relational = new SimpleRelationalSuggestion(debugControl);
     }
 
     /**
@@ -173,15 +173,15 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see RelationalSuggestion#suggestWatchExpression()
      */
-    public String suggestWatchExpression(List<String> programText) {
-        return suggest_relational.suggestWatchExpression(programText);
+    public String suggestWatchExpression(List<ProgramInput> programInput) {
+        return suggest_relational.suggestWatchExpression(programInput);
     }
 
     /**
      * @see RelationalSuggestion#suggestConditionalBreakpoint()
      */
-    public String suggestConditionalBreakpoint(List<String> programText) {
-        return suggest_relational.suggestConditionalBreakpoint(programText);
+    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
+        return suggest_relational.suggestConditionalBreakpoint(programInput);
     }
 
     /**
@@ -211,7 +211,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void selectRelationalStrategy(int id) {
         if (id == STRAT_REL_SIMPLE) {
-            suggest_relational = new SimpleRelationalSuggestion();
+            suggest_relational = new SimpleRelationalSuggestion(debugControl);
         }
     }
 

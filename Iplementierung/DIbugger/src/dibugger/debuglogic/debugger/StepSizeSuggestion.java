@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class StepSizeSuggestion {
 
-    private DebugControl debugControl;
+    DebugControl debugControl;
 
     public StepSizeSuggestion(DebugControl debugControl) {
         this.debugControl = debugControl;
