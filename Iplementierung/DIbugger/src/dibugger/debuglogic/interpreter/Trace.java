@@ -20,8 +20,8 @@ public class Trace {
      * Constructor for a Trace.
      * @param programId the id of the program the TraceState corresponds to
      */
-    public Trace(String programId) {
-        this.traceStates = new ArrayList<TraceState>();
+    public Trace(List<TraceState> traceStates, String programId) {
+        this.traceStates = traceStates;
         this.programId = programId;
     }
 
