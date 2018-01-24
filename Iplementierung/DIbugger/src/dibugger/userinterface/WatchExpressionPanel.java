@@ -89,7 +89,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 Point p = mouseEvent.getPoint();
                 if ((table.columnAtPoint(p) == 0)) {
                     int row = table.rowAtPoint(p);
-                    new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, thisWEP);
+                    int id = idMap.get(row);
+                    new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, thisWEP, id);
                 }
                 if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
                     addRow(p);
