@@ -8,6 +8,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.ExceededMaxIterationsException;
 import dibugger.debuglogic.exceptions.IncompatibleTypeException;
 import dibugger.debuglogic.exceptions.WrongTypeArgumentException;
 import dibugger.debuglogic.interpreter.AdditionTerm;
@@ -90,21 +91,10 @@ public class SimpleCommandsTest {
      * Only checks if the Command stops running.
      * @throws DIbuggerLogicException
      */
-    @Test
+    @Test(expected = ExceededMaxIterationsException.class)
     public void testWhileCommand() throws DIbuggerLogicException {
       GenerationController gc = new GenerationController(1000, 1000);
       gc.setMaxFuncCalls(3);
-      Scope s = new Scope();
-      gc.pushScope(s);
-      // create Command
-      Command whileCommand = new WhileCommand(gc, 0, new ConstantTerm(new BooleanValue(true)));
-      whileCommand.run();
-      
-    }
-    
-    @Test
-    public void testUnstoppableWhileCommand() throws DIbuggerLogicException {
-      GenerationController gc = new GenerationController(1000, 1000);
       Scope s = new Scope();
       gc.pushScope(s);
       // create Command
