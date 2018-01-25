@@ -186,6 +186,12 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitThreeDims(WlangParser.ThreeDimsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link WlangParser#callingAssign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallingAssign(WlangParser.CallingAssignContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link WlangParser#pureAssign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -384,13 +390,6 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddition(WlangParser.AdditionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code FunctionCallInTerm}
-	 * labeled alternative in {@link WlangParser#term}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionCallInTerm(WlangParser.FunctionCallInTermContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code CharLiteral}
 	 * labeled alternative in {@link WlangParser#term}.
