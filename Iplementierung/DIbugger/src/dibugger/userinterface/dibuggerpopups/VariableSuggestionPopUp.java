@@ -278,11 +278,6 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     //TODO
   }
 
-  //TODO: löschen
-  public static void main(String[] args) {
-    VariableSuggestionPopUp p = new VariableSuggestionPopUp(0,new MainInterface());
-  }
-
   private int getTypeFromString(String typeAsString) {
     switch (typeAsString) {
       case "char":
