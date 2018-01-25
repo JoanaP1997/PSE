@@ -28,8 +28,8 @@ public class MainInterface extends JFrame {
   private static String SUGGESTIONS = "Vorschl\u00e4ge";
   private static String SUGGEST_STEPSIZE = "Vorschlag für Schrittgr\u00f6ße";
   private static String SUGGEST_INPUT_VAR = "Vorschlag für Eingabevariablen";
-  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für WatchExpressions";
-  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für bedingte Breakpoints";
+  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für Watch Expressions";
+  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für Bedingte Breakpoints";
   private static String SETTINGS = "Einstellungen";
 
 
