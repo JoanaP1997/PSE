@@ -9,7 +9,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Element;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -19,6 +18,13 @@ import java.util.Observable;
 import java.util.TreeMap;
 
 public class ProgramPanel extends JPanel {
+  private static String PROGRAM = "Programm";
+  private static String STEPSIZE = "Schrittgröße";
+  private static String INPUT_VARS = "Eingabevariablen";
+  private static String VAR_INSPECTOR_TOOL_TIP = "Zelle markieren und mit Rechtsklick ausblenden";
+  private static String VARIABLE_INSPECTOR = "Variableninspektor";
+  private static String SHOW_HIDDEN_VARIABLES = "Ausgeblendete Variablen anzeigen";
+  private static String ADD_PROGRAM = "Programm hinzufügen";
 
   private String id;
   private MainInterface mainInterface;
@@ -66,18 +72,18 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
 
-    programName.setText("Programm: " + id);
+    programName.setText(PROGRAM + ": " + id);
 
-    stepsize.setText("Stepsize: ");
+    stepsize.setText(STEPSIZE + ": ");
 
     stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
-    stepsizeInput.addActionListener(this::stepsizeInputActionPerformed);
+    stepsizeInput.addActionListener(evt1 -> stepsizeInputActionPerformed());
 
-    inputvariablesLabel.setText("Eingabevariablen: ");
+    inputvariablesLabel.setText(INPUT_VARS + ": ");
 
     inputvariableTextField.setText("");
-    inputvariableTextField.addActionListener(this::variableInputActionPerformed);
+    inputvariableTextField.addActionListener(evt -> variableInputActionPerformed());
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
     JButton loadFile = new JButton();
@@ -127,11 +133,11 @@ public class ProgramPanel extends JPanel {
         ));
   }
 
-  private void stepsizeInputActionPerformed(ActionEvent evt) {
+  private void stepsizeInputActionPerformed() {
     mainInterface.saveText();
   }
 
-  private void variableInputActionPerformed(ActionEvent evt) {
+  private void variableInputActionPerformed() {
     mainInterface.saveText();
   }
 
@@ -271,7 +277,7 @@ public class ProgramPanel extends JPanel {
     variableInspectorList.setSelectionBackground(Color.YELLOW);
     variableInspectorList.setSelectionForeground(Color.BLACK);
     variableInspectorList.setFixedCellHeight(20);
-    variableInspectorList.setToolTipText("Zelle markieren und mit Rechtsklick löschen");
+    variableInspectorList.setToolTipText(VAR_INSPECTOR_TOOL_TIP);
 
     variableInspectorList.addMouseListener(new MouseListener() {
       @Override
@@ -314,7 +320,7 @@ public class ProgramPanel extends JPanel {
     variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
     variableInspectorScrollPane.setViewportView(variableInspectorList);
 
-    JButton showHiddenVariables = new JButton("Ausgeblendete Variablen anzeigen");
+    JButton showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
     showHiddenVariables.addActionListener(actionEvent -> {
       listModel.clear();
       shownVariables.clear();
@@ -325,7 +331,7 @@ public class ProgramPanel extends JPanel {
       variableInspectorList.updateUI();
     });
 
-    JLabel varLabel = new JLabel("Variableninspektor");
+    JLabel varLabel = new JLabel(VARIABLE_INSPECTOR);
 
     variableInspectorLayout.setHorizontalGroup(variableInspectorLayout.createParallelGroup().addComponent(varLabel)
         .addComponent(showHiddenVariables).addComponent(variableInspectorScrollPane));
@@ -431,12 +437,15 @@ public class ProgramPanel extends JPanel {
 
   }
 
+  /**
+   * sets a new text based on the file chosen by the user.
+   */
   public void setTextWithFileChooser() {
     JFileChooser fileChooser = new JFileChooser();
     FileNameExtensionFilter filter = new FileNameExtensionFilter(
         "java files (*.java)", "java", "text files (*.txt)", "txt");
 
-    fileChooser.setDialogTitle("New ProgramPanel");
+    fileChooser.setDialogTitle(ADD_PROGRAM);
     fileChooser.setFileFilter(filter);
     int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
     if (returnVal == JFileChooser.APPROVE_OPTION) {

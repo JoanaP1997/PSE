@@ -158,7 +158,6 @@ public class MainInterface extends JFrame {
     fileMenu.add(loadConfig);
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
-    
     // menu for suggestions
     suggestionMenu.setText(SUGGESTIONS);
     menuBar.add(suggestionMenu);
