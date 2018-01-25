@@ -6,23 +6,35 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import dibugger.debuglogic.debugger.Breakpoint;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.GUIFacade;
 
+/**
+ *  DebugLogicController provides methods used to alter DIbugger's model
+ *  component. 
+ */
 public class DebugLogicController {
     private DebugLogicFacade debugLogicFacade;
 
     private TextInputBuffer inputBuffer;
 
+    /**
+     * Creates a new {@code DebugLogicController} object.
+     */
     public DebugLogicController() {
         debugLogicFacade = new DebugLogicFacade();
         inputBuffer = new TextInputBuffer();
     }
 
+    /**
+     * Attaches given {@code GUIFacade} to DIbugger's model component, 
+     * which causes guiFacade to be informed on change of model's data.
+     * 
+     * @param guiFacade the {@code GUIFacade} to attach to model
+     */
     public void attachToModel(GUIFacade guiFacade) {
         debugLogicFacade.addObserver(guiFacade);
     }
@@ -121,14 +133,13 @@ public class DebugLogicController {
      * 
      * @param variable
      *            variable
-     * @return schnitzel
+     * @return the value of specified variable
      * @see DebugLogicFacade#getValueOf(String, String)
      */
     public String getValueOf(String programId, String variable) {
         return debugLogicFacade.getValueOf(programId, variable);
     }
-
-    
+  
     public List<String> getWatchExpressions() {
         return debugLogicFacade.getWatchExpressions();
     }
@@ -201,7 +212,6 @@ public class DebugLogicController {
         debugLogicFacade.createCondBreakpoint(breakPointId, condition);
     }
 
-    
     public List<Integer> getConditionalBreakpointScopeBeginnings(int expressionId) {
         return debugLogicFacade.getCBScopeBegin(expressionId);
     }

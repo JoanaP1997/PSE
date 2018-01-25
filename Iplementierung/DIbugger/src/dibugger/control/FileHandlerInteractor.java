@@ -16,6 +16,11 @@ import dibugger.filehandler.facade.LanguageFile;
 import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.userinterface.GUIFacade;
 
+/**
+ *  {@code FileHandlerInteractor} is responsible for saving and
+ *  loading DIbugger-configurations, managing UI's (user -)
+ *  language and more.
+ */
 public class FileHandlerInteractor extends Observable {
     private FileHandlerFacade fileHandlerFacade;
     private GUIFacade guiFacade;
@@ -25,6 +30,13 @@ public class FileHandlerInteractor extends Observable {
     private LanguageFile languageFile;
     private PropertiesFile propertiesFile;
 
+    /**
+     * Creates a new {@code FileHandlerInteractor} with specified arguments. 
+     * 
+     * @param debugLogicController a {@code DebugLogicController} used to alter DIbugger-model
+     * @param guiFacade a facade to presentation-component of DIbugger
+     * @throws FileHandlerException
+     */
     public FileHandlerInteractor(DebugLogicController debugLogicController, GUIFacade guiFacade)
             throws FileHandlerException {
         Objects.requireNonNull(guiFacade);
@@ -42,6 +54,12 @@ public class FileHandlerInteractor extends Observable {
         changeLanguage(propertiesFile.getSelectedLanguage());
     }
 
+    /**
+     * Returns the {@code LanguageFile} managed by this 
+     * {@code FileHandlerInteractor}.
+     * 
+     * @return this {@code FileHandlerInteractor}s language file
+     */
     public LanguageFile getLanguageFile() {
         return languageFile;
     }
@@ -52,6 +70,14 @@ public class FileHandlerInteractor extends Observable {
         this.notifyObservers();
     }
 
+    /**
+     * Creates a {@code ConfigurationFile} using given {@code File} and
+     * attempts to restore a debugging-session by altering DIbugger's
+     * model- and presentation-component.
+     * 
+     * @param configurationFile the {@code File} to load
+     * @throws FileHandlerException
+     */
     public void loadConfigurationFile(File configurationFile) throws FileHandlerException {
         ConfigurationFile nextConfigFile = fileHandlerFacade.loadConfig(configurationFile);
         debugLogicController.reset();
@@ -95,9 +121,15 @@ public class FileHandlerInteractor extends Observable {
 
     }
 
+    /**
+     * Saves some of Dibugger's model- and presentation-component's state
+     * to a specified {@code File}.
+     * 
+     * @param configurationFile a {@code File} to save DIbugger's state to
+     */
     public void saveConfiguration(File file) {
         /*
-         * Möglicher Fall: unterschiedliche Anzahl an Programmen im Modell und
+         * Notiz: Möglicher Fall: unterschiedliche Anzahl an Programmen im Modell und
          * zwischengespeichert in Kontrolle. Vielleicht inkonsistenter
          * DIbugger-Zustand, vielleicht anders/überhaupt berücksichtigen.
          */
@@ -130,7 +162,7 @@ public class FileHandlerInteractor extends Observable {
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);
         }
 
-        // "configurationFile.setLatestExecutionLines" muss noch verwendet werden
+        // Notiz: "configurationFile.setLatestExecutionLines" muss noch verwendet werden
 
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
@@ -146,10 +178,10 @@ public class FileHandlerInteractor extends Observable {
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 
-        // evtl. getSizeOfConditionalBreakpoints benutzen
+        // Notiz: evtl. getSizeOfConditionalBreakpoints benutzen
         int numberOfConditionalBreakpoints = conditions.size();
         /*
-         * Schnittstellen in DebugLogicController, DebugLogicFacade,
+         * Notiz: Schnittstellen in DebugLogicController, DebugLogicFacade,
          * DebugControl und ConfigurationFile sollten verändert werden - z.B.
          * Zugriffsmethoden auf "Scope-Ebene" (also ScopeTuple nicht
          * scopebegin/-end)
@@ -171,15 +203,34 @@ public class FileHandlerInteractor extends Observable {
         }
     }
 
+    /**
+     *  Loads a program's text using specified {@code File}
+     *  
+     *  @param file the File containing a program's text
+     */
     public String loadProgramText(File file) {
         return fileHandlerFacade.loadProgramText(file);
     }
 
+    /**
+     * Returns a list containing all languages available for use by this'
+     * GUIFacade
+     * 
+     * @return a list containing all languages available
+     * @see FileHandlerFacade#getLanguages()
+     */
     public List<String> getAvailableLanuages() {
         // Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
 
+    /**
+     * Changes the language in which information is shown by
+     * this' GUIFacade.
+     * 
+     * @param languageId the id specifieng the language
+     * @see GUIFacade#changeLanguage()
+     */
     public void changeLanguage(String languageId) throws LanguageNotFoundException {
         LanguageFile nextLanguageFile = fileHandlerFacade.getLanguageFile(languageId);
         setLanguageFile(nextLanguageFile);

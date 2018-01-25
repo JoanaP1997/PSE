@@ -260,15 +260,43 @@ public class ControlFacade {
         debugLogicController.deleteAllBreakpoints();
     }
 
-    public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
-        debugLogicController.saveText(inputVariables, programTexts, programIdentifiers);
+    /**
+     * Stores given lists of multiple program's assigments of input variables, 
+     * text and identifier.
+     * For each program, its assignments of input variables is expected to
+     * a {@code String} of this kind: "a = 10;b = "bridge"", where "a" and "b" are
+     * input variables.
+     * 
+     * @param inputTexts a list containing each program's input variable-assignments
+     * @param programTexts a list containing each program's text
+     * @param programIdentifiers a list of containing each program's identifier
+     * @see DebugLogicController#saveText(List, List, List)
+     */
+    public void saveText(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
+        /*
+         * Notiz: Prüfen ob Beispiel im Kommentar oben stimmt.
+         */
+        debugLogicController.saveText(inputTexts, programTexts, programIdentifiers);
     }
 
+    /**
+     * Switches DIbugger's mode to debug-mode. Input of user stored in this
+     * Controlfacade via {@link saveText(List, List, List) will be sent to package
+     * {@code dibugger.debuglogic.debugger}.
+     * 
+     * @see DebugLogicController#startDebug()
+     * @throws DIbuggerLogicException temporarily?
+     */
     public void startDebug() throws DIbuggerLogicException {
         enableDebugMode();
-        debugLogicController.startDebug();
+        debugLogicController.startDebug();      
     }
 
+    /**
+     * Switches DIbugger's mode to edit-mode.
+     * 
+     * @see DebugLogicController#stopDebug()
+     */
     public void stopDebug() {
         disableDebugMode();
         debugLogicController.stopDebug();
@@ -283,6 +311,14 @@ public class ControlFacade {
         debugLogicController.reset();
     }
 
+    /**
+     * Creates a {@code ConfigurationFile} using given {@code File} and
+     * attempts to restore a debugging-session by altering DIbugger's
+     * model- and presentation-component.
+     * 
+     * @param configurationFile the {@code File} to load
+     * @see FileHandlerInteractor#loadConfigurationFile(File)
+     */
     public void loadConfiguration(File configurationFile) {
         ensureNotInDebugMode();
 
@@ -293,6 +329,13 @@ public class ControlFacade {
         }
     }
 
+    /**
+     * Saves some of Dibugger's model- and presentation-component's state
+     * to a specified {@code File}.
+     * 
+     * @param configurationFile a {@code File} to save DIbugger's state to
+     * @see FileHandlerInteractor#saveConfiguration(File)
+     */
     public void saveConfiguration(File configurationFile) {
         fileHandlerInteractor.saveConfiguration(configurationFile);
     }
