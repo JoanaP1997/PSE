@@ -42,6 +42,7 @@ funcCall: functionname = ID '(' args=filledArglist? ')'
 block: '{'statements'}';
 assignment: declareAssign
 			| pureAssign
+			| callingAssign
 			;
 
 arrayDeclaration: type = TYPE '[' index = term']' id = ID ';' #arrayDeclarationOneDim
@@ -61,7 +62,7 @@ dims: '['term']' #oneDims
 	| '['term']''['term']''['term']' #threeDims
 	;
 
-
+callingAssign: id = ID ASSIGN value = funcCall ';';
 pureAssign: id = ID ASSIGN value = term ';';
 declareAssign: type = TYPE id = ID ASSIGN value = term ';';
 declaration: type = TYPE id = ID ';';
@@ -114,7 +115,7 @@ term : '-' inner = term #NegativeTerm
 	| CHARLITERAL #CharLiteral
 	| ID #Id
 	| REL_ID #RelId
-	| funcCall #FunctionCallInTerm
+/*	| funcCall #FunctionCallInTerm*/
 	| arrayAccess #ArrayAccessInTerm
 	;
 

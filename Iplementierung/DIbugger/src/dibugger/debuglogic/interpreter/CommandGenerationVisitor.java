@@ -15,6 +15,7 @@ import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignOneDimConte
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignThreeDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignTwoDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.BlockContext;
+import dibugger.debuglogic.antlrparser.WlangParser.CallingAssignContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DeclarationContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DeclareAssignContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FilledArglistContext;
@@ -47,7 +48,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         this.controller = controller;
         this.termGenVisitor = new TermGenerationVisitor();
     }
-
+    
     // Helper Methods
     private List<Command> collectInBlock(BlockContext block) {
         List<Command> content = new ArrayList<Command>();
@@ -251,6 +252,11 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     }
 
     // Assignments and Declaration
+    @Override
+    public Command visitCallingAssign(CallingAssignContext ctx) {
+    	Command funcCall = visit(ctx.value);
+    	return new CallingAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText() ,funcCall);
+    }
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
         Term value = this.termGenVisitor.visit(ctx.value);
