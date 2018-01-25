@@ -6,7 +6,9 @@ import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -156,8 +158,28 @@ public class MainInterface extends JFrame {
     });
     loadConfig = new JMenuItem();
     loadConfig.setText(LOAD_CONFIG);
+    loadConfig.addActionListener(actionEvent -> {
+      JFileChooser fileChooser = new JFileChooser();
+      FileNameExtensionFilter filter = new FileNameExtensionFilter(
+          "rdbf files (*.rdbf)", "rdbf");
+      fileChooser.setFileFilter(filter);
+      int returnVal = fileChooser.showOpenDialog(this);
+      if (returnVal == JFileChooser.APPROVE_OPTION) {
+        File file = fileChooser.getSelectedFile();
+        controlFacade.loadConfiguration(file);
+      }
+    });
     saveConfig = new JMenuItem();
     saveConfig.setText(SAVE_CONFIG);
+    saveConfig.addActionListener(actionEvent -> {
+      JFileChooser fileChooser = new JFileChooser();
+      int returnVal = fileChooser.showSaveDialog(this);
+      if (returnVal == JFileChooser.APPROVE_OPTION) {
+        saveText();
+        File file = fileChooser.getSelectedFile();
+        controlFacade.saveConfiguration(file);
+      }
+    });
     exit = new JMenuItem();
     exit.setText(END_DIBUGGER);
     exit.addActionListener(actionEvent -> System.exit(0));
@@ -415,6 +437,5 @@ public class MainInterface extends JFrame {
       codePanel.updateUI();
     }
   }
-
 
 }

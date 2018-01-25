@@ -336,7 +336,7 @@ public class ConfigurationFile {
      *            new program text of the given programID
      */
     public void setProgramText(int programID, String text) {
-        while (list_programText.size() < programID) {
+        while (list_programText.size() - 1 < programID) {
             list_programText.add("");
         }
         list_programText.set(programID, text);
@@ -351,7 +351,7 @@ public class ConfigurationFile {
      *            the new name of the given programID
      */
     public void setProgramNameID(int programID, String name) {
-        while (list_programNamespace.size() < programID) {
+        while (list_programNamespace.size() - 1 < programID) {
             list_programNamespace.add("");// TODO Check if empty string is valid
         }
         list_programNamespace.set(programID, name);
@@ -366,7 +366,7 @@ public class ConfigurationFile {
      *            the new stepsize of the given programID
      */
     public void setStepSize(int programID, int stepsize) {
-        while (list_programStepSize.size() < programID) {
+        while (list_programStepSize.size() - 1 < programID) {
             list_programStepSize.add(0);
         }
         list_programStepSize.set(programID, stepsize);
@@ -383,7 +383,7 @@ public class ConfigurationFile {
      *            the new value for the input with the given identifier
      */
     public void setInputValue(int programID, String identifier, String value) {
-        while (list_inputValues.size() < programID) {
+        while (list_inputValues.size() - 1 < programID) {
             list_inputValues.add(new HashMap<String, String>());
         }
         list_inputValues.get(programID).put(identifier, value);
@@ -398,7 +398,7 @@ public class ConfigurationFile {
      *            the last execution line of the given program
      */
     public void setLastExecutionLine(int programID, int execLine) {
-        while (list_lastExecLine.size() < programID) {
+        while (list_lastExecLine.size() - 1 < programID) {
             list_lastExecLine.add(0);
         }
         list_lastExecLine.set(programID, execLine);
@@ -414,7 +414,7 @@ public class ConfigurationFile {
      *            variable inspector
      */
     public void setVariablesOfInspector(int programID, List<String> variables) {
-        while (list_varInspector.size() < programID) {
+        while (list_varInspector.size() - 1 < programID) {
             list_varInspector.add(new ArrayList<String>());
         }
         list_varInspector.set(programID, variables);
