@@ -21,10 +21,12 @@ import dibugger.debuglogic.antlrparser.WlangParser.FilledArglistContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FilledArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FuncCallContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FunctionHeadContext;
-import dibugger.debuglogic.antlrparser.WlangParser.IfElseWithBlockContext;
-import dibugger.debuglogic.antlrparser.WlangParser.IfElseWithSingleContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfWithBlockContext;
+import dibugger.debuglogic.antlrparser.WlangParser.IfWithBlockElseWithBlockContext;
+import dibugger.debuglogic.antlrparser.WlangParser.IfWithBlockElseWithSingleContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfWithSingleContext;
+import dibugger.debuglogic.antlrparser.WlangParser.IfWithSingleElseWithBlockContext;
+import dibugger.debuglogic.antlrparser.WlangParser.IfWithSingleElseWithSingleContext;
 import dibugger.debuglogic.antlrparser.WlangParser.MainFunctionHeadContext;
 import dibugger.debuglogic.antlrparser.WlangParser.MainProcedureHeadContext;
 import dibugger.debuglogic.antlrparser.WlangParser.MainRoutineContext;
@@ -332,16 +334,56 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         ifCommand.addChild(visit(ctx.content));
         return ifCommand;
     }
-
     @Override
-    public Command visitIfElseWithBlock(IfElseWithBlockContext ctx) {
-        //TODO
-        return super.visitIfElseWithBlock(ctx);
+    public Command visitIfWithBlockElseWithBlock(IfWithBlockElseWithBlockContext ctx) {
+    	Term condition = this.termGenVisitor.visit(ctx.condition());
+    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+    	//add if part commands
+    	List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
+        for (Command c : ifcontent) {
+            ifelse.addIfChild(c);
+        }
+    	//add else part commands
+        List<Command> elsecontent = this.collectInBlock(ctx.elsecontent);
+        for (Command c : elsecontent) {
+            ifelse.addElseChild(c);
+        }
+    	return ifelse;
     }
-
     @Override
-    public Command visitIfElseWithSingle(IfElseWithSingleContext ctx) {
-        // TODO
-        return null;
+    public Command visitIfWithBlockElseWithSingle(IfWithBlockElseWithSingleContext ctx) {
+    	Term condition = this.termGenVisitor.visit(ctx.condition());
+    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+    	//add if part commands
+    	List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
+        for (Command c : ifcontent) {
+            ifelse.addIfChild(c);
+        }
+    	//add else part command
+        ifelse.addElseChild(visit(ctx.elsecontent));
+    	return ifelse;
+    }
+    @Override
+    public Command visitIfWithSingleElseWithBlock(IfWithSingleElseWithBlockContext ctx) {
+    	Term condition = this.termGenVisitor.visit(ctx.condition());
+    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+    	//add if part command
+    	ifelse.addIfChild(visit(ctx.ifcontent));
+    	//add else part commands
+        List<Command> elsecontent = this.collectInBlock(ctx.elsecontent);
+        for (Command c : elsecontent) {
+            ifelse.addElseChild(c);
+        }
+    	return ifelse;
+    }
+    @Override
+    public Command visitIfWithSingleElseWithSingle(IfWithSingleElseWithSingleContext ctx) {
+    	Term condition = this.termGenVisitor.visit(ctx.condition());
+    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+    	//add if part command
+    	ifelse.addIfChild(visit(ctx.ifcontent));
+    	//add else part command
+    	ifelse.addElseChild(visit(ctx.elsecontent));
+    	return ifelse;
     }
 }

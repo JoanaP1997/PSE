@@ -248,14 +248,28 @@ public class WlangBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIfElseWithBlock(WlangParser.IfElseWithBlockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfWithBlockElseWithBlock(WlangParser.IfWithBlockElseWithBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIfElseWithSingle(WlangParser.IfElseWithSingleContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfWithBlockElseWithSingle(WlangParser.IfWithBlockElseWithSingleContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIfWithSingleElseWithBlock(WlangParser.IfWithSingleElseWithBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIfWithSingleElseWithSingle(WlangParser.IfWithSingleElseWithSingleContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -224,19 +224,33 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfWithSingle(WlangParser.IfWithSingleContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ifElseWithBlock}
+	 * Visit a parse tree produced by the {@code ifWithBlockElseWithBlock}
 	 * labeled alternative in {@link WlangParser#ifelseState}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfElseWithBlock(WlangParser.IfElseWithBlockContext ctx);
+	T visitIfWithBlockElseWithBlock(WlangParser.IfWithBlockElseWithBlockContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ifElseWithSingle}
+	 * Visit a parse tree produced by the {@code ifWithBlockElseWithSingle}
 	 * labeled alternative in {@link WlangParser#ifelseState}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIfElseWithSingle(WlangParser.IfElseWithSingleContext ctx);
+	T visitIfWithBlockElseWithSingle(WlangParser.IfWithBlockElseWithSingleContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifWithSingleElseWithBlock}
+	 * labeled alternative in {@link WlangParser#ifelseState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfWithSingleElseWithBlock(WlangParser.IfWithSingleElseWithBlockContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ifWithSingleElseWithSingle}
+	 * labeled alternative in {@link WlangParser#ifelseState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfWithSingleElseWithSingle(WlangParser.IfWithSingleElseWithSingleContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code whileWithBlock}
 	 * labeled alternative in {@link WlangParser#whileState}.

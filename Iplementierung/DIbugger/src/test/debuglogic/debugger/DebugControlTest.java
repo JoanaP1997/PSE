@@ -9,10 +9,11 @@ import dibugger.debuglogic.debugger.DebugControl;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 public class DebugControlTest {
     
-    @Test
+    @Test(expected=VariableNotFoundException.class)
     public void steppingTest() throws DIbuggerLogicException{
         DebugLogicFacade facade = new DebugLogicFacade();
         ProgramInput in = new ProgramInput(
