@@ -71,8 +71,10 @@ returnState: 'return' returnvalue = term ';';
 ifState: 'if' '(' condition ')' content = block #ifWithBlock
 	| 'if' '('condition ')' content = statement #ifWithSingle
 	;
-ifelseState: ifPart = ifState 'else' content = block #ifElseWithBlock
-	| ifPart = ifState 'else' content = statement #ifElseWithSingle
+ifelseState: 'if' '(' condition ')' ifcontent = block 'else' elsecontent = block #ifWithBlockElseWithBlock
+	|'if' '(' condition ')' ifcontent = block 'else' elsecontent = statement #ifWithBlockElseWithSingle
+	| 'if' '(' condition ')' ifcontent = statement 'else' elsecontent = block #ifWithSingleElseWithBlock
+	| 'if' '(' condition ')' ifcontent = statement 'else' elsecontent = statement #ifWithSingleElseWithSingle
 	;
 whileState: 'while' '(' condition ')' content = block #whileWithBlock
 	| 'while' '('condition ')' content = statement #whileWithSingle
