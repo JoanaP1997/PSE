@@ -418,13 +418,13 @@ public class ProgramPanel extends JPanel {
   /**
    * updates the ProgramPanels variable inspector pane.
    *
-   * @param debugLogicFacade Observable
+   * @param observable Observable
    */
-  public void update(Observable debugLogicFacade) {
+  public void update(Observable observable) {
     //update variable inspector
-    DebugLogicFacade logicFacade = (DebugLogicFacade) debugLogicFacade;
+    DebugLogicFacade logicFacade = (DebugLogicFacade) observable;
     listModel.clear();
-    for (String currentVariable : ((DebugLogicFacade) debugLogicFacade).getAllVariables(id)) {
+    for (String currentVariable : logicFacade.getAllVariables(id)) {
       if (!variableValueMap.containsKey(currentVariable)) {
         shownVariables.add(currentVariable);
       }
