@@ -5,6 +5,7 @@ import dibugger.debuglogic.antlrparser.WlangParser.AdditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.AndConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayAccessConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayAccessInTermContext;
+import dibugger.debuglogic.antlrparser.WlangParser.BooleanLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.BracketConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.BracketsContext;
 import dibugger.debuglogic.antlrparser.WlangParser.CharLiteralContext;
@@ -238,7 +239,10 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
     public Term visitCharLiteral(CharLiteralContext ctx) {
         return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
     }
-
+    @Override
+    public Term visitBooleanLiteral(BooleanLiteralContext ctx) {
+    	return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
+    }
     // IDs and Constants
     @Override
     public Term visitId(IdContext ctx) {
