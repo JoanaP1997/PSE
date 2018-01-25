@@ -1,6 +1,9 @@
 package dibugger.userinterface;
 
 import javax.swing.*;
+
+import dibugger.debuglogic.debugger.DebugControl;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,18 +46,17 @@ public class CommandPanel extends JPanel {
         ImageIcon iconStop = new ImageIcon("res/ui/stop-button.png");
         stop.setIcon(iconStop);
 
-        // TODO: richtiger Step Typ
         step = new JButton(("Step"));
-        step.addActionListener(actionEvent -> mainInterface.getControlFacade().step(0));
+        step.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_NORMAL));
 
         stepOver = new JButton("StepOver");
-        stepOver.addActionListener(actionEvent -> mainInterface.getControlFacade().step(0));
+        stepOver.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OVER));
 
         stepOut = new JButton(("StepOut"));
-        stepOut.addActionListener(actionEvent -> mainInterface.getControlFacade().step(0));
+        stepOut.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OUT));
 
         stepBack = new JButton("StepBack");
-        stepBack.addActionListener(actionEvent -> mainInterface.getControlFacade().step(0));
+        stepBack.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_BACK));
 
         continueDebug = new JButton("Continue");
         continueDebug.addActionListener(actionEvent -> mainInterface.getControlFacade().continueDebug());
