@@ -90,7 +90,7 @@ public class MainInterface extends JFrame {
       // do nothing
     }
     MainInterface mainInterface = new MainInterface();
-    mainInterface.setSize(1200, 800);
+    mainInterface.setSize(1200, 900);
     mainInterface.setVisible(true);
   }
 

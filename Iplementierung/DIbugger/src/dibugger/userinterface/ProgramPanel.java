@@ -49,6 +49,8 @@ public class ProgramPanel extends JPanel {
   private JScrollPane variableInspectorScrollPane;
   private JList<String> variableInspectorList;
 
+  private JLabel result;
+
   /**
    * Constructor for a nem ProgramPanel.
    *
@@ -101,6 +103,8 @@ public class ProgramPanel extends JPanel {
 
     initVariableInspector();
 
+    result = new JLabel("Return: ");
+
     GroupLayout firstTextPanelLayout = new GroupLayout(this);
     setLayout(firstTextPanelLayout);
     firstTextPanelLayout.setHorizontalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -114,7 +118,8 @@ public class ProgramPanel extends JPanel {
                     .addGap(150, 150, 150).addComponent(loadFile).addComponent(delete))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputvariablesLabel)
                     .addComponent(inputvariableTextField)))
-            .addComponent(codePanel).addComponent(variableInspector))));
+            .addComponent(codePanel).addComponent(variableInspector).addComponent(result))));
+
     firstTextPanelLayout.setVerticalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
         .addGroup(firstTextPanelLayout.createSequentialGroup()
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -128,7 +133,7 @@ public class ProgramPanel extends JPanel {
                 .addComponent(inputvariablesLabel).addComponent(inputvariableTextField,
                     GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGap(10, 10, 10).addComponent(codePanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(variableInspector)
+            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(variableInspector).addComponent(result)
 
         ));
   }
