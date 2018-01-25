@@ -30,6 +30,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   private ExpressionPanel panel;
   private String type = "";
   private int WEid;
+  private ArrayList<ScopeTuple> scopes = new ArrayList<>();
 
   /**
    * constructor for an ExpressionChangePopUp, should only be called by ExpressionPanels
@@ -104,7 +105,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           if (type.equals("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             int n = scopeChangePanel.getComponentCount();
-            ArrayList<ScopeTuple> scopes = new ArrayList<>();
             for (int j = 0; j < n; j++) {
               int start = Integer.parseInt(((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getStart());
               int end = Integer.parseInt((((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getEnd()));
@@ -115,7 +115,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           } else if (type.equals("ConditionalBreakpoint")) {
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
             int n = scopeChangePanel.getComponentCount();
-            ArrayList<ScopeTuple> scopes = new ArrayList<>();
             for (int j = 0; j < n; j++) {
               int start = Integer.parseInt(((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getStart());
               int end = Integer.parseInt((((ProgramScopeChooser) scopeChangePanel.getComponent(j)).getEnd()));
@@ -186,7 +185,9 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelStart.setPreferredSize(new Dimension(100, 20));
       labelEnd = new JLabel("End: ");
       labelEnd.setPreferredSize(new Dimension(30, 20));
+      //TODO: Zwick Beine machen und zur Not selbst speichern
 
+      /**
       if (type.equals("WatchExpression")) {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(WEid).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(WEid).toString());
@@ -194,6 +195,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(WEid).toString());
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(WEid).toString());
       }
+       */
 
       //set look:
       layout.setHgap(20);

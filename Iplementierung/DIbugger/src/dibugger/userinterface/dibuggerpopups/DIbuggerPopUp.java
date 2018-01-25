@@ -11,5 +11,4 @@ public class DIbuggerPopUp extends JDialog {
         this.setIconImage(icon.getImage());
     }
 
-    // TODO: ICON hier spezifizieren
 }

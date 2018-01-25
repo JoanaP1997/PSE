@@ -106,6 +106,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 }
                 if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
                     addRow(p);
+                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
                     getWatchExpressionPanel(mainInterface).updateUI();
                 }
                 saveWEs();
@@ -190,7 +191,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private void addRow(Point p) {
       int row = table.rowAtPoint(p) + 1;
       idMap.put(row, currentHighestId + 1);
-      currentHighestId++;
+      currentHighestId += 1;
       Object[] newRow = { " ", "5 = 5", " " };
       tableModel.addRow(newRow);
       ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
@@ -200,7 +201,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
       for (int j = 0; j < dataAsList.size(); j++) {
         dataEntries[j] = dataAsList.get(j);
       }
-      mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
     }
 
 }

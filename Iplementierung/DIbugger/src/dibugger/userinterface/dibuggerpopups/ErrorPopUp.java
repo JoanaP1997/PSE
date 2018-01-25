@@ -22,8 +22,7 @@ public class ErrorPopUp extends DIbuggerPopUp {
 
         JButton ok = new JButton("OK");
         ok.addActionListener(actionEvent -> {
-            // CommandPanel.getCommandPanel(this.mainInterface).stopDebug();
-            // TODO
+            CommandPanel.getCommandPanel(this.mainInterface).stopDebug();
             dispose();
         });
         this.add(ok, constraints);
