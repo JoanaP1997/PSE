@@ -89,6 +89,15 @@ public class DebugControl {
     }
 
     /**
+     * Synchronizes the ProgramInput with a given Programinput List
+     * @param programs the list containing all new programs
+     */
+    public void syncProgramInput(List<ProgramInput> programs){
+        list_programInput = programs;
+        numPrograms = programs.size();
+    }
+    
+    /**
      * Executes a step defined by a given step type.
      * 
      * @param type
@@ -506,7 +515,7 @@ public class DebugControl {
             l.add(it.getStartLine());
         }
         if (l.size() == 0) {
-            for (int i = 0; i < list_programInput.size(); ++i) {
+            for (int i = 0; i < numPrograms; ++i) {
                 l.add(1);
             }
         }
@@ -526,7 +535,7 @@ public class DebugControl {
             l.add(it.getEndLine());
         }
         if (l.size() == 0) {
-            for (int i = 0; i < list_programInput.size(); ++i) {
+            for (int i = 0; i < numPrograms; ++i) {
                 l.add(list_programInput.get(i).getText().split("\n").length);
             }
         }
@@ -560,7 +569,7 @@ public class DebugControl {
      */
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
-        for (int i = 0; i < list_condBreakpoints.size(); ++i) {
+        for (int i = 0; i < numPrograms; ++i) {
             l.add(list_condBreakpoints.get(i).getSpecifier());
         }
         return l;
@@ -580,7 +589,7 @@ public class DebugControl {
             l.add(it.getStartLine());
         }
         if (l.size() == 0) {
-            for (int i = 0; i < list_programInput.size(); ++i) {
+            for (int i = 0; i < numPrograms; ++i) {
                 l.add(1);
             }
         }
@@ -601,7 +610,7 @@ public class DebugControl {
             l.add(it.getEndLine());
         }
         if (l.size() == 0) {
-            for (int i = 0; i < list_programInput.size(); ++i) {
+            for (int i = 0; i < numPrograms; ++i) {
                 l.add(list_programInput.get(i).getText().split("\n").length);
             }
         }

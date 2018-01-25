@@ -299,6 +299,7 @@ public class DebugLogicController {
 
     public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
         inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
+        debugLogicFacade.syncProgramInput(getProgramInput());
     }
 
     public void startDebug() throws DIbuggerLogicException {

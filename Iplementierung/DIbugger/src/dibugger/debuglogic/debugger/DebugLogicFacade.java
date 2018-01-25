@@ -123,6 +123,14 @@ public class DebugLogicFacade extends Observable {
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         debugControl.launchRun(programs);
     }
+    
+    /**
+     * Synchronizes the ProgramInput with a given Programinput List
+     * @param programs the list containing all new programs
+     */
+    public void syncProgramInput(List<ProgramInput> programs){
+        debugControl.syncProgramInput(programs);
+    }
 
     /**
      * @see DebugControl#getProgramCounter()
