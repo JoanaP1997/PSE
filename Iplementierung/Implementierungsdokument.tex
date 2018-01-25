@@ -65,7 +65,7 @@ Dieses Dokument beschreibt die Ergebnisse der Implementierungsphase (\textit{08.
 Hierbei handelt es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
 
 Das eigentliche Produkt dieser Phase ist über folgendes GitHub-Repository verfügbar: \href{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung}{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung} \\
-Die abgegebene Version wurde mit \textit{"prerelease\_v0.1"} getaggt.
+Die abgegebene Version wurde mit \textit{prerelease\_v0.1} getaggt.
 
 \begin{figure}[!h]
 \centering
@@ -83,7 +83,7 @@ Weiter gab es hier eine Änderung der Verantwortlichkeit. Hierbei implementierte
 %folgend ein Bescheuerter Satz
 Aus Interessen- und Vorwissensgründen wurde dies so abgesprochen und umgesetzt.
 %Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.%
-Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}. Insgesamt gestaltete sich aber auch die Benutzeroberfläche des Paketes \textit{UserInterface} zeitintensiver als erwartet.
+Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}. Insgesamt gestaltete sich aber auch die Implementierung der Benutzeroberfläche des Paketes \textit{UserInterface} zeitintensiver als erwartet.
 Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \begin{figure}[!h]
 \centering
@@ -148,9 +148,9 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		
 		\item[/NA40/] Sicherheit: \\
 		Da das Produkt keine Netzwerkverbindung nutzt, verbleiben die vom Benutzer eingegebenen Daten zumindest im Zuständigkeitsbereichs des Programmes ausschließlich auf dem Rechner des Benutzers.
-		\item[/NA50/]Benutzerfreundlichkeit: \\
-		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
-		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
+		\item[/NA50/]Benutzerfreundlichkeit: \\ NN
+%		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
+%		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
 		\end{itemize}
 		
 				Unter dem Punkt \enquote{Qualitätsanforderungen an die Benutzeroberfläche} wurden im Pflichtenheft außerdem genannt:
@@ -229,26 +229,29 @@ Zunächst wird in jedem Command der aktuelle \textit{Scope} vom hauptverantwortl
 \section{Änderungen zum Entwurf}
 
 \subsection{UserInterface}
-+ DIbuggerPopUp ExpressionChangePopUp für Löschen und Ändern der Bereichsbindung (Grund: sonst Unübersichtlichkeit) \\
-- DIbuggerPopUp ArrayValuePopUp (Grund: Übersichtlicher mit Scrollbalken im Variableninspektor) \\
-* Identifikator der ProgramPanels ist String (A-Z) statt Integer (Grund: bessere Darstellung der zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints
+\paragraph{ExpressionChangePopUp}
+Der Entwurf wurde aus Gründen der Übersichtlichkeit um die Klasse ExpressionChangePopUp, die von DIbuggerPopUp erbt, ergänzt. Ein ExpressionChangePopUp dient dabei dem Löschen und Ändern der Bereichsbindung einer WatchExpression oder eines bedingten Breakpoints.
+\paragraph{ArrayValuePopUp}
+Die im Entwurf spezifizierte Klasse ArrayValuePopUp, eine Unterklasse von DIbuggerPopUp, wurde in der Implementierung aus Gründen der Benutzerfreundlichkeit verworfen. Ursprünglich sollte sie das Eintragen der Werte eines Arrays über ein PopUp erleichtern. Mit Hilfe eines Scrollbalkens im Variableninspektor ist es allerdings möglich, Werte für Arrays auf dieselbe Art und Weise wie Werte für andere Datentypen einzugeben.
+\paragraph{ProgramPanel}
+ProgramPanels werden nun nicht mehr über Integers identifiziert, sondern über Strings (A-Z). So ist innerhalb des Modells gewährleistet, dass auch nach Löschung eines einzelnen ProgramPanels die zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints korrekt angezeigt werden.
 \subsection{Control}
 \subsection{FileHandler}
 %+ FileHandlerFacade: savePropertiesFile()
 \paragraph{Exceptions Paket}
-Das Exceptions-Paket sah eine Oberklasse FileHandlerException als interface vor.
-Alle Unterklassen, welche diese Schnittstelle implementieren sollten von der Klasse java.lang.Exceptions erben. Da aber Schnittstellen in Java nicht geworfen werden können, wurde die Schnittstelle FileHandlerException zu einer abstrakten Klasse mit Erbschaft von java.lang.Exception.
+Das Exceptions-Paket sah eine Oberklasse \textit{FileHandlerException} als Interface vor.
+Alle Unterklassen, welche diese Schnittstelle implementieren, sollten von der Klasse \textit{java.lang.Exceptions} erben. Da aber Schnittstellen in Java nicht geworfen werden können, wurde die Schnittstelle \textit{FileHandlerException} zu einer abstrakten Klasse mit Erbschaft von \textit{java.lang.Exception}.
 \subsection{DebugLogic}
 \subsubsection{Debugger}
 %+ DebugLogicFacade: extends Observable statt Subject \\
 %* DebugLogicFacade: notifyObservers(Object arg); suggestStepSize void statt String \\
 %+ DebugControl: setStepSize(programID, stepSize); reset();
 \paragraph{Subject}
-Im Entwurf wurde die Klasse Subject spezifiziert. Sie ist Kontrollpunkt des Beobachtermusters zwischen GUI und DebugLogic. Da eine äquivalente Klasse aus Java, namentlich Observable, existiert, wurde die Klasse Subject nicht implementiert.
-Observable biete die gleichen Methoden an, wie unsere definierte Klasse.
+Im Entwurf wurde die Klasse \textit{Subject} spezifiziert. Sie ist Kontrollpunkt des Beobachtermusters zwischen GUI und DebugLogic. Da eine äquivalente Klasse aus Java, namentlich \textit{Observable}, existiert, wurde die Klasse \textit{Subject} nicht implementiert.
+\textit{Observable} biete die gleichen Methoden an, wie unsere definierte Klasse.
 \paragraph{DebugLogicFacade}
-Diese Klasse erbt nun von der Java Klasse Observable anstatt von Subject.
-Aus den oben genannten Gründen kann somit auch auf die Implementierung der in Subject enthaltenen Methoden verzichtet werden.
+Diese Klasse erbt nun von der Java Klasse \textit{Observable} anstatt von \textit{Subject}.
+Aus den oben genannten Gründen kann somit auch auf die Implementierung der in \textit{Subject} enthaltenen Methoden verzichtet werden.
 
 \subsubsection{Interpreter}
 \paragraph{TraceIterator}
