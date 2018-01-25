@@ -3,10 +3,10 @@ package dibugger.userinterface;
 import dibugger.control.ControlFacade;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
+import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -26,6 +26,10 @@ public class MainInterface extends JFrame {
   private static String SAVE_CONFIG = "Konfigurationsdatei speichern";
   private static String END_DIBUGGER = "DIbugger beenden";
   private static String SUGGESTIONS = "Vorschläge";
+  private static String SUGGEST_STEPSIZE = "Vorschlag für Schrittgröße";
+  private static String SUGGEST_INPUT_VAR = "Vorschlag für Eingabevariablen";
+  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für WatchExpressions";
+  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für bedingte Breakpoints";
   private static String SETTINGS = "Einstellungen";
 
 
@@ -52,6 +56,10 @@ public class MainInterface extends JFrame {
   private JMenuItem loadConfig;
   private JMenuItem saveConfig;
   private JMenuItem exit;
+  private JMenuItem stepSizeSuggestion;
+  private JMenuItem inputSuggestion;
+  private JMenuItem watchExpressionSuggestion;
+  private JMenuItem condBreakpointSuggestion;
 
   private GUIFacade guiFacade;
   private ControlFacade controlFacade;
@@ -158,8 +166,25 @@ public class MainInterface extends JFrame {
     fileMenu.add(loadConfig);
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
+
     // menu for suggestions
     suggestionMenu.setText(SUGGESTIONS);
+    condBreakpointSuggestion = new JMenuItem(SUGGEST_COND_BREAKPOINT);
+    condBreakpointSuggestion.addActionListener(
+        actionEvent -> new VariableSuggestionPopUp(VariableSuggestionPopUp.CONDITIONAL_BREAKPOINT, this));
+    watchExpressionSuggestion = new JMenuItem(SUGGEST_WATCHEXPRESSION);
+    watchExpressionSuggestion.addActionListener(
+        actionEvent -> new VariableSuggestionPopUp(VariableSuggestionPopUp.WATCH_EXPRESSION, this));
+    inputSuggestion = new JMenuItem(SUGGEST_INPUT_VAR);
+    inputSuggestion.addActionListener(
+        actionEvent -> new VariableSuggestionPopUp(VariableSuggestionPopUp.VARIABLES, this));
+    stepSizeSuggestion = new JMenuItem(SUGGEST_STEPSIZE);
+    stepSizeSuggestion.addActionListener(
+        actionEvent -> new VariableSuggestionPopUp(VariableSuggestionPopUp.STEP_SIZE, this));
+    suggestionMenu.add(stepSizeSuggestion);
+    suggestionMenu.add(inputSuggestion);
+    suggestionMenu.add(watchExpressionSuggestion);
+    suggestionMenu.add(condBreakpointSuggestion);
     menuBar.add(suggestionMenu);
 
     // settings menu
