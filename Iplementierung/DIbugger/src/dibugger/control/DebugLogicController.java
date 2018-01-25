@@ -45,10 +45,24 @@ public class DebugLogicController {
         debugLogicFacade.addObserver(guiFacade);
     }
 
-    public List<Integer> getBreakpoints(int programNumber) {
-        return debugLogicFacade.getBreakpoints(programNumber);
+    /**
+     * Getter for all breakpoints of a given program.
+     * 
+     * @param numberOfProgram
+     *            the number of program to return breakpoints of
+     * @return a list containing all breakpoints of specified program
+     * @see DebugLogicFacade#getBreakpoints(int)
+     */
+    public List<Integer> getBreakpoints(int numberOfProgram) {
+        return debugLogicFacade.getBreakpoints(numberOfProgram);
     }
 
+    /**
+     * Returns the conditions of all conditional breakpoints known to DIbugger's
+     * model-component.
+     * 
+     * @return a list containing the conditions of all conditional breakpoints
+     */
     public List<String> getConditionalBreakpoints() {
         return debugLogicFacade.getConditionalBreakpoints();
     }
@@ -218,10 +232,27 @@ public class DebugLogicController {
         debugLogicFacade.createCondBreakpoint(breakPointId, condition);
     }
 
+    /**
+     * Getter for the Scope-begins of a given conditional breakpoint.
+     * 
+     * @param expressionId
+     *            the id of the expression
+     * @return a List containing all Scope begins for the given conditional
+     *         breakpoint
+     * @see DebugLogicFacade#getCBScopeBegin(int)
+     */
     public List<Integer> getConditionalBreakpointScopeBeginnings(int expressionId) {
         return debugLogicFacade.getCBScopeBegin(expressionId);
     }
 
+    /**
+     * Getter for the Scope ends of a given conditional breakpoint.
+     * 
+     * @param expressionId
+     *            the id of the expression
+     * @return a List containing all Scope ends for the given conditional
+     *         breakpoint
+     */
     public List<Integer> getConditionalBreakpointScopeEnds(int expressionId) {
         return debugLogicFacade.getCBScopeEnd(expressionId);
     }
@@ -319,6 +350,17 @@ public class DebugLogicController {
         debugLogicFacade.deleteAllBreakpoints();
     }
 
+    /**
+     * Stores given lists of multiple program's assigments of input variables, 
+     * text and identifier.
+     * For each program, its assignments of input variables is expected to
+     * a {@code String} of this kind: "a = 10;b = "bridge"", where "a" and "b" are
+     * input variables.
+     * 
+     * @param inputTexts a list containing each program's input variable-assignments
+     * @param programTexts a list containing each program's text
+     * @param programIdentifiers a list of containing each program's identifier
+     */
     public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
         inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
         debugLogicFacade.syncProgramInput(getProgramInput());
@@ -327,10 +369,22 @@ public class DebugLogicController {
         }
     }
 
+    /**
+     * Switches DIbugger's mode to debug-mode. Input of user stored in this
+     * Controlfacade via {@link saveText(List, List, List) will be sent to package
+     * {@code dibugger.debuglogic.debugger}.
+     * 
+     * @see DebugLogicFacade#launchRun(List)
+     * @throws DIbuggerLogicException if an exception occured 
+     */
     public void startDebug() throws DIbuggerLogicException {
         debugLogicFacade.launchRun(getProgramInput());
     }
 
+    /**
+     * Might perform steps related to DIbugger's model component, 
+     * if necessary to stop process of debugging.
+     */
     public void stopDebug() {
         /*  */
     }

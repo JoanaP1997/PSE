@@ -104,7 +104,7 @@ public class FileHandlerInteractor extends Observable {
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
             guiFacade.showVariables(programIdentifier, variablesOfInspector);
             
-            // "configFile.getLatestExecutionLine" muss noch verwendet werden
+            // Notiz: "configFile.getLatestExecutionLine" muss noch verwendet werden
 
             int stepSize = configFile.getStepSize(i);
             debugLogicController.setStepSize(i, stepSize);
@@ -220,7 +220,7 @@ public class FileHandlerInteractor extends Observable {
      * @see FileHandlerFacade#getLanguages()
      */
     public List<String> getAvailableLanuages() {
-        // Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
+        // Notiz: Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
 
