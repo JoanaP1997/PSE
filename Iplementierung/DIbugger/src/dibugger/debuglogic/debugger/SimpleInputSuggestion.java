@@ -44,7 +44,7 @@ public class SimpleInputSuggestion extends InputValueSuggestion {
         } else if (type == TYPE_LONG) {
             return "" + rand.nextLong(a, b);
         }
-        return null;
+        return "?";
     }
 
     /**

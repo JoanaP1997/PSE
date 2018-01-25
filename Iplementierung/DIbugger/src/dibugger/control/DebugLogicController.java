@@ -4,7 +4,9 @@ import static dibugger.debuglogic.debugger.DebugControl.STEP_BACK;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dibugger.debuglogic.debugger.Breakpoint;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
@@ -17,10 +19,14 @@ public class DebugLogicController {
     private DebugLogicFacade debugLogicFacade;
 
     private TextInputBuffer inputBuffer;
+    
+    private Map<String, Integer> map_programNameIDs;
 
     public DebugLogicController() {
         debugLogicFacade = new DebugLogicFacade();
         inputBuffer = new TextInputBuffer();
+        
+        map_programNameIDs = new HashMap<String, Integer>();
     }
 
     public void attachToModel(GUIFacade guiFacade) {
@@ -244,17 +250,17 @@ public class DebugLogicController {
         debugLogicFacade.deleteCondBreakpoint(conditionalBreakPointId);
     }
 
-    /**
-     * Creates a breakpoint at given line in all programs known to DIbugger.
-     * 
-     * @param line the line to create a breakpoint at
-     */
-    public void createSynchronousBreakpoint(int line) {
-        int numberOfPrograms = getNumberOfPrograms();
-        for (int i = 0; i < numberOfPrograms; i++) {
-            createBreakpoint(i, line);
-        }
-    }
+//    /**
+//     * Creates a breakpoint at given line in all programs known to DIbugger.
+//     * 
+//     * @param line the line to create a breakpoint at
+//     */
+//    public void createSynchronousBreakpoint(int line) {
+//        int numberOfPrograms = getNumberOfPrograms();
+//        for (int i = 0; i < numberOfPrograms; i++) {
+//            createBreakpoint(i, line);
+//        }
+//    }
 
     /**
      * Creates a new breakpoint at given line of specified program.
@@ -265,13 +271,16 @@ public class DebugLogicController {
      *            the line to create a breakpoint at
      * @see DebugLogicFacade#createBreakpoint(int, int)
      */
-    public void createBreakpoint(int numberOfProgram, int line) {
-        debugLogicFacade.createBreakpoint(numberOfProgram, line);
+    public void createBreakpoint(String programNameID, int line) {
+        if(map_programNameIDs.containsKey(programNameID)){
+            int programID = map_programNameIDs.get(programNameID);
+            debugLogicFacade.createBreakpoint(programID, line);
+        }
     }
 
-    void createBreakpoints(int numberOfProgram, List<Integer> lines) {
+    void createBreakpoints(String programNameID, List<Integer> lines) {
         for (int line : lines) {
-            createBreakpoint(numberOfProgram, line);
+            createBreakpoint(programNameID, line);
         }
     }
 
@@ -300,6 +309,9 @@ public class DebugLogicController {
     public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
         inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
         debugLogicFacade.syncProgramInput(getProgramInput());
+        for(int i=0;i<programIdentifiers.size();++i){
+            map_programNameIDs.put(programIdentifiers.get(i), i);
+        }
     }
 
     public void startDebug() throws DIbuggerLogicException {
