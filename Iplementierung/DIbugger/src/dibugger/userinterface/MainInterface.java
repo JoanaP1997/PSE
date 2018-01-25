@@ -248,6 +248,17 @@ public class MainInterface extends JFrame {
   }
 
   /**
+   * get method for the ids of existing programPanels.
+   *
+   * @return ArrayList of ids
+   */
+  public ArrayList<String> getProgramIds() {
+    ArrayList<String> programIds = new ArrayList<String>();
+    programIds.addAll(programPanels.keySet());
+    return programIds;
+  }
+
+  /**
    * calculates ID for next ProgramPanel.
    *
    * @return identifier of next program panel
