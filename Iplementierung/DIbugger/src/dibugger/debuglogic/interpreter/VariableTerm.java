@@ -2,6 +2,9 @@ package dibugger.debuglogic.interpreter;
 
 import java.util.List;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
+
 /**
  * Represents a variableaccess based on the values of a single program.
  * 
@@ -21,8 +24,10 @@ public final class VariableTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(Scope currentScope) {
-        return currentScope.getValueOf(identifier);
+    public TermValue evaluate(Scope currentScope) throws DIbuggerLogicException {
+    	TermValue value = currentScope.getValueOf(identifier);
+    	if (value==null) throw new VariableNotFoundException(-1);
+        return value;
     }
 
 }

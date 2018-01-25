@@ -6,7 +6,9 @@ import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -19,17 +21,17 @@ import java.util.TreeMap;
  */
 public class MainInterface extends JFrame {
   private static String FILE_MENU = "Datei";
-  private static String RESET_GUI = "Zurücksetzen";
-  private static String ADD_PROGRAM = "Programm hinzufügen";
+  private static String RESET_GUI = "Zur\u00fcksetzen";
+  private static String ADD_PROGRAM = "Programm hinzuf\u00fcgen";
   private static String TOO_MANY_PROGRAM_PANELS = "Zu viele Programme";
   private static String LOAD_CONFIG = "Konfigurationsdatei laden";
   private static String SAVE_CONFIG = "Konfigurationsdatei speichern";
   private static String END_DIBUGGER = "DIbugger beenden";
-  private static String SUGGESTIONS = "Vorschläge";
-  private static String SUGGEST_STEPSIZE = "Vorschlag für Schrittgröße";
+  private static String SUGGESTIONS = "Vorschl\u00e4ge";
+  private static String SUGGEST_STEPSIZE = "Vorschlag für Schrittgr\u00f6ße";
   private static String SUGGEST_INPUT_VAR = "Vorschlag für Eingabevariablen";
-  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für WatchExpressions";
-  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für bedingte Breakpoints";
+  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für Watch Expressions";
+  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für Bedingte Breakpoints";
   private static String SETTINGS = "Einstellungen";
 
 
@@ -156,8 +158,28 @@ public class MainInterface extends JFrame {
     });
     loadConfig = new JMenuItem();
     loadConfig.setText(LOAD_CONFIG);
+    loadConfig.addActionListener(actionEvent -> {
+      JFileChooser fileChooser = new JFileChooser();
+      FileNameExtensionFilter filter = new FileNameExtensionFilter(
+          "rdbf files (*.rdbf)", "rdbf");
+      fileChooser.setFileFilter(filter);
+      int returnVal = fileChooser.showOpenDialog(this);
+      if (returnVal == JFileChooser.APPROVE_OPTION) {
+        File file = fileChooser.getSelectedFile();
+        controlFacade.loadConfiguration(file);
+      }
+    });
     saveConfig = new JMenuItem();
     saveConfig.setText(SAVE_CONFIG);
+    saveConfig.addActionListener(actionEvent -> {
+      JFileChooser fileChooser = new JFileChooser();
+      int returnVal = fileChooser.showSaveDialog(this);
+      if (returnVal == JFileChooser.APPROVE_OPTION) {
+        saveText();
+        File file = fileChooser.getSelectedFile();
+        controlFacade.saveConfiguration(file);
+      }
+    });
     exit = new JMenuItem();
     exit.setText(END_DIBUGGER);
     exit.addActionListener(actionEvent -> System.exit(0));
@@ -415,6 +437,5 @@ public class MainInterface extends JFrame {
       codePanel.updateUI();
     }
   }
-
 
 }

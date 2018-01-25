@@ -1,14 +1,21 @@
 package dibugger.userinterface.dibuggerpopups;
 
-import javax.swing.*;
-import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 
-public class DIbuggerPopUp extends JDialog {
 
-    DIbuggerPopUp() {
-        this.setTitle("DIbugger");
-        ImageIcon icon = new ImageIcon("res/logo_nongi.png");
-        this.setIconImage(icon.getImage());
-    }
+/**
+ * DIbuggerPopUP.
+ */
+class DIbuggerPopUp extends JDialog {
+
+  /**
+   * Constructor for a DIbuggerPopUP
+   */
+  DIbuggerPopUp() {
+    this.setTitle("DIbugger");
+    ImageIcon icon = new ImageIcon("res/logo_nongi.png");
+    this.setIconImage(icon.getImage());
+  }
 
 }

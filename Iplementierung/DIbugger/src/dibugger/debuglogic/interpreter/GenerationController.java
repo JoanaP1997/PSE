@@ -16,176 +16,180 @@ import java.util.Stack;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.ExceededMaxFuncCallException;
 import dibugger.debuglogic.exceptions.SyntaxException;
 
 public class GenerationController {
-  private Map<String, RoutineCommand> routines;
-  private Stack<Scope> scopes;
-  private TermValue returnValue;
+	private Map<String, RoutineCommand> routines;
+	private Stack<Scope> scopes;
+	private TermValue returnValue;
 
-  private int maxIterations;
-  private int maxFuncCalls;
+	private int maxIterations;
+	private int maxFuncCalls;
 
-  private int currentScopeCount;
-  
-  
-  private CommandGenerationVisitor commandGenerator;
-  private TermGenerationVisitor termGenerator;
+	private int currentScopeCount;
 
-  /**
-   * Constructs a GenerationController Object with the given limitations.
-   * 
-   * @param maxIterations
-   * @param maxFuncCalls
-   */
-  public GenerationController(int maxIterations, int maxFuncCalls) {
-    this.maxFuncCalls = maxFuncCalls;
-    this.maxIterations = maxIterations;
-    this.routines = new HashMap<String, RoutineCommand>();
-    this.scopes = new Stack<Scope>();
-    this.currentScopeCount = 0;
-    this.returnValue = null;
-  }
+	private CommandGenerationVisitor commandGenerator;
+	private TermGenerationVisitor termGenerator;
 
-  public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier) throws DIbuggerLogicException {
-    // create parsetree
-    CharStream stream = CharStreams.fromString(programText);
-    WlangLexer lexer = new WlangLexer(stream);
-    CommonTokenStream tokens = new CommonTokenStream(lexer);
-    WlangParser parser = new WlangParser(tokens);
-    ParseTree mainTree = parser.program();
-    this.commandGenerator = new CommandGenerationVisitor(this);
-    this.termGenerator = new TermGenerationVisitor();
-    
-    int childCount = mainTree.getChildCount();
-    
-    // add names of routines and routine commands to the map "routines"
-    for (int i = 0; i < childCount; i++) {
-      ParseTree childTree = mainTree.getChild(i);
-      RoutineCommand command = (RoutineCommand) commandGenerator.visit(childTree);
-      this.routines.put(command.getName(), command);
-    }
-    
-    // initialize scope stack
-    Scope firstScope = new Scope();
-    scopes.push(firstScope);
-    
+	/**
+	 * Constructs a GenerationController Object with the given limitations.
+	 * 
+	 * @param maxIterations
+	 * @param maxFuncCalls
+	 */
+	public GenerationController(int maxIterations, int maxFuncCalls) {
+		this.maxFuncCalls = maxFuncCalls;
+		this.maxIterations = maxIterations;
+		this.routines = new HashMap<String, RoutineCommand>();
+		this.scopes = new Stack<Scope>();
+		this.currentScopeCount = 0;
+		this.returnValue = null;
+	}
 
-    
-    // run main routine
-    RoutineCommand mainRoutine = routines.get("main");
-    ArrayList<Term> args = new ArrayList<Term>();
-    List<Type> expectedTypes = mainRoutine.getExpectedTypes();
-    List<String> identifiers = mainRoutine.getIdentifiersOfArgs();
-    for(int i = 0; i<identifiers.size(); ++i) {
-      //add argument to args
-      String id = identifiers.get(i);
-      //find this id in the users input
-      boolean found = false;
-      for (String s : input) {
-        if (getIdentifierOfInput(s).equals(id)) {
-          args.add(getTermFromInput(s));
-          found = true;
-        }
-      }
-      if(!found) { //then there is no input for this parameter
-        args.add(getDefaultTerm(expectedTypes.get(i)));
-      }
-    }
-    
-    mainRoutine.setArgs(args);
-    List<TraceState> traceStates = mainRoutine.run();
-    Trace trace = new Trace(traceStates, programIdentifier);
-    
-     
-    // return iterator over trace
-    return trace.iterator(); 
-    }
+	public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier)
+			throws DIbuggerLogicException {
+		// create parsetree
+		CharStream stream = CharStreams.fromString(programText);
+		WlangLexer lexer = new WlangLexer(stream);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		WlangParser parser = new WlangParser(tokens);
+		ParseTree mainTree;
+		try {
+			mainTree = parser.program();
+		} catch (RecognitionException re) {
+			throw new SyntaxException(re.getExpectedTokens().toString());
+		}
+		this.commandGenerator = new CommandGenerationVisitor(this);
+		this.termGenerator = new TermGenerationVisitor();
 
-  private String getIdentifierOfInput(String s) throws DIbuggerLogicException {
-    if (!s.contains("=")) {
-      throw new SyntaxException();
-    }
-    // delete all whitespaces
-    String newString = s.replaceAll("\\s", "");
-    return newString.split("=")[0];
-  }
+		int childCount = mainTree.getChildCount();
 
-  private Term getDefaultTerm(Type type) {
-    return type.getDefault();
-  }
+		// add names of routines and routine commands to the map "routines"
+		for (int i = 0; i < childCount; i++) {
+			ParseTree childTree = mainTree.getChild(i);
+			RoutineCommand command = (RoutineCommand) commandGenerator.visit(childTree);
+			this.routines.put(command.getName(), command);
+		}
 
-  /**
-   * Returns the current Scope during Runtime of TraceGeneration
-   * 
-   * @return
-   */
-  public Scope getCurrentScope() {
-    Scope current = this.scopes.peek();
-    return current;
-  }
+		// initialize scope stack
+		Scope firstScope = new Scope();
+		scopes.push(firstScope);
 
-  public void pushScope(Scope scope) {
-    if (this.currentScopeCount < this.maxFuncCalls) {
-      this.scopes.push(scope);
-      this.currentScopeCount++;
-    }
-    // else: Warnung-->Exception
-  }
+		// run main routine
+		RoutineCommand mainRoutine = routines.get("main");
+		ArrayList<Term> args = new ArrayList<Term>();
+		List<Type> expectedTypes = mainRoutine.getExpectedTypes();
+		List<String> identifiers = mainRoutine.getIdentifiersOfArgs();
+		for (int i = 0; i < identifiers.size(); ++i) {
+			// add argument to args
+			String id = identifiers.get(i);
+			// find this id in the users input
+			boolean found = false;
+			for (String s : input) {
+				if (getIdentifierOfInput(s).equals(id)) {
+					args.add(getTermFromInput(s));
+					found = true;
+				}
+			}
+			if (!found) { // then there is no input for this parameter
+				args.add(getDefaultTerm(expectedTypes.get(i)));
+			}
+		}
 
-  public Scope popScope() {
-    this.currentScopeCount--;
-    return this.scopes.pop();
-  }
+		mainRoutine.setArgs(args);
+		List<TraceState> traceStates = mainRoutine.run();
+		Trace trace = new Trace(traceStates, programIdentifier);
 
-  public void setReturnValue(TermValue value) {
-    this.returnValue = value;
-  }
+		// return iterator over trace
+		return trace.iterator();
+	}
 
-  public TermValue getReturnValue() {
-    return this.returnValue;
-  }
+	private String getIdentifierOfInput(String s) throws DIbuggerLogicException {
+		if (!s.contains("=")) {
+			throw new SyntaxException("Input in wrong format: Something like x = 5 expected.");
+		}
+		// delete all whitespaces
+		String newString = s.replaceAll("\\s", "");
+		return newString.split("=")[0];
+	}
 
-  public RoutineCommand getRoutineRootCommand(String routine) {
-    return this.routines.get(routine);
-  }
+	private Term getDefaultTerm(Type type) {
+		return type.getDefault();
+	}
 
-  public void setMaxIterations(int maxIterations) {
-    this.maxIterations = maxIterations;
-  }
-  
-  public int getMaxIterations() {
-    return this.maxIterations;
-  }
+	/**
+	 * Returns the current Scope during Runtime of TraceGeneration
+	 * 
+	 * @return
+	 */
+	public Scope getCurrentScope() {
+		Scope current = this.scopes.peek();
+		return current;
+	}
 
-  public void setMaxFuncCalls(int maxFuncCalls) {
-    this.maxFuncCalls = maxFuncCalls;
-  }
-  
-  public int getMaxFuncCalls() {
-    return this.maxFuncCalls;
-  }
-  
-  private Term getTermFromInput(String input) throws DIbuggerLogicException {
-    if (!input.contains("=")) {
-      throw new SyntaxException();
-    }
-    // delete all whitespaces
-    String newString = input.replaceAll("\\s", "");
-    newString = newString.split("=")[1];
-    
-    // create parse tree
-    CharStream stream = CharStreams.fromString(newString);
-    WlangLexer lexer = new WlangLexer(stream);
-    CommonTokenStream tokens = new CommonTokenStream(lexer);
-    WlangParser parser = new WlangParser(tokens);
-    ParseTree tree = parser.term();
-    return termGenerator.visit(tree);
-    
-  }
+	public void pushScope(Scope scope) throws DIbuggerLogicException {
+		if (this.currentScopeCount < this.maxFuncCalls) {
+			this.scopes.push(scope);
+			this.currentScopeCount++;
+		}
+		else throw new ExceededMaxFuncCallException(-1);
+	}
+
+	public Scope popScope() {
+		this.currentScopeCount--;
+		return this.scopes.pop();
+	}
+
+	public void setReturnValue(TermValue value) {
+		this.returnValue = value;
+	}
+
+	public TermValue getReturnValue() {
+		return this.returnValue;
+	}
+
+	public RoutineCommand getRoutineRootCommand(String routine) {
+		return this.routines.get(routine);
+	}
+
+	public void setMaxIterations(int maxIterations) {
+		this.maxIterations = maxIterations;
+	}
+
+	public int getMaxIterations() {
+		return this.maxIterations;
+	}
+
+	public void setMaxFuncCalls(int maxFuncCalls) {
+		this.maxFuncCalls = maxFuncCalls;
+	}
+
+	public int getMaxFuncCalls() {
+		return this.maxFuncCalls;
+	}
+
+	private Term getTermFromInput(String input) throws DIbuggerLogicException {
+		if (!input.contains("=")) {
+			throw new SyntaxException("Input in wrong format: Something like x = 5 expected.");
+		}
+		// delete all whitespaces
+		String newString = input.replaceAll("\\s", "");
+		newString = newString.split("=")[1];
+
+		// create parse tree
+		CharStream stream = CharStreams.fromString(newString);
+		WlangLexer lexer = new WlangLexer(stream);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		WlangParser parser = new WlangParser(tokens);
+		ParseTree tree = parser.term();
+		return termGenerator.visit(tree);
+
+	}
 }
