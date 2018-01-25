@@ -15,9 +15,14 @@ public class DebugControlTest {
     @Test
     public void steppingTest() throws DIbuggerLogicException{
         DebugLogicFacade facade = new DebugLogicFacade();
-        ProgramInput in = new ProgramInput("void main() { \n"
+        ProgramInput in = new ProgramInput(
+                "void foo(){ \n"
+                + "x = x + 5;"
+                + "}"
+                + "void main() { \n"
                 + "int i = 2 \n;"
                 + "int x = 3+i; \n"
+                + "foo();"
                 + "boolean b = true; \n"
                 + "while (x<80) { \n"
                 + " i = i+2; \n"
@@ -35,7 +40,18 @@ public class DebugControlTest {
         for(String s : facade.getAllVariables("A")){
             System.out.println(s+" = "+facade.getValueOf("A", s));
         }
-        facade.continueDebug();
+        for(int i=0;i<4;++i){
+            facade.step(DebugControl.STEP_BACK);
+        }
+        System.out.println("All Variables: "+facade.getAllVariables("A"));
+        for(String s : facade.getAllVariables("A")){
+            System.out.println(s+" = "+facade.getValueOf("A", s));
+        }
+        facade.step(DebugControl.STEP_OUT);
+        System.out.println("All Variables: "+facade.getAllVariables("A"));
+        for(String s : facade.getAllVariables("A")){
+            System.out.println(s+" = "+facade.getValueOf("A", s));
+        }
     }
     
 }
