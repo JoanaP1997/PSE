@@ -239,15 +239,6 @@ public class MainInterface extends JFrame {
   }
 
   /**
-   * get method for the number of programPanels.
-   *
-   * @return number of programPanels
-   */
-  public int getProgramCount() {
-    return programPanels.size();
-  }
-
-  /**
    * get method for the ids of existing programPanels.
    *
    * @return ArrayList of ids

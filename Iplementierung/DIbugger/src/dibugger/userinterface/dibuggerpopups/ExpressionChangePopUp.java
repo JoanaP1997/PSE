@@ -155,8 +155,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     BoxLayout layout = new BoxLayout(scopeChangePanel, BoxLayout.PAGE_AXIS);
     scopeChangePanel.setLayout(layout);
     //TODO: ID richtig machen (nicht von 0 bis n, sondern als String A bis Z)
-    for (int x = 0; x < mainInterface.getProgramCount(); x++) {
-      scopeChangePanel.add(new ProgramScopeChooser(x), layout);
+    for (String id : mainInterface.getProgramIds()) {
+      scopeChangePanel.add(new ProgramScopeChooser(id), layout);
     }
     scopeChangePanel.updateUI();
   }
@@ -173,7 +173,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     JLabel labelStart;
     JLabel labelEnd;
 
-    ProgramScopeChooser(int id) {
+    ProgramScopeChooser(String id) {
       //init:
       layout = new FlowLayout();
       this.setLayout(layout);
