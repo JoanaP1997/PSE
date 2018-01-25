@@ -361,7 +361,8 @@ public class MainInterface extends JFrame {
     for (ProgramPanel panel : programPanels.values()) {
       panel.update(observable);
     }
-    //TODO: alles andere updaten
+    WatchExpressionPanel.getWatchExpressionPanel(this).update();
+    ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).update();
   }
 
   /**
