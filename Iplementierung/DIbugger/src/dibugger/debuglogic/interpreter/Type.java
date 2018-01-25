@@ -7,8 +7,22 @@ package dibugger.debuglogic.interpreter;
  *
  */
 public enum Type {
-    NULL, INT, LONG, FLOAT, DOUBLE, CHAR, BOOLEAN, ARRAY;
-
+    NULL(new ConstantTerm(null)),
+    INT(new ConstantTerm(new IntValue(0))),
+    LONG((new ConstantTerm(new LongValue(0)))),
+    FLOAT((new ConstantTerm(new FloatValue(0)))),
+    DOUBLE((new ConstantTerm(new DoubleValue(0)))),
+    CHAR((new ConstantTerm(new CharValue('a')))),
+    BOOLEAN((new ConstantTerm(new BooleanValue(false)))),
+    ARRAY((new ConstantTerm(null)));
+    private final Term defaultConstantTerm;
+    private Type(final Term defaultConstantTerm) {
+      this.defaultConstantTerm = defaultConstantTerm;
+      }
+    
+    public Term getDefault() {
+      return this.defaultConstantTerm;
+    }
     /**
      * Returns a type based on its String representation.
      * 

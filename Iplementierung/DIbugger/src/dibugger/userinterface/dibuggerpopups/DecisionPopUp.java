@@ -65,8 +65,4 @@ public class DecisionPopUp extends DIbuggerPopUp {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        DecisionPopUp d = new DecisionPopUp("bla", new MainInterface());
-    }
-
 }

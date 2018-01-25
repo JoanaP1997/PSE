@@ -6,15 +6,25 @@ import dibugger.debuglogic.debugger.DebugLogicFacade;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Element;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.TreeMap;
 
 public class ProgramPanel extends JPanel {
+  private static String PROGRAM = "Programm";
+  private static String STEPSIZE = "Schrittgröße";
+  private static String INPUT_VARS = "Eingabevariablen";
+  private static String VAR_INSPECTOR_TOOL_TIP = "Zelle markieren und mit Rechtsklick ausblenden";
+  private static String VARIABLE_INSPECTOR = "Variableninspektor";
+  private static String SHOW_HIDDEN_VARIABLES = "Ausgeblendete Variablen anzeigen";
+  private static String ADD_PROGRAM = "Programm hinzufügen";
 
   private String id;
   private MainInterface mainInterface;
@@ -62,28 +72,31 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
 
-    programName.setText("Programm: " + id);
+    programName.setText(PROGRAM + ": " + id);
 
-    stepsize.setText("Stepsize: ");
+    stepsize.setText(STEPSIZE + ": ");
 
-    stepsizeInput.setText("jTextField2");
+    stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
-    stepsizeInput.addActionListener(this::stepsizeInputActionPerformed);
+    stepsizeInput.addActionListener(evt1 -> stepsizeInputActionPerformed());
 
-    inputvariablesLabel.setText("Eingabevariablen: ");
+    inputvariablesLabel.setText(INPUT_VARS + ": ");
 
-    inputvariableTextField.setText("jTextField1");
-    inputvariableTextField.addActionListener(this::variableInputActionPerformed);
+    inputvariableTextField.setText("");
+    inputvariableTextField.addActionListener(evt -> variableInputActionPerformed());
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
     JButton loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
     iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
     loadFile.setIcon(iconLoad);
+    loadFile.addActionListener(actionEvent -> setTextWithFileChooser());
+
     JButton delete = new JButton();
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
     deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
     delete.setIcon(deleteIcon);
+    delete.addActionListener(actionEvent -> mainInterface.deleteProgramPanel(id));
     initCodeArea();
 
     initVariableInspector();
@@ -120,11 +133,11 @@ public class ProgramPanel extends JPanel {
         ));
   }
 
-  private void stepsizeInputActionPerformed(ActionEvent evt) {
+  private void stepsizeInputActionPerformed() {
     mainInterface.saveText();
   }
 
-  private void variableInputActionPerformed(ActionEvent evt) {
+  private void variableInputActionPerformed() {
     mainInterface.saveText();
   }
 
@@ -143,8 +156,9 @@ public class ProgramPanel extends JPanel {
     codeTextArea = new JTextPane();
     lines.setBackground(Color.YELLOW);
     lines.setEditable(false);
-    lines.setFont(lines.getFont().deriveFont(16.509f));
-    codeTextArea.setFont(codeTextArea.getFont().deriveFont(16.509f));
+    Font font = new Font("SansSerif", Font.PLAIN, 14);
+    lines.setFont(font);
+    codeTextArea.setFont(font);
     codeTextArea.getDocument().addDocumentListener(new DocumentListener() {
       String getText() {
         int caretPosition = codeTextArea.getDocument().getLength();
@@ -263,7 +277,7 @@ public class ProgramPanel extends JPanel {
     variableInspectorList.setSelectionBackground(Color.YELLOW);
     variableInspectorList.setSelectionForeground(Color.BLACK);
     variableInspectorList.setFixedCellHeight(20);
-    variableInspectorList.setToolTipText("Zelle markieren und mit Rechtsklick löschen");
+    variableInspectorList.setToolTipText(VAR_INSPECTOR_TOOL_TIP);
 
     variableInspectorList.addMouseListener(new MouseListener() {
       @Override
@@ -306,7 +320,7 @@ public class ProgramPanel extends JPanel {
     variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
     variableInspectorScrollPane.setViewportView(variableInspectorList);
 
-    JButton showHiddenVariables = new JButton("Ausgeblendete Variablen anzeigen");
+    JButton showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
     showHiddenVariables.addActionListener(actionEvent -> {
       listModel.clear();
       shownVariables.clear();
@@ -317,7 +331,7 @@ public class ProgramPanel extends JPanel {
       variableInspectorList.updateUI();
     });
 
-    JLabel varLabel = new JLabel("Variableninspektor");
+    JLabel varLabel = new JLabel(VARIABLE_INSPECTOR);
 
     variableInspectorLayout.setHorizontalGroup(variableInspectorLayout.createParallelGroup().addComponent(varLabel)
         .addComponent(showHiddenVariables).addComponent(variableInspectorScrollPane));
@@ -351,6 +365,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Shows the variables of the List in the variable inspector panel.
+   *
    * @param variables displayed variables
    */
   public void showVariables(List<String> variables) {
@@ -375,6 +390,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Returns the current text of the code text area.
+   *
    * @return current text
    */
   public String getText() {
@@ -392,6 +408,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Shows a new input String.
+   *
    * @param input new input String
    */
   public void showInput(String input) {
@@ -400,6 +417,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * updates the ProgramPanels variable inspector pane.
+   *
    * @param debugLogicFacade Observable
    */
   public void update(Observable debugLogicFacade) {
@@ -410,14 +428,30 @@ public class ProgramPanel extends JPanel {
       if (!variableValueMap.containsKey(currentVariable)) {
         shownVariables.add(currentVariable);
       }
-      variableValueMap.put(currentVariable, logicFacade.getValueOf(id,currentVariable));
+      variableValueMap.put(currentVariable, logicFacade.getValueOf(id, currentVariable));
     }
-    for (String variable : shownVariables)  {
+    for (String variable : shownVariables) {
       listModel.addElement(variableValueMap.get(variable));
     }
     variableInspectorList.updateUI();
 
   }
 
+  /**
+   * sets a new text based on the file chosen by the user.
+   */
+  public void setTextWithFileChooser() {
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "java files (*.java)", "java", "text files (*.txt)", "txt");
 
+    fileChooser.setDialogTitle(ADD_PROGRAM);
+    fileChooser.setFileFilter(filter);
+    int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+      File file = fileChooser.getSelectedFile();
+      codeTextArea.setText(controlFacade.loadProgramText(file));
+
+    }
+  }
 }

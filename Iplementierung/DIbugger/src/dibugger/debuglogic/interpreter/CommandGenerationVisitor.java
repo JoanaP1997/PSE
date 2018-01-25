@@ -251,7 +251,6 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
 
     @Override
     public Command visitDeclaration(DeclarationContext ctx) {
-        // TODO TYPE
         return new Declaration(this.controller, ctx.getStart().getLine(), ctx.id.getText(),
                 Type.fromStringToType(ctx.type.getText()));
     }
@@ -315,7 +314,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
 
     @Override
     public Command visitIfElseWithBlock(IfElseWithBlockContext ctx) {
-        // TODO Auto-generated method stub
+        //TODO
         return super.visitIfElseWithBlock(ctx);
     }
 

@@ -1,6 +1,7 @@
 package dibugger.debuglogic.interpreter;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 public class TraceState {
 
-    private HashMap<String, TermValue> vars;
+    private Map<String, TermValue> vars;
     private TraceStatePosition position;
     private int lineNumber;
     private String programId;
@@ -29,11 +30,15 @@ public class TraceState {
     public TraceState(TraceStatePosition position, int lineNumber, Scope scope) {
         this.position = position;
         this.lineNumber = lineNumber;
-
+        vars = new HashMap<String, TermValue>();
         // TODO oder soll scope.getValues() gleich eine HashMap zurückgeben?
-        this.vars = (HashMap<String, TermValue>) scope.getValues();
+        deepCopyValues(scope);
     }
-
+    private void deepCopyValues(Scope scope) {
+    	for (Map.Entry<String, TermValue> entry : scope.getValues().entrySet()) {
+    		this.vars.put(entry.getKey(), entry.getValue()); //TODO besser eine clone() Methode fuer den Value
+    	}
+    }
     /**
      * Returns the value of a variable by its identifier.
      * 

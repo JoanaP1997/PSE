@@ -6,6 +6,7 @@ import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -17,6 +18,16 @@ import java.util.TreeMap;
  * @author joana & chiara
  */
 public class MainInterface extends JFrame {
+  private static String FILE_MENU = "Datei";
+  private static String RESET_GUI = "Zurücksetzen";
+  private static String ADD_PROGRAM = "Programm hinzufügen";
+  private static String TOO_MANY_PROGRAM_PANELS = "Zu viele Programme";
+  private static String LOAD_CONFIG = "Konfigurationsdatei laden";
+  private static String SAVE_CONFIG = "Konfigurationsdatei speichern";
+  private static String END_DIBUGGER = "DIbugger beenden";
+  private static String SUGGESTIONS = "Vorschläge";
+  private static String SETTINGS = "Einstellungen";
+
 
   TreeMap<String, ProgramPanel> programPanels;
 
@@ -34,6 +45,7 @@ public class MainInterface extends JFrame {
 
   private JPanel codePanel;
   private FlowLayout codePanelLayout;
+  private JScrollPane codeScrollPane;
 
   private JMenuItem newView;
   private JMenuItem newProgram;
@@ -51,44 +63,6 @@ public class MainInterface extends JFrame {
     guiFacade = new GUIFacade(this);
     controlFacade = guiFacade.getControlFacade();
     initComponents();
-  }
-
-  /**
-   * initializes the components of the main interface.
-   */
-  private void initComponents() {
-    rightControlBar = new JPanel();
-    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    GroupLayout groupLayout = new GroupLayout(getContentPane());
-    getContentPane().setLayout(groupLayout);
-
-    configureMenuBar();
-    programPanels = new TreeMap<>();
-    programPanels.put("A", new ProgramPanel("A", this));
-    programPanels.put("B", new ProgramPanel("B", this));
-    codePanel = new JPanel();
-    codePanelLayout = new FlowLayout();
-    codePanel.setLayout(codePanelLayout);
-    codePanel.add(programPanels.get("A"), codePanelLayout);
-    codePanel.add(programPanels.get("B"), codePanelLayout);
-
-    JScrollPane codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    codeScrollPane.setViewportView(codePanel);
-    codeScrollPane.setPreferredSize(new Dimension(800, 1000));
-    initRightControlBar();
-
-    groupLayout.setHorizontalGroup(
-        groupLayout.createSequentialGroup().addComponent(codeScrollPane).addComponent(rightControlBar));
-    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
-        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
-            .addComponent(rightControlBar)));
-
-    this.setTitle("DIbugger");
-    ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
-    this.setIconImage(icon.getImage());
-
   }
 
   /**
@@ -113,6 +87,34 @@ public class MainInterface extends JFrame {
   }
 
   /**
+   * initializes the components of the main interface.
+   */
+  private void initComponents() {
+    rightControlBar = new JPanel();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    GroupLayout groupLayout = new GroupLayout(getContentPane());
+    getContentPane().setLayout(groupLayout);
+
+    configureMenuBar();
+
+    initProgramPanels();
+
+    initRightControlBar();
+
+    groupLayout.setHorizontalGroup(
+        groupLayout.createSequentialGroup().addComponent(codeScrollPane).addComponent(rightControlBar));
+    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
+        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
+            .addComponent(rightControlBar)));
+
+    this.setTitle("DIbugger");
+    ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
+    this.setIconImage(icon.getImage());
+
+  }
+
+  /**
    * configures components of menu bar.
    */
   private void configureMenuBar() {
@@ -123,33 +125,33 @@ public class MainInterface extends JFrame {
     helpMenu = new JMenu();
 
     // file menu
-    fileMenu.setText("Datei");
+    fileMenu.setText(FILE_MENU);
     menuBar.add(fileMenu);
     newView = new JMenuItem();
-    newView.setText("Neu");
+    newView.setText(RESET_GUI);
     newView.addActionListener(actionEvent -> {
       reset();
     });
     newProgram = new JMenuItem();
-    newProgram.setText("Programm hinzufügen");
+    newProgram.setText(ADD_PROGRAM);
     newProgram.addActionListener(actionEvent -> {
       if (programPanels.size() >= 26) {
-        new ErrorPopUp("Too many ProgramPanels", this);
+        new ErrorPopUp(TOO_MANY_PROGRAM_PANELS, this);
       } else {
         String nextId = calcNextProgramId();
         ProgramPanel newPanel = new ProgramPanel(nextId, this);
+        newPanel.setTextWithFileChooser();
         programPanels.put(nextId, newPanel);
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
       }
-      // TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
     });
     loadConfig = new JMenuItem();
-    loadConfig.setText("Konfigurationsdatei laden");
+    loadConfig.setText(LOAD_CONFIG);
     saveConfig = new JMenuItem();
-    saveConfig.setText("Aktuellen Lauf speichern");
+    saveConfig.setText(SAVE_CONFIG);
     exit = new JMenuItem();
-    exit.setText("DIbugger beenden");
+    exit.setText(END_DIBUGGER);
     exit.addActionListener(actionEvent -> System.exit(0));
     fileMenu.add(newView);
     fileMenu.add(newProgram);
@@ -157,18 +159,18 @@ public class MainInterface extends JFrame {
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
     // menu for suggestions
-    suggestionMenu.setText("Vorschläge");
+    suggestionMenu.setText(SUGGESTIONS);
     menuBar.add(suggestionMenu);
 
     // settings menu
-    settingsMenu.setText("Einstellungen");
+    settingsMenu.setText(SETTINGS);
     menuBar.add(settingsMenu);
 
     // help menu
     helpMenu.setText("?");
     menuBar.add(helpMenu);
 
-    setJMenuBar(menuBar);
+    this.setJMenuBar(menuBar);
   }
 
   /**
@@ -195,6 +197,22 @@ public class MainInterface extends JFrame {
     rightControlBar.setPreferredSize(new Dimension(200, 1000));
   }
 
+  private void initProgramPanels() {
+    programPanels = new TreeMap<>();
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
+    codePanel = new JPanel();
+    codePanelLayout = new FlowLayout();
+    codePanel.setLayout(codePanelLayout);
+    codePanel.add(programPanels.get("A"), codePanelLayout);
+    codePanel.add(programPanels.get("B"), codePanelLayout);
+
+    codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    codeScrollPane.setViewportView(codePanel);
+    codeScrollPane.setPreferredSize(new Dimension(800, 1000));
+  }
+
   /**
    * get method for the number of programPanels.
    *
@@ -219,6 +237,7 @@ public class MainInterface extends JFrame {
 
   /**
    * getter for the control facade.
+   *
    * @return control facade
    */
   public ControlFacade getControlFacade() {
@@ -233,6 +252,9 @@ public class MainInterface extends JFrame {
     programPanels.clear();
     programPanels.put("A", new ProgramPanel("A", this));
     programPanels.put("B", new ProgramPanel("B", this));
+    codePanel.removeAll();
+    codePanel.add(programPanels.get("A"), codePanelLayout);
+    codePanel.add(programPanels.get("B"), codePanelLayout);
     WatchExpressionPanel.getWatchExpressionPanel(this).reset();
     ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
@@ -240,8 +262,9 @@ public class MainInterface extends JFrame {
 
   /**
    * Makes a specified ProgramPanel show a certain input variable String.
+   *
    * @param programId program ID
-   * @param vars new input String
+   * @param vars      new input String
    */
   void showInput(String programId, List<String> vars) {
     for (String id : programPanels.descendingKeySet()) {
@@ -257,8 +280,9 @@ public class MainInterface extends JFrame {
 
   /**
    * Makes a specified ProgramPanel show a new program text.
+   *
    * @param programText program text
-   * @param programId program ID
+   * @param programId   program ID
    */
   void showProgramText(String programText, String programId) {
     for (String id : programPanels.descendingKeySet()) {
@@ -273,6 +297,7 @@ public class MainInterface extends JFrame {
 
   /**
    * Returns the inspected variables of a certain ProgramPanel.
+   *
    * @param programId programs ID
    * @return List of Strings containing the variables
    */
@@ -287,6 +312,7 @@ public class MainInterface extends JFrame {
 
   /**
    * Let's a specified ProgramPanel show new Variables.
+   *
    * @param programId programs ID
    * @param variables new variables
    */
@@ -300,8 +326,9 @@ public class MainInterface extends JFrame {
 
   /**
    * update-method as part of the obbserver pattern.
+   *
    * @param observable DebugLogicFacade
-   * @param o Object o
+   * @param o          Object o
    */
   void update(Observable observable, Object o) {
     for (ProgramPanel panel : programPanels.values()) {
@@ -316,9 +343,9 @@ public class MainInterface extends JFrame {
   void startDebug() {
     saveText();
     try {
-        controlFacade.startDebug();
+      controlFacade.startDebug();
     } catch (DIbuggerLogicException e) {
-        // TODO do something with exceptions
+      // TODO do something with exceptions
     }
   }
 
@@ -344,5 +371,22 @@ public class MainInterface extends JFrame {
   public void changeLanguage() {
     // TODO
   }
+
+  /**
+   * deletes a single ProgramPanel, if there are more than 2.
+   *
+   * @param id id of the deleted ProgramPanel
+   */
+  void deleteProgramPanel(String id) {
+    if (programPanels.size() > 2) {
+      programPanels.remove(id);
+      codePanel.removeAll();
+      for (ProgramPanel p : programPanels.values()) {
+        codePanel.add(p, codePanelLayout);
+      }
+      codePanel.updateUI();
+    }
+  }
+
 
 }

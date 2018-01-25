@@ -1,6 +1,5 @@
 package dibugger.debuglogic.interpreter;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -23,6 +22,12 @@ public class Trace {
     public Trace(List<TraceState> traceStates, String programId) {
         this.traceStates = traceStates;
         this.programId = programId;
+        
+        // write programId into all traceStates
+        Iterator<TraceState> it = this.iterator();
+        while (it.hasNext()) {
+          it.next().setProgramId(this.programId);
+        }
     }
 
     /**
@@ -35,6 +40,10 @@ public class Trace {
         this.traceStates.add(traceState);
     }
 
+    /**
+     * Returns a ListIterator which can move forward and back.
+     * @return the iterator over the trace
+     */
     public ListIterator<TraceState> iterator() {
         return this.traceStates.listIterator();
     }
