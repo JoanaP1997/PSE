@@ -17,6 +17,8 @@ import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignTwoDimConte
 import dibugger.debuglogic.antlrparser.WlangParser.BlockContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DeclarationContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DeclareAssignContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArglistContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FuncCallContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FunctionHeadContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IfElseWithBlockContext;
@@ -65,6 +67,10 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    public Command visitStatement(StatementContext ctx) {
+    	return visit(ctx.getChild(0));
+    }
     // RoutineCommands
     @Override
     public Command visitMainRoutine(MainRoutineContext ctx) {
@@ -265,8 +271,23 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     // Function Call
     @Override
     public Command visitFuncCall(FuncCallContext ctx) {
-        // TODO Auto-generated method stub
-        return super.visitFuncCall(ctx);
+    	List<Term> arguments = new ArrayList<Term>();
+    	//collect arguments
+    	 FilledArglistContext args = ctx.args;
+         while (args != null && args.getChildCount() > 1) {
+             FilledArgumentContext argument = args.filledArgument();
+             Term argumentTerm = this.termGenVisitor.visit(argument.term());
+             arguments.add(argumentTerm);
+             // sift down the tree
+             args = args.filledArglist();
+         }
+         // gather in the leaf
+         if (args != null) {
+        	 FilledArgumentContext argument = args.filledArgument();
+             Term argumentTerm = this.termGenVisitor.visit(argument.term());
+             arguments.add(argumentTerm);
+         }
+        return new RoutineCall(this.controller, ctx.getStart().getLine(), ctx.functionname.getText() , arguments);
     }
 
     // Composite Commands
