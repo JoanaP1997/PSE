@@ -18,6 +18,16 @@ import java.util.TreeMap;
  * @author joana & chiara
  */
 public class MainInterface extends JFrame {
+  private static String FILE_MENU = "Datei";
+  private static String RESET_GUI = "Zurücksetzen";
+  private static String ADD_PROGRAM = "Programm hinzufügen";
+  private static String TOO_MANY_PROGRAM_PANELS = "Zu viele Programme";
+  private static String LOAD_CONFIG = "Konfigurationsdatei laden";
+  private static String SAVE_CONFIG = "Konfigurationsdatei speichern";
+  private static String END_DIBUGGER = "DIbugger beenden";
+  private static String SUGGESTIONS = "Vorschläge";
+  private static String SETTINGS = "Einstellungen";
+
 
   TreeMap<String, ProgramPanel> programPanels;
 
@@ -124,18 +134,18 @@ public class MainInterface extends JFrame {
     helpMenu = new JMenu();
 
     // file menu
-    fileMenu.setText("Datei");
+    fileMenu.setText(FILE_MENU);
     menuBar.add(fileMenu);
     newView = new JMenuItem();
-    newView.setText("Neu");
+    newView.setText(RESET_GUI);
     newView.addActionListener(actionEvent -> {
       reset();
     });
     newProgram = new JMenuItem();
-    newProgram.setText("Programm hinzufügen");
+    newProgram.setText(ADD_PROGRAM);
     newProgram.addActionListener(actionEvent -> {
       if (programPanels.size() >= 26) {
-        new ErrorPopUp("Too many ProgramPanels", this);
+        new ErrorPopUp(TOO_MANY_PROGRAM_PANELS, this);
       } else {
         String nextId = calcNextProgramId();
         ProgramPanel newPanel = new ProgramPanel(nextId, this);
@@ -146,11 +156,11 @@ public class MainInterface extends JFrame {
       }
     });
     loadConfig = new JMenuItem();
-    loadConfig.setText("Konfigurationsdatei laden");
+    loadConfig.setText(LOAD_CONFIG);
     saveConfig = new JMenuItem();
-    saveConfig.setText("Aktuellen Lauf speichern");
+    saveConfig.setText(SAVE_CONFIG);
     exit = new JMenuItem();
-    exit.setText("DIbugger beenden");
+    exit.setText(END_DIBUGGER);
     exit.addActionListener(actionEvent -> System.exit(0));
     fileMenu.add(newView);
     fileMenu.add(newProgram);
@@ -158,11 +168,11 @@ public class MainInterface extends JFrame {
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
     // menu for suggestions
-    suggestionMenu.setText("Vorschläge");
+    suggestionMenu.setText(SUGGESTIONS);
     menuBar.add(suggestionMenu);
 
     // settings menu
-    settingsMenu.setText("Einstellungen");
+    settingsMenu.setText(SETTINGS);
     menuBar.add(settingsMenu);
 
     // help menu
