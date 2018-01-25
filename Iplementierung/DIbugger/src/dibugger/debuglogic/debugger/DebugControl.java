@@ -699,6 +699,22 @@ public class DebugControl {
         }
         return new ArrayList<String>();
     }
+    
+    /**
+     * Getter for the return value of a given program, if the current TraceState is the last in the Trace iteration.
+     * @param programNameID the nameID of the program
+     * @return the value of the return of the given program
+     */
+    public String getReturnValue(String programNameID){
+        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
+            TraceState state = list_currentTraceStates.get(i);
+            if (state.getProgramId().equals(programNameID)) {
+                //TODO 
+                //String value = generationController.getReturnValue().toString();
+            }
+        }
+        return "?";
+    }
 
     // private helper methods
     private int getMaximumOfList(List<Integer> l) {

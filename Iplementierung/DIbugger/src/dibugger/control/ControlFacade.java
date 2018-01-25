@@ -215,15 +215,15 @@ public class ControlFacade {
         debugLogicController.deleteConditionalBreakpoint(conditionalBreakPointId);
     }
 
-    /**
-     * Creates a breakpoint at given line in all programs known to DIbugger.
-     * 
-     * @param line the line to create a breakpoint at
-     * @see DebugLogicController#createSynchronousBreakpoint(int) 
-     */
-    public void createSynchronousBreakpoint(int line) {
-        debugLogicController.createSynchronousBreakpoint(line);
-    }
+//    /**
+//     * Creates a breakpoint at given line in all programs known to DIbugger.
+//     * 
+//     * @param line the line to create a breakpoint at
+//     * @see DebugLogicController#createSynchronousBreakpoint(int) 
+//     */
+//    public void createSynchronousBreakpoint(int line) {
+//        debugLogicController.createSynchronousBreakpoint(line);
+//    }
 
     /**
      * Creates a new breakpoint at given line of specified program.
@@ -234,8 +234,8 @@ public class ControlFacade {
      *            the line to create a breakpoint at
      * @see DebugLogicController#createBreakpoint(int, int)
      */
-    public void createBreakpoint(int numberOfProgram, int line) {
-        debugLogicController.createBreakpoint(numberOfProgram, line);
+    public void createBreakpoint(String programNameID, int line) {
+        debugLogicController.createBreakpoint(programNameID, line);
     }
 
     /**
@@ -247,8 +247,8 @@ public class ControlFacade {
      *            the line number referring to the breakpoint
      * @see DebugLogicController#deleteBreakpoint(int, int)
      */
-    public void deleteBreakpoint(int numberOfProgram, int line) {
-        debugLogicController.deleteBreakpoint(numberOfProgram, line);
+    public void deleteBreakpoint(String programNameID, int line) {
+        debugLogicController.deleteBreakpoint(programNameID, line);
     }
 
     /**

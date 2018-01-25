@@ -110,7 +110,7 @@ public class FileHandlerInteractor extends Observable {
             debugLogicController.setStepSize(i, stepSize);
 
             List<Integer> lineNumbers = configFile.getBreakpoints(i);
-            debugLogicController.createBreakpoints(i, lineNumbers);
+            debugLogicController.createBreakpoints(configFile.getProgramNameID(i), lineNumbers);
 
             List<String> conditions = configFile.getConditionalBreakpoints();
             debugLogicController.createConditionalBreakpoints(conditions);

@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 public class VariableSuggestionPopUp extends DIbuggerPopUp {
@@ -16,17 +18,21 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   public static final int WATCH_EXPRESSION = 2;
   public static final int CONDITIONAL_BREAKPOINT = 3;
 
-  public VariableSuggestionPopUp (int message, MainInterface mainInterface) {
+  public VariableSuggestionPopUp (int type, MainInterface mainInterface) {
     this.mainInterface = mainInterface;
     this.setSize(300,310);
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-    //TODO: StepSize, Expressions
-
-    GroupLayout layout = new GroupLayout(this);
-    getContentPane().setLayout(layout);
-    variableSuggestion();
+    if(type == 0) {
+      stepSizeSuggestion();
+    } else if (type == 1) {
+      variableSuggestion();
+    } else if (type == 2) {
+      wESuggestion();
+    } else if (type == 3) {
+      cBSuggestion();
+    }
 
     this.setModal(true);
     this.setVisible(true);
@@ -152,8 +158,124 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     });
   }
 
-  public static void main(String[] args) {
-    VariableSuggestionPopUp p = new VariableSuggestionPopUp(1,new MainInterface());
+  private void stepSizeSuggestion() {
+    //TODO: evtl. keine Programme auswählen und keinen Vorschlag anzeigen
+    //TODO: Label kopierbar machen
+    JLabel programLabel = new javax.swing.JLabel();
+    JLabel headerLabel = new javax.swing.JLabel();
+    JComboBox programChooser = new javax.swing.JComboBox<>();
+    JLabel stepSizeSuggestionLabel = new javax.swing.JLabel();
+    JLabel suggestedLabel = new javax.swing.JLabel();
+    JButton okButton = new javax.swing.JButton();
+
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+    programLabel.setText("Program:");
+
+    headerLabel.setText("StepSize Vorschlag");
+
+    ArrayList programs = mainInterface.getProgramIds();
+    String[] programsAsArray = new String[programs.size()];
+    programs.toArray(programsAsArray);
+
+    programChooser.setModel(new javax.swing.DefaultComboBoxModel<>(programsAsArray));
+
+    stepSizeSuggestionLabel.setText("StepSize Vorschlag:");
+
+    suggestedLabel.setText("");
+
+    okButton.setText("ok");
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(headerLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(programLabel)
+                            .addComponent(stepSizeSuggestionLabel))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(suggestedLabel)
+                            .addComponent(programChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerLabel)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(programLabel)
+                    .addComponent(programChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stepSizeSuggestionLabel)
+                    .addComponent(suggestedLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+    );
+
+    pack();
+
+    okButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        mainInterface.getControlFacade().suggestStepSize();
+      }
+    });
+  }
+
+  private void wESuggestion() {
+    JLabel jLabel1 = new javax.swing.JLabel();
+    JButton ok = new javax.swing.JButton();
+
+    jLabel1.setText("Watch-Expression Vorschlag");
+
+    ok.setText("ok");
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1)))
+                .addContainerGap(135, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55)
+                .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+    );
+
+    pack();
+    //TODO: Funktionalität
+  }
+
+  private void cBSuggestion() {
+    //TODO
   }
 
   private int getTypeFromString(String typeAsString) {

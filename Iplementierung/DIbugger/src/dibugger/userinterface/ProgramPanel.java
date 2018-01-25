@@ -4,10 +4,8 @@ import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Element;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -26,6 +24,9 @@ public class ProgramPanel extends JPanel {
   private static String SHOW_HIDDEN_VARIABLES = "Ausgeblendete Variablen anzeigen";
   private static String ADD_PROGRAM = "Programm hinzufügen";
 
+  private final short MARGIN_WIDTH_PX = 36;
+  private List<Integer> listBreakpointLines;
+
   private String id;
   private MainInterface mainInterface;
   private ControlFacade controlFacade;
@@ -38,9 +39,7 @@ public class ProgramPanel extends JPanel {
 
   private JPanel codePanel;
   private JScrollPane codeScrollPane;
-  private JTextPane codeTextArea;
-  private JTextPane lines;
-  private List<JRadioButton> breakpointButtons;
+  private JEditorPane editor;
 
   private JPanel variableInspector;
   private TreeMap<String, String> variableValueMap;
@@ -149,120 +148,66 @@ public class ProgramPanel extends JPanel {
   /**
    * initializes code area of program panel.
    */
-  private void initCodeArea() {
-    JPanel breakpointButtonPanel = new JPanel();
+  public void initCodeArea() {
+    codePanel = new JPanel();
+    listBreakpointLines = new ArrayList<>();
 
-    SpringLayout breakpointPanelLayout = new SpringLayout();
-    breakpointButtonPanel.setLayout(breakpointPanelLayout);
-
-    codeScrollPane = new JScrollPane();
-    lines = new JTextPane();
-    lines.setText("1");
-    codeTextArea = new JTextPane();
-    lines.setBackground(Color.YELLOW);
-    lines.setEditable(false);
-    Font font = new Font("SansSerif", Font.PLAIN, 14);
-    lines.setFont(font);
-    codeTextArea.setFont(font);
-    codeTextArea.getDocument().addDocumentListener(new DocumentListener() {
-      String getText() {
-        int caretPosition = codeTextArea.getDocument().getLength();
-        Element root = codeTextArea.getDocument().getDefaultRootElement();
-        String text = "1" + System.getProperty("line.separator");
-        for (int i = 2; i < root.getElementIndex(caretPosition) + 2; i++) {
-          text += i + System.getProperty("line.separator");
-        }
-        return text;
+    editor = new JEditorPane();
+    editor.setEditorKit(new StyledEditorKit() {
+      @Override
+      public ViewFactory getViewFactory() {
+        return new CustomViewFactory(super.getViewFactory());
       }
+    });
+    Font font = new Font("SansSerif", Font.PLAIN, 12);
+    editor.setFont(font);
+    editor.addMouseListener(new MouseListener() {
 
       @Override
-      public void changedUpdate(DocumentEvent de) {
+      public void mouseReleased(MouseEvent e) {
 
       }
 
       @Override
-      public void insertUpdate(DocumentEvent de) {
-        int lineCount = codeTextArea.getText().split(System.getProperty("line.separator")).length;
-        if (lineCount != lines.getText().split(System.getProperty("line.separator")).length) {
-          lines.setText(getText());
-          breakpointButtons.add(new JRadioButton());
-          breakpointButtons.get(breakpointButtons.size() - 1).setPreferredSize(new Dimension(20, 20));
-          breakpointPanelLayout.putConstraint(SpringLayout.WEST,
-              breakpointButtons.get(breakpointButtons.size() - 1), 0, SpringLayout.WEST,
-              breakpointButtons.get(breakpointButtons.size() - 2));
-          breakpointPanelLayout.putConstraint(SpringLayout.NORTH,
-              breakpointButtons.get(breakpointButtons.size() - 1), 20, SpringLayout.NORTH,
-              breakpointButtons.get(breakpointButtons.size() - 2));
-          breakpointButtonPanel.add(breakpointButtons.get(breakpointButtons.size() - 1));
-          breakpointButtonPanel.updateUI();
-        }
-      }
-
-      @Override
-      public void removeUpdate(DocumentEvent de) {
-        int lineCount = codeTextArea.getText().split(System.getProperty("line.separator")).length;
-        if (lineCount != lines.getText().split(System.getProperty("line.separator")).length) {
-          lines.setText(getText());
-          breakpointButtonPanel.removeAll();
-          breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0), 0,
-              SpringLayout.WEST, breakpointButtonPanel);
-          breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0), 1,
-              SpringLayout.NORTH, breakpointButtonPanel);
-          breakpointButtonPanel.add(breakpointButtons.get(0));
-          int caretPosition = codeTextArea.getDocument().getLength();
-          Element root = codeTextArea.getDocument().getDefaultRootElement();
-          for (int i = 1; i < root.getElementIndex(caretPosition) + 1; i++) {
-            breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(i), 0,
-                SpringLayout.WEST, breakpointButtons.get(i - 1));
-            breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(i), 20,
-                SpringLayout.NORTH, breakpointButtons.get(i - 1));
-            breakpointButtonPanel.add(breakpointButtons.get(i));
+      public void mousePressed(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+          if (e.getX() > 0 && e.getX() < MARGIN_WIDTH_PX) {
+            int height = editor.getFontMetrics(editor.getFont()).getHeight();
+            int lineID = e.getY() / height + 1;
+            if (!listBreakpointLines.contains(lineID)) {
+              listBreakpointLines.add(lineID);
+              controlFacade.createBreakpoint(id, lineID);
+            } else {
+              listBreakpointLines.remove((Integer) lineID);
+              controlFacade.deleteBreakpoint(id, lineID);
+            }
           }
-          for (int i = root.getElementIndex(caretPosition); i < breakpointButtons.size(); i++) {
-            breakpointButtons.remove(i);
-          }
-          breakpointButtonPanel.updateUI();
+          editor.updateUI();
         }
       }
 
+      @Override
+      public void mouseExited(MouseEvent e) {
+        mainInterface.saveText();
+      }
+
+      @Override
+      public void mouseEntered(MouseEvent e) {
+
+      }
+
+      @Override
+      public void mouseClicked(MouseEvent e) {
+
+      }
     });
 
-    codeTextArea.setPreferredSize(new Dimension(400, 800));
-    codeScrollPane.getViewport().add(codeTextArea);
 
-    codeScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-    codeScrollPane.setPreferredSize(new Dimension(400, 800));
+    codeScrollPane.setViewportView(editor);
 
-    codePanel = new JPanel();
-
-    breakpointButtons = new ArrayList<>();
-    breakpointButtons.add(new JRadioButton());
-    breakpointButtons.get(0).setPreferredSize(new Dimension(20, 20));
-    breakpointButtonPanel.setPreferredSize(new Dimension(20, 100000000));
-    breakpointPanelLayout.putConstraint(SpringLayout.WEST, breakpointButtons.get(0), 0, SpringLayout.WEST,
-        breakpointButtonPanel);
-    breakpointPanelLayout.putConstraint(SpringLayout.NORTH, breakpointButtons.get(0), 1, SpringLayout.NORTH,
-        breakpointButtonPanel);
-    breakpointButtonPanel.add(breakpointButtons.get(0));
-    breakpointButtonPanel.setVisible(true);
-
-    JLayeredPane rowHeaderView = new JLayeredPane();
-    rowHeaderView.setOpaque(true);
-    SpringLayout headerLayout = new SpringLayout();
-    rowHeaderView.setLayout(headerLayout);
-    headerLayout.putConstraint(SpringLayout.WEST, lines, 20, SpringLayout.WEST, rowHeaderView);
-    headerLayout.putConstraint(SpringLayout.WEST, breakpointButtonPanel, 0, SpringLayout.WEST, rowHeaderView);
-    rowHeaderView.add(lines);
-    lines.setOpaque(true);
-    rowHeaderView.setForeground(Color.LIGHT_GRAY);
-    rowHeaderView.add(breakpointButtonPanel);
-
-    rowHeaderView.setPreferredSize(new Dimension(60, 100000000));
-    codeScrollPane.setRowHeaderView(rowHeaderView);
     codeScrollPane.setPreferredSize(new Dimension(400, 300));
     codeScrollPane.setSize(400, 800);
     codePanel.add(codeScrollPane);
-
   }
 
   /**
@@ -363,7 +308,7 @@ public class ProgramPanel extends JPanel {
    * @param programText new program text
    */
   public void setText(String programText) {
-    codeTextArea.setText(programText);
+    editor.setText(programText);
     listModel.clear();
     variableInspectorList.updateUI();
   }
@@ -399,7 +344,7 @@ public class ProgramPanel extends JPanel {
    * @return current text
    */
   public String getText() {
-    return codeTextArea.getText();
+    return editor.getText();
   }
 
   /**
@@ -455,8 +400,85 @@ public class ProgramPanel extends JPanel {
     int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
     if (returnVal == JFileChooser.APPROVE_OPTION) {
       File file = fileChooser.getSelectedFile();
-      codeTextArea.setText(controlFacade.loadProgramText(file));
+      editor.setText(controlFacade.loadProgramText(file));
 
+    }
+  }
+
+  /**
+   * Produces custom ParagraphViews, but uses the default ViewFactory for all
+   * other elements.
+   */
+  private class CustomViewFactory implements ViewFactory {
+
+    private ViewFactory defaultViewFactory;
+
+    CustomViewFactory(ViewFactory defaultViewFactory) {
+      this.defaultViewFactory = defaultViewFactory;
+    }
+
+    @Override
+    public View create(Element elem) {
+      if (elem != null && elem.getName().equals(AbstractDocument.ParagraphElementName)) {
+        return new CustomParagraphView(elem);
+      }
+      return defaultViewFactory.create(elem);
+    }
+  }
+
+  /**
+   * Paints a left hand child view with the line number for this Paragraph.
+   */
+  private class CustomParagraphView extends ParagraphView {
+    private Element thisElement;
+
+    private Font font;
+
+    public CustomParagraphView(Element elem) {
+      super(elem);
+      thisElement = elem;
+      this.setInsets((short) 0, (short) 0, (short) 0, (short) 0);
+    }
+
+    @Override
+    protected void setInsets(short top, short left, short bottom, short right) {
+      super.setInsets(top, (short) (left + MARGIN_WIDTH_PX), bottom, right);
+    }
+
+    @Override
+    public void paintChild(Graphics g, Rectangle alloc, int index) {
+      super.paintChild(g, alloc, index);
+      if (index > 0) {
+        return;
+      }
+      g.setColor(Color.BLACK);
+      int lineNumber = getLineNumber() + 1;
+      String lnStr = String.format("%3d", lineNumber);
+      font = font != null ? font : new Font(Font.MONOSPACED, Font.PLAIN, getFont().getSize());
+      //g.setFont(font);
+      int x = alloc.x - g.getFontMetrics().stringWidth(lnStr) - 4;
+      int y = alloc.y + alloc.height - 3;
+      g.drawString(lnStr, x, y);
+
+      //draw Breakpoints
+      int height = g.getFontMetrics(g.getFont()).getHeight();
+      int lineID = y / height;
+      g.setColor(Color.RED);
+      if (listBreakpointLines.contains(lineID)) {
+        g.fillOval(8, y - 8, 8, 8);
+      }
+      g.setColor(Color.BLACK);
+    }
+
+    private int getLineNumber() {
+      Element root = getDocument().getDefaultRootElement();
+      int len = root.getElementCount();
+      for (int i = 0; i < len; i++) {
+        if (root.getElement(i) == thisElement) {
+          return i;
+        }
+      }
+      return 0;
     }
   }
 }

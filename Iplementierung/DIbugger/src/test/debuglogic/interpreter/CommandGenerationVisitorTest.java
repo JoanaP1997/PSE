@@ -63,5 +63,4 @@ public class CommandGenerationVisitorTest {
         assert (((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(1) instanceof Assignment);
 
     }
-
 }

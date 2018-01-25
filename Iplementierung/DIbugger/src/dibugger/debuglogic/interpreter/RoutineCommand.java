@@ -122,7 +122,7 @@ public class RoutineCommand extends Command {
      *            the arguments
      */
     public void setArgs(List<Term> args) {
-        this.args.addAll(args);
+        this.args = args;
     }
 
     /**
