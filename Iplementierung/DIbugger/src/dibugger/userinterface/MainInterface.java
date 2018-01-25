@@ -6,6 +6,7 @@ import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -138,11 +139,11 @@ public class MainInterface extends JFrame {
       } else {
         String nextId = calcNextProgramId();
         ProgramPanel newPanel = new ProgramPanel(nextId, this);
+        newPanel.setTextWithFileChooser();
         programPanels.put(nextId, newPanel);
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
       }
-      // TODO: hier aus Datei einbinden einfügen? mit DecisionPopUP?
     });
     loadConfig = new JMenuItem();
     loadConfig.setText("Konfigurationsdatei laden");

@@ -83,23 +83,9 @@ public class ProgramPanel extends JPanel {
     JButton loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
     iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
-    JFileChooser fileChooser = new JFileChooser();
-    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-        "java files (*.java)", "java", "text files (*.txt)", "txt");
-
-    fileChooser.setDialogTitle("New ProgramPanel");
-    fileChooser.setFileFilter(filter);
     loadFile.setIcon(iconLoad);
-    loadFile.addActionListener(actionEvent -> {
-      if (actionEvent.getSource() == loadFile) {
-        int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-          File file = fileChooser.getSelectedFile();
-          codeTextArea.setText(controlFacade.loadProgramText(file));
+    loadFile.addActionListener(actionEvent -> setTextWithFileChooser());
 
-        }
-      }
-    });
     JButton delete = new JButton();
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
     deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
@@ -164,7 +150,7 @@ public class ProgramPanel extends JPanel {
     codeTextArea = new JTextPane();
     lines.setBackground(Color.YELLOW);
     lines.setEditable(false);
-    Font font = new Font("SansSerif",Font.PLAIN,14);
+    Font font = new Font("SansSerif", Font.PLAIN, 14);
     lines.setFont(font);
     codeTextArea.setFont(font);
     codeTextArea.getDocument().addDocumentListener(new DocumentListener() {
@@ -445,5 +431,18 @@ public class ProgramPanel extends JPanel {
 
   }
 
+  public void setTextWithFileChooser() {
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "java files (*.java)", "java", "text files (*.txt)", "txt");
 
+    fileChooser.setDialogTitle("New ProgramPanel");
+    fileChooser.setFileFilter(filter);
+    int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
+    if (returnVal == JFileChooser.APPROVE_OPTION) {
+      File file = fileChooser.getSelectedFile();
+      codeTextArea.setText(controlFacade.loadProgramText(file));
+
+    }
+  }
 }
