@@ -15,10 +15,11 @@ public class ProgramInput {
     private int counter;
     private String programID;
 
-    public ProgramInput(String text, List<String> inputValues, int counter) {
+    public ProgramInput(String text, List<String> inputValues, int counter, String programID) {
         this.text = text;
         this.inputValues = inputValues;
         this.counter = counter;
+        this.programID = programID;
     }
 
     /**

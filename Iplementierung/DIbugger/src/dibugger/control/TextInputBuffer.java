@@ -27,10 +27,10 @@ public class TextInputBuffer {
         for (int i = 0; i < inputTexts.size(); i++) {
             String inputValuesString = inputTexts.get(i);
             List<String> variablesAndValues = Arrays.asList(inputValuesString.split(";"));
-            ProgramInput input = new ProgramInput(programTexts.get(i), variablesAndValues, 0);
+            ProgramInput input = new ProgramInput(programTexts.get(i), variablesAndValues, 0, programIdentifiers.get(i));
             
-            String programIdentifier = programIdentifiers.get(i);
-            input.setProgramID(programIdentifier);
+//            String programIdentifier = programIdentifiers.get(i);
+//            input.setProgramID(programIdentifier);
             
             programs.add(input);
         }

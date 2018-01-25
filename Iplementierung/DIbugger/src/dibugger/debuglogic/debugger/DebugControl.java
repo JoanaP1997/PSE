@@ -230,7 +230,7 @@ public class DebugControl {
      * @param programID
      */
     private boolean singleStepNoEvaluation(int programID, int direction) {
-        while (list_currentTraceStates.size() < programID) {
+        while (list_currentTraceStates.size() - 1 < programID) {
             list_currentTraceStates.add(null);
         }
         ListIterator<TraceState> it = list_traceIterator.get(programID);
@@ -255,10 +255,12 @@ public class DebugControl {
     }
 
     private boolean evaluateBreakpoints(int programID) {
-        TraceState state = list_currentTraceStates.get(programID);
-        for (Breakpoint bp : list_breakpoints.get(programID)) {
-            if (bp.getLine() == state.getLineNumber()) {
-                return true;
+        if(programID < list_breakpoints.size()){
+            TraceState state = list_currentTraceStates.get(programID);
+            for (Breakpoint bp : list_breakpoints.get(programID)) {
+                if (bp.getLine() == state.getLineNumber()) {
+                    return true;
+                }
             }
         }
         return false;
@@ -676,7 +678,7 @@ public class DebugControl {
     public String getValueOf(String programNameID, String variable) {
         for (int i = 0; i < list_currentTraceStates.size(); ++i) {
             TraceState state = list_currentTraceStates.get(i);
-            if (state.getProgramId().equals(variable)) {
+            if (state.getProgramId().equals(programNameID)) {
                 return state.getValueOf(variable).toString();
             }
         }
