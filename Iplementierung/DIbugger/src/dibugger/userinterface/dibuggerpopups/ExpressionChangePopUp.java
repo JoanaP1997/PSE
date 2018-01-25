@@ -100,7 +100,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             p.deleteEntry(row);
             dispose();
           }
-        } else if(optionChooser.getSelectedItem() == "Bereichsbindung anpassen"){
+        } else if(optionChooser.getSelectedItem() == "Bereichsbindung anpassen") {
           // save Scopes in scopes List:
           if (type.equals("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
@@ -154,7 +154,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   private void showScopePanel() {
     BoxLayout layout = new BoxLayout(scopeChangePanel, BoxLayout.PAGE_AXIS);
     scopeChangePanel.setLayout(layout);
-    //TODO: ID richtig machen (nicht von 0 bis n, sondern als String A bis Z)
     for (String id : mainInterface.getProgramIds()) {
       scopeChangePanel.add(new ProgramScopeChooser(id), layout);
     }
@@ -182,9 +181,9 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       end = new JTextField();
       end.setPreferredSize(new Dimension(50, 20));
       labelStart = new JLabel("Program " + id + ": Start");
-      labelStart.setPreferredSize(new Dimension(100, 20));
+      labelStart.setPreferredSize(new Dimension(120, 20));
       labelEnd = new JLabel("End: ");
-      labelEnd.setPreferredSize(new Dimension(30, 20));
+      labelEnd.setPreferredSize(new Dimension(40, 20));
       //TODO: Zwick Beine machen und zur Not selbst speichern
 
       /**
