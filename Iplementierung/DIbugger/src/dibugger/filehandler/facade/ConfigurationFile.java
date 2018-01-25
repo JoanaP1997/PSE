@@ -64,10 +64,10 @@ public class ConfigurationFile {
      *            the ID of the program
      * @return program name id corresponding to the given programID
      */
-    public String getProgramNameID(int programID){
+    public String getProgramNameID(int programID) {
         return list_programNamespace.get(programID);
     }
-    
+
     /**
      * Getter for the StepSize of program programID
      * 
@@ -265,9 +265,9 @@ public class ConfigurationFile {
      * @return the list object containing all program nameIDs
      */
     public List<String> getList_programNamespace() {
-		return list_programNamespace;
-	}
-    
+        return list_programNamespace;
+    }
+
     /**
      * 
      * @return the list object containing all program step sizes.
@@ -327,20 +327,44 @@ public class ConfigurationFile {
         this.numPrograms = numPrograms;
     }
 
+    /**
+     * Setter for the program text of program programID
+     * 
+     * @param programID
+     *            the ID of the program
+     * @param text
+     *            new program text of the given programID
+     */
     public void setProgramText(int programID, String text) {
         while (list_programText.size() < programID) {
             list_programText.add("");
         }
         list_programText.set(programID, text);
     }
-    
+
+    /**
+     * Setter for the programNameID of a given program
+     * 
+     * @param programID
+     *            the id of te program
+     * @param name
+     *            the new name of the given programID
+     */
     public void setProgramNameID(int programID, String name) {
         while (list_programNamespace.size() < programID) {
-            list_programNamespace.add("");//TODO Check if empty string is valid
+            list_programNamespace.add("");// TODO Check if empty string is valid
         }
         list_programNamespace.set(programID, name);
     }
 
+    /**
+     * Setter for the stepsize of a given program
+     * 
+     * @param programID
+     *            the id of the program
+     * @param stepsize
+     *            the new stepsize of the given programID
+     */
     public void setStepSize(int programID, int stepsize) {
         while (list_programStepSize.size() < programID) {
             list_programStepSize.add(0);
@@ -348,6 +372,16 @@ public class ConfigurationFile {
         list_programStepSize.set(programID, stepsize);
     }
 
+    /**
+     * Setter for the input value of a given program
+     * 
+     * @param programID
+     *            the id of the program
+     * @param identifier
+     *            the identifier of the new input
+     * @param value
+     *            the new value for the input with the given identifier
+     */
     public void setInputValue(int programID, String identifier, String value) {
         while (list_inputValues.size() < programID) {
             list_inputValues.add(new HashMap<String, String>());
@@ -355,6 +389,14 @@ public class ConfigurationFile {
         list_inputValues.get(programID).put(identifier, value);
     }
 
+    /**
+     * Setter for the last execution line of a given program
+     * 
+     * @param programID
+     *            the id of the program
+     * @param execLine
+     *            the last execution line of the given program
+     */
     public void setLastExecutionLine(int programID, int execLine) {
         while (list_lastExecLine.size() < programID) {
             list_lastExecLine.add(0);
@@ -362,6 +404,15 @@ public class ConfigurationFile {
         list_lastExecLine.set(programID, execLine);
     }
 
+    /**
+     * Setter for the variables of a given program
+     * 
+     * @param programID
+     *            the id of the program
+     * @param variables
+     *            a list containing all variable identifiers used by the
+     *            variable inspector
+     */
     public void setVariablesOfInspector(int programID, List<String> variables) {
         while (list_varInspector.size() < programID) {
             list_varInspector.add(new ArrayList<String>());
@@ -369,6 +420,16 @@ public class ConfigurationFile {
         list_varInspector.set(programID, variables);
     }
 
+    /**
+     * Used to add a watch expression
+     * 
+     * @param expression
+     *            the expression
+     * @param scopeBegin
+     *            a list containing all scope begins
+     * @param scopeEnd
+     *            a list containing all scope ends
+     */
     public void addWatchExpressions(String expression, List<Integer> scopeBegin, List<Integer> scopeEnd) {
         WCBExpression e = new WCBExpression(expression);
         for (int i = 0; i < Math.min(scopeBegin.size(), scopeEnd.size()); ++i) {
@@ -377,6 +438,16 @@ public class ConfigurationFile {
         list_watchExpressions.add(e);
     }
 
+    /**
+     * Used to add a conditional breakpoint
+     * 
+     * @param condition
+     *            the condition
+     * @param scopeBegin
+     *            a list containing all scope begins
+     * @param scopeEnd
+     *            a list containing all scope ends
+     */
     public void addConditionalBreakpoint(String condition, List<Integer> scopeBegin, List<Integer> scopeEnd) {
         WCBExpression e = new WCBExpression(condition);
         for (int i = 0; i < Math.min(scopeBegin.size(), scopeEnd.size()); ++i) {
@@ -385,6 +456,14 @@ public class ConfigurationFile {
         list_condBreakpoints.add(e);
     }
 
+    /**
+     * Setter for the breakpoints of a given program
+     * 
+     * @param programID
+     *            the id of the program
+     * @param lines
+     *            a list containing all linenumbers of the active breakpoints
+     */
     public void setBreakpoints(int programID, List<Integer> lines) {
         while (list_breakpoints.size() < programID) {
             list_breakpoints.add(new ArrayList<Integer>());
@@ -404,7 +483,8 @@ public class ConfigurationFile {
     }
 
     private class IntTuple {
-        private int a, b;
+        private int a;
+        private int b;
 
         public IntTuple(int a, int b) {
             this.a = a;

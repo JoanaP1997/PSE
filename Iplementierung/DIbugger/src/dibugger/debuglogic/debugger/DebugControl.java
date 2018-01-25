@@ -68,7 +68,8 @@ public class DebugControl {
      * 
      * @param programs
      *            the programs to run
-     * @throws DIbuggerLogicException {@linkplain GenerationController#generateTrace(String, List, String)}
+     * @throws DIbuggerLogicException
+     *             {@linkplain GenerationController#generateTrace(String, List, String)}
      */
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         list_traceIterator.clear();
@@ -664,9 +665,9 @@ public class DebugControl {
      * @return the value of the given variable
      */
     public String getValueOf(String programNameID, String variable) {
-        for(int i=0;i<list_currentTraceStates.size();++i){
+        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
             TraceState state = list_currentTraceStates.get(i);
-            if(state.getProgramId().equals(variable)){
+            if (state.getProgramId().equals(variable)) {
                 return state.getValueOf(variable).toString();
             }
         }
@@ -679,9 +680,9 @@ public class DebugControl {
      * @return list containing all variables
      */
     public List<String> getAllVariables(String programNameID) {
-        for(int i=0;i<list_currentTraceStates.size();++i){
+        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
             TraceState state = list_currentTraceStates.get(i);
-            if(state.getProgramId().equals(programNameID)){
+            if (state.getProgramId().equals(programNameID)) {
                 return new ArrayList<String>(state.getAllVariableIdentifiers());
             }
         }

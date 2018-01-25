@@ -23,10 +23,16 @@ Output Values
 db_it_exc_le{
 	def_blockLen=1
 The "less equal" comparison has one ore more incompatible types.
+
 }
 db_it_exc_add{
 	def_blockLen=1
 The "add" operation has one or more incopatibly types
+
+}
+dl_exc_wrong_type_assignment{
+	def_blockLen=1
+The assigned variable or type does not correspond to the type needed for the assignment.
 }
 ui_debug_run{
 	def_blockLen=1
@@ -46,23 +52,31 @@ Options
 db_it_exc_not{
 	def_blockLen=1
 The "not" operation has one ore more incompatible types.
+
 }
 ui_watch_expression{
 	def_blockLen=1
 Watch Expression
 
 }
+dl_exc_wrong_type_argument{
+	def_blockLen=1
+One ore more arguments are having an incorrect type.
+}
 db_it_exc_and{
 	def_blockLen=1
 The "and" operation has one ore more incompatible types.
+
 }
 db_it_exc_eq{
 	def_blockLen=1
 The "equal" comparison has one ore more incompatible types.
+
 }
 db_it_exc_gt{
 	def_blockLen=1
 The "greater than" comparison has one or more incopatibly types
+
 }
 ui_debug_step_back{
 	def_blockLen=1
@@ -82,6 +96,11 @@ Stop debugging
 db_it_exc_div{
 	def_blockLen=1
 The "div" operation has one or more incopatibly types
+
+}
+dl_exc_variable_not_found{
+	def_blockLen=1
+Variable not found. Maybe it is in another program.
 }
 ui_debug_step_single{
 	def_blockLen=1
@@ -96,19 +115,30 @@ Suggenstions
 db_it_exc_mul{
 	def_blockLen=1
 The "mul" operation has one or more incopatibly types
+
+}
+dl_exc_missing_return_call{
+	def_blockLen=1
+The method requires a return statement,
 }
 db_it_exc_mod{
 	def_blockLen=1
 The "mod" operation has one or more incopatibly types
+
 }
 db_it_exc_or{
 	def_blockLen=1
 The "or" operation has one ore more incompatible types.
+
 }
 ui_help{
 	def_blockLen=1
 Help
 
+}
+dl_exc_routine_not_found{
+	def_blockLen=1
+Could not find function. Maybe it is specified below the tryed execution.
 }
 ui_values_in{
 	def_blockLen=1
@@ -118,10 +148,16 @@ Input Values
 db_it_exc_ge{
 	def_blockLen=1
 The "greater equal" comparison has one or more incopatibly types
+
+}
+dl_exc_invalid_program{
+	def_blockLen=1
+The program is invalid and cannot be parsed to be a WLang program.
 }
 db_it_exc_sub{
 	def_blockLen=1
 The "sub" operation has one or more incopatibly types
+
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
@@ -156,10 +192,20 @@ Save Configuration
 db_it_exc_lt{
 	def_blockLen=1
 The "less than" comparison has one ore more incompatible types.
+
+}
+dl_exc_wrong_number_argument{
+	def_blockLen=1
+One ore more arguments are missing or there are too many arguments as parameters.
 }
 ui_load_program_text{
 	def_blockLen=1
 Load Program Text
+
+}
+dl_exc_already_declared{
+	def_blockLen=1
+Variable already exists.
 
 }
 ui_exit{

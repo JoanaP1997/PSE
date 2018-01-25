@@ -1,7 +1,7 @@
 package dibugger.filehandler.rdbf;
 
 /**
- * Representing a BLock object of the RDBF File Format
+ * Representing a Block object of the RDBF File Format
  * 
  * @author Pascal
  *
