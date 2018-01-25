@@ -247,8 +247,8 @@ public class ControlFacade {
      *            the line number referring to the breakpoint
      * @see DebugLogicController#deleteBreakpoint(int, int)
      */
-    public void deleteBreakpoint(int numberOfProgram, int line) {
-        debugLogicController.deleteBreakpoint(numberOfProgram, line);
+    public void deleteBreakpoint(String programNameID, int line) {
+        debugLogicController.deleteBreakpoint(programNameID, line);
     }
 
     /**

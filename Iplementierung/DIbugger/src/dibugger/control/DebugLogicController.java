@@ -293,8 +293,11 @@ public class DebugLogicController {
      *            the line number referring to the breakpoint
      * @see DebugLogicFacade#deleteBreakpoint(int, int)
      */
-    public void deleteBreakpoint(int numberOfProgram, int line) {
-        debugLogicFacade.deleteBreakpoint(numberOfProgram, line);
+    public void deleteBreakpoint(String programNameID, int line) {
+        if(map_programNameIDs.containsKey(programNameID)){
+            int programID = map_programNameIDs.get(programNameID);
+            debugLogicFacade.deleteBreakpoint(programID, line);
+        }
     }
 
     /**
