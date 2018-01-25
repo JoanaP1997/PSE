@@ -45,6 +45,7 @@ public class MainInterface extends JFrame {
 
   private JPanel codePanel;
   private FlowLayout codePanelLayout;
+  private JScrollPane codeScrollPane;
 
   private JMenuItem newView;
   private JMenuItem newProgram;
@@ -62,44 +63,6 @@ public class MainInterface extends JFrame {
     guiFacade = new GUIFacade(this);
     controlFacade = guiFacade.getControlFacade();
     initComponents();
-  }
-
-  /**
-   * initializes the components of the main interface.
-   */
-  private void initComponents() {
-    rightControlBar = new JPanel();
-    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    GroupLayout groupLayout = new GroupLayout(getContentPane());
-    getContentPane().setLayout(groupLayout);
-
-    configureMenuBar();
-    programPanels = new TreeMap<>();
-    programPanels.put("A", new ProgramPanel("A", this));
-    programPanels.put("B", new ProgramPanel("B", this));
-    codePanel = new JPanel();
-    codePanelLayout = new FlowLayout();
-    codePanel.setLayout(codePanelLayout);
-    codePanel.add(programPanels.get("A"), codePanelLayout);
-    codePanel.add(programPanels.get("B"), codePanelLayout);
-
-    JScrollPane codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    codeScrollPane.setViewportView(codePanel);
-    codeScrollPane.setPreferredSize(new Dimension(800, 1000));
-    initRightControlBar();
-
-    groupLayout.setHorizontalGroup(
-        groupLayout.createSequentialGroup().addComponent(codeScrollPane).addComponent(rightControlBar));
-    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
-        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
-            .addComponent(rightControlBar)));
-
-    this.setTitle("DIbugger");
-    ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
-    this.setIconImage(icon.getImage());
-
   }
 
   /**
@@ -121,6 +84,34 @@ public class MainInterface extends JFrame {
     MainInterface mainInterface = new MainInterface();
     mainInterface.setSize(1200, 800);
     mainInterface.setVisible(true);
+  }
+
+  /**
+   * initializes the components of the main interface.
+   */
+  private void initComponents() {
+    rightControlBar = new JPanel();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    GroupLayout groupLayout = new GroupLayout(getContentPane());
+    getContentPane().setLayout(groupLayout);
+
+    configureMenuBar();
+
+    initProgramPanels();
+
+    initRightControlBar();
+
+    groupLayout.setHorizontalGroup(
+        groupLayout.createSequentialGroup().addComponent(codeScrollPane).addComponent(rightControlBar));
+    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
+        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
+            .addComponent(rightControlBar)));
+
+    this.setTitle("DIbugger");
+    ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
+    this.setIconImage(icon.getImage());
+
   }
 
   /**
@@ -167,6 +158,7 @@ public class MainInterface extends JFrame {
     fileMenu.add(loadConfig);
     fileMenu.add(saveConfig);
     fileMenu.add(exit);
+    
     // menu for suggestions
     suggestionMenu.setText(SUGGESTIONS);
     menuBar.add(suggestionMenu);
@@ -179,7 +171,7 @@ public class MainInterface extends JFrame {
     helpMenu.setText("?");
     menuBar.add(helpMenu);
 
-    setJMenuBar(menuBar);
+    this.setJMenuBar(menuBar);
   }
 
   /**
@@ -204,6 +196,22 @@ public class MainInterface extends JFrame {
     groupLayout.setVerticalGroup(groupLayout.createSequentialGroup().addComponent(controlButtonsPanel)
         .addComponent(watchExpPanel).addComponent(condBreakPanel));
     rightControlBar.setPreferredSize(new Dimension(200, 1000));
+  }
+
+  private void initProgramPanels() {
+    programPanels = new TreeMap<>();
+    programPanels.put("A", new ProgramPanel("A", this));
+    programPanels.put("B", new ProgramPanel("B", this));
+    codePanel = new JPanel();
+    codePanelLayout = new FlowLayout();
+    codePanel.setLayout(codePanelLayout);
+    codePanel.add(programPanels.get("A"), codePanelLayout);
+    codePanel.add(programPanels.get("B"), codePanelLayout);
+
+    codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+        JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    codeScrollPane.setViewportView(codePanel);
+    codeScrollPane.setPreferredSize(new Dimension(800, 1000));
   }
 
   /**
