@@ -104,12 +104,9 @@ public class RDBFDBReader extends DBFileReader {
             }
 
             return f;
-        } catch (IOException e) {// TODO no stack trace
-            // e.printStackTrace();
+        } catch (IOException e) {
             throw new LanguageNotFoundException();
         }
-
-        // return null;
     }
 
 }
