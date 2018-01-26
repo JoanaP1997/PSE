@@ -113,13 +113,13 @@ public class ControlFacade {
     /**
      * Executes a normal step of size 1 in a given program
      * 
-     * @param numberOfProgram
-     *            the number of program to do a step in
-     * @see DebugLogicController#singleStep(int) 
+     * @param programNameId
+     *            the id of program to do a step in
+     * @see DebugLogicController#singleStep(String)
      */
-    public void singleStep(String programNameID) {
+    public void singleStep(String programNameId) {
         ensureInDebugMode();
-        debugLogicController.singleStep(programNameID);
+        debugLogicController.singleStep(programNameId);
     }
 
     /**
@@ -164,9 +164,9 @@ public class ControlFacade {
     /**
      * Creates a new conditional breakpoint.
      * 
-     * @param id
+     * @param breakPointId
      *            the id of the breakpoint
-     * @param cond
+     * @param condition
      *            the condition of the breakpoint
      * @see DebugLogicController#createConditionalBreakpoint(int, String)            
      */
@@ -177,9 +177,9 @@ public class ControlFacade {
     /**
      * Changes the specified conditional breakpoint.
      * 
-     * @param id
+     * @param breakPointId
      *            the id of the breakpoint to change
-     * @param cond
+     * @param condition
      *            the condition of the breakpoint
      * @param scopes
      *            a list of all scopes
@@ -213,8 +213,8 @@ public class ControlFacade {
     /**
      * Creates a new breakpoint at given line of specified program.
      * 
-     * @param numberOfProgram
-     *            the program's number
+     * @param programNameId
+     *            the program's id
      * @param line
      *            the line to create a breakpoint at
      * @see DebugLogicController#createBreakpoint(int, int)
@@ -226,11 +226,11 @@ public class ControlFacade {
     /**
      * Deletes a breakpoint at given line of specified program.
      * 
-     * @param numberOfProgram
-     *            the number of program to delete a breakpoint of
+     * @param programNameId
+     *            the id of program to delete a breakpoint of
      * @param line
      *            the line number referring to the breakpoint
-     * @see DebugLogicController#deleteBreakpoint(int, int)
+     * @see DebugLogicController#deleteBreakpoint(String, int)
      */
     public void deleteBreakpoint(String programNameID, int line) {
         debugLogicController.deleteBreakpoint(programNameID, line);
@@ -266,7 +266,7 @@ public class ControlFacade {
 
     /**
      * Switches DIbugger's mode to debug-mode. Input of user stored in this
-     * Controlfacade via {@link saveText(List, List, List) will be sent to package
+     * Controlfacade via {@link saveText(List, List, List)} will be sent to package
      * {@code dibugger.debuglogic.debugger}.
      * 
      * @see DebugLogicController#startDebug()
@@ -275,8 +275,8 @@ public class ControlFacade {
         enableDebugMode();
         try {
 			debugLogicController.startDebug();
-		} catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
+		} catch (DIbuggerLogicException exception) {
+			exceptionHandler.handle(exception);
 		}      
     }
 
@@ -342,7 +342,7 @@ public class ControlFacade {
 
     /**
      * Returns a list containing all languages available for use by this'
-     * GUIFacade
+     * GUIFacade.
      * 
      * @return a list containing all languages available
      * @see FileHandlerInteractor#getAvailableLanuages()
@@ -377,8 +377,6 @@ public class ControlFacade {
     /**
      * Suggest a stepsize for all programs.
      * 
-     * @param programText
-     *            list containing all program texts
      * @see DebugLogicController#suggestStepSize()
      */
     public void suggestStepSize() {
@@ -389,7 +387,7 @@ public class ControlFacade {
      * Suggests a watch expression.
      * 
      * @return String representing the expression
-     * @see DebugLogicController#suggestWatchExpression(List)
+     * @see DebugLogicController#suggestWatchExpression()
      */
     public String suggestWatchExpression() {
         return debugLogicController.suggestWatchExpression();
@@ -399,7 +397,7 @@ public class ControlFacade {
      * Suggests a conditional breakpoint.
      * 
      * @return String representing the condition
-     * @see DebugLogicController#suggestConditionalBreakpoint(List)
+     * @see DebugLogicController#suggestConditionalBreakpoint()
      */
     public String suggestConditionalBreakpoint() {
         return debugLogicController.suggestConditionalBreakpoint();
@@ -458,7 +456,7 @@ public class ControlFacade {
      * Changes the language in which information is shown by
      * this' GUIFacade.
      * 
-     * @param languageId the id specifieng the language
+     * @param languageId the id specifying the language
      * @see FileHandlerInteractor#changeLanguage(String)
      */
     public void changeLanguage(String languageId) {
