@@ -1,0 +1,7 @@
+langID='pirates'
+langName='Arrrr'
+fh_exc_invalid_line_type{
+	def_blockLen=2
+Arrrr, your arrr line arrr
+type arrr is arrr wrong arrrr.
+}
