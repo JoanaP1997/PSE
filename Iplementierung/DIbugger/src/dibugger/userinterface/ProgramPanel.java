@@ -23,6 +23,7 @@ public class ProgramPanel extends JPanel {
   private static String VARIABLE_INSPECTOR = "Variableninspektor";
   private static String SHOW_HIDDEN_VARIABLES = "Ausgeblendete Variablen anzeigen";
   private static String ADD_PROGRAM = "Programm hinzufügen";
+  private static String SINGLE_STEP = "Einzelschritt";
 
   private final short MARGIN_WIDTH_PX = 36;
   private List<Integer> listBreakpointLines;
@@ -40,6 +41,8 @@ public class ProgramPanel extends JPanel {
   private JPanel codePanel;
   private JScrollPane codeScrollPane;
   private JEditorPane editor;
+
+  private JButton singleStepButton;
 
   private JPanel variableInspector;
   private TreeMap<String, String> variableValueMap;
@@ -72,6 +75,9 @@ public class ProgramPanel extends JPanel {
     inputvariablesLabel = new JLabel();
     inputvariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
+    singleStepButton = new JButton();
+
+    singleStepButton.setText(SINGLE_STEP);
 
     programName.setText(PROGRAM + ": " + id);
 
@@ -112,7 +118,8 @@ public class ProgramPanel extends JPanel {
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepsize)
                     .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(110,110,110)
+                    .addComponent(singleStepButton))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
                     .addGap(150, 150, 150).addComponent(loadFile).addComponent(delete))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputvariablesLabel)
@@ -125,7 +132,7 @@ public class ProgramPanel extends JPanel {
                 .addComponent(programName).addComponent(loadFile).addComponent(delete)).addGap(15, 15, 15)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(stepsize).addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
-                    GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(singleStepButton))
 
             .addGap(10, 10, 10)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
