@@ -8,6 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Class that represents a PopUp to let the user generate a Suggestion for StepSize, variable input, Watch expression or
+ * conditional breakpoint. 
+ */
 public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
   private MainInterface mainInterface;
@@ -16,7 +20,13 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   public static final int WATCH_EXPRESSION = 2;
   public static final int CONDITIONAL_BREAKPOINT = 3;
   private JButton okButtonExpression;
+  private JLabel suggestedLabel;
 
+  /**
+   * constructor for a new VariableSuggestionPopUp
+   * @param type has to be 0,1,2 or 3 (see the static final ints in this class)
+   * @param mainInterface MainInterface on which this PopUp should be shown
+   */
   public VariableSuggestionPopUp (int type, MainInterface mainInterface) {
     this.mainInterface = mainInterface;
     this.setSize(300,310);
@@ -243,9 +253,8 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     okButtonExpression.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        //TODO: Methode anpassen in der Control
-        //String suggestion = mainInterface.getControlFacade().suggestWatchExpression();
-        //TODO: Vorschlag anzeigen als Label (evtl. etwas kopierbares)
+        String suggestion = mainInterface.getControlFacade().suggestWatchExpression();
+        suggestedLabel.setText(suggestion);
       }
     });
   }
@@ -256,8 +265,8 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     okButtonExpression.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        //TODO: Methode in Control anpassen
-        //String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
+        String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
+        suggestedLabel.setText(suggestion);
       }
     });
   }
@@ -265,7 +274,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private void showExpression(String type) {
     JLabel suggestionLabel = new javax.swing.JLabel();
     JLabel showingLabel = new javax.swing.JLabel();
-    JLabel suggestedLabel = new javax.swing.JLabel();
+    suggestedLabel = new javax.swing.JLabel();
     okButtonExpression = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
