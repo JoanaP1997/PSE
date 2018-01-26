@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 public class VariableSuggestionPopUp extends DIbuggerPopUp {
@@ -17,6 +15,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   public static final int VARIABLES = 1;
   public static final int WATCH_EXPRESSION = 2;
   public static final int CONDITIONAL_BREAKPOINT = 3;
+  private JButton okButtonExpression;
 
   public VariableSuggestionPopUp (int type, MainInterface mainInterface) {
     this.mainInterface = mainInterface;
@@ -239,12 +238,45 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   }
 
   private void wESuggestion() {
-    JLabel jLabel1 = new javax.swing.JLabel();
-    JButton ok = new javax.swing.JButton();
+    showExpression("Watch-Expression Vorschlag");
 
-    jLabel1.setText("Watch-Expression Vorschlag");
+    okButtonExpression.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        //TODO: Methode anpassen in der Control
+        //String suggestion = mainInterface.getControlFacade().suggestWatchExpression();
+        //TODO: Vorschlag anzeigen als Label (evtl. etwas kopierbares)
+      }
+    });
+  }
 
-    ok.setText("ok");
+  private void cBSuggestion() {
+    showExpression("Vorschlag für bedingten Breakpoint");
+
+    okButtonExpression.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        //TODO: Methode in Control anpassen
+        //String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
+      }
+    });
+  }
+
+  private void showExpression(String type) {
+    JLabel suggestionLabel = new javax.swing.JLabel();
+    JLabel showingLabel = new javax.swing.JLabel();
+    JLabel suggestedLabel = new javax.swing.JLabel();
+    okButtonExpression = new javax.swing.JButton();
+
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+    suggestionLabel.setText(type);
+
+    showingLabel.setText("Vorschlag: ");
+
+    suggestedLabel.setText("");
+
+    okButtonExpression.setText("ok");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -253,29 +285,33 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addComponent(showingLabel)
+                        .addGap(120, 120, 120)
+                        .addComponent(suggestedLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addGap(170, 170, 170)
+                        .addComponent(suggestionLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(okButtonExpression, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(135, 135, 135))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addComponent(suggestionLabel)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showingLabel)
+                    .addComponent(suggestedLabel))
+                .addGap(130, 130, 130)
+                .addComponent(okButtonExpression, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
     );
 
     pack();
-    //TODO: Funktionalität
-  }
-
-  private void cBSuggestion() {
-    //TODO
   }
 
   private int getTypeFromString(String typeAsString) {
