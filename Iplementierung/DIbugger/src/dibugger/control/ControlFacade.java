@@ -403,8 +403,8 @@ public class ControlFacade {
      * @return String representing the expression
      * @see DebugLogicController#suggestWatchExpression(List)
      */
-    public String suggestWatchExpression(List<ProgramInput> programInput) {
-        return debugLogicController.suggestWatchExpression(programInput);
+    public String suggestWatchExpression() {
+        return debugLogicController.suggestWatchExpression();
     }
 
     /**
@@ -413,8 +413,8 @@ public class ControlFacade {
      * @return String representing the condition
      * @see DebugLogicController#suggestConditionalBreakpoint(List)
      */
-    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
-        return debugLogicController.suggestConditionalBreakpoint(programInput);
+    public String suggestConditionalBreakpoint() {
+        return debugLogicController.suggestConditionalBreakpoint();
     }
 
     /**

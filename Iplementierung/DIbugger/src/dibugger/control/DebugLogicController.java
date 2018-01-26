@@ -443,8 +443,8 @@ public class DebugLogicController {
      * @return String representing the expression
      * @see DebugLogicFacade#suggestWatchExpression(List)
      */
-    public String suggestWatchExpression(List<ProgramInput> programInput) {
-        return debugLogicFacade.suggestWatchExpression(programInput);
+    public String suggestWatchExpression() {
+        return debugLogicFacade.suggestWatchExpression();
     }
 
     /**
@@ -453,8 +453,8 @@ public class DebugLogicController {
      * @return String representing the condition
      * @see DebugLogicFacade#suggestConditionalBreakpoint(List)
      */
-    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
-        return debugLogicFacade.suggestConditionalBreakpoint(programInput);
+    public String suggestConditionalBreakpoint() {
+        return debugLogicFacade.suggestConditionalBreakpoint();
     }
 
     /**
