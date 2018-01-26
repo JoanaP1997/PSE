@@ -18,6 +18,12 @@ import java.util.ArrayList;
  */
 public class ExpressionChangePopUp extends DIbuggerPopUp {
 
+  private static String DELETE = "L\u00f6schen";
+  private static String ADJUST_SCOPEASSIGNMENT = "Bereichsbindung anpassen";
+  private static String PROGRAM = "Program";
+  private static String START = "Start";
+  private static String END = "Ende";
+
   private JPanel scopeChangePanel;
   private MainInterface mainInterface;
   private GroupLayout groupLayout;
@@ -45,7 +51,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
     //init:
     this.id = row;
-    this.WEid =Eid;
+    this.WEid = Eid;
     this.panel = panel;
     this.table = table;
     this.setSize(400, 400);
@@ -65,14 +71,14 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     //Selection::
     title = new JLabel(message);
     optionChooser = new JComboBox<>();
-    optionChooser.addItem("Löschen");
-    optionChooser.addItem("Bereichsbindung anpassen");
+    optionChooser.addItem(DELETE);
+    optionChooser.addItem(ADJUST_SCOPEASSIGNMENT);
     optionChooser.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        if (optionChooser.getSelectedItem() == "Bereichsbindung anpassen") {
+        if (optionChooser.getSelectedItem() == ADJUST_SCOPEASSIGNMENT) {
           showScopePanel();
-        } else if (optionChooser.getSelectedItem() == "Löschen") {
+        } else if (optionChooser.getSelectedItem() == DELETE) {
           hideScopePanel();
         }
       }
@@ -85,11 +91,10 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
     okButton = new JButton("Ok");
 
-    //TODO: actionListener darf nicht auf ok liegen
     okButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent actionEvent) {
-        if (optionChooser.getSelectedItem() == "Löschen") {
+        if (optionChooser.getSelectedItem() == DELETE) {
           //delete a row and the WE or CB:
           if (message.startsWith("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
@@ -100,7 +105,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
             p.deleteEntry(row);
             dispose();
           }
-        } else if(optionChooser.getSelectedItem() == "Bereichsbindung anpassen") {
+        } else if(optionChooser.getSelectedItem() == ADJUST_SCOPEASSIGNMENT) {
           // save Scopes in scopes List:
           if (type.equals("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
@@ -180,9 +185,9 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       begin.setPreferredSize(new Dimension(50, 20));
       end = new JTextField();
       end.setPreferredSize(new Dimension(50, 20));
-      labelStart = new JLabel("Program " + id + ": Start");
+      labelStart = new JLabel(PROGRAM + " " + id + ": " + START);
       labelStart.setPreferredSize(new Dimension(120, 20));
-      labelEnd = new JLabel("End: ");
+      labelEnd = new JLabel(END +": ");
       labelEnd.setPreferredSize(new Dimension(40, 20));
       //TODO: Zwick Beine machen und zur Not selbst speichern
 
@@ -195,6 +200,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(WEid).toString());
       }
        */
+
 
       //set look:
       layout.setHgap(20);
