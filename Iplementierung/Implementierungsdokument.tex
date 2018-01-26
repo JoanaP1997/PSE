@@ -261,6 +261,11 @@ Ursprünglich sollte der \textit{TraceIterator} mit Hilfe einer gesonderten Klas
 Die Klasse \textit{TermValue}, die ursprünglich als Interface implementiert werden sollte, ist nun eine abstrakte Klasse. So kann die Methode \textit{getType()} einmal an zentraler Stelle für alle Unterklassen definiert werden und Code-Duplikate werden vermieden.
 \paragraph{TraceState}
 In der Klasse \textit{TraceState} wurde das Attribut String programId ergänzt. Dies ist nötig, damit WatchExpressions - die nur TraceStates und keine Traces kennen - wissen, zu welchem Programm welcher TraceState gehört. Dies hat auch eine Änderung in den Klassen \textit{Trace} und \textit{GenerationController} zu Folge. Die Klasse \textit{Trace} übernimmt die Aufgabe, die eben beschriebene \textit{programId} in alle \textit{TraceStates} eines \textit{Traces} einzutragen, und nimmt dazu in ihrem Konstruktor einen weiteren Parameter entgegen. Da der \textit{Trace} diese Information vom  \textit{GenerationController} bekommt, wird auch in Letzterem der Konstruktor erweitert.
+
+\subsubsection{Antlr}
+\paragraph{ActuallyHelpfulException und ActuallyHelpfulErrorListener}
+Ursprünglich sollte das gesamte Antlr-Paket autogeneriert werden. Allerdings mussten zur Behandlung von Exceptions zwei Klassen hinzugefügt werden, da Antlr standardmäßig alle Fehlermeldungen auf das Terminal schreibt, statt sie zu werfen.
+
  
 
 \end{document}
