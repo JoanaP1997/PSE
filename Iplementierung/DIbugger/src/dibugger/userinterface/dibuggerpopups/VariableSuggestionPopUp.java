@@ -14,6 +14,18 @@ import java.util.ArrayList;
  */
 public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
+  private static String FROM = "von";
+  private static String TO = "bis";
+  private static String INTERVAL = "Intervall";
+  private static String TYPE = "Typ";
+  private static String SUGGESTION = "Vorschlag";
+  private static String HELP_TEXT = "Ok-Button betätigen um Vorschlag zu erhalten";
+  private static String PROGRAM = "Program";
+  private static String STEPSIZE = "Schrittgröße";
+  private static String FOR = "für";
+  private static String CONDITIONAL_BREAKPOINT_AKKUSATIV = "bedingten Breakpoint";
+
+
   private MainInterface mainInterface;
   public static final int STEP_SIZE = 0;
   public static final int VARIABLES = 1;
@@ -62,26 +74,26 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     JLabel suggestionLabel = new javax.swing.JLabel();
     JLabel suggestedLabel = new javax.swing.JLabel();
 
-    intervallStartLabel.setText("von:");
+    intervallStartLabel.setText(FROM + ":");
 
     intervallStartField.setText("");
 
-    intervallEndLabel.setText("bis:");
+    intervallEndLabel.setText(TO + ":");
 
     intervallEndField.setText("");
 
-    intervallLabel.setText("Intervall");
+    intervallLabel.setText(INTERVAL);
 
-    typeLabel.setText("Type:");
+    typeLabel.setText(TYPE + ":");
 
     typeChooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "char", "long", "float", "double"
         , "boolean" }));
 
     okButton.setText("ok");
 
-    suggestionLabel.setText("Vorschlag:");
+    suggestionLabel.setText(SUGGESTION + ":");
 
-    suggestedLabel.setText("Ok-Butto betätigen um Vorschlag zu erhalten");
+    suggestedLabel.setText(HELP_TEXT);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -179,9 +191,9 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-    programLabel.setText("Program:");
+    programLabel.setText(PROGRAM + ":");
 
-    headerLabel.setText("StepSize Vorschlag");
+    headerLabel.setText(STEPSIZE + " " + SUGGESTION);
 
     ArrayList programs = mainInterface.getProgramIds();
     String[] programsAsArray = new String[programs.size()];
@@ -189,7 +201,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     programChooser.setModel(new javax.swing.DefaultComboBoxModel<>(programsAsArray));
 
-    stepSizeSuggestionLabel.setText("StepSize Vorschlag:");
+    stepSizeSuggestionLabel.setText(STEPSIZE + " " + SUGGESTION);
 
     suggestedLabel.setText("");
 
@@ -248,7 +260,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   }
 
   private void wESuggestion() {
-    showExpression("Watch-Expression Vorschlag");
+    showExpression("Watch-Expression " + SUGGESTION);
 
     okButtonExpression.addActionListener(new ActionListener() {
       @Override
@@ -260,7 +272,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   }
 
   private void cBSuggestion() {
-    showExpression("Vorschlag für bedingten Breakpoint");
+    showExpression(SUGGESTION + FOR + CONDITIONAL_BREAKPOINT_AKKUSATIV);
 
     okButtonExpression.addActionListener(new ActionListener() {
       @Override
@@ -281,7 +293,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     suggestionLabel.setText(type);
 
-    showingLabel.setText("Vorschlag: ");
+    showingLabel.setText(SUGGESTION +": ");
 
     suggestedLabel.setText("");
 
