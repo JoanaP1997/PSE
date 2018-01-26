@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * PopUp where the user can decide wether he wants to continue or change something that caused an Error but can be
+ * handled by the Logic itself
+ */
 public class DecisionPopUp extends DIbuggerPopUp {
 
     private static String YES_OPTION = "Ja";
@@ -14,6 +18,11 @@ public class DecisionPopUp extends DIbuggerPopUp {
     private String message;
     private MainInterface mainInterface;
 
+  /**
+   * constructor for a DecisionPopUp
+   * @param message String that is shown to the user
+   * @param mainInterface MainInterface from which this PopUp is called
+   */
     public DecisionPopUp(String message, MainInterface mainInterface) {
         this.mainInterface = mainInterface;
         this.message = message;
