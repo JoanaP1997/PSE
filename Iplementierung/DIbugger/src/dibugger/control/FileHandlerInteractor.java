@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Observable;
 
-import dibugger.debuglogic.debugger.Breakpoint;
 import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
@@ -230,6 +229,7 @@ public class FileHandlerInteractor extends Observable {
      * 
      * @param languageId the id specifieng the language
      * @see GUIFacade#changeLanguage()
+     * @throws LanguageNotFoundException
      */
     public void changeLanguage(String languageId) throws LanguageNotFoundException {
         LanguageFile nextLanguageFile = fileHandlerFacade.getLanguageFile(languageId);
