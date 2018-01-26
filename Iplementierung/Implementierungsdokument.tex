@@ -190,15 +190,7 @@ Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{document_data/Strategy_uml_d.pdf}
-
-%\begin{verbbox}
-%public abstract class DBFileReader {
-%    public abstract ConfigurationFile loadConfigFile(File f) throws %FileHandlerException;
-%    public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
-%}
-%\end{verbbox}
-%\makebox[\textwidth][c]{\theverbbox}
-\caption{Strategiemuster und Quelltext des DBFileReaders im Paket FileHandler}
+\caption{Strategiemuster des DBFileReaders im Paket FileHandler}
 \label{fig:strategy_fh}
 \end{figure}
 Wie in Abbildung \ref{fig:strategy_fh} aufgezeigt, steht der DBFileReader für den \enquote{Kopf} des Strategiemusters.
@@ -237,12 +229,12 @@ Die im Entwurf spezifizierte Klasse ArrayValuePopUp, eine Unterklasse von DIbugg
 ProgramPanels werden nun nicht mehr über Integers identifiziert, sondern über Strings (A-Z). So ist innerhalb des Modells gewährleistet, dass auch nach Löschung eines einzelnen ProgramPanels die zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints korrekt angezeigt werden.
 \subsection{Control}
 \paragraph{ExceptionHandler}
-Damit Fehlermeldungen in der richtigen Sprache eingegeben werden, ist der \textit{ExceptionHandler} nun ein Beobachter (im Beobachter-Entwurfsmuster) und beobachtet \textit{FileHandlerInteractor} um über Änderungen der Benutzersprache informiert zu werden.
+Damit Fehlermeldungen in der richtigen Sprache ausgegeben werden, ist der \textit{ExceptionHandler} nun ein Beobachter (im Beobachter-Entwurfsmuster) und beobachtet \textit{FileHandlerInteractor}, um über Änderungen der Benutzersprache informiert zu werden.
 \paragraph{FileHandlerInteractor}
 Es besteht nun eine Assoziation zwischen \textit{FileHandlerInteractor} und \textit{DebugLogicFacade}, da so \textit{ControlFacade} weniger Funktionalität besitzt, die \textit{FileHandlerInteractor} zuzuordnen ist.
 Weiter ist diese Klasse Subjekt im Beobachter-Entwurfsmuster, sodass Objekte anderer Klassen benachrichtigt werden können, falls \textit{FileHandlerInteractor} beispielsweise andere Konfigurationen verwaltet als zuvor.
 \paragraph{TextInputBuffer}
-Die Klasse \textit{TextInputBuffer} wurde hinzugefügt, um die Entwurfsentscheidung, wie Eingabewerte, Porgrammtexte und -identifikatoren in \textit{Control} zwischenzuspeichern sind, zu kapseln.
+Die Klasse \textit{TextInputBuffer} wurde hinzugefügt, um die Parameter der Eingabewerte, Porgrammtexte und -identifikatoren, welche in \textit{Control} zwischenzuspeichern sind, zu kapseln.
 Eine Instanz dieser Klasse ermöglicht es genau ein solches \enquote{Tripel} (Eingabewerte, ...) zu speichern und als \textit{ProgramInput}-Objekt wieder abzurufen.
 \subsection{FileHandler}
 %+ FileHandlerFacade: savePropertiesFile()
