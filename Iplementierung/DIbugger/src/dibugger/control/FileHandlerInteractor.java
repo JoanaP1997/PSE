@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Observable;
 
-import dibugger.debuglogic.debugger.Breakpoint;
 import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
