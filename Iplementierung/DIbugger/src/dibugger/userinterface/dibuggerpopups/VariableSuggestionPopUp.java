@@ -19,10 +19,10 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private static String INTERVAL = "Intervall";
   private static String TYPE = "Typ";
   private static String SUGGESTION = "Vorschlag";
-  private static String HELP_TEXT = "Ok-Button betätigen um Vorschlag zu erhalten";
+  private static String HELP_TEXT = "Ok-Button bet\u00e4tigen um Vorschlag zu erhalten";
   private static String PROGRAM = "Program";
-  private static String STEPSIZE = "Schrittgröße";
-  private static String FOR = "für";
+  private static String STEPSIZE = "Schrittgr\u00f6ße";
+  private static String FOR = "f\u00fcr";
   private static String CONDITIONAL_BREAKPOINT_AKKUSATIV = "bedingten Breakpoint";
 
 
