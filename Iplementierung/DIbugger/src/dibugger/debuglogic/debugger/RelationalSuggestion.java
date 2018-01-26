@@ -20,12 +20,12 @@ public abstract class RelationalSuggestion {
      * 
      * @return String representing the expression.
      */
-    public abstract String suggestWatchExpression(List<ProgramInput> programInput);
+    public abstract String suggestWatchExpression();
 
     /**
      * suggests a conditional Breakpoint for the DIbugger.
      * 
      * @return String representing the condition.
      */
-    public abstract String suggestConditionalBreakpoint(List<ProgramInput> programInput);
+    public abstract String suggestConditionalBreakpoint();
 }

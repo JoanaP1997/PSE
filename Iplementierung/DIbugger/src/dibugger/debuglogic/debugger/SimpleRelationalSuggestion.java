@@ -15,13 +15,12 @@ public class SimpleRelationalSuggestion extends RelationalSuggestion {
     }
 
     @Override
-    public String suggestWatchExpression(List<ProgramInput> programInput) {
-        //debugControl.launchRun(programInput);
+    public String suggestWatchExpression() {
         return "A.x";
     }
 
     @Override
-    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
+    public String suggestConditionalBreakpoint() {
         return "A.x = A.x";
     }
 

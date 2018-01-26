@@ -182,15 +182,15 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see RelationalSuggestion#suggestWatchExpression()
      */
-    public String suggestWatchExpression(List<ProgramInput> programInput) {
-        return suggest_relational.suggestWatchExpression(programInput);
+    public String suggestWatchExpression() {
+        return suggest_relational.suggestWatchExpression();
     }
 
     /**
      * @see RelationalSuggestion#suggestConditionalBreakpoint()
      */
-    public String suggestConditionalBreakpoint(List<ProgramInput> programInput) {
-        return suggest_relational.suggestConditionalBreakpoint(programInput);
+    public String suggestConditionalBreakpoint() {
+        return suggest_relational.suggestConditionalBreakpoint();
     }
 
     /**
