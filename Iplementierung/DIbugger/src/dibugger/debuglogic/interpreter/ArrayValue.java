@@ -101,6 +101,10 @@ public class ArrayValue extends TermValue {
         return s.toString();
     }
 
+    /**
+     * Returns the values of an array.
+     * @return the values
+     */
     public TermValue[][][] getValue() {
         return value;
     }
