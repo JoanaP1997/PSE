@@ -129,16 +129,6 @@ public class DebugLogicController {
     		debugLogicFacade.singleStep(map_programNameIDs.get(programNameID));
     	}
     }
-
-    /**
-     * Causes DIbugger to perform a step in reverse order of execution
-     * of each program's instructions.
-     * 
-     * @see step(int)
-     */
-    public void stepBack() throws DIbuggerLogicException {
-        step(STEP_BACK);
-    }
     
     /**
      * Returns all current variables.

@@ -123,21 +123,6 @@ public class ControlFacade {
     }
 
     /**
-     * Causes DIbugger to perform a step in reverse order of execution
-     * of each program's instructions.
-     * 
-     * @see DebugLogicController#stepBack()
-     */
-    public void stepBack() {
-        ensureInDebugMode();
-        try {
-            debugLogicController.stepBack();
-        } catch (DIbuggerLogicException exception) {
-            exceptionHandler.handle(exception);
-        }
-    }
-
-    /**
      * Creates a new watch expression.
      * 
      * @param id
