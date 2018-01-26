@@ -1,17 +1,16 @@
 package dibugger.userinterface.dibuggerpopups;
 
 import dibugger.userinterface.CommandPanel;
-import dibugger.userinterface.GUIFacade;
 import dibugger.userinterface.MainInterface;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DecisionPopUp extends DIbuggerPopUp {
-    private String yesOption = "Yes";
-    private String noOption = "No";
+
+    private static String YES_OPTION = "Ja";
+    private static String NO_OPTION = "Nein";
     private String message;
     private MainInterface mainInterface;
 
@@ -27,7 +26,7 @@ public class DecisionPopUp extends DIbuggerPopUp {
 
         JLabel messageText = new JLabel(message);
 
-        JButton continueDebug = new JButton(yesOption);
+        JButton continueDebug = new JButton(YES_OPTION);
         continueDebug.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -36,7 +35,7 @@ public class DecisionPopUp extends DIbuggerPopUp {
             }
         });
 
-        JButton StopDebug = new JButton(noOption);
+        JButton StopDebug = new JButton(NO_OPTION);
         StopDebug.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

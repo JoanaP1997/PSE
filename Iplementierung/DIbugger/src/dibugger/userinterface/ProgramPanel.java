@@ -19,13 +19,14 @@ import java.util.TreeMap;
 
 public class ProgramPanel extends JPanel {
   private static String PROGRAM = "Programm";
-  private static String STEPSIZE = "Schrittgröße";
+  private static String STEPSIZE = "Schrittgr\u00f6\u00dfe";
   private static String INPUT_VARS = "Eingabevariablen";
   private static String VAR_INSPECTOR_TOOL_TIP = "Zelle markieren und mit Rechtsklick ausblenden";
   private static String VARIABLE_INSPECTOR = "Variableninspektor";
   private static String SHOW_HIDDEN_VARIABLES = "Ausgeblendete Variablen anzeigen";
-  private static String ADD_PROGRAM = "Programm hinzufügen";
+  private static String ADD_PROGRAM = "Programm hinzuf\u00fcgen";
   private static String SINGLE_STEP = "Einzelschritt";
+  private static String RETURN = "R\u00fcckgabewert";
 
   private final short MARGIN_WIDTH_PX = 36;
   private List<Integer> listBreakpointLines;
@@ -80,11 +81,9 @@ public class ProgramPanel extends JPanel {
     singleStepButton = new JButton();
 
     singleStepButton.setText(SINGLE_STEP);
-
     programName.setText(PROGRAM + ": " + id);
 
     stepsize.setText(STEPSIZE + ": ");
-
     stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
     stepsizeInput.addActionListener(evt1 -> stepsizeInputActionPerformed());
@@ -117,7 +116,7 @@ public class ProgramPanel extends JPanel {
 
     initVariableInspector();
 
-    result = new JLabel("Return: ");
+    result = new JLabel(RETURN + ": ");
 
     GroupLayout firstTextPanelLayout = new GroupLayout(this);
     setLayout(firstTextPanelLayout);
