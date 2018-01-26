@@ -1,41 +1,40 @@
 langID='german'
 langName='Deutsch'
-ui_step{
-	def_blockLen=1
-Schritt
-
-}
 fh_exc_parse_assign{
 	def_blockLen=1
 Die Datei enthält eine falsche Zuweisung.
 
 }
-ui_values_out{
+dl_exc_wrong_type_assignment{
 	def_blockLen=1
-Ausgabewerte
-
-}
-ui_debug_run{
-	def_blockLen=1
-Debuggen beginnen
+Der Zuweisungswert ist nicht gleich dem wert der zuweisenden Variable.
 }
 ui_debug_step_out{
 	def_blockLen=1
 Führe Step Out aus
 
 }
-ui_options{
+db_it_exc_not{
 	def_blockLen=1
-Einstellungen
+Die Operation "not" hat ein oder mehrere falsche Typen.
 }
 ui_watch_expression{
 	def_blockLen=1
 Watch Expression
 
 }
+db_it_exc_and{
+	def_blockLen=1
+Die Operation "and" hat ein oder mehrere falsche Typen.
+}
+db_it_exc_eq{
+	def_blockLen=1
+Die Operation "equals" hat ein oder mehrere falsche Typen.
+}
 ui_debug_step_back{
 	def_blockLen=1
 Führe Step Back aus
+
 }
 ui_var_inspector{
 	def_blockLen=1
@@ -47,35 +46,39 @@ ui_debug_stop{
 Debuggen beenden
 
 }
-ui_debug_step_single{
+dl_exc_variable_not_found{
 	def_blockLen=1
-Führe Einzelschritt aus
-}
-ui_suggestions{
-	def_blockLen=1
-Vorschläge
-
+Variable nicht gefunden.
 }
 english{
 	def_blockLen=1
 Englisch
-}
-ui_help{
-	def_blockLen=1
-Hilfe
-}
-ui_values_in{
-	def_blockLen=1
-Eingabewerte
 
 }
-fh_exc_invalid_line_type{
+db_it_exc_mul{
 	def_blockLen=1
-Die Datei beinhaltet eine invalide Zeile.
+Die Operation "mul" hat ein oder mehrere falsche Typen.
+}
+dl_exc_missing_return_call{
+	def_blockLen=1
+Die Methode verlangt ein "return" Angabe.
+}
+dl_exc_routine_not_found{
+	def_blockLen=1
+Funktion nicht gefunde. Vielleicht ist sie unter diesem Aufruf definiert.
+}
+dl_exc_syntax{
+	def_blockLen=1
+Syntax Fehler in einem oder mehreren Programmen.
+}
+db_it_exc_sub{
+	def_blockLen=1
+Die Operation "sub" hat ein oder mehrere falsche Typen.
 }
 ui_stepsize{
 	def_blockLen=1
 Schrittgöße
+
 }
 ui_debug_step_over{
 	def_blockLen=1
@@ -97,22 +100,122 @@ ui_save_config{
 Konfiguration speichern
 
 }
+dl_exc_wrong_number_argument{
+	def_blockLen=1
+Falsche Anzahl an Parametern.
+}
+ui_exit{
+	def_blockLen=1
+Beenden
+
+}
+fh_exc_parse_block{
+	def_blockLen=1
+Die Datei enthält eine falsche Block Syntax
+
+}
+fh_exc_lang_not_found{
+	def_blockLen=1
+Sprache nicht gefunden
+
+}
+ui_step{
+	def_blockLen=1
+Schritt
+
+}
+ui_values_out{
+	def_blockLen=1
+Ausgabewerte
+
+}
+db_it_exc_le{
+	def_blockLen=1
+Die Operation "less equal" hat ein oder mehrere falsche Typen.
+}
+db_it_exc_add{
+	def_blockLen=1
+Die Operation "add" hat ein oder mehrere falsche Typen.
+}
+ui_debug_run{
+	def_blockLen=1
+Debuggen beginnen
+
+}
+ui_options{
+	def_blockLen=1
+Einstellungen
+
+}
+dl_exc_wrong_type_argument{
+	def_blockLen=1
+Ein oder mehr Argumente sind vom falsche Typ.
+}
+db_it_exc_gt{
+	def_blockLen=1
+Die Operation "greater than" hat ein oder mehrere falsche Typen.
+}
+db_it_exc_div{
+	def_blockLen=1
+Die Operation "div" hat ein oder mehrere falsche Typen.
+}
+ui_debug_step_single{
+	def_blockLen=1
+Führe Einzelschritt aus
+
+}
+ui_suggestions{
+	def_blockLen=1
+Vorschläge
+
+}
+db_it_exc_mod{
+	def_blockLen=1
+Die Operation "modulo" hat ein oder mehrere falsche Typen.
+}
+db_it_exc_or{
+	def_blockLen=1
+Die Operation "or" hat ein oder mehrere falsche Typen.
+}
+ui_help{
+	def_blockLen=1
+Hilfe
+
+}
+ui_values_in{
+	def_blockLen=1
+Eingabewerte
+
+}
+db_it_exc_ge{
+	def_blockLen=1
+Die Operation "greater equal" hat ein oder mehrere falsche Typen.
+}
+dl_exc_invalid_program{
+	def_blockLen=1
+Dieses Program ist invalide und kann nicht als Wlang Program interpretiert werden.
+}
+fh_exc_invalid_line_type{
+	def_blockLen=1
+Die Datei beinhaltet eine invalide Zeile.
+
+}
+ui_line{
+	def_blockLen=1
+Zeile
+}
+db_it_exc_lt{
+	def_blockLen=1
+Die Operation "less than hat ein oder mehrere falsche Typen.
+}
 ui_load_program_text{
 	def_blockLen=1
 Programmtext laden
 
 }
-ui_exit{
+dl_exc_already_declared{
 	def_blockLen=1
-Beenden
-}
-fh_exc_parse_block{
-	def_blockLen=1
-Die Datei enthält eine falsche Block Syntax
-}
-fh_exc_lang_not_found{
-	def_blockLen=1
-Sprache nicht gefunden
+Variable wurde schon deklariert.
 }
 ui_load_config{
 	def_blockLen=1
@@ -122,4 +225,5 @@ Konfiguration laden
 ui_debug_continue{
 	def_blockLen=1
 Weiter
+
 }
