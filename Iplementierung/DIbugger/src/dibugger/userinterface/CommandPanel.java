@@ -4,6 +4,9 @@ import dibugger.debuglogic.debugger.DebugControl;
 
 import javax.swing.*;
 
+/**
+ * class that represents the CommandPanel where the user can control the debug mechanisms
+ */
 public class CommandPanel extends JPanel {
   private JButton start;
   private JButton stop;

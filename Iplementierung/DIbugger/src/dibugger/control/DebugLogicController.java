@@ -1,7 +1,5 @@
 package dibugger.control;
 
-import static dibugger.debuglogic.debugger.DebugControl.STEP_BACK;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -112,6 +110,7 @@ public class DebugLogicController {
      * Conditional Breakpoint is reached.
      * 
      * @see DebugLogicFacade#continueDebug()
+     * @throws DIbuggerLogicException
      */
     public void continueDebug() throws DIbuggerLogicException {
         debugLogicFacade.continueDebug();
@@ -120,13 +119,13 @@ public class DebugLogicController {
     /**
      * Executes a normal step of size 1 in a given program
      * 
-     * @param numberOfProgram
-     *            the number of program to do a step in
+     * @param programNameId
+     *            the id of program to do a step in
      * @see DebugLogicFacade#singleStep(int)
      */
-    public void singleStep(String programNameID) {
-    	if(map_programNameIDs.containsKey(programNameID)){
-    		debugLogicFacade.singleStep(map_programNameIDs.get(programNameID));
+    public void singleStep(String programNameId) {
+    	if(map_programNameIDs.containsKey(programNameId)){
+    		debugLogicFacade.singleStep(map_programNameIDs.get(programNameId));
     	}
     }
     
@@ -141,8 +140,10 @@ public class DebugLogicController {
     }
     
     /**
-     * Returns the value of a specified variable.
+     * Returns the value of a specified program's variable.
      * 
+     * @param programId
+     *            the program's id
      * @param variable
      *            variable
      * @return the value of specified variable
@@ -167,9 +168,9 @@ public class DebugLogicController {
     /**
      * Creates a new watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression
-     * @param expr
+     * @param expression
      *            the expression of the watch expression
      * @see DebugLogicFacade#createWatchExpression(int, String)
      */
@@ -188,9 +189,9 @@ public class DebugLogicController {
     /**
      * Changes the specified watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression to change
-     * @param expr
+     * @param expression
      *            the new expression
      * @param scopes
      *            a list of scopes for the new watch expression
@@ -203,7 +204,7 @@ public class DebugLogicController {
     /**
      * Deletes the specified watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression
      * @see DebugLogicFacade#deleteWatchExpression(int)
      */
@@ -214,9 +215,9 @@ public class DebugLogicController {
     /**
      * Creates a new conditional breakpoint.
      * 
-     * @param id
+     * @param breakPointId
      *            the id of the breakpoint
-     * @param cond
+     * @param condition
      *            the condition of the breakpoint
      * @see DebugLogicFacade#createConditionalBreakpoint(int, String)            
      */
@@ -242,7 +243,7 @@ public class DebugLogicController {
      * 
      * @param expressionId
      *            the id of the expression
-     * @return a List containing all Scope ends for the given conditional
+     * @return a List containing all Scope ends of given conditional
      *         breakpoint
      */
     public List<Integer> getConditionalBreakpointScopeEnds(int expressionId) {
@@ -260,9 +261,9 @@ public class DebugLogicController {
     /**
      * Changes the specified conditional breakpoint.
      * 
-     * @param id
+     * @param breakPointId
      *            the id of the breakpoint to change
-     * @param cond
+     * @param condition
      *            the condition of the breakpoint
      * @param scopes
      *            a list of all scopes
@@ -275,7 +276,7 @@ public class DebugLogicController {
     /**
      * Deletes specified breakpoint.
      * 
-     * @param id
+     * @param conditionalBreakpointId
      *            the id of the breakpoint
      * @see DebugLogicFacade#deleteConditionalBreakpoint(int)
      */
@@ -298,15 +299,15 @@ public class DebugLogicController {
     /**
      * Creates a new breakpoint at given line of specified program.
      * 
-     * @param numberOfProgram
+     * @param programNameId
      *            the program's number
      * @param line
      *            the line to create a breakpoint at
      * @see DebugLogicFacade#createBreakpoint(int, int)
      */
-    public void createBreakpoint(String programNameID, int line) {
-        if(map_programNameIDs.containsKey(programNameID)){
-            int programID = map_programNameIDs.get(programNameID);
+    public void createBreakpoint(String programNameId, int line) {
+        if(map_programNameIDs.containsKey(programNameId)){
+            int programID = map_programNameIDs.get(programNameId);
             debugLogicFacade.createBreakpoint(programID, line);
         }
     }
@@ -320,16 +321,16 @@ public class DebugLogicController {
     /**
      * Deletes a breakpoint at given line of specified program.
      * 
-     * @param numberOfProgram
+     * @param programNameId
      *            the number of program to delete a breakpoint of
      * @param line
      *            the line number referring to the breakpoint
      * @see DebugLogicFacade#deleteBreakpoint(int, int)
      */
-    public void deleteBreakpoint(String programNameID, int line) {
-        if(map_programNameIDs.containsKey(programNameID)){
-            int programID = map_programNameIDs.get(programNameID);
-            debugLogicFacade.deleteBreakpoint(programID, line);
+    public void deleteBreakpoint(String programNameId, int line) {
+        if(map_programNameIDs.containsKey(programNameId)){
+            int programId = map_programNameIDs.get(programNameId);
+            debugLogicFacade.deleteBreakpoint(programId, line);
         }
     }
 
@@ -353,8 +354,8 @@ public class DebugLogicController {
      * @param programTexts a list containing each program's text
      * @param programIdentifiers a list of containing each program's identifier
      */
-    public void saveText(List<String> inputVariables, List<String> programTexts, List<String> programIdentifiers) {
-        inputBuffer.storeTextInput(inputVariables, programTexts, programIdentifiers);
+    public void saveText(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
+        inputBuffer.storeTextInput(inputTexts, programTexts, programIdentifiers);
         debugLogicFacade.syncProgramInput(getProgramInput());
         for(int i=0;i<programIdentifiers.size();++i){
             map_programNameIDs.put(programIdentifiers.get(i), i);
@@ -363,11 +364,11 @@ public class DebugLogicController {
 
     /**
      * Switches DIbugger's mode to debug-mode. Input of user stored in this
-     * Controlfacade via {@link saveText(List, List, List) will be sent to package
+     * Controlfacade via {@link saveText(List, List, List)} will be sent to package
      * {@code dibugger.debuglogic.debugger}.
      * 
      * @see DebugLogicFacade#launchRun(List)
-     * @throws DIbuggerLogicException if an exception occured 
+     * @throws DIbuggerLogicException  
      */
     public void startDebug() throws DIbuggerLogicException {
         debugLogicFacade.launchRun(getProgramInput());
@@ -393,7 +394,7 @@ public class DebugLogicController {
     /**
      * Sets the maximum-iteration-count (example: while loop).
      * 
-     * @param count
+     * @param maximum
      *            the new maximum
      * @see DebugLogicFacade#setMaximumIterations(int)
      */
@@ -405,7 +406,7 @@ public class DebugLogicController {
      * Sets the upper limit of function calls allowed when executing
      * a program.
      * 
-     * @param count
+     * @param maximum
      *            the new maximum
      * @see DebugLogicFacade#setMaximumFunctionCalls(int)
      */
@@ -416,8 +417,6 @@ public class DebugLogicController {
     /**
      * Suggest a stepsize for all programs.
      * 
-     * @param programText
-     *            list containing all program texts
      * @see DebugLogicFacade#suggestStepSize(List)
      */
     public void suggestStepSize() {
@@ -452,7 +451,7 @@ public class DebugLogicController {
     /**
      * Suggests an InputValue for a given variable in a given range.
      * 
-     * @param identifier
+     * @param inputVariableId
      *            the variable's name
      * @param range
      *            the range containing the value to suggest
@@ -468,7 +467,7 @@ public class DebugLogicController {
     /**
      * Select a strategy to be used to suggest step sizes.
      * 
-     * @param id
+     * @param stepSizeStrategyId
      *            the strategy id to select
      * @see DebugLogicFacade#selectStepSizeStrategy(int)
      */
@@ -477,9 +476,9 @@ public class DebugLogicController {
     }
 
     /**
-     * Select a strategy to be used to suggest realtional expressions
+     * Select a strategy to be used to suggest realtional expressions.
      * 
-     * @param id
+     * @param expressionStrategyId
      *            the strategy id to select
      * @see DebugLogicFacade#selectRelationalExpressionStrategy(int)
      */
@@ -488,9 +487,9 @@ public class DebugLogicController {
     }
 
     /**
-     * Select a strategy to be used to suggest input values
+     * Select a strategy to be used to suggest input values.
      * 
-     * @param id
+     * @param inputValueStrategyId
      *            the strategy id to select
      * @see DebugLogicFacade#selectInputValueStrategy(int)
      */
