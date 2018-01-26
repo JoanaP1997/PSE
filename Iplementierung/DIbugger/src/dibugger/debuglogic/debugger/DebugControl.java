@@ -126,7 +126,7 @@ public class DebugControl {
                 }
                 // evaluate conditional breakpoints
                 breakpointFound = !breakpointFound ? evaluateConditionalBreakpoints() : true;
-                if (breakpointFound) {
+                if (breakpointFound && stepID!=0) {
                     stepID = maxSteps;
                 }
             }
