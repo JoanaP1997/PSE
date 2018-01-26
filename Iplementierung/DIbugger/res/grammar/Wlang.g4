@@ -1,5 +1,12 @@
 
 grammar Wlang;
+
+@rulecatch {
+	catch (RecognitionException e) {
+		throw e;
+	}
+}
+
 webppterm: condition | term;
 program: routine* mainRoutine;
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
@@ -147,4 +154,3 @@ DOUBLELITERAL: [1-9][0-9]*'.'[0-9]+ | '0';
 ASSIGN: '=';
 ID : ([a-z]|[A-Z])+ ;
 REL_ID : [A-Z]'.'([a-z]|[A-Z])+ ;
-

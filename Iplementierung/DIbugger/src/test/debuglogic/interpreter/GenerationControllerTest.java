@@ -90,7 +90,7 @@ public class GenerationControllerTest {
 				+ "if(k<=1) {"
 				+ "	return 1;\n"
 				+ "}\n"
-				+ "int res;"
+				+ "int res;\n"
 				+ "res = main(k-1);\n"
 				+ "res = res*k;\n"
 				+ "return res;\n"

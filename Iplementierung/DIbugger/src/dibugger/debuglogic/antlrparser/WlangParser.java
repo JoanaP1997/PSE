@@ -2,6 +2,7 @@
 package dibugger.debuglogic.antlrparser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.runtime.MismatchedTokenException;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class WlangParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.7", RuntimeMetaData.VERSION); }
-
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();

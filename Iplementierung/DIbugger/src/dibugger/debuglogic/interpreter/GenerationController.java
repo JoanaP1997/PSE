@@ -19,6 +19,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
@@ -52,19 +54,31 @@ public class GenerationController {
 		this.currentScopeCount = 0;
 		this.returnValue = null;
 	}
-
+	/**
+	 * Generates a trace, consisting of all the states adopted during the run of the program.
+	 * @param programText the code of the program. 
+	 * @param input the input of the program given as a list of Strings e.g. "x=5".
+	 * @param programIdentifier the identifier of the program. 
+	 * @return an iterator of the trace.
+	 * @throws DIbuggerLogicException if there is some syntactical or semantical error in the program. 
+	 */
 	public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier)
 			throws DIbuggerLogicException {
+		ParseTree mainTree;
 		// create parsetree
+		try {
 		CharStream stream = CharStreams.fromString(programText);
 		WlangLexer lexer = new WlangLexer(stream);
+		//Setting our own error listener.
+		lexer.removeErrorListeners();
+		lexer.addErrorListener(new ActuallyHelpfulErrorListener());
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		WlangParser parser = new WlangParser(tokens);
-		ParseTree mainTree;
-		try {
-			mainTree = parser.program();
-		} catch (RecognitionException re) {
-			throw new SyntaxException(re.getExpectedTokens().toString());
+		parser.removeErrorListeners();
+		parser.addErrorListener(new ActuallyHelpfulErrorListener());
+		mainTree = parser.program();
+		} catch (ActuallyHelpfulSyntaxException e) {
+			throw new SyntaxException(e.getMessage());
 		}
 		this.commandGenerator = new CommandGenerationVisitor(this);
 		this.termGenerator = new TermGenerationVisitor();
@@ -111,6 +125,12 @@ public class GenerationController {
 		return trace.iterator();
 	}
 
+	/**
+	 * Returns the identifier of an input string.
+	 * @param s the input string
+	 * @return the identifier of the input string
+	 * @throws DIbuggerLogicException
+	 */
 	private String getIdentifierOfInput(String s) throws DIbuggerLogicException {
 		if (!s.contains("=")) {
 			throw new SyntaxException("Input in wrong format: Something like x = 5 expected.");
@@ -120,20 +140,30 @@ public class GenerationController {
 		return newString.split("=")[0];
 	}
 
+	/**
+	 * Returns the default value of a type.
+	 * @param type the type
+	 * @return the default value of a type
+	 */
 	private Term getDefaultTerm(Type type) {
 		return type.getDefault();
 	}
 
 	/**
-	 * Returns the current Scope during Runtime of TraceGeneration
+	 * Returns the current Scope during Runtime of TraceGeneration.
 	 * 
-	 * @return
+	 * @return the scope.
 	 */
 	public Scope getCurrentScope() {
 		Scope current = this.scopes.peek();
 		return current;
 	}
-
+	
+	/**
+	 * Pushes a scope on the top of the runtimestack.
+	 * @param scope the new scope.
+	 * @throws DIbuggerLogicException if the maximum functioncalls are exceeded.
+	 */
 	public void pushScope(Scope scope) throws DIbuggerLogicException {
 		if (this.currentScopeCount < this.maxFuncCalls) {
 			this.scopes.push(scope);
@@ -141,40 +171,74 @@ public class GenerationController {
 		}
 		else throw new ExceededMaxFuncCallException(-1);
 	}
-
+	/**
+	 * Pops a scope from the stack.
+	 * @return the top of the scopestack.
+	 */
 	public Scope popScope() {
 		this.currentScopeCount--;
 		return this.scopes.pop();
 	}
-
+	/**
+	 * Sets the return value of the last functionreturn.
+	 * @param value the return value.
+	 */
 	public void setReturnValue(TermValue value) {
 		this.returnValue = value;
 	}
-
+	/**
+	 * Returns the return value of the last functionreturn.
+	 * @return the return value.
+	 */
 	public TermValue getReturnValue() {
 		return this.returnValue;
 	}
-
+	/**
+	 * Returns the Routinecommand belonging to the routine with the given name.
+	 * @param routine the name of the routine.
+	 * @return the routinecommand.
+	 */
 	public RoutineCommand getRoutineRootCommand(String routine) {
 		return this.routines.get(routine);
 	}
-
+	/**
+	 * Sets the maximum number of iterations allowed during the program run.
+	 * @param maxIterations the maximum number of iterations.
+	 */
 	public void setMaxIterations(int maxIterations) {
 		this.maxIterations = maxIterations;
 	}
-
+	
+	/**
+	 * Returns the number of maximum iterations allowed in the program run.
+	 * @return the maximum iterations.
+	 */
 	public int getMaxIterations() {
 		return this.maxIterations;
 	}
 
+	/**
+	 * Sets the maximum number of function calls (total) allowed during the program run.
+	 * @param maxFuncCalls the maximum number of function calls
+	 */
 	public void setMaxFuncCalls(int maxFuncCalls) {
 		this.maxFuncCalls = maxFuncCalls;
 	}
 
+	/**
+	 * Returns the maximum number of function calls (total) allowed during the program run.
+	 * @return the maximum number of function calls
+	 */
 	public int getMaxFuncCalls() {
 		return this.maxFuncCalls;
 	}
 
+	/**
+	 * Turns an input tring into a Term.
+	 * @param input the input string
+	 * @return the Term
+	 * @throws DIbuggerLogicException
+	 */
 	private Term getTermFromInput(String input) throws DIbuggerLogicException {
 		if (!input.contains("=")) {
 			throw new SyntaxException("Input in wrong format: Something like x = 5 expected.");
