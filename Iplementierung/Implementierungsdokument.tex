@@ -1,4 +1,4 @@
-\documentclass[parskip=full]{scrartcl}
++\documentclass[parskip=full]{scrartcl}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -167,12 +167,12 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 				\end{itemize}
 		
 \section{Umsetzung von Entwurfsentscheidungen}
-\subsection{Model-View-Control}
-\subsection{Das Observerpattern}
-z.B. Gui-Facade
-\newpage
+%\subsection{Model-View-Control}
+%\subsection{Das Observerpattern}
+%z.B. Gui-Facade
+%\newpage
 \subsection{Singleton}
-%z.B. Command Panel
+%%z.B. Command Panel
 Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe Abbildung \ref{loadRDBF}, kann das Einlesen einer RDBF (Relational DIbugger File) Datei in einer kurzen Methoden geschehen.
 Über \texttt{evaluateLine} wird der Typ einer Zeile herausgefunden. Je nachdem, von welchem Typ diese Zeile dann ist, werden über das Singleton der Klasse RDBFParser unterschiedliche Methoden aufgerufen, um eine Zuweisung oder einen Block zu erstellen und in der Dateistruktur einzuordnen. Dies ist durch das Singleton einfach zu lösen.
 \begin{figure}[!h]
@@ -181,8 +181,8 @@ Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe 
 \label{loadRDBF}
 \end{figure}
 
-\subsection{Fassade}
-z.B. Control-Facade
+%\subsection{Fassade}
+%z.B. Control-Facade
 
 \newpage
 \subsection{Strategie}
