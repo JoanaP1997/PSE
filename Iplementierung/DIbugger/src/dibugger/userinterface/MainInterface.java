@@ -392,11 +392,7 @@ public class MainInterface extends JFrame {
    */
   void startDebug() {
     saveText();
-    try {
-      controlFacade.startDebug();
-    } catch (DIbuggerLogicException e) {
-      // TODO do something with exceptions
-    }
+    controlFacade.startDebug();
   }
 
   /**
