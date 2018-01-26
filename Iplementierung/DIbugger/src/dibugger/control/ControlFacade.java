@@ -270,11 +270,14 @@ public class ControlFacade {
      * {@code dibugger.debuglogic.debugger}.
      * 
      * @see DebugLogicController#startDebug()
-     * @throws DIbuggerLogicException temporarily?
      */
-    public void startDebug() throws DIbuggerLogicException {
+    public void startDebug() {
         enableDebugMode();
-        debugLogicController.startDebug();      
+        try {
+			debugLogicController.startDebug();
+		} catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}      
     }
 
     /**

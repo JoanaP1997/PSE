@@ -54,29 +54,38 @@ public class GenerationController {
 		this.currentScopeCount = 0;
 		this.returnValue = null;
 	}
+
 	/**
-	 * Generates a trace, consisting of all the states adopted during the run of the program.
-	 * @param programText the code of the program. 
-	 * @param input the input of the program given as a list of Strings e.g. "x=5".
-	 * @param programIdentifier the identifier of the program. 
+	 * Generates a trace, consisting of all the states adopted during the run of
+	 * the program.
+	 * 
+	 * @param programText
+	 *            the code of the program.
+	 * @param input
+	 *            the input of the program given as a list of Strings e.g.
+	 *            "x=5".
+	 * @param programIdentifier
+	 *            the identifier of the program.
 	 * @return an iterator of the trace.
-	 * @throws DIbuggerLogicException if there is some syntactical or semantical error in the program. 
+	 * @throws DIbuggerLogicException
+	 *             if there is some syntactical or semantical error in the
+	 *             program.
 	 */
 	public ListIterator<TraceState> generateTrace(String programText, List<String> input, String programIdentifier)
 			throws DIbuggerLogicException {
 		ParseTree mainTree;
 		// create parsetree
 		try {
-		CharStream stream = CharStreams.fromString(programText);
-		WlangLexer lexer = new WlangLexer(stream);
-		//Setting our own error listener.
-		lexer.removeErrorListeners();
-		lexer.addErrorListener(new ActuallyHelpfulErrorListener());
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		WlangParser parser = new WlangParser(tokens);
-		parser.removeErrorListeners();
-		parser.addErrorListener(new ActuallyHelpfulErrorListener());
-		mainTree = parser.program();
+			CharStream stream = CharStreams.fromString(programText);
+			WlangLexer lexer = new WlangLexer(stream);
+			// Setting our own error listener.
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
+			WlangParser parser = new WlangParser(tokens);
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ActuallyHelpfulErrorListener());
+			mainTree = parser.program();
 		} catch (ActuallyHelpfulSyntaxException e) {
 			throw new SyntaxException(e.getMessage());
 		}
@@ -127,7 +136,9 @@ public class GenerationController {
 
 	/**
 	 * Returns the identifier of an input string.
-	 * @param s the input string
+	 * 
+	 * @param s
+	 *            the input string
 	 * @return the identifier of the input string
 	 * @throws DIbuggerLogicException
 	 */
@@ -142,7 +153,9 @@ public class GenerationController {
 
 	/**
 	 * Returns the default value of a type.
-	 * @param type the type
+	 * 
+	 * @param type
+	 *            the type
 	 * @return the default value of a type
 	 */
 	private Term getDefaultTerm(Type type) {
@@ -158,59 +171,76 @@ public class GenerationController {
 		Scope current = this.scopes.peek();
 		return current;
 	}
-	
+
 	/**
 	 * Pushes a scope on the top of the runtimestack.
-	 * @param scope the new scope.
-	 * @throws DIbuggerLogicException if the maximum functioncalls are exceeded.
+	 * 
+	 * @param scope
+	 *            the new scope.
+	 * @throws DIbuggerLogicException
+	 *             if the maximum functioncalls are exceeded.
 	 */
 	public void pushScope(Scope scope) throws DIbuggerLogicException {
 		if (this.currentScopeCount < this.maxFuncCalls) {
 			this.scopes.push(scope);
 			this.currentScopeCount++;
-		}
-		else throw new ExceededMaxFuncCallException(-1);
+		} else
+			throw new ExceededMaxFuncCallException(-1);
 	}
+
 	/**
 	 * Pops a scope from the stack.
+	 * 
 	 * @return the top of the scopestack.
 	 */
 	public Scope popScope() {
 		this.currentScopeCount--;
 		return this.scopes.pop();
 	}
+
 	/**
 	 * Sets the return value of the last functionreturn.
-	 * @param value the return value.
+	 * 
+	 * @param value
+	 *            the return value.
 	 */
 	public void setReturnValue(TermValue value) {
 		this.returnValue = value;
 	}
+
 	/**
 	 * Returns the return value of the last functionreturn.
+	 * 
 	 * @return the return value.
 	 */
 	public TermValue getReturnValue() {
 		return this.returnValue;
 	}
+
 	/**
 	 * Returns the Routinecommand belonging to the routine with the given name.
-	 * @param routine the name of the routine.
+	 * 
+	 * @param routine
+	 *            the name of the routine.
 	 * @return the routinecommand.
 	 */
 	public RoutineCommand getRoutineRootCommand(String routine) {
 		return this.routines.get(routine);
 	}
+
 	/**
 	 * Sets the maximum number of iterations allowed during the program run.
-	 * @param maxIterations the maximum number of iterations.
+	 * 
+	 * @param maxIterations
+	 *            the maximum number of iterations.
 	 */
 	public void setMaxIterations(int maxIterations) {
 		this.maxIterations = maxIterations;
 	}
-	
+
 	/**
 	 * Returns the number of maximum iterations allowed in the program run.
+	 * 
 	 * @return the maximum iterations.
 	 */
 	public int getMaxIterations() {
@@ -218,15 +248,20 @@ public class GenerationController {
 	}
 
 	/**
-	 * Sets the maximum number of function calls (total) allowed during the program run.
-	 * @param maxFuncCalls the maximum number of function calls
+	 * Sets the maximum number of function calls (total) allowed during the
+	 * program run.
+	 * 
+	 * @param maxFuncCalls
+	 *            the maximum number of function calls
 	 */
 	public void setMaxFuncCalls(int maxFuncCalls) {
 		this.maxFuncCalls = maxFuncCalls;
 	}
 
 	/**
-	 * Returns the maximum number of function calls (total) allowed during the program run.
+	 * Returns the maximum number of function calls (total) allowed during the
+	 * program run.
+	 * 
 	 * @return the maximum number of function calls
 	 */
 	public int getMaxFuncCalls() {
@@ -235,7 +270,9 @@ public class GenerationController {
 
 	/**
 	 * Turns an input tring into a Term.
-	 * @param input the input string
+	 * 
+	 * @param input
+	 *            the input string
 	 * @return the Term
 	 * @throws DIbuggerLogicException
 	 */
