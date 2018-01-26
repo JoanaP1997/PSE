@@ -124,8 +124,10 @@ public class DebugLogicController {
      *            the number of program to do a step in
      * @see DebugLogicFacade#singleStep(int)
      */
-    public void singleStep(int numberOfProgram) {
-        debugLogicFacade.singleStep(numberOfProgram);
+    public void singleStep(String programNameID) {
+    	if(map_programNameIDs.containsKey(programNameID)){
+    		debugLogicFacade.singleStep(map_programNameIDs.get(programNameID));
+    	}
     }
 
     /**

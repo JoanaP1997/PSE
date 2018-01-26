@@ -117,9 +117,9 @@ public class ControlFacade {
      *            the number of program to do a step in
      * @see DebugLogicController#singleStep(int) 
      */
-    public void singleStep(int numberOfProgram) {
+    public void singleStep(String programNameID) {
         ensureInDebugMode();
-        debugLogicController.singleStep(numberOfProgram);
+        debugLogicController.singleStep(programNameID);
     }
 
     /**
