@@ -100,6 +100,7 @@ public class DebugLogicController {
      * @param type
      *            the type of the step
      * @see DebugLogicFacade#step(int)
+     * @throws DIbuggerLogicException
      */
     public void step(int type) throws DIbuggerLogicException {
         debugLogicFacade.step(type);

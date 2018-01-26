@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 import dibugger.debuglogic.debugger.DebugLogicFacade;
-import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;

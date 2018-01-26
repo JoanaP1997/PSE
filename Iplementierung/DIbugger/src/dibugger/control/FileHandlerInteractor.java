@@ -229,6 +229,7 @@ public class FileHandlerInteractor extends Observable {
      * 
      * @param languageId the id specifieng the language
      * @see GUIFacade#changeLanguage()
+     * @throws LanguageNotFoundException
      */
     public void changeLanguage(String languageId) throws LanguageNotFoundException {
         LanguageFile nextLanguageFile = fileHandlerFacade.getLanguageFile(languageId);
