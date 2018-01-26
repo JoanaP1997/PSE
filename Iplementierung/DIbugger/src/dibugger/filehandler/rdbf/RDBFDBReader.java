@@ -85,10 +85,9 @@ public class RDBFDBReader extends DBFileReader {
             }
 
             return f;
-        } catch (IOException e) {// TODO no stack trace
-            e.printStackTrace();
+        } catch (IOException e) {
+            return new ConfigurationFile(file);
         }
-        return null;
     }
 
     @Override

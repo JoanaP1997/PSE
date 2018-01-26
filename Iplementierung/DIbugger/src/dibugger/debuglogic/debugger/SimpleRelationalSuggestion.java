@@ -1,7 +1,5 @@
 package dibugger.debuglogic.debugger;
 
-import java.util.List;
-
 /**
  * class to suggest watch expressions or conditional breakpoints very simple.
  * 
@@ -21,7 +19,7 @@ public class SimpleRelationalSuggestion extends RelationalSuggestion {
 
     @Override
     public String suggestConditionalBreakpoint() {
-        return "A.x = A.x";
+        return "A.x = B.x";
     }
 
 }

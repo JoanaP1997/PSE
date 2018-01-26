@@ -8,6 +8,7 @@ import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.GenerationController;
 import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.debuglogic.interpreter.TermValue;
 import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
 import dibugger.debuglogic.interpreter.WatchExpression;
@@ -43,6 +44,7 @@ public class DebugControl {
 
     // interpreter objects
     private GenerationController generationController;
+    private List<TermValue> list_programReturnValue;
 
     /**
      * Creates a new debugControl without programs, watch expressions or
@@ -61,6 +63,7 @@ public class DebugControl {
         list_stepSize = new ArrayList<Integer>();
 
         generationController = new GenerationController(DEF_IT, DEF_MAX_FUNC_CALLS);
+        list_programReturnValue = new ArrayList<TermValue>();
     }
 
     /**
@@ -81,6 +84,8 @@ public class DebugControl {
 
             list_traceIterator
                     .add(generationController.generateTrace(pi.getText(), pi.getInputValues(), pi.getProgramID()));
+            list_programReturnValue.add(generationController.getReturnValue());            
+            
             jumpTraceIterator(i, pi.getCounter());
         }
 
@@ -709,8 +714,9 @@ public class DebugControl {
         for (int i = 0; i < list_currentTraceStates.size(); ++i) {
             TraceState state = list_currentTraceStates.get(i);
             if (state.getProgramId().equals(programNameID)) {
-                //TODO 
-                //String value = generationController.getReturnValue().toString();
+                if(list_programReturnValue.get(i)!=null){
+                	return list_programReturnValue.get(i).toString();
+                }
             }
         }
         return "?";
