@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Class that represents a PopUp to let the user generate a Suggestion for StepSize, variable input, Watch expression or
- * conditional breakpoint. 
+ * conditional breakpoint.
  */
 public class VariableSuggestionPopUp extends DIbuggerPopUp {
 

@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -105,6 +107,13 @@ public class ProgramPanel extends JPanel {
     delete.setIcon(deleteIcon);
     delete.addActionListener(actionEvent -> mainInterface.deleteProgramPanel(id));
     initCodeArea();
+
+    singleStepButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        mainInterface.getControlFacade().singleStep(id);
+      }
+    });
 
     initVariableInspector();
 
