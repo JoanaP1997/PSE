@@ -392,6 +392,7 @@ public class MainInterface extends JFrame {
    */
   void startDebug() {
     saveText();
+    newProgram.setEnabled(false);
     for (ProgramPanel p : programPanels.values()) {
       p.startDebug();
     }

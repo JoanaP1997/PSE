@@ -43,6 +43,9 @@ public class ProgramPanel extends JPanel {
   private JScrollPane codeScrollPane;
   private JEditorPane editor;
 
+  private JButton delete;
+  private JButton loadFile;
+
   private JButton singleStepButton;
 
   private JPanel variableInspector;
@@ -93,13 +96,13 @@ public class ProgramPanel extends JPanel {
     inputvariableTextField.addActionListener(evt -> variableInputActionPerformed());
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
-    JButton loadFile = new JButton();
+    loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
     iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
     loadFile.setIcon(iconLoad);
     loadFile.addActionListener(actionEvent -> setTextWithFileChooser());
 
-    JButton delete = new JButton();
+    delete = new JButton();
     ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
     deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
     delete.setIcon(deleteIcon);
@@ -496,19 +499,23 @@ public class ProgramPanel extends JPanel {
   }
 
   /**
-   * disables single step button.
+   * Disables all functions not available in editmode.
    */
   void stopDebug() {
     editor.setEditable(true);
+    loadFile.setEnabled(true);
+    delete.setEnabled(true);
     inputvariableTextField.setEditable(true);
     singleStepButton.setEnabled(false);
   }
 
   /**
-   * enables single step button.
+   * Disables all functions not available in debugmode.
    */
   void startDebug() {
     editor.setEditable(false);
+    loadFile.setEnabled(false);
+    delete.setEnabled(false);
     inputvariableTextField.setEditable(false);
     singleStepButton.setEnabled(true);
   }
