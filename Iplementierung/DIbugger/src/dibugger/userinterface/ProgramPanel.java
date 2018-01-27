@@ -499,6 +499,8 @@ public class ProgramPanel extends JPanel {
    * disables single step button.
    */
   void stopDebug() {
+    editor.setEditable(true);
+    inputvariableTextField.setEditable(true);
     singleStepButton.setEnabled(false);
   }
 
@@ -506,6 +508,8 @@ public class ProgramPanel extends JPanel {
    * enables single step button.
    */
   void startDebug() {
+    editor.setEditable(false);
+    inputvariableTextField.setEditable(false);
     singleStepButton.setEnabled(true);
   }
 }
