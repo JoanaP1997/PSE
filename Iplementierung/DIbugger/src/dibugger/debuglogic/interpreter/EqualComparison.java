@@ -12,7 +12,7 @@ import dibugger.debuglogic.exceptions.DIbuggerLogicException;
  */
 public final class EqualComparison extends Comparison {
     public EqualComparison(Term leftOperand, Term rightOperand) {
-        super(leftOperand, rightOperand);
+        super(leftOperand, rightOperand);        
     }
 
     @Override

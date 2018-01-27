@@ -30,8 +30,10 @@ public final class VariableRelationalTerm extends Term {
     public TermValue evaluate(List<TraceState> states) {
         //find the state the variable belongs to
         for(TraceState state : states) {
-          if (state.getProgramId().equals(this.programId)) {
-            return state.getValueOf(identifier);
+          if (state.getProgramId() != null && state.getProgramId().equals(this.programId)) {
+            TermValue value = state.getValueOf(identifier);
+            if (value != null)
+            	return value;
           }
         }
         return new CharValue('?');

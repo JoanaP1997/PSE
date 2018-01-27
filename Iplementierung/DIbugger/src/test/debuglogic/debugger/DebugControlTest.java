@@ -89,10 +89,10 @@ public class DebugControlTest {
         l_in.add(in);
         facade.setStepSize(0, 5);
         facade.createWatchExpression(0, "A.i + A.x");
-//        facade.createCondBreakpoint(0, "A.x = 2*A.i");
+        facade.createCondBreakpoint(0, "A.x == 2*A.i");
         facade.launchRun(l_in);
         facade.step(DebugControl.STEP_NORMAL);
         assertEquals("9", facade.getWEValue(0));
-//        System.out.println(facade.getCBValue(0));
+        System.out.println(facade.getCBValue(0));
     }
 }

@@ -269,7 +269,7 @@ public class GenerationController {
 	}
 
 	/**
-	 * Turns an input tring into a Term.
+	 * Turns an input string into a Term.
 	 * 
 	 * @param input
 	 *            the input string
@@ -285,11 +285,20 @@ public class GenerationController {
 		newString = newString.split("=")[1];
 
 		// create parse tree
-		CharStream stream = CharStreams.fromString(newString);
-		WlangLexer lexer = new WlangLexer(stream);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		WlangParser parser = new WlangParser(tokens);
-		ParseTree tree = parser.term();
+		ParseTree tree;
+		try {
+			CharStream stream = CharStreams.fromString(newString);
+			WlangLexer lexer = new WlangLexer(stream);
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
+			WlangParser parser = new WlangParser(tokens);
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ActuallyHelpfulErrorListener());
+			tree = parser.term();
+		} catch (ActuallyHelpfulSyntaxException e) {
+			throw new SyntaxException(e.getMessage());
+		}
 		return termGenerator.visit(tree);
 
 	}
