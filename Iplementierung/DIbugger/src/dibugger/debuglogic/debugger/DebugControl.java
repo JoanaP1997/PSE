@@ -288,8 +288,9 @@ public class DebugControl {
      *            the id of the watch expression
      * @param expr
      *            the expression of the watch expression
+     * @throws DIbuggerLogicException 
      */
-    public void createWatchExpression(int id, String expr) {
+    public void createWatchExpression(int id, String expr) throws DIbuggerLogicException {
         while (list_watchExpressions.size() - 1 < id) {
             list_watchExpressions.add(null);
         }
@@ -306,8 +307,9 @@ public class DebugControl {
      *            the new expression
      * @param scopes
      *            a list of scopes for the new watch expression
+     * @throws DIbuggerLogicException 
      */
-    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
+    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         if (id < list_watchExpressions.size()) {
             WatchExpression e = list_watchExpressions.get(id);
             if (e != null) {
@@ -333,8 +335,9 @@ public class DebugControl {
      *            the id of the breakpoint
      * @param cond
      *            the condition of the breakpoint
+     * @throws DIbuggerLogicException 
      */
-    public void createCondBreakpoint(int id, String cond) {
+    public void createCondBreakpoint(int id, String cond) throws DIbuggerLogicException {
         while (list_condBreakpoints.size() - 1 < id) {
             list_condBreakpoints.add(null);
         }
@@ -351,8 +354,9 @@ public class DebugControl {
      *            the condition of the breakpoint
      * @param scopes
      *            a list of all scopes
+     * @throws DIbuggerLogicException 
      */
-    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
+    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         if (id < list_condBreakpoints.size()) {
             ConditionalBreakpoint cb = list_condBreakpoints.get(id);
             if (cb != null) {

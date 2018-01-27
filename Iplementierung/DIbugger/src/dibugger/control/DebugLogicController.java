@@ -173,13 +173,14 @@ public class DebugLogicController {
      *            the id of the watch expression
      * @param expression
      *            the expression of the watch expression
+     * @throws DIbuggerLogicException 
      * @see DebugLogicFacade#createWatchExpression(int, String)
      */
-    public void createWatchExpression(int watchExpressionId, String expression) {
+    public void createWatchExpression(int watchExpressionId, String expression) throws DIbuggerLogicException {
         debugLogicFacade.createWatchExpression(watchExpressionId, expression);
     }
 
-    void createWatchExpressions(Collection<String> expressions) {
+    void createWatchExpressions(Collection<String> expressions) throws DIbuggerLogicException {
         int watchExpressionId = 0;
         for (String expression : expressions) {
             createWatchExpression(watchExpressionId, expression);
@@ -196,9 +197,10 @@ public class DebugLogicController {
      *            the new expression
      * @param scopes
      *            a list of scopes for the new watch expression
+     * @throws DIbuggerLogicException 
      * @see DebugLogicFacade#changeWatchExpression(int, String, List)
      */
-    public void changeWatchExpression(int watchExpressionId, String expression, List<ScopeTuple> scopes) {
+    public void changeWatchExpression(int watchExpressionId, String expression, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugLogicFacade.changeWatchExpression(watchExpressionId, expression, scopes);
     }
 
@@ -220,9 +222,10 @@ public class DebugLogicController {
      *            the id of the breakpoint
      * @param condition
      *            the condition of the breakpoint
+     * @throws DIbuggerLogicException 
      * @see DebugLogicFacade#createConditionalBreakpoint(int, String)            
      */
-    public void createConditionalBreakpoint(int breakPointId, String condition) {
+    public void createConditionalBreakpoint(int breakPointId, String condition) throws DIbuggerLogicException {
         debugLogicFacade.createCondBreakpoint(breakPointId, condition);
     }
 
@@ -251,7 +254,7 @@ public class DebugLogicController {
         return debugLogicFacade.getCBScopeEnd(expressionId);
     }
 
-    void createConditionalBreakpoints(List<String> conditions) {
+    void createConditionalBreakpoints(List<String> conditions) throws DIbuggerLogicException {
         int breakpointId = 0;
         for (String condition : conditions) {
             createConditionalBreakpoint(breakpointId, condition);
@@ -268,9 +271,10 @@ public class DebugLogicController {
      *            the condition of the breakpoint
      * @param scopes
      *            a list of all scopes
+     * @throws DIbuggerLogicException 
      * @see DebugLogicFacade#changeConditionalBreakpoint(int, String, List)
      */
-    public void changeConditionalBreakpoint(int breakPointId, String condition, List<ScopeTuple> scopes) {
+    public void changeConditionalBreakpoint(int breakPointId, String condition, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugLogicFacade.changeCondBreakpoint(breakPointId, condition, scopes);
     }
 

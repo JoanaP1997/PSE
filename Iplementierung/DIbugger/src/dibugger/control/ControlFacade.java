@@ -131,7 +131,11 @@ public class ControlFacade {
      * @see DebugLogicController#createWatchExpression(int, String)
      */
     public void createWatchExpression(int watchExpressionId, String expression) {
-        debugLogicController.createWatchExpression(watchExpressionId, expression);
+        try {
+			debugLogicController.createWatchExpression(watchExpressionId, expression);
+		} catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}
     }
     
     /**
@@ -146,7 +150,11 @@ public class ControlFacade {
      * @see DebugLogicController#changeWatchExpression(int, String, List)
      */
     public void changeWatchExpression(int watchExpressionId, String expression, List<ScopeTuple> scopes) {
-        debugLogicController.changeWatchExpression(watchExpressionId, expression, scopes);
+        try {
+			debugLogicController.changeWatchExpression(watchExpressionId, expression, scopes);
+		} catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}
     }
 
     /**
@@ -170,7 +178,11 @@ public class ControlFacade {
      * @see DebugLogicController#createConditionalBreakpoint(int, String)            
      */
     public void createConditionalBreakpoint(int breakPointId, String condition) {
-        debugLogicController.createConditionalBreakpoint(breakPointId, condition);
+        try {
+			debugLogicController.createConditionalBreakpoint(breakPointId, condition);
+		} catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}
     }
 
     /**
@@ -185,7 +197,11 @@ public class ControlFacade {
      * @see DebugLogicController#changeConditionalBreakpoint(int, String, List)
      */
     public void changeConditionalBreakpoint(int breakPointId, String condition, List<ScopeTuple> scopes) {
-        debugLogicController.changeConditionalBreakpoint(breakPointId, condition, scopes);
+        try {
+			debugLogicController.changeConditionalBreakpoint(breakPointId, condition, scopes);
+		} catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}
     }
 
     /**
@@ -313,7 +329,9 @@ public class ControlFacade {
             fileHandlerInteractor.loadConfigurationFile(configurationFile);
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
-        }
+        } catch (DIbuggerLogicException e) {
+			exceptionHandler.handle(e);
+		}
     }
 
     /**

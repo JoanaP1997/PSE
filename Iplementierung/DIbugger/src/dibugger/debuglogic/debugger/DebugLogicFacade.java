@@ -61,16 +61,18 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
+     * @throws DIbuggerLogicException 
      * @see DebugControl#createWatchExpression(int, String)
      */
-    public void createWatchExpression(int id, String expr) {
+    public void createWatchExpression(int id, String expr) throws DIbuggerLogicException {
         debugControl.createWatchExpression(id, expr);
     }
 
     /**
+     * @throws DIbuggerLogicException 
      * @see DebugControl#changeWatchExpression(int, String, List)
      */
-    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
+    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugControl.changeWatchExpression(id, expr, scopes);
     }
 
@@ -82,16 +84,18 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
+     * @throws DIbuggerLogicException 
      * @see DebugControl#changeCondBreakpoint(int, String, List)
      */
-    public void createCondBreakpoint(int id, String cond) {
+    public void createCondBreakpoint(int id, String cond) throws DIbuggerLogicException {
         debugControl.createCondBreakpoint(id, cond);
     }
 
     /**
+     * @throws DIbuggerLogicException 
      * @see DebugControl#changeCondBreakpoint(int, String, List)
      */
-    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
+    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugControl.changeCondBreakpoint(id, cond, scopes);
     }
 

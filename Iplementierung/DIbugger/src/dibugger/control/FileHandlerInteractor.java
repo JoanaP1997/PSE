@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Observable;
 
 import dibugger.debuglogic.debugger.ProgramInput;
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
 import dibugger.filehandler.facade.ConfigurationFile;
@@ -76,14 +77,15 @@ public class FileHandlerInteractor extends Observable {
      * 
      * @param configurationFile the {@code File} to load
      * @throws FileHandlerException
+     * @throws DIbuggerLogicException 
      */
-    public void loadConfigurationFile(File configurationFile) throws FileHandlerException {
+    public void loadConfigurationFile(File configurationFile) throws FileHandlerException, DIbuggerLogicException {
         ConfigurationFile nextConfigFile = fileHandlerFacade.loadConfig(configurationFile);
         debugLogicController.reset();
         applyConfiguration(nextConfigFile);
     }
 
-    private void applyConfiguration(ConfigurationFile configFile) {
+    private void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
