@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
@@ -64,18 +65,22 @@ public class ControlFacade {
             throw new IllegalStateException();
         }
     }
-
+    
     /**
-     * Sets the stepsize of a program
+     * Sets the a program's stepsize.
      * 
-     * @param numberOfProgram
-     *            the number of program to change the stepsize of
-     * @param size
+     * @param programId
+     *            the id of program to change the stepsize of
+     * @param stepSize
      *            the new stepsize to use while debugging
-     * @see DebugLogicController#setStepSize(int, int)
-     */ //TODO: javadoc
-    public void setStepSize(String programId, String size) {
-        debugLogicController.setStepSize(programId, size);
+     * @see DebugLogicController#setStepSize(String, String)
+     */
+    public void setStepSize(String programId, String stepSize) {
+        try {
+            debugLogicController.setStepSize(programId, stepSize);
+        } catch (SyntaxException exception) {
+            exceptionHandler.handle(exception);
+        }
     }
 
     /**
@@ -124,9 +129,9 @@ public class ControlFacade {
     /**
      * Creates a new watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression
-     * @param expr
+     * @param expression
      *            the expression of the watch expression
      * @see DebugLogicController#createWatchExpression(int, String)
      */
@@ -141,9 +146,9 @@ public class ControlFacade {
     /**
      * Changes the specified watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression to change
-     * @param expr
+     * @param expression
      *            the new expression
      * @param scopes
      *            a list of scopes for the new watch expression
@@ -160,7 +165,7 @@ public class ControlFacade {
     /**
      * Deletes the specified watch expression.
      * 
-     * @param id
+     * @param watchExpressionId
      *            the id of the watch expression
      * @see DebugLogicController#deleteWatchExpression(int)
      */
@@ -207,12 +212,12 @@ public class ControlFacade {
     /**
      * Deletes specified breakpoint.
      * 
-     * @param id
+     * @param conditionalBreakpointId
      *            the id of the breakpoint
      * @see DebugLogicController#deleteConditionalBreakpoint(int)
      */
-    public void deleteConditionalBreakpoint(int conditionalBreakPointId) {
-        debugLogicController.deleteConditionalBreakpoint(conditionalBreakPointId);
+    public void deleteConditionalBreakpoint(int conditionalBreakpointId) {
+        debugLogicController.deleteConditionalBreakpoint(conditionalBreakpointId);
     }
 
 //    /**
@@ -232,10 +237,10 @@ public class ControlFacade {
      *            the program's id
      * @param line
      *            the line to create a breakpoint at
-     * @see DebugLogicController#createBreakpoint(int, int)
+     * @see DebugLogicController#createBreakpoint(String, int)
      */
-    public void createBreakpoint(String programNameID, int line) {
-        debugLogicController.createBreakpoint(programNameID, line);
+    public void createBreakpoint(String programNameId, int line) {
+        debugLogicController.createBreakpoint(programNameId, line);
     }
 
     /**
@@ -247,8 +252,8 @@ public class ControlFacade {
      *            the line number referring to the breakpoint
      * @see DebugLogicController#deleteBreakpoint(String, int)
      */
-    public void deleteBreakpoint(String programNameID, int line) {
-        debugLogicController.deleteBreakpoint(programNameID, line);
+    public void deleteBreakpoint(String programNameId, int line) {
+        debugLogicController.deleteBreakpoint(programNameId, line);
     }
 
     /**
@@ -281,7 +286,7 @@ public class ControlFacade {
 
     /**
      * Switches DIbugger's mode to debug-mode. Input of user stored in this
-     * Controlfacade via {@link saveText(List, List, List)} will be sent to package
+     * Controlfacade via {@link #saveText(List, List, List)} will be sent to package
      * {@code dibugger.debuglogic.debugger}.
      * 
      * @see DebugLogicController#startDebug()
@@ -371,7 +376,7 @@ public class ControlFacade {
     /**
      * Sets the maximum-iteration-count (example: while loop).
      * 
-     * @param count
+     * @param maximum
      *            the new maximum
      * @see DebugLogicController#setMaximumIterations(int)
      */
@@ -383,7 +388,7 @@ public class ControlFacade {
      * Sets the upper limit of function calls allowed when executing
      * a program.
      * 
-     * @param count
+     * @param maximum
      *            the new maximum
      * @see DebugLogicController#setMaximumFunctionCalls(int)
      */
@@ -423,7 +428,7 @@ public class ControlFacade {
     /**
      * Suggests an InputValue for a given variable in a given range.
      * 
-     * @param identifier
+     * @param inputVariableId
      *            the variable's name
      * @param range
      *            the range containing the value to suggest
@@ -439,7 +444,7 @@ public class ControlFacade {
     /**
      * Select a strategy to be used to suggest step sizes.
      * 
-     * @param id
+     * @param stepSizeStrategyId
      *            the strategy id to select
      * @see DebugLogicController#selectStepSizeStrategy(int)
      */
@@ -450,7 +455,7 @@ public class ControlFacade {
     /**
      * Select a strategy to be used to suggest realtional expressions
      * 
-     * @param id
+     * @param expressionStrategyId
      *            the strategy id to select
      * @see DebugLogicController#selectRelationalExpressionStrategy(int)
      */
@@ -461,7 +466,7 @@ public class ControlFacade {
     /**
      * Select a strategy to be used to suggest input values
      * 
-     * @param id
+     * @param inputValueStrategyId
      *            the strategy id to select
      * @see DebugLogicController#selectInputValueStrategy(int)
      */

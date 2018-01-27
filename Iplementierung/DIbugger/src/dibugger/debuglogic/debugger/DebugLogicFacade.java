@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Observable;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.debuglogic.interpreter.WatchExpression;
@@ -31,12 +32,20 @@ public class DebugLogicFacade extends Observable {
         suggest_input = new SimpleInputSuggestion();
         suggest_relational = new SimpleRelationalSuggestion(debugControl);
     }
-
+    
     /**
      * @see DebugControl#setStepSize(int, int)
      */
     public void setStepSize(int program, int size) {
         debugControl.setStepSize(program, size);
+    }
+
+    /**
+     * @throws SyntaxException 
+     * @see DebugControl#setStepSize(int, String)
+     */
+    public void setStepSize(int program, String stepSize) throws SyntaxException {
+        debugControl.setStepSize(program, stepSize);
     }
 
     /**

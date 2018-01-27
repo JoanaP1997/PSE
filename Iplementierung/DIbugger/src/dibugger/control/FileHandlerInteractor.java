@@ -108,7 +108,7 @@ public class FileHandlerInteractor extends Observable {
             // Notiz: "configFile.getLatestExecutionLine" muss noch verwendet werden
 
             int stepSize = configFile.getStepSize(i);
-            debugLogicController.setStepSize(i, stepSize);
+            debugLogicController.setStepSize(programIdentifier , stepSize);
 
             List<Integer> lineNumbers = configFile.getBreakpoints(i);
             debugLogicController.createBreakpoints(configFile.getProgramNameID(i), lineNumbers);

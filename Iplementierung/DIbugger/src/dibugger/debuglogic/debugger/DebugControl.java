@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.GenerationController;
 import dibugger.debuglogic.interpreter.ScopeTuple;
@@ -429,6 +430,7 @@ public class DebugControl {
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }
+    
 
     /**
      * Sets the stepsize of a program
@@ -437,12 +439,32 @@ public class DebugControl {
      *            the program to change the stepsize
      * @param stepSize
      *            the new stepsize to use while debugging
+     * @throws SyntaxException 
      */
     public void setStepSize(int programID, int stepSize) {
         while (list_stepSize.size() - 1 < programID) {
             list_stepSize.add(1);
         }
         list_stepSize.set(programID, stepSize);
+    }
+
+    /**
+     * Sets the stepsize of a program
+     * 
+     * @param programID
+     *            the program to change the stepsize
+     * @param stepSize
+     *            the new stepsize to use while debugging
+     * @throws SyntaxException 
+     */
+    public void setStepSize(int programID, String stepSizeString) throws SyntaxException {
+        Integer stepSize;
+        try {
+            stepSize = Integer.valueOf(stepSizeString);            
+        } catch (NumberFormatException exception) {
+            throw new SyntaxException("");  //  Notiz: vorläufiger Typ SyntaxException
+        }
+        setStepSize(programID, stepSize);
     }
 
     /**

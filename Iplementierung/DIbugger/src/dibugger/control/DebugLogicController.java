@@ -9,6 +9,7 @@ import java.util.Map;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.debugger.ProgramInput;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.userinterface.GUIFacade;
 
@@ -21,7 +22,7 @@ public class DebugLogicController {
 
     private TextInputBuffer inputBuffer;
     
-    private Map<String, Integer> map_programNameIDs;
+    private Map<String, Integer> programIds;
 
     /**
      * Creates a new {@code DebugLogicController} object.
@@ -30,7 +31,21 @@ public class DebugLogicController {
         debugLogicFacade = new DebugLogicFacade();
         inputBuffer = new TextInputBuffer();
         
-        map_programNameIDs = new HashMap<String, Integer>();
+        programIds = new HashMap<String, Integer>();
+    }
+    
+    private int getProgramId(String programId) {
+        Integer integerId = programIds.get(programId);
+        assert (programId != null);
+        return integerId;
+    }
+    
+    private boolean isKnownId(String programId) {
+        return programIds.containsKey(programId);
+    }
+    
+    private void putId(String programId, int integerId) {
+        programIds.put(programId, integerId);
     }
 
     /**
@@ -88,11 +103,31 @@ public class DebugLogicController {
      *            the ID of program to change the stepsize of
      * @param size
      *            the new stepsize to use while debugging
-     * @see DebugLogicFacade#setStepSize(int, int)
+     * @see DebugLogicFacade#setStepSize(String, int)
      */
-    public void setStepSize(String programId, String size) {
-        debugLogicFacade.setStepSize(map_programNameIDs.get(programId), Integer.valueOf(size));
-        //TODO: keine ahnung ob das hier so muss... bitte korrigieren
+    public void setStepSize(String programId, int stepSize) {
+        if (isKnownId(programId)) {
+            int integerId = getProgramId(programId);
+            debugLogicFacade.setStepSize(integerId, stepSize);
+        }
+    }
+
+    
+    /**
+     * Sets the stepsize of a program
+     * 
+     * @param programId
+     *            the ID of program to change the stepsize of
+     * @param size
+     *            the new stepsize to use while debugging
+     * @throws SyntaxException 
+     * @see DebugLogicFacade#setStepSize(String, String)
+     */
+    public void setStepSize(String programId, String stepSize) throws SyntaxException {
+        if (isKnownId(programId)) {
+            int integerId = getProgramId(programId);
+            debugLogicFacade.setStepSize(integerId, stepSize);
+        }
     }
 
     /**
@@ -126,8 +161,8 @@ public class DebugLogicController {
      * @see DebugLogicFacade#singleStep(int)
      */
     public void singleStep(String programNameId) {
-    	if(map_programNameIDs.containsKey(programNameId)){
-    		debugLogicFacade.singleStep(map_programNameIDs.get(programNameId));
+    	if (isKnownId(programNameId)){
+    		debugLogicFacade.singleStep(getProgramId(programNameId));
     	}
     }
     
@@ -312,9 +347,9 @@ public class DebugLogicController {
      * @see DebugLogicFacade#createBreakpoint(int, int)
      */
     public void createBreakpoint(String programNameId, int line) {
-        if(map_programNameIDs.containsKey(programNameId)){
-            int programID = map_programNameIDs.get(programNameId);
-            debugLogicFacade.createBreakpoint(programID, line);
+        if (isKnownId(programNameId)){
+            int programId = programIds.get(programNameId);
+            debugLogicFacade.createBreakpoint(programId, line);
         }
     }
 
@@ -334,8 +369,8 @@ public class DebugLogicController {
      * @see DebugLogicFacade#deleteBreakpoint(int, int)
      */
     public void deleteBreakpoint(String programNameId, int line) {
-        if(map_programNameIDs.containsKey(programNameId)){
-            int programId = map_programNameIDs.get(programNameId);
+        if (isKnownId(programNameId)){
+            int programId = programIds.get(programNameId);
             debugLogicFacade.deleteBreakpoint(programId, line);
         }
     }
@@ -363,8 +398,8 @@ public class DebugLogicController {
     public void saveText(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
         inputBuffer.storeTextInput(inputTexts, programTexts, programIdentifiers);
         debugLogicFacade.syncProgramInput(getProgramInput());
-        for(int i=0;i<programIdentifiers.size();++i){
-            map_programNameIDs.put(programIdentifiers.get(i), i);
+        for(int i = 0; i < programIdentifiers.size(); ++i){
+            putId(programIdentifiers.get(i), i);
         }
     }
 
