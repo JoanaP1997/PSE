@@ -73,9 +73,9 @@ public class ControlFacade {
      * @param size
      *            the new stepsize to use while debugging
      * @see DebugLogicController#setStepSize(int, int)
-     */
-    public void setStepSize(int numberOfProgram, int size) {
-        debugLogicController.setStepSize(numberOfProgram, size);
+     */ //TODO: javadoc
+    public void setStepSize(String programId, String size) {
+        debugLogicController.setStepSize(programId, size);
     }
 
     /**

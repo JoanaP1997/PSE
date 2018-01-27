@@ -84,14 +84,15 @@ public class DebugLogicController {
     /**
      * Sets the stepsize of a program
      * 
-     * @param numberOfProgram
-     *            the number of program to change the stepsize of
+     * @param programId
+     *            the ID of program to change the stepsize of
      * @param size
      *            the new stepsize to use while debugging
      * @see DebugLogicFacade#setStepSize(int, int)
      */
-    public void setStepSize(int numberOfProgram, int size) {
-        debugLogicFacade.setStepSize(numberOfProgram, size);
+    public void setStepSize(String programId, String size) {
+        debugLogicFacade.setStepSize(map_programNameIDs.get(programId), Integer.valueOf(size));
+        //TODO: keine ahnung ob das hier so muss... bitte korrigieren
     }
 
     /**

@@ -150,7 +150,7 @@ public class ProgramPanel extends JPanel {
   }
 
   private void stepsizeInputActionPerformed() {
-    mainInterface.saveText();
+    controlFacade.setStepSize(id, stepsizeInput.getText());
   }
 
   private void variableInputActionPerformed() {
