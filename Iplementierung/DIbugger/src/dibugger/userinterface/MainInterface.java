@@ -21,7 +21,7 @@ import java.util.TreeMap;
  */
 public class MainInterface extends JFrame {
   private static String FILE_MENU = "Datei";
-  private static String RESET_GUI = "Zur\u00fcksetzen";
+  private static String RESET_GUI = "Zur\u00fccksetzen";
   private static String ADD_PROGRAM = "Programm hinzuf\u00fcgen";
   private static String TOO_MANY_PROGRAM_PANELS = "Zu viele Programme";
   private static String LOAD_CONFIG = "Konfigurationsdatei laden";
