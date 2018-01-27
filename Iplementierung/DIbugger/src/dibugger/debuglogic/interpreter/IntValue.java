@@ -200,4 +200,8 @@ public class IntValue extends TermValue {
     public Integer getValue() {
         return this.value;
     }
+    @Override
+    public TermValue clone() {
+    	return new IntValue(this.value);
+    }
 }

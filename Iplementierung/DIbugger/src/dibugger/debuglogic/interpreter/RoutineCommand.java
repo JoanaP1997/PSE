@@ -95,7 +95,6 @@ public class RoutineCommand extends Command {
         if ((returnValue == null) && (this.expectedReturnType != Type.NULL)) {
             throw new MissingReturnCallException(this.linenumber);
         }
-
         else if (returnValue != null && returnValue.getType() != this.expectedReturnType) {
             throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value");
         }

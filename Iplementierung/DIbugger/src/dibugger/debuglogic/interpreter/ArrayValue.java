@@ -108,5 +108,17 @@ public class ArrayValue extends TermValue {
     public TermValue[][][] getValue() {
         return value;
     }
-
+    @Override
+    public TermValue clone() {
+    	int iSize = this.value.length;
+    	int jSize = this.value[0].length;
+    	int kSize = this.value[0][0].length;
+    	TermValue cpy [][][] = new TermValue[iSize][jSize][kSize];
+    	for(int i = 0; i<iSize; ++i)
+    		for(int j = 0; j<jSize; ++j)
+    			for(int k = 0; k<kSize; ++k)
+    				if (this.value[i][j][k] != null)
+    					cpy[i][j][k] = this.value[i][j][k].clone();
+    	return new ArrayValue(cpy);
+    }
 }

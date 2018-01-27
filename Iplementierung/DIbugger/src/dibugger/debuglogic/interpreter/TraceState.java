@@ -31,12 +31,11 @@ public class TraceState {
         this.position = position;
         this.lineNumber = lineNumber;
         vars = new HashMap<String, TermValue>();
-        // TODO oder soll scope.getValues() gleich eine HashMap zurückgeben?
         deepCopyValues(scope);
     }
     private void deepCopyValues(Scope scope) {
     	for (Map.Entry<String, TermValue> entry : scope.getValues().entrySet()) {
-    		this.vars.put(entry.getKey(), entry.getValue()); //TODO besser eine clone() Methode fuer den Value
+    		this.vars.put(entry.getKey(), entry.getValue().clone()); //TODO besser eine clone() Methode fuer den Value
     	}
     }
     /**

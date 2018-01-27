@@ -49,7 +49,6 @@ public class ArrayDeclaration extends Command {
 
     @Override
     public List<TraceState> run() throws DIbuggerLogicException {
-
         Scope scope = this.controller.getCurrentScope();
 
         // check if variable already exists

@@ -507,6 +507,13 @@ public class WlangBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitRelArrayAccessInTerm(WlangParser.RelArrayAccessInTermContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitNegativeTerm(WlangParser.NegativeTermContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -529,4 +536,25 @@ public class WlangBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitThreeDimArrayAccess(WlangParser.ThreeDimArrayAccessContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOneDimArrayAccessRel(WlangParser.OneDimArrayAccessRelContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTwoDimArrayAccessRel(WlangParser.TwoDimArrayAccessRelContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitThreeDimArrayAccessRel(WlangParser.ThreeDimArrayAccessRelContext ctx) { return visitChildren(ctx); }
 }

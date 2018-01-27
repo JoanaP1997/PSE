@@ -114,6 +114,8 @@ term : '-' inner = term #NegativeTerm
 	| left = term '+' right = term #Addition
 	| left = term '%' right = term #Modulo
 	|'('inner = term')' #Brackets
+    | arrayAccess #ArrayAccessInTerm
+    | relArrayAccess #RelArrayAccessInTerm
 	| FLOATLITERAL #FloatLiteral
 	| INTLITERAL #IntLiteral
 	| LONGLITERAL #LongLiteral
@@ -123,12 +125,15 @@ term : '-' inner = term #NegativeTerm
 	| ID #Id
 	| REL_ID #RelId
 /*	| funcCall #FunctionCallInTerm*/
-	| arrayAccess #ArrayAccessInTerm
 	;
 
 arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
+relArrayAccess: id = REL_ID '['index=term']' #OneDimArrayAccessRel
+		| id = REL_ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccessRel
+		| id = REL_ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccessRel
 		;
 
 

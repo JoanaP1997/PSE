@@ -482,6 +482,13 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayAccessInTerm(WlangParser.ArrayAccessInTermContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code RelArrayAccessInTerm}
+	 * labeled alternative in {@link WlangParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelArrayAccessInTerm(WlangParser.RelArrayAccessInTermContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code NegativeTerm}
 	 * labeled alternative in {@link WlangParser#term}.
 	 * @param ctx the parse tree
@@ -509,4 +516,25 @@ public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitThreeDimArrayAccess(WlangParser.ThreeDimArrayAccessContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code OneDimArrayAccessRel}
+	 * labeled alternative in {@link WlangParser#relArrayAccess}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOneDimArrayAccessRel(WlangParser.OneDimArrayAccessRelContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TwoDimArrayAccessRel}
+	 * labeled alternative in {@link WlangParser#relArrayAccess}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTwoDimArrayAccessRel(WlangParser.TwoDimArrayAccessRelContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ThreeDimArrayAccessRel}
+	 * labeled alternative in {@link WlangParser#relArrayAccess}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThreeDimArrayAccessRel(WlangParser.ThreeDimArrayAccessRelContext ctx);
 }

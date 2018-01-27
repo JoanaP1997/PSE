@@ -99,7 +99,6 @@ public class GenerationControllerTest {
 		input.add(" k = 5 ");
 		GenerationController gc = new GenerationController(10000, 10000);
 		ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
-		System.out.println("Result of computation: " + gc.getReturnValue().toString());
 		while (iterator.hasNext()) {
 			TraceState state = iterator.next();
 			System.out.println("linenumber: " + state.getLineNumber());
@@ -111,6 +110,38 @@ public class GenerationControllerTest {
 		
 		System.out.println("####################################################");
 		System.out.println("Result of computation: " +  gc.getReturnValue().toString());
+		assert(gc.getReturnValue().toString().equals("120"));
 	}
+	@Test
+	public void testSimpleArrayUse() throws DIbuggerLogicException {
+		String code = "int main(int k) {\n"
+				+ "int[2] array; \n"
+				+ "array[0] = 0; \n"
+				+ "if (k<3) { \n"
+				+ "		array[0] = 1;"
+				+ "}\n"
+				+ "array[1] = 4;\n"
+				+ "int res = array[0] + array[1];\n"
+				+ "return res;\n" //should return 4 if k>=3, 5 else
+				+ "}";
+		List<String> input = new ArrayList<String>();
+		input.add(" k = 1 ");
+		GenerationController gc = new GenerationController(10000, 10000);
+		ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
+		while (iterator.hasNext()) {
+			TraceState state = iterator.next();
+			System.out.println("linenumber: " + state.getLineNumber());
+			System.out.println("existing variables: " + state.getAllVariableIdentifiers());
+			System.out.println("Value k = " + state.getValueOf("k"));
+			System.out.println("Value array = " + state.getValueOf("array"));
+			System.out.println("Value res = " + state.getValueOf("res"));
+			System.out.println("-----------------------------------------------");
+		}
+		
+		System.out.println("####################################################");
+		System.out.println("Result of computation: " +  gc.getReturnValue().toString());
+		assert(gc.getReturnValue().toString().equals("5"));
+	}
+	
 
 }

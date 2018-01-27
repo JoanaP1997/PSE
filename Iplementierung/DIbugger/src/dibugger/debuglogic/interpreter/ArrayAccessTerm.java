@@ -27,7 +27,7 @@ public final class ArrayAccessTerm extends Term {
         DIM = 1;
         this.indexA = index;
         // Dummy indices
-        this.indexB = new ConstantTerm(new IntValue(1));
+        this.indexB = new ConstantTerm(new IntValue(0));
         this.indexC = this.indexB; // maybe you could make this more efficient
                                    // by
                                    // using one global 0 Term
@@ -46,7 +46,7 @@ public final class ArrayAccessTerm extends Term {
         this.indexA = firstIndex;
         this.indexB = secondIndex;
         // Dummy index
-        this.indexC = new ConstantTerm(new IntValue(1));
+        this.indexC = new ConstantTerm(new IntValue(0));
         this.identifier = identifier;
     }
 
