@@ -392,6 +392,9 @@ public class MainInterface extends JFrame {
    */
   void startDebug() {
     saveText();
+    for (ProgramPanel p : programPanels.values()) {
+      p.startDebug();
+    }
     controlFacade.startDebug();
   }
 
@@ -415,7 +418,13 @@ public class MainInterface extends JFrame {
    * Change of language.
    */
   public void changeLanguage() {
-    // TODO
+    // TODO: übersetzungen für menütexte
+    if (programPanels != null) {
+      for (ProgramPanel p : programPanels.values()) {
+        p.changeLanguage();
+      }
+    }
+
   }
 
   /**
@@ -431,6 +440,16 @@ public class MainInterface extends JFrame {
         codePanel.add(p, codePanelLayout);
       }
       codePanel.updateUI();
+    }
+  }
+
+  /**
+   *
+   */
+  void stopDebug() {
+    for (ProgramPanel p : programPanels.values()) {
+      p.stopDebug();
+      controlFacade.stopDebug();
     }
   }
 

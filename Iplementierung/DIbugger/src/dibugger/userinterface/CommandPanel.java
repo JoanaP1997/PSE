@@ -30,9 +30,7 @@ public class CommandPanel extends JPanel {
 
     start = new JButton();
     start.addActionListener(actionEvent -> {
-      start.setEnabled(false);
-      stop.setEnabled(true);
-      mainInterface.startDebug();
+      startDebug();
     });
     ImageIcon iconStart = new ImageIcon("res/ui/play-arrow.png");
     start.setIcon(iconStart);
@@ -40,30 +38,33 @@ public class CommandPanel extends JPanel {
     stop = new JButton();
     stop.setEnabled(false);
     stop.addActionListener(actionEvent -> {
-      stop.setEnabled(false);
-      start.setEnabled(true);
       stopDebug();
     });
     ImageIcon iconStop = new ImageIcon("res/ui/stop-button.png");
     stop.setIcon(iconStop);
 
     step = new JButton(("Step"));
+    step.setEnabled(false);
     step.addActionListener(
         actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_NORMAL));
 
     stepOver = new JButton("StepOver");
+    stepOver.setEnabled(false);
     stepOver.addActionListener(
         actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OVER));
 
     stepOut = new JButton(("StepOut"));
+    stepOut.setEnabled(false);
     stepOut.addActionListener(
         actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OUT));
 
     stepBack = new JButton("StepBack");
+    stepBack.setEnabled(false);
     stepBack.addActionListener(
         actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_BACK));
 
     continueDebug = new JButton("Continue");
+    continueDebug.setEnabled(false);
     continueDebug.addActionListener(
         actionEvent -> mainInterface.getControlFacade().continueDebug());
 
@@ -106,7 +107,14 @@ public class CommandPanel extends JPanel {
    * Stops Debugmode.
    */
   public void stopDebug() {
-    mainInterface.getControlFacade().stopDebug();
+    step.setEnabled(false);
+    stepOut.setEnabled(false);
+    stepOver.setEnabled(false);
+    stepBack.setEnabled(false);
+    continueDebug.setEnabled(false);
+    stop.setEnabled(false);
+    start.setEnabled(true);
+    mainInterface.stopDebug();
   }
 
   /**
@@ -122,5 +130,19 @@ public class CommandPanel extends JPanel {
   public void reset() {
     stop.setEnabled(false);
     start.setEnabled(true);
+  }
+
+  /**
+   * starts the debugmode.
+   */
+  void startDebug() {
+    stop.setEnabled(true);
+    start.setEnabled(false);
+    stepBack.setEnabled(true);
+    step.setEnabled(true);
+    stepOut.setEnabled(true);
+    stepOver.setEnabled(true);
+    continueDebug.setEnabled(true);
+    mainInterface.startDebug();
   }
 }

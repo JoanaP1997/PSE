@@ -7,8 +7,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -81,6 +79,7 @@ public class ProgramPanel extends JPanel {
     singleStepButton = new JButton();
 
     singleStepButton.setText(SINGLE_STEP);
+    singleStepButton.setEnabled(false);
     programName.setText(PROGRAM + ": " + id);
 
     stepsize.setText(STEPSIZE + ": ");
@@ -107,12 +106,7 @@ public class ProgramPanel extends JPanel {
     delete.addActionListener(actionEvent -> mainInterface.deleteProgramPanel(id));
     initCodeArea();
 
-    singleStepButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        mainInterface.getControlFacade().singleStep(id);
-      }
-    });
+    singleStepButton.addActionListener(e -> mainInterface.getControlFacade().singleStep(id));
 
     initVariableInspector();
 
@@ -163,7 +157,7 @@ public class ProgramPanel extends JPanel {
   /**
    * initializes code area of program panel.
    */
-  public void initCodeArea() {
+  private void initCodeArea() {
     codePanel = new JPanel();
     listBreakpointLines = new ArrayList<>();
 
@@ -449,7 +443,7 @@ public class ProgramPanel extends JPanel {
 
     private Font font;
 
-    public CustomParagraphView(Element elem) {
+    CustomParagraphView(Element elem) {
       super(elem);
       thisElement = elem;
       this.setInsets((short) 0, (short) 0, (short) 0, (short) 0);
@@ -495,5 +489,23 @@ public class ProgramPanel extends JPanel {
       }
       return 0;
     }
+  }
+
+  void changeLanguage() {
+    //TODO: Übersetzungen von allen angezeigten Texten holen
+  }
+
+  /**
+   * disables single step button.
+   */
+  void stopDebug() {
+    singleStepButton.setEnabled(false);
+  }
+
+  /**
+   * enables single step button.
+   */
+  void startDebug() {
+    singleStepButton.setEnabled(true);
   }
 }
