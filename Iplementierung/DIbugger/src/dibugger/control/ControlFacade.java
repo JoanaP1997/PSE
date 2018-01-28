@@ -10,6 +10,7 @@ import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 
 /**
@@ -367,10 +368,10 @@ public class ControlFacade {
      * GUIFacade.
      * 
      * @return a list containing all languages available
-     * @see FileHandlerInteractor#getAvailableLanuages()
+     * @see FileHandlerInteractor#getAvailableLanguages()
      */
     public List<String> getAvailableLanuages() {
-        return fileHandlerInteractor.getAvailableLanuages();
+        return fileHandlerInteractor.getAvailableLanguages();
     }
 
     /**
@@ -523,5 +524,14 @@ public class ControlFacade {
      */
     public List<String> getInputValueSuggestionStrategies() {
         return debugLogicController.getInputValueSuggestionStrategies();
+    }
+
+    /**
+     * Returns the language file of the currently selected language.
+     *
+     * @return current language file.
+     */
+    public LanguageFile getLanguageFile() {
+        return fileHandlerInteractor.getLanguageFile();
     }
 }
