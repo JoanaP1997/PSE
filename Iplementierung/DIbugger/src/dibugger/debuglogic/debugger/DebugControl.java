@@ -264,7 +264,7 @@ public class DebugControl {
         if(programID < list_breakpoints.size()){
             TraceState state = list_currentTraceStates.get(programID);
             for (Breakpoint bp : list_breakpoints.get(programID)) {
-                if (bp.getLine() == state.getLineNumber()) {
+                if (bp!=null && bp.getLine() == state.getLineNumber()) {
                     return true;
                 }
             }
@@ -275,7 +275,7 @@ public class DebugControl {
     private boolean evaluateConditionalBreakpoints() throws DIbuggerLogicException {
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
             ConditionalBreakpoint cb = list_condBreakpoints.get(i);
-            if (cb.evaluate(list_currentTraceStates)) {
+            if (cb!=null && cb.evaluate(list_currentTraceStates)) {
                 return true;
             }
         }
