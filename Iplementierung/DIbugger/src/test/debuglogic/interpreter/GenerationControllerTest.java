@@ -10,6 +10,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.GenerationController;
 import dibugger.debuglogic.interpreter.Trace;
 import dibugger.debuglogic.interpreter.TraceState;
@@ -36,6 +37,26 @@ public class GenerationControllerTest {
 			 */
 		}
 	}
+	
+	 @Test(expected=SyntaxException.class)
+	  public void noProgramTextTest() throws DIbuggerLogicException {
+	    String code = "";
+	    List<String> input = new ArrayList<String>();
+	    GenerationController gc = new GenerationController(10000, 10000);
+	    ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
+	    while (iterator.hasNext()) {
+	      TraceState state = iterator.next();
+	      /*
+	       * System.out.println("linenumber: "+ state.getLineNumber());
+	       * System.out.println("existing variables: "+
+	       * state.getAllVariableIdentifiers());
+	       * System.out.println("Value i= " +state.getValueOf("i"));
+	       * System.out.println("Value x= " +state.getValueOf("x"));
+	       * System.out.println(
+	       * "-----------------------------------------------");
+	       */
+	    }
+	  }
 
 	@Ignore
 	public void withInputTest() throws DIbuggerLogicException {
@@ -112,6 +133,26 @@ public class GenerationControllerTest {
 		System.out.println("Result of computation: " +  gc.getReturnValue().toString());
 		assert(gc.getReturnValue().toString().equals("120"));
 	}
+	
+	 @Test
+	  public void testExtraCarriageReturn() throws DIbuggerLogicException {
+	    String code = "int main(int k) {\n"
+	        + "\n"
+	        + "if(k<=1) \n {"
+	        + " return 1;\n"
+	        + "}\n"
+	        + "int res;\n"
+	        + "res \n= main(k-1);\n"
+	        + "res = res*k;\n"
+	        + "return res;\n"
+	        + "}";
+	    List<String> input = new ArrayList<String>();
+	    input.add(" k = 5 ");
+	    GenerationController gc = new GenerationController(10000, 10000);
+	    ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
+	    assert(gc.getReturnValue().toString().equals("120"));
+	  }
+	
 	@Test
 	public void testSimpleArrayUse() throws DIbuggerLogicException {
 		String code = "int main(int k) {\n"
@@ -143,5 +184,60 @@ public class GenerationControllerTest {
 		assert(gc.getReturnValue().toString().equals("5"));
 	}
 	
+	// unfertig
+	@Ignore
+	public void testQuickSort() throws DIbuggerLogicException {
+	  String code =
+	      "void main(int[] values, int length) {\n"
+	      + "       if (values ==null){\n"
+        + "             return;\n"
+        + "       }\n"
+        + "       quicksort(0, length - 1, int[] numbers);\n"
+        + "}\n"
+        
+        + "void quicksort(int low, int high, int[] numbers) {\n"
+        + "      int i = low, j = high;\n"
+        + "      int i = low, j = high;\n"
+        + "      int pivot = numbers[low + (high-low)/2];\n  "
+        + "      while (i <= j) {\n"
+        + "            while (numbers[i] < pivot) {\n"
+        + "                i++;\n"
+        + "            }\n"
+        + "            while (numbers[j] > pivot) {\n"
+        + "                j--;\n"
+        + "            }\n"
+        + "            if (i <= j) {\n"
+        + "                exchange(i, j);\n"
+        + "                i++;\n"
+        + "                j--;\n"
+        + "            }\n"
+        + "        }\n"
+        + "            if (i <= j) {\n"
+        + "                numbers = exchange(i, j, numbers[]);\n"
+        + "                i++;\n"
+        + "                j--;\n"
+        + "            }\n"
+        + "        }\n"
+        + "        if (low < j) {\n"
+        + "            quicksort(low, j);\n"
+        + "        }\n"
+        + "        if (i < high) {\n"
+        + "            quicksort(i, high);\n"
+        + "        }\n"
+        + "}\n"
+        
+        + "private int[] exchange(int i, int j, int[] numbers) {\n"
+        + "        int temp = numbers[i];\n"
+        + "        numbers[i] = numbers[j];\n"
+        + "        numbers[j] = temp;"
+        + "        return numbers;\n"
+        + "}\n";
+	   List<String> input = new ArrayList<String>();
+	   // Declaration of array in the input
+	   
+	    input.add("");
+	    GenerationController gc = new GenerationController(10000, 10000);
+	    ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
+	}
 
 }

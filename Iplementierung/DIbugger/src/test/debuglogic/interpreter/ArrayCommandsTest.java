@@ -38,7 +38,7 @@ public class ArrayCommandsTest {
   }
   
   @Test
-  public void testComplicatedOneDimensinArrayDeclaration() throws DIbuggerLogicException {
+  public void testComplicatedOneDimensionalArrayDeclaration() throws DIbuggerLogicException {
     GenerationController gc = new GenerationController(1000, 1000);
     Scope s = new Scope();
     gc.pushScope(s);

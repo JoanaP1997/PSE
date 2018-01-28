@@ -1,0 +1,34 @@
+public void main(int[] values, int length) {\n
+        if (values ==null){\n
+            return;\n
+        }\n
+        quicksort(0, length - 1, int[] numbers);\n
+    }\n
+
+    private void quicksort(int low, int high, int[] numbers) {\n
+        int i = low, j = high;\n
+        int pivot = numbers[low + (high-low)/2];\n
+        while (i <= j) {\n
+            while (numbers[i] < pivot) {\n
+                i++;\n
+            }\n
+            while (numbers[j] > pivot) {\n
+                j--;\n
+            }\n
+            if (i <= j) {\n
+                exchange(i, j);\n
+                i++;\n
+                j--;\n
+            }\n
+        }\n
+        if (low < j)\n
+            quicksort(low, j);\n
+        if (i < high)\n
+            quicksort(i, high);\n
+    }\n
+
+    private void exchange(int i, int j) {\n
+        int temp = numbers[i];\n
+        numbers[i] = numbers[j];\n
+        numbers[j] = temp;\n
+    }\n

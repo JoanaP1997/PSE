@@ -31,16 +31,6 @@ public class Trace {
     }
 
     /**
-     * Attaches a trace state to the end of the trace.
-     * 
-     * @param traceState
-     *            the trace state
-     */
-    public void appendTraceState(TraceState traceState) {
-        this.traceStates.add(traceState);
-    }
-
-    /**
      * Returns a ListIterator which can move forward and back.
      * @return the iterator over the trace
      */
