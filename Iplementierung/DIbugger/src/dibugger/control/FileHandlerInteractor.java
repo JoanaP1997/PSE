@@ -220,7 +220,7 @@ public class FileHandlerInteractor extends Observable {
      * @return a list containing all languages available
      * @see FileHandlerFacade#getLanguages()
      */
-    public List<String> getAvailableLanuages() {
+    public List<String> getAvailableLanguages() {
         // Notiz: Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
