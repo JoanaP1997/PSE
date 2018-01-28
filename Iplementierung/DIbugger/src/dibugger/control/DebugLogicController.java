@@ -126,7 +126,12 @@ public class DebugLogicController {
     public void setStepSize(String programId, String stepSize) throws SyntaxException {
         if (isKnownId(programId)) {
             int integerId = getProgramId(programId);
-            debugLogicFacade.setStepSize(integerId, stepSize);
+            try{
+            	debugLogicFacade.setStepSize(integerId, Integer.parseInt(stepSize));
+            }
+            catch(NumberFormatException e){
+            	throw new SyntaxException("");//TODO
+            }
         }
     }
 
