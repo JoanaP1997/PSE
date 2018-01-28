@@ -546,4 +546,31 @@ public class DebugLogicController {
     public DebugLogicFacade getDebugLogicFacade() {
         return debugLogicFacade;
     }
+
+    /**
+     * Returns all available strategies for RelationalExpressionSuggestions.
+     *
+     * @return all available strategies for RelationalExpressionSuggestions
+     */
+    public List<String> getRelationalExpressionSuggestionStrategies() {
+
+    }
+
+    /**
+     * Returns all available strategies for StepSizeSuggestions.
+     *
+     * @return all available strategies for StepSizeSuggestions
+     */
+    public List<String> getStepSizeSuggestionStrategies() {
+
+    }
+
+    /**
+     * Returns all available strategies for InputValueSuggestions.
+     *
+     * @return all available strategies for InputValueSuggestions
+     */
+    public List<String> getInputValueSuggestionStrategies() {
+
+    }
 }

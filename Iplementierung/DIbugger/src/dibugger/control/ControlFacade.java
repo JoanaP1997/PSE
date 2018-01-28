@@ -497,4 +497,31 @@ public class ControlFacade {
     public DebugLogicFacade getDebugLogicFacade() {
         return debugLogicController.getDebugLogicFacade();
     }
+
+    /**
+     * Returns all available strategies for RelationalExpressionSuggestions.
+     *
+     * @return all available strategies for RelationalExpressionSuggestions
+     */
+    public List<String> getRelationalExpressionSuggestionStrategies() {
+        return debugLogicController.getRelationalExpressionSuggestionStrategies();
+    }
+
+    /**
+     * Returns all available strategies for StepSizeSuggestions.
+     *
+     * @return all available strategies for StepSizeSuggestions
+     */
+    public List<String> getStepSizeSuggestionStrategies() {
+        return debugLogicController.getStepSizeSuggestionStrategies();
+    }
+
+    /**
+     * Returns all available strategies for InputValueSuggestions.
+     *
+     * @return all available strategies for InputValueSuggestions
+     */
+    public List<String> getInputValueSuggestionStrategies() {
+        return debugLogicController.getInputValueSuggestionStrategies();
+    }
 }
