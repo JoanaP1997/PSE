@@ -75,7 +75,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     idMap.put(0, 0);
 
     panelType = "Conditional Breakpoints:";
-    String[] columnTitles = {"Opt", panelType, "Auswertung"};
+    String[] columnTitles = {"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
     dataEntries[0][1] = "5 = 5";
