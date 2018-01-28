@@ -449,25 +449,6 @@ public class DebugControl {
     }
 
     /**
-     * Sets the stepsize of a program
-     * 
-     * @param programID
-     *            the program to change the stepsize
-     * @param stepSize
-     *            the new stepsize to use while debugging
-     * @throws SyntaxException 
-     */
-    public void setStepSize(int programID, String stepSizeString) throws SyntaxException {
-        Integer stepSize;
-        try {
-            stepSize = Integer.valueOf(stepSizeString);            
-        } catch (NumberFormatException exception) {
-            throw new SyntaxException("");  //  Notiz: vorläufiger Typ SyntaxException
-        }
-        setStepSize(programID, stepSize);
-    }
-
-    /**
      * Getter for the current programCounter of all programs
      * 
      * @return a list of integers representing all programCounters
