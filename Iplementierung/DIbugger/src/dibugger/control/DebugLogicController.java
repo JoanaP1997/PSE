@@ -558,7 +558,7 @@ public class DebugLogicController {
      * @return all available strategies for RelationalExpressionSuggestions
      */
     public List<String> getRelationalExpressionSuggestionStrategies() {
-
+    	return debugLogicFacade.getRelationalExpressionSuggestionStrategies();
     }
 
     /**
@@ -567,7 +567,7 @@ public class DebugLogicController {
      * @return all available strategies for StepSizeSuggestions
      */
     public List<String> getStepSizeSuggestionStrategies() {
-
+    	return debugLogicFacade.getStepSizeSuggestionStrategies();
     }
 
     /**
@@ -576,6 +576,6 @@ public class DebugLogicController {
      * @return all available strategies for InputValueSuggestions
      */
     public List<String> getInputValueSuggestionStrategies() {
-
+    	return debugLogicFacade.getInputValueSuggestionStrategies();
     }
 }

@@ -1,5 +1,6 @@
 package dibugger.debuglogic.debugger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -397,6 +398,41 @@ public class DebugLogicFacade extends Observable {
         return debugControl.getAllVariables(programNameID);
     }
 
+    
+    //Suggestions
+    /**
+     * Returns all available strategies for RelationalExpressionSuggestions.
+     *
+     * @return all available strategies for RelationalExpressionSuggestions
+     */
+    public List<String> getRelationalExpressionSuggestionStrategies() {
+    	List<String> l = new ArrayList<String>();
+    	l.add("suggest_strategy_simple_relational");
+    	return l;
+    }
+
+    /**
+     * Returns all available strategies for StepSizeSuggestions.
+     *
+     * @return all available strategies for StepSizeSuggestions
+     */
+    public List<String> getStepSizeSuggestionStrategies() {
+    	List<String> l = new ArrayList<String>();
+    	l.add("suggest_strategy_simple_stepsize");
+    	return l;
+    }
+
+    /**
+     * Returns all available strategies for InputValueSuggestions.
+     *
+     * @return all available strategies for InputValueSuggestions
+     */
+    public List<String> getInputValueSuggestionStrategies() {
+    	List<String> l = new ArrayList<String>();
+    	l.add("suggest_strategy_simple_input");
+    	return l;
+    }
+    
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;
     public static final int STRAT_REL_SIMPLE = 1;
