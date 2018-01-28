@@ -1,7 +1,6 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
-import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 
@@ -33,6 +32,15 @@ public class MainInterface extends JFrame {
   private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für Watch Expressions";
   private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für Bedingte Breakpoints";
   private static String SETTINGS = "Einstellungen";
+  private static String CHANGE_LANGUAGE = "Sprache \u00e4ndern";
+  private static String MAX_FUNCTION_CALLS = "Maximale Funktionsaufrufe festlegen";
+  private static String MAX_ITERATION = "Maximale Iterationen festlegen";
+  private static String SUGGESTION_STRATEGY_STEPSIZE
+      = "Strategie für Vorschl\u00e4ge der Schrittgr\u00f6ße";
+  private static String SUGGESTION_STRATEGY_EXPRESSION
+      = "Strategie für Vorschl\u00e4ge von Watch Expressions / bedingten Breakpoints";
+  private static String SUGGESTION_STRATEGY_INPUT
+      = "Strategie für Vorschl\u00e4ge von Eingabevariablen";
 
 
   TreeMap<String, ProgramPanel> programPanels;
@@ -62,6 +70,12 @@ public class MainInterface extends JFrame {
   private JMenuItem inputSuggestion;
   private JMenuItem watchExpressionSuggestion;
   private JMenuItem condBreakpointSuggestion;
+  private JMenu maxFunctionCalls;
+  private JMenu maxIterations;
+  private JMenu language;
+  private JMenu stepSizeStrategy;
+  private JMenu expressionStrategy;
+  private JMenu inputStrategy;
 
   private GUIFacade guiFacade;
   private ControlFacade controlFacade;
@@ -207,10 +221,66 @@ public class MainInterface extends JFrame {
     suggestionMenu.add(inputSuggestion);
     suggestionMenu.add(watchExpressionSuggestion);
     suggestionMenu.add(condBreakpointSuggestion);
+    stepSizeStrategy = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
+    JComboBox<String> firstStrategyChooser = new JComboBox<>();
+    for (String s : controlFacade.getStepSizeSuggestionStrategies()) {
+      firstStrategyChooser.addItem(s);
+    }
+    stepSizeStrategy.add(firstStrategyChooser);
+    inputStrategy = new JMenu(SUGGESTION_STRATEGY_INPUT);
+    JComboBox<String> secondStrategyChooser = new JComboBox<>();
+    for (String s : controlFacade.getInputValueSuggestionStrategies()) {
+      secondStrategyChooser.addItem(s);
+    }
+    inputStrategy.add(secondStrategyChooser);
+    expressionStrategy = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
+    JComboBox<String> thirdStrategyChooser = new JComboBox<>();
+    for (String s : controlFacade.getRelationalExpressionSuggestionStrategies()) {
+      thirdStrategyChooser.addItem(s);
+    }
+    expressionStrategy.add(thirdStrategyChooser);
+    //TODO: WAS PASSIERT
+    suggestionMenu.add(stepSizeStrategy);
+    suggestionMenu.add(inputStrategy);
+    suggestionMenu.add(expressionStrategy);
+
+
     menuBar.add(suggestionMenu);
 
     // settings menu
     settingsMenu.setText(SETTINGS);
+
+    language = new JMenu(CHANGE_LANGUAGE);
+    JComboBox<String> languageChooser = new JComboBox<>();
+    languageChooser.setPreferredSize(new Dimension(100, 20));
+    for (String id : controlFacade.getAvailableLanuages()) {
+      languageChooser.addItem(id);
+    }
+    languageChooser.addActionListener(actionEvent ->
+        controlFacade.changeLanguage((String) languageChooser.getSelectedItem()));
+    language.add(languageChooser);
+
+    maxFunctionCalls = new JMenu(MAX_FUNCTION_CALLS);
+    JComboBox<Integer> functionCallsChooser = new JComboBox<>();
+    for (int i = 10; i <= 200; i = i + 10) {
+      functionCallsChooser.addItem(i);
+    }
+    functionCallsChooser.addActionListener(actionEvent ->
+        controlFacade.setMaximumFunctionCalls((int) functionCallsChooser.getSelectedItem()));
+    maxFunctionCalls.add(functionCallsChooser);
+
+    maxIterations = new JMenu(MAX_ITERATION);
+    JComboBox<Integer> iterationsChooser = new JComboBox<>();
+    for (int i = 10; i <= 200; i = i + 10) {
+      iterationsChooser.addItem(i);
+    }
+    iterationsChooser.addActionListener(actionEvent ->
+        controlFacade.setMaximumIterations((int) iterationsChooser.getSelectedItem()));
+    maxIterations.add(iterationsChooser);
+
+    settingsMenu.add(language);
+    settingsMenu.add(maxFunctionCalls);
+    settingsMenu.add(maxIterations);
     menuBar.add(settingsMenu);
 
     // help menu
