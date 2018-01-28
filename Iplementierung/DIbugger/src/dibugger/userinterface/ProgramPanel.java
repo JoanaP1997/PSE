@@ -2,6 +2,7 @@ package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
+import dibugger.filehandler.facade.LanguageFile;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -495,6 +496,7 @@ public class ProgramPanel extends JPanel {
   }
 
   void changeLanguage() {
+    LanguageFile languageFile = controlFacade.getLanguageFile();
     //TODO: Übersetzungen von allen angezeigten Texten holen
   }
 

@@ -1,6 +1,7 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 
@@ -489,7 +490,8 @@ public class MainInterface extends JFrame {
    * Change of language.
    */
   public void changeLanguage() {
-    // TODO: übersetzungen für menütexte
+    //TODO
+    LanguageFile languageFile = controlFacade.getLanguageFile();
     if (programPanels != null) {
       for (ProgramPanel p : programPanels.values()) {
         p.changeLanguage();
