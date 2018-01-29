@@ -178,9 +178,11 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     FlowLayout layout;
     JLabel labelStart;
     JLabel labelEnd;
+    String programId;
 
     ProgramScopeChooser(String id) {
       //init:
+      programId = id;
       layout = new FlowLayout();
       this.setLayout(layout);
       begin = new JTextField();
@@ -232,7 +234,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(Eid).toString());
           end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(Eid).toString());
         } catch (NullPointerException e) {
-          begin.setText("0");
+          begin.setText("1");
           end.setText(mainInterface.getProgramLength(id));
         }
       } else if (type.equals("ConditionalBreakpoint")) {
@@ -240,8 +242,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(Eid).toString());
           end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(Eid).toString());
         } catch (NullPointerException e) {
-          begin.setText("0");
-          end.setText(mainInterface.getProgramLength(id));
+          begin.setText("1");
+          end.setText(mainInterface.getProgramLength(programId));
         }
       }
     }

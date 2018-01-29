@@ -533,7 +533,7 @@ public class MainInterface extends JFrame {
    * @param programId program ID
    * @return List with start and end
    */
-  public List<String> getProgramLength(String programId) {
+  public String getProgramLength(String programId) {
     return programPanels.get(programId).getProgramLength();
   }
 

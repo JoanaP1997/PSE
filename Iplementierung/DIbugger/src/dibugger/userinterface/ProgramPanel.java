@@ -526,10 +526,8 @@ public class ProgramPanel extends JPanel {
    * Returns length of the editors text by returning a List with start and end.
    * @return length of the text
    */
-  List<String> getProgramLength() {
-    List<String> startEnd = new ArrayList<>();
-    startEnd.add("1");
-    startEnd.add(Integer.toString(editor.getText().split("\n").length));
-    return startEnd;
+  String getProgramLength() {
+    return Integer.toString(editor.getText().split("\n").length);
+
   }
 }
