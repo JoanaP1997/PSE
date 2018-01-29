@@ -472,18 +472,25 @@ public class ProgramPanel extends JPanel {
       if (index > 0) {
         return;
       }
-      g.setColor(Color.BLACK);
+      
       int lineNumber = getLineNumber() + 1;
       String lnStr = String.format("%3d", lineNumber);
       font = font != null ? font : new Font(Font.MONOSPACED, Font.PLAIN, getFont().getSize());
       //g.setFont(font);
+      
       int x = alloc.x - g.getFontMetrics().stringWidth(lnStr) - 4;
       int y = alloc.y + alloc.height - 3;
+      int height = g.getFontMetrics(g.getFont()).getHeight();
+      int lineID = y / height;
+      if (lineID == currentExcecutionLine) {
+          g.setColor(Color.RED);
+      } else{
+          g.setColor(Color.BLACK);
+      }
+      
       g.drawString(lnStr, x, y);
 
       //draw Breakpoints
-      int height = g.getFontMetrics(g.getFont()).getHeight();
-      int lineID = y / height;
       if (lineID != currentExcecutionLine) {
         g.setColor(Color.RED);
       } else {

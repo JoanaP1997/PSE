@@ -150,7 +150,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
    */
     public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
         scopes.put(id, scopeTupels);
-        //TODO: weitergeben, evtl. schon bei MouseExcited
     }
 
   /**
@@ -184,7 +183,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
   public void saveWEs() {
       for (int j = 0; j < table.getRowCount(); j++) {
         mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
-            table.getModel().getValueAt(j, 1).toString(), scopes.get(idMap.get(j)));
+            table.getModel().getValueAt(j, 1).toString(), scopes.get(j));
       }
     }
 

@@ -89,6 +89,10 @@ public class DebugControl {
                     .add(generationController.generateTrace(pi.getText(), pi.getInputValues(), pi.getProgramID()));
             list_programReturnValue.add(generationController.getReturnValue());            
             
+            if(list_stepSize.size()<=i){
+                list_stepSize.add(1);
+            }
+            
             jumpTraceIterator(i, pi.getCounter());
         }
 
@@ -404,7 +408,7 @@ public class DebugControl {
     public void deleteBreakpoint(int program, int line) {
         List<Breakpoint> l = list_breakpoints.get(program);
         for (int i = 0; i < l.size(); ++i) {
-            if (line == l.get(line).getLine()) {
+            if (line == l.get(i).getLine()) {
                 l.remove(i);
                 --i;
             }
