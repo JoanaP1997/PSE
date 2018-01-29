@@ -1,7 +1,9 @@
 package dibugger.control;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import dibugger.debuglogic.debugger.DebugLogicFacade;
@@ -533,5 +535,22 @@ public class ControlFacade {
      */
     public LanguageFile getLanguageFile() {
         return fileHandlerInteractor.getLanguageFile();
+    }
+
+
+    public Map<String, Integer> getWatchExpressionScopeBeginnnings(int expressionId) {
+        return debugLogicController.getWatchExpressionScopeBeginnnings(expressionId);
+    }
+
+    public Map<String, Integer> getWatchExpressionScopeEnds(int expressionId) {
+        return debugLogicController.getWatchExpressionScopeEnds(expressionId);
+    }
+
+    public Map<String, Integer> getConditionalBreakpointScopeBeginnings(int expressionId) {
+        return debugLogicController.getConditionalBreakpointScopeBeginnings(expressionId);
+    }
+
+    public Map<String, Integer> getConditionalBreakpointScopeEnds(int expressionId) {
+        return debugLogicController.getConditionalBreakpointScopeEnds(expressionId);
     }
 }

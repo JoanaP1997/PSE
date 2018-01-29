@@ -11,11 +11,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link WlangParser#webppterm}.
+	 * Visit a parse tree produced by {@link WlangParser#wecbterm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWebppterm(WlangParser.WebpptermContext ctx);
+	T visitWecbterm(WlangParser.WecbtermContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WlangParser#program}.
 	 * @param ctx the parse tree

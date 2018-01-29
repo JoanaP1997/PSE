@@ -70,7 +70,7 @@ public class WatchExpression {
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			WlangParser parser = new WlangParser(tokens);
 			// Chose start rule
-			tree = parser.webppterm();
+			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {
 			throw new SyntaxException(e.getMessage());
 		}
