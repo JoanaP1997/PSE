@@ -44,6 +44,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     this.setSize(300,310);
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    this.setLocationRelativeTo(mainInterface);
 
     if(type == 0) {
       stepSizeSuggestion();
@@ -63,10 +64,10 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private void variableSuggestion() {
     JLabel intervallStartLabel = new javax.swing.JLabel();
     JTextField intervallStartField = new javax.swing.JTextField();
-    intervallStartField.setPreferredSize(new Dimension(100,20));
+    intervallStartField.setPreferredSize(new Dimension(100,30));
     JLabel intervallEndLabel = new javax.swing.JLabel();
     JTextField intervallEndField = new javax.swing.JTextField();
-    intervallEndField.setPreferredSize(new Dimension(100,20));
+    intervallEndField.setPreferredSize(new Dimension(100,30));
     JLabel intervallLabel = new javax.swing.JLabel();
     JLabel typeLabel = new javax.swing.JLabel();
     JComboBox typeChooser = new javax.swing.JComboBox<>();
@@ -255,6 +256,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
       @Override
       public void actionPerformed(ActionEvent e) {
         mainInterface.getControlFacade().suggestStepSize();
+        dispose();
       }
     });
   }
