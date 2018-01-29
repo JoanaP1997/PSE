@@ -26,6 +26,7 @@ public class ProgramPanel extends JPanel {
   private static String ADD_PROGRAM = "Programm hinzuf\u00fcgen";
   private static String SINGLE_STEP = "Einzelschritt";
   private static String RETURN = "R\u00fcckgabewert";
+  private static String STEP_SIZE_TOOLTIP = "Schrittgr\u00f6\u00dfe mit Enter best\u00e4tigen";
 
   private final short MARGIN_WIDTH_PX = 36;
   private List<Integer> listBreakpointLines;
@@ -89,9 +90,11 @@ public class ProgramPanel extends JPanel {
     programName.setText(PROGRAM + ": " + id);
 
     stepsize.setText(STEPSIZE + ": ");
+    stepsize.setToolTipText(STEP_SIZE_TOOLTIP);
     stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
     stepsizeInput.addActionListener(evt1 -> stepsizeInputActionPerformed());
+    stepsizeInput.setToolTipText(STEP_SIZE_TOOLTIP);
 
     inputvariablesLabel.setText(INPUT_VARS + ": ");
 
