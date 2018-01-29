@@ -397,7 +397,7 @@ public class ProgramPanel extends JPanel {
       listModel.addElement(variableValueMap.get(variable));
     }
     variableInspectorList.updateUI();
-
+    this.updateUI();
   }
 
   /**
@@ -523,11 +523,14 @@ public class ProgramPanel extends JPanel {
   }
 
   /**
-   * Returns length of the editors text by returning a List with start and end.
+   * Returns length of the editors text by returning the number of the end line.
    * @return length of the text
    */
   String getProgramLength() {
-    return Integer.toString(editor.getText().split("\n").length +  1);
-
+    if (editor.getText().split("\n").length == 1) {
+      return "1";
+    } else {
+      return Integer.toString(editor.getText().split("\n").length + 1);
+    }
   }
 }
