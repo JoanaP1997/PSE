@@ -191,6 +191,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void suggestStepSize(List<String> programText) {
         suggest_stepsize.suggest(programText);
+        notifyAllObservers();
     }
 
     /**
