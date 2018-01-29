@@ -29,6 +29,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   private JTable table;
   private DefaultTableModel tableModel;
 
+  private static String CB_TOOLTIP = "Erstes Feld für Optionen zu dieses bedingten Breakpoints, mittleres Feld um den " +
+      "CB zu ändern. \n Um einen neuen CB hinzuzufügen, mittleres Feld der letzten Zeile anklicken.";
+
   {
     thisCBP = this;
   }
@@ -88,6 +91,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
       }
     };
     table = new JTable(tableModel);
+    table.setToolTipText(CB_TOOLTIP);
     table.getColumnModel().getColumn(0).setPreferredWidth(5);
     table.getColumnModel().getColumn(1).setPreferredWidth(150);
     table.getColumnModel().getColumn(2).setPreferredWidth(5);
@@ -99,8 +103,6 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
           int row = table.rowAtPoint(p);
           int id = idMap.get(row);
           new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", row, table, thisCBP, id);
-        } else if ((table.columnAtPoint(p) == 1)) {
-          //TODO: CB speichern
         }
         if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
           addRow(p);
