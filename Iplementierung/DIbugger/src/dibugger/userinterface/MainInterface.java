@@ -519,7 +519,7 @@ public class MainInterface extends JFrame {
   }
 
   /**
-   *
+   * stops the debug mode.
    */
   void stopDebug() {
     for (ProgramPanel p : programPanels.values()) {
