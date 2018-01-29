@@ -186,13 +186,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       layout = new FlowLayout();
       this.setLayout(layout);
       begin = new JTextField();
-      begin.setPreferredSize(new Dimension(50, 20));
+      begin.setPreferredSize(new Dimension(50, 30));
       end = new JTextField();
-      end.setPreferredSize(new Dimension(50, 20));
+      end.setPreferredSize(new Dimension(50, 30));
       labelStart = new JLabel(PROGRAM + " " + id + ": " + START);
-      labelStart.setPreferredSize(new Dimension(120, 20));
+      labelStart.setPreferredSize(new Dimension(120, 30));
       labelEnd = new JLabel(END +": ");
-      labelEnd.setPreferredSize(new Dimension(40, 20));
+      labelEnd.setPreferredSize(new Dimension(40, 30));
 
       setScopes();
 
@@ -231,6 +231,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     private void setScopes() {
       if (type.equals("WatchExpression")) {
         try {
+          //TODO: Werte werden noch falsch übergeben
           begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(Eid).toString());
           end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(Eid).toString());
         } catch (NullPointerException e) {
@@ -239,6 +240,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
         }
       } else if (type.equals("ConditionalBreakpoint")) {
         try {
+          //TODO: Werte werden noch falsch übergeben
           begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(Eid).toString());
           end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(Eid).toString());
         } catch (NullPointerException e) {
