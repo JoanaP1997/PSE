@@ -79,6 +79,7 @@ public class DebugControl {
      */
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         list_traceIterator.clear();
+        list_programReturnValue.clear();
 
         generationController.setMaxFuncCalls(maxFunctionCalls);
         generationController.setMaxIterations(maxIterations);
