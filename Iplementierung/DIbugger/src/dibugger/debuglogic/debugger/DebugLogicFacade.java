@@ -2,6 +2,7 @@ package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
@@ -161,9 +162,8 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see DebugControl#getCurrentExecutionLines()
      */
-    public List<Integer> getCurrentExecutionLines() {
+    public Map<String, Integer> getCurrentExecutionLines() {
         return debugControl.getCurrentExecutionLines();
-        
     }
 
     /**

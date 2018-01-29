@@ -1,8 +1,10 @@
 package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.SyntaxException;
@@ -466,10 +468,11 @@ public class DebugControl {
      * 
      * @return a list countaining the current execution line of all programs
      */
-    public List<Integer> getCurrentExecutionLines() {
-        List<Integer> l = new ArrayList<Integer>();
+    public Map<String, Integer> getCurrentExecutionLines() {
+        Map<String, Integer> l = new HashMap<String, Integer>();
         for (int i = 0; i < numPrograms; ++i) {
-            l.add(list_currentTraceStates.get(i).getLineNumber());
+            TraceState state = list_currentTraceStates.get(i);
+            l.put(state.getProgramId(), state.getLineNumber());
         }
         return l;
     }
