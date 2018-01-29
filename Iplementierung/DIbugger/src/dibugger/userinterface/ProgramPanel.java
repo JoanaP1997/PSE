@@ -527,7 +527,7 @@ public class ProgramPanel extends JPanel {
    * @return length of the text
    */
   String getProgramLength() {
-    return Integer.toString(editor.getText().split("\n").length);
+    return Integer.toString(editor.getText().split("\n").length +  1);
 
   }
 }
