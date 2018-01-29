@@ -35,7 +35,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   private JTable table;
   private ExpressionPanel panel;
   private String type = "";
-  private int WEid;
+  private int Eid;
   private ArrayList<ScopeTuple> scopes = new ArrayList<>();
 
   /**
@@ -51,7 +51,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
     //init:
     this.id = row;
-    this.WEid = Eid;
+    this.Eid = Eid;
     this.panel = panel;
     this.table = table;
     this.setSize(400, 400);
@@ -99,12 +99,12 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           if (message.startsWith("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             p.deleteEntry(row);
-            mainInterface.getControlFacade().deleteWatchExpression(Eid);
+            mainInterface.getControlFacade().deleteWatchExpression(ExpressionChangePopUp.this.Eid);
             dispose();
           } else if (message.startsWith("ConditionalBreakpoint")) {
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
             p.deleteEntry(row);
-            mainInterface.getControlFacade().deleteConditionalBreakpoint(Eid);
+            mainInterface.getControlFacade().deleteConditionalBreakpoint(ExpressionChangePopUp.this.Eid);
             dispose();
           }
         } else if(optionChooser.getSelectedItem() == ADJUST_SCOPEASSIGNMENT) {
@@ -191,18 +191,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelStart.setPreferredSize(new Dimension(120, 20));
       labelEnd = new JLabel(END +": ");
       labelEnd.setPreferredSize(new Dimension(40, 20));
-      //TODO: Zwick Beine machen und zur Not selbst speichern
 
-      /**
-      if (type.equals("WatchExpression")) {
-        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(WEid).toString());
-        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(WEid).toString());
-      } else if (type.equals("ConditionalBreakpoint")) {
-        begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(WEid).toString());
-        end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(WEid).toString());
-      }
-       */
-
+      setScopes();
 
       //set look:
       layout.setHgap(20);
@@ -234,6 +224,24 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
      */
     public String getEnd() {
       return end.getText();
+    }
+
+    private void setScopes() {
+      if (type.equals("WatchExpression")) {
+        try {
+          begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(Eid).toString());
+          end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(Eid).toString());
+        } catch (NullPointerException e) {
+          //TODO: workaraound
+        }
+      } else if (type.equals("ConditionalBreakpoint")) {
+        try {
+          begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(Eid).toString());
+          end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(Eid).toString());
+        } catch (NullPointerException e) {
+          //TODO: workaraound
+        }
+      }
     }
 
   }
