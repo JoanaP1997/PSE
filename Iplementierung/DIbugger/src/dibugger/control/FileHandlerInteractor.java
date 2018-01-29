@@ -168,7 +168,7 @@ public class FileHandlerInteractor extends Observable {
 
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
-            int stepSize = debugLogicController.getStepSize(i);
+            int stepSize = debugLogicController.getStepSize(currentInput.get(i).getProgramID());
             configurationFile.setStepSize(i, stepSize);
             
             List<Integer> breakpoints = debugLogicController.getBreakpoints(i);

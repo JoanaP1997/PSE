@@ -88,7 +88,7 @@ public class DebugLogicController {
         return debugLogicFacade.getNumPrograms();
     }
 
-    int getStepSize(int programNumber) {
+    int getStepSize(String programNumber) {
         return debugLogicFacade.getStepSize(programNumber);
     }
     
