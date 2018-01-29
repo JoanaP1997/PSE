@@ -416,7 +416,7 @@ public class ProgramPanel extends JPanel {
     result.updateUI();
 
     //update stepsize
-    stepsizeInput.setText(logicFacade.getStepSize(id));
+    stepsizeInput.setText(Integer.toString(logicFacade.getStepSize(id)));
     this.updateUI();
   }
 
