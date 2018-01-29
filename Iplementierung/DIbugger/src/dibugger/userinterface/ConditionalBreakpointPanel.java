@@ -29,8 +29,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   private JTable table;
   private DefaultTableModel tableModel;
 
-  private static String CB_TOOLTIP = "Erstes Feld für Optionen zu dieses bedingten Breakpoints, mittleres Feld um den " +
-      "CB zu ändern. \n Um einen neuen CB hinzuzufügen, mittleres Feld der letzten Zeile anklicken.";
+  private static String CB_TOOLTIP = "<html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br> mittleres " +
+      "Feld um den CB zu ändern. <br> Um einen neuen CB hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>";
 
   {
     thisCBP = this;
