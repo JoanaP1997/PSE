@@ -1,5 +1,8 @@
 package dibugger.debuglogic.interpreter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dibugger.debuglogic.antlrparser.WlangBaseVisitor;
 import dibugger.debuglogic.antlrparser.WlangParser.AdditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.AndConditionContext;
@@ -14,6 +17,8 @@ import dibugger.debuglogic.antlrparser.WlangParser.ConstantConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DivisionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DoubleLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.EqualCompContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArglistContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FloatLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdContext;
@@ -33,6 +38,7 @@ import dibugger.debuglogic.antlrparser.WlangParser.OneDimArrayAccessRelContext;
 import dibugger.debuglogic.antlrparser.WlangParser.OrConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.RelIdConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.RelIdContext;
+import dibugger.debuglogic.antlrparser.WlangParser.StatementContext;
 import dibugger.debuglogic.antlrparser.WlangParser.SubtractionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ThreeDimArrayAccessContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ThreeDimArrayAccessRelContext;
@@ -238,7 +244,26 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
         Term thirdIndex = this.visit(ctx.thirdIndex);
         return new ArrayAccessTerm(id, firstIndex, secondIndex, thirdIndex);
     }
-
+    @Override
+    public Term visitFilledArglist(FilledArglistContext ctx) {
+    	List<Term> content = new ArrayList<Term>();
+    	//gather in the content
+    	FilledArglistContext arglist = ctx.filledArglist();
+    	while (arglist != null && arglist.getChildCount() > 1) {
+             FilledArgumentContext argument = ctx.filledArgument();
+             Term term = this.visit(argument);
+             content.add(term);
+             // sift down the tree
+             arglist = arglist.filledArglist();
+         }
+         // gather in the leaf
+         if (arglist != null) {
+        	 FilledArgumentContext argument = ctx.filledArgument();
+             Term term = this.visit(argument);
+             content.add(term);
+         }
+    	return new TermList(content);
+    }
     // Literals
     @Override
     public Term visitIntLiteral(IntLiteralContext ctx) {
