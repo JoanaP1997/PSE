@@ -31,7 +31,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   private JComboBox<String> optionChooser;
   private JButton okButton;
   private JScrollPane scrollPane;
-  private int id;
+  private int row;
   private JTable table;
   private ExpressionPanel panel;
   private String type = "";
@@ -50,7 +50,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
   public ExpressionChangePopUp(MainInterface mainInterface, String message, int row, JTable table, ExpressionPanel panel, int Eid) {
 
     //init:
-    this.id = row;
+    this.row = row;
     this.Eid = Eid;
     this.panel = panel;
     this.table = table;
@@ -235,7 +235,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(Eid).toString());
         } catch (NullPointerException e) {
           begin.setText("1");
-          end.setText(mainInterface.getProgramLength(id));
+          end.setText(mainInterface.getProgramLength(programId));
         }
       } else if (type.equals("ConditionalBreakpoint")) {
         try {
