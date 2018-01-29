@@ -23,7 +23,12 @@ public class DebugLogicFacade extends Observable {
     private StepSizeSuggestion suggest_stepsize;
     private InputValueSuggestion suggest_input;
     private RelationalSuggestion suggest_relational;
-
+    
+    private void notifyAllObservers() {
+    	this.setChanged();
+    	this.notifyObservers();
+    }
+    
     public DebugLogicFacade() {
         super();
         debugControl = new DebugControl();
@@ -38,7 +43,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void setStepSize(int program, int size) {
         debugControl.setStepSize(program, size);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -46,7 +51,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void step(int type) throws DIbuggerLogicException {
         debugControl.step(type);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -54,7 +59,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void singleStep(int programID) {
         debugControl.singleStep(programID);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -62,7 +67,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void continueDebug() throws DIbuggerLogicException {
         debugControl.continueDebug();
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -71,7 +76,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void createWatchExpression(int id, String expr) throws DIbuggerLogicException {
         debugControl.createWatchExpression(id, expr);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -80,7 +85,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugControl.changeWatchExpression(id, expr, scopes);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -88,7 +93,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void deleteWatchExpression(int id) {
         debugControl.deleteWatchExpression(id);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -97,7 +102,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void createCondBreakpoint(int id, String cond) throws DIbuggerLogicException {
         debugControl.createCondBreakpoint(id, cond);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -106,7 +111,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         debugControl.changeCondBreakpoint(id, cond, scopes);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -114,7 +119,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void deleteCondBreakpoint(int id) {
         debugControl.deleteCondBreakpoint(id);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -122,7 +127,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void createBreakpoint(int programID, int line) {
         debugControl.createBreakpoint(programID, line);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -130,7 +135,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void deleteBreakpoint(int programID, int line) {
         debugControl.deleteBreakpoint(programID, line);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -139,7 +144,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         debugControl.launchRun(programs);
-        notifyObservers();
+        notifyAllObservers();
     }
     
     /**
@@ -148,7 +153,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void syncProgramInput(List<ProgramInput> programs){
         debugControl.syncProgramInput(programs);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -171,7 +176,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void reset() {
         debugControl.reset();
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -179,7 +184,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void setMaximumIterations(int count) {
         debugControl.setMaximumIterations(count);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
@@ -187,12 +192,12 @@ public class DebugLogicFacade extends Observable {
      */
     public void setMaximumFunctionCalls(int count) {
         debugControl.setMaximumFunctionCalls(count);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     public void deleteAllBreakpoints() {
         debugControl.deleteAllBreakpoints();
-        notifyObservers();
+        notifyAllObservers();
     }
 
     // Suggestions
@@ -201,7 +206,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void suggestStepSize(List<String> programText) {
         suggest_stepsize.suggest(programText);
-        notifyObservers();
+        notifyAllObservers();
     }
 
     /**
