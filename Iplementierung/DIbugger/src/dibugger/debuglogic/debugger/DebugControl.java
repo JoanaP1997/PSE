@@ -684,8 +684,13 @@ public class DebugControl {
      *            the program ID
      * @return the step size of program programID
      */
-    public int getStepSize(int programID) {
-        return list_stepSize.get(programID);
+    public int getStepSize(String programID) {
+        for(int i=0;i<Math.min(numPrograms, list_stepSize.size());++i){
+            if(list_programInput.get(i).getProgramID().equals(programID)){
+                return list_stepSize.get(i);
+            }
+        }
+        return 1;
     }
 
     /**

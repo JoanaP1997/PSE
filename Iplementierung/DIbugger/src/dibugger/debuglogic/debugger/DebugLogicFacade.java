@@ -384,7 +384,7 @@ public class DebugLogicFacade extends Observable {
      *            the program ID
      * @return the step size of program programID
      */
-    public int getStepSize(int programID) {
+    public int getStepSize(String programID) {
         return debugControl.getStepSize(programID);
     }
 
