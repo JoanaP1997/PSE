@@ -79,7 +79,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
     dataEntries[0][1] = "5 = 3";
-    dataEntries[0][2] = "true";
+    dataEntries[0][2] = "false";
     mainInterface.getControlFacade().createConditionalBreakpoint(0, "5 = 3");
     tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override

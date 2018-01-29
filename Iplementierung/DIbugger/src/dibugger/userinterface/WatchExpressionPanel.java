@@ -35,6 +35,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private JTable table;
     private DefaultTableModel tableModel;
 
+    private static String WE_TOOLTIP = "Erstes Feld für Optionen zu dieser Watch-Expression, mittleres Feld um die WE " +
+        "zu ändern. \n Um eine neue WE hinzuzufügen, mittleres Feld der letzten Zeile anklicken.";
+
     private static WatchExpressionPanel singleton = null;
 
     private WatchExpressionPanel(MainInterface mainInterface) {
@@ -70,7 +73,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
 			}
             table.updateUI();
         }
-        // TODO: check
     }
 
     private void initComponents() {
@@ -92,6 +94,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
             }
         };
         table = new JTable(tableModel);
+        table.setToolTipText(WE_TOOLTIP);
         table.getColumnModel().getColumn(0).setPreferredWidth(5);
         table.getColumnModel().getColumn(1).setPreferredWidth(150);
         table.getColumnModel().getColumn(2).setPreferredWidth(10);
