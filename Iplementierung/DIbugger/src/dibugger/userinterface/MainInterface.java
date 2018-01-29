@@ -37,11 +37,11 @@ public class MainInterface extends JFrame {
   private static String MAX_FUNCTION_CALLS = "Maximale Funktionsaufrufe festlegen";
   private static String MAX_ITERATION = "Maximale Iterationen festlegen";
   private static String SUGGESTION_STRATEGY_STEPSIZE
-      = "Strategie für Vorschl\u00e4ge der Schrittgr\u00f6ße";
+      = "Strategie f\u00fcr Vorschl\u00e4ge der Schrittgr\u00f6\u00dfe";
   private static String SUGGESTION_STRATEGY_EXPRESSION
-      = "Strategie für Vorschl\u00e4ge von Watch Expressions / bedingten Breakpoints";
+      = "Strategie f\u00fcr Vorschl\u00e4ge von Watch Expressions / bedingten Breakpoints";
   private static String SUGGESTION_STRATEGY_INPUT
-      = "Strategie für Vorschl\u00e4ge von Eingabevariablen";
+      = "Strategie f\u00fcr Vorschl\u00e4ge von Eingabevariablen";
 
 
   TreeMap<String, ProgramPanel> programPanels;
