@@ -411,8 +411,12 @@ public class ProgramPanel extends JPanel {
         (logicFacade.getCurrentExecutionLines().containsKey(id))
             ? logicFacade.getCurrentExecutionLines().get(id) : 0;
 
+    //show result
     result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
     result.updateUI();
+
+    //update stepsize
+    stepsizeInput.setText(logicFacade.getStepSize(id));
     this.updateUI();
   }
 
