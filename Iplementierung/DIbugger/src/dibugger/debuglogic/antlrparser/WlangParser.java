@@ -25,7 +25,7 @@ public class WlangParser extends Parser {
 		FLOATLITERAL=37, CHARLITERAL=38, NULLLITERAL=39, LONGLITERAL=40, DOUBLELITERAL=41, 
 		ASSIGN=42, ID=43, REL_ID=44;
 	public static final int
-		RULE_webppterm = 0, RULE_program = 1, RULE_routineHead = 2, RULE_mainHead = 3, 
+		RULE_wecbterm = 0, RULE_program = 1, RULE_routineHead = 2, RULE_mainHead = 3, 
 		RULE_arglist = 4, RULE_argument = 5, RULE_filledArglist = 6, RULE_filledArgument = 7, 
 		RULE_routine = 8, RULE_mainRoutine = 9, RULE_statements = 10, RULE_statement = 11, 
 		RULE_funcCall = 12, RULE_block = 13, RULE_assignment = 14, RULE_arrayDeclaration = 15, 
@@ -35,7 +35,7 @@ public class WlangParser extends Parser {
 		RULE_whileState = 26, RULE_condition = 27, RULE_comparison = 28, RULE_term = 29, 
 		RULE_arrayAccess = 30, RULE_relArrayAccess = 31;
 	public static final String[] ruleNames = {
-		"webppterm", "program", "routineHead", "mainHead", "arglist", "argument", 
+		"wecbterm", "program", "routineHead", "mainHead", "arglist", "argument", 
 		"filledArglist", "filledArgument", "routine", "mainRoutine", "statements", 
 		"statement", "funcCall", "block", "assignment", "arrayDeclaration", "arrayDeclareAssign", 
 		"arrayElementAssign", "dims", "callingAssign", "pureAssign", "declareAssign", 
@@ -106,27 +106,27 @@ public class WlangParser extends Parser {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
-	public static class WebpptermContext extends ParserRuleContext {
+	public static class WecbtermContext extends ParserRuleContext {
 		public ConditionContext condition() {
 			return getRuleContext(ConditionContext.class,0);
 		}
 		public TermContext term() {
 			return getRuleContext(TermContext.class,0);
 		}
-		public WebpptermContext(ParserRuleContext parent, int invokingState) {
+		public WecbtermContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_webppterm; }
+		@Override public int getRuleIndex() { return RULE_wecbterm; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitWebppterm(this);
+			if ( visitor instanceof WlangVisitor ) return ((WlangVisitor<? extends T>)visitor).visitWecbterm(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final WebpptermContext webppterm() throws RecognitionException {
-		WebpptermContext _localctx = new WebpptermContext(_ctx, getState());
-		enterRule(_localctx, 0, RULE_webppterm);
+	public final WecbtermContext wecbterm() throws RecognitionException {
+		WecbtermContext _localctx = new WecbtermContext(_ctx, getState());
+		enterRule(_localctx, 0, RULE_wecbterm);
 		try {
 			setState(66);
 			_errHandler.sync(this);
