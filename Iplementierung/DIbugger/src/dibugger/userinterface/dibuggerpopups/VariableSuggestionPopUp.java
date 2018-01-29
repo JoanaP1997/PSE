@@ -255,6 +255,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
       @Override
       public void actionPerformed(ActionEvent e) {
         mainInterface.getControlFacade().suggestStepSize();
+        dispose();
       }
     });
   }
