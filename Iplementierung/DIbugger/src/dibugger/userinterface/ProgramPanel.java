@@ -393,7 +393,8 @@ public class ProgramPanel extends JPanel {
       if (!variableValueMap.containsKey(currentVariable)) {
         shownVariables.add(currentVariable);
       }
-      variableValueMap.put(currentVariable, logicFacade.getValueOf(id, currentVariable));
+      variableValueMap.put(currentVariable,
+          currentVariable + " = " + logicFacade.getValueOf(id, currentVariable));
     }
     for (String variable : shownVariables) {
       listModel.addElement(variableValueMap.get(variable));
