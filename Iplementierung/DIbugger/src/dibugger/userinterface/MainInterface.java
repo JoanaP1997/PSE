@@ -490,14 +490,14 @@ public class MainInterface extends JFrame {
    * Change of language.
    */
   public void changeLanguage() {
-    //TODO: assure that controlFacade is not null
-    LanguageFile languageFile = controlFacade.getLanguageFile();
-    if (programPanels != null) {
-      for (ProgramPanel p : programPanels.values()) {
-        p.changeLanguage();
+    if (controlFacade != null) {
+      LanguageFile languageFile = controlFacade.getLanguageFile();
+      if (programPanels != null) {
+        for (ProgramPanel p : programPanels.values()) {
+          p.changeLanguage();
+        }
       }
     }
-
 
   }
 
