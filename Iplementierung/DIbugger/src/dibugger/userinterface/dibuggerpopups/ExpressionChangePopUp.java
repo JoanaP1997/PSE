@@ -99,10 +99,12 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
           if (message.startsWith("WatchExpression")) {
             WatchExpressionPanel p = (WatchExpressionPanel) panel;
             p.deleteEntry(row);
+            mainInterface.getControlFacade().deleteWatchExpression(Eid);
             dispose();
           } else if (message.startsWith("ConditionalBreakpoint")) {
             ConditionalBreakpointPanel p = (ConditionalBreakpointPanel) panel;
             p.deleteEntry(row);
+            mainInterface.getControlFacade().deleteConditionalBreakpoint(Eid);
             dispose();
           }
         } else if(optionChooser.getSelectedItem() == ADJUST_SCOPEASSIGNMENT) {
