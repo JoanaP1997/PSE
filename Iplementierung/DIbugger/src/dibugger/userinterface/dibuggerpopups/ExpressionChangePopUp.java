@@ -195,7 +195,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       labelEnd = new JLabel(END +": ");
       labelEnd.setPreferredSize(new Dimension(40, 30));
 
-      setScopes();
+      setScopes(programId);
 
       //set look:
       layout.setHgap(20);
@@ -229,21 +229,21 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       return end.getText();
     }
 
-    private void setScopes() {
+    private void setScopes(String programId) {
       if (type.equals("WatchExpression")) {
         try {
-          //TODO: Werte werden noch falsch übergeben
-          begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeBegin(Eid).toString());
-          end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getWEScopeEnd(Eid).toString());
+          //TODO: Werte drehen sich noch um
+          begin.setText(mainInterface.getControlFacade().getWatchExpressionScopeBeginnnings(Eid).get(programId).toString());
+          end.setText(mainInterface.getControlFacade().getWatchExpressionScopeEnds(Eid).get(programId).toString());
         } catch (NullPointerException e) {
           begin.setText("1");
           end.setText(mainInterface.getProgramLength(programId));
         }
       } else if (type.equals("ConditionalBreakpoint")) {
         try {
-          //TODO: Werte werden noch falsch übergeben
-          begin.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeBegin(Eid).toString());
-          end.setText(mainInterface.getControlFacade().getDebugLogicFacade().getCBScopeEnd(Eid).toString());
+          //TODO: Werte drehen sich noch um
+          begin.setText(mainInterface.getControlFacade().getConditionalBreakpointScopeBeginnings(Eid).get(programId).toString());
+          end.setText(mainInterface.getControlFacade().getConditionalBreakpointScopeEnds(Eid).get(programId).toString());
         } catch (NullPointerException e) {
           begin.setText("1");
           end.setText(mainInterface.getProgramLength(programId));
