@@ -27,6 +27,7 @@ public class ProgramPanel extends JPanel {
   private static String SINGLE_STEP = "Einzelschritt";
   private static String RETURN = "R\u00fcckgabewert";
   private static String STEP_SIZE_TOOLTIP = "Schrittgr\u00f6\u00dfe mit Enter best\u00e4tigen";
+  private static String INPUT_TOOLTIP = "Einzelne Eingaben durch Semikola trennen.";
 
   private final short MARGIN_WIDTH_PX = 36;
   private List<Integer> listBreakpointLines;
@@ -99,6 +100,7 @@ public class ProgramPanel extends JPanel {
     inputvariablesLabel.setText(INPUT_VARS + ": ");
 
     inputvariableTextField.setText("");
+    inputvariableTextField.setToolTipText(INPUT_TOOLTIP);
     inputvariableTextField.addActionListener(evt -> variableInputActionPerformed());
     inputvariableTextField.setPreferredSize(new Dimension(288, 40));
 
