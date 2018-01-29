@@ -491,6 +491,7 @@ public class MainInterface extends JFrame {
    */
   public void changeLanguage() {
     if (controlFacade != null) {
+      //TODO: Sprache
       LanguageFile languageFile = controlFacade.getLanguageFile();
       if (programPanels != null) {
         for (ProgramPanel p : programPanels.values()) {
@@ -525,6 +526,10 @@ public class MainInterface extends JFrame {
       p.stopDebug();
       controlFacade.stopDebug();
     }
+  }
+
+  List<String> getProgramLength(String programId) {
+    return programPanels.get(programId).getProgramLength();
   }
 
 }
