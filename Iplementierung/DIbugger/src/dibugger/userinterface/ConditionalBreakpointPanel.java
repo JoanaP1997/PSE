@@ -78,8 +78,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     String[] columnTitles = {"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
-    dataEntries[0][1] = "5 = 5";
+    dataEntries[0][1] = "5 = 3";
     dataEntries[0][2] = "true";
+    mainInterface.getControlFacade().createConditionalBreakpoint(0, "5 = 3");
     tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -177,7 +178,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     int row = table.rowAtPoint(p) + 1;
     idMap.put(row, currentHighestId + 1);
     currentHighestId++;
-    Object[] newRow = {" ", "5 = 5 ", ""};
+    Object[] newRow = {" ", "5 = 3 ", ""};
     tableModel.addRow(newRow);
     ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
     dataAsList.addAll(Arrays.asList(dataEntries));
@@ -186,7 +187,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     for (int j = 0; j < dataAsList.size(); j++) {
       dataEntries[j] = dataAsList.get(j);
     }
-    mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 = 5");
+    mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 = 3");
   }
 
   private void saveCBs() {
