@@ -150,7 +150,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
    */
     public void saveScopes(int id, ArrayList<ScopeTuple> scopeTupels) {
         scopes.put(id, scopeTupels);
-        //TODO: verwenden!
     }
 
   /**
