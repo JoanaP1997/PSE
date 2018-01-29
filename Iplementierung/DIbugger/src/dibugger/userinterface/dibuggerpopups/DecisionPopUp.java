@@ -32,6 +32,7 @@ public class DecisionPopUp extends DIbuggerPopUp {
         this.setLayout(layout);
         getContentPane().setLayout(layout);
         this.setModal(true);
+        this.setLocationRelativeTo(mainInterface);
 
         JLabel messageText = new JLabel(message);
 

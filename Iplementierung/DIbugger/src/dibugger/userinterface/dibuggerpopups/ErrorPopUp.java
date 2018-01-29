@@ -28,6 +28,7 @@ public class ErrorPopUp extends DIbuggerPopUp {
         this.add(new JLabel(message), constraints);
         constraints.gridy = 1;
         this.setModal(true);
+        this.setLocationRelativeTo(mainInterface);
 
         JButton ok = new JButton("OK");
         ok.addActionListener(actionEvent -> {

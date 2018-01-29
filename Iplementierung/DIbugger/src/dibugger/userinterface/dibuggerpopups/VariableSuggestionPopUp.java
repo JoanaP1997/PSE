@@ -44,6 +44,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     this.setSize(300,310);
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    this.setLocationRelativeTo(mainInterface);
 
     if(type == 0) {
       stepSizeSuggestion();

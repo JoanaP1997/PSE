@@ -59,6 +59,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     this.mainInterface = mainInterface;
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     this.setModalityType(ModalityType.APPLICATION_MODAL);
+    this.setLocationRelativeTo(mainInterface);
     groupLayout = new GroupLayout(getContentPane());
     getContentPane().setLayout(groupLayout);
 
