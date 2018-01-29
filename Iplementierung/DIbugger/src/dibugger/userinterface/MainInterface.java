@@ -28,10 +28,10 @@ public class MainInterface extends JFrame {
   private static String SAVE_CONFIG = "Konfigurationsdatei speichern";
   private static String END_DIBUGGER = "DIbugger beenden";
   private static String SUGGESTIONS = "Vorschl\u00e4ge";
-  private static String SUGGEST_STEPSIZE = "Vorschlag für Schrittgr\u00f6ße";
-  private static String SUGGEST_INPUT_VAR = "Vorschlag für Eingabevariablen";
-  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag für Watch Expressions";
-  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag für Bedingte Breakpoints";
+  private static String SUGGEST_STEPSIZE = "Vorschlag f\u00fcr Schrittgr\u00f6\u00dfe";
+  private static String SUGGEST_INPUT_VAR = "Vorschlag f\u00fcr Eingabevariablen";
+  private static String SUGGEST_WATCHEXPRESSION = "Vorschlag f\u00fcr Watch Expressions";
+  private static String SUGGEST_COND_BREAKPOINT = "Vorschlag f\u00fcr Bedingte Breakpoints";
   private static String SETTINGS = "Einstellungen";
   private static String CHANGE_LANGUAGE = "Sprache \u00e4ndern";
   private static String MAX_FUNCTION_CALLS = "Maximale Funktionsaufrufe festlegen";
