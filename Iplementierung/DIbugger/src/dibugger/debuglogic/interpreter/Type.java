@@ -47,6 +47,19 @@ public enum Type {
                 return CHAR;
             case "boolean":
                 return BOOLEAN;
+            case "int[]":
+            case "int []":
+            case "long[]":
+            case "long []":
+            case "float[]":
+            case "float []":
+            case "double[]":
+            case "double []":
+            case "char[]":
+            case "char []":
+            case "boolean[]":
+            case "boolean []":
+                return ARRAY;
             default:
                 return NULL;
 
