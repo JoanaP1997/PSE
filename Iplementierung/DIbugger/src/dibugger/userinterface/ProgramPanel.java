@@ -58,6 +58,8 @@ public class ProgramPanel extends JPanel {
 
   private JLabel result;
 
+  private int currentExcecutionLine;
+
   /**
    * Constructor for a nem ProgramPanel.
    *
@@ -124,7 +126,7 @@ public class ProgramPanel extends JPanel {
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepsize)
                     .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(110,110,110)
+                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(110, 110, 110)
                     .addComponent(singleStepButton))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
                     .addGap(150, 150, 150).addComponent(loadFile).addComponent(delete))
@@ -399,7 +401,9 @@ public class ProgramPanel extends JPanel {
     variableInspectorList.updateUI();
 
     //show current excecution line
-    //TODO
+    currentExcecutionLine =
+        (logicFacade.getCurrentExecutionLines().containsKey(id))
+            ? logicFacade.getCurrentExecutionLines().get(id) : 0;
     this.updateUI();
   }
 
@@ -479,7 +483,11 @@ public class ProgramPanel extends JPanel {
       //draw Breakpoints
       int height = g.getFontMetrics(g.getFont()).getHeight();
       int lineID = y / height;
-      g.setColor(Color.RED);
+      if (lineID != currentExcecutionLine) {
+        g.setColor(Color.RED);
+      } else {
+        g.setColor(Color.BLUE);
+      }
       if (listBreakpointLines.contains(lineID)) {
         g.fillOval(8, y - 8, 8, 8);
       }
@@ -527,6 +535,7 @@ public class ProgramPanel extends JPanel {
 
   /**
    * Returns length of the editors text by returning the number of the end line.
+   *
    * @return length of the text
    */
   String getProgramLength() {
