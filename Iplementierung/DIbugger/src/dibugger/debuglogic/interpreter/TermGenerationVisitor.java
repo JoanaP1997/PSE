@@ -22,6 +22,9 @@ import dibugger.debuglogic.antlrparser.WlangParser.FilledArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FloatLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterArrayContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterNoArrayContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IntLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.LessCompContext;
 import dibugger.debuglogic.antlrparser.WlangParser.LessEqualCompContext;
@@ -245,12 +248,20 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
         return new ArrayAccessTerm(id, firstIndex, secondIndex, thirdIndex);
     }
     @Override
+    public Term visitInputparameterNoArray(InputparameterNoArrayContext ctx) {
+    	return this.visit(ctx.term());
+    }
+    @Override
+    public Term visitInputparameterArray(InputparameterArrayContext ctx) {
+    	return this.visit(ctx.filledArglist());
+    }
+    @Override
     public Term visitFilledArglist(FilledArglistContext ctx) {
     	List<Term> content = new ArrayList<Term>();
     	//gather in the content
-    	FilledArglistContext arglist = ctx.filledArglist();
+    	FilledArglistContext arglist = ctx;
     	while (arglist != null && arglist.getChildCount() > 1) {
-             FilledArgumentContext argument = ctx.filledArgument();
+             FilledArgumentContext argument = arglist.filledArgument();
              Term term = this.visit(argument);
              content.add(term);
              // sift down the tree
@@ -258,7 +269,7 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
          }
          // gather in the leaf
          if (arglist != null) {
-        	 FilledArgumentContext argument = ctx.filledArgument();
+        	 FilledArgumentContext argument = arglist.filledArgument();
              Term term = this.visit(argument);
              content.add(term);
          }

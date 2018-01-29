@@ -295,7 +295,7 @@ public class GenerationController {
 			WlangParser parser = new WlangParser(tokens);
 			parser.removeErrorListeners();
 			parser.addErrorListener(new ActuallyHelpfulErrorListener());
-			tree = parser.term();
+			tree = parser.inputparameter();
 		} catch (ActuallyHelpfulSyntaxException e) {
 			throw new SyntaxException(e.getMessage());
 		}

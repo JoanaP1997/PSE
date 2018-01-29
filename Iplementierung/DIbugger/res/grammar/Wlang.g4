@@ -7,8 +7,16 @@ grammar Wlang;
 	}
 }
 
-wecbterm: condition | term;
+inputparameter: term #inputparameterNoArray
+		| '{'filledArglist'}' #inputparameterArray
+		;
+wecbterm: condition 
+	| term;
 program: routine* mainRoutine;
+
+
+
+
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
 			| 'void' id =ID '('args=arglist?')' #ProcedureHead
 			;

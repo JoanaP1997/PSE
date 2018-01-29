@@ -11,6 +11,20 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface WlangVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by the {@code inputparameterNoArray}
+	 * labeled alternative in {@link WlangParser#inputparameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputparameterNoArray(WlangParser.InputparameterNoArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code inputparameterArray}
+	 * labeled alternative in {@link WlangParser#inputparameter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInputparameterArray(WlangParser.InputparameterArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link WlangParser#wecbterm}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
