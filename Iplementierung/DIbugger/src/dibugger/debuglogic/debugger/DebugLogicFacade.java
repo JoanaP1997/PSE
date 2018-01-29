@@ -441,6 +441,15 @@ public class DebugLogicFacade extends Observable {
     	l.add("suggest_strategy_simple_input");
     	return l;
     }
+
+    /**
+     * Getter for the return value of a given program, if the current TraceState is the last in the Trace iteration.
+     * @param programNameId the nameID of the program
+     * @return the value of the return of the given program
+     */
+    public String getReturnValue(String programNameId) {
+        return debugControl.getReturnValue(programNameId);
+    }
     
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;

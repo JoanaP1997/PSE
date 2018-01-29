@@ -405,6 +405,8 @@ public class ProgramPanel extends JPanel {
     currentExcecutionLine =
         (logicFacade.getCurrentExecutionLines().containsKey(id))
             ? logicFacade.getCurrentExecutionLines().get(id) : 0;
+
+    result.setText(RETURN + " " + logicFacade.getReturnValue(id));
     this.updateUI();
   }
 
