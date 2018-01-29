@@ -528,7 +528,12 @@ public class MainInterface extends JFrame {
     }
   }
 
-  List<String> getProgramLength(String programId) {
+  /**
+   * returns the length of the text of a program panel.
+   * @param programId program ID
+   * @return List with start and end
+   */
+  public List<String> getProgramLength(String programId) {
     return programPanels.get(programId).getProgramLength();
   }
 
