@@ -3,6 +3,7 @@ package dibugger.control;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Observable;
 
@@ -189,8 +190,8 @@ public class FileHandlerInteractor extends Observable {
          */
         for (int i = 0; i < numberOfConditionalBreakpoints; i++) {
             String condition = conditions.get(i);
-            List<Integer> breakpointScopeBeginnings = debugLogicController.getConditionalBreakpointScopeBeginnings(i);
-            List<Integer> breakpointScopeEnds = debugLogicController.getConditionalBreakpointScopeEnds(i);
+            List<Integer> breakpointScopeBeginnings = createListFromMap(debugLogicController.getConditionalBreakpointScopeBeginnings(i));
+            List<Integer> breakpointScopeEnds = createListFromMap(debugLogicController.getConditionalBreakpointScopeEnds(i));
             configurationFile.addConditionalBreakpoint(condition, breakpointScopeBeginnings, breakpointScopeEnds);
         }
 
@@ -198,12 +199,20 @@ public class FileHandlerInteractor extends Observable {
         int numberOfExpressions = expressions.size();
         for (int i = 0; i < numberOfExpressions; i++) {
             String expression = expressions.get(i);
-            List<Integer> expressionScopeBeginnings = debugLogicController.getWatchExpressionScopeBeginnnings(i);
-            List<Integer> expressionScopeEnds = debugLogicController.getWatchExpressionScopeEnds(i);
+            List<Integer> expressionScopeBeginnings = createListFromMap(debugLogicController.getWatchExpressionScopeBeginnnings(i));
+            List<Integer> expressionScopeEnds = createListFromMap(debugLogicController.getWatchExpressionScopeEnds(i));
             configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
         }
     }
 
+    private List<Integer> createListFromMap(Map<String, Integer> map){
+        List<Integer> l = new ArrayList<Integer>();
+        for(String key : map.keySet()){
+            l.add(map.get(key));
+        }
+        return l;
+    }
+    
     /**
      *  Loads a program's text using specified {@code File}
      *  

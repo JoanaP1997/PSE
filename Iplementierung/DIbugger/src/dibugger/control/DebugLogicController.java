@@ -200,12 +200,22 @@ public class DebugLogicController {
         return debugLogicFacade.getWatchExpressions();
     }
 
-    public List<Integer> getWatchExpressionScopeBeginnnings(int expressionId) {
-        return debugLogicFacade.getWEScopeBegin(expressionId);
+    public Map<String, Integer> getWatchExpressionScopeBeginnnings(int expressionId) {
+        List<Integer> l = debugLogicFacade.getWEScopeBegin(expressionId);
+        Map<String, Integer> m = new HashMap<String, Integer>();
+        for(int i = 0; i<l.size(); ++i){
+            m.put(inverseMapping(programIds, i), l.get(i));
+        }
+        return m;
     }
 
-    public List<Integer> getWatchExpressionScopeEnds(int expressionId) {
-        return debugLogicFacade.getWEScopeEnd(expressionId);
+    public Map<String, Integer> getWatchExpressionScopeEnds(int expressionId) {
+        List<Integer> l = debugLogicFacade.getWEScopeEnd(expressionId);
+        Map<String, Integer> m = new HashMap<String, Integer>();
+        for(int i = 0; i<l.size(); ++i){
+            m.put(inverseMapping(programIds, i), l.get(i));
+        }
+        return m;
     }
     
     /**
@@ -280,8 +290,13 @@ public class DebugLogicController {
      *         breakpoint
      * @see DebugLogicFacade#getCBScopeBegin(int)
      */
-    public List<Integer> getConditionalBreakpointScopeBeginnings(int expressionId) {
-        return debugLogicFacade.getCBScopeBegin(expressionId);
+    public Map<String, Integer> getConditionalBreakpointScopeBeginnings(int expressionId) {
+        List<Integer> l = debugLogicFacade.getCBScopeBegin(expressionId);
+        Map<String, Integer> m = new HashMap<String, Integer>();
+        for(int i = 0; i<l.size(); ++i){
+            m.put(inverseMapping(programIds, i), l.get(i));
+        }
+        return m;
     }
 
     /**
@@ -292,8 +307,13 @@ public class DebugLogicController {
      * @return a List containing all Scope ends of given conditional
      *         breakpoint
      */
-    public List<Integer> getConditionalBreakpointScopeEnds(int expressionId) {
-        return debugLogicFacade.getCBScopeEnd(expressionId);
+    public Map<String, Integer> getConditionalBreakpointScopeEnds(int expressionId) {
+        List<Integer> l = debugLogicFacade.getCBScopeEnd(expressionId);
+        Map<String, Integer> m = new HashMap<String, Integer>();
+        for(int i = 0; i<l.size(); ++i){
+            m.put(inverseMapping(programIds, i), l.get(i));
+        }
+        return m;
     }
 
     void createConditionalBreakpoints(List<String> conditions) throws DIbuggerLogicException {
@@ -578,5 +598,14 @@ public class DebugLogicController {
      */
     public List<String> getInputValueSuggestionStrategies() {
     	return debugLogicFacade.getInputValueSuggestionStrategies();
+    }
+    
+    private String inverseMapping(Map<String, Integer> map, int value){
+        for(String key : map.keySet()){
+            if(map.get(key)==value){
+                return key;
+            }
+        }
+        return "";
     }
 }
