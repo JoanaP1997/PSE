@@ -397,6 +397,9 @@ public class ProgramPanel extends JPanel {
       listModel.addElement(variableValueMap.get(variable));
     }
     variableInspectorList.updateUI();
+
+    //show current excecution line
+    //TODO
     this.updateUI();
   }
 
