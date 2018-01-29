@@ -63,10 +63,10 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private void variableSuggestion() {
     JLabel intervallStartLabel = new javax.swing.JLabel();
     JTextField intervallStartField = new javax.swing.JTextField();
-    intervallStartField.setPreferredSize(new Dimension(100,20));
+    intervallStartField.setPreferredSize(new Dimension(100,30));
     JLabel intervallEndLabel = new javax.swing.JLabel();
     JTextField intervallEndField = new javax.swing.JTextField();
-    intervallEndField.setPreferredSize(new Dimension(100,20));
+    intervallEndField.setPreferredSize(new Dimension(100,30));
     JLabel intervallLabel = new javax.swing.JLabel();
     JLabel typeLabel = new javax.swing.JLabel();
     JComboBox typeChooser = new javax.swing.JComboBox<>();
