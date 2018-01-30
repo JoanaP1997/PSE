@@ -303,7 +303,6 @@ public class DebugControl {
             list_watchExpressions.add(null);
         }
         list_watchExpressions.set(id, new WatchExpression(expr));
-        // TODO add default Scope
     }
 
     /**
@@ -338,7 +337,20 @@ public class DebugControl {
      *            the id of the watch expression
      */
     public void deleteWatchExpression(int id) {
-        list_watchExpressions.remove(id);
+        if(id==list_watchExpressions.size()-1){
+            list_watchExpressions.remove(id);
+        }
+        else{
+            for(int i=list_watchExpressions.size()-1;i>id;--i){
+                if(list_watchExpressions.get(i)==null){
+                    list_watchExpressions.remove(i);
+                }
+                else{
+                    i=id;
+                }
+            }
+            list_watchExpressions.set(id, null);
+        }
     }
 
     /**
@@ -390,7 +402,20 @@ public class DebugControl {
      *            the id of the breakpoint
      */
     public void deleteCondBreakpoint(int id) {
-        list_condBreakpoints.remove(id);
+        if(id==list_condBreakpoints.size()-1){
+            list_condBreakpoints.remove(id);
+        }
+        else{
+            for(int i=list_condBreakpoints.size()-1;i>id;--i){
+                if(list_condBreakpoints.get(i)==null){
+                    list_condBreakpoints.remove(i);
+                }
+                else{
+                    i=id;
+                }
+            }
+            list_condBreakpoints.set(id, null);
+        }
     }
 
     /**
