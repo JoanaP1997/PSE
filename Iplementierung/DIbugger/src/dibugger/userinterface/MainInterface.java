@@ -8,7 +8,6 @@ import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -274,10 +273,10 @@ public class MainInterface extends JFrame {
   private void initExpressionStrategyMenu() {
     expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
     ActionListener expressionStrategyListener = e -> {
-      String expressionStrategy = ((JMenuItem)e.getSource()).getText();
+      String expressionStrategy = ((JMenuItem) e.getSource()).getText();
       //TODO: Map? ändern?
     };
-    for(String expressionStrategy: controlFacade.getRelationalExpressionSuggestionStrategies()) {
+    for (String expressionStrategy : controlFacade.getRelationalExpressionSuggestionStrategies()) {
       JMenuItem expressionStrategyItem = new JMenuItem(expressionStrategy);
       expressionStrategyItem.addActionListener(expressionStrategyListener);
       expressionStrategyMenu.add(expressionStrategyItem);
@@ -290,10 +289,10 @@ public class MainInterface extends JFrame {
   private void initInputStrategyMenu() {
     inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
     ActionListener inputStrategyListener = e -> {
-      String inputStrategy = ((JMenuItem)e.getSource()).getText();
+      String inputStrategy = ((JMenuItem) e.getSource()).getText();
       //TODO: Map? ändern?
     };
-    for(String strategy : controlFacade.getInputValueSuggestionStrategies()) {
+    for (String strategy : controlFacade.getInputValueSuggestionStrategies()) {
       JMenuItem strategyItem = new JMenuItem(strategy);
       strategyItem.addActionListener(inputStrategyListener);
       inputStrategyMenu.add(strategyItem);
@@ -306,10 +305,10 @@ public class MainInterface extends JFrame {
   private void initStepSizeStrategyMenu() {
     stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
     ActionListener stepSizeStrategyListener = e -> {
-      String stepSizeStrategyItem = ((JMenuItem)e.getSource()).getText();
+      String stepSizeStrategyItem = ((JMenuItem) e.getSource()).getText();
       //TODO: Map? Ändern?
     };
-    for(String stepSizeStrategy : controlFacade.getStepSizeSuggestionStrategies()) {
+    for (String stepSizeStrategy : controlFacade.getStepSizeSuggestionStrategies()) {
       JMenuItem stepSizeStrategyItem = new JMenuItem(stepSizeStrategy);
       stepSizeStrategyItem.addActionListener(stepSizeStrategyListener);
       stepSizeStrategyMenu.add(stepSizeStrategyItem);
@@ -323,10 +322,10 @@ public class MainInterface extends JFrame {
   private void initMaxFunctionCallsMenu() {
     maxFunctionCalls = new JMenu(MAX_FUNCTION_CALLS);
     ActionListener maxFunctionCallsListener = e -> {
-      int maxFunctionCalls = Integer.valueOf(((JMenuItem)e.getSource()).getText());
+      int maxFunctionCalls = Integer.valueOf(((JMenuItem) e.getSource()).getText());
       controlFacade.setMaximumFunctionCalls(maxFunctionCalls);
     };
-    for(int i = 0; i <= 200; i += 10) {
+    for (int i = 0; i <= 200; i += 10) {
       JMenuItem maxFunctionCallsItem = new JMenuItem(Integer.toString(i));
       maxFunctionCallsItem.addActionListener(maxFunctionCallsListener);
       maxFunctionCalls.add(maxFunctionCallsItem);
@@ -340,10 +339,10 @@ public class MainInterface extends JFrame {
   private void initMaxIterationsMenu() {
     maxIterations = new JMenu(MAX_ITERATION);
     ActionListener maxIterationsChangedListener = e -> {
-      int maxIterations = Integer.valueOf(((JMenuItem)e.getSource()).getText());
+      int maxIterations = Integer.valueOf(((JMenuItem) e.getSource()).getText());
       controlFacade.setMaximumIterations(maxIterations);
     };
-    for(int i = 0; i <= 200; i += 10) {
+    for (int i = 0; i <= 200; i += 10) {
       JMenuItem maxIterationsItem = new JMenuItem(Integer.toString(i));
       maxIterationsItem.addActionListener(maxIterationsChangedListener);
       maxIterations.add(maxIterationsItem);
@@ -356,10 +355,10 @@ public class MainInterface extends JFrame {
   private void initLanguageMenu() {
     languageMenu = new JMenu(CHANGE_LANGUAGE);
     ActionListener languageListener = e -> {
-      String language = ((JMenuItem)e.getSource()).getText();
+      String language = ((JMenuItem) e.getSource()).getText();
       controlFacade.changeLanguage(language);
     };
-    for(String language: controlFacade.getAvailableLanuages()) {
+    for (String language : controlFacade.getAvailableLanuages()) {
       JMenuItem languageItem = new JMenuItem(language);
       languageItem.addActionListener(languageListener);
       languageMenu.add(languageItem);
@@ -566,30 +565,31 @@ public class MainInterface extends JFrame {
     if (controlFacade != null) {
       //TODO: Sprache
       LanguageFile languageFile = controlFacade.getLanguageFile();
+      CommandPanel.getCommandPanel(this).changeLanguage();
       if (programPanels != null) {
         for (ProgramPanel p : programPanels.values()) {
           p.changeLanguage();
         }
-        //FILE_MENU = languageFile.getTranslation();
-        //RESET_GUI = languageFile.getTranslation();
-        //ADD_PROGRAM = languageFile.getTranslation();
-        //TOO_MANY_PROGRAM_PANELS = "languageFile.getTranslation();
-        //LOAD_CONFIG = languageFile.getTranslation();
-        //SAVE_CONFIG = languageFile.getTranslation();
-        //END_DIBUGGER = languageFile.getTranslation();
-        //SUGGESTIONS = languageFile.getTranslation();
-        //SUGGEST_STEPSIZE = languageFile.getTranslation();
-        //SUGGEST_INPUT_VAR = languageFile.getTranslation();
-        //SUGGEST_WATCHEXPRESSION = languageFile.getTranslation();
-        //SUGGEST_COND_BREAKPOINT = languageFile.getTranslation();
-        //SETTINGS = languageFile.getTranslation();
-        //CHANGE_LANGUAGE = languageFile.getTranslation();
-        //MAX_FUNCTION_CALLS = languageFile.getTranslation();
-        //MAX_ITERATION = "Maximale Iterationen festlegen";
-        //SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation();
-        //SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation();
-        //SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation();
       }
+      //FILE_MENU = languageFile.getTranslation();
+      //RESET_GUI = languageFile.getTranslation();
+      //ADD_PROGRAM = languageFile.getTranslation();
+      //TOO_MANY_PROGRAM_PANELS = "languageFile.getTranslation();
+      //LOAD_CONFIG = languageFile.getTranslation();
+      //SAVE_CONFIG = languageFile.getTranslation();
+      //END_DIBUGGER = languageFile.getTranslation();
+      //SUGGESTIONS = languageFile.getTranslation();
+      //SUGGEST_STEPSIZE = languageFile.getTranslation();
+      //SUGGEST_INPUT_VAR = languageFile.getTranslation();
+      //SUGGEST_WATCHEXPRESSION = languageFile.getTranslation();
+      //SUGGEST_COND_BREAKPOINT = languageFile.getTranslation();
+      //SETTINGS = languageFile.getTranslation();
+      //CHANGE_LANGUAGE = languageFile.getTranslation();
+      //MAX_FUNCTION_CALLS = languageFile.getTranslation();
+      //MAX_ITERATION = "Maximale Iterationen festlegen";
+      //SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation();
+      //SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation();
+      //SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation();
     }
 
   }

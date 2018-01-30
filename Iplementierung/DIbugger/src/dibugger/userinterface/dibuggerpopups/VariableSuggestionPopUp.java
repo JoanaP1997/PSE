@@ -1,5 +1,6 @@
 package dibugger.userinterface.dibuggerpopups;
 
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.MainInterface;
 
 import javax.swing.*;
@@ -33,7 +34,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private JTextField suggestedLabel;
 
   /**
-   * constructor for a new VariableSuggestionPopUp
+   * constructor for a new VariableSuggestionPopUp.
    *
    * @param type          has to be 0,1,2 or 3 (see the static final ints in this class)
    * @param mainInterface MainInterface on which this PopUp should be shown
@@ -44,6 +45,8 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     this.setLocationRelativeTo(mainInterface);
+
+    setLanguage();
 
     if (type == 0) {
       stepSizeSuggestion();
@@ -342,6 +345,24 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
       default:
         return -1;
     }
+  }
+
+  /**
+   * sets the language according to the current language file.
+   */
+  private void setLanguage() {
+    LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
+    /*private static String FROM = "von";
+  private static String TO = "bis";
+  private static String INTERVAL = "Intervall";
+  private static String TYPE = "Typ";
+  private static String SUGGESTION = "Vorschlag";
+  private static String HELP_TEXT = "Ok dr\u00fccken um Vorschlag zu erhalten";
+  private static String PROGRAM = "Program";
+  private static String STEPSIZE = "Schrittgr\u00f6ße";
+  private static String FOR = "f\u00fcr";
+  private static String CONDITIONAL_BREAKPOINT_AKKUSATIV = "bedingten Breakpoint";
+*/
   }
 
 

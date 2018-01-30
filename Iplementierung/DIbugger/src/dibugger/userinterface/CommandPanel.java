@@ -1,6 +1,7 @@
 package dibugger.userinterface;
 
 import dibugger.debuglogic.debugger.DebugControl;
+import dibugger.filehandler.facade.LanguageFile;
 
 import javax.swing.*;
 
@@ -168,6 +169,7 @@ public class CommandPanel extends JPanel {
    * changes language of the tooltips.
    */
   void changeLanguage() {
-
+    LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
+    //TODO
   }
 }
