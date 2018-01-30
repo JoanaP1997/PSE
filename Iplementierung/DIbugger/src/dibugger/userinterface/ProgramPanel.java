@@ -494,7 +494,7 @@ public class ProgramPanel extends JPanel {
       int height = g.getFontMetrics(g.getFont()).getHeight();
       int lineID = y / height;
       if (lineID == currentExecutionLine) {
-          g.setColor(Color.RED);
+          g.setColor(Color.GREEN);
       } else {
           g.setColor(Color.BLACK);
       }
@@ -505,6 +505,8 @@ public class ProgramPanel extends JPanel {
       if (lineID != currentExecutionLine) {
         g.setColor(Color.RED);
       } else {
+        g.setColor(Color.GRAY);  
+        g.drawRect(0, y-12, editor.getWidth()-1, 16);
         g.setColor(Color.BLUE);
       }
       if (listBreakpointLines.contains(lineID)) {
