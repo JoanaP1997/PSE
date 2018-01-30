@@ -506,7 +506,7 @@ public class ProgramPanel extends JPanel {
         g.setColor(Color.RED);
       } else {
         g.setColor(Color.GRAY);  
-        g.drawRect(0, y-12, editor.getWidth()-1, 16);
+        g.drawRect(0, alloc.y, editor.getWidth()-1, height);
         g.setColor(Color.BLUE);
       }
       if (listBreakpointLines.contains(lineID)) {
