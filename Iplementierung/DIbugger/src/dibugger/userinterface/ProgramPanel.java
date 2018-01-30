@@ -529,18 +529,17 @@ public class ProgramPanel extends JPanel {
 
   void changeLanguage() {
     LanguageFile languageFile = controlFacade.getLanguageFile();
-    //TODO: Übersetzungen von allen angezeigten Texten holen
     STEPSIZE = languageFile.getTranslation("ui_stepsize");
-    //PROGRAM = languageFile.getTranslation()
+    PROGRAM = languageFile.getTranslation("ui_program");
     INPUT_VARS = languageFile.getTranslation("ui_values_in");
-    //VAR_INSPECTOR_TOOL_TIP = languageFile.getTranslation()
+    VAR_INSPECTOR_TOOL_TIP = languageFile.getTranslation("ui_varinspector_tooltip");
     VARIABLE_INSPECTOR = languageFile.getTranslation("ui_var_inspector");
-    //SHOW_HIDDEN_VARIABLES = languageFile.getTranslation()
-    //ADD_PROGRAM = languageFile.getTranslation()
-    //SINGLE_STEP = languageFile.getTranslation()
-    // RETURN = languageFile.getTranslation()
-    // STEP_SIZE_TOOLTIP = languageFile.getTranslation()
-    // INPUT_TOOLTIP = languageFile.getTranslation()
+    SHOW_HIDDEN_VARIABLES = languageFile.getTranslation("ui_show_hidden_variables");
+    ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
+    SINGLE_STEP = languageFile.getTranslation("ui_single_step");
+    RETURN = languageFile.getTranslation("ui_return");
+    STEP_SIZE_TOOLTIP = languageFile.getTranslation("ui_stepsize_tooltip");
+    INPUT_TOOLTIP = languageFile.getTranslation("ui_input_tooltip");
   }
 
   /**

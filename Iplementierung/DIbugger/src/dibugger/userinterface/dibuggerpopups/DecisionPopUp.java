@@ -38,8 +38,8 @@ public class DecisionPopUp extends DIbuggerPopUp {
 
   private void setLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-    //YES_OPTION = languageFile.getTranslation();
-    //NO_OPTION = languageFile.getTranslation();
+    YES_OPTION = languageFile.getTranslation("ui_yes");
+    NO_OPTION = languageFile.getTranslation("ui_no");
   }
 
   private void initComponents() {

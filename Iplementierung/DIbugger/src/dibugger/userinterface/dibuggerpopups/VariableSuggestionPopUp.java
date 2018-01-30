@@ -18,7 +18,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private static String INTERVAL = "Intervall";
   private static String TYPE = "Typ";
   private static String SUGGESTION = "Vorschlag";
-  private static String HELP_TEXT = "Ok dr\u00fccken um Vorschlag zu erhalten";
+  private static String INFO_TEXT = "Ok dr\u00fccken um Vorschlag zu erhalten";
   private static String PROGRAM = "Program";
   private static String STEPSIZE = "Schrittgr\u00f6ße";
   private static String FOR = "f\u00fcr";
@@ -96,7 +96,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     suggestionLabel.setText(SUGGESTION + ":");
 
-    suggestedLabel.setText(HELP_TEXT);
+    suggestedLabel.setText(INFO_TEXT);
     suggestedLabel.setEditable(false);
     suggestedLabel.setPreferredSize(new Dimension(190, 15));
 
@@ -352,17 +352,16 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
    */
   private void setLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-    /*private static String FROM = "von";
-  private static String TO = "bis";
-  private static String INTERVAL = "Intervall";
-  private static String TYPE = "Typ";
-  private static String SUGGESTION = "Vorschlag";
-  private static String HELP_TEXT = "Ok dr\u00fccken um Vorschlag zu erhalten";
-  private static String PROGRAM = "Program";
-  private static String STEPSIZE = "Schrittgr\u00f6ße";
-  private static String FOR = "f\u00fcr";
-  private static String CONDITIONAL_BREAKPOINT_AKKUSATIV = "bedingten Breakpoint";
-*/
+    FROM = languageFile.getTranslation("ui_from");
+    TO = languageFile.getTranslation("ui_to");
+    INTERVAL = languageFile.getTranslation("ui_interval");
+    TYPE = languageFile.getTranslation("ui_type");
+    SUGGESTION = languageFile.getTranslation("ui_suggestion");
+    INFO_TEXT = languageFile.getTranslation("ui_suggestion_infotext");
+    PROGRAM = languageFile.getTranslation("ui_program");
+    STEPSIZE = languageFile.getTranslation("ui_stepsize");
+    FOR = languageFile.getTranslation("ui_for");
+    CONDITIONAL_BREAKPOINT_AKKUSATIV = languageFile.getTranslation("ui_cond_breakpoint_akkusativ");
   }
 
 

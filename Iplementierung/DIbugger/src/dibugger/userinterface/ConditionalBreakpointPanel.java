@@ -3,6 +3,7 @@ package dibugger.userinterface;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 
 import javax.swing.*;
@@ -58,7 +59,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   /**
    * update Method that implements the observer pattern
    * is called by the model part of the mvc pattern
-   * updates the important values that are calculated by the model part
+   * updates the important values that are calculated by the model part.
    */
   public void update() {
     DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
@@ -142,7 +143,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   }
 
   /**
-   * method to save the scopes of a ConditionalBreakpoint
+   * method to save the scopes of a ConditionalBreakpoint.
    * @param id ID of the ConditionalBreakpoint
    * @param scopeTupels Tuple with (start, end)
    */
@@ -151,19 +152,19 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     }
 
   /**
-   * method to reset the ConditionalBreakpointPanel
+   * method to reset the ConditionalBreakpointPanel.
    */
   public void reset() {
         singleton = new ConditionalBreakpointPanel(mainInterface);
     }
 
   /**
-   * method to delete an entry of the ConditionalBreakpointPanel
+   * method to delete an entry of the ConditionalBreakpointPanel.
    * @param rowToDelete row that should be deleted
    */
   public void deleteEntry(int rowToDelete) {
     ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
-    if(dataEntriesAsList.size() > 1) {
+    if (dataEntriesAsList.size() > 1) {
       tableModel.removeRow(rowToDelete);
       dataEntriesAsList.remove(rowToDelete);
       for (int row: idMap.keySet()) {
@@ -196,5 +197,10 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
       mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
           table.getModel().getValueAt(j, 1).toString(), scopes.get(j));
     }
+  }
+
+  void changeLanguage() {
+    LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
+    CB_TOOLTIP = languageFile.getTranslation("ui_cb_tooltip");
   }
 }
