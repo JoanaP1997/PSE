@@ -17,7 +17,7 @@ import dibugger.debuglogic.interpreter.TraceState;
 
 public class GenerationControllerTest {
 
-	@Ignore
+	@Test
 	public void withoutInputTest() throws DIbuggerLogicException {
 		String code = "void main() { \n" + "int i = 2 \n;" + "int x = 3+i; \n" + "while (x<80) { \n" + "	i = i+2; \n"
 				+ " x = x +1; \n" + " } \n" + "}";
@@ -38,7 +38,7 @@ public class GenerationControllerTest {
 		}
 	}
 	
-	 @Test(expected=SyntaxException.class)
+	@Test(expected=SyntaxException.class)
 	  public void noProgramTextTest() throws DIbuggerLogicException {
 	    String code = "";
 	    List<String> input = new ArrayList<String>();
@@ -58,7 +58,7 @@ public class GenerationControllerTest {
 	    }
 	  }
 
-	@Ignore
+	@Test
 	public void withInputTest() throws DIbuggerLogicException {
 		String code = "void main(int k) { \n" + "int i = k \n;" + "int x = 3+i; \n" + "while (x<80) { \n"
 				+ " i = i+2; \n" + " x = x +1; \n" + " } \n" + "}";
@@ -79,7 +79,26 @@ public class GenerationControllerTest {
 			 */
 		}
 	}
-
+	@Test
+	public void withArrayInputTest() throws DIbuggerLogicException {
+		String code = "void main(int[] a) { \n" + "int i = a[1]; \n" + "}";
+		List<String> input = new ArrayList<String>();
+		input.add(" a = {3,1,2} ");
+		GenerationController gc = new GenerationController(10000, 10000);
+		ListIterator<TraceState> iterator = gc.generateTrace(code, input, "A");
+		while (iterator.hasNext()) {
+			TraceState state = iterator.next();
+			/*
+			 * System.out.println("linenumber: "+ state.getLineNumber());
+			 * System.out.println("existing variables: "+
+			 * state.getAllVariableIdentifiers());
+			 * System.out.println("Value i= " +state.getValueOf("i"));
+			 * System.out.println("Value x= " +state.getValueOf("x"));
+			 * System.out.println(
+			 * "-----------------------------------------------");
+			 */
+		}
+	}
 	@Ignore
 	public void withBadInputTest() throws DIbuggerLogicException {
 		String code = "void main(int k) { \n" + "int i = k \n;" + "int x = 3+i; \n" + "while (x<80) { \n"

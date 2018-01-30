@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
 import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
@@ -67,8 +68,12 @@ public class WatchExpression {
 		try {
 			CharStream input = CharStreams.fromString(this.specifier);
 			WlangLexer lexer = new WlangLexer(input);
+			lexer.removeErrorListeners();
+			lexer.addErrorListener(new ActuallyHelpfulErrorListener());
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			WlangParser parser = new WlangParser(tokens);
+			parser.removeErrorListeners();
+			parser.addErrorListener(new ActuallyHelpfulErrorListener());
 			// Chose start rule
 			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {

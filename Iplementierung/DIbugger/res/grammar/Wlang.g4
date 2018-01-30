@@ -7,8 +7,16 @@ grammar Wlang;
 	}
 }
 
-wecbterm: condition | term;
+inputparameter: term #inputparameterNoArray
+		| '{'filledArglist'}' #inputparameterArray
+		;
+wecbterm: condition 
+	| term;
 program: routine* mainRoutine;
+
+
+
+
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
 			| 'void' id =ID '('args=arglist?')' #ProcedureHead
 			;
@@ -145,7 +153,7 @@ COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT:   '//' ~[\r\n]* -> skip;
-TYPE: 'float' | 'int' | 'char' | 'boolean' | 'double' | 'long';
+TYPE: ('float' | 'int' | 'char' | 'boolean' | 'double' | 'long') ('[]')?;
 BOOLEANLITERAL:	'true' | 'false';
 INTLITERAL: DIGITNONZERO DIGIT* | '0';
 fragment DIGITNONZERO: '1'..'9';
