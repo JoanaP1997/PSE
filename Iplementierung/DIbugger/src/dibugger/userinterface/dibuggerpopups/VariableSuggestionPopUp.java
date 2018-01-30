@@ -50,9 +50,9 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     } else if (type == 1) {
       variableSuggestion();
     } else if (type == 2) {
-      wESuggestion();
+      wesuggestion();
     } else if (type == 3) {
-      cBSuggestion();
+      cbsuggestion();
     }
 
     this.setModal(true);
@@ -86,10 +86,10 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     typeLabel.setText(TYPE + ":");
 
-    typeChooser.setModel(new DefaultComboBoxModel<>(new String[]{"int", "char", "long", "float", "double"
-        , "boolean"}));
+    typeChooser.setModel(new DefaultComboBoxModel<>(new String[]{"int", "char", "long",
+        "float", "double", "boolean"}));
 
-    okButton.setText("ok");
+    okButton.setText("Ok");
 
     suggestionLabel.setText(SUGGESTION + ":");
 
@@ -171,8 +171,8 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
       int typeAsInt = getTypeFromString(type);
       String startRange = intervallStartField.getText();
       String endRange = intervallEndField.getText();
-      String suggestion = mainInterface.getControlFacade().suggestInputValue("x"
-          , "(" + startRange + "," + endRange + ")", typeAsInt);
+      String suggestion = mainInterface.getControlFacade().suggestInputValue(
+          "x", "(" + startRange + "," + endRange + ")", typeAsInt);
       suggestedLabel.setText(type + " x = " + suggestion);
     });
   }
@@ -254,7 +254,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     });
   }
 
-  private void wESuggestion() {
+  private void wesuggestion() {
     showExpression("Watch-Expression " + SUGGESTION);
 
     okButtonExpression.addActionListener(e -> {
@@ -263,7 +263,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     });
   }
 
-  private void cBSuggestion() {
+  private void cbsuggestion() {
     showExpression(SUGGESTION + FOR + CONDITIONAL_BREAKPOINT_AKKUSATIV);
 
     okButtonExpression.addActionListener(e -> {
