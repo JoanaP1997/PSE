@@ -4,8 +4,6 @@ import dibugger.userinterface.MainInterface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +17,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   private static String INTERVAL = "Intervall";
   private static String TYPE = "Typ";
   private static String SUGGESTION = "Vorschlag";
-  private static String HELP_TEXT = "Ok-Button bet\u00e4tigen um Vorschlag zu erhalten";
+  private static String HELP_TEXT = "Ok dr\u00fccken um Vorschlag zu erhalten";
   private static String PROGRAM = "Program";
   private static String STEPSIZE = "Schrittgr\u00f6ße";
   private static String FOR = "f\u00fcr";
@@ -32,28 +30,29 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   public static final int WATCH_EXPRESSION = 2;
   public static final int CONDITIONAL_BREAKPOINT = 3;
   private JButton okButtonExpression;
-  private JLabel suggestedLabel;
+  private JTextField suggestedLabel;
 
   /**
    * constructor for a new VariableSuggestionPopUp
-   * @param type has to be 0,1,2 or 3 (see the static final ints in this class)
+   *
+   * @param type          has to be 0,1,2 or 3 (see the static final ints in this class)
    * @param mainInterface MainInterface on which this PopUp should be shown
    */
-  public VariableSuggestionPopUp (int type, MainInterface mainInterface) {
+  public VariableSuggestionPopUp(int type, MainInterface mainInterface) {
     this.mainInterface = mainInterface;
-    this.setSize(300,310);
+    this.setSize(300, 310);
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     this.setLocationRelativeTo(mainInterface);
 
-    if(type == 0) {
+    if (type == 0) {
       stepSizeSuggestion();
     } else if (type == 1) {
       variableSuggestion();
     } else if (type == 2) {
-      wESuggestion();
+      wesuggestion();
     } else if (type == 3) {
-      cBSuggestion();
+      cbsuggestion();
     }
 
     this.setModal(true);
@@ -62,18 +61,18 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
   }
 
   private void variableSuggestion() {
-    JLabel intervallStartLabel = new javax.swing.JLabel();
-    JTextField intervallStartField = new javax.swing.JTextField();
-    intervallStartField.setPreferredSize(new Dimension(100,30));
-    JLabel intervallEndLabel = new javax.swing.JLabel();
-    JTextField intervallEndField = new javax.swing.JTextField();
-    intervallEndField.setPreferredSize(new Dimension(100,30));
-    JLabel intervallLabel = new javax.swing.JLabel();
-    JLabel typeLabel = new javax.swing.JLabel();
-    JComboBox typeChooser = new javax.swing.JComboBox<>();
-    JButton okButton = new javax.swing.JButton();
-    JLabel suggestionLabel = new javax.swing.JLabel();
-    JLabel suggestedLabel = new javax.swing.JLabel();
+    JLabel intervallStartLabel = new JLabel();
+    JTextField intervallStartField = new JTextField();
+    intervallStartField.setPreferredSize(new Dimension(100, 30));
+    JLabel intervallEndLabel = new JLabel();
+    JTextField intervallEndField = new JTextField();
+    intervallEndField.setPreferredSize(new Dimension(100, 30));
+    JLabel intervallLabel = new JLabel();
+    JLabel typeLabel = new JLabel();
+    JComboBox typeChooser = new JComboBox<>();
+    JButton okButton = new JButton();
+    JLabel suggestionLabel = new JLabel();
+    suggestedLabel = new JTextField();
 
     intervallStartLabel.setText(FROM + ":");
 
@@ -87,75 +86,77 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     typeLabel.setText(TYPE + ":");
 
-    typeChooser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "char", "long", "float", "double"
-        , "boolean" }));
+    typeChooser.setModel(new DefaultComboBoxModel<>(new String[]{"int", "char", "long",
+        "float", "double", "boolean"}));
 
-    okButton.setText("ok");
+    okButton.setText("Ok");
 
     suggestionLabel.setText(SUGGESTION + ":");
 
     suggestedLabel.setText(HELP_TEXT);
+    suggestedLabel.setEditable(false);
+    suggestedLabel.setPreferredSize(new Dimension(190, 15));
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    GroupLayout layout = new GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(intervallLabel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(29, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(intervallStartLabel)
                                     .addComponent(typeLabel))
                                 .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING
                                     , false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(intervallStartField, javax.swing.GroupLayout.PREFERRED_SIZE
-                                            , javax.swing.GroupLayout.DEFAULT_SIZE
-                                            , javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(intervallStartField, GroupLayout.PREFERRED_SIZE
+                                            , GroupLayout.DEFAULT_SIZE
+                                            , GroupLayout.PREFERRED_SIZE)
                                         .addGap(45, 45, 45)
                                         .addComponent(intervallEndLabel)
                                         .addGap(50, 50, 50)
-                                        .addComponent(intervallEndField, javax.swing.GroupLayout.PREFERRED_SIZE
-                                            , javax.swing.GroupLayout.DEFAULT_SIZE
-                                            , javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(typeChooser, javax.swing.GroupLayout.PREFERRED_SIZE
-                                        , 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(intervallEndField, GroupLayout.PREFERRED_SIZE
+                                            , GroupLayout.DEFAULT_SIZE
+                                            , GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(typeChooser, GroupLayout.PREFERRED_SIZE
+                                        , 102, GroupLayout.PREFERRED_SIZE)))
                             .addComponent(suggestionLabel))))
                 .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(suggestedLabel)
                     .addComponent(okButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(intervallLabel)
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(intervallStartLabel)
-                    .addComponent(intervallStartField, javax.swing.GroupLayout.PREFERRED_SIZE
-                        , javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(intervallStartField, GroupLayout.PREFERRED_SIZE
+                        , GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(intervallEndLabel)
-                    .addComponent(intervallEndField, javax.swing.GroupLayout.PREFERRED_SIZE
-                        , javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(intervallEndField, GroupLayout.PREFERRED_SIZE
+                        , GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(typeLabel)
-                    .addComponent(typeChooser, javax.swing.GroupLayout.PREFERRED_SIZE
-                        , javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(typeChooser, GroupLayout.PREFERRED_SIZE
+                        , GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(suggestionLabel)
                     .addComponent(suggestedLabel))
                 .addGap(35, 35, 35)
@@ -165,32 +166,27 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     pack();
 
-    okButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String type = typeChooser.getSelectedItem().toString();
-        int typeAsInt = getTypeFromString(type);
-        String startRange = intervallStartField.getText();
-        String endRange = intervallEndField.getText();
-        String suggestion = mainInterface.getControlFacade().suggestInputValue("x"
-            ,"(" + startRange + "," + endRange + ")", typeAsInt);
-        suggestedLabel.setText(type + " x = " + suggestion);
-        System.out.println(typeAsInt);
-      }
+    okButton.addActionListener(e -> {
+      String type = typeChooser.getSelectedItem().toString();
+      int typeAsInt = getTypeFromString(type);
+      String startRange = intervallStartField.getText();
+      String endRange = intervallEndField.getText();
+      String suggestion = mainInterface.getControlFacade().suggestInputValue(
+          "x", "(" + startRange + "," + endRange + ")", typeAsInt);
+      suggestedLabel.setText(type + " x = " + suggestion);
     });
   }
 
   private void stepSizeSuggestion() {
     //TODO: evtl. keine Programme auswählen und keinen Vorschlag anzeigen
-    //TODO: Label kopierbar machen
-    JLabel programLabel = new javax.swing.JLabel();
-    JLabel headerLabel = new javax.swing.JLabel();
-    JComboBox programChooser = new javax.swing.JComboBox<>();
-    JLabel stepSizeSuggestionLabel = new javax.swing.JLabel();
-    JLabel suggestedLabel = new javax.swing.JLabel();
-    JButton okButton = new javax.swing.JButton();
+    JLabel programLabel = new JLabel();
+    JLabel headerLabel = new JLabel();
+    JComboBox programChooser = new JComboBox<>();
+    JLabel stepSizeSuggestionLabel = new JLabel();
+    JLabel suggestedLabel = new JLabel();
+    JButton okButton = new JButton();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
     programLabel.setText(PROGRAM + ":");
 
@@ -200,7 +196,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     String[] programsAsArray = new String[programs.size()];
     programs.toArray(programsAsArray);
 
-    programChooser.setModel(new javax.swing.DefaultComboBoxModel<>(programsAsArray));
+    programChooser.setModel(new DefaultComboBoxModel<>(programsAsArray));
 
     stepSizeSuggestionLabel.setText(STEPSIZE + " " + SUGGESTION);
 
@@ -208,105 +204,97 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
 
     okButton.setText("ok");
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    GroupLayout layout = new GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
 
     layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
                         .addComponent(headerLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(programLabel)
                             .addComponent(stepSizeSuggestionLabel))
                         .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(suggestedLabel)
-                            .addComponent(programChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(programChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(okButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(90, 90, 90))
     );
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(headerLabel)
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(programLabel)
-                    .addComponent(programChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(programChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(stepSizeSuggestionLabel)
                     .addComponent(suggestedLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(okButton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
     );
 
     pack();
 
-    okButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        mainInterface.getControlFacade().suggestStepSize();
-        dispose();
-      }
+    okButton.addActionListener(e -> {
+      mainInterface.getControlFacade().suggestStepSize();
+      dispose();
     });
   }
 
-  private void wESuggestion() {
+  private void wesuggestion() {
     showExpression("Watch-Expression " + SUGGESTION);
 
-    okButtonExpression.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String suggestion = mainInterface.getControlFacade().suggestWatchExpression();
-        suggestedLabel.setText(suggestion);
-      }
+    okButtonExpression.addActionListener(e -> {
+      String suggestion = mainInterface.getControlFacade().suggestWatchExpression();
+      suggestedLabel.setText(suggestion);
     });
   }
 
-  private void cBSuggestion() {
+  private void cbsuggestion() {
     showExpression(SUGGESTION + FOR + CONDITIONAL_BREAKPOINT_AKKUSATIV);
 
-    okButtonExpression.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
-        suggestedLabel.setText(suggestion);
-      }
+    okButtonExpression.addActionListener(e -> {
+      String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
+      suggestedLabel.setText(suggestion);
     });
   }
 
   private void showExpression(String type) {
-    JLabel suggestionLabel = new javax.swing.JLabel();
-    JLabel showingLabel = new javax.swing.JLabel();
-    suggestedLabel = new javax.swing.JLabel();
-    okButtonExpression = new javax.swing.JButton();
+    JLabel suggestionLabel = new JLabel();
+    JLabel showingLabel = new JLabel();
+    suggestedLabel = new JTextField();
+    okButtonExpression = new JButton();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
     suggestionLabel.setText(type);
 
-    showingLabel.setText(SUGGESTION +": ");
+    showingLabel.setText(SUGGESTION + ": ");
 
     suggestedLabel.setText("");
+    suggestedLabel.setEditable(false);
 
     okButtonExpression.setText("ok");
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    GroupLayout layout = new GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addComponent(showingLabel)
@@ -317,20 +305,20 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
                         .addComponent(suggestionLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(okButtonExpression, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(okButtonExpression, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGap(135, 135, 135))
     );
     layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(suggestionLabel)
                 .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(showingLabel)
                     .addComponent(suggestedLabel))
                 .addGap(130, 130, 130)
-                .addComponent(okButtonExpression, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(okButtonExpression, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
     );
 

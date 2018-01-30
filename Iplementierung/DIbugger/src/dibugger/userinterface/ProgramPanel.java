@@ -39,8 +39,8 @@ public class ProgramPanel extends JPanel {
   private JLabel programName;
   private JLabel stepsize;
   private JTextField stepsizeInput;
-  private JLabel inputvariablesLabel;
-  private JTextField inputvariableTextField;
+  private JLabel inputVariablesLabel;
+  private JTextField inputVariableTextField;
 
   private JPanel codePanel;
   private JScrollPane codeScrollPane;
@@ -60,7 +60,7 @@ public class ProgramPanel extends JPanel {
 
   private JLabel result;
 
-  private int currentExcecutionLine;
+  private int currentExecutionLine;
 
   /**
    * Constructor for a nem ProgramPanel.
@@ -81,8 +81,8 @@ public class ProgramPanel extends JPanel {
     programName = new JLabel();
     stepsize = new JLabel();
     stepsizeInput = new JTextField();
-    inputvariablesLabel = new JLabel();
-    inputvariableTextField = new JTextField();
+    inputVariablesLabel = new JLabel();
+    inputVariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
     singleStepButton = new JButton();
 
@@ -94,15 +94,15 @@ public class ProgramPanel extends JPanel {
     stepsize.setToolTipText(STEP_SIZE_TOOLTIP);
     stepsizeInput.setText("1");
     stepsizeInput.setPreferredSize(new Dimension(40, 40));
-    stepsizeInput.addActionListener(evt1 -> stepsizeInputActionPerformed());
+    stepsizeInput.addActionListener(evt1 -> stepSizeInputActionPerformed());
     stepsizeInput.setToolTipText(STEP_SIZE_TOOLTIP);
 
-    inputvariablesLabel.setText(INPUT_VARS + ": ");
+    inputVariablesLabel.setText(INPUT_VARS + ": ");
 
-    inputvariableTextField.setText("");
-    inputvariableTextField.setToolTipText(INPUT_TOOLTIP);
-    inputvariableTextField.addActionListener(evt -> variableInputActionPerformed());
-    inputvariableTextField.setPreferredSize(new Dimension(288, 40));
+    inputVariableTextField.setText("");
+    inputVariableTextField.setToolTipText(INPUT_TOOLTIP);
+    inputVariableTextField.addActionListener(evt -> variableInputActionPerformed());
+    inputVariableTextField.setPreferredSize(new Dimension(288, 40));
 
     loadFile = new JButton();
     ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
@@ -135,8 +135,8 @@ public class ProgramPanel extends JPanel {
                     .addComponent(singleStepButton))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
                     .addGap(150, 150, 150).addComponent(loadFile).addComponent(delete))
-                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputvariablesLabel)
-                    .addComponent(inputvariableTextField)))
+                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(inputVariablesLabel)
+                    .addComponent(inputVariableTextField)))
             .addComponent(codePanel).addComponent(variableInspector).addComponent(result))));
 
     firstTextPanelLayout.setVerticalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -149,7 +149,7 @@ public class ProgramPanel extends JPanel {
 
             .addGap(10, 10, 10)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(inputvariablesLabel).addComponent(inputvariableTextField,
+                .addComponent(inputVariablesLabel).addComponent(inputVariableTextField,
                     GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
             .addGap(10, 10, 10).addComponent(codePanel, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(variableInspector).addComponent(result)
@@ -157,7 +157,7 @@ public class ProgramPanel extends JPanel {
         ));
   }
 
-  private void stepsizeInputActionPerformed() {
+  private void stepSizeInputActionPerformed() {
     controlFacade.setStepSize(id, stepsizeInput.getText());
   }
 
@@ -373,7 +373,7 @@ public class ProgramPanel extends JPanel {
    * @return input variable string
    */
   public String getInputVars() {
-    return inputvariableTextField.getText();
+    return inputVariableTextField.getText();
   }
 
   /**
@@ -382,7 +382,7 @@ public class ProgramPanel extends JPanel {
    * @param input new input String
    */
   public void showInput(String input) {
-    inputvariableTextField.setText(input);
+    inputVariableTextField.setText(input);
   }
 
   /**
@@ -407,9 +407,8 @@ public class ProgramPanel extends JPanel {
     variableInspectorList.updateUI();
 
     //show current excecution line
-    currentExcecutionLine =
-        (logicFacade.getCurrentExecutionLines().containsKey(id))
-            ? logicFacade.getCurrentExecutionLines().get(id) : 0;
+    currentExecutionLine =
+        logicFacade.getCurrentExecutionLines().getOrDefault(id, 0);
 
     //show result
     result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
@@ -494,16 +493,16 @@ public class ProgramPanel extends JPanel {
       int y = alloc.y + alloc.height - 3;
       int height = g.getFontMetrics(g.getFont()).getHeight();
       int lineID = y / height;
-      if (lineID == currentExcecutionLine) {
+      if (lineID == currentExecutionLine) {
           g.setColor(Color.RED);
-      } else{
+      } else {
           g.setColor(Color.BLACK);
       }
       
       g.drawString(lnStr, x, y);
 
       //draw Breakpoints
-      if (lineID != currentExcecutionLine) {
+      if (lineID != currentExecutionLine) {
         g.setColor(Color.RED);
       } else {
         g.setColor(Color.BLUE);
@@ -538,7 +537,7 @@ public class ProgramPanel extends JPanel {
     editor.setEditable(true);
     loadFile.setEnabled(true);
     delete.setEnabled(true);
-    inputvariableTextField.setEditable(true);
+    inputVariableTextField.setEditable(true);
     singleStepButton.setEnabled(false);
   }
 
@@ -549,7 +548,7 @@ public class ProgramPanel extends JPanel {
     editor.setEditable(false);
     loadFile.setEnabled(false);
     delete.setEnabled(false);
-    inputvariableTextField.setEditable(false);
+    inputVariableTextField.setEditable(false);
     singleStepButton.setEnabled(true);
   }
 

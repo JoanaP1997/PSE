@@ -5,12 +5,12 @@ import javax.swing.JDialog;
 
 
 /**
- * DIbuggerPopUP.
+ * DIbuggerPopUp.
  */
 class DIbuggerPopUp extends JDialog {
 
   /**
-   * Constructor for a DIbuggerPopUP
+   * Constructor for a DIbuggerPopUp.
    */
   DIbuggerPopUp() {
     this.setTitle("DIbugger");
