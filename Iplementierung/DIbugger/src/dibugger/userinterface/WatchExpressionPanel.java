@@ -66,12 +66,12 @@ public class WatchExpressionPanel extends ExpressionPanel {
   public void update() {
         DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
         for (int i = 0; i <= currentHighestId; i++) {
-            try {
-				dataEntries[i][2] = debugLogicFacade.getWEValue(i);
-			} catch (DIbuggerLogicException e) {
-				// TODO do something or not
-			}
-            table.updateUI();
+          try {
+            dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+          } catch (DIbuggerLogicException e) {
+            //TODO: Muss von der LogicFacade gefangen werden
+          }
+          table.updateUI();
         }
     }
 

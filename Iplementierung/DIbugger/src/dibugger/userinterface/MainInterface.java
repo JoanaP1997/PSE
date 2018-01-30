@@ -570,6 +570,25 @@ public class MainInterface extends JFrame {
         for (ProgramPanel p : programPanels.values()) {
           p.changeLanguage();
         }
+        //FILE_MENU = languageFile.getTranslation();
+        //RESET_GUI = languageFile.getTranslation();
+        //ADD_PROGRAM = languageFile.getTranslation();
+        //TOO_MANY_PROGRAM_PANELS = "languageFile.getTranslation();
+        //LOAD_CONFIG = languageFile.getTranslation();
+        //SAVE_CONFIG = languageFile.getTranslation();
+        //END_DIBUGGER = languageFile.getTranslation();
+        //SUGGESTIONS = languageFile.getTranslation();
+        //SUGGEST_STEPSIZE = languageFile.getTranslation();
+        //SUGGEST_INPUT_VAR = languageFile.getTranslation();
+        //SUGGEST_WATCHEXPRESSION = languageFile.getTranslation();
+        //SUGGEST_COND_BREAKPOINT = languageFile.getTranslation();
+        //SETTINGS = languageFile.getTranslation();
+        //CHANGE_LANGUAGE = languageFile.getTranslation();
+        //MAX_FUNCTION_CALLS = languageFile.getTranslation();
+        //MAX_ITERATION = "Maximale Iterationen festlegen";
+        //SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation();
+        //SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation();
+        //SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation();
       }
     }
 
