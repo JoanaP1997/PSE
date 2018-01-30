@@ -571,25 +571,25 @@ public class MainInterface extends JFrame {
           p.changeLanguage();
         }
       }
-      //FILE_MENU = languageFile.getTranslation();
-      //RESET_GUI = languageFile.getTranslation();
-      //ADD_PROGRAM = languageFile.getTranslation();
-      //TOO_MANY_PROGRAM_PANELS = "languageFile.getTranslation();
-      //LOAD_CONFIG = languageFile.getTranslation();
-      //SAVE_CONFIG = languageFile.getTranslation();
+      FILE_MENU = languageFile.getTranslation("ui_file_menu");
+      RESET_GUI = languageFile.getTranslation("ui_reset_gui");
+      ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
+      TOO_MANY_PROGRAM_PANELS = languageFile.getTranslation("ui_program_limit_reached");
+      LOAD_CONFIG = languageFile.getTranslation("ui_load_config");
+      SAVE_CONFIG = languageFile.getTranslation("ui_save_config");
       END_DIBUGGER = languageFile.getTranslation("ui_exit");
-      //SUGGESTIONS = languageFile.getTranslation();
-      //SUGGEST_STEPSIZE = languageFile.getTranslation();
-      //SUGGEST_INPUT_VAR = languageFile.getTranslation();
-      //SUGGEST_WATCHEXPRESSION = languageFile.getTranslation();
-      //SUGGEST_COND_BREAKPOINT = languageFile.getTranslation();
-      //SETTINGS = languageFile.getTranslation();
-      //CHANGE_LANGUAGE = languageFile.getTranslation();
-      //MAX_FUNCTION_CALLS = languageFile.getTranslation();
-      //MAX_ITERATION = "Maximale Iterationen festlegen";
-      //SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation();
-      //SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation();
-      //SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation();
+      SUGGESTIONS = languageFile.getTranslation("ui_suggestions");
+      SUGGEST_STEPSIZE = languageFile.getTranslation("ui_suggest_stepsize");
+      SUGGEST_INPUT_VAR = languageFile.getTranslation("ui_suggest_input");
+      SUGGEST_WATCHEXPRESSION = languageFile.getTranslation("ui_suggest_watchexpression");
+      SUGGEST_COND_BREAKPOINT = languageFile.getTranslation("ui_suggest_condbreakpoint");
+      SETTINGS = languageFile.getTranslation("ui_settings");
+      CHANGE_LANGUAGE = languageFile.getTranslation("ui_change_language");
+      MAX_FUNCTION_CALLS = languageFile.getTranslation("ui_max_functioncalls");
+      MAX_ITERATION = languageFile.getTranslation("ui_max_iterations");
+      SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation("ui_suggestion_strategy_stepsize");
+      SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation("ui_suggestion_strategy_expression");
+      SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation("ui_suggestion_strategy_input");
     }
 
   }
