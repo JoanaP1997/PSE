@@ -321,7 +321,12 @@ public class DebugControl {
         if (id < list_watchExpressions.size()) {
             WatchExpression e = list_watchExpressions.get(id);
             if (e != null) {
-                e.change(expr, scopes);
+                if(scopes!=null){
+                    e.change(expr, scopes);
+                }
+                else{
+                    e.change(expr, e.getScopes());
+                }
             }
         }
     }
@@ -368,7 +373,12 @@ public class DebugControl {
         if (id < list_condBreakpoints.size()) {
             ConditionalBreakpoint cb = list_condBreakpoints.get(id);
             if (cb != null) {
-                cb.change(cond, scopes);
+                if(scopes!=null){
+                    cb.change(cond, scopes);
+                }
+                else{
+                    cb.change(cond, cb.getScopes());
+                }
             }
         }
     }
