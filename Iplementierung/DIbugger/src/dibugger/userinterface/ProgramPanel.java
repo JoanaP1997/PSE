@@ -37,8 +37,8 @@ public class ProgramPanel extends JPanel {
   private ControlFacade controlFacade;
 
   private JLabel programName;
-  private JLabel stepsize;
-  private JTextField stepsizeInput;
+  private JLabel stepSize;
+  private JTextField stepSizeLabel;
   private JLabel inputVariablesLabel;
   private JTextField inputVariableTextField;
 
@@ -67,7 +67,7 @@ public class ProgramPanel extends JPanel {
    *
    * @param identifier identifier of program panel
    */
-  public ProgramPanel(String identifier, MainInterface mainInterface) {
+  ProgramPanel(String identifier, MainInterface mainInterface) {
     id = identifier;
     this.mainInterface = mainInterface;
     controlFacade = mainInterface.getControlFacade();
@@ -79,8 +79,8 @@ public class ProgramPanel extends JPanel {
    */
   private void initComponents() {
     programName = new JLabel();
-    stepsize = new JLabel();
-    stepsizeInput = new JTextField();
+    stepSize = new JLabel();
+    stepSizeLabel = new JTextField();
     inputVariablesLabel = new JLabel();
     inputVariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
@@ -90,12 +90,12 @@ public class ProgramPanel extends JPanel {
     singleStepButton.setEnabled(false);
     programName.setText(PROGRAM + ": " + id);
 
-    stepsize.setText(STEPSIZE + ": ");
-    stepsize.setToolTipText(STEP_SIZE_TOOLTIP);
-    stepsizeInput.setText("1");
-    stepsizeInput.setPreferredSize(new Dimension(40, 40));
-    stepsizeInput.addActionListener(evt1 -> stepSizeInputActionPerformed());
-    stepsizeInput.setToolTipText(STEP_SIZE_TOOLTIP);
+    stepSize.setText(STEPSIZE + ": ");
+    stepSize.setToolTipText(STEP_SIZE_TOOLTIP);
+    stepSizeLabel.setText("1");
+    stepSizeLabel.setPreferredSize(new Dimension(40, 40));
+    stepSizeLabel.addActionListener(evt1 -> stepSizeInputActionPerformed());
+    stepSizeLabel.setToolTipText(STEP_SIZE_TOOLTIP);
 
     inputVariablesLabel.setText(INPUT_VARS + ": ");
 
@@ -129,8 +129,8 @@ public class ProgramPanel extends JPanel {
         .addGroup(firstTextPanelLayout.createSequentialGroup().addGroup(firstTextPanelLayout
             .createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepsize)
-                    .addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
+                .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepSize)
+                    .addComponent(stepSizeLabel, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(110, 110, 110)
                     .addComponent(singleStepButton))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
@@ -144,7 +144,7 @@ public class ProgramPanel extends JPanel {
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(programName).addComponent(loadFile).addComponent(delete)).addGap(15, 15, 15)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(stepsize).addComponent(stepsizeInput, GroupLayout.PREFERRED_SIZE,
+                .addComponent(stepSize).addComponent(stepSizeLabel, GroupLayout.PREFERRED_SIZE,
                     GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(singleStepButton))
 
             .addGap(10, 10, 10)
@@ -158,7 +158,7 @@ public class ProgramPanel extends JPanel {
   }
 
   private void stepSizeInputActionPerformed() {
-    controlFacade.setStepSize(id, stepsizeInput.getText());
+    controlFacade.setStepSize(id, stepSizeLabel.getText());
   }
 
   private void variableInputActionPerformed() {
@@ -414,8 +414,8 @@ public class ProgramPanel extends JPanel {
     result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
     result.updateUI();
 
-    //update stepsize
-    stepsizeInput.setText(Integer.toString(logicFacade.getStepSize(id)));
+    //update stepSize
+    stepSizeLabel.setText(Integer.toString(logicFacade.getStepSize(id)));
     this.updateUI();
   }
 
