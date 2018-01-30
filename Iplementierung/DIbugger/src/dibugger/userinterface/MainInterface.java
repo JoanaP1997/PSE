@@ -268,6 +268,9 @@ public class MainInterface extends JFrame {
     this.setJMenuBar(menuBar);
   }
 
+  /**
+   * initializes the expression strategy menu and adds an ActionListener to it
+   */
   private void initExpressionStrategyMenu() {
     expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
     ActionListener expressionStrategyListener = e -> {
@@ -281,6 +284,9 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * initializes the input strategy menu and adds an ActionListener to it
+   */
   private void initInputStrategyMenu() {
     inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
     ActionListener inputStrategyListener = e -> {
@@ -294,6 +300,9 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * initializes the step size strategy menu and adds an ActionListener to it
+   */
   private void initStepSizeStrategyMenu() {
     stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
     ActionListener stepSizeStrategyListener = e -> {
@@ -307,6 +316,10 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * initializes the menu to choose the maximum of function calls after which the DIbugger stops debugging
+   * Also adds an ActionListener to the MenuItems
+   */
   private void initMaxFunctionCallsMenu() {
     maxFunctionCalls = new JMenu(MAX_FUNCTION_CALLS);
     ActionListener maxFunctionCallsListener = e -> {
@@ -320,6 +333,10 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * initializes the menu to choose the maximum of iterations after which the DIbugger stops debugging
+   * Also adds an ActionListener to the MenuItems
+   */
   private void initMaxIterationsMenu() {
     maxIterations = new JMenu(MAX_ITERATION);
     ActionListener maxIterationsChangedListener = e -> {
@@ -333,6 +350,9 @@ public class MainInterface extends JFrame {
     }
   }
 
+  /**
+   * initializes the menu to choose the language of the UI
+   */
   private void initLanguageMenu() {
     languageMenu = new JMenu(CHANGE_LANGUAGE);
     ActionListener languageListener = e -> {
