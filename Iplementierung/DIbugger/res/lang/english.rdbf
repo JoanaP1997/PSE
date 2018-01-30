@@ -1,24 +1,40 @@
 langID='english'
-langName='Englisch'
+langName='English'
 german{
 	def_blockLen=1
 German
 
+}
+ui_add_program{
+	def_blockLen=1
+Add program
 }
 fh_exc_parse_assign{
 	def_blockLen=1
 The File contains an wrong Assignment Line.
 
 }
+ui_reset_gui{
+	def_blockLen=1
+Reset
+}
 dl_exc_wrong_type_assignment{
 	def_blockLen=1
 The assigned variable or type does not correspond to the type needed for the assignment.
 
 }
+ui_for{
+	def_blockLen=1
+For
+}
 ui_debug_step_out{
 	def_blockLen=1
 Execute Step Out
 
+}
+ui_step_tooltip{
+	def_blockLen=1
+As many commands as set as stepsize will be executed
 }
 db_it_exc_not{
 	def_blockLen=1
@@ -40,10 +56,18 @@ db_it_exc_eq{
 The "equal" comparison has one ore more incompatible types.
 
 }
+ui_file_menu{
+	def_blockLen=1
+File
+}
 ui_debug_step_back{
 	def_blockLen=1
 Execute Step Back
 
+}
+ui_program_limit_reached{
+	def_blockLen=1
+Program limit reached
 }
 ui_var_inspector{
 	def_blockLen=1
@@ -65,19 +89,40 @@ db_it_exc_mul{
 The "mul" operation has one or more incopatibly types
 
 }
+ui_show_hidden_variables{
+	def_blockLen=1
+Show hidden variables
+}
 dl_exc_missing_return_call{
 	def_blockLen=1
 The method requires a return statement,
 
+}
+ui_interval{
+	def_blockLen=1
+Interval
 }
 dl_exc_routine_not_found{
 	def_blockLen=1
 Could not find function. Maybe it is specified below the tryed execution.
 
 }
+ui_cond_breakpoint_akkusativ{
+	def_blockLen=1
+Conditional Breakpoint
+}
+ui_stop_tooltip{
+	def_blockLen=1
+Click here to stop debug mode
+}
 dl_exc_syntax{
 	def_blockLen=1
 The Syntax of one ore more programs is wrong.
+
+}
+ui_max_functioncalls{
+	def_blockLen=1
+Set maximum function calls
 }
 db_it_exc_sub{
 	def_blockLen=1
@@ -87,12 +132,23 @@ The "sub" operation has one or more incopatibly types
 ui_stepsize{
 	def_blockLen=1
 Stepsize
-
+}
+ui_from{
+	def_blockLen=1
+From
 }
 ui_debug_step_over{
 	def_blockLen=1
 Execute Step Over
 
+}
+ui_to{
+	def_blockLen=1
+To
+}
+ui_stepover_tooltip{
+	def_blockLen=1
+Jump over the next command, if it is a function call
 }
 ui_debug_step{
 	def_blockLen=1
@@ -106,8 +162,11 @@ Conditional Breakpoint
 }
 ui_save_config{
 	def_blockLen=1
-Save Configuration
-
+Save config file
+}
+ui_suggestion_strategy_stepsize{
+	def_blockLen=1
+Change strategy for stepsize suggestions
 }
 dl_exc_wrong_number_argument{
 	def_blockLen=1
@@ -129,10 +188,26 @@ fh_exc_lang_not_found{
 Language Not Found.
 
 }
+ui_suggest_condbreakpoint{
+	def_blockLen=1
+Suggest conditional breakpoint
+}
 ui_step{
 	def_blockLen=1
 Step
 
+}
+ui_suggest_stepsize{
+	def_blockLen=1
+Suggest stepsize
+}
+ui_suggest_input{
+	def_blockLen=1
+Suggest input values
+}
+ui_change_language{
+	def_blockLen=1
+Change language
 }
 ui_values_out{
 	def_blockLen=1
@@ -164,10 +239,26 @@ dl_exc_wrong_type_argument{
 One ore more arguments are having an incorrect type.
 
 }
+ui_max_iterations{
+	def_blockLen=1
+Set maximum iterations
+}
+ui_suggestion_strategy_input{
+	def_blockLen=1
+Change strategy for input value suggestions
+}
+ui_stepout_tooltip{
+	def_blockLen=1
+Jump out of the current method
+}
 db_it_exc_gt{
 	def_blockLen=1
 The "greater than" comparison has one or more incopatibly types
 
+}
+ui_type{
+	def_blockLen=1
+Type
 }
 db_it_exc_div{
 	def_blockLen=1
@@ -179,10 +270,13 @@ ui_debug_step_single{
 Execute Single Step
 
 }
+ui_suggestion_infotext{
+	def_blockLen=1
+Press ok to get a suggestion
+}
 ui_suggestions{
 	def_blockLen=1
-Suggenstions
-
+Suggestions
 }
 db_it_exc_mod{
 	def_blockLen=1
@@ -193,6 +287,14 @@ db_it_exc_or{
 	def_blockLen=1
 The "or" operation has one ore more incompatible types.
 
+}
+ui_return{
+	def_blockLen=1
+Returnvalue
+}
+ui_suggest_watchexpression{
+	def_blockLen=1
+Suggest watchexpression
 }
 ui_help{
 	def_blockLen=1
@@ -214,19 +316,52 @@ dl_exc_invalid_program{
 The program is invalid and cannot be parsed to be a WLang program.
 
 }
+ui_suggestion_strategy_expression{
+	def_blockLen=1
+Change strategy for relational suggestions
+}
+ui_settings{
+	def_blockLen=1
+Settings
+}
 fh_exc_invalid_line_type{
 	def_blockLen=1
 The File contains a invalid Line Type.
 
 }
+ui_stepsize_tooltip{
+	def_blockLen=1
+Press enter to confirm input
+}
+ui_input_tooltip{
+	def_blockLen=1
+Separate inputvalues with semicola
+}
 ui_line{
 	def_blockLen=1
 Line
+
+}
+ui_start_tooltip{
+	def_blockLen=1
+Click here to start debug mode
 }
 db_it_exc_lt{
 	def_blockLen=1
 The "less than" comparison has one ore more incompatible types.
 
+}
+ui_continue_tooltip{
+	def_blockLen=1
+Debug until next active breakpoint
+}
+ui_variinspector_tooltip{
+	def_blockLen=1
+Mark variable then hide it by right clicking
+}
+ui_single_step{
+	def_blockLen=1
+Singlestep
 }
 ui_load_program_text{
 	def_blockLen=1
@@ -240,8 +375,7 @@ Variable already exists.
 }
 ui_load_config{
 	def_blockLen=1
-Load Configuration
-
+Konfigurationsdatei laden
 }
 ui_debug_continue{
 	def_blockLen=1

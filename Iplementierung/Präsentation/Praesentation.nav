@@ -25,27 +25,31 @@
 \headcommand {\beamer@framepages {7}{7}}
 \headcommand {\slideentry {3}{1}{4}{8/8}{Entwurfsmuster}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{9}{Antlr}}\headcommand {\beamer@subsectionpages {5}{8}}
-\headcommand {\slideentry {3}{2}{1}{9/9}{Antlr}{0}}
+\headcommand {\slideentry {3}{1}{5}{9/9}{Entwurfsmuster}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {3}{2}{2}{10/10}{Antlr}{0}}
+\headcommand {\slideentry {3}{1}{6}{10/10}{Entwurfsmuster}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\sectionentry {4}{\IeC {\"A}nderungen}{11}{\IeC {\"A}nderungen}{0}}
-\headcommand {\beamer@sectionpages {5}{10}}
-\headcommand {\beamer@subsectionpages {9}{10}}
-\headcommand {\beamer@subsectionentry {0}{4}{1}{11}{FileHandler}}\headcommand {\beamer@subsectionpages {11}{10}}
-\headcommand {\slideentry {4}{1}{1}{11/11}{FileHandler}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{11}{Antlr}}\headcommand {\beamer@subsectionpages {5}{10}}
+\headcommand {\slideentry {3}{2}{1}{11/11}{Antlr}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\beamer@subsectionentry {0}{4}{2}{12}{DebugLogic}}\headcommand {\beamer@subsectionpages {11}{11}}
-\headcommand {\slideentry {4}{2}{1}{12/12}{DebugLogic}{0}}
+\headcommand {\slideentry {3}{2}{2}{12/12}{Antlr}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\sectionentry {5}{DIbugger}{13}{DIbugger}{0}}
-\headcommand {\beamer@sectionpages {11}{12}}
-\headcommand {\beamer@subsectionpages {12}{12}}
-\headcommand {\slideentry {5}{0}{1}{13/13}{}{0}}
+\headcommand {\sectionentry {4}{\IeC {\"A}nderungen}{13}{\IeC {\"A}nderungen}{0}}
+\headcommand {\beamer@sectionpages {5}{12}}
+\headcommand {\beamer@subsectionpages {11}{12}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{13}{FileHandler}}\headcommand {\beamer@subsectionpages {13}{12}}
+\headcommand {\slideentry {4}{1}{1}{13/13}{FileHandler}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\beamer@partpages {1}{13}}
-\headcommand {\beamer@subsectionpages {13}{13}}
-\headcommand {\beamer@sectionpages {13}{13}}
-\headcommand {\beamer@documentpages {13}}
-\headcommand {\def \inserttotalframenumber {13}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{14}{DebugLogic}}\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\slideentry {4}{2}{1}{14/14}{DebugLogic}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\sectionentry {5}{DIbugger}{15}{DIbugger}{0}}
+\headcommand {\beamer@sectionpages {13}{14}}
+\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\slideentry {5}{0}{1}{15/15}{}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@partpages {1}{15}}
+\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\beamer@sectionpages {15}{15}}
+\headcommand {\beamer@documentpages {15}}
+\headcommand {\def \inserttotalframenumber {15}}

@@ -1,22 +1,40 @@
 langID='german'
 langName='Deutsch'
+ui_add_program{
+	def_blockLen=1
+Programm hinzufügen
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 Die Datei enthält eine falsche Zuweisung.
 
 }
+ui_reset_gui{
+	def_blockLen=1
+Zurücksetzen
+}
 dl_exc_wrong_type_assignment{
 	def_blockLen=1
 Der Zuweisungswert ist nicht gleich dem wert der zuweisenden Variable.
+
+}
+ui_for{
+	def_blockLen=1
+Für
 }
 ui_debug_step_out{
 	def_blockLen=1
 Führe Step Out aus
 
 }
+ui_step_tooltip{
+	def_blockLen=1
+Als Schrittgröße festgelegte Anzahl an Befehlen wird ausgeführt
+}
 db_it_exc_not{
 	def_blockLen=1
 Die Operation "not" hat ein oder mehrere falsche Typen.
+
 }
 ui_watch_expression{
 	def_blockLen=1
@@ -26,15 +44,25 @@ Watch Expression
 db_it_exc_and{
 	def_blockLen=1
 Die Operation "and" hat ein oder mehrere falsche Typen.
+
 }
 db_it_exc_eq{
 	def_blockLen=1
 Die Operation "equals" hat ein oder mehrere falsche Typen.
+
+}
+ui_file_menu{
+	def_blockLen=1
+Datei
 }
 ui_debug_step_back{
 	def_blockLen=1
 Führe Step Back aus
 
+}
+ui_program_limit_reached{
+	def_blockLen=1
+Programmlimit erreicht
 }
 ui_var_inspector{
 	def_blockLen=1
@@ -49,6 +77,7 @@ Debuggen beenden
 dl_exc_variable_not_found{
 	def_blockLen=1
 Variable nicht gefunden.
+
 }
 english{
 	def_blockLen=1
@@ -58,32 +87,68 @@ Englisch
 db_it_exc_mul{
 	def_blockLen=1
 Die Operation "mul" hat ein oder mehrere falsche Typen.
+
+}
+ui_show_hidden_variables{
+	def_blockLen=1
+Ausgeblendete Variablen anzeigen
 }
 dl_exc_missing_return_call{
 	def_blockLen=1
 Die Methode verlangt ein "return" Angabe.
+
+}
+ui_interval{
+	def_blockLen=1
+Intervall
 }
 dl_exc_routine_not_found{
 	def_blockLen=1
 Funktion nicht gefunde. Vielleicht ist sie unter diesem Aufruf definiert.
+
+}
+ui_cond_breakpoint_akkusativ{
+	def_blockLen=1
+Bedingten Breakpoint
+}
+ui_stop_tooltip{
+	def_blockLen=1
+Hier klicken, um Debugmodus zu beenden
 }
 dl_exc_syntax{
 	def_blockLen=1
 Syntax Fehler in einem oder mehreren Programmen.
+
+}
+ui_max_functioncalls{
+	def_blockLen=1
+Maximale Funktionsaufrufe festlegen
 }
 db_it_exc_sub{
 	def_blockLen=1
 Die Operation "sub" hat ein oder mehrere falsche Typen.
+
 }
 ui_stepsize{
 	def_blockLen=1
-Schrittgöße
-
+Schrittgröße
+}
+ui_from{
+	def_blockLen=1
+Von
 }
 ui_debug_step_over{
 	def_blockLen=1
 Führe Step Over aus
 
+}
+ui_to{
+	def_blockLen=1
+Bis
+}
+ui_stepover_tooltip{
+	def_blockLen=1
+Nächsten Befehl überspringen, falls dieser ein Funktionsaufruf ist
 }
 ui_debug_step{
 	def_blockLen=1
@@ -97,12 +162,16 @@ Bedingter Breakpoint
 }
 ui_save_config{
 	def_blockLen=1
-Konfiguration speichern
-
+Konfigurationsdatei speichern
+}
+ui_suggestion_strategy_stepsize{
+	def_blockLen=1
+Strategie für Vorschläge der Schrittgröße ändern
 }
 dl_exc_wrong_number_argument{
 	def_blockLen=1
 Falsche Anzahl an Parametern.
+
 }
 ui_exit{
 	def_blockLen=1
@@ -119,10 +188,26 @@ fh_exc_lang_not_found{
 Sprache nicht gefunden
 
 }
+ui_suggest_condbreakpoint{
+	def_blockLen=1
+Bedingten Breakpoint voschlagen
+}
 ui_step{
 	def_blockLen=1
 Schritt
 
+}
+ui_suggest_stepsize{
+	def_blockLen=1
+Schrittgöße voschlagen
+}
+ui_suggest_input{
+	def_blockLen=1
+Eingabewerte voschlagen
+}
+ui_change_language{
+	def_blockLen=1
+Sprache ändern
 }
 ui_values_out{
 	def_blockLen=1
@@ -132,10 +217,12 @@ Ausgabewerte
 db_it_exc_le{
 	def_blockLen=1
 Die Operation "less equal" hat ein oder mehrere falsche Typen.
+
 }
 db_it_exc_add{
 	def_blockLen=1
 Die Operation "add" hat ein oder mehrere falsche Typen.
+
 }
 ui_debug_run{
 	def_blockLen=1
@@ -150,32 +237,64 @@ Einstellungen
 dl_exc_wrong_type_argument{
 	def_blockLen=1
 Ein oder mehr Argumente sind vom falsche Typ.
+
+}
+ui_max_iterations{
+	def_blockLen=1
+Maximale Iterationen festlegen
+}
+ui_suggestion_strategy_input{
+	def_blockLen=1
+Strategie für Vorschläge von Eingabewerten ändern
+}
+ui_stepout_tooltip{
+	def_blockLen=1
+Aus der derzeitigen Methode herausspringen
 }
 db_it_exc_gt{
 	def_blockLen=1
 Die Operation "greater than" hat ein oder mehrere falsche Typen.
+
+}
+ui_type{
+	def_blockLen=1
+Typ
 }
 db_it_exc_div{
 	def_blockLen=1
 Die Operation "div" hat ein oder mehrere falsche Typen.
+
 }
 ui_debug_step_single{
 	def_blockLen=1
 Führe Einzelschritt aus
 
 }
+ui_suggestion_infotext{
+	def_blockLen=1
+Ok drücken, um Voschlag zu erhalten
+}
 ui_suggestions{
 	def_blockLen=1
 Vorschläge
-
 }
 db_it_exc_mod{
 	def_blockLen=1
 Die Operation "modulo" hat ein oder mehrere falsche Typen.
+
 }
 db_it_exc_or{
 	def_blockLen=1
 Die Operation "or" hat ein oder mehrere falsche Typen.
+
+}
+ui_return{
+	def_blockLen=1
+Rückgabewert
+}
+ui_suggest_watchexpression{
+	def_blockLen=1
+WatchExpression voschlagen
 }
 ui_help{
 	def_blockLen=1
@@ -190,23 +309,59 @@ Eingabewerte
 db_it_exc_ge{
 	def_blockLen=1
 Die Operation "greater equal" hat ein oder mehrere falsche Typen.
+
 }
 dl_exc_invalid_program{
 	def_blockLen=1
 Dieses Program ist invalide und kann nicht als Wlang Program interpretiert werden.
+
+}
+ui_suggestion_strategy_expression{
+	def_blockLen=1
+Strategie für Vorschläge von relationalen Ausdrücken ändern
+}
+ui_settings{
+	def_blockLen=1
+Einstellungen
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
 Die Datei beinhaltet eine invalide Zeile.
 
 }
+ui_stepsize_tooltip{
+	def_blockLen=1
+Enter drücken, um Eingabe zu bestätigen
+}
+ui_input_tooltip{
+	def_blockLen=1
+Eingabewerte durch Semikola trennen
+}
 ui_line{
 	def_blockLen=1
 Zeile
+
+}
+ui_start_tooltip{
+	def_blockLen=1
+Hier klicken, um Debugmodus zu starten
 }
 db_it_exc_lt{
 	def_blockLen=1
 Die Operation "less than hat ein oder mehrere falsche Typen.
+
+}
+ui_continue_tooltip{
+	def_blockLen=1
+Debuggin bis zum nächsten Breakpoint fortführen
+}
+ui_variinspector_tooltip{
+	def_blockLen=1
+Variable markieren und mit rechtsklick ausblenden
+}
+ui_single_step{
+	def_blockLen=1
+Einzelschritt
 }
 ui_load_program_text{
 	def_blockLen=1
@@ -216,11 +371,11 @@ Programmtext laden
 dl_exc_already_declared{
 	def_blockLen=1
 Variable wurde schon deklariert.
+
 }
 ui_load_config{
 	def_blockLen=1
-Konfiguration laden
-
+Load config file
 }
 ui_debug_continue{
 	def_blockLen=1

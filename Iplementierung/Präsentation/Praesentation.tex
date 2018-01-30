@@ -168,7 +168,29 @@
 \item \textit{CommandGenerationVisitor}
 \item \textit{TermGenerationVisitor}
 \end{itemize}
-\item %TODO
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+%\frametitle{While-Command}
+\includegraphics[scale=0.5]{../document_data/visitWhile.png}
+\begin{itemize}
+\item Kontext = Knoten (\textit{While-Knoten})
+\item Besuchen der Bedingung
+\item Sammeln und Hinzufügen der im \textit{while-block} stehenden Anweisungen
+\end{itemize}
+\end{frame}
+\begin{frame}
+%\frametitle{Terme (arithmetisch)}
+\includegraphics[scale=0.5]{../document_data/visitAddition.png}
+\begin{itemize}
+\item Besuchen beider Terme
+\item Erstellen eines \textit{Addition} Terms, welcher beide Subterme enthält
+\item Bsp: \textit{a = (b * c) + d}
+\begin{itemize}
+\item Linker Term: \textit{b * c}
+\item Rechter Term: \textit{d}
+\end{itemize}
 \end{itemize}
 \end{frame}
 
