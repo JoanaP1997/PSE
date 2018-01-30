@@ -577,7 +577,7 @@ public class MainInterface extends JFrame {
       //TOO_MANY_PROGRAM_PANELS = "languageFile.getTranslation();
       //LOAD_CONFIG = languageFile.getTranslation();
       //SAVE_CONFIG = languageFile.getTranslation();
-      //END_DIBUGGER = languageFile.getTranslation();
+      END_DIBUGGER = languageFile.getTranslation("ui_exit");
       //SUGGESTIONS = languageFile.getTranslation();
       //SUGGEST_STEPSIZE = languageFile.getTranslation();
       //SUGGEST_INPUT_VAR = languageFile.getTranslation();
