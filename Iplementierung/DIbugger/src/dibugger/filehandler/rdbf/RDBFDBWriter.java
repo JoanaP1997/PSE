@@ -41,8 +41,10 @@ public class RDBFDBWriter extends DBFileWriter {
             block_program.addBlock(block);
             // InputValues
             block = new RDBFBlock("INPUTVALUES");
-            for (String key : f.getList_inputValues().get(i).keySet()) {
-                block.addData(new RDBFData(key, "'" + f.getInputValue(i, key) + "'"));
+            if(i<f.getList_inputValues().size()){
+	            for (String key : f.getList_inputValues().get(i).keySet()) {
+	                block.addData(new RDBFData(key, "'" + f.getInputValue(i, key) + "'"));
+	            }
             }
             block_program.addBlock(block);
             // Var Inspector

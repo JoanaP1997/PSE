@@ -139,33 +139,33 @@ public class FileHandlerInteractor extends Observable {
         List<ProgramInput> currentInput = debugLogicController.getProgramInput();
 
         int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
+        
         for (int i = 0; i < numberOfBufferedPrograms; i++) {
             ProgramInput input = currentInput.get(i);
             
             String bufferedProgramIdentifier = input.getProgramID();
             configurationFile.setProgramNameID(i, bufferedProgramIdentifier);
-            
+                        
             String programText = input.getText();
             configurationFile.setProgramText(i, programText);
-            
+                        
             List<String> variableAssignments = input.getInputValues();
 
             for (String assignment : variableAssignments) {
                 String[] variableAndValue = assignment.split(" = ");
-                if (variableAndValue.length != 2) {
-                    throw new IllegalStateException();
+                if (variableAndValue.length == 2) {
+                	 String variable = variableAndValue[0];
+                     String value = variableAndValue[1];
+                     configurationFile.setInputValue(i, variable, value);
                 }
-                String variable = variableAndValue[0];
-                String value = variableAndValue[1];
-                configurationFile.setInputValue(i, variable, value);
             }
                         
             List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(bufferedProgramIdentifier);
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);
         }
 
-        // Notiz: "configurationFile.setLatestExecutionLines" muss noch verwendet werden
-
+        List<Integer> programCounter = debugLogicController.getDebugLogicFacade().getProgramCounter();
+        
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             int stepSize = debugLogicController.getStepSize(currentInput.get(i).getProgramID());
@@ -177,6 +177,8 @@ public class FileHandlerInteractor extends Observable {
                 lines.add(element);
             }
             configurationFile.setBreakpoints(i, lines);
+            
+            configurationFile.setLastExecutionLine(i, programCounter.get(i));
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 
@@ -203,6 +205,10 @@ public class FileHandlerInteractor extends Observable {
             List<Integer> expressionScopeEnds = createListFromMap(debugLogicController.getWatchExpressionScopeEnds(i));
             configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
         }
+        
+        configurationFile.setNumPrograms(numberOfPrograms);
+        
+        fileHandlerFacade.saveConfig(configurationFile);
     }
 
     private List<Integer> createListFromMap(Map<String, Integer> map){

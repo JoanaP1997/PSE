@@ -465,7 +465,7 @@ public class ConfigurationFile {
      *            a list containing all linenumbers of the active breakpoints
      */
     public void setBreakpoints(int programID, List<Integer> lines) {
-        while (list_breakpoints.size() < programID) {
+        while (list_breakpoints.size()-1 < programID) {
             list_breakpoints.add(new ArrayList<Integer>());
         }
         list_breakpoints.set(programID, lines);

@@ -366,8 +366,7 @@ public class DebugControl {
         while (list_condBreakpoints.size() - 1 < id) {
             list_condBreakpoints.add(null);
         }
-        list_condBreakpoints.add(id, new ConditionalBreakpoint(cond));
-        // TODO default scope
+        list_condBreakpoints.set(id, new ConditionalBreakpoint(cond));
     }
 
     /**
@@ -626,7 +625,7 @@ public class DebugControl {
      */
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
-        for (int i = 0; i < numPrograms; ++i) {
+        for (int i = 0; i < list_condBreakpoints.size(); ++i) {
             l.add(list_condBreakpoints.get(i).getSpecifier());
         }
         return l;
@@ -696,9 +695,11 @@ public class DebugControl {
      */
     public List<Integer> getBreakpoints(int programID) {
         List<Integer> l = new ArrayList<Integer>();
-        List<Breakpoint> l_p = list_breakpoints.get(programID);
-        for (int i = 0; i < l_p.size(); ++i) {
-            l.add(l_p.get(i).getLine());
+        if(programID<list_breakpoints.size()){
+            List<Breakpoint> l_p = list_breakpoints.get(programID);
+            for (int i = 0; i < l_p.size(); ++i) {
+                l.add(l_p.get(i).getLine());
+            }	
         }
         return l;
     }

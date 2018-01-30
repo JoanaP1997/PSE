@@ -550,7 +550,7 @@ public class MainInterface extends JFrame {
     ArrayList<String> inputVars = new ArrayList<>();
     ArrayList<String> programTexts = new ArrayList<>();
     ArrayList<String> programIds = new ArrayList<>();
-    for (String id : programPanels.descendingKeySet()) {
+    for (String id : programPanels.keySet()) {
       programIds.add(id);
       ProgramPanel current = programPanels.get(id);
       programTexts.add(current.getText());
