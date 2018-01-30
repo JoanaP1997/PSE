@@ -1,0 +1,98 @@
+\documentclass[parskip=full]{memoir}
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[english]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\usepackage{memhfixc}
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokument},%
+,%
+}
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{verbatimbox}
+\usepackage{lscape}
+\newcommand\frage[1]{\textcolor{red}{#1}}
+
+
+\font\myfont=cmr12 at 16pt
+
+\title{
+	\vspace{2cm}
+	\myfont 
+	DIbugger: User Manual\\
+}
+%\subtitle{
+%	\vspace{1cm}
+%	\myfont
+%	Implementierungsdokument
+%}
+\author{
+	\vspace{1cm} \\
+	Benedikt Wagner\\
+	\and
+	\vspace{1cm} \\ Chiara Staudenmaier\\
+	\and 
+		\vspace{1cm} \\
+		Etienne Brunner\\
+	\and Joana Plewnia\\
+	\and Pascal Zwick\\
+	\and Ulla Scheler\\
+	\vspace{1cm}
+	\and Betreuer: Mihai Herda, Michael Kirsten
+	\vspace{4cm}
+}
+
+
+\begin{document}
+\clearpage
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\chapter{Quick Start} %Benedikt oder Ulla
+\chapter{The User Interface} %Benedikt
+%Du hattest ja bereits das UserInterface im Pflichtenheft mit Nummern versehen.
+%Vielleicht kannst du das hier mit einem Bild der richtigen GUI recyceln?
+%Tendenziell sollte man das wohl am Ende machen, falls sich in der GUI noch etwas ändert.
+
+\chapter{Configuring the DIbugger} %Ulla
+\section{Configuring the Language}
+
+\chapter{Loading and Saving} %Ulla
+\section{Loading Code}
+\section{Saving Code}
+\section{Loading DIbugger-Configurations}
+\section{Saving DIbugger-Configurations}
+
+\chapter{Editing Program Code} %Benedikt
+\section{Required Format of the Code}
+\section{Sample Program}
+%Hier könntest du den Beispielcode aus dem Entwurf nehmen.
+\section{Common Mistakes}
+%- Man braucht immer eine Main Methode
+%- Methoden nicht schachteln
+%- Arrays deklarieren
+%- keine Arrays als Übergabeparameter
+%- Funktionsaufrufe und gleichzeitige Zuweisungen
+%- ... 
+\section{Auto-Generating Input}
+
+\chapter{Watch-Expressions and Conditional Breakpoints} %Ulla
+\section{Adding and Changing Watch-Expressions}
+\section{Adding and Changing Conditional Breakpoints}
+\section{Auto-Generating Watch-Expressions and Conditional Breakpoints}
+
+\chapter{Debugging Program Code} %Benedikt
+\section{Making Steps}
+\section{Understanding the Output}
+%Hiermit meinte ich zum Beispiel, wie die Variablen angezeigt werden.
+
+\end{document}
