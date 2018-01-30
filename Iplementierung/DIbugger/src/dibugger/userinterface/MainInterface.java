@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -49,7 +50,7 @@ public class MainInterface extends JFrame {
   private JMenu fileMenu;
   private JMenu suggestionMenu;
   private JMenu settingsMenu;
-  private JMenu helpMenu;
+  private JMenuItem helpMenu;
 
   private JMenuBar menuBar;
   private JPanel rightControlBar;
@@ -147,7 +148,7 @@ public class MainInterface extends JFrame {
     fileMenu = new JMenu();
     suggestionMenu = new JMenu();
     settingsMenu = new JMenu();
-    helpMenu = new JMenu();
+    helpMenu = new JMenuItem();
 
     // file menu
     fileMenu.setText(FILE_MENU);
@@ -286,6 +287,15 @@ public class MainInterface extends JFrame {
 
     // help menu
     helpMenu.setText("?");
+    helpMenu.addActionListener(actionEvent -> {
+      Desktop desktop = Desktop.getDesktop();
+      File file = new File("res/ui/Help.pdf");
+      try {
+        desktop.open(file);
+      } catch (IOException e) {
+        //do nothing
+      }
+    });
     menuBar.add(helpMenu);
 
     this.setJMenuBar(menuBar);
@@ -337,9 +347,7 @@ public class MainInterface extends JFrame {
    * @return ArrayList of ids
    */
   public ArrayList<String> getProgramIds() {
-    ArrayList<String> programIds = new ArrayList<String>();
-    programIds.addAll(programPanels.keySet());
-    return programIds;
+    return new ArrayList<>(programPanels.keySet());
   }
 
   /**
@@ -530,6 +538,7 @@ public class MainInterface extends JFrame {
 
   /**
    * returns the length of the text of a program panel.
+   *
    * @param programId program ID
    * @return end line
    */
