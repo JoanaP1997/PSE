@@ -5,7 +5,7 @@ import dibugger.debuglogic.debugger.DebugControl;
 import javax.swing.*;
 
 /**
- * class that represents the CommandPanel where the user can control the debug mechanisms
+ * class that represents the CommandPanel where the user can control the debug mechanisms.
  */
 public class CommandPanel extends JPanel {
   private JButton start;
@@ -21,11 +21,11 @@ public class CommandPanel extends JPanel {
   private static String START_TOOLTIP = "Hier klicken um den Debug-Modus zu starten";
   private static String STOP_TOOLTIP = "Hier klicken um den Debug-Modus zu beenden.";
   private static String STEP_TOOLTIP = "Bei Schrittgröße festgelegte Anzahl an Befehlen wird ausgeführt";
-  private static String STEP_OVER_TOOLTIP = "Methodenausführung nur im Hintergrund ausführen und nächsten Schritt " +
-      "danach anzeigen";
+  private static String STEP_OVER_TOOLTIP = "Methodenausführung nur im Hintergrund ausführen und nächsten Schritt "
+      + "danach anzeigen";
   private static String STEP_OUT_TOOLTIP = "Methode verlassen und debuggen danach fortführen";
-  private static String STEP_BACK_TOOLTIP = "Die in Schrittgröße festgelegte Anzahl an Befehlsausführen wird rückgängig" +
-      " gemacht";
+  private static String STEP_BACK_TOOLTIP = "Die in Schrittgröße festgelegte Anzahl an Befehlsausführen wird rückgängig"
+      + " gemacht";
   private static String CONTINUE_TOOLTIP = "Befehle werden bis zum nächsten Breakpoint ausgeführt";
 
   private CommandPanel(MainInterface mainInterface) {
@@ -110,6 +110,7 @@ public class CommandPanel extends JPanel {
 
   /**
    * Singleton-pattern. Get Method for single instance of CommandPanel
+   *
    * @param mainInterface main Interface
    * @return single instance of CommandPanel
    */
@@ -135,7 +136,7 @@ public class CommandPanel extends JPanel {
   }
 
   /**
-   * starts debugmode.
+   * continues debug mode.
    */
   public void continueWithDebug() {
     mainInterface.getControlFacade().continueDebug();
@@ -150,7 +151,7 @@ public class CommandPanel extends JPanel {
   }
 
   /**
-   * starts the debugmode.
+   * starts the debug mode.
    */
   void startDebug() {
     stop.setEnabled(true);
@@ -161,5 +162,12 @@ public class CommandPanel extends JPanel {
     stepOver.setEnabled(true);
     continueDebug.setEnabled(true);
     mainInterface.startDebug();
+  }
+
+  /**
+   * changes language of the tooltips.
+   */
+  void changeLanguage() {
+
   }
 }
