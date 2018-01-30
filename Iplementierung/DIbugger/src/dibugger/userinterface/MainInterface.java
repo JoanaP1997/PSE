@@ -1,6 +1,7 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
+import dibugger.debuglogic.interpreter.WatchExpression;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
@@ -563,8 +564,9 @@ public class MainInterface extends JFrame {
    */
   public void changeLanguage() {
     if (controlFacade != null) {
-      //TODO: Sprache
       LanguageFile languageFile = controlFacade.getLanguageFile();
+      ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).changeLanguage();
+      WatchExpressionPanel.getWatchExpressionPanel(this).changeLanguage();
       CommandPanel.getCommandPanel(this).changeLanguage();
       if (programPanels != null) {
         for (ProgramPanel p : programPanels.values()) {

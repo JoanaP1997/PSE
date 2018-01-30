@@ -52,6 +52,7 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
                                ExpressionPanel panel, int expressionId) {
 
     //init:
+    setLanguage();
     this.row = row;
     this.expressionId = expressionId;
     this.panel = panel;
@@ -136,11 +137,11 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
   private void setLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-    //DELETE = languageFile.getTranslation();
-    //ADJUST_SCOPEASSIGNMENT = languageFile.getTranslation();
-    //PROGRAM = languageFile.getTranslation();
-    //START = languageFile.getTranslation();
-    //END = languageFile.getTranslation();
+    DELETE = languageFile.getTranslation("ui_delete");
+    ADJUST_SCOPEASSIGNMENT = languageFile.getTranslation("ui_adjust_scopeassignment");
+    PROGRAM = languageFile.getTranslation("ui_program");
+    START = languageFile.getTranslation("ui_start");
+    END = languageFile.getTranslation("ui_end");
   }
 
   private void setPopUpLayout() {
