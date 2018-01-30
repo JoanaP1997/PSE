@@ -1,6 +1,7 @@
 package dibugger.userinterface.dibuggerpopups;
 
 import dibugger.debuglogic.interpreter.ScopeTuple;
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.ConditionalBreakpointPanel;
 import dibugger.userinterface.ExpressionPanel;
 import dibugger.userinterface.MainInterface;
@@ -131,6 +132,15 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     });
 
     setPopUpLayout();
+  }
+
+  private void setLanguage() {
+    LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
+    //DELETE = languageFile.getTranslation();
+    //ADJUST_SCOPEASSIGNMENT = languageFile.getTranslation();
+    //PROGRAM = languageFile.getTranslation();
+    //START = languageFile.getTranslation();
+    //END = languageFile.getTranslation();
   }
 
   private void setPopUpLayout() {
