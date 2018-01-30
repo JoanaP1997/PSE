@@ -1,5 +1,6 @@
 package dibugger.userinterface.dibuggerpopups;
 
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.CommandPanel;
 import dibugger.userinterface.MainInterface;
 
@@ -27,11 +28,18 @@ public class DecisionPopUp extends DIbuggerPopUp {
     this.message = message;
     this.setSize(300, 100);
     this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    setLanguage();
     initComponents();
 
     pack();
 
     this.setVisible(true);
+  }
+
+  private void setLanguage() {
+    LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
+    //YES_OPTION = languageFile.getTranslation();
+    //NO_OPTION = languageFile.getTranslation();
   }
 
   private void initComponents() {
