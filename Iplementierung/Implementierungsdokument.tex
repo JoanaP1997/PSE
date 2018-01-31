@@ -83,7 +83,7 @@ Weiter gab es hier eine Änderung der Verantwortlichkeit: Ulla implementierte mi
 %folgend ein Bescheuerter Satz
 Aus Interessen- und Vorwissensgründen wurde dies so abgesprochen und umgesetzt.
 %Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.%
-Die Implementierung des \textit{Interpreters} war aufwändig, wie im Entwurf erarbeitet, allerdings stellte sich die Implementierung der Benutzeroberfläche als noch zeitintensiver heraus, was vor allem an der unintuitiven Bedienung der Bibliothek \textit{java.swing} lag.
+Die Implementierung des \textit{Interpreters} war aufwändig, wie im Entwurf erarbeitet, allerdings stellte sich die Implementierung der Benutzeroberfläche als noch zeitintensiver heraus, was vor allem an der unintuitiven Bedienung der Bibliothek \textit{java.swing} lag. Diese gemeinschaftliche Fehleinschätzung wirkte sich auf auf die Erfüllung der funktionalen Anforderungen aus, wie im nächsten Abschnitt erklärt wird.
 Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \begin{figure}[!h]
 \centering
@@ -91,28 +91,34 @@ Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \caption{Gantt-Diagramm des Zeitverlaufes}
 \end{figure}
 
+\section{Umsetzung der funktionalen Anforderungen}
+Grundsätzlich ist zu sagen, dass der DIBugger die Funktion, für die er entworfen wurde, komplett erfüllt: Es ist möglich, mehrere Programme gleichzeitig zu debuggen und auf relationale Eigenschaften zu untersuchen.
+Aus den im vorigen Abschnitt genannten Gründen, wurde eine Triage der Anforderungen vorgenommen, die dem Nutzer trotzdem die größtmögliche Funktionalität bereitstellen soll.
+
+\subsection{Musskriterien}
+Die Musskriterien wurden alle bis auf eines erfüllt. Dabei handelt es sich um /FA200/: \textit{\enquote{Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.}} \\ Dies ist in der aktuellen Version nicht möglich - Variablen können allerdings ein- und ausgeblendet werden. Auf den ersten Blick ist fraglich, warum es sich bei diesem Kriterium überhaupt um ein Musskriterium handelt. Grund dafür war der Folgende: Die Übersichtlichkeit der Benutzeroberfläche wurde als sehr relevant eingestuft, und es sollte dem Benutzer deshalb ermöglicht werden, die Werte zweier Variablen aus verschiedenen Programmen so zu verschieben, dass er sie leicht vergleichen kann. Mit der aktuellen Implementierung wird dieses Ziel aber trotzdem erreicht: Der Benutzer kann die für den Vergleich irrelevanten Variablen einfach ausblenden, sodass das Ziel der Übersichtlichkeit erfüllt wird.
+
+\subsection{Sollkriterien}
+Die Sollkriterien wurden alle bis auf eines erfüllt. Dabei handelt es sich um /FA230/: \textit{\enquote{Der Benutzer kann Variablen auswählen, von welchen jeder angenommene Wert gespeichert wird.}} \\
+Dies ist in der aktuellen Version nur auf der Ebene der Benutzeroberfläche nicht möglich. Der Entwurf und die Implementierung des Interpreters unterstützen diese Funktionalität, da ein Trace alle Zustände einer Variablen enthält - und dies auch im Fall von Rekursion oder Schleifenaufrufen. Für eine Umsetzung auf der Benutzeroberfläche müsste noch ein weiteres Pop-Up und ein Menüeintrag hinzugefügt werden, worauf aus Gründen des Projektumfangs und der Zeit verzichtet wurde. Ist der Benutzer an allen Werten einer Variable interessiert, kann er diese Schritt (\enquote{Step}) für Schritt (\enquote{Step}) trotzdem einsehen. Hat der Benutzer eine konkrete Fragestellung bezüglich des Wertes einer Variablen, kann er diese über die Watch-Expressions und Bedingte Breakpoints überprüfen und die Fragestellung sogar mit Hilfe einer Bereichsbindung konkretisieren.
+
+\subsection{Kannkriterien}
+Das Kannkriterium /FA310/ wurde zuerst umgesetzt: \textit{\enquote{Der Benutzer kann Rückschritte in den Programmen durchführen.}} Dieses ist das wichtigste unter den Kannkriterien, da es eine Funktionalität bietet, die nicht anders erfüllt werden kann. \\
+Nicht umgesetzt wurden:
+\begin{itemize}
+\item[/FA290/] \textit{\enquote{Die Datei des zu debuggenden Programms kann in eines der jeweiligen Textfelder hineingezogen werden.}} \\
+Diese Funktionalität ist redundant zu /FA160/, /FA170/ und /FA180/, die bereits die Möglichkeiten bieten, Text direkt oder als Drag-and-Drop, per Copy-Paste oder als Textdatei einzubinden.
+\item[/FA291/] \textit{\enquote{Die Textfelder für die jeweiligen Programme verfügen über ein Syntax-Highlighting.}} \\
+Möchte der Benutzer ein Syntax-Highlighting haben, ist es ein Leichtes, den Programmtext erst in einem Editor zu verfassen und dann über die vielen verschiedenen Möglichkeiten der Texteinbindung im DIbugger einzufügen.
+\item[/FA320/] \textit{\enquote{Die an Zeilen im Programm gebundenen Breakpoints verschieben sich mit dem Programm, wenn dieses im Editiermodus geändert wird.}}  \\
+Problematisch hierbei ist, dass das JPanel, indem sich der Programmtext befindet, Änderungen am Text nicht direkt erfasst. Um Breakpoints korrekt zu verschieben, müsste die Benutzeroberfläche somit nach jedem einzelnen Klick in einem Programmfenster, den gesamten Inhalt Zeile für Zeile parsen und ihn mit dem vorigen Text zu vergleichen. Auf Grund dieser unattraktiven Lösung wurde das Kriterium zurückgestellt.
+
+\end{itemize}
+
+
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
-Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft. Wenn eine Anforderung bezüglich ihrer Relevanz klassifiziert wurde, ist dies auch aufgeführt.
-
-	\subsection{Produktdaten}
-	Konfigurations-, Sprach- und Einstellungsdateien erfüllen die Funktionalität, die im Pflichtenheft unter 4.2.1 definiert wurde.
-%		\begin{itemize}
-%		
-%		
-%			\item[/PD10/] Konfigurationsdateien: \\
-%			Diese Dateien speichern eine Konfiguration des Produkts. 
-%			Hierzu gehört der aktuelle Status der Benutzeroberfläche (Eingabewerte, Schrittgrößen, Variablenauswahl, Programmtexte, Breakpoints, bedingte Breakpoints, Watch-Expressions) und der Programme.
-%			Hier werden dann zusätzlich die aktuellen Positionen in den Programmabläufen gespeichert.
-%			
-%			\item[/PD20/] Sprachdateien: \\
-%			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
-%			Dazu gehören die Texte der GUI-Elemente und Tooltips.
-%			
-%			\item[/PD30/] Einstellungsdatei: \\
-%			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.  
-%			\end{itemize}
-			
+Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft. Wenn eine Anforderung bezüglich ihrer Relevanz klassifiziert wurde, ist dies auch aufgeführt.			
 			 
 		\subsection{Produktleistungen}
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
@@ -136,6 +142,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		\item Richtigkeit: \\
 		Die Richtigkeit wurde im Pflichtenheft als sehr relevant eingestuft. Die Implementierung hat dies so weit wie möglich berücksichtigt. Die tatsächliche Umsetzung kann allerdings erst während der Qualitätssicherung sichergestellt werden.
 		\item Installierbarkeit: \\
+Der DIbugger wird in einer zip-Datei abgeliefert, die eine ausführbare jar-Datei enthält.		
 		
 		\end{itemize}
 		
@@ -166,7 +173,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 				\item Erlernbarkeit \\
 				Die Erlernbarkeit der Benutzeroberfläche wurde im Pflichtenheft als relevant eingestuft. Verständlichkeit und Übersichtlichkeit tragen dazu natürlich bei - vor allem wurde aber eine Dokumentation erstellt, die über den Hilfe-Menüeintrag verfügbar ist und eine Übersicht über das Programm gibt, sowie häufige Fehlerquellen im Umgang mit dem Produkt, insbesondere der benutzten Sprache WLang, adressiert. Endgültige Aussagen zur Erlernbarkeit können allerdings erst nach der Testphase getroffen werden, wenn mehrere, entwicklungsfremde Testpersonen der Zielgruppe (das heißt Individuen, die bereits Erfahrung mit üblichen Debuggern und Programmiersprachen haben) das Produkt benutzt haben. Die Dokumentation wird dann um ihre Fragen und Anmerkungen erweitert.
 				\item Modifizierbarkeit \\
-				Die Modifizierbarkeit, im Pflichtenheft bezogen auf das Hinzufügen zusätzlicher Funktionalität bei Veränderungen am Code des DIbuggers, wurde als sehr relevant eingestuft. Um eine optimale Modifizierbarkeit zu leisten, hätte man eine neue Bibliothek zur Erstellung von Benutzeroberflächen entwerfen und implementieren müssen. Dies war im Rahmen dieses Projektes jedoch nicht vorgesehen. Innerhalb der Einschränkungen von \textit{java.swing} wurden mittels klarer Dokumentation und der konventionellen Verwendung von Panels allerdings trotzdem die Bedingungen für eine möglichst hohe Modifizierbarkeit geschaffen.
+				Die Modifizierbarkeit, im Pflichtenheft bezogen auf das Hinzufügen zusätzlicher Funktionalität bei Veränderungen am Code des DIbuggers, wurde als sehr relevant eingestuft. Um eine optimale Modifizierbarkeit zu leisten, hätte man eine neue Bibliothek zur Erstellung von Benutzeroberflächen entwerfen und implementieren müssen. Dies war im Rahmen dieses Projektes jedoch nicht vorgesehen. Innerhalb der Einschränkungen von \textit{java.swing} wurden mittels klarer Dokumentation und der Verwendung von \textit{JPanels} allerdings trotzdem die Bedingungen für eine möglichst hohe Modifizierbarkeit geschaffen. Soll zusätzliche Funktionalität hinzugefügt werden, kann dies einfach über ein neues \textit{JPanel} geschehen.
 				
 				\end{itemize}
 		
