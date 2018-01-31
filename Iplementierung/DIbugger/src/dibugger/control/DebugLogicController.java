@@ -96,7 +96,7 @@ public class DebugLogicController {
    *
    * @param programId the ID of program to change the stepsize of
    * @param stepSize      the new stepsize to use while debugging
-   * @see DebugLogicFacade#setStepSize(String, int)
+   * @see DebugLogicFacade#setStepSize(int, int)
    */
   public void setStepSize(String programId, int stepSize) {
     if (isKnownId(programId)) {
