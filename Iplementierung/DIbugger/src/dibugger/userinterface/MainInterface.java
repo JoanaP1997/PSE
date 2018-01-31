@@ -136,6 +136,7 @@ public class MainInterface extends JFrame {
         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(codeScrollPane)
             .addComponent(rightControlBar)));
 
+    changeLanguage();
     this.setTitle("DIbugger");
     ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
     this.setIconImage(icon.getImage());
@@ -604,12 +605,15 @@ public class MainInterface extends JFrame {
   void deleteProgramPanel(String id) {
     if (programPanels.size() > 2) {
       programPanels.remove(id);
-      codePanel.removeAll();
-      for (ProgramPanel p : programPanels.values()) {
-        codePanel.add(p, codePanelLayout);
-      }
-      codePanel.updateUI();
+    } else {
+      programPanels.put(id, new ProgramPanel(id, this));
     }
+    codePanel.removeAll();
+    for (ProgramPanel p : programPanels.values()) {
+      p.changeLanguage();
+      codePanel.add(p, codePanelLayout);
+    }
+    codePanel.updateUI();
   }
 
   /**
