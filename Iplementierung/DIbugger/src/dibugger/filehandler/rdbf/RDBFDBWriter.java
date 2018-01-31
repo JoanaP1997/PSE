@@ -9,7 +9,7 @@ import dibugger.filehandler.facade.DBFileWriter;
 import dibugger.filehandler.facade.LanguageFile;
 
 /**
- * SPecific implementation of the {@linkplain DBFileWriter} for the RDBF Format
+ * Specific implementation of the {@linkplain DBFileWriter} for the RDBF Format
  * 
  * @author Pascal
  *

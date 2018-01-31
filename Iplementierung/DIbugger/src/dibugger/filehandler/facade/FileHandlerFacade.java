@@ -147,7 +147,7 @@ public class FileHandlerFacade {
     /**
      * help method to read all available languages
      * 
-     * @return a list of all avilable LanguageFiles
+     * @return a list of all available LanguageFiles
      * @throws FileHandlerException
      *             see {@linkplain DBFileReader#loadLanguageFile(File)}
      */
