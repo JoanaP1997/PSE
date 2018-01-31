@@ -14,6 +14,7 @@ import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.SyntaxException;
+import dibugger.debuglogic.exceptions.WatchExpressionSyntaxException;
 
 /**
  * 
@@ -77,7 +78,7 @@ public class WatchExpression {
 			// Chose start rule
 			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {
-			throw new SyntaxException("Wrong syntax in a watchexpression." + e.getMessage());
+			throw new WatchExpressionSyntaxException(e.getMessage());
 		}
 		TermGenerationVisitor visitor = new TermGenerationVisitor();
 		this.expression = visitor.visit(tree);

@@ -546,7 +546,7 @@ public class MainInterface extends JFrame {
   /**
    * saves the current code inputs in the control facade.
    */
-  void saveText() {
+  public void saveText() {
     ArrayList<String> inputVars = new ArrayList<>();
     ArrayList<String> programTexts = new ArrayList<>();
     ArrayList<String> programIds = new ArrayList<>();
@@ -619,6 +619,7 @@ public class MainInterface extends JFrame {
     for (ProgramPanel p : programPanels.values()) {
       p.stopDebug();
       controlFacade.stopDebug();
+      newProgram.setEnabled(true);
     }
   }
 
