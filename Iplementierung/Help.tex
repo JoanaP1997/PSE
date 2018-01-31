@@ -65,14 +65,36 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 
 \chapter{Configuring the DIbugger} %Ulla
 \section{Configuring the Language}
+You can change the language of the DIbugger with:
+\textsc{Menu > Settings > Change language}
 
+\section{Configuring the Maximum Number of Function Calls}
+The maximum number of function calls determines how many function calls are allowed within one program (including the obligatory main()-method). \\
+This number can be used to impose a limit on the depth of recursion within your program.
+You can change the maximum number of function calls with:
+\textsc{Menu > Settings > Change maximum function calls}
+\section{Configuring the Maximum Number of Iterations}
+The maximum number of iterations determines how many iterations of a while-loop are allowed within one program, thus guaranteeing that a loop cannot run forever.
+You can change the maximum number of iterations with: \\
+\textsc{Menu > Settings > Change maximum iterations}
 \chapter{Loading and Saving} %Ulla
-\section{Loading Code}
+\section{Adding a program}
+The file menu allows you to add a program to a new program window. You are asked to choose the file you want to open within the new program window. If you cancel the file choosing action, you are presented with an empty new program window. You can do this with: \\
+ \textsc{Menu > File > Add a Program}
+ \section{Saving DIbugger-Configurations}
+Saving a DIbugger-Configuration means saving not only the code in your program windows but your Watch-Expressions, Breakpoints and Conditional Breakpoints, too.
+You can do this with: \\
+\textsc{Menu > File > Save config}
 \section{Saving Code}
+There is no dedicated menu entry to save your program code as your code is automatically saved when you save your DIbugger-Configuration. You can do this with: \\
+\textsc{Menu > File > Save config}
 \section{Loading DIbugger-Configurations}
-\section{Saving DIbugger-Configurations}
+You can load a DIBugger-Configuration (that is all your program windows, Breakpoints, Conditional Breakpoints and Watch-Expressions) with:
+\textsc{Menu > File > Load config}
 
 \chapter{Editing Program Code} %Benedikt
+
+\section{Resetting a Program Code Window}
 \section{Required Format of the Code}
 \section{Sample Program}
 %Hier könntest du den Beispielcode aus dem Entwurf nehmen.
