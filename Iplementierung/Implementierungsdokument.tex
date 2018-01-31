@@ -65,7 +65,7 @@ Dieses Dokument beschreibt die Ergebnisse der Implementierungsphase (\textit{08.
 Hierbei handelt es sich um die Implementierung des Produkts \textit{DIbugger}, welches im Pflichtenheft definiert und während der Entwurfsphase entworfen wurde.
 
 Das eigentliche Produkt dieser Phase ist über folgendes GitHub-Repository verfügbar: \href{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung}{https://github.com/JoanaP1997/PSE/tree/dev/Iplementierung} \\
-Die abgegebene Version wurde mit \textit{prerelease\_v0.1} getaggt.
+Die abgegebene Version wurde mit \textit{release\_v1.0} getaggt.
 
 \begin{figure}[!h]
 \centering
@@ -79,11 +79,11 @@ Dieser wurde folgendermaßen umgesetzt:\\
 Begonnen wurde mit dem \textit{FileHandler} und dem \textit{UserInterface}. Diese konnten unabhängig voneinander implementiert werden.
 Aus Zeitgründen verschob sich der Start der \textit{Control} Implementierung um wenige Tage.
 Die Unterpakete der \textit{DebugLogic} wurden in planmäßiger Reihenfolge begonnen. Dabei wurde die \textit{DebugControl} nun parallel zum \textit{Interpreter} entwickelt.
-Weiter gab es hier eine Änderung der Verantwortlichkeit. Hierbei implementierte nun Ulla mit an dem Interpreterpaket, wobei Pascal nun den Debugger übernahm.
+Weiter gab es hier eine Änderung der Verantwortlichkeit: Ulla implementierte mit an dem Interpreterpaket, während Pascal den Debugger übernahm.
 %folgend ein Bescheuerter Satz
 Aus Interessen- und Vorwissensgründen wurde dies so abgesprochen und umgesetzt.
 %Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.%
-Der aufwändigste Teil der Implementierung war, wie auch im Entwurf erarbeitet, der \textit{Interpreter}. Insgesamt gestaltete sich aber auch die Implementierung der Benutzeroberfläche des Paketes \textit{UserInterface} zeitintensiver als erwartet.
+Die Implementierung des \textit{Interpreters} war aufwändig, wie im Entwurf erarbeitet, allerdings stellte sich die Implementierung der Benutzeroberfläche als noch zeitintensiver heraus, was vor allem an der unintuitiven Bedienung der Bibliothek \textit{java.swing} lag.
 Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \begin{figure}[!h]
 \centering
@@ -93,7 +93,7 @@ Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
-Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft.
+Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft. Wenn eine Anforderung bezüglich ihrer Relevanz klassifiziert wurde, ist dies auch aufgeführt.
 
 	\subsection{Produktdaten}
 	Konfigurations-, Sprach- und Einstellungsdateien erfüllen die Funktionalität, die im Pflichtenheft unter 4.2.1 definiert wurde.
@@ -117,14 +117,15 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		\subsection{Produktleistungen}
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
 		\begin{itemize}
-		\item[/PL10/] Zeitverhalten: \\ NN
+		\item[/PL10/] Zeitverhalten: \\ Wie im Pflichtenheft gefordert, ist das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgrößen und Breakpoints ohne spürbare Verzögerung möglich. Selbiges gilt für das Ausführen von Schritten, Step-Over und Step-Out. Erreicht wurde dies dadurch, dass der \textit{Trace} beim Starten des Debugmodus zunächst vollständig erzeugt wird. Operationen davor und danach können dadurch sehr schnell durchgeführt werden. Das Starten des Debugmodus selbst gelingt im Rahmen der bereits getesteten Programme deutlich unter 5 Sekunden. Genauere Zusicherungen können hier erst nach der Testphase gemacht werden.
 %		Das Produkt ermöglicht das Hinzufügen von Eingabevariablen, Watch-Expressions, Schrittgröße und Breakpoints ohne spürbare Verzögerung. Das Ausführen von Schritten, Step-Over und Step-Out, sowie das Erreichen des nächsten Breakpoints, ist ebenfalls ohne spürbare Verzögerung möglich. \\
 		%Den Debugmodus zu starten dauert unter 5 Sekunden. 
 
 		\item[/PL20/] Genauigkeit: \\
-		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch in WLang. 
+		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch in WLang. Die im Pflichtenheft dokumentierten Anforderungen wurden damit umgesetzt.
 
-		\item[/PL30/] Fehlertoleranz: \\ NN
+		\item[/PL30/] Fehlertoleranz: \\
+		Die Fehlertoleranz, im Pflichtenheft als relevant eingestuft, wurde durch verschiedene Maßnahmen umgesetzt: Erstens, werden bei fehlenden Eingabewerten für Startvariablen diese automatisch generiert. Zweitens, wird die Semantik aller Eingaben (das heißt von Eingabevariablen, Programmtexten, Watch-Expressions und Bedingten Breakpoints) beim Start des Debugmodus direkt vom \textit{Antlr}-Parser kontrolliert. Dabei auftretende Fehler werden durch Pop-Ups über die Benutzeroberfläche zurückgemeldet.
 %		Durch automatische Warnung bei kritischen Eingaben (A10, A20) und Überprüfung der Semantik, ergibt sich eine hohe Fehlertoleranz bezüglich Benutzereingaben.
 %		Durch die automatische Generierung von fehlenden Benutzerangaben für Eingabewerte (FA215), wird der Start des Debugmodus aus dem Editiermodus bei korrektem Programmtext zu jeder Zeit ermöglicht.
 %		Über andere Arten von Fehlern wird der Benutzer mittels Pop-Ups informiert.
@@ -134,6 +135,8 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		\begin{itemize}
 		\item Richtigkeit: \\
 		Die Richtigkeit wurde im Pflichtenheft als sehr relevant eingestuft. Die Implementierung hat dies so weit wie möglich berücksichtigt. Die tatsächliche Umsetzung kann allerdings erst während der Qualitätssicherung sichergestellt werden.
+		\item Installierbarkeit: \\
+		
 		\end{itemize}
 		
 		\subsection{Weitere nichtfunktionale Anforderungen}
@@ -147,22 +150,23 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		Die geplante Open Source Lizenz \href{https://www.gnu.org/licenses/gpl-3.0.de.html}{GNU GPL 3 (GNU General Public License)} wurde im GitHub-Repository als Lizenz eingetragen.
 		
 		\item[/NA40/] Sicherheit: \\
-		Da das Produkt keine Netzwerkverbindung nutzt, verbleiben die vom Benutzer eingegebenen Daten zumindest im Zuständigkeitsbereichs des Programmes ausschließlich auf dem Rechner des Benutzers.
-		\item[/NA50/]Benutzerfreundlichkeit: \\ NN
+		Wie bereits im Pflichtenheft festgelegt, gilt: Da das Produkt keine Netzwerkverbindung nutzt, verbleiben die vom Benutzer eingegebenen Daten zumindest im Zuständigkeitsbereichs des Programmes ausschließlich auf dem Rechner des Benutzers.
+		\item[/NA50/]Benutzerfreundlichkeit: \\
+		Auf Benutzerfreundlichkeit wurde großen Wert gelegt. Eine genauere Aufschlüsselung der Maßnahmen nach Verständlichkeit, Übersichtlichkeit und Erlernbarkeit ist im nächsten Absatz zu finden.
 %		Durch das Hilfemenü werden dem Benutzer die wichtigsten Funktionen und deren Anwendung des Produkts erklärt. Erklärungen zu Bestandteilen der Benutzeroberfläche sind durch Tooltips abgedeckt. \\
 %		Durch die strikte Trennung der verschiedenen und Gruppierung der zusammengehörigen Elemente der Benutzeroberfläche ergibt sich ein übersichtliches Erscheinungsbild. 
 		\end{itemize}
 		
 				Unter dem Punkt \enquote{Qualitätsanforderungen an die Benutzeroberfläche} wurden im Pflichtenheft außerdem genannt:
 				\begin{itemize}
-				\item Verständlichkeit \\
-				NN
+				\item Verständlichkeit \\ 
+				Die Verständlichkeit der Benutzeroberfläche wurde im Pflichtenheft als relevant eingestuft. Dazu wurde auf eine klare Bezeichnung aller Buttons geachtet und Konventionen aus handelsüblichen Debuggern, wie zum Beispiel in Eclipse, wurden weitestgehend übernommen. 
 				\item Übersichtlichkeit \\
-				NN
+				Die Übersichtlichkeit der Benutzeroberfläche wurd im Pflichtenheft als sehr relvant eingestuft. Dem wurde Rechnung getragen, indem die Benutzeroberfläche möglichst simpel gehalten und klar strukturiert ist. Funktionen, die seltener genutzt werden, wie die Auswahl einer Sprache, wurden in die Menüleiste eingebunden. Die Entscheidung, ob ein Button mit Text oder mit einer Zeichnung beschriftet wird, wurde auf individueller Basis getroffen, um Übersichtlichkeit und Verständlichkeit zu fördern.
 				\item Erlernbarkeit \\
-				NN
+				Die Erlernbarkeit der Benutzeroberfläche wurde im Pflichtenheft als relevant eingestuft. Verständlichkeit und Übersichtlichkeit tragen dazu natürlich bei - vor allem wurde aber eine Dokumentation erstellt, die über den Hilfe-Menüeintrag verfügbar ist und eine Übersicht über das Programm gibt, sowie häufige Fehlerquellen im Umgang mit dem Produkt, insbesondere der benutzten Sprache WLang, adressiert. Endgültige Aussagen zur Erlernbarkeit können allerdings erst nach der Testphase getroffen werden, wenn mehrere, entwicklungsfremde Testpersonen der Zielgruppe (das heißt Individuen, die bereits Erfahrung mit üblichen Debuggern und Programmiersprachen haben) das Produkt benutzt haben. Die Dokumentation wird dann um ihre Fragen und Anmerkungen erweitert.
 				\item Modifizierbarkeit \\
-				NN
+				Die Modifizierbarkeit, im Pflichtenheft bezogen auf das Hinzufügen zusätzlicher Funktionalität bei Veränderungen am Code des DIbuggers, wurde als sehr relevant eingestuft. Um eine optimale Modifizierbarkeit zu leisten, hätte man eine neue Bibliothek zur Erstellung von Benutzeroberflächen entwerfen und implementieren müssen. Dies war im Rahmen dieses Projektes jedoch nicht vorgesehen. Innerhalb der Einschränkungen von \textit{java.swing} wurden mittels klarer Dokumentation und der konventionellen Verwendung von Panels allerdings trotzdem die Bedingungen für eine möglichst hohe Modifizierbarkeit geschaffen.
 				
 				\end{itemize}
 		
@@ -203,7 +207,8 @@ Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader} un
 \subsection{Die Visitor im Interpreter} Der Entwurf sah im Paket \textit{Interpreter} zwei Klassen vor, die das Visitor Pattern umsetzen. Die beiden Klassen \textit{CommandGenerationVisitor} und \textit{TermGenerationVisitor} sind Unterklassen der von Antlr generierten Klasse \textit{WlangBaseVisitor<T>}, wobei der Generic hier angibt, welchen Datentyp die visit-Methoden zurückgeben. Wie es der Name andeutet, ist dies zum einen die Klasse \textit{Command} und zum anderen die Klasse \textit{Term}. 
 Da Terme sowohl während der Traceerzeugung (genauere Erklärung dazu ist im Entwurfsdokument Kapitel 8.10 zu finden) als auch innerhalb von Watch-Expressions und bedingten Breakpoints vorkommen, kam das Problem auf, dass der \textit{TermGenerationVisitor} zunächst sowohl vom \textit{TermsBaseVisitor} (für die im Entwurfsdokument Anhang 12.2 definierte Syntax der Watch-Expressions) als auch vom \textit{WlangBaseVisitor} (für die in Entwurfsdokument 12.1 definierte Wlang-Syntax) erben musste. In Java ist bekanntlich keine Mehrfachvererbung möglich. Zur Lösung des Problems wurden die Grammatiken zusammengefügt und entsprechend beim Verwenden eine andere Startregel angegeben. 
 \subsection{Nutzung der von Antlr generierten Klassen}
-In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Diese ist sehr kompfortabel und weicht bei der Nutzung für die Tracegenerierung lediglich in Zeilen 70-72 ab. Hier wird dann eine andere Startregel ausgewählt und der \textit{CommandGenerationVisitor} genutzt. Im abgebildeten Code ist vorher in \texttt{this.specifier} der String gespeichert worden, der die Watch-Expression spezifiziert. Die Klassen \textit{WlangLexer} und \textit{WlangParser} erzeugen dann einen Ableitungsbaum, den \textit{ParseTree}. Über diesen werden die oben angesprochenen Visitor geschickt.
+In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Wenn diese Klassen benutzt werden, geschieht das immer wie in den Zeilen 65-68. Im einzelnen Fall muss dann nur die richtige Startregel der Grammatik ausgewählt werden, hier zum Beispiel \textit{webppterm()}. \\
+Im abgebildeten Code ist in \texttt{this.specifier} der String gespeichert worden, der die Watch-Expression spezifiziert. Die Klassen \textit{WlangLexer} und \textit{WlangParser} erzeugen dann einen Ableitungsbaum, den \textit{ParseTree}. Über diesen werden die oben angesprochenen Visitor geschickt.
 \begin{figure}[!h]
 \includegraphics[width=0.7\textwidth]{document_data/createTerm.png}
 \caption{Aufrufen der von Antlr erzeugten Klassen}
@@ -211,7 +216,7 @@ In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen 
 \end{figure}
 
 \subsection{Umsetzung der Commands}
-Die Klassen \textit{Command} und ihre Unterklassen wurden wie im Entwurfsdokument spezifiziert als Kompositum implementiert. Dabei haben zusammengesetzte Subklassen wie der \textit{WhileCommand} immer eine \textit{addChild(Command child)}-Methode. Spannend an den Commands ist vor allem die Umsetzung ihrer \textit{run()}-Methode. Diese ist einer der wichtigsten Teile der Umsetzung des Interpreterpaketes. Sobald sich hier ein Fehler einschleicht, werden die Programmausführungen fehlerhaft. Deshalb wird es wichtig sein, in der Qualitätssicherungsphase diesen Teil besonders ausgiebig zu testen. Bereits in der Implementierung wurden die Commands durch Unittests auf ihr Verhalten überprüft. 
+Die Klassen \textit{Command} und ihre Unterklassen wurden wie im Entwurfsdokument spezifiziert als Kompositum implementiert. Dabei haben zusammengesetzte Subklassen wie der \textit{WhileCommand} immer eine \textit{addChild(Command child)}-Methode. Kritisch an den Commands ist vor allem die Umsetzung ihrer \textit{run()}-Methode. Diese ist einer der wichtigsten Teile der Umsetzung des Interpreterpaketes. Sobald sich hier ein Fehler einschleicht, werden die Programmausführungen fehlerhaft. Deshalb wird es wichtig sein, in der Qualitätssicherungsphase diesen Teil besonders ausgiebig zu testen. Bereits in der Implementierung wurden die Commands durch Unittests auf ihr Verhalten überprüft. 
 Als einfaches Beispiel betrachten wir in Abbildung \ref{runWhile} die \textit{run()}-Methode der Klasse \textit{WhileCommand}. Hier wird der Nutzen des Kompositum Musters ersichtlich.
 Zunächst wird in jedem Command der aktuelle \textit{Scope} vom hauptverantwortlichen \textit{GenerationController} \texttt{this.controller} geholt. In einfachen Befehlen (z.B. \textit{Assignment}) wird dieser einfach nur manipuliert. Hier müssen wir die Bedingung der While-Schleife auswerten, um zu sehen, ob diese sich überhaupt zu einem Boolean auswertet (Zeile 38-39). Dann prüfen wir je einmal die Bedingung und führen alle Kinder mit \textit{run()} aus. Das passiert solange die Bedingung sich zu wahr auswertet (Zeile 45-49). Da wir immer im gleichen Scope bleiben, muss die oben angesprochene Typprüfung nur einmal erfolgen.
 \begin{figure}[!h]
@@ -223,9 +228,9 @@ Zunächst wird in jedem Command der aktuelle \textit{Scope} vom hauptverantwortl
 
 \subsection{UserInterface}
 \paragraph{ExpressionChangePopUp}
-Der Entwurf wurde aus Gründen der Übersichtlichkeit um die Klasse ExpressionChangePopUp, die von DIbuggerPopUp erbt, ergänzt. Ein ExpressionChangePopUp dient dabei dem Löschen und Ändern der Bereichsbindung einer WatchExpression oder eines bedingten Breakpoints.
+Der Entwurf wurde aus Gründen der Übersichtlichkeit um die Klasse \textit{ExpressionChangePopUp}, die von \textit{DIbuggerPopUp} erbt, ergänzt. Ein \textit{ExpressionChangePopUp} dient dabei dem Löschen und Ändern der Bereichsbindung einer WatchExpression oder eines bedingten Breakpoints.
 \paragraph{ArrayValuePopUp}
-Die im Entwurf spezifizierte Klasse ArrayValuePopUp, eine Unterklasse von DIbuggerPopUp, wurde in der Implementierung aus Gründen der Benutzerfreundlichkeit verworfen. Ursprünglich sollte sie das Eintragen der Werte eines Arrays über ein PopUp erleichtern. Mit Hilfe eines Scrollbalkens im Variableninspektor ist es allerdings möglich, Werte für Arrays auf dieselbe Art und Weise wie Werte für andere Datentypen einzugeben.
+Die im Entwurf spezifizierte Klasse \textit{ArrayValuePopUp}, eine Unterklasse von \textit{DIbuggerPopUp}, wurde in der Implementierung aus Gründen der Benutzerfreundlichkeit verworfen. Ursprünglich sollte sie das Eintragen der Werte eines Arrays über ein PopUp erleichtern. Mit Hilfe eines Scrollbalkens im Variableninspektor ist es allerdings möglich, Werte für Arrays auf dieselbe Art und Weise wie Werte für andere Datentypen einzugeben.
 \paragraph{ProgramPanel}
 ProgramPanels werden nun nicht mehr über Integers identifiziert, sondern über Strings (A-Z). So ist innerhalb des Modells gewährleistet, dass auch nach Löschung eines einzelnen ProgramPanels die zu den Programmen gehörigen Variablen in Watch-Expressions und bedingten Breakpoints korrekt angezeigt werden.
 \subsection{Control}
@@ -249,7 +254,7 @@ Alle Unterklassen, welche diese Schnittstelle implementieren, sollten von der Kl
 %+ DebugControl: setStepSize(programID, stepSize); reset();
 \paragraph{Subject}
 Im Entwurf wurde die Klasse \textit{Subject} spezifiziert. Sie ist Kontrollpunkt des Beobachtermusters zwischen GUI und DebugLogic. Da eine äquivalente Klasse aus Java, namentlich \textit{Observable}, existiert, wurde die Klasse \textit{Subject} nicht implementiert.
-\textit{Observable} biete die gleichen Methoden an, wie unsere definierte Klasse.
+\textit{Observable} bietet die gleichen Methoden an wie die im DIbugger definierte Klasse.
 \paragraph{DebugLogicFacade}
 Diese Klasse erbt nun von der Java Klasse \textit{Observable} anstatt von \textit{Subject}.
 Aus den oben genannten Gründen kann somit auch auf die Implementierung der in \textit{Subject} enthaltenen Methoden verzichtet werden.
