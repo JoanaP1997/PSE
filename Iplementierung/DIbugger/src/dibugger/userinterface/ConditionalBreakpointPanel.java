@@ -64,12 +64,15 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
     for (int i = 0; i <= currentHighestId; i++) {
       try {
-        dataEntries[i][2] = debugLogicFacade.getCBValue(i);
+          if(dataEntries[i]!=null){
+              dataEntries[i][2] = debugLogicFacade.getCBValue(i);
+              table.getModel().setValueAt(dataEntries[i][2], i, 2);
+          }
       } catch (DIbuggerLogicException e) {
         //TODO do nothing?
       }
-      table.updateUI();
     }
+    table.updateUI();
     //TODO: check
   }
 
@@ -129,7 +132,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
       @Override
       public void mouseExited(MouseEvent mouseEvent) {
-
+          saveCBs();
       }
     });
 

@@ -424,7 +424,7 @@ ui_continue_tooltip{
 Debuggin bis zum n\u00e4chsten Breakpoint fortf\u00fchren
 
 }
-ui_variinspector_tooltip{
+ui_varinspector_tooltip{
 	def_blockLen=1
 Variable markieren und mit rechtsklick ausblenden
 
