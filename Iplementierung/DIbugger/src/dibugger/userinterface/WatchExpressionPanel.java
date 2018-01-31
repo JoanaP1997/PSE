@@ -66,12 +66,15 @@ public class WatchExpressionPanel extends ExpressionPanel {
     DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
     for (int i = 0; i <= currentHighestId; i++) {
       try {
-        dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+        if(dataEntries[i]!=null){
+          dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+          table.getModel().setValueAt(dataEntries[i][2], i, 2);
+        }
       } catch (DIbuggerLogicException e) {
         //TODO: Muss von der LogicFacade gefangen werden
       }
-      table.updateUI();
     }
+    table.updateUI();
   }
 
   private void initComponents() {
@@ -133,6 +136,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
       @Override
       public void mouseExited(MouseEvent mouseEvent) {
+          saveWEs();
       }
     });
     table.setSize(50, 50);

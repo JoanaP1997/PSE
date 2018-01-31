@@ -52,7 +52,6 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
                                ExpressionPanel panel, int expressionId) {
 
     //init:
-    setLanguage();
     this.row = row;
     this.expressionId = expressionId;
     this.panel = panel;
@@ -63,6 +62,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     this.setModalityType(ModalityType.APPLICATION_MODAL);
     this.setLocationRelativeTo(mainInterface);
+    
+    
     groupLayout = new GroupLayout(getContentPane());
     getContentPane().setLayout(groupLayout);
 
@@ -132,6 +133,8 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
       }
     });
 
+    setLanguage();
+    
     setPopUpLayout();
   }
 

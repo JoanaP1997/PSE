@@ -608,6 +608,9 @@ public class DebugControl {
      *             {@linkplain WatchExpression#evaluate(List)}
      */
     public String getWEValue(int expressionID) throws DIbuggerLogicException {
+        if(expressionID>=list_watchExpressions.size() || list_watchExpressions.get(expressionID)==null){
+            return "?";
+        }
         return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
     }
 
@@ -683,6 +686,9 @@ public class DebugControl {
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
     public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+        if(breakpointID>=list_condBreakpoints.size() || list_condBreakpoints.get(breakpointID)==null){
+            return false;
+        }
         return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
     }
 

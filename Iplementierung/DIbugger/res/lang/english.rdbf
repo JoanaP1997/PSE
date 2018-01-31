@@ -424,7 +424,7 @@ ui_continue_tooltip{
 Debug until next active breakpoint
 
 }
-ui_variinspector_tooltip{
+ui_varinspector_tooltip{
 	def_blockLen=1
 Mark variable then hide it by right clicking
 
