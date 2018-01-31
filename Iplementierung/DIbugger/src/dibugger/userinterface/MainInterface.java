@@ -170,6 +170,7 @@ public class MainInterface extends JFrame {
         String nextId = calcNextProgramId();
         ProgramPanel newPanel = new ProgramPanel(nextId, this);
         newPanel.setTextWithFileChooser();
+        newPanel.changeLanguage();
         programPanels.put(nextId, newPanel);
         codePanel.add(programPanels.get(nextId), codePanelLayout);
         codePanel.updateUI();
