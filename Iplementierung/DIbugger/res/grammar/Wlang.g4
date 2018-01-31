@@ -65,7 +65,7 @@ arrayDeclaration: type = TYPE '[' index = term']' id = ID ';' #arrayDeclarationO
 					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' '[' thirdIndex = term']' id = ID ';' #arrayDeclarationThreeDim
 					;
 					
-arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
+arrayDeclareAssign: type = TYPE '['term']' id = ID ASSIGN '{'filledArglist'};';
 
 arrayElementAssign: id = ID '['index=term']'  ASSIGN value = term';' #arrayElementAssignOneDim
 		| id = ID '['firstIndex=term']' '['secondIndex=term']'  ASSIGN value = term';' #arrayElementAssignTwoDim
