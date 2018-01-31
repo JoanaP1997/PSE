@@ -30,9 +30,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
   private JTable table;
   private DefaultTableModel tableModel;
 
-  private static String CB_TOOLTIP = "<html>Erstes Feld für Optionen zu diesem bedingten Breakpoint,"
-      + " <br> mittleres Feld um den CB zu ändern. <br> Um einen neuen CB hinzuzufügen,"
-      + " mittleres Feld der letzten Zeile anklicken.</html>";
+  private static String CB_TOOLTIP = "<html>Erstes Feld für Optionen zu diesem bedingten "
+      + "Breakpoint, <br> mittleres Feld um den CB zu ändern. <br> Um einen neuen CB "
+      + "hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>";
 
   private ConditionalBreakpointPanel(MainInterface mainInterface) {
     this.mainInterface = mainInterface;
@@ -47,7 +47,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
    * @return the ConditionalBreakpointPanel (if it does not exists it creates a new one,
    *      if it exists you get the existing one)
    */
-  public static ConditionalBreakpointPanel getConditionalBreakpointPanel(MainInterface mainInterface) {
+  public static ConditionalBreakpointPanel getConditionalBreakpointPanel(
+      MainInterface mainInterface) {
     if (singleton == null) {
       singleton = new ConditionalBreakpointPanel(mainInterface);
     }
@@ -77,7 +78,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     idMap.put(0, 0);
 
     panelType = "Conditional Breakpoints:";
-    String[] columnTitles = {"Opt", panelType, "="};
+    String[] columnTitles;
+    columnTitles = new String[]{"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
     dataEntries[0][1] = "5 == 3";

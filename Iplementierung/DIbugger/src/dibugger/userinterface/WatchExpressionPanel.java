@@ -80,7 +80,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     panelType = "Watch Expressions:";
 
-    String[] columnTitles = {"Opt", panelType, "="};
+    String[] columnTitles;
+    columnTitles = new String[]{"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
     dataEntries[0][1] = "5 == 5";
@@ -157,7 +158,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
   }
 
   /**
-   * method to delete an entry in the WatchExpressionPanel, deletes the watch-expression that is displayed in this row.
+   * method to delete an entry in the WatchExpressionPanel, deletes the
+   * watch-expression that is displayed in this row.
    *
    * @param rowToDelete row as int (from 0 to n) in which the watch-expression is to be deleted
    */
