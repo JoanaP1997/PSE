@@ -171,7 +171,7 @@ public class CommandPanel extends JPanel {
   void changeLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
     start.setToolTipText(languageFile.getTranslation("ui_start_tooltip"));
-    stop.setToolTipText(languageFile.getTranslation("stop_tooltip"));
+    stop.setToolTipText(languageFile.getTranslation("ui_stop_tooltip"));
     step.setToolTipText(languageFile.getTranslation("ui_step_tooltip"));
     stepOver.setToolTipText(languageFile.getTranslation("ui_stepover_tooltip"));
     stepOut.setToolTipText(languageFile.getTranslation("ui_stepout_tooltip"));

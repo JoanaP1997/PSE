@@ -93,10 +93,48 @@ You can load a DIBugger-Configuration (that is all your program windows, Breakpo
 \textsc{Menu > File > Load config}
 
 \chapter{Editing Program Code} %Benedikt
-
 \section{Resetting a Program Code Window}
 \section{Required Format of the Code}
+The format of the Wlang code is basically in C syntax, altough here are some differences explained above.
+\paragraph{Writing functions and procedures}
+You can write a routine in Wlang with the syntax \texttt{<type or void> <routinename>(<list of arguments>) <content of the routine>}. This is the same syntax as in the programming language C. For every program it is necessary, that there is a main-Routine with the name main. This is the entry point of the execution. All other routines have to be declared and implemented above.
+\paragraph{Declaring arrays}
+Array declaration has the syntax \texttt{<type> <dimensions> <arrayname>}. 
+\paragraph{Calling functions}
+You can call a function in a assignment. Within this assignment the functioncall is the only thing on the right side e.g. \texttt{x = foo(y);}
 \section{Sample Program}
+As an easy example, see the implementation of the factorial of an integer in tow different ways.
+\begin{verbatim}
+//factorial programmed in an iterative manner
+int main(int n){
+    int i = 1;
+    int sum = 1;
+    while(i<=n) {
+         sum = sum * i;
+         i = i + 1;
+    }
+    return sum;
+}
+\end{verbatim}
+\begin{verbatim}
+//other functions must be delcared before the main
+int fac(int k) {
+    //Calculate the factorial of k recursively.
+    if (k <= 1)
+         return 1;
+    int res; 
+    res = fac(k-1); //this is the correct way to call functions.
+    res = res * k;
+    return res;
+}
+
+//every program needs a main method
+int main(int k) {
+    int res;
+    res = fac(k);
+    return res;
+}
+\end{verbatim}
 %Hier könntest du den Beispielcode aus dem Entwurf nehmen.
 \section{Common Mistakes}
 %- Man braucht immer eine Main Methode

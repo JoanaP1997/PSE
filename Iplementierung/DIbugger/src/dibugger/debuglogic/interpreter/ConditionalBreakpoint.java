@@ -89,7 +89,7 @@ public class ConditionalBreakpoint {
 			// Chose start rule
 			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {
-			throw new SyntaxException(e.getMessage());
+			throw new SyntaxException("wrong syntax in a conditional breakpoint. "+e.getMessage());
 		}
 		TermGenerationVisitor visitor = new TermGenerationVisitor();
 		this.condition = visitor.visit(tree);
