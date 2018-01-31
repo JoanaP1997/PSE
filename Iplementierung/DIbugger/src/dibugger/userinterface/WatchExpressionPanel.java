@@ -212,7 +212,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
    */
   void changeLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-    WE_TOOLTIP = languageFile.getTranslation("ui_we_tooltip");
+    table.setToolTipText(languageFile.getTranslation("ui_we_tooltip"));
   }
 
 }

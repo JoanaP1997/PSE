@@ -52,6 +52,8 @@ public class ProgramPanel extends JPanel {
   private JButton singleStepButton;
 
   private JPanel variableInspector;
+  private JLabel varLabel;
+  private JButton showHiddenVariables;
   private TreeMap<String, String> variableValueMap;
   private List<String> shownVariables;
   private DefaultListModel<String> listModel;
@@ -290,7 +292,7 @@ public class ProgramPanel extends JPanel {
     variableInspectorScrollPane.setPreferredSize(new Dimension(400, 200));
     variableInspectorScrollPane.setViewportView(variableInspectorList);
 
-    JButton showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
+    showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
     showHiddenVariables.addActionListener(actionEvent -> {
       listModel.clear();
       shownVariables.clear();
@@ -301,7 +303,7 @@ public class ProgramPanel extends JPanel {
       variableInspectorList.updateUI();
     });
 
-    JLabel varLabel = new JLabel(VARIABLE_INSPECTOR);
+    varLabel = new JLabel(VARIABLE_INSPECTOR);
 
     variableInspectorLayout.setHorizontalGroup(variableInspectorLayout.createParallelGroup().addComponent(varLabel)
         .addComponent(showHiddenVariables).addComponent(variableInspectorScrollPane));
@@ -529,17 +531,17 @@ public class ProgramPanel extends JPanel {
 
   void changeLanguage() {
     LanguageFile languageFile = controlFacade.getLanguageFile();
-    STEPSIZE = languageFile.getTranslation("ui_stepsize");
-    PROGRAM = languageFile.getTranslation("ui_program");
-    INPUT_VARS = languageFile.getTranslation("ui_values_in");
-    VAR_INSPECTOR_TOOL_TIP = languageFile.getTranslation("ui_varinspector_tooltip");
-    VARIABLE_INSPECTOR = languageFile.getTranslation("ui_var_inspector");
-    SHOW_HIDDEN_VARIABLES = languageFile.getTranslation("ui_show_hidden_variables");
+    stepSize.setText(languageFile.getTranslation("ui_stepsize") + ": ");
+    programName.setText(languageFile.getTranslation("ui_program") + ": " + id);
+    inputVariablesLabel.setText(languageFile.getTranslation("ui_values_in") + ": ");
+    variableInspectorList.setToolTipText(languageFile.getTranslation("ui_varinspector_tooltip"));
+    varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
+    showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
     ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
     SINGLE_STEP = languageFile.getTranslation("ui_single_step");
-    RETURN = languageFile.getTranslation("ui_return");
-    STEP_SIZE_TOOLTIP = languageFile.getTranslation("ui_stepsize_tooltip");
-    INPUT_TOOLTIP = languageFile.getTranslation("ui_input_tooltip");
+    result.setText(languageFile.getTranslation("ui_return"));
+    stepSizeLabel.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+    inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
   }
 
   /**

@@ -170,12 +170,12 @@ public class CommandPanel extends JPanel {
    */
   void changeLanguage() {
     LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-    START_TOOLTIP = languageFile.getTranslation("ui_start_tooltip");
-    STOP_TOOLTIP = languageFile.getTranslation("stop_tooltip");
-    STEP_TOOLTIP = languageFile.getTranslation("ui_step_tooltip");
-    STEP_OVER_TOOLTIP = languageFile.getTranslation("ui_stepover_tooltip");
-    STEP_OUT_TOOLTIP = languageFile.getTranslation("ui_stepout_tooltip");
-    STEP_BACK_TOOLTIP = languageFile.getTranslation("ui_stepback_tooltip");
-    CONTINUE_TOOLTIP = languageFile.getTranslation("ui_continue_tooltip");
+    start.setToolTipText(languageFile.getTranslation("ui_start_tooltip"));
+    stop.setToolTipText(languageFile.getTranslation("stop_tooltip"));
+    step.setToolTipText(languageFile.getTranslation("ui_step_tooltip"));
+    stepOver.setToolTipText(languageFile.getTranslation("ui_stepover_tooltip"));
+    stepOut.setToolTipText(languageFile.getTranslation("ui_stepout_tooltip"));
+    stepBack.setToolTipText(languageFile.getTranslation("ui_stepback_tooltip"));
+    continueDebug.setToolTipText(languageFile.getTranslation("ui_continue_tooltip"));
   }
 }

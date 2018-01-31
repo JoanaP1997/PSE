@@ -269,7 +269,7 @@ public class MainInterface extends JFrame {
   }
 
   /**
-   * initializes the expression strategy menu and adds an ActionListener to it
+   * initializes the expression strategy menu and adds an ActionListener to it.
    */
   private void initExpressionStrategyMenu() {
     expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
@@ -285,7 +285,7 @@ public class MainInterface extends JFrame {
   }
 
   /**
-   * initializes the input strategy menu and adds an ActionListener to it
+   * initializes the input strategy menu and adds an ActionListener to it.
    */
   private void initInputStrategyMenu() {
     inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
@@ -301,7 +301,7 @@ public class MainInterface extends JFrame {
   }
 
   /**
-   * initializes the step size strategy menu and adds an ActionListener to it
+   * initializes the step size strategy menu and adds an ActionListener to it.
    */
   private void initStepSizeStrategyMenu() {
     stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
@@ -573,25 +573,25 @@ public class MainInterface extends JFrame {
           p.changeLanguage();
         }
       }
-      FILE_MENU = languageFile.getTranslation("ui_file_menu");
-      RESET_GUI = languageFile.getTranslation("ui_reset_gui");
-      ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
+      fileMenu.setText(languageFile.getTranslation("ui_file_menu"));
+      newView.setText(languageFile.getTranslation("ui_reset_gui"));
+      newProgram.setText(languageFile.getTranslation("ui_add_program"));
       TOO_MANY_PROGRAM_PANELS = languageFile.getTranslation("ui_program_limit_reached");
-      LOAD_CONFIG = languageFile.getTranslation("ui_load_config");
-      SAVE_CONFIG = languageFile.getTranslation("ui_save_config");
-      END_DIBUGGER = languageFile.getTranslation("ui_exit");
-      SUGGESTIONS = languageFile.getTranslation("ui_suggestions");
-      SUGGEST_STEPSIZE = languageFile.getTranslation("ui_suggest_stepsize");
-      SUGGEST_INPUT_VAR = languageFile.getTranslation("ui_suggest_input");
-      SUGGEST_WATCHEXPRESSION = languageFile.getTranslation("ui_suggest_watchexpression");
-      SUGGEST_COND_BREAKPOINT = languageFile.getTranslation("ui_suggest_condbreakpoint");
-      SETTINGS = languageFile.getTranslation("ui_settings");
-      CHANGE_LANGUAGE = languageFile.getTranslation("ui_change_language");
-      MAX_FUNCTION_CALLS = languageFile.getTranslation("ui_max_functioncalls");
-      MAX_ITERATION = languageFile.getTranslation("ui_max_iterations");
-      SUGGESTION_STRATEGY_STEPSIZE = languageFile.getTranslation("ui_suggestion_strategy_stepsize");
-      SUGGESTION_STRATEGY_EXPRESSION = languageFile.getTranslation("ui_suggestion_strategy_expression");
-      SUGGESTION_STRATEGY_INPUT = languageFile.getTranslation("ui_suggestion_strategy_input");
+      loadConfig.setText(languageFile.getTranslation("ui_load_config"));
+      saveConfig.setText(languageFile.getTranslation("ui_save_config"));
+      exit.setText(languageFile.getTranslation("ui_exit"));
+      suggestionMenu.setText(languageFile.getTranslation("ui_suggestions"));
+      stepSizeSuggestion.setText(languageFile.getTranslation("ui_suggest_stepsize"));
+      inputSuggestion.setText(languageFile.getTranslation("ui_suggest_input"));
+      watchExpressionSuggestion.setText(languageFile.getTranslation("ui_suggest_watchexpression"));
+      condBreakpointSuggestion.setText(languageFile.getTranslation("ui_suggest_condbreakpoint"));
+      settingsMenu.setText(languageFile.getTranslation("ui_settings"));
+      languageMenu.setText(languageFile.getTranslation("ui_change_language"));
+      maxFunctionCalls.setText(languageFile.getTranslation("ui_max_functioncalls"));
+      maxIterations.setText(languageFile.getTranslation("ui_max_iterations"));
+      stepSizeStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_stepsize"));
+      expressionStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_expression"));
+      inputStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_input"));
     }
 
   }
