@@ -27,6 +27,7 @@ public class RDBFWriter {
         if (f.getSysFile() == null) {
             throw new FileNotFoundException();
         }
+        f.getSysFile().mkdirs();
         BufferedWriter writer = new BufferedWriter(new FileWriter(f.getSysFile()));
         saveBlock(writer, f, "");
         writer.close();

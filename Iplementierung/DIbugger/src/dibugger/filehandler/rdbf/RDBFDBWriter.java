@@ -102,13 +102,15 @@ public class RDBFDBWriter extends DBFileWriter {
         try {
             writer.saveRDBFFile(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
     @Override
     public void saveLanguageFile(LanguageFile file) {
-        RDBFFile f = new RDBFFile(new File(LanguageFile.DEFAULT_LANG_FILE_PATH + file.getLangID() + ".rdbf"));
+        File f0 = new File(LanguageFile.DEFAULT_LANG_FILE_PATH + file.getLangID() + ".rdbf");
+        f0.mkdirs();
+        RDBFFile f = new RDBFFile(f0);
         f.addData(new RDBFData("langID", "'" + file.getLangID() + "'"));
         f.addData(new RDBFData("langName", "'" + file.getName() + "'"));
         for (String key : file.getMap_translations().keySet()) {
