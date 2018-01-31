@@ -509,7 +509,7 @@ public class DebugControl {
      */
     public Map<String, Integer> getCurrentExecutionLines() {
         Map<String, Integer> l = new HashMap<String, Integer>();
-        for (int i = 0; i < numPrograms; ++i) {
+        for (int i = 0; i < Math.min(numPrograms, list_currentTraceStates.size()); ++i) {
             TraceState state = list_currentTraceStates.get(i);
             l.put(state.getProgramId(), state.getLineNumber());
         }
