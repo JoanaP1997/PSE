@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Observable;
 
 /**
  * class that represents a WatchExpressionPanel where a user can see, edit and delete his watch-expressions.
@@ -58,8 +59,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
    * is called by the model part of the mvc pattern.
    * updates the important values that are calculated by the model part.
    */
-  public void update() {
-    DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
+  public void update(Observable o) {
+    DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
     for (int i = 0; i <= currentHighestId; i++) {
       try {
         dataEntries[i][2] = debugLogicFacade.getWEValue(i);

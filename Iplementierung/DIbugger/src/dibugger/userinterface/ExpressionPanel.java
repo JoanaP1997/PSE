@@ -1,6 +1,7 @@
 package dibugger.userinterface;
 
 import javax.swing.JPanel;
+import java.util.Observable;
 
 /**
  * Abstract class.
@@ -12,6 +13,6 @@ public abstract class ExpressionPanel extends JPanel {
     /**
      * update-Method for observer pattern.
      */
-    public abstract void update();
+    public abstract void update(Observable o);
 
 }
