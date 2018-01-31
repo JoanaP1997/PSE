@@ -140,21 +140,35 @@ int main(int k) {
 \end{verbatim}
 %Hier könntest du den Beispielcode aus dem Entwurf nehmen.
 \section{Common Mistakes}
+\begin{itemize}
 %- Man braucht immer eine Main Methode
+\item You always need a main method. Without a correct main method a syntax error pop-up will occur.
 %- Methoden nicht schachteln
+\item You cannot write a routine inside another routine. This leads to a syntax error, too.
 %- Arrays deklarieren
-%- keine Arrays als Übergabeparameter
-%- Funktionsaufrufe und gleichzeitige Zuweisungen
-%- ... 
-\section{Auto-Generating Input}
+\item Make sure that all array declarations are in the form described in this paragraph. It is not allowed to write the dimensions after the name of the array.
+\item Make sure that all input values are seperated with a semikolon.  
+\item It is not allowed to call a function and use its return value for calculations immediately, e.g. \texttt{x = bar(4)+3;}. The function call must stand alone on the right side of the assignment. 
+\end{itemize}
 
+\section{Auto-Generating Input}
+To get suggestions for input variables, you can use the menu as follows:
+\textsc{Menu > Suggestions > Suggest Input Values}
 \chapter{Watch-Expressions and Conditional Breakpoints} %Ulla
 \section{Adding and Changing Watch-Expressions}
 \section{Adding and Changing Conditional Breakpoints}
 \section{Auto-Generating Watch-Expressions and Conditional Breakpoints}
 
 \chapter{Debugging Program Code} %Benedikt
+After two or more programs are added you can start the Debug-Mode with the green play button in the top right corner of the DIbugger. More general: to control the debugging process, use the buttons on the right. It is always possible to stop the Debug-Mode and return to Edit-Mode by clicking the red square stop button beside the play button.
 \section{Making Steps}
+There are different buttons for different kinds of steps.
+\paragraph{Step}
+The button labeled with \enquote{step} leads to an execution of all programs according to the number of commands given in the specified stepsize. As an example, assume the stepsize of program A is 3 and the stepsize of program B is 2. Then there are 3 commands executed in program A and 2 commands in program B. Encountering a function call, the execution is always steping into the function.
+\paragraph{StepBack}
+The button labeled with \enquote{stepBack} causes the DIbugger to rewind one command in each program.
+\paragraph{StepOut}
+The button labeled with \enquote{stepOut} causes the DIbugger to jump out of the current function in every program.
 \section{Understanding the Output}
 %Hiermit meinte ich zum Beispiel, wie die Variablen angezeigt werden.
 
