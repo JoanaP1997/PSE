@@ -80,9 +80,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
     String[] columnTitles = {"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
-    dataEntries[0][1] = "5 = 5";
+    dataEntries[0][1] = "5 == 5";
     dataEntries[0][2] = " ";
-    mainInterface.getControlFacade().createWatchExpression(0, "5 = 5");
+    mainInterface.getControlFacade().createWatchExpression(0, "5 == 5");
     tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -105,7 +105,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
         }
         if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
           addRow(p);
-          mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
+          mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 == 5");
           getWatchExpressionPanel(mainInterface).updateUI();
         }
         saveWEs();
@@ -197,7 +197,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     int row = table.rowAtPoint(p) + 1;
     idMap.put(row, currentHighestId + 1);
     currentHighestId += 1;
-    Object[] newRow = {" ", "5 = 5", " "};
+    Object[] newRow = {" ", "5 == 5", " "};
     tableModel.addRow(newRow);
     ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
     dataAsList.addAll(Arrays.asList(dataEntries));
