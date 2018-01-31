@@ -2,17 +2,17 @@ langID='german'
 langName='Deutsch'
 ui_add_program{
 	def_blockLen=1
-Programm hinzufügen
+Programm hinzuf\u00fcgen
 
 }
 fh_exc_parse_assign{
 	def_blockLen=1
-Die Datei enthält eine falsche Zuweisung.
+Die Datei enth\u00e4lt eine falsche Zuweisung.
 
 }
 ui_reset_gui{
 	def_blockLen=1
-Zurücksetzen
+Zur\u00fccksetzen
 
 }
 dl_exc_wrong_type_assignment{
@@ -22,17 +22,17 @@ Der Zuweisungswert ist nicht gleich dem wert der zuweisenden Variable.
 }
 ui_for{
 	def_blockLen=1
-Für
+F\u00fcr
 
 }
 ui_debug_step_out{
 	def_blockLen=1
-Führe Step Out aus
+F\u00fchre Step Out aus
 
 }
 ui_step_tooltip{
 	def_blockLen=1
-Als Schrittgröße festgelegte Anzahl an Befehlen wird ausgeführt
+Als Schrittgrö\u00dfe festgelegte Anzahl an Befehlen wird ausgef\u00fchrt
 
 }
 ui_start{
@@ -66,7 +66,7 @@ Datei
 }
 ui_debug_step_back{
 	def_blockLen=1
-Führe Step Back aus
+F\u00fchre Step Back aus
 
 }
 ui_program_limit_reached{
@@ -150,7 +150,7 @@ Die Operation "sub" hat ein oder mehrere falsche Typen.
 }
 ui_stepsize{
 	def_blockLen=1
-Schrittgröße
+Schrittgrö\u00dfe
 
 }
 ui_from{
@@ -160,7 +160,7 @@ Von
 }
 ui_debug_step_over{
 	def_blockLen=1
-Führe Step Over aus
+F\u00fchre Step Over aus
 
 }
 ui_to{
@@ -178,12 +178,12 @@ Ende
 }
 ui_stepover_tooltip{
 	def_blockLen=1
-Nächsten Befehl überspringen, falls dieser ein Funktionsaufruf ist
+N\u00e4chsten Befehl \u00fcberspringen, falls dieser ein Funktionsaufruf ist
 
 }
 ui_debug_step{
 	def_blockLen=1
-Führe Schritt aus
+F\u00fchre Schritt aus
 
 }
 ui_adjust_scopeassignment{
@@ -202,7 +202,7 @@ Konfigurationsdatei speichern
 }
 ui_suggestion_strategy_stepsize{
 	def_blockLen=1
-Strategie für Vorschläge der Schrittgröße ändern
+Strategie f\u00fcr Vorschl\u00e4ge der Schrittgr\u00f6\u00dfe \u00e4ndern
 
 }
 dl_exc_wrong_number_argument{
@@ -217,7 +217,7 @@ Beenden
 }
 fh_exc_parse_block{
 	def_blockLen=1
-Die Datei enthält eine falsche Block Syntax
+Die Datei enth\u00e4lt eine falsche Block Syntax
 
 }
 fh_exc_lang_not_found{
@@ -237,7 +237,7 @@ Schritt
 }
 ui_suggest_stepsize{
 	def_blockLen=1
-Schrittgöße voschlagen
+Schrittg\u00f6\u00dfe voschlagen
 
 }
 ui_suggest_input{
@@ -247,7 +247,7 @@ Eingabewerte voschlagen
 }
 ui_change_language{
 	def_blockLen=1
-Sprache ändern
+Sprache \u00e4ndern
 
 }
 ui_values_out{
@@ -272,9 +272,9 @@ Debuggen beginnen
 }
 ui_we_tooltip{
 	def_blockLen=3
-<html>Erstes Feld für Optionen zu dieser Watch-Expression, <br>
-mittleres Feld um die Watch-Expression zu ändern. <br>
-Um einee neue Watch-Expression hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+<html>Erstes Feld f\u00fcr Optionen zu dieser Watch-Expression, <br>
+mittleres Feld um die Watch-Expression zu \u00e4ndern. <br>
+Um einee neue Watch-Expression hinzuzuf\u00fcgen, mittleres Feld der letzten Zeile anklicken.</html>
 }
 ui_options{
 	def_blockLen=1
@@ -288,7 +288,7 @@ Ein oder mehr Argumente sind vom falsche Typ.
 }
 ui_delete{
 	def_blockLen=1
-Löschen
+L\u00f6schen
 }
 ui_max_iterations{
 	def_blockLen=1
@@ -297,7 +297,7 @@ Maximale Iterationen festlegen
 }
 ui_suggestion_strategy_input{
 	def_blockLen=1
-Strategie für Vorschläge von Eingabewerten ändern
+Strategie f\u00fcr Vorschl\u00e4ge von Eingabewerten \u00e4ndern
 
 }
 ui_stepout_tooltip{
@@ -322,17 +322,17 @@ Die Operation "div" hat ein oder mehrere falsche Typen.
 }
 ui_debug_step_single{
 	def_blockLen=1
-Führe Einzelschritt aus
+F\u00fchre Einzelschritt aus
 
 }
 ui_suggestion_infotext{
 	def_blockLen=1
-Ok drücken, um Voschlag zu erhalten
+Ok dr\u00fccken, um Voschlag zu erhalten
 
 }
 ui_suggestions{
 	def_blockLen=1
-Vorschläge
+Vorschl\u00e4ge
 
 }
 db_it_exc_mod{
@@ -347,7 +347,7 @@ Die Operation "or" hat ein oder mehrere falsche Typen.
 }
 ui_return{
 	def_blockLen=1
-Rückgabewert
+R\u00fcckgabewert
 
 }
 ui_suggest_watchexpression{
@@ -377,7 +377,7 @@ Dieses Program ist invalide und kann nicht als Wlang Program interpretiert werde
 }
 ui_suggestion_strategy_expression{
 	def_blockLen=1
-Strategie für Vorschläge von relationalen Ausdrücken ändern
+Strategie f\u00fcr Vorschl\u00e4ge von relationalen Ausdr\u00fccken \u00e4ndern
 
 }
 ui_settings{
@@ -392,7 +392,7 @@ Die Datei beinhaltet eine invalide Zeile.
 }
 ui_stepsize_tooltip{
 	def_blockLen=1
-Enter drücken, um Eingabe zu bestätigen
+Enter dr\u00fccken, um Eingabe zu best\u00e4tigen
 
 }
 ui_input_tooltip{
@@ -421,7 +421,7 @@ Die Operation "less than hat ein oder mehrere falsche Typen.
 }
 ui_continue_tooltip{
 	def_blockLen=1
-Debuggin bis zum nächsten Breakpoint fortführen
+Debuggin bis zum n\u00e4chsten Breakpoint fortf\u00fchren
 
 }
 ui_variinspector_tooltip{
@@ -456,7 +456,7 @@ Weiter
 }
 ui_cb_tooltip{
 	def_blockLen=3
-<html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>
-mittleres Feld um den bedingten Breakpoint zu ändern. <br>
-Um einen neuen bedingten Breakpoint hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+<html>Erstes Feld f\u00fcr Optionen zu diesem bedingten Breakpoint, <br>
+mittleres Feld um den bedingten Breakpoint zu \u00e4ndern. <br>
+Um einen neuen bedingten Breakpoint hinzuzuf\u00fcgen, mittleres Feld der letzten Zeile anklicken.</html>
 }
