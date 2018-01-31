@@ -77,7 +77,7 @@ public class WatchExpression {
 			// Chose start rule
 			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {
-			throw new SyntaxException(e.getMessage());
+			throw new SyntaxException("Wrong syntax in a watchexpression." + e.getMessage());
 		}
 		TermGenerationVisitor visitor = new TermGenerationVisitor();
 		this.expression = visitor.visit(tree);
