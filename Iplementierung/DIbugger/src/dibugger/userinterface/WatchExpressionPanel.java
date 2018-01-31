@@ -17,7 +17,8 @@ import java.util.HashMap;
 import java.util.Observable;
 
 /**
- * class that represents a WatchExpressionPanel where a user can see, edit and delete his watch-expressions.
+ * class that represents a WatchExpressionPanel where a user can see,
+ * edit and delete his watch-expressions.
  */
 public class WatchExpressionPanel extends ExpressionPanel {
 
@@ -25,13 +26,14 @@ public class WatchExpressionPanel extends ExpressionPanel {
   private Object[][] dataEntries;
   private HashMap<Integer, Integer> idMap = new HashMap<>();
   private int currentHighestId = 0;
-  private WatchExpressionPanel thisWEP = this;
   private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
   private JTable table;
   private DefaultTableModel tableModel;
 
-  private static String WE_TOOLTIP = "<html>Erstes Feld für Optionen zu dieser Watch-Expression, mittleres Feld um die WE "
-      + "zu ändern. <br>Um eine neue WE hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>";
+  private static String WE_TOOLTIP = "<html>Erstes Feld für Optionen zu dieser"
+      + " Watch-Expression, mittleres Feld um die WE "
+      + "zu ändern. <br>Um eine neue WE hinzuzufügen, "
+      + "mittleres Feld der letzten Zeile anklicken.</html>";
 
   private static WatchExpressionPanel singleton = null;
 
@@ -45,7 +47,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
    * method that implements the singleton pattern of this class.
    *
    * @param mainInterface MainInterface on which this panel should be displayed
-   * @return a WatchExpressionPanel (a new one if none existed, the existing one if there exists one)
+   * @return a WatchExpressionPanel (a new one if none existed, the
+   *      existing one if there exists one)
    */
   public static WatchExpressionPanel getWatchExpressionPanel(MainInterface mainInterface) {
     if (singleton == null) {
@@ -101,7 +104,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
         if ((table.columnAtPoint(p) == 0)) {
           int row = table.rowAtPoint(p);
           int id = idMap.get(row);
-          new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, thisWEP, id);
+          new ExpressionChangePopUp(mainInterface,
+              "WatchExpression", row, table, WatchExpressionPanel.this, id);
         }
         if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
           addRow(p);
@@ -199,7 +203,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     currentHighestId += 1;
     Object[] newRow = {" ", "5 == 5", " "};
     tableModel.addRow(newRow);
-    ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
+    ArrayList<Object[]> dataAsList = new ArrayList<>(dataEntries.length);
     dataAsList.addAll(Arrays.asList(dataEntries));
     dataAsList.add(newRow);
     dataEntries = new Object[dataAsList.size()][];
