@@ -25,6 +25,8 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 	\myfont 
 	DIbugger: User Manual\\
 }
+
+
 %\subtitle{
 %	\vspace{1cm}
 %	\myfont
@@ -63,15 +65,22 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 %Vielleicht kannst du das hier mit einem Bild der richtigen GUI recyceln?
 %Tendenziell sollte man das wohl am Ende machen, falls sich in der GUI noch etwas ändert.
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{../Plichtenheft/logo_nongi.png}
+\caption{Produktlogo}
+\end{figure}
+
+
 \chapter{Configuring the DIbugger} %Ulla
 \section{Configuring the Language}
-You can change the language of the DIbugger with:
+You can change the language of the DIbugger with:\\
 \textsc{Menu > Settings > Change language}
 
 \section{Configuring the Maximum Number of Function Calls}
 The maximum number of function calls determines how many function calls are allowed within one program (including the obligatory main()-method). \\
 This number can be used to impose a limit on the depth of recursion within your program.
-You can change the maximum number of function calls with:
+You can change the maximum number of function calls with:\\
 \textsc{Menu > Settings > Change maximum function calls}
 \section{Configuring the Maximum Number of Iterations}
 The maximum number of iterations determines how many iterations of a while-loop are allowed within one program, thus guaranteeing that a loop cannot run forever.
@@ -79,8 +88,11 @@ You can change the maximum number of iterations with: \\
 \textsc{Menu > Settings > Change maximum iterations}
 \chapter{Loading and Saving} %Ulla
 \section{Adding a program}
-The file menu allows you to add a program to a new program window. You are asked to choose the file you want to open within the new program window. If you cancel the file choosing action, you are presented with an empty new program window. You can do this with: \\
+The file menu allows you to add a program to a new program window. You are asked to choose the file you want to open within the new program window. If you cancel the file choosing action, you are presented with an empty new program window. The program you want to load has to be a .txt-file. You can do this with: \\
  \textsc{Menu > File > Add a Program}
+ 
+ \section{Adding text to a program window}
+ There are multiple options to add text to a program window: You could copy-paste it, drag and drop the text or use the evelope button above the program panel which opens a file-chooser dialog.
  \section{Saving DIbugger-Configurations}
 Saving a DIbugger-Configuration means saving not only the code in your program windows but your Watch-Expressions, Breakpoints and Conditional Breakpoints, too.
 You can do this with: \\
@@ -89,16 +101,17 @@ You can do this with: \\
 There is no dedicated menu entry to save your program code as your code is automatically saved when you save your DIbugger-Configuration. You can do this with: \\
 \textsc{Menu > File > Save config}
 \section{Loading DIbugger-Configurations}
-You can load a DIBugger-Configuration (that is all your program windows, Breakpoints, Conditional Breakpoints and Watch-Expressions) with:
+You can load a DIBugger-Configuration (that is all your program windows, Breakpoints, Conditional Breakpoints and Watch-Expressions) with:\\
 \textsc{Menu > File > Load config}
 \section{Removing a program}\label{removeProgram}
-You can remove one of you programs as far as there are more than two programs. 
-The button you need is the "X" Button in the right top of the program you want to remove.
+You can only remove one of your programs as long as there are more than two programs. In other words: There have to be two program windows at all times. (As otherwise, a relational DIbugger would not make sense.)
+You can remove a program window by using the \enquote{X}-Button above the upper right corner of the program you want to remove.
 \chapter{Editing Program Code} %Benedikt
 \section{Resetting a Program Code Window}
-You can reset your programcode the same way as you remove a program described in \ref{removeProgramm}
+You can reset your programcode the same way as you remove with:
+ \textsc{Menu > Settings > Change language}
 \section{Required Format of the Code}
-The format of the Wlang code is basically in C syntax, altough here are some differences explained above.
+The format of the Wlang code is basically in C syntax, although there are some differences as explained below.
 \paragraph{Writing functions and procedures}
 You can write a routine in Wlang with the syntax \texttt{<type or void> <routinename>(<list of arguments>) <content of the routine>}. This is the same syntax as in the programming language C. For every program it is necessary, that there is a main-Routine with the name main. This is the entry point of the execution. All other routines have to be declared and implemented above.
 \paragraph{Declaring arrays}
@@ -120,12 +133,13 @@ int main(int n){
 }
 \end{verbatim}
 \begin{verbatim}
-//other functions must be delcared before the main
+//other functions must be declared before the main
 int fac(int k) {
     //Calculate the factorial of k recursively.
     if (k <= 1)
          return 1;
-    int res; 
+    // int res = fac(k-1) in a single command is not applicable
+    int res;
     res = fac(k-1); //this is the correct way to call functions.
     res = res * k;
     return res;
@@ -154,13 +168,87 @@ int main(int k) {
 \section{Auto-Generating Input}
 To get suggestions for input variables, you can use the menu as follows:
 \textsc{Menu > Suggestions > Suggest Input Values}
-\chapter{Watch-Expressions and Conditional Breakpoints} %Ulla
-\section{Adding and Changing Watch-Expressions}
-\section{Adding and Changing Conditional Breakpoints}
-\section{Auto-Generating Watch-Expressions and Conditional Breakpoints}
+
+
+\chapter{Watch-Expressions and Conditional Breakpoints}
+\section{Syntax of Watch-Expressions}
+A Watch-Expression allows you to perform checks on your program code as you execute it.
+For example, if you have a program A which contains a variable \enquote{x} which should behave the same way as a variable \enquote{y} in program B, you could add a new Watch-Expression as follows:
+\begin{verbatim}
+A.x == B.y
+\end{verbatim}
+
+While debugging your program (that is after starting the debug mode by pressing the Play-Button), the Watch-Expression will always tell you whether it is currently true or false.
+Note that to do that, a Watch-Expression must always evaluate itself to a boolean value. If it does not, it is always evaluated to false.
+Thus, the following types of expressions are allowed:
+\begin{verbatim}
+A.x == B.y
+A.x != B.y
+A.x <= B.y
+A.x >= B.y
+A.x < B.y
+A.x > B.y
+true
+false
+\end{verbatim}
+
+If A.x is a boolean value, you could also write:
+\begin{verbatim}
+A.x
+\end{verbatim}
+
+You could also use some fixed number to compare a variable to:
+\begin{verbatim}
+A.x == 5
+B.y != 114.2
+\end{verbatim}
+
+The syntax of Watch-Expressions does not allow comparisons of three programs. To ensure the equivalence of a variable across three programs, you would have to use two expressions, e.g.:
+\begin{verbatim}
+A.x == B.x
+B.x == C.x
+\end{verbatim}
+
+
+\section{Adding a Watch-Expression}\label{adding}
+You can add a new Watch-Expression in the Watch-Expression Panel on the right side of the program. To do this, click into the middle cell (the section under \enquote{Watch Expression:}) of the last Watch-Expression in the Watch-Expression Panel. After the program start, this will be the already existing examplary Watch-Expression. Clicking there will add a new Watch-Expression that you can modify in the next steps.
+
+\section{Modifying a Watch-Expression}\label{modifying}
+To change an existing Watch-Expression, double-click on its middle cell (the section under \enquote{Watch Expression:}) and type in your changes.
+
+\section{Deleting a Watch-Expression}\label{deleting}
+To delete an existing Watch-Expression, click into the empty \textsc{Opt} cell on the left of your Watch-Expression. This will open a menu where you can select \textsc{Delete}, then press the \textsc{OK}-Button.
+
+\section{Adding and Changing the Scope of a Watch-Expression}\label{scope}
+The scope of a Watch-Expression consists of the lines of code, wherein the Expression is evaluated. Thus, if you are only interested into comparing variables in a certain section of two programs, you could use a scope to do so. \\
+By default, the scope is set to all lines of the program.
+To add or change a scope,c lick into the empty \textsc{Opt} cell on the left of your Watch-Expression. This will open a menu where you can select \textsc{Adjust scope}, then press the \textsc{OK}-Button and exit via the \enquote{X}-Button in the corner of the dialog.
+
+\section{Syntax of Conditional Breakpoints}
+%Hier bin ich mir nicht sicher.
+Each Conditional Breakpoint consists of a boolean term the syntax of which is equivalent to the syntax of Watch-Expressions. Their usage differs, though: If the boolean term of the Conditional Breakpoint is evaluated to true, the Conditional Breakpoints stops the execution of the program in the current line. A Conditional Breakpoint thus does exactly what its name suggests: It breaks on a condition. In contrast to a traditional breakpoint, it is therefore not bound to any fixed line.
+
+\section{Adding a Conditional Breakpoint}
+Adding Conditional Breakpoints works the same way as explained for Watch-Expressions in \ref{adding}.
+\section{Modifying a Conditional Breakpoint}
+Modifying Conditional Breakpoints works the same way as explained for Watch-Expressions in \ref{modifying}.
+\section{Deleting a Conditional Breakpoint}
+Deleting Conditional Breakpoints works the same way as explained for Watch-Expressions in \ref{deleting}.
+\section{Adding and Changing the Scope of a Conditional Breakpoint}
+Adding and changing scopes of Conditional Breakpoints works the same way as explained for Watch-Expressions in \ref{scope}.
+
+\section{Using Suggestions for Watch-Expressions and Conditional Breakpoints}
+Suggestion for Watch-Expressions can be generated with:\\
+\textsc{Menu > Suggestions > Suggest watchexpression}\\
+
+Accordingly, suggestions for Conditional Breakpoints can be generated with:\\
+\textsc{Menu > Suggestions > Suggest conditional breakpoint}\\
+
+After the suggestion window pops up, press \enquote{Ok} to generate a suggestion.
+Copy and paste it to your Watch-Expression or Conditional Breakpoint Panel if you intend to use it.
 
 \chapter{Debugging Program Code} %Benedikt
-After two or more programs are added you can start the Debug-Mode with the green play button in the top right corner of the DIbugger. More general: to control the debugging process, use the buttons on the right. It is always possible to stop the Debug-Mode and return to Edit-Mode by clicking the red square stop button beside the play button.
+After two or more programs are added you can start the Debug-Mode with the green play button in the upper right corner of the DIbugger. More general: to control the debugging process, use the buttons on the right. It is always possible to stop the Debug-Mode and return to Edit-Mode by clicking the red square stop button beside the play button.
 \section{Making Steps}
 There are different buttons for different kinds of steps.
 \paragraph{Step}
@@ -169,6 +257,8 @@ The button labeled with \enquote{step} leads to an execution of all programs acc
 The button labeled with \enquote{stepBack} causes the DIbugger to rewind one command in each program.
 \paragraph{StepOut}
 The button labeled with \enquote{stepOut} causes the DIbugger to jump out of the current function in every program.
+
+\section{Setting and Deleting Breakpoints}
 \section{Understanding the Output}
 %Hiermit meinte ich zum Beispiel, wie die Variablen angezeigt werden.
 
