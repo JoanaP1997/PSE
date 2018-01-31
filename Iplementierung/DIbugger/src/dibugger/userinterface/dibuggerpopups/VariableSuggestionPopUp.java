@@ -41,6 +41,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
    */
   public VariableSuggestionPopUp(int type, MainInterface mainInterface) {
     this.mainInterface = mainInterface;
+    mainInterface.saveText();
     this.setSize(300, 310);
     this.setResizable(false);
     this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

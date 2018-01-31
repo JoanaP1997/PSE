@@ -38,6 +38,7 @@ Als Schrittgrö\u00dfe festgelegte Anzahl an Befehlen wird ausgef\u00fchrt
 ui_start{
 	def_blockLen=1
 Start
+
 }
 db_it_exc_not{
 	def_blockLen=1
@@ -53,6 +54,10 @@ db_it_exc_and{
 	def_blockLen=1
 Die Operation "and" hat ein oder mehrere falsche Typen.
 
+}
+ui_suggestion{
+	def_blockLen=1
+Vorschlag
 }
 db_it_exc_eq{
 	def_blockLen=1
@@ -112,6 +117,7 @@ Die Methode verlangt ein "return" Angabe.
 ui_program{
 	def_blockLen=1
 Programm
+
 }
 ui_interval{
 	def_blockLen=1
@@ -171,10 +177,12 @@ Bis
 ui_yes{
 	def_blockLen=1
 Ja
+
 }
 ui_end{
 	def_blockLen=1
 Ende
+
 }
 ui_stepover_tooltip{
 	def_blockLen=1
@@ -189,6 +197,7 @@ F\u00fchre Schritt aus
 ui_adjust_scopeassignment{
 	def_blockLen=1
 Bereichsbindung anpassen
+
 }
 ui_cond_breakpoint{
 	def_blockLen=1
@@ -229,6 +238,10 @@ ui_suggest_condbreakpoint{
 	def_blockLen=1
 Bedingten Breakpoint voschlagen
 
+}
+dl_exc_wesyntax{
+	def_blockLen=1
+Syntaxfehler in einer Watch-Expression
 }
 ui_step{
 	def_blockLen=1
@@ -275,6 +288,7 @@ ui_we_tooltip{
 <html>Erstes Feld f\u00fcr Optionen zu dieser Watch-Expression, <br>
 mittleres Feld um die Watch-Expression zu \u00e4ndern. <br>
 Um einee neue Watch-Expression hinzuzuf\u00fcgen, mittleres Feld der letzten Zeile anklicken.</html>
+
 }
 ui_options{
 	def_blockLen=1
@@ -289,6 +303,7 @@ Ein oder mehr Argumente sind vom falsche Typ.
 ui_delete{
 	def_blockLen=1
 L\u00f6schen
+
 }
 ui_max_iterations{
 	def_blockLen=1
@@ -400,6 +415,10 @@ ui_input_tooltip{
 Eingabewerte durch Semikola trennen
 
 }
+dl_exc_cbsyntax{
+	def_blockLen=1
+Syntaxfehler in einem bedingten Breakpoint
+}
 ui_line{
 	def_blockLen=1
 Zeile
@@ -408,6 +427,7 @@ Zeile
 ui_no{
 	def_blockLen=1
 Nein
+
 }
 ui_start_tooltip{
 	def_blockLen=1
@@ -424,7 +444,7 @@ ui_continue_tooltip{
 Debuggin bis zum n\u00e4chsten Breakpoint fortf\u00fchren
 
 }
-ui_variinspector_tooltip{
+ui_varinspector_tooltip{
 	def_blockLen=1
 Variable markieren und mit rechtsklick ausblenden
 
@@ -459,4 +479,5 @@ ui_cb_tooltip{
 <html>Erstes Feld f\u00fcr Optionen zu diesem bedingten Breakpoint, <br>
 mittleres Feld um den bedingten Breakpoint zu \u00e4ndern. <br>
 Um einen neuen bedingten Breakpoint hinzuzuf\u00fcgen, mittleres Feld der letzten Zeile anklicken.</html>
+
 }

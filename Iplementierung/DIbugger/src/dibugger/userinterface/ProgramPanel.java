@@ -38,7 +38,7 @@ public class ProgramPanel extends JPanel {
 
   private JLabel programName;
   private JLabel stepSize;
-  private JTextField stepSizeLabel;
+  private JTextField stepSizeTextField;
   private JLabel inputVariablesLabel;
   private JTextField inputVariableTextField;
 
@@ -82,7 +82,7 @@ public class ProgramPanel extends JPanel {
   private void initComponents() {
     programName = new JLabel();
     stepSize = new JLabel();
-    stepSizeLabel = new JTextField();
+    stepSizeTextField = new JTextField();
     inputVariablesLabel = new JLabel();
     inputVariableTextField = new JTextField();
     codeScrollPane = new JScrollPane();
@@ -94,10 +94,10 @@ public class ProgramPanel extends JPanel {
 
     stepSize.setText(STEPSIZE + ": ");
     stepSize.setToolTipText(STEP_SIZE_TOOLTIP);
-    stepSizeLabel.setText("1");
-    stepSizeLabel.setPreferredSize(new Dimension(40, 40));
-    stepSizeLabel.addActionListener(evt1 -> stepSizeInputActionPerformed());
-    stepSizeLabel.setToolTipText(STEP_SIZE_TOOLTIP);
+    stepSizeTextField.setText("1");
+    stepSizeTextField.setPreferredSize(new Dimension(40, 40));
+    stepSizeTextField.addActionListener(evt1 -> stepSizeInputActionPerformed());
+    stepSizeTextField.setToolTipText(STEP_SIZE_TOOLTIP);
 
     inputVariablesLabel.setText(INPUT_VARS + ": ");
 
@@ -132,7 +132,7 @@ public class ProgramPanel extends JPanel {
             .createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(stepSize)
-                    .addComponent(stepSizeLabel, GroupLayout.PREFERRED_SIZE,
+                    .addComponent(stepSizeTextField, GroupLayout.PREFERRED_SIZE,
                         GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addGap(110, 110, 110)
                     .addComponent(singleStepButton))
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addComponent(programName)
@@ -146,7 +146,7 @@ public class ProgramPanel extends JPanel {
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(programName).addComponent(loadFile).addComponent(delete)).addGap(15, 15, 15)
             .addGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                .addComponent(stepSize).addComponent(stepSizeLabel, GroupLayout.PREFERRED_SIZE,
+                .addComponent(stepSize).addComponent(stepSizeTextField, GroupLayout.PREFERRED_SIZE,
                     GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE).addComponent(singleStepButton))
 
             .addGap(10, 10, 10)
@@ -160,7 +160,7 @@ public class ProgramPanel extends JPanel {
   }
 
   private void stepSizeInputActionPerformed() {
-    controlFacade.setStepSize(id, stepSizeLabel.getText());
+    controlFacade.setStepSize(id, stepSizeTextField.getText());
   }
 
   private void variableInputActionPerformed() {
@@ -417,7 +417,7 @@ public class ProgramPanel extends JPanel {
     result.updateUI();
 
     //update stepSize
-    stepSizeLabel.setText(Integer.toString(logicFacade.getStepSize(id)));
+    stepSizeTextField.setText(Integer.toString(logicFacade.getStepSize(id)));
     this.updateUI();
   }
 
@@ -540,7 +540,8 @@ public class ProgramPanel extends JPanel {
     ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
     singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
     result.setText(languageFile.getTranslation("ui_return"));
-    stepSizeLabel.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+    stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+    stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
     inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
   }
 

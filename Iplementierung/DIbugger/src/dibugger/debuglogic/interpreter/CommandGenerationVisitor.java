@@ -11,6 +11,7 @@ import dibugger.debuglogic.antlrparser.WlangParser.ArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationOneDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationThreeDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclarationTwoDimContext;
+import dibugger.debuglogic.antlrparser.WlangParser.ArrayDeclareAssignContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignOneDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignThreeDimContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ArrayElementAssignTwoDimContext;
@@ -221,7 +222,12 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
         return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, thirdIndex);
     }
-
+    @Override
+    public Command visitArrayDeclareAssign(ArrayDeclareAssignContext ctx) {
+    	Term values = this.termGenVisitor.visit(ctx.filledArglist());
+    	Term size = this.termGenVisitor.visit(ctx.term());
+    	return new ArrayDeclarationAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText(), size, values);
+    }
     @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
         String identifier = ctx.id.getText();

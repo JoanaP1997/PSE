@@ -43,6 +43,7 @@ As many commands as set as stepsize will be executed
 ui_start{
 	def_blockLen=1
 Start
+
 }
 db_it_exc_not{
 	def_blockLen=1
@@ -58,6 +59,10 @@ db_it_exc_and{
 	def_blockLen=1
 The "and" operation has one ore more incompatible types.
 
+}
+ui_suggestion{
+	def_blockLen=1
+Suggestion
 }
 db_it_exc_eq{
 	def_blockLen=1
@@ -112,6 +117,7 @@ The method requires a return statement,
 ui_program{
 	def_blockLen=1
 Program
+
 }
 ui_interval{
 	def_blockLen=1
@@ -171,10 +177,12 @@ To
 ui_yes{
 	def_blockLen=1
 Yes
+
 }
 ui_end{
 	def_blockLen=1
 End
+
 }
 ui_stepover_tooltip{
 	def_blockLen=1
@@ -189,6 +197,7 @@ Execute Step
 ui_adjust_scopeassignment{
 	def_blockLen=1
 Adjust scope
+
 }
 ui_cond_breakpoint{
 	def_blockLen=1
@@ -229,6 +238,10 @@ ui_suggest_condbreakpoint{
 	def_blockLen=1
 Suggest conditional breakpoint
 
+}
+dl_exc_wesyntax{
+	def_blockLen=1
+Syntax error in one ore more watchexpressions
 }
 ui_step{
 	def_blockLen=1
@@ -275,6 +288,7 @@ ui_we_tooltip{
 <html>Click first cell for options, <br>
 middle cell for changing the watchexpression, <br>
 middle cell of last line to add a new watchexpression.</html>
+
 }
 ui_options{
 	def_blockLen=1
@@ -289,6 +303,7 @@ One ore more arguments are having an incorrect type.
 ui_delete{
 	def_blockLen=1
 Delete
+
 }
 ui_max_iterations{
 	def_blockLen=1
@@ -400,6 +415,10 @@ ui_input_tooltip{
 Separate inputvalues with semicola
 
 }
+dl_exc_cbsyntax{
+	def_blockLen=1
+Syntax error in one ore more conditional breakpoints
+}
 ui_line{
 	def_blockLen=1
 Line
@@ -408,6 +427,7 @@ Line
 ui_no{
 	def_blockLen=1
 No
+
 }
 ui_start_tooltip{
 	def_blockLen=1
@@ -424,7 +444,7 @@ ui_continue_tooltip{
 Debug until next active breakpoint
 
 }
-ui_variinspector_tooltip{
+ui_varinspector_tooltip{
 	def_blockLen=1
 Mark variable then hide it by right clicking
 
@@ -446,7 +466,7 @@ Variable already exists.
 }
 ui_load_config{
 	def_blockLen=1
-Konfigurationsdatei laden
+Save config file
 
 }
 ui_debug_continue{
@@ -459,4 +479,5 @@ ui_cb_tooltip{
 <html>Click first cell for options, <br>
 middle cell for changing the conditional breakpoint, <br>
 middle cell of last line to add a new breakpoint.</html>
+
 }

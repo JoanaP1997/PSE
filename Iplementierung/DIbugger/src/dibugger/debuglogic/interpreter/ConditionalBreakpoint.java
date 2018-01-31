@@ -15,6 +15,7 @@ import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
 import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
+import dibugger.debuglogic.exceptions.ConditionalBreakpointSyntaxException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.SyntaxException;
 
@@ -89,7 +90,7 @@ public class ConditionalBreakpoint {
 			// Chose start rule
 			tree = parser.wecbterm();
 		} catch (ActuallyHelpfulSyntaxException e) {
-			throw new SyntaxException(e.getMessage());
+			throw new ConditionalBreakpointSyntaxException(e.getMessage());
 		}
 		TermGenerationVisitor visitor = new TermGenerationVisitor();
 		this.condition = visitor.visit(tree);

@@ -509,7 +509,7 @@ public class DebugControl {
      */
     public Map<String, Integer> getCurrentExecutionLines() {
         Map<String, Integer> l = new HashMap<String, Integer>();
-        for (int i = 0; i < numPrograms; ++i) {
+        for (int i = 0; i < Math.min(numPrograms, list_currentTraceStates.size()); ++i) {
             TraceState state = list_currentTraceStates.get(i);
             l.put(state.getProgramId(), state.getLineNumber());
         }
@@ -608,6 +608,9 @@ public class DebugControl {
      *             {@linkplain WatchExpression#evaluate(List)}
      */
     public String getWEValue(int expressionID) throws DIbuggerLogicException {
+        if(expressionID>=list_watchExpressions.size() || list_watchExpressions.get(expressionID)==null){
+            return "?";
+        }
         return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
     }
 
@@ -683,6 +686,9 @@ public class DebugControl {
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
     public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+        if(breakpointID>=list_condBreakpoints.size() || list_condBreakpoints.get(breakpointID)==null){
+            return false;
+        }
         return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
     }
 
