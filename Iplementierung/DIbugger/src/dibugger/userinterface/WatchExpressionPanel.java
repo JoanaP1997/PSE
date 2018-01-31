@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Observable;
 
 /**
  * class that represents a WatchExpressionPanel where a user can see, edit and delete his watch-expressions.
@@ -58,8 +59,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
    * is called by the model part of the mvc pattern.
    * updates the important values that are calculated by the model part.
    */
-  public void update() {
-    DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
+  public void update(Observable o) {
+    DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
     for (int i = 0; i <= currentHighestId; i++) {
       try {
         dataEntries[i][2] = debugLogicFacade.getWEValue(i);
@@ -79,9 +80,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
     String[] columnTitles = {"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
-    dataEntries[0][1] = "5 = 5";
+    dataEntries[0][1] = "5 == 5";
     dataEntries[0][2] = " ";
-    mainInterface.getControlFacade().createWatchExpression(0, "5 = 5");
+    mainInterface.getControlFacade().createWatchExpression(0, "5 == 5");
     tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -104,7 +105,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
         }
         if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
           addRow(p);
-          mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 = 5");
+          mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 == 5");
           getWatchExpressionPanel(mainInterface).updateUI();
         }
         saveWEs();
@@ -196,7 +197,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     int row = table.rowAtPoint(p) + 1;
     idMap.put(row, currentHighestId + 1);
     currentHighestId += 1;
-    Object[] newRow = {" ", "5 = 5", " "};
+    Object[] newRow = {" ", "5 == 5", " "};
     tableModel.addRow(newRow);
     ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
     dataAsList.addAll(Arrays.asList(dataEntries));

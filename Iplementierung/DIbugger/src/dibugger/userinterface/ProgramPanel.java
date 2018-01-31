@@ -538,7 +538,7 @@ public class ProgramPanel extends JPanel {
     varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
     showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
     ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
-    SINGLE_STEP = languageFile.getTranslation("ui_single_step");
+    singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
     result.setText(languageFile.getTranslation("ui_return"));
     stepSizeLabel.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
     inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));

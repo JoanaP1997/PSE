@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Observable;
 
 /**
  * class that represents a ConditionalBreakpointPanel where the user can see, edit and delete his conditional breakpoints.
@@ -61,8 +62,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
    * is called by the model part of the mvc pattern
    * updates the important values that are calculated by the model part.
    */
-  public void update() {
-    DebugLogicFacade debugLogicFacade = mainInterface.getControlFacade().getDebugLogicFacade();
+  public void update(Observable o) {
+    DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
     for(int i = 0; i <= currentHighestId; i++) {
       try {
         dataEntries[i][2] = debugLogicFacade.getCBValue(i);
@@ -82,9 +83,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     String[] columnTitles = {"Opt", panelType, "="};
     dataEntries = new Object[1][3];
     dataEntries[0][0] = " ";
-    dataEntries[0][1] = "5 = 3";
+    dataEntries[0][1] = "5 == 3";
     dataEntries[0][2] = "false";
-    mainInterface.getControlFacade().createConditionalBreakpoint(0, "5 = 3");
+    mainInterface.getControlFacade().createConditionalBreakpoint(0, "5 == 3");
     tableModel = new DefaultTableModel(dataEntries, columnTitles) {
       @Override
       public boolean isCellEditable(int row, int column) {
@@ -180,7 +181,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     int row = table.rowAtPoint(p) + 1;
     idMap.put(row, currentHighestId + 1);
     currentHighestId++;
-    Object[] newRow = {" ", "5 = 3 ", ""};
+    Object[] newRow = {" ", "5 == 3 ", ""};
     tableModel.addRow(newRow);
     ArrayList<Object[]> dataAsList = new ArrayList<Object[]>(dataEntries.length);
     dataAsList.addAll(Arrays.asList(dataEntries));
@@ -189,7 +190,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     for (int j = 0; j < dataAsList.size(); j++) {
       dataEntries[j] = dataAsList.get(j);
     }
-    mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 = 3");
+    mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 == 3");
   }
 
   private void saveCBs() {
