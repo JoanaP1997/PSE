@@ -42,7 +42,7 @@ public class RDBFParser {
                 return s[0];
             }
         }
-        System.err.println("ParseBlockException: "+line);
+        System.err.println("ParseBlockException: " + line);
         throw new ParseBlockException();
     }
 
@@ -59,11 +59,11 @@ public class RDBFParser {
     public int getDataType(String line) throws ParseAssignmentException {
         String[] as = line.split("=");
         if (as.length >= 2) {
-        	String s = as[1];
-        	for(int i=2;i<as.length;++i){
-        		s += "="+as[i];
-        	}
-        	as[1] = s;
+            String s = as[1];
+            for (int i = 2; i < as.length; ++i) {
+                s += "=" + as[i];
+            }
+            as[1] = s;
             if (as[1].matches("\\d+")) {
                 return RDBFData.DATA_INT;
             } else if (as[1].matches("\\d+L")) {
@@ -78,7 +78,7 @@ public class RDBFParser {
                 return RDBFData.DATA_STRING;
             }
         }
-        System.err.println("ParseAssignmentException dataType: "+line);
+        System.err.println("ParseAssignmentException dataType: " + line);
         throw new ParseAssignmentException();
     }
 
@@ -96,7 +96,7 @@ public class RDBFParser {
         if (as.length >= 2) {
             return as[0];
         }
-        System.err.println("ParseAssignmentException varName: "+line);
+        System.err.println("ParseAssignmentException varName: " + line);
         throw new ParseAssignmentException();
     }
 
@@ -112,13 +112,13 @@ public class RDBFParser {
     public String getValue(String line) throws ParseAssignmentException {
         String[] as = line.split("=");
         if (as.length >= 2) {
-        	String s = as[1];
-        	for(int i=2;i<as.length;++i){
-        		s += "="+as[i];
-        	}
+            String s = as[1];
+            for (int i = 2; i < as.length; ++i) {
+                s += "=" + as[i];
+            }
             return s;
         }
-        System.err.println("Parse Exception: "+line);
+        System.err.println("Parse Exception: " + line);
         throw new ParseAssignmentException();
     }
 
@@ -147,7 +147,7 @@ public class RDBFParser {
         } else if (line.matches("")) {
             return LINE_EMPTY;
         }
-        System.err.println("Invalid Line: "+line);
+        System.err.println("Invalid Line: " + line);
         throw new InvalidLineTypeExeption();
     }
 

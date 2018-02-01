@@ -18,9 +18,8 @@ import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.userinterface.GUIFacade;
 
 /**
- *  {@code FileHandlerInteractor} is responsible for saving and
- *  loading DIbugger-configurations, managing UI's (user -)
- *  language and more.
+ * {@code FileHandlerInteractor} is responsible for saving and loading
+ * DIbugger-configurations, managing UI's (user -) language and more.
  */
 public class FileHandlerInteractor extends Observable {
     private FileHandlerFacade fileHandlerFacade;
@@ -32,10 +31,12 @@ public class FileHandlerInteractor extends Observable {
     private PropertiesFile propertiesFile;
 
     /**
-     * Creates a new {@code FileHandlerInteractor} with specified arguments. 
+     * Creates a new {@code FileHandlerInteractor} with specified arguments.
      * 
-     * @param debugLogicController a {@code DebugLogicController} used to alter DIbugger-model
-     * @param guiFacade a facade to presentation-component of DIbugger
+     * @param debugLogicController
+     *            a {@code DebugLogicController} used to alter DIbugger-model
+     * @param guiFacade
+     *            a facade to presentation-component of DIbugger
      * @throws FileHandlerException
      */
     public FileHandlerInteractor(DebugLogicController debugLogicController, GUIFacade guiFacade)
@@ -56,7 +57,7 @@ public class FileHandlerInteractor extends Observable {
     }
 
     /**
-     * Returns the {@code LanguageFile} managed by this 
+     * Returns the {@code LanguageFile} managed by this
      * {@code FileHandlerInteractor}.
      * 
      * @return this {@code FileHandlerInteractor}s language file
@@ -72,13 +73,14 @@ public class FileHandlerInteractor extends Observable {
     }
 
     /**
-     * Creates a {@code ConfigurationFile} using given {@code File} and
-     * attempts to restore a debugging-session by altering DIbugger's
-     * model- and presentation-component.
+     * Creates a {@code ConfigurationFile} using given {@code File} and attempts
+     * to restore a debugging-session by altering DIbugger's model- and
+     * presentation-component.
      * 
-     * @param configurationFile the {@code File} to load
+     * @param configurationFile
+     *            the {@code File} to load
      * @throws FileHandlerException
-     * @throws DIbuggerLogicException 
+     * @throws DIbuggerLogicException
      */
     public void loadConfigurationFile(File configurationFile) throws FileHandlerException, DIbuggerLogicException {
         ConfigurationFile nextConfigFile = fileHandlerFacade.loadConfig(configurationFile);
@@ -91,7 +93,7 @@ public class FileHandlerInteractor extends Observable {
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
             String programText = configFile.getProgramText(i);
-            
+
             guiFacade.showProgramText(programText, programIdentifier);
 
             List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
@@ -105,11 +107,12 @@ public class FileHandlerInteractor extends Observable {
 
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
             guiFacade.showVariables(programIdentifier, variablesOfInspector);
-            
-            // Notiz: "configFile.getLatestExecutionLine" muss noch verwendet werden
+
+            // Notiz: "configFile.getLatestExecutionLine" muss noch verwendet
+            // werden
 
             int stepSize = configFile.getStepSize(i);
-            debugLogicController.setStepSize(programIdentifier , stepSize);
+            debugLogicController.setStepSize(programIdentifier, stepSize);
 
             List<Integer> lineNumbers = configFile.getBreakpoints(i);
             debugLogicController.createBreakpoints(configFile.getProgramNameID(i), lineNumbers);
@@ -124,60 +127,62 @@ public class FileHandlerInteractor extends Observable {
     }
 
     /**
-     * Saves some of Dibugger's model- and presentation-component's state
-     * to a specified {@code File}.
+     * Saves some of Dibugger's model- and presentation-component's state to a
+     * specified {@code File}.
      * 
-     * @param configurationFile a {@code File} to save DIbugger's state to
+     * @param configurationFile
+     *            a {@code File} to save DIbugger's state to
      */
     public void saveConfiguration(File file) {
         /*
-         * Notiz: Möglicher Fall: unterschiedliche Anzahl an Programmen im Modell und
-         * zwischengespeichert in Kontrolle. Vielleicht inkonsistenter
-         * DIbugger-Zustand, vielleicht anders/überhaupt berücksichtigen.
+         * Notiz: Möglicher Fall: unterschiedliche Anzahl an Programmen im
+         * Modell und zwischengespeichert in Kontrolle. Vielleicht
+         * inkonsistenter DIbugger-Zustand, vielleicht anders/überhaupt
+         * berücksichtigen.
          */
         ConfigurationFile configurationFile = new ConfigurationFile(file);
         List<ProgramInput> currentInput = debugLogicController.getProgramInput();
 
         int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
-        
+
         for (int i = 0; i < numberOfBufferedPrograms; i++) {
             ProgramInput input = currentInput.get(i);
-            
+
             String bufferedProgramIdentifier = input.getProgramID();
             configurationFile.setProgramNameID(i, bufferedProgramIdentifier);
-                        
+
             String programText = input.getText();
             configurationFile.setProgramText(i, programText);
-                        
+
             List<String> variableAssignments = input.getInputValues();
 
             for (String assignment : variableAssignments) {
                 String[] variableAndValue = assignment.split(" = ");
                 if (variableAndValue.length == 2) {
-                	 String variable = variableAndValue[0];
-                     String value = variableAndValue[1];
-                     configurationFile.setInputValue(i, variable, value);
+                    String variable = variableAndValue[0];
+                    String value = variableAndValue[1];
+                    configurationFile.setInputValue(i, variable, value);
                 }
             }
-                        
+
             List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(bufferedProgramIdentifier);
             configurationFile.setVariablesOfInspector(i, variablesOfInspector);
         }
 
         List<Integer> programCounter = debugLogicController.getDebugLogicFacade().getProgramCounter();
-        
+
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             int stepSize = debugLogicController.getStepSize(currentInput.get(i).getProgramID());
             configurationFile.setStepSize(i, stepSize);
-            
+
             List<Integer> breakpoints = debugLogicController.getBreakpoints(i);
             List<Integer> lines = new ArrayList<>();
             for (Integer element : breakpoints) {
                 lines.add(element);
             }
             configurationFile.setBreakpoints(i, lines);
-            
+
             configurationFile.setLastExecutionLine(i, programCounter.get(i));
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
@@ -192,8 +197,10 @@ public class FileHandlerInteractor extends Observable {
          */
         for (int i = 0; i < numberOfConditionalBreakpoints; i++) {
             String condition = conditions.get(i);
-            List<Integer> breakpointScopeBeginnings = createListFromMap(debugLogicController.getConditionalBreakpointScopeBeginnings(i));
-            List<Integer> breakpointScopeEnds = createListFromMap(debugLogicController.getConditionalBreakpointScopeEnds(i));
+            List<Integer> breakpointScopeBeginnings = createListFromMap(
+                    debugLogicController.getConditionalBreakpointScopeBeginnings(i));
+            List<Integer> breakpointScopeEnds = createListFromMap(
+                    debugLogicController.getConditionalBreakpointScopeEnds(i));
             configurationFile.addConditionalBreakpoint(condition, breakpointScopeBeginnings, breakpointScopeEnds);
         }
 
@@ -201,28 +208,30 @@ public class FileHandlerInteractor extends Observable {
         int numberOfExpressions = expressions.size();
         for (int i = 0; i < numberOfExpressions; i++) {
             String expression = expressions.get(i);
-            List<Integer> expressionScopeBeginnings = createListFromMap(debugLogicController.getWatchExpressionScopeBeginnnings(i));
+            List<Integer> expressionScopeBeginnings = createListFromMap(
+                    debugLogicController.getWatchExpressionScopeBeginnnings(i));
             List<Integer> expressionScopeEnds = createListFromMap(debugLogicController.getWatchExpressionScopeEnds(i));
             configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
         }
-        
+
         configurationFile.setNumPrograms(numberOfPrograms);
-        
+
         fileHandlerFacade.saveConfig(configurationFile);
     }
 
-    private List<Integer> createListFromMap(Map<String, Integer> map){
+    private List<Integer> createListFromMap(Map<String, Integer> map) {
         List<Integer> l = new ArrayList<Integer>();
-        for(String key : map.keySet()){
+        for (String key : map.keySet()) {
             l.add(map.get(key));
         }
         return l;
     }
-    
+
     /**
-     *  Loads a program's text using specified {@code File}
-     *  
-     *  @param file the File containing a program's text
+     * Loads a program's text using specified {@code File}
+     * 
+     * @param file
+     *            the File containing a program's text
      */
     public String loadProgramText(File file) {
         return fileHandlerFacade.loadProgramText(file);
@@ -236,15 +245,16 @@ public class FileHandlerInteractor extends Observable {
      * @see FileHandlerFacade#getLanguages()
      */
     public List<String> getAvailableLanguages() {
-        // Notiz: Oberfläche "schlau" genug um das entgegenzunehmen? (Sonderfall "null")
+        // Notiz: Oberfläche "schlau" genug um das entgegenzunehmen?
+        // (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
 
     /**
-     * Changes the language in which information is shown by
-     * this' GUIFacade.
+     * Changes the language in which information is shown by this' GUIFacade.
      * 
-     * @param languageId the id specifieng the language
+     * @param languageId
+     *            the id specifieng the language
      * @see GUIFacade#changeLanguage()
      * @throws LanguageNotFoundException
      */

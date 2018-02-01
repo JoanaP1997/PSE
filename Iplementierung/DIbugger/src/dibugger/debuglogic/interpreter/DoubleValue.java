@@ -215,8 +215,9 @@ public class DoubleValue extends TermValue {
     public double getValue() {
         return value;
     }
+
     @Override
     public TermValue clone() {
-    	return new DoubleValue(this.value);
+        return new DoubleValue(this.value);
     }
 }

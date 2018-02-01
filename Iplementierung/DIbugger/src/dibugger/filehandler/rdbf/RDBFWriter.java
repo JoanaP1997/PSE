@@ -2,8 +2,11 @@ package dibugger.filehandler.rdbf;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Contains methods for saving an RDBFFile
@@ -28,7 +31,8 @@ public class RDBFWriter {
             throw new FileNotFoundException();
         }
         f.getSysFile().mkdirs();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(f.getSysFile()));
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(f.getSysFile()), StandardCharsets.UTF_8));
         saveBlock(writer, f, "");
         writer.close();
     }

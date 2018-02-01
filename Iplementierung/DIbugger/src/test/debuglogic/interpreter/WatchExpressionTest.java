@@ -41,18 +41,20 @@ public class WatchExpressionTest {
         assert (we.evaluate(states).equals("3"));
         assert (we.evaluate(states).equals("3"));
     }
+
     @Test
     public void defaultScopeTest() throws DIbuggerLogicException {
-      List<TraceState> states = new ArrayList<TraceState>();
-      Scope s = new Scope();
-      s.setTypeOf("a", Type.DOUBLE);
-      s.setValueOf("a", new DoubleValue(5.3));
-      TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 1, s);
-      state.setProgramId("A");
-      states.add(state);
-      we = new WatchExpression("3+A.a");
-      assert(we.evaluate(states).equals("8.3"));
+        List<TraceState> states = new ArrayList<TraceState>();
+        Scope s = new Scope();
+        s.setTypeOf("a", Type.DOUBLE);
+        s.setValueOf("a", new DoubleValue(5.3));
+        TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 1, s);
+        state.setProgramId("A");
+        states.add(state);
+        we = new WatchExpression("3+A.a");
+        assert (we.evaluate(states).equals("8.3"));
     }
+
     @Test
     public void constantBooleanTest() throws DIbuggerLogicException {
         List<TraceState> states = new ArrayList<TraceState>();

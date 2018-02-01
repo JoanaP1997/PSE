@@ -75,31 +75,32 @@ public class SimpleCommandsTest {
         assert (s.getTypeOf("var") == Type.DOUBLE);
         assert (result.size() == 1);
     }
-    
+
     @Test(expected = WrongTypeArgumentException.class)
     public void testWhileCommandWithInt() throws DIbuggerLogicException {
-      GenerationController gc = new GenerationController(1000, 1000);
-      gc.setMaxFuncCalls(3);
-      Scope s = new Scope();
-      gc.pushScope(s);
-      // create Command
-      Command whileCommand = new WhileCommand(gc, 0, new ConstantTerm(new IntValue(1)));
-      whileCommand.run();
+        GenerationController gc = new GenerationController(1000, 1000);
+        gc.setMaxFuncCalls(3);
+        Scope s = new Scope();
+        gc.pushScope(s);
+        // create Command
+        Command whileCommand = new WhileCommand(gc, 0, new ConstantTerm(new IntValue(1)));
+        whileCommand.run();
     }
 
     /**
      * Only checks if the Command stops running.
+     * 
      * @throws DIbuggerLogicException
      */
     @Test(expected = ExceededMaxIterationsException.class)
     public void testWhileCommand() throws DIbuggerLogicException {
-      GenerationController gc = new GenerationController(1000, 1000);
-      gc.setMaxFuncCalls(3);
-      Scope s = new Scope();
-      gc.pushScope(s);
-      // create Command
-      Command whileCommand = new WhileCommand(gc, 0, new ConstantTerm(new BooleanValue(true)));
-      whileCommand.run();
-      
+        GenerationController gc = new GenerationController(1000, 1000);
+        gc.setMaxFuncCalls(3);
+        Scope s = new Scope();
+        gc.pushScope(s);
+        // create Command
+        Command whileCommand = new WhileCommand(gc, 0, new ConstantTerm(new BooleanValue(true)));
+        whileCommand.run();
+
     }
 }

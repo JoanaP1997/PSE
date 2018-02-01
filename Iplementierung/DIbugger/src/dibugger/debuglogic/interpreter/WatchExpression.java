@@ -49,7 +49,7 @@ public class WatchExpression {
     }
 
     public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
-        boolean isValid = true;   
+        boolean isValid = true;
         // check whether #states = #scopes
         if (states.size() != this.scopes.size())
             isValid = false;
@@ -65,23 +65,23 @@ public class WatchExpression {
     }
 
     private void createTerm() throws DIbuggerLogicException {
-    	ParseTree tree;
-		try {
-			CharStream input = CharStreams.fromString(this.specifier);
-			WlangLexer lexer = new WlangLexer(input);
-			lexer.removeErrorListeners();
-			lexer.addErrorListener(new ActuallyHelpfulErrorListener());
-			CommonTokenStream tokens = new CommonTokenStream(lexer);
-			WlangParser parser = new WlangParser(tokens);
-			parser.removeErrorListeners();
-			parser.addErrorListener(new ActuallyHelpfulErrorListener());
-			// Chose start rule
-			tree = parser.wecbterm();
-		} catch (ActuallyHelpfulSyntaxException e) {
-			throw new WatchExpressionSyntaxException(e.getMessage());
-		}
-		TermGenerationVisitor visitor = new TermGenerationVisitor();
-		this.expression = visitor.visit(tree);
+        ParseTree tree;
+        try {
+            CharStream input = CharStreams.fromString(this.specifier);
+            WlangLexer lexer = new WlangLexer(input);
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            WlangParser parser = new WlangParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(new ActuallyHelpfulErrorListener());
+            // Chose start rule
+            tree = parser.wecbterm();
+        } catch (ActuallyHelpfulSyntaxException e) {
+            throw new WatchExpressionSyntaxException(e.getMessage());
+        }
+        TermGenerationVisitor visitor = new TermGenerationVisitor();
+        this.expression = visitor.visit(tree);
     }
 
     public String getValue() {

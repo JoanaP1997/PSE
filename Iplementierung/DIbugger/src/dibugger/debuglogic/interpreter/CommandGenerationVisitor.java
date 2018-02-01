@@ -49,7 +49,7 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         this.controller = controller;
         this.termGenVisitor = new TermGenerationVisitor();
     }
-    
+
     // Helper Methods
     private List<Command> collectInBlock(BlockContext block) {
         List<Command> content = new ArrayList<Command>();
@@ -73,8 +73,9 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public Command visitStatement(StatementContext ctx) {
-    	return visit(ctx.getChild(0));
+        return visit(ctx.getChild(0));
     }
+
     // RoutineCommands
     @Override
     public Command visitMainRoutine(MainRoutineContext ctx) {
@@ -222,12 +223,15 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         Term thirdIndex = this.termGenVisitor.visit(ctx.thirdIndex);
         return new ArrayDeclaration(this.controller, ctx.id.getLine(), identifier, firstIndex, secondIndex, thirdIndex);
     }
+
     @Override
     public Command visitArrayDeclareAssign(ArrayDeclareAssignContext ctx) {
-    	Term values = this.termGenVisitor.visit(ctx.filledArglist());
-    	Term size = this.termGenVisitor.visit(ctx.term());
-    	return new ArrayDeclarationAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText(), size, values);
+        Term values = this.termGenVisitor.visit(ctx.filledArglist());
+        Term size = this.termGenVisitor.visit(ctx.term());
+        return new ArrayDeclarationAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText(), size,
+                values);
     }
+
     @Override
     public Command visitArrayElementAssignOneDim(ArrayElementAssignOneDimContext ctx) {
         String identifier = ctx.id.getText();
@@ -260,9 +264,10 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     // Assignments and Declaration
     @Override
     public Command visitCallingAssign(CallingAssignContext ctx) {
-    	Command funcCall = visit(ctx.value);
-    	return new CallingAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText() ,funcCall);
+        Command funcCall = visit(ctx.value);
+        return new CallingAssignment(this.controller, ctx.getStart().getLine(), ctx.id.getText(), funcCall);
     }
+
     @Override
     public Command visitPureAssign(PureAssignContext ctx) {
         Term value = this.termGenVisitor.visit(ctx.value);
@@ -285,23 +290,23 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
     // Function Call
     @Override
     public Command visitFuncCall(FuncCallContext ctx) {
-    	List<Term> arguments = new ArrayList<Term>();
-    	//collect arguments
-    	 FilledArglistContext args = ctx.args;
-         while (args != null && args.getChildCount() > 1) {
-             FilledArgumentContext argument = args.filledArgument();
-             Term argumentTerm = this.termGenVisitor.visit(argument.term());
-             arguments.add(argumentTerm);
-             // sift down the tree
-             args = args.filledArglist();
-         }
-         // gather in the leaf
-         if (args != null) {
-        	 FilledArgumentContext argument = args.filledArgument();
-             Term argumentTerm = this.termGenVisitor.visit(argument.term());
-             arguments.add(argumentTerm);
-         }
-        return new RoutineCall(this.controller, ctx.getStart().getLine(), ctx.functionname.getText() , arguments);
+        List<Term> arguments = new ArrayList<Term>();
+        // collect arguments
+        FilledArglistContext args = ctx.args;
+        while (args != null && args.getChildCount() > 1) {
+            FilledArgumentContext argument = args.filledArgument();
+            Term argumentTerm = this.termGenVisitor.visit(argument.term());
+            arguments.add(argumentTerm);
+            // sift down the tree
+            args = args.filledArglist();
+        }
+        // gather in the leaf
+        if (args != null) {
+            FilledArgumentContext argument = args.filledArgument();
+            Term argumentTerm = this.termGenVisitor.visit(argument.term());
+            arguments.add(argumentTerm);
+        }
+        return new RoutineCall(this.controller, ctx.getStart().getLine(), ctx.functionname.getText(), arguments);
     }
 
     // Composite Commands
@@ -346,56 +351,60 @@ public class CommandGenerationVisitor extends WlangBaseVisitor<Command> {
         ifCommand.addChild(visit(ctx.content));
         return ifCommand;
     }
+
     @Override
     public Command visitIfWithBlockElseWithBlock(IfWithBlockElseWithBlockContext ctx) {
-    	Term condition = this.termGenVisitor.visit(ctx.condition());
-    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
-    	//add if part commands
-    	List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
+        Term condition = this.termGenVisitor.visit(ctx.condition());
+        IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+        // add if part commands
+        List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
         for (Command c : ifcontent) {
             ifelse.addIfChild(c);
         }
-    	//add else part commands
+        // add else part commands
         List<Command> elsecontent = this.collectInBlock(ctx.elsecontent);
         for (Command c : elsecontent) {
             ifelse.addElseChild(c);
         }
-    	return ifelse;
+        return ifelse;
     }
+
     @Override
     public Command visitIfWithBlockElseWithSingle(IfWithBlockElseWithSingleContext ctx) {
-    	Term condition = this.termGenVisitor.visit(ctx.condition());
-    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
-    	//add if part commands
-    	List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
+        Term condition = this.termGenVisitor.visit(ctx.condition());
+        IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+        // add if part commands
+        List<Command> ifcontent = this.collectInBlock(ctx.ifcontent);
         for (Command c : ifcontent) {
             ifelse.addIfChild(c);
         }
-    	//add else part command
+        // add else part command
         ifelse.addElseChild(visit(ctx.elsecontent));
-    	return ifelse;
+        return ifelse;
     }
+
     @Override
     public Command visitIfWithSingleElseWithBlock(IfWithSingleElseWithBlockContext ctx) {
-    	Term condition = this.termGenVisitor.visit(ctx.condition());
-    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
-    	//add if part command
-    	ifelse.addIfChild(visit(ctx.ifcontent));
-    	//add else part commands
+        Term condition = this.termGenVisitor.visit(ctx.condition());
+        IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+        // add if part command
+        ifelse.addIfChild(visit(ctx.ifcontent));
+        // add else part commands
         List<Command> elsecontent = this.collectInBlock(ctx.elsecontent);
         for (Command c : elsecontent) {
             ifelse.addElseChild(c);
         }
-    	return ifelse;
+        return ifelse;
     }
+
     @Override
     public Command visitIfWithSingleElseWithSingle(IfWithSingleElseWithSingleContext ctx) {
-    	Term condition = this.termGenVisitor.visit(ctx.condition());
-    	IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
-    	//add if part command
-    	ifelse.addIfChild(visit(ctx.ifcontent));
-    	//add else part command
-    	ifelse.addElseChild(visit(ctx.elsecontent));
-    	return ifelse;
+        Term condition = this.termGenVisitor.visit(ctx.condition());
+        IfElseCommand ifelse = new IfElseCommand(this.controller, ctx.getStart().getLine(), condition);
+        // add if part command
+        ifelse.addIfChild(visit(ctx.ifcontent));
+        // add else part command
+        ifelse.addElseChild(visit(ctx.elsecontent));
+        return ifelse;
     }
 }

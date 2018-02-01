@@ -28,30 +28,31 @@ public class ArrayDeclarationAssignment extends Command {
         this.linenumber = linenumber;
         this.values = values;
     }
+
     @Override
     public List<TraceState> run() throws DIbuggerLogicException {
-    	 Scope scope = this.controller.getCurrentScope();
+        Scope scope = this.controller.getCurrentScope();
 
-         // check if variable already exists
-         if (scope.getTypeOf(identifier) != null) {
-             throw new AlreadyDeclaredException(this.linenumber);
-         }
+        // check if variable already exists
+        if (scope.getTypeOf(identifier) != null) {
+            throw new AlreadyDeclaredException(this.linenumber);
+        }
 
-         // set type
-         scope.setTypeOf(this.identifier, Type.ARRAY);
+        // set type
+        scope.setTypeOf(this.identifier, Type.ARRAY);
 
-         TermValue value = this.values.evaluate(scope);
+        TermValue value = this.values.evaluate(scope);
 
-         // check type
-         if (Type.ARRAY != value.getType()) {
-             throw new WrongTypeAssignmentException(this.linenumber);
-         }
-         // set value
-         scope.setValueOf(this.identifier, value);
+        // check type
+        if (Type.ARRAY != value.getType()) {
+            throw new WrongTypeAssignmentException(this.linenumber);
+        }
+        // set value
+        scope.setValueOf(this.identifier, value);
 
-         List<TraceState> traceStateList = new ArrayList<TraceState>();
-         traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
-         return traceStateList;
+        List<TraceState> traceStateList = new ArrayList<TraceState>();
+        traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
+        return traceStateList;
     }
 
 }

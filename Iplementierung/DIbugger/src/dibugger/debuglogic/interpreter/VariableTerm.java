@@ -25,8 +25,9 @@ public final class VariableTerm extends Term {
 
     @Override
     public TermValue evaluate(Scope currentScope) throws DIbuggerLogicException {
-    	TermValue value = currentScope.getValueOf(identifier);
-    	if (value==null) throw new VariableNotFoundException(-1);
+        TermValue value = currentScope.getValueOf(identifier);
+        if (value == null)
+            throw new VariableNotFoundException(-1);
         return value;
     }
 

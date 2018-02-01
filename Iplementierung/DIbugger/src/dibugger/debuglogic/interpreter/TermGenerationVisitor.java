@@ -201,29 +201,31 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
     public Term visitArrayAccessInTerm(ArrayAccessInTermContext ctx) {
         return this.visitChildren(ctx);
     }
-    
-    
+
     @Override
     public Term visitOneDimArrayAccessRel(OneDimArrayAccessRelContext ctx) {
-    	 String id = ctx.id.getText();
-         Term index = this.visit(ctx.index);
-         return new ArrayAccessRelationalTerm(id, index);
+        String id = ctx.id.getText();
+        Term index = this.visit(ctx.index);
+        return new ArrayAccessRelationalTerm(id, index);
     }
+
     @Override
     public Term visitTwoDimArrayAccessRel(TwoDimArrayAccessRelContext ctx) {
-    	 String id = ctx.id.getText();
-         Term firstIndex = this.visit(ctx.firstIndex);
-         Term secondIndex = this.visit(ctx.secondIndex);
-         return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex);
+        String id = ctx.id.getText();
+        Term firstIndex = this.visit(ctx.firstIndex);
+        Term secondIndex = this.visit(ctx.secondIndex);
+        return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex);
     }
+
     @Override
     public Term visitThreeDimArrayAccessRel(ThreeDimArrayAccessRelContext ctx) {
-    	String id = ctx.id.getText();
+        String id = ctx.id.getText();
         Term firstIndex = this.visit(ctx.firstIndex);
         Term secondIndex = this.visit(ctx.secondIndex);
         Term thirdIndex = this.visit(ctx.thirdIndex);
         return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex, thirdIndex);
     }
+
     @Override
     public Term visitOneDimArrayAccess(OneDimArrayAccessContext ctx) {
         String id = ctx.id.getText();
@@ -247,34 +249,38 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
         Term thirdIndex = this.visit(ctx.thirdIndex);
         return new ArrayAccessTerm(id, firstIndex, secondIndex, thirdIndex);
     }
+
     @Override
     public Term visitInputparameterNoArray(InputparameterNoArrayContext ctx) {
-    	return this.visit(ctx.term());
+        return this.visit(ctx.term());
     }
+
     @Override
     public Term visitInputparameterArray(InputparameterArrayContext ctx) {
-    	return this.visit(ctx.filledArglist());
+        return this.visit(ctx.filledArglist());
     }
+
     @Override
     public Term visitFilledArglist(FilledArglistContext ctx) {
-    	List<Term> content = new ArrayList<Term>();
-    	//gather in the content
-    	FilledArglistContext arglist = ctx;
-    	while (arglist != null && arglist.getChildCount() > 1) {
-             FilledArgumentContext argument = arglist.filledArgument();
-             Term term = this.visit(argument);
-             content.add(term);
-             // sift down the tree
-             arglist = arglist.filledArglist();
-         }
-         // gather in the leaf
-         if (arglist != null) {
-        	 FilledArgumentContext argument = arglist.filledArgument();
-             Term term = this.visit(argument);
-             content.add(term);
-         }
-    	return new TermList(content);
+        List<Term> content = new ArrayList<Term>();
+        // gather in the content
+        FilledArglistContext arglist = ctx;
+        while (arglist != null && arglist.getChildCount() > 1) {
+            FilledArgumentContext argument = arglist.filledArgument();
+            Term term = this.visit(argument);
+            content.add(term);
+            // sift down the tree
+            arglist = arglist.filledArglist();
+        }
+        // gather in the leaf
+        if (arglist != null) {
+            FilledArgumentContext argument = arglist.filledArgument();
+            Term term = this.visit(argument);
+            content.add(term);
+        }
+        return new TermList(content);
     }
+
     // Literals
     @Override
     public Term visitIntLiteral(IntLiteralContext ctx) {
@@ -300,10 +306,12 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
     public Term visitCharLiteral(CharLiteralContext ctx) {
         return new ConstantTerm(new CharValue(ctx.getText().charAt(1)));
     }
+
     @Override
     public Term visitBooleanLiteral(BooleanLiteralContext ctx) {
-    	return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
+        return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
     }
+
     // IDs and Constants
     @Override
     public Term visitId(IdContext ctx) {

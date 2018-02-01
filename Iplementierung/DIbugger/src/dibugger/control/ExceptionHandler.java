@@ -10,9 +10,8 @@ import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 
 /**
- *  Responsible for handling exceptions, which are thrown by DIbuggers
- *  model-component.
- *  Mainly prompts UI of DIbugger to inform user about errors.
+ * Responsible for handling exceptions, which are thrown by DIbuggers
+ * model-component. Mainly prompts UI of DIbugger to inform user about errors.
  */
 public class ExceptionHandler implements Observer {
     private GUIFacade guiFacade;
@@ -22,8 +21,10 @@ public class ExceptionHandler implements Observer {
     /**
      * Creates a new {@code ExceptionHandler} with given arguments.
      * 
-     * @param fileHandlerInteractor the {@code FileHandlerInteractor} known to this
-     * @param guiFacade the {@code GUIFacade} known to this
+     * @param fileHandlerInteractor
+     *            the {@code FileHandlerInteractor} known to this
+     * @param guiFacade
+     *            the {@code GUIFacade} known to this
      */
     public ExceptionHandler(FileHandlerInteractor fileHandlerInteractor, GUIFacade guiFacade) {
         Objects.requireNonNull(guiFacade);
@@ -35,7 +36,8 @@ public class ExceptionHandler implements Observer {
     /**
      * Handles exceptions of type {@code DIbuggerLogicException}.
      * 
-     * @param exception the {@code DIbuggerLogicException} to handle
+     * @param exception
+     *            the {@code DIbuggerLogicException} to handle
      */
     public void handle(DIbuggerLogicException exception) {
         String exceptionId = exception.getID();
@@ -45,7 +47,8 @@ public class ExceptionHandler implements Observer {
     /**
      * Handles exception of type {@code FileHandlerException}.
      * 
-     * @param exception the {@code FileHandlerException} to handle
+     * @param exception
+     *            the {@code FileHandlerException} to handle
      */
     public void handle(FileHandlerException exception) {
         String exceptionId = exception.getID();

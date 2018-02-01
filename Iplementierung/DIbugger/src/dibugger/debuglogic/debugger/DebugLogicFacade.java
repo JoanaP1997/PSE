@@ -24,12 +24,12 @@ public class DebugLogicFacade extends Observable {
     private StepSizeSuggestion suggest_stepsize;
     private InputValueSuggestion suggest_input;
     private RelationalSuggestion suggest_relational;
-    
+
     private void notifyAllObservers() {
-    	this.setChanged();
-    	this.notifyObservers();
+        this.setChanged();
+        this.notifyObservers();
     }
-    
+
     public DebugLogicFacade() {
         super();
         debugControl = new DebugControl();
@@ -38,7 +38,7 @@ public class DebugLogicFacade extends Observable {
         suggest_input = new SimpleInputSuggestion();
         suggest_relational = new SimpleRelationalSuggestion(debugControl);
     }
-    
+
     /**
      * @see DebugControl#setStepSize(int, int)
      */
@@ -71,7 +71,7 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
-     * @throws DIbuggerLogicException 
+     * @throws DIbuggerLogicException
      * @see DebugControl#createWatchExpression(int, String)
      */
     public void createWatchExpression(int id, String expr) throws DIbuggerLogicException {
@@ -79,7 +79,7 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
-     * @throws DIbuggerLogicException 
+     * @throws DIbuggerLogicException
      * @see DebugControl#changeWatchExpression(int, String, List)
      */
     public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) throws DIbuggerLogicException {
@@ -94,7 +94,7 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
-     * @throws DIbuggerLogicException 
+     * @throws DIbuggerLogicException
      * @see DebugControl#changeCondBreakpoint(int, String, List)
      */
     public void createCondBreakpoint(int id, String cond) throws DIbuggerLogicException {
@@ -102,7 +102,7 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
-     * @throws DIbuggerLogicException 
+     * @throws DIbuggerLogicException
      * @see DebugControl#changeCondBreakpoint(int, String, List)
      */
     public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) throws DIbuggerLogicException {
@@ -131,18 +131,21 @@ public class DebugLogicFacade extends Observable {
     }
 
     /**
-     * @throws DIbuggerLogicException {@linkplain DebugControl#launchRun(List)}
+     * @throws DIbuggerLogicException
+     *             {@linkplain DebugControl#launchRun(List)}
      * @see DebugControl#launchRun(List)
      */
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         debugControl.launchRun(programs);
     }
-    
+
     /**
      * Synchronizes the ProgramInput with a given Programinput List
-     * @param programs the list containing all new programs
+     * 
+     * @param programs
+     *            the list containing all new programs
      */
-    public void syncProgramInput(List<ProgramInput> programs){
+    public void syncProgramInput(List<ProgramInput> programs) {
         debugControl.syncProgramInput(programs);
     }
 
@@ -408,17 +411,16 @@ public class DebugLogicFacade extends Observable {
         return debugControl.getAllVariables(programNameID);
     }
 
-    
-    //Suggestions
+    // Suggestions
     /**
      * Returns all available strategies for RelationalExpressionSuggestions.
      *
      * @return all available strategies for RelationalExpressionSuggestions
      */
     public List<String> getRelationalExpressionSuggestionStrategies() {
-    	List<String> l = new ArrayList<String>();
-    	l.add("suggest_strategy_simple_relational");
-    	return l;
+        List<String> l = new ArrayList<String>();
+        l.add("suggest_strategy_simple_relational");
+        return l;
     }
 
     /**
@@ -427,9 +429,9 @@ public class DebugLogicFacade extends Observable {
      * @return all available strategies for StepSizeSuggestions
      */
     public List<String> getStepSizeSuggestionStrategies() {
-    	List<String> l = new ArrayList<String>();
-    	l.add("suggest_strategy_simple_stepsize");
-    	return l;
+        List<String> l = new ArrayList<String>();
+        l.add("suggest_strategy_simple_stepsize");
+        return l;
     }
 
     /**
@@ -438,20 +440,23 @@ public class DebugLogicFacade extends Observable {
      * @return all available strategies for InputValueSuggestions
      */
     public List<String> getInputValueSuggestionStrategies() {
-    	List<String> l = new ArrayList<String>();
-    	l.add("suggest_strategy_simple_input");
-    	return l;
+        List<String> l = new ArrayList<String>();
+        l.add("suggest_strategy_simple_input");
+        return l;
     }
 
     /**
-     * Getter for the return value of a given program, if the current TraceState is the last in the Trace iteration.
-     * @param programNameId the nameID of the program
+     * Getter for the return value of a given program, if the current TraceState
+     * is the last in the Trace iteration.
+     * 
+     * @param programNameId
+     *            the nameID of the program
      * @return the value of the return of the given program
      */
     public String getReturnValue(String programNameId) {
         return debugControl.getReturnValue(programNameId);
     }
-    
+
     // Strategy Types
     public static final int STRAT_STEP_SIZE_SIMPLE = 0;
     public static final int STRAT_REL_SIMPLE = 1;

@@ -105,6 +105,8 @@ public class RDBFDBReader extends DBFileReader {
             return f;
         } catch (IOException e) {
             throw new LanguageNotFoundException();
+        } catch (NullPointerException e) {
+            throw new LanguageNotFoundException();
         }
     }
 

@@ -49,7 +49,7 @@ public class LanguageFile {
      */
     public String getTranslation(String textID) {
         String text = map_translations.get(textID);
-        return (text != null) ? text : "No Translation Available: "+textID;
+        return (text != null) ? text : "No Translation Available: " + textID;
     }
 
     /**

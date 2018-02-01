@@ -16,7 +16,7 @@ import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.GUIFacade;
 
 /**
- *  Provides an interface for this package's functionality.
+ * Provides an interface for this package's functionality.
  */
 public class ControlFacade {
     private boolean isInDebugMode;
@@ -26,11 +26,11 @@ public class ControlFacade {
     private FileHandlerInteractor fileHandlerInteractor;
 
     /**
-     * Creates a new ControlFacade object.
-     * Change in presentation of DIbugger's model component will be triggered
-     * by given GUIFacade.
+     * Creates a new ControlFacade object. Change in presentation of DIbugger's
+     * model component will be triggered by given GUIFacade.
      * 
-     * @param guiFacade a UI-facade of DIbugger
+     * @param guiFacade
+     *            a UI-facade of DIbugger
      */
     public ControlFacade(GUIFacade guiFacade) {
         disableDebugMode();
@@ -68,7 +68,7 @@ public class ControlFacade {
             throw new IllegalStateException();
         }
     }
-    
+
     /**
      * Sets the a program's stepsize.
      * 
@@ -140,12 +140,12 @@ public class ControlFacade {
      */
     public void createWatchExpression(int watchExpressionId, String expression) {
         try {
-			debugLogicController.createWatchExpression(watchExpressionId, expression);
-		} catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
-		}
+            debugLogicController.createWatchExpression(watchExpressionId, expression);
+        } catch (DIbuggerLogicException e) {
+            exceptionHandler.handle(e);
+        }
     }
-    
+
     /**
      * Changes the specified watch expression.
      * 
@@ -159,10 +159,10 @@ public class ControlFacade {
      */
     public void changeWatchExpression(int watchExpressionId, String expression, List<ScopeTuple> scopes) {
         try {
-			debugLogicController.changeWatchExpression(watchExpressionId, expression, scopes);
-		} catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
-		}
+            debugLogicController.changeWatchExpression(watchExpressionId, expression, scopes);
+        } catch (DIbuggerLogicException e) {
+            exceptionHandler.handle(e);
+        }
     }
 
     /**
@@ -183,14 +183,14 @@ public class ControlFacade {
      *            the id of the breakpoint
      * @param condition
      *            the condition of the breakpoint
-     * @see DebugLogicController#createConditionalBreakpoint(int, String)            
+     * @see DebugLogicController#createConditionalBreakpoint(int, String)
      */
     public void createConditionalBreakpoint(int breakPointId, String condition) {
         try {
-			debugLogicController.createConditionalBreakpoint(breakPointId, condition);
-		} catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
-		}
+            debugLogicController.createConditionalBreakpoint(breakPointId, condition);
+        } catch (DIbuggerLogicException e) {
+            exceptionHandler.handle(e);
+        }
     }
 
     /**
@@ -206,10 +206,10 @@ public class ControlFacade {
      */
     public void changeConditionalBreakpoint(int breakPointId, String condition, List<ScopeTuple> scopes) {
         try {
-			debugLogicController.changeConditionalBreakpoint(breakPointId, condition, scopes);
-		} catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
-		}
+            debugLogicController.changeConditionalBreakpoint(breakPointId, condition, scopes);
+        } catch (DIbuggerLogicException e) {
+            exceptionHandler.handle(e);
+        }
     }
 
     /**
@@ -223,15 +223,15 @@ public class ControlFacade {
         debugLogicController.deleteConditionalBreakpoint(conditionalBreakpointId);
     }
 
-//    /**
-//     * Creates a breakpoint at given line in all programs known to DIbugger.
-//     * 
-//     * @param line the line to create a breakpoint at
-//     * @see DebugLogicController#createSynchronousBreakpoint(int) 
-//     */
-//    public void createSynchronousBreakpoint(int line) {
-//        debugLogicController.createSynchronousBreakpoint(line);
-//    }
+    // /**
+    // * Creates a breakpoint at given line in all programs known to DIbugger.
+    // *
+    // * @param line the line to create a breakpoint at
+    // * @see DebugLogicController#createSynchronousBreakpoint(int)
+    // */
+    // public void createSynchronousBreakpoint(int line) {
+    // debugLogicController.createSynchronousBreakpoint(line);
+    // }
 
     /**
      * Creates a new breakpoint at given line of specified program.
@@ -269,15 +269,17 @@ public class ControlFacade {
     }
 
     /**
-     * Stores given lists of multiple program's assigments of input variables, 
-     * text and identifier.
-     * For each program, its assignments of input variables is expected to
-     * a {@code String} of this kind: "a = 10;b = "bridge"", where "a" and "b" are
-     * input variables.
+     * Stores given lists of multiple program's assigments of input variables,
+     * text and identifier. For each program, its assignments of input variables
+     * is expected to a {@code String} of this kind: "a = 10;b = "bridge"",
+     * where "a" and "b" are input variables.
      * 
-     * @param inputTexts a list containing each program's input variable-assignments
-     * @param programTexts a list containing each program's text
-     * @param programIdentifiers a list of containing each program's identifier
+     * @param inputTexts
+     *            a list containing each program's input variable-assignments
+     * @param programTexts
+     *            a list containing each program's text
+     * @param programIdentifiers
+     *            a list of containing each program's identifier
      * @see DebugLogicController#saveText(List, List, List)
      */
     public void saveText(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
@@ -289,18 +291,18 @@ public class ControlFacade {
 
     /**
      * Switches DIbugger's mode to debug-mode. Input of user stored in this
-     * Controlfacade via {@link #saveText(List, List, List)} will be sent to package
-     * {@code dibugger.debuglogic.debugger}.
+     * Controlfacade via {@link #saveText(List, List, List)} will be sent to
+     * package {@code dibugger.debuglogic.debugger}.
      * 
      * @see DebugLogicController#startDebug()
      */
     public void startDebug() {
         enableDebugMode();
         try {
-			debugLogicController.startDebug();
-		} catch (DIbuggerLogicException exception) {
-			exceptionHandler.handle(exception);
-		}      
+            debugLogicController.startDebug();
+        } catch (DIbuggerLogicException exception) {
+            exceptionHandler.handle(exception);
+        }
     }
 
     /**
@@ -323,11 +325,12 @@ public class ControlFacade {
     }
 
     /**
-     * Creates a {@code ConfigurationFile} using given {@code File} and
-     * attempts to restore a debugging-session by altering DIbugger's
-     * model- and presentation-component.
+     * Creates a {@code ConfigurationFile} using given {@code File} and attempts
+     * to restore a debugging-session by altering DIbugger's model- and
+     * presentation-component.
      * 
-     * @param configurationFile the {@code File} to load
+     * @param configurationFile
+     *            the {@code File} to load
      * @see FileHandlerInteractor#loadConfigurationFile(File)
      */
     public void loadConfiguration(File configurationFile) {
@@ -338,15 +341,16 @@ public class ControlFacade {
         } catch (FileHandlerException exception) {
             exceptionHandler.handle(exception);
         } catch (DIbuggerLogicException e) {
-			exceptionHandler.handle(e);
-		}
+            exceptionHandler.handle(e);
+        }
     }
 
     /**
-     * Saves some of Dibugger's model- and presentation-component's state
-     * to a specified {@code File}.
+     * Saves some of Dibugger's model- and presentation-component's state to a
+     * specified {@code File}.
      * 
-     * @param configurationFile a {@code File} to save DIbugger's state to
+     * @param configurationFile
+     *            a {@code File} to save DIbugger's state to
      * @see FileHandlerInteractor#saveConfiguration(File)
      */
     public void saveConfiguration(File configurationFile) {
@@ -356,7 +360,8 @@ public class ControlFacade {
     /**
      * Prompts this' GUIFacade to display a specified program's text.
      * 
-     * @param file the file containing the text
+     * @param file
+     *            the file containing the text
      * @return the text contained in file
      * @see FileHandlerInteractor#loadProgramText(File)
      */
@@ -388,8 +393,7 @@ public class ControlFacade {
     }
 
     /**
-     * Sets the upper limit of function calls allowed when executing
-     * a program.
+     * Sets the upper limit of function calls allowed when executing a program.
      * 
      * @param maximum
      *            the new maximum
@@ -478,10 +482,10 @@ public class ControlFacade {
     }
 
     /**
-     * Changes the language in which information is shown by
-     * this' GUIFacade.
+     * Changes the language in which information is shown by this' GUIFacade.
      * 
-     * @param languageId the id specifying the language
+     * @param languageId
+     *            the id specifying the language
      * @see FileHandlerInteractor#changeLanguage(String)
      */
     public void changeLanguage(String languageId) {
@@ -536,7 +540,6 @@ public class ControlFacade {
     public LanguageFile getLanguageFile() {
         return fileHandlerInteractor.getLanguageFile();
     }
-
 
     public Map<String, Integer> getWatchExpressionScopeBeginnnings(int expressionId) {
         return debugLogicController.getWatchExpressionScopeBeginnnings(expressionId);

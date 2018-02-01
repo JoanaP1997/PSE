@@ -200,8 +200,9 @@ public final class FloatValue extends TermValue {
     public float getValue() {
         return value;
     }
+
     @Override
     public TermValue clone() {
-    	return new FloatValue(this.value);
+        return new FloatValue(this.value);
     }
 }

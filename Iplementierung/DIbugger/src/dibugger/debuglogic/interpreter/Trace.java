@@ -17,25 +17,28 @@ public class Trace {
 
     /**
      * Constructor for a Trace.
-     * @param programId the id of the program the TraceState corresponds to
+     * 
+     * @param programId
+     *            the id of the program the TraceState corresponds to
      */
     public Trace(List<TraceState> traceStates, String programId) {
         this.traceStates = traceStates;
         this.programId = programId;
-        
+
         // write programId into all traceStates
         Iterator<TraceState> it = this.iterator();
         while (it.hasNext()) {
-          it.next().setProgramId(this.programId);
+            it.next().setProgramId(this.programId);
         }
     }
 
     /**
      * Returns a ListIterator which can move forward and back.
+     * 
      * @return the iterator over the trace
      */
     public ListIterator<TraceState> iterator() {
         return this.traceStates.listIterator();
     }
-    
+
 }

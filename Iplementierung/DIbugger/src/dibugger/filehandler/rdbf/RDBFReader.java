@@ -2,8 +2,10 @@ package dibugger.filehandler.rdbf;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 
@@ -33,7 +35,7 @@ public class RDBFReader {
             throw new IOException();
         }
         RDBFFile f = new RDBFFile(file);
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 
         readBlock(reader, f);
 
@@ -56,7 +58,7 @@ public class RDBFReader {
     private void readBlock(BufferedReader reader, RDBFAdditions ad) throws FileHandlerException, IOException {
         String line;
         while ((line = reader.readLine()) != null) {
-            line = line.replace("\t", "");
+            line = line.replace("\t", "").replace("\uFEFF", "");
             int lineType = RDBFParser.getInstance().evaluateLineType(line);
             if (lineType == RDBFParser.LINE_ASSIGNMENT) {
                 String name = RDBFParser.getInstance().getVariableName(line);

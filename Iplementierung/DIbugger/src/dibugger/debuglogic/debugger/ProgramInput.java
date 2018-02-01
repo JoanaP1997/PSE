@@ -47,7 +47,7 @@ public class ProgramInput {
     public List<String> getInputValues() {
         return inputValues;
     }
-    
+
     /**
      * Setter for the input value list
      * 
