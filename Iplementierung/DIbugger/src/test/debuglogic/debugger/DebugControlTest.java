@@ -17,6 +17,7 @@ public class DebugControlTest {
     
     @Test
     public void steppingTest() throws DIbuggerLogicException{
+    	
         DebugLogicFacade facade = new DebugLogicFacade();
         ProgramInput in = new ProgramInput(
                 "void main() { \n"
