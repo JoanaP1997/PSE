@@ -111,7 +111,7 @@ Show hidden variables
 }
 dl_exc_missing_return_call{
 	def_blockLen=1
-The method requires a return statement,
+The method requires a return statement.
 
 }
 ui_program{
@@ -479,5 +479,10 @@ ui_cb_tooltip{
 <html>Click first cell for options, <br>
 middle cell for changing the conditional breakpoint, <br>
 middle cell of last line to add a new breakpoint.</html>
+
+}
+control_occurrence_message{
+	def_blockLen=1
+At following line(s):
 
 }

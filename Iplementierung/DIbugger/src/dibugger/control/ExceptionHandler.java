@@ -1,5 +1,6 @@
 package dibugger.control;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
@@ -41,7 +42,26 @@ public class ExceptionHandler implements Observer {
      */
     public void handle(DIbuggerLogicException exception) {
         String exceptionId = exception.getID();
-        guiFacade.showError(languageFile.getTranslation(exceptionId));
+        String errorMessage = "<html>" + languageFile.getTranslation(exceptionId) + "<br>";
+
+        
+        List<String> occurrence = exception.getOccurrence();
+        
+        if (occurrence != null && occurrence.size() != 0) {
+            String firstOccurrence = occurrence.get(0);
+            firstOccurrence.trim();
+            if (!firstOccurrence.equals("-1")) {
+                String occurringAt = languageFile.getTranslation("control_occurrence_message");
+                errorMessage += occurringAt;                
+                for (String lineNumber : occurrence) {
+                    errorMessage += (" " + lineNumber);
+                }
+            }
+        }
+        
+        errorMessage += "</html>";
+        
+        guiFacade.showError(errorMessage);
     }
 
     /**
@@ -52,7 +72,8 @@ public class ExceptionHandler implements Observer {
      */
     public void handle(FileHandlerException exception) {
         String exceptionId = exception.getID();
-        guiFacade.showError(exceptionId);
+        String errorMessage = languageFile.getTranslation(exceptionId);
+        guiFacade.showError(errorMessage);
     }
 
     public void setLanguageFile(LanguageFile languageFile) {

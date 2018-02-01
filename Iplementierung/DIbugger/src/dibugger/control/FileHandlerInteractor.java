@@ -134,12 +134,6 @@ public class FileHandlerInteractor extends Observable {
      *            a {@code File} to save DIbugger's state to
      */
     public void saveConfiguration(File file) {
-        /*
-         * Notiz: Möglicher Fall: unterschiedliche Anzahl an Programmen im
-         * Modell und zwischengespeichert in Kontrolle. Vielleicht
-         * inkonsistenter DIbugger-Zustand, vielleicht anders/überhaupt
-         * berücksichtigen.
-         */
         ConfigurationFile configurationFile = new ConfigurationFile(file);
         List<ProgramInput> currentInput = debugLogicController.getProgramInput();
 
@@ -187,14 +181,7 @@ public class FileHandlerInteractor extends Observable {
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 
-        // Notiz: evtl. getSizeOfConditionalBreakpoints benutzen
         int numberOfConditionalBreakpoints = conditions.size();
-        /*
-         * Notiz: Schnittstellen in DebugLogicController, DebugLogicFacade,
-         * DebugControl und ConfigurationFile sollten verändert werden - z.B.
-         * Zugriffsmethoden auf "Scope-Ebene" (also ScopeTuple nicht
-         * scopebegin/-end)
-         */
         for (int i = 0; i < numberOfConditionalBreakpoints; i++) {
             String condition = conditions.get(i);
             List<Integer> breakpointScopeBeginnings = createListFromMap(
@@ -245,8 +232,6 @@ public class FileHandlerInteractor extends Observable {
      * @see FileHandlerFacade#getLanguages()
      */
     public List<String> getAvailableLanguages() {
-        // Notiz: Oberfläche "schlau" genug um das entgegenzunehmen?
-        // (Sonderfall "null")
         return fileHandlerFacade.getLanguages();
     }
 
