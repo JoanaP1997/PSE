@@ -11,7 +11,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -99,6 +102,12 @@ public class MainInterface extends JFrame {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+      try {
+        System.setErr(new PrintStream(new FileOutputStream(new File("error.log"))));
+    } catch (FileNotFoundException e1) {
+        e1.printStackTrace();
+    }
+      
     try {
       for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
         if ("Nimbus".equals(info.getName())) {

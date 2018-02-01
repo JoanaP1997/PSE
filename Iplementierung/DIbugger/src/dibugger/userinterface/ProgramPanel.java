@@ -182,9 +182,10 @@ public class ProgramPanel extends JPanel {
       }
     });
     Font font = new Font("SansSerif", Font.PLAIN, 12);
-    editor.setFont(font);
+    editor.setFont(font);    
+    
     editor.addMouseListener(new MouseListener() {
-
+        
       @Override
       public void mouseReleased(MouseEvent e) {
 
@@ -468,10 +469,21 @@ public class ProgramPanel extends JPanel {
 
     private Font font;
 
+    private int TAB_SIZE = 32;
+    
     CustomParagraphView(Element elem) {
       super(elem);
       thisElement = elem;
       this.setInsets((short) 0, (short) 0, (short) 0, (short) 0);
+    }
+    
+    @Override
+    public float nextTabStop(float x, int tabOffset) {
+        TabSet tabs = getTabSet();
+        if(tabs == null) {
+            return (float)(getTabBase()+(x-TAB_SIZE));
+        }
+        return super.nextTabStop(x, tabOffset);
     }
 
     @Override
