@@ -1,4 +1,4 @@
-﻿langID='swabian_utf'
+﻿langID='swabian'
 langName='Schwäbisch'
 ui_add_program{
 	def_blockLen=1

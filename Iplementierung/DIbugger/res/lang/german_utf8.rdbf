@@ -1,4 +1,4 @@
-﻿langID='german_utf'
+﻿langID='german'
 langName='Deutsch'
 ui_add_program{
 	def_blockLen=1
