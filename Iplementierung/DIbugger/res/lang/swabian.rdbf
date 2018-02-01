@@ -1,23 +1,23 @@
-﻿langID='german_utf'
-langName='Deutsch'
+﻿langID='swabian_utf'
+langName='Schwäbisch'
 ui_add_program{
 	def_blockLen=1
-Programm hinzufügen
+Programm hinzufüga
 
 }
 fh_exc_parse_assign{
 	def_blockLen=1
-Die Datei enthält eine falsche Zuweisung.
+Die Datei hat a falscha Zuweisung.
 
 }
 ui_reset_gui{
 	def_blockLen=1
-Zurücksetzen
+Zurücksetza
 
 }
 dl_exc_wrong_type_assignment{
 	def_blockLen=1
-Der Zuweisungswert ist nicht gleich dem wert der zuweisenden Variable.
+Der Zuweisungswert isch ned gleich wie der Wert der zuweisenda Variable.
 
 }
 ui_for{
@@ -27,12 +27,12 @@ Für
 }
 ui_debug_step_out{
 	def_blockLen=1
-Führe Step Out aus
+Mach an Step Out
 
 }
 ui_step_tooltip{
 	def_blockLen=1
-Als Schrittgröße festgelegte Anzahl an Befehlen wird ausgeführt
+Als Schrittgröße festgelegta Anzahl an Befehle wird ausgführt
 
 }
 ui_start{
@@ -42,7 +42,7 @@ Start
 }
 db_it_exc_not{
 	def_blockLen=1
-Die Operation "not" hat ein oder mehrere falsche Typen.
+Die Operation "not" hat oi oder mehrere falsche Typa.
 
 }
 ui_watch_expression{
@@ -52,7 +52,7 @@ Watch Expression
 }
 db_it_exc_and{
 	def_blockLen=1
-Die Operation "and" hat ein oder mehrere falsche Typen.
+Die Operation "and" hat oi oder mehrere falsche Typea.
 
 }
 ui_suggestion{
@@ -61,7 +61,7 @@ Vorschlag
 }
 db_it_exc_eq{
 	def_blockLen=1
-Die Operation "equals" hat ein oder mehrere falsche Typen.
+Die Operation "equals" hat oi oder mehrere falsche Typa.
 
 }
 ui_file_menu{
@@ -71,27 +71,27 @@ Datei
 }
 ui_debug_step_back{
 	def_blockLen=1
-Führe Step Back aus
+Führ Step Back aus
 
 }
 ui_program_limit_reached{
 	def_blockLen=1
-Programmlimit erreicht
+Programmlimit erroicht
 
 }
 ui_var_inspector{
 	def_blockLen=1
-Variableninspektor
+Variablainschpektor
 
 }
 ui_debug_stop{
 	def_blockLen=1
-Debuggen beenden
+Debuggen beenda
 
 }
 dl_exc_variable_not_found{
 	def_blockLen=1
-Variable nicht gefunden.
+Variable ned gfunda.
 
 }
 english{
@@ -101,17 +101,17 @@ Englisch
 }
 db_it_exc_mul{
 	def_blockLen=1
-Die Operation "mul" hat ein oder mehrere falsche Typen.
+Die Operation "mul" hat oin oder mehrere falsche Typa.
 
 }
 ui_show_hidden_variables{
 	def_blockLen=1
-Ausgeblendete Variablen anzeigen
+Ausgeblendete Variabla azoiga
 
 }
 dl_exc_missing_return_call{
 	def_blockLen=1
-Die Methode verlangt ein "return" Angabe.
+Die Method braucht a "return" Angab.
 
 }
 ui_program{
@@ -126,32 +126,32 @@ Intervall
 }
 dl_exc_routine_not_found{
 	def_blockLen=1
-Funktion nicht gefunde. Vielleicht ist sie unter diesem Aufruf definiert.
+Funktion ned gfunda. Vielleicht isch se unter dem Aufruf definiert.
 
 }
 ui_cond_breakpoint_akkusativ{
 	def_blockLen=1
-Bedingten Breakpoint
+B'dingten Breakpoint
 
 }
 ui_stop_tooltip{
 	def_blockLen=1
-Hier klicken, um Debugmodus zu beenden
+Hier kligga, um Debugmodus zu beenda
 
 }
 dl_exc_syntax{
 	def_blockLen=1
-Syntax Fehler in einem oder mehreren Programmen.
+Syntax Fehler in oim oder mehrere Programme.
 
 }
 ui_max_functioncalls{
 	def_blockLen=1
-Maximale Funktionsaufrufe festlegen
+Maximale Funktionsaufrufe festlega
 
 }
 db_it_exc_sub{
 	def_blockLen=1
-Die Operation "sub" hat ein oder mehrere falsche Typen.
+Die Operation "sub" hat oin oder mehrere falsche Typa.
 
 }
 ui_stepsize{
@@ -166,7 +166,7 @@ Von
 }
 ui_debug_step_over{
 	def_blockLen=1
-Führe Step Over aus
+Mach an Step Over
 
 }
 ui_to{
@@ -186,17 +186,17 @@ Ende
 }
 ui_stepover_tooltip{
 	def_blockLen=1
-Nächsten Befehl überspringen, falls dieser ein Funktionsaufruf ist
+Nächstan Befehl überspringa, falls der n Funktionsaufruf isch
 
 }
 ui_debug_step{
 	def_blockLen=1
-Führe Schritt aus
+Mach n Schritt
 
 }
 ui_adjust_scopeassignment{
 	def_blockLen=1
-Bereichsbindung anpassen
+Bereichsbindung anpassa
 
 }
 ui_cond_breakpoint{
@@ -206,42 +206,42 @@ Bedingter Breakpoint
 }
 ui_save_config{
 	def_blockLen=1
-Konfigurationsdatei speichern
+Konfigurationsdatei spoichra
 
 }
 ui_suggestion_strategy_stepsize{
 	def_blockLen=1
-Strategie für Vorschläge der Schrittgröße ändern
+Strategie für Vorschläge von dr Schrittgröße ändra
 
 }
 dl_exc_wrong_number_argument{
 	def_blockLen=1
-Falsche Anzahl an Parametern.
+Ned die richtige Anzahl Parameter
 
 }
 ui_exit{
 	def_blockLen=1
-Beenden
+Beenda
 
 }
 fh_exc_parse_block{
 	def_blockLen=1
-Die Datei enthält eine falsche Block Syntax
+Die Datei hot a falscha Block Syntax
 
 }
 fh_exc_lang_not_found{
 	def_blockLen=1
-Sprache nicht gefunden
+Sproch ned gfunda
 
 }
 ui_suggest_condbreakpoint{
 	def_blockLen=1
-Bedingten Breakpoint voschlagen
+Bedingta Breakpoint voschlaga
 
 }
 dl_exc_wesyntax{
 	def_blockLen=1
-Syntaxfehler in einer Watch-Expression
+Syntaxfehler in oiner Watch-Expression
 }
 ui_step{
 	def_blockLen=1
@@ -250,17 +250,17 @@ Schritt
 }
 ui_suggest_stepsize{
 	def_blockLen=1
-Schrittgöße voschlagen
+Schrittgröß vorschlaga
 
 }
 ui_suggest_input{
 	def_blockLen=1
-Eingabewerte voschlagen
+Oigabewerte vorschlaga
 
 }
 ui_change_language{
 	def_blockLen=1
-Sprache ändern
+Sproch ändra
 
 }
 ui_values_out{
@@ -270,59 +270,59 @@ Ausgabewerte
 }
 db_it_exc_le{
 	def_blockLen=1
-Die Operation "less equal" hat ein oder mehrere falsche Typen.
+Die Operation "less equal" hat oin oder mehrere falsche Typa.
 
 }
 db_it_exc_add{
 	def_blockLen=1
-Die Operation "add" hat ein oder mehrere falsche Typen.
+Die Operation "add" hat oin oder mehrere falsche Typa.
 
 }
 ui_debug_run{
 	def_blockLen=1
-Debuggen beginnen
+Debuggen afanga
 
 }
 ui_we_tooltip{
 	def_blockLen=3
-<html>Erstes Feld für Optionen zu dieser Watch-Expression, <br>
-mittleres Feld um die Watch-Expression zu ändern. <br>
-Um einee neue Watch-Expression hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+<html>Erschdes Feld für Optiona zu dera Watch-Expression, <br>
+middleres Feld um die Watch-Expression zu ändra. <br>
+Um a neua Watch-Expression hinzuzufüga, middleres Feld in dr letschda Zeile aklicka.</html>
 
 }
 ui_options{
 	def_blockLen=1
-Einstellungen
+Einstellunga
 
 }
 dl_exc_wrong_type_argument{
 	def_blockLen=1
-Ein oder mehr Argumente sind vom falsche Typ.
+Oin oder mehr Argumente sind vom falscha Typ.
 
 }
 ui_delete{
 	def_blockLen=1
-Löschen
+Löscha
 
 }
 ui_max_iterations{
 	def_blockLen=1
-Maximale Iterationen festlegen
+Maximale Iterationen feschdlega
 
 }
 ui_suggestion_strategy_input{
 	def_blockLen=1
-Strategie für Vorschläge von Eingabewerten ändern
+Strategie für Vorschläge von Eingabewerte ändra
 
 }
 ui_stepout_tooltip{
 	def_blockLen=1
-Aus der derzeitigen Methode herausspringen
+Aus dera derzeitiga Methode herausspringa
 
 }
 db_it_exc_gt{
 	def_blockLen=1
-Die Operation "greater than" hat ein oder mehrere falsche Typen.
+Die Operation "greater than" hat oin oder mehrere falsche Typa.
 
 }
 ui_type{
@@ -332,17 +332,17 @@ Typ
 }
 db_it_exc_div{
 	def_blockLen=1
-Die Operation "div" hat ein oder mehrere falsche Typen.
+Die Operation "div" hat oin oder mehrere falsche Typa.
 
 }
 ui_debug_step_single{
 	def_blockLen=1
-Führe Einzelschritt aus
+Mach an Oinzelschritt
 
 }
 ui_suggestion_infotext{
 	def_blockLen=1
-Ok drücken, um Voschlag zu erhalten
+Ok drücka, um Voschlag zu kriega
 
 }
 ui_suggestions{
@@ -352,12 +352,12 @@ Vorschläge
 }
 db_it_exc_mod{
 	def_blockLen=1
-Die Operation "modulo" hat ein oder mehrere falsche Typen.
+Die Operation "modulo" hat oin oder mehrere falsche Typa.
 
 }
 db_it_exc_or{
 	def_blockLen=1
-Die Operation "or" hat ein oder mehrere falsche Typen.
+Die Operation "or" hat oin oder mehrere falsche Typa.
 
 }
 ui_return{
@@ -367,57 +367,57 @@ Rückgabewert
 }
 ui_suggest_watchexpression{
 	def_blockLen=1
-WatchExpression voschlagen
+WatchExpression vorschlaga
 
 }
 ui_help{
 	def_blockLen=1
-Hilfe
+Hilf mr
 
 }
 ui_values_in{
 	def_blockLen=1
-Eingabewerte
+Eigabewerte
 
 }
 db_it_exc_ge{
 	def_blockLen=1
-Die Operation "greater equal" hat ein oder mehrere falsche Typen.
+Die Operation "greater equal" hat oin oder mehrere falsche Typa.
 
 }
 dl_exc_invalid_program{
 	def_blockLen=1
-Dieses Program ist invalide und kann nicht als Wlang Program interpretiert werden.
+Dieses Program isch invalide und kann ned als Wlang Program interpretiert werda.
 
 }
 ui_suggestion_strategy_expression{
 	def_blockLen=1
-Strategie für Vorschläge von relationalen Ausdrücken ändern
+Strategie für Vorschläge von relationale Ausdrücke ändra
 
 }
 ui_settings{
 	def_blockLen=1
-Einstellungen
+Einstellunga
 
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-Die Datei beinhaltet eine invalide Zeile.
+Die Datei beinhaltet a invalida Zeile.
 
 }
 ui_stepsize_tooltip{
 	def_blockLen=1
-Enter drücken, um Eingabe zu bestätigen
+Enter drücka, um Eingabe zu bestätiga
 
 }
 ui_input_tooltip{
 	def_blockLen=1
-Eingabewerte durch Semikola trennen
+Eingabewerte durch Semikola trenna
 
 }
 dl_exc_cbsyntax{
 	def_blockLen=1
-Syntaxfehler in einem bedingten Breakpoint
+Syntaxfehler in oim bedingta Breakpoint
 }
 ui_line{
 	def_blockLen=1
@@ -426,47 +426,47 @@ Zeile
 }
 ui_no{
 	def_blockLen=1
-Nein
+Noi
 
 }
 ui_start_tooltip{
 	def_blockLen=1
-Hier klicken, um Debugmodus zu starten
+Hier klicka, um Debugmodus zu starta
 
 }
 db_it_exc_lt{
 	def_blockLen=1
-Die Operation "less than hat ein oder mehrere falsche Typen.
+Die Operation "less than hat oin oder mehrere falsche Typa.
 
 }
 ui_continue_tooltip{
 	def_blockLen=1
-Debuggin bis zum nächsten Breakpoint fortführen
+Debugging bis zum nächsta Breakpoint fortführa
 
 }
 ui_varinspector_tooltip{
 	def_blockLen=1
-Variable markieren und mit rechtsklick ausblenden
+Variable markiera und mit Rechtsklick ausblenda
 
 }
 ui_single_step{
 	def_blockLen=1
-Einzelschritt
+Oinzelschritt
 
 }
 ui_load_program_text{
 	def_blockLen=1
-Programmtext laden
+Programmtext lada
 
 }
 dl_exc_already_declared{
 	def_blockLen=1
-Variable wurde schon deklariert.
+Variable wurd schon deklariert.
 
 }
 ui_load_config{
 	def_blockLen=1
-Konfigurationsdatei laden
+Konfigurationsdatei lada
 
 }
 ui_debug_continue{
@@ -476,8 +476,8 @@ Weiter
 }
 ui_cb_tooltip{
 	def_blockLen=3
-<html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>
-mittleres Feld um den bedingten Breakpoint zu ändern. <br>
-Um einen neuen bedingten Breakpoint hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+<html>Erschdes Feld für Optiona zu dem bedingta Breakpoint, <br>
+middleres Feld um den bedingta Breakpoint zu ändra. <br>
+Um n neue bedingta Breakpoint hinzuzufüga, middleres Feld der letschda Zeile anklicka.</html>
 
 }
