@@ -1,0 +1,478 @@
+﻿langID='german_utf'
+langName='Deutsch'
+ui_add_program{
+	def_blockLen=1
+Mach e neiie Datei dezu.
+
+}
+fh_exc_parse_assign{
+	def_blockLen=1
+Dei Datei isch bleed.
+
+}
+ui_reset_gui{
+	def_blockLen=1
+Reduur.
+
+}
+dl_exc_wrong_type_assignment{
+	def_blockLen=1
+Du weischd ennre Variable de falsche Tüpp zu.
+
+}
+ui_for{
+	def_blockLen=1
+Fer
+
+}
+ui_debug_step_out{
+	def_blockLen=1
+Hups aus de Funktion raus.
+
+}
+ui_step_tooltip{
+	def_blockLen=1
+Als Schrittgröße festgelegte Anzahl an Befehlen wird ausgeführt
+
+}
+ui_start{
+	def_blockLen=1
+Abfaaahrt!
+
+}
+db_it_exc_not{
+	def_blockLen=1
+Es "not" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_watch_expression{
+	def_blockLen=1
+Watch Expression
+
+}
+db_it_exc_and{
+	def_blockLen=1
+Es "and" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_suggestion{
+	def_blockLen=1
+Vorschlag
+}
+db_it_exc_eq{
+	def_blockLen=1
+Es "equals" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_file_menu{
+	def_blockLen=1
+Datei
+
+}
+ui_debug_step_back{
+	def_blockLen=1
+Mach en Schritt reduur.
+
+}
+ui_program_limit_reached{
+	def_blockLen=1
+Mach dei Programm kärza!
+
+}
+ui_var_inspector{
+	def_blockLen=1
+Dategugghanebammbl.
+
+}
+ui_debug_stop{
+	def_blockLen=1
+uffheere.
+
+}
+dl_exc_variable_not_found{
+	def_blockLen=1
+Was soll des fa e Variable sei?
+
+}
+english{
+	def_blockLen=1
+Englisch
+
+}
+db_it_exc_mul{
+	def_blockLen=1
+Es "mul" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_show_hidden_variables{
+	def_blockLen=1
+Hol die anner Variable widda ausm Kaschde.
+
+}
+dl_exc_missing_return_call{
+	def_blockLen=1
+Die Methood braucht so e "return" Ding.
+
+}
+ui_program{
+	def_blockLen=1
+Programm
+
+}
+ui_interval{
+	def_blockLen=1
+Intervall
+
+}
+dl_exc_routine_not_found{
+	def_blockLen=1
+Ich finn die dabbich Funktion net, wo du uffrufe willsch.
+}
+ui_cond_breakpoint_akkusativ{
+	def_blockLen=1
+Bedingte Breakpoint
+
+}
+ui_stop_tooltip{
+	def_blockLen=1
+Drigg do druff, dann werrsch ferdich.
+
+}
+dl_exc_syntax{
+	def_blockLen=1
+Was schreibsch du fa en Kees?? Do is was mit deine Syntax nimmie ganz in Ordnung.
+
+}
+ui_max_functioncalls{
+	def_blockLen=1
+Geb a, wie oft du e Funktion uffrufe darfsch.
+
+}
+db_it_exc_sub{
+	def_blockLen=1
+Es "sub" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_stepsize{
+	def_blockLen=1
+Schrittgreeß
+
+}
+ui_from{
+	def_blockLen=1
+Vun
+
+}
+ui_debug_step_over{
+	def_blockLen=1
+Driwwa huppse.
+
+}
+ui_to{
+	def_blockLen=1
+Bis
+
+}
+ui_yes{
+	def_blockLen=1
+Hajo.
+
+}
+ui_end{
+	def_blockLen=1
+Ferdich ab.
+
+}
+ui_stepover_tooltip{
+	def_blockLen=1
+Spring iwwa die Funktion driwwa.
+}
+ui_debug_step{
+	def_blockLen=1
+geh ens weida.
+
+}
+ui_adjust_scopeassignment{
+	def_blockLen=1
+Soll des Ding wu annasch gelde?
+
+}
+ui_cond_breakpoint{
+	def_blockLen=1
+Bedingter Breakpoint
+
+}
+ui_save_config{
+	def_blockLen=1
+Speicher wassd gschafft hosch.
+
+}
+ui_suggestion_strategy_stepsize{
+	def_blockLen=1
+Do kannsch einstelle, wie dei Schrittgreeß eigstellt vorgschlache werre soll.
+
+}
+dl_exc_wrong_number_argument{
+	def_blockLen=1
+Zu wennich odda zu viel Parameter.
+
+}
+ui_exit{
+	def_blockLen=1
+Hopp alla bis dann.
+
+}
+fh_exc_parse_block{
+	def_blockLen=1
+In deine Datei is ebbes mit de Bleck gabudd.
+
+}
+fh_exc_lang_not_found{
+	def_blockLen=1
+Die Sproch babbl ich nit.
+
+}
+ui_suggest_condbreakpoint{
+	def_blockLen=1
+Bedingter Breakpoint vorschlache
+
+}
+dl_exc_wesyntax{
+	def_blockLen=1
+Dei Watch-Expression hottse nimmie all am Krischdbääml.
+}
+ui_step{
+	def_blockLen=1
+Schritt
+
+}
+ui_suggest_stepsize{
+	def_blockLen=1
+Schrittgreeß voschlache.
+
+}
+ui_suggest_input{
+	def_blockLen=1
+Loss da e Eigab vorschlache.
+
+}
+ui_change_language{
+	def_blockLen=1
+Willsch ebbes anneres babble?
+
+}
+ui_values_out{
+	def_blockLen=1
+Ausgawezeich.
+
+}
+db_it_exc_le{
+	def_blockLen=1
+Es "less equal" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+db_it_exc_add{
+	def_blockLen=1
+Es "add" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_debug_run{
+	def_blockLen=1
+Dibaggeabfahrt.
+
+}
+ui_we_tooltip{
+	def_blockLen=3
+<html>Des erschde Feld is ferr die Optione, <br>
+es zwedde Feld is ferrs ännre der Watch Expression. <br>
+Wennd e neie Watch Expression nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+
+}
+ui_options{
+	def_blockLen=1
+Zeich eistelle.
+
+}
+dl_exc_wrong_type_argument{
+	def_blockLen=1
+Des was du eigibsch hot en falsche Tüpp.
+
+}
+ui_delete{
+	def_blockLen=1
+Foad demit.
+
+}
+ui_max_iterations{
+	def_blockLen=1
+Leech dei Umdreungetollaranze feschd.
+
+}
+ui_suggestion_strategy_input{
+	def_blockLen=1
+Do kannsch eistelle, wie dei Vorschlääch gemacht werre sollen.
+
+}
+ui_stepout_tooltip{
+	def_blockLen=1
+Aus deere Funktion naushuppse
+
+}
+db_it_exc_gt{
+	def_blockLen=1
+Es "greater than" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_type{
+	def_blockLen=1
+Tüpp.
+
+}
+db_it_exc_div{
+	def_blockLen=1
+Es "div" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_debug_step_single{
+	def_blockLen=1
+Geh enna weida.
+
+}
+ui_suggestion_infotext{
+	def_blockLen=1
+Alla hopp drigge, um Voschlääch zu krieeche.
+
+}
+ui_suggestions{
+	def_blockLen=1
+Vorschlääch.
+
+}
+db_it_exc_mod{
+	def_blockLen=1
+Es "modulo" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+db_it_exc_or{
+	def_blockLen=1
+Es "or" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_return{
+	def_blockLen=1
+	Ergebnis
+
+}
+ui_suggest_watchexpression{
+	def_blockLen=1
+Schlaach ma mol was vor.
+}
+ui_help{
+	def_blockLen=1
+Hosch e Problääm?
+
+}
+ui_values_in{
+	def_blockLen=1
+Dei Eigaawe:
+
+}
+db_it_exc_ge{
+	def_blockLen=1
+Es "greater equal" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+dl_exc_invalid_program{
+	def_blockLen=1
+In dem Programm is ebbes falsch geloffe.
+
+}
+ui_suggestion_strategy_expression{
+	def_blockLen=1
+Do kannsch ännre, wie die Vorschlääch gemacht werren.
+}
+ui_settings{
+	def_blockLen=1
+  Do kannsch en Haufe Zeich ännre.
+}
+fh_exc_invalid_line_type{
+	def_blockLen=1
+In deinre Datei is e Zeil krumplich.
+
+}
+ui_stepsize_tooltip{
+	def_blockLen=1
+Enter drigge, um dich feschdzeleche.
+
+}
+ui_input_tooltip{
+	def_blockLen=1
+Mach immer en Strichpunkt zwische dei Eingawe.
+
+}
+dl_exc_cbsyntax{
+	def_blockLen=1
+In so emme bedingte Breakpoint is ebbes falsch.
+}
+ui_line{
+	def_blockLen=1
+Zeil
+
+}
+ui_no{
+	def_blockLen=1
+Nää!
+
+}
+ui_start_tooltip{
+	def_blockLen=1
+Wannd do driggsch, fangsch a.
+
+}
+db_it_exc_lt{
+	def_blockLen=1
+Es "less than" hat ää odda zwää odda drei odda mä falsche Tüppe.
+
+}
+ui_continue_tooltip{
+	def_blockLen=1
+Weida bis ebbes bassiert.
+
+}
+ui_varinspector_tooltip{
+	def_blockLen=1
+Variable erschd markiere unn dann mit de rechte Maustaschd rausschmeisse.
+
+}
+ui_single_step{
+	def_blockLen=1
+ÄÄnzlschritt
+
+}
+ui_load_program_text{
+	def_blockLen=1
+Programmtext lade.
+
+}
+dl_exc_already_declared{
+	def_blockLen=1
+du hosch ma doch schun vun deere Variable verzehlt.
+
+}
+ui_load_config{
+	def_blockLen=1
+Konfigurationsdatei lade.
+
+}
+ui_debug_continue{
+	def_blockLen=1
+Weida.
+
+}
+ui_cb_tooltip{
+	def_blockLen=3
+<html>Des erschde Feld is ferr die Optione, <br>
+es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
+Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+
+}
