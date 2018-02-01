@@ -83,7 +83,7 @@ Weiter gab es hier eine Änderung der Verantwortlichkeit: Ulla implementierte mi
 %folgend ein Bescheuerter Satz
 Aus Interessen- und Vorwissensgründen wurde dies so abgesprochen und umgesetzt.
 %Aufgrund des Vergessens von simplen Getter / Setter Methoden während des Entwurfs des Pakets \textit{FileHandler.Facade} hat sich die angedachte Entwicklungszeit stark vergrößert, da immer wieder kleine Änderungen vorgenommen werden mussten.%
-Die Implementierung des \textit{Interpreters} war aufwändig, wie im Entwurf erarbeitet, allerdings stellte sich die Implementierung der Benutzeroberfläche als noch zeitintensiver heraus, was vor allem an der unintuitiven Bedienung der Bibliothek \textit{java.swing} lag.
+Die Implementierung des \textit{Interpreters} war aufwändig, wie im Entwurf erarbeitet, allerdings stellte sich die Implementierung der Benutzeroberfläche als noch zeitintensiver heraus, was vor allem an der unintuitiven Bedienung der Bibliothek \textit{java.swing} lag. Diese gemeinschaftliche Fehleinschätzung wirkte sich auf auf die Erfüllung der funktionalen Anforderungen aus, wie im nächsten Abschnitt erklärt wird.
 Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \begin{figure}[!h]
 \centering
@@ -91,28 +91,34 @@ Das folgende Gantt-Diagramm zeigt den Zeitverlauf in graphischer Form auf.
 \caption{Gantt-Diagramm des Zeitverlaufes}
 \end{figure}
 
+\section{Umsetzung der funktionalen Anforderungen}
+Grundsätzlich ist zu sagen, dass der DIBugger die Funktion, für die er entworfen wurde, komplett erfüllt: Es ist möglich, mehrere Programme gleichzeitig zu debuggen und auf relationale Eigenschaften zu untersuchen.
+Aus den im vorigen Abschnitt genannten Gründen, wurde eine Triage der Anforderungen vorgenommen, die dem Nutzer trotzdem die größtmögliche Funktionalität bereitstellen soll.
+
+\subsection{Musskriterien}
+Die Musskriterien wurden alle bis auf eines erfüllt. Dabei handelt es sich um /FA200/: \textit{\enquote{Die Variablenreihenfolge im Variableninspektor ist manuell veränderbar.}} \\ Dies ist in der aktuellen Version nicht möglich - Variablen können allerdings ein- und ausgeblendet werden. Auf den ersten Blick ist fraglich, warum es sich bei diesem Kriterium überhaupt um ein Musskriterium handelt. Grund dafür war der Folgende: Die Übersichtlichkeit der Benutzeroberfläche wurde als sehr relevant eingestuft, und es sollte dem Benutzer deshalb ermöglicht werden, die Werte zweier Variablen aus verschiedenen Programmen so zu verschieben, dass er sie leicht vergleichen kann. Mit der aktuellen Implementierung wird dieses Ziel aber trotzdem erreicht: Der Benutzer kann die für den Vergleich irrelevanten Variablen einfach ausblenden, sodass das Ziel der Übersichtlichkeit erfüllt wird.
+
+\subsection{Sollkriterien}
+Die Sollkriterien wurden alle bis auf eines erfüllt. Dabei handelt es sich um /FA230/: \textit{\enquote{Der Benutzer kann Variablen auswählen, von welchen jeder angenommene Wert gespeichert wird.}} \\
+Dies ist in der aktuellen Version nur auf der Ebene der Benutzeroberfläche nicht möglich. Der Entwurf und die Implementierung des Interpreters unterstützen diese Funktionalität, da ein Trace alle Zustände einer Variablen enthält - und dies auch im Fall von Rekursion oder Schleifenaufrufen. Für eine Umsetzung auf der Benutzeroberfläche müsste noch ein weiteres Pop-Up und ein Menüeintrag hinzugefügt werden, worauf aus Gründen des Projektumfangs und der Zeit verzichtet wurde. Ist der Benutzer an allen Werten einer Variable interessiert, kann er diese Schritt (\enquote{Step}) für Schritt (\enquote{Step}) trotzdem einsehen. Hat der Benutzer eine konkrete Fragestellung bezüglich des Wertes einer Variablen, kann er diese über die Watch-Expressions und Bedingte Breakpoints überprüfen und die Fragestellung sogar mit Hilfe einer Bereichsbindung konkretisieren.
+
+\subsection{Kannkriterien}
+Das Kannkriterium /FA310/ wurde zuerst umgesetzt: \textit{\enquote{Der Benutzer kann Rückschritte in den Programmen durchführen.}} Dieses ist das wichtigste unter den Kannkriterien, da es eine Funktionalität bietet, die nicht anders erfüllt werden kann. \\
+Nicht umgesetzt wurden:
+\begin{itemize}
+\item[/FA290/] \textit{\enquote{Die Datei des zu debuggenden Programms kann in eines der jeweiligen Textfelder hineingezogen werden.}} \\
+Diese Funktionalität ist redundant zu /FA160/, /FA170/ und /FA180/, die bereits die Möglichkeiten bieten, Text direkt oder als Drag-and-Drop, per Copy-Paste oder als Textdatei einzubinden.
+\item[/FA291/] \textit{\enquote{Die Textfelder für die jeweiligen Programme verfügen über ein Syntax-Highlighting.}} \\
+Möchte der Benutzer ein Syntax-Highlighting haben, ist es ein Leichtes, den Programmtext erst in einem Editor zu verfassen und dann über die vielen verschiedenen Möglichkeiten der Texteinbindung im DIbugger einzufügen.
+\item[/FA320/] \textit{\enquote{Die an Zeilen im Programm gebundenen Breakpoints verschieben sich mit dem Programm, wenn dieses im Editiermodus geändert wird.}}  \\
+Problematisch hierbei ist, dass das JPanel, indem sich der Programmtext befindet, Änderungen am Text nicht direkt erfasst. Um Breakpoints korrekt zu verschieben, müsste die Benutzeroberfläche somit nach jedem einzelnen Klick in einem Programmfenster, den gesamten Inhalt Zeile für Zeile parsen und ihn mit dem vorigen Text zu vergleichen. Auf Grund dieser unattraktiven Lösung wurde das Kriterium zurückgestellt.
+
+\end{itemize}
+
+
 \section{Umsetzung der nichtfunktionalen-Anforderungen}
 
-Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft. Wenn eine Anforderung bezüglich ihrer Relevanz klassifiziert wurde, ist dies auch aufgeführt.
-
-	\subsection{Produktdaten}
-	Konfigurations-, Sprach- und Einstellungsdateien erfüllen die Funktionalität, die im Pflichtenheft unter 4.2.1 definiert wurde.
-%		\begin{itemize}
-%		
-%		
-%			\item[/PD10/] Konfigurationsdateien: \\
-%			Diese Dateien speichern eine Konfiguration des Produkts. 
-%			Hierzu gehört der aktuelle Status der Benutzeroberfläche (Eingabewerte, Schrittgrößen, Variablenauswahl, Programmtexte, Breakpoints, bedingte Breakpoints, Watch-Expressions) und der Programme.
-%			Hier werden dann zusätzlich die aktuellen Positionen in den Programmabläufen gespeichert.
-%			
-%			\item[/PD20/] Sprachdateien: \\
-%			Diese Datei speichert die Übersetzung der gesamten Benutzeroberfläche.
-%			Dazu gehören die Texte der GUI-Elemente und Tooltips.
-%			
-%			\item[/PD30/] Einstellungsdatei: \\
-%			Diese Datei speichert die zuletzt ausgewählte Sprache und die Adresse der Konfigurationsdatei, welche zur zuletzt verwendeten Konfiguration passt.  
-%			\end{itemize}
-			
+Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert sich an der Anordnung im Pflichtenheft. Wenn eine Anforderung bezüglich ihrer Relevanz klassifiziert wurde, ist dies auch aufgeführt.			
 			 
 		\subsection{Produktleistungen}
 		%Zeitverhalten, Genauigkeit, Fehlertoleranz
@@ -122,7 +128,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		%Den Debugmodus zu starten dauert unter 5 Sekunden. 
 
 		\item[/PL20/] Genauigkeit: \\
-		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch in WLang. Die im Pflichtenheft dokumentierten Anforderungen wurden damit umgesetzt.
+		Da die Sprache alle primitiven Datentypen von Java unterstützt und diese im Produkt durch äquivalente Java Typen, laufend auf einer JVM (Java Virtual Machine), implementiert wurden, ergeben sich dieselben Genauigkeiten auch bei Ausführung von Programmen der Sprache WLang. Die im Pflichtenheft dokumentierten Anforderungen wurden damit umgesetzt.
 
 		\item[/PL30/] Fehlertoleranz: \\
 		Die Fehlertoleranz, im Pflichtenheft als relevant eingestuft, wurde durch verschiedene Maßnahmen umgesetzt: Erstens, werden bei fehlenden Eingabewerten für Startvariablen diese automatisch generiert. Zweitens, wird die Semantik aller Eingaben (das heißt von Eingabevariablen, Programmtexten, Watch-Expressions und Bedingten Breakpoints) beim Start des Debugmodus direkt vom \textit{Antlr}-Parser kontrolliert. Dabei auftretende Fehler werden durch Pop-Ups über die Benutzeroberfläche zurückgemeldet.
@@ -136,6 +142,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 		\item Richtigkeit: \\
 		Die Richtigkeit wurde im Pflichtenheft als sehr relevant eingestuft. Die Implementierung hat dies so weit wie möglich berücksichtigt. Die tatsächliche Umsetzung kann allerdings erst während der Qualitätssicherung sichergestellt werden.
 		\item Installierbarkeit: \\
+Der DIbugger wird in einer zip-Datei abgeliefert, die eine ausführbare jar-Datei enthält.		
 		
 		\end{itemize}
 		
@@ -166,7 +173,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 				\item Erlernbarkeit \\
 				Die Erlernbarkeit der Benutzeroberfläche wurde im Pflichtenheft als relevant eingestuft. Verständlichkeit und Übersichtlichkeit tragen dazu natürlich bei - vor allem wurde aber eine Dokumentation erstellt, die über den Hilfe-Menüeintrag verfügbar ist und eine Übersicht über das Programm gibt, sowie häufige Fehlerquellen im Umgang mit dem Produkt, insbesondere der benutzten Sprache WLang, adressiert. Endgültige Aussagen zur Erlernbarkeit können allerdings erst nach der Testphase getroffen werden, wenn mehrere, entwicklungsfremde Testpersonen der Zielgruppe (das heißt Individuen, die bereits Erfahrung mit üblichen Debuggern und Programmiersprachen haben) das Produkt benutzt haben. Die Dokumentation wird dann um ihre Fragen und Anmerkungen erweitert.
 				\item Modifizierbarkeit \\
-				Die Modifizierbarkeit, im Pflichtenheft bezogen auf das Hinzufügen zusätzlicher Funktionalität bei Veränderungen am Code des DIbuggers, wurde als sehr relevant eingestuft. Um eine optimale Modifizierbarkeit zu leisten, hätte man eine neue Bibliothek zur Erstellung von Benutzeroberflächen entwerfen und implementieren müssen. Dies war im Rahmen dieses Projektes jedoch nicht vorgesehen. Innerhalb der Einschränkungen von \textit{java.swing} wurden mittels klarer Dokumentation und der konventionellen Verwendung von Panels allerdings trotzdem die Bedingungen für eine möglichst hohe Modifizierbarkeit geschaffen.
+				Die Modifizierbarkeit, im Pflichtenheft bezogen auf das Hinzufügen zusätzlicher Funktionalität bei Veränderungen am Code des DIbuggers, wurde als sehr relevant eingestuft. Um eine optimale Modifizierbarkeit zu leisten, hätte man eine neue Bibliothek zur Erstellung von Benutzeroberflächen entwerfen und implementieren müssen. Dies war im Rahmen dieses Projektes jedoch nicht vorgesehen. Innerhalb der Einschränkungen von \textit{java.swing} wurden mittels klarer Dokumentation und der Verwendung von \textit{JPanels} allerdings trotzdem die Bedingungen für eine möglichst hohe Modifizierbarkeit geschaffen. Soll zusätzliche Funktionalität hinzugefügt werden, kann dies einfach über ein neues \textit{JPanel} geschehen.
 				
 				\end{itemize}
 		
@@ -177,7 +184,7 @@ Die Einteilung der nichtfunktionalen Anforderungen in Unterkapitel orientiert si
 %\newpage
 \subsection{Singleton}
 %%z.B. Command Panel
-Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe Abbildung \ref{loadRDBF}, kann das Einlesen einer RDBF (Relational DIbugger File) Datei in einer kurzen Methoden geschehen.
+Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe Abbildung \ref{loadRDBF}, kann das Einlesen einer RDBF (Relational DIbugger Format) Datei in einer kurzen Methoden geschehen.
 Über \textit{evaluateLineType(String line)} wird der Typ einer Zeile herausgefunden. Je nachdem, von welchem Typ diese Zeile dann ist, werden über das Singleton der Klasse RDBFParser unterschiedliche Methoden aufgerufen, um eine Zuweisung oder einen Block zu erstellen und in der Dateistruktur einzuordnen. Dies ist durch das Singleton einfach zu lösen.
 \begin{figure}[!h]
 \includegraphics[width=1.0\textwidth]{document_data/loadRDBFFile.png}
@@ -198,16 +205,16 @@ Durch die Nutzung von Rekursion und des Singletons der Klasse RDBFParser, siehe 
 \caption{Strategiemuster des DBFileReaders im Paket FileHandler}
 \label{fig:strategy_fh}
 \end{figure}
-Wie in Abbildung \ref{fig:strategy_fh} aufgezeigt, steht der DBFileReader für den \enquote{Kopf} des Strategiemusters.
+Wie in Abbildung \ref{fig:strategy_fh} aufgezeigt, steht der DBFileReader (der Klassenname steht für \enquote{DebuggerFileReader}) für den \enquote{Kopf} des Strategiemusters.
 Dieser kann als abstrakte Klasse nicht erzeugt werden und stellt zwei abstrakte Methoden ohne Implementierung zur Verfügung.
-Diese müssen bei der Vererbung durch eine Unterklasse, z.B. \textit{RDBFDBFileReader}, \textit{XMLDBFileReader}, \textit{JsonDBFileReader} usw., überschrieben und vollständig Implementiert werden.
+Diese müssen bei der Vererbung durch eine Unterklasse, z.B. \textit{RDBFDBFileReader} (der Klassenname steht für enquote{RelationalDebuggerFormatDebuggerFileReader}), \textit{XMLDBFileReader}, \textit{JsonDBFileReader} usw., überschrieben und vollständig Implementiert werden.
 Dadurch können unter Vorraussetzung einer korrekten Implementierung der beiden Methoden weitere Dateiformate hinzugefügt werden.
 Dies gilt ebenso für die Klassen \textit{DBFileWriter, PropertiesFileReader} und \textit{PropertiesFileWriter}. Sie sind ähnlich aufgebaut zu der hier gezeigten Klasse.
 
 \subsection{Die Visitor im Interpreter} Der Entwurf sah im Paket \textit{Interpreter} zwei Klassen vor, die das Visitor Pattern umsetzen. Die beiden Klassen \textit{CommandGenerationVisitor} und \textit{TermGenerationVisitor} sind Unterklassen der von Antlr generierten Klasse \textit{WlangBaseVisitor<T>}, wobei der Generic hier angibt, welchen Datentyp die visit-Methoden zurückgeben. Wie es der Name andeutet, ist dies zum einen die Klasse \textit{Command} und zum anderen die Klasse \textit{Term}. 
 Da Terme sowohl während der Traceerzeugung (genauere Erklärung dazu ist im Entwurfsdokument Kapitel 8.10 zu finden) als auch innerhalb von Watch-Expressions und bedingten Breakpoints vorkommen, kam das Problem auf, dass der \textit{TermGenerationVisitor} zunächst sowohl vom \textit{TermsBaseVisitor} (für die im Entwurfsdokument Anhang 12.2 definierte Syntax der Watch-Expressions) als auch vom \textit{WlangBaseVisitor} (für die in Entwurfsdokument 12.1 definierte Wlang-Syntax) erben musste. In Java ist bekanntlich keine Mehrfachvererbung möglich. Zur Lösung des Problems wurden die Grammatiken zusammengefügt und entsprechend beim Verwenden eine andere Startregel angegeben. 
 \subsection{Nutzung der von Antlr generierten Klassen}
-In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Wenn diese Klassen benutzt werden, geschieht das immer wie in den Zeilen 65-68. Im einzelnen Fall muss dann nur die richtige Startregel der Grammatik ausgewählt werden, hier zum Beispiel \textit{webppterm()}. \\
+In Abbildung \ref{createTerm} ist die Nutzung der von Antlr generierten Klassen im Rahmen einer Watch-Expression zu sehen. Wenn diese Klassen benutzt werden, geschieht das immer wie in den Zeilen 65-68. Im einzelnen Fall muss dann nur die richtige Startregel der Grammatik ausgewählt werden, hier zum Beispiel \textit{webppterm()} (\enquote{webppterm} steht für \enquote{watch-expression-bedingter-Preakpoint-Term)}. \\
 Im abgebildeten Code ist in \texttt{this.specifier} der String gespeichert worden, der die Watch-Expression spezifiziert. Die Klassen \textit{WlangLexer} und \textit{WlangParser} erzeugen dann einen Ableitungsbaum, den \textit{ParseTree}. Über diesen werden die oben angesprochenen Visitor geschickt.
 \begin{figure}[!h]
 \includegraphics[width=0.7\textwidth]{document_data/createTerm.png}
@@ -265,7 +272,7 @@ Ursprünglich sollte der \textit{TraceIterator} mit Hilfe einer gesonderten Klas
 \paragraph{TermValue}
 Die Klasse \textit{TermValue}, die ursprünglich als Interface implementiert werden sollte, ist nun eine abstrakte Klasse. So kann die Methode \textit{getType()} einmal an zentraler Stelle für alle Unterklassen definiert werden und Code-Duplikate werden vermieden.
 \paragraph{TraceState}
-In der Klasse \textit{TraceState} wurde das Attribut String programId ergänzt. Dies ist nötig, damit WatchExpressions - die nur TraceStates und keine Traces kennen - wissen, zu welchem Programm welcher TraceState gehört. Dies hat auch eine Änderung in den Klassen \textit{Trace} und \textit{GenerationController} zu Folge. Die Klasse \textit{Trace} übernimmt die Aufgabe, die eben beschriebene \textit{programId} in alle \textit{TraceStates} eines \textit{Traces} einzutragen, und nimmt dazu in ihrem Konstruktor einen weiteren Parameter entgegen. Da der \textit{Trace} diese Information vom  \textit{GenerationController} bekommt, wird auch in Letzterem der Konstruktor erweitert.
+In der Klasse \textit{TraceState} wurde das Attribut String programId ergänzt. Dies ist nötig, damit WatchExpressions - die nur TraceStates und keine Traces kennen - wissen, zu welchem Programm welcher TraceState gehört. Dies hat auch eine Änderung in den Klassen \textit{Trace} und \textit{GenerationController} zu Folge. Die Klasse \textit{Trace} übernimmt die Aufgabe, die eben beschriebene \textit{programId} in alle \textit{TraceStates} eines \textit{Traces} einzutragen, und nimmt dazu in ihrem Konstruktor einen weiteren Parameter entgegen. Da der \textit{Trace} diese Information vom  \textit{GenerationController} bekommt, wird auch in letzterem der Konstruktor erweitert.
 \subparagraph{Zusätzliche Klassen}
 Um das entgegennehmen von Rückgabewerten bei Funktionsaufrufen in einem Wlang-Programm zu ermöglichen, wurde der neue Befehl \textit{CallingAssignment} eingeführt. Durch die Erweiterbarkeit des Entwurfsmusters Kompositum konnte diese Klasse einfach als neue Unterklasse von \textit{Command} eingebaut werden. Die übrigen Klassen konnten so die neue Klasse ohne Änderung nutzen.\\
 Ebenso wurde die Klasse \textit{TermList} als neue Unterklasse der Klasse \textit{Term} ins Termkompositum eingebaut. Diese war notwendig, um Starteingaben des Nutzers der Form \texttt{a = \{1,3,1,5\}} zu ermöglichen. Auch hier konnte der erweiterbare Entwurf ausgenutzt werden, sodass diese Neueinführung keine weiteren Änderungen veranlasste.
