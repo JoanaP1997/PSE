@@ -293,12 +293,12 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 
     @Override
     public Term visitLongLiteral(LongLiteralContext ctx) {
-        return new ConstantTerm(new LongValue(Long.parseLong(ctx.getText())));
+        return new ConstantTerm(new LongValue(Long.parseLong(ctx.getText().replaceAll("L", ""))));
     }
 
     @Override
     public Term visitCharLiteral(CharLiteralContext ctx) {
-        return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
+        return new ConstantTerm(new CharValue(ctx.getText().charAt(1)));
     }
     @Override
     public Term visitBooleanLiteral(BooleanLiteralContext ctx) {
