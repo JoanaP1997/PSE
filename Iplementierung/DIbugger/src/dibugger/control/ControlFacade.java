@@ -491,6 +491,7 @@ public class ControlFacade {
     public void changeLanguage(String languageId) {
         try {
             fileHandlerInteractor.changeLanguage(languageId);
+            exceptionHandler.setLanguageFile(fileHandlerInteractor.getLanguageFile());
         } catch (LanguageNotFoundException exception) {
             exceptionHandler.handle(exception);
         }
