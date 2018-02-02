@@ -25,7 +25,8 @@ public class ErrorPopUp extends DIbuggerPopUp {
      */
     public ErrorPopUp(String message, MainInterface mainInterface) {
         this.mainInterface = mainInterface;
-        this.setSize(300, 100);
+        this.setSize(400, 200);
+        this.setResizable(true);
         this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
