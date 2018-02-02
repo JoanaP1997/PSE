@@ -22,6 +22,6 @@ public class SyntaxException extends DIbuggerLogicException {
     @Override
     public String getMessage() {
         String message = super.getMessage();
-        return message + "\n\n" + this.expected;
+        return (message==null) ? this.expected : message + "\n\n" + this.expected;
     }
 }

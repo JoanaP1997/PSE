@@ -44,7 +44,6 @@ public class ExceptionHandler implements Observer {
         String exceptionId = exception.getID();
         String errorMessage = "<html>" + languageFile.getTranslation(exceptionId) + "<br>";
         
-        
         List<String> occurrence = exception.getOccurrence();
         if (occurrence != null && occurrence.size() != 0) {
             String firstOccurrence = occurrence.get(0);
@@ -57,7 +56,9 @@ public class ExceptionHandler implements Observer {
                 }
             }
         }
-        
+        if(exception.getMessage()!=null){
+            errorMessage += "<br>"+exception.getMessage().replace("\n", "<br>");        
+        }
         errorMessage += "</html>";
         guiFacade.showError(errorMessage);
     }
