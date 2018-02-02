@@ -10,6 +10,16 @@ ui_add_program{
 Add program
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	Close DIbugger
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Are you sure you want to close the program?
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 The File contains an wrong Assignment Line.

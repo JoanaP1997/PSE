@@ -5,6 +5,16 @@ ui_add_program{
 Programm hinzufüga
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	Mim DIbugga aufhera
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Willschd wirklich mim DIbugga aufhera?
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 Die Datei hat a falscha Zuweisung.

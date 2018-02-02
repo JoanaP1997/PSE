@@ -5,6 +5,16 @@ ui_add_program{
 Programm hinzufügen
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	DIbugger beenden
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Sind sie sicher, dass sie das Programm beenden möchten?
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 Die Datei enthält eine falsche Zuweisung.
