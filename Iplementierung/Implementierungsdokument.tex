@@ -276,6 +276,7 @@ In der Klasse \textit{TraceState} wurde das Attribut String programId ergänzt. 
 \subparagraph{Zusätzliche Klassen}
 Um das entgegennehmen von Rückgabewerten bei Funktionsaufrufen in einem Wlang-Programm zu ermöglichen, wurde der neue Befehl \textit{CallingAssignment} eingeführt. Durch die Erweiterbarkeit des Entwurfsmusters Kompositum konnte diese Klasse einfach als neue Unterklasse von \textit{Command} eingebaut werden. Die übrigen Klassen konnten so die neue Klasse ohne Änderung nutzen.\\
 Ebenso wurde die Klasse \textit{TermList} als neue Unterklasse der Klasse \textit{Term} ins Termkompositum eingebaut. Diese war notwendig, um Starteingaben des Nutzers der Form \texttt{a = \{1,3,1,5\}} zu ermöglichen. Auch hier konnte der erweiterbare Entwurf ausgenutzt werden, sodass diese Neueinführung keine weiteren Änderungen veranlasste.
+Zudem wurden die zusätzlichen Exception Klassen \textit{SyntaxException, WatchExpressionSyntaxException} und \textit{ConditionalBreakpointSyntaxException} eingefügt. Diese sorgen für spezifiziertere Fehlermeldungen an den Nutzer.
 \subsubsection{Antlr}
 \paragraph{ActuallyHelpfulException und ActuallyHelpfulErrorListener}
 Ursprünglich sollte das gesamte Antlr-Paket autogeneriert werden. Allerdings mussten zur Behandlung von Exceptions zwei Klassen hinzugefügt werden, da Antlr standardmäßig alle Fehlermeldungen auf das Terminal schreibt, statt sie zu werfen.
