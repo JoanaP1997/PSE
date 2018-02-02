@@ -1,0 +1,18 @@
+//other functions must be declared before the main
+int fac(int k) {
+	//Calculate the factorial of k recursively.
+	if (k <= 1) 
+		return 1;
+	// int res = fac(k-1) in a single command is not applicable
+	int res;
+	res = fac(k-1); //this is the correct way to call functions.
+	res = res * k;
+	return res;
+}
+
+//every program needs a main method
+int main(int k) {
+	int res;
+	res = fac(k);
+	return res;
+}
