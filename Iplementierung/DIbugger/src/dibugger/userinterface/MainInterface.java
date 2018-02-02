@@ -9,6 +9,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,7 +46,10 @@ public class MainInterface extends JFrame {
     private static String SUGGESTION_STRATEGY_STEPSIZE = "Strategie f\u00fcr Vorschl\u00e4ge der Schrittgr\u00f6\u00dfe";
     private static String SUGGESTION_STRATEGY_EXPRESSION = "Strategie f\u00fcr Vorschl\u00e4ge von Watch Expressions / bedingten Breakpoints";
     private static String SUGGESTION_STRATEGY_INPUT = "Strategie f\u00fcr Vorschl\u00e4ge von Eingabevariablen";
-
+    private static String CONFIRM_CLOSE = "DIbugger beenden";
+    private static String CONFIRM_CLOSE_QUESTION = "Sind sie sicher, dass sie das Programm beenden möchten?";
+    private static String YES_OPTION = "Ja";
+    private static String NO_OPTION = "Nein";
     TreeMap<String, ProgramPanel> programPanels;
 
     private JMenu fileMenu;
@@ -124,8 +129,12 @@ public class MainInterface extends JFrame {
      */
     private void initComponents() {
         rightControlBar = new JPanel();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                showCloseConfirmationDialog();
+            }
+        });
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         getContentPane().setLayout(groupLayout);
 
@@ -142,6 +151,7 @@ public class MainInterface extends JFrame {
                         .addComponent(rightControlBar)));
 
         changeLanguage();
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("DIbugger");
         ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
         this.setIconImage(icon.getImage());
@@ -207,8 +217,7 @@ public class MainInterface extends JFrame {
         exit = new JMenuItem();
         exit.setText(END_DIBUGGER);
         exit.addActionListener(actionEvent -> {
-            controlFacade.saveProperties();
-            System.exit(0);
+            showCloseConfirmationDialog();
         });
         fileMenu.add(newView);
         fileMenu.add(newProgram);
@@ -408,7 +417,9 @@ public class MainInterface extends JFrame {
         codePanelLayout = new FlowLayout();
         codePanel.setLayout(codePanelLayout);
         programPanels.get("A").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_iterative.txt")));
+        programPanels.get("A").showInput("n = 5;");
         programPanels.get("B").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_recursive.txt")));
+        programPanels.get("B").showInput("k = 4;");
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
 
@@ -613,6 +624,12 @@ public class MainInterface extends JFrame {
             stepSizeStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_stepsize"));
             expressionStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_expression"));
             inputStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_input"));
+
+            CONFIRM_CLOSE = languageFile.getTranslation("ui_confirm_close");
+            CONFIRM_CLOSE_QUESTION = languageFile.getTranslation("ui_confirm_close_question");
+            YES_OPTION = languageFile.getTranslation("ui_yes");
+            NO_OPTION = languageFile.getTranslation("ui_no");
+
         }
 
     }
@@ -657,6 +674,22 @@ public class MainInterface extends JFrame {
      */
     public String getProgramLength(String programId) {
         return programPanels.get(programId).getProgramLength();
+    }
+
+    /**
+     * shows close dialog to confirm end of DIbugger.
+     */
+    private void showCloseConfirmationDialog() {
+        Object[] options = {YES_OPTION,
+            NO_OPTION};
+        int confirm = JOptionPane.showOptionDialog(
+            null, CONFIRM_CLOSE_QUESTION,
+            CONFIRM_CLOSE, JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null, options, null);
+        if (confirm == JOptionPane.YES_OPTION) {
+            controlFacade.saveProperties();
+            System.exit(0);
+        }
     }
 
 }
