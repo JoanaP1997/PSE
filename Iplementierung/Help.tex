@@ -58,19 +58,46 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \tableofcontents
 \pagenumbering{arabic}
 
-\chapter{The User Interface} %Benedikt
+\chapter{Overview} %Benedikt
 %Du hattest ja bereits das UserInterface im Pflichtenheft mit Nummern versehen.
 %Vielleicht kannst du das hier mit einem Bild der richtigen GUI recyceln?
 %Tendenziell sollte man das wohl am Ende machen, falls sich in der GUI noch etwas ändert.
-This chapter gives a short overview over the user interface. The functions of the buttons and menu entries itself are explained within the next chapters.
+
+\section{Quick Start}
+The following chapters provide a detailed explanation of the functionality the DIbugger provides. If reading these pages proves too time-consuming for you or if you feel the exciting urge to use the DIbugger right away, here is the quick start guide. In it, we will refer to the user interface which is described in the next section. \\
+Let's begin. We are assuming that you already opened the debugger and that you have two program texts you want to compare.
+\begin{enumerate}
+\item \textbf{Add your program texts} \\
+Make sure your code follows the requirements of the DIbugger language. (The preview text in the left program window provides an example.) Then, just write or paste your program texts into the text windows.
+\item \textbf{Set some breakpoints} \\
+If you want the debugger to pause at certain lines of code, double-click on the left of the line. You can delete the breakpoints by double-clicking on them.
+\item \textbf{Add a watch-expression} \\
+In the watch-expression panel, add a boolean expression you want to test. For example a comparison between two variables in your programs. To identify a variable in a program, prefix it with the program name and a point, e.g. \enquote{\textit{A.}x} for a variable x in program A.
+\item \textbf{Add a conditional breakpoint} \\
+In the conditional breakpoint panel, add a boolean expression. After starting the debugging process, the DIbugger will stop the execution, if the boolean expression evaluates to true.
+\item \textbf{Start debugging }\\
+Press the \enquote{Play}-Button. 
+\item \textbf{Make steps} \\
+Have fun! Step over, step back, make one or more steps in one program only or in all programs at once.
+\item \textbf{Understand the output} \\
+Amongst other things, the DIbugger shows you the values of all variables and the values of your watch-expressions at the current moment of execution.
+\item \textbf{Stop debugging }\\
+Press the stop button.
+\item \textbf{Make your changes and start the process all over again.} \\
+\item \textbf{Save your work.} \\
+You can do this via the File-Menu. \\\\\\
+\end{enumerate}
+
+\section{The User Interface}
+This section provides a short overview over the user interface. The functions of the buttons and menu entries itself are explained within the next chapters.
 
 %Die Grafik muss noch verkleinert werden, damit sie nicht die ganze Seite einnimmt.
-\begin{figure}[t]
+\newpage
 
+\begin{figure}[!t]
 \includegraphics[width=1.0\textwidth]{../Iplementierung/document_data/guiOverview.png}
-
+\caption{The User Interface}
 \end{figure}
-
 \begin{itemize}
 \item[1] Menu
 \item[2] Load text into program window / delete programwindow
@@ -82,6 +109,7 @@ This chapter gives a short overview over the user interface. The functions of th
 \item[8] Watch Expression Panel
 \item[9] Conditional Breakpoint Panel
 \end{itemize}
+
 
 
 \chapter{Configuring the DIbugger} %Ulla
@@ -185,38 +213,48 @@ int main(int k) {
 To get suggestions for input variables, you can use the menu as follows:
 \textsc{Menu > Suggestions > Suggest Input Values}
 
+\chapter{Simple Breakpoints}
+Breakpoints in the DIbugger work just like breakpoints in any other debugger: They mark the lines where the execution of the program code stops when you are debugging. The first start of the debugger will automically run until it meets its first (conditional) breakpoint. If you then press the \enquote{Continue}-Button in the debug-mode, each program runs until it meets its next breakpoint (or conditional breakpoint).
+
+\section{Adding a Breakpoint}
+You can add a breakpoint by double-clicking into the space on the left of the program line where you want to break.
+
+\section{Removing a Breakpoint}
+You can remove a breakpoint by double-clicking on it.
 
 \chapter{Watch-Expressions and Conditional Breakpoints}
 \section{Syntax of Watch-Expressions}
-A Watch-Expression allows you to perform checks on your program code as you execute it.
+A Watch-Expression allows you to compute information about your program code as you execute it.
 For example, if you have a program A which contains a variable \enquote{x} which should behave the same way as a variable \enquote{y} in program B, you could add a new Watch-Expression as follows:
 \begin{verbatim}
 A.x == B.y
 \end{verbatim}
-
-While debugging your program (that is after starting the debug mode by pressing the Play-Button), the Watch-Expression will always tell you whether it is currently true or false.
-Note that to do that, a Watch-Expression must always evaluate itself to a boolean value. If it does not, it is always evaluated to false.
-Thus, the following types of expressions are allowed:
+Or:
 \begin{verbatim}
-A.x == B.y
-A.x != B.y
-A.x <= B.y
-A.x >= B.y
-A.x < B.y
-A.x > B.y
-true
-false
+A.x + B.y
 \end{verbatim}
 
-If A.x is a boolean value, you could also write:
+While debugging your program (that is after starting the debug mode by pressing the Play-Button), the Watch-Expression will always tell you its current value.
+
+The following examples illustrate the types of expressions allowed:
+\begin{verbatim}
+A.x != B.y
+true
+5.0
+(A.x-B.y)*3
+\end{verbatim}
+
+Writing the name of a variable will return its value at the current point of execution.
 \begin{verbatim}
 A.x
 \end{verbatim}
 
-You could also use some fixed number to compare a variable to:
+You could also use some fixed number to compute information with:
 \begin{verbatim}
 A.x == 5
 B.y != 114.2
+A.x - 5
+B.y * 13
 \end{verbatim}
 
 The syntax of Watch-Expressions does not allow comparisons of three programs. To ensure the equivalence of a variable across three programs, you would have to use two expressions, e.g.:
@@ -224,6 +262,8 @@ The syntax of Watch-Expressions does not allow comparisons of three programs. To
 A.x == B.x
 B.x == C.x
 \end{verbatim}
+
+
 
 
 \section{Adding a Watch-Expression}\label{adding}
@@ -242,7 +282,7 @@ To add or change a scope,c lick into the empty \textsc{Opt} cell on the left of 
 
 \section{Syntax of Conditional Breakpoints}
 %Hier bin ich mir nicht sicher.
-Each Conditional Breakpoint consists of a boolean term the syntax of which is equivalent to the syntax of Watch-Expressions. Their usage differs, though: If the boolean term of the Conditional Breakpoint is evaluated to true, the Conditional Breakpoints stops the execution of the program in the current line. A Conditional Breakpoint thus does exactly what its name suggests: It breaks on a condition. In contrast to a traditional breakpoint, it is therefore not bound to any fixed line.
+Each Conditional Breakpoint consists of a boolean term the syntax of which is equivalent to the syntax of Watch-Expressions. (If the Watch-Expression does not consist of a boolean term, it is always evaluated to false.) Their usage differs, though: If the boolean term of the Conditional Breakpoint is evaluated to true, the Conditional Breakpoints stops the execution of the program in the current line. A Conditional Breakpoint thus does exactly what its name suggests: It breaks on a condition. In contrast to a traditional breakpoint, it is therefore not bound to any fixed line.
 
 \section{Adding a Conditional Breakpoint}
 Adding Conditional Breakpoints works the same way as explained for Watch-Expressions in \ref{adding}.
@@ -268,7 +308,7 @@ After two or more programs are added you can start the Debug-Mode with the green
 \section{Making Steps}
 There are different buttons for different kinds of steps.
 \paragraph{Step}
-The button labeled with \enquote{step} leads to an execution of all programs according to the number of commands given in the specified stepsize. As an example, assume the stepsize of program A is 3 and the stepsize of program B is 2. Then there are 3 commands executed in program A and 2 commands in program B. Encountering a function call, the execution is always stepping into the function.
+The button labeled with \enquote{step} leads to an execution of all programs either according to the number of commands given in the specified stepsize, or until the occurrence of the next breakpoint if it occurs before the specified number of steps is fulfilled. Assume for example the stepsize of program A is 3 and the stepsize of program B is 2. Then, there are three commands executed in program A and two commands in program B. Encountering a function call, the execution is always stepping into the function.
 \paragraph{StepBack}
 The button labeled with \enquote{stepBack} causes the DIbugger to rewind one command in each program.
 \paragraph{StepOut}
