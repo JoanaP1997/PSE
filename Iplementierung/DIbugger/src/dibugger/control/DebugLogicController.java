@@ -127,7 +127,7 @@ public class DebugLogicController {
             try {
                 debugLogicFacade.setStepSize(integerId, Integer.parseInt(stepSize));
             } catch (NumberFormatException e) {
-                throw new SyntaxException("");// TODO
+                //throw new SyntaxException("");
             }
         }
     }
