@@ -684,7 +684,6 @@ public class MainInterface extends JFrame {
             null, CONFIRM_CLOSE_QUESTION,
             CONFIRM_CLOSE, JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE, null, options, null);
-        System.out.println(confirm);
         if (confirm == JOptionPane.YES_OPTION) {
             controlFacade.saveProperties();
             System.exit(0);
