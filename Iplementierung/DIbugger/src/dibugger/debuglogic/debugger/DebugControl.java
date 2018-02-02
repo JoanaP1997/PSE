@@ -522,6 +522,14 @@ public class DebugControl {
     }
 
     /**
+     * 
+     * @return max interations the debugcontrol
+     */
+    public int getMaxIterations(){
+        return maxIterations;
+    }
+    
+    /**
      * Sets the maximum iteration count for recursive function calls
      * 
      * @param count
@@ -531,6 +539,14 @@ public class DebugControl {
         this.maxFunctionCalls = count;
     }
 
+    /**
+     * 
+     * @return max function calls of the debugcontrol
+     */
+    public int getMaxFunctionCalls(){
+        return maxFunctionCalls;
+    }
+    
     // Getter
     /**
      * 

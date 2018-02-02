@@ -176,7 +176,15 @@ public class DebugLogicFacade extends Observable {
     public void setMaximumIterations(int count) {
         debugControl.setMaximumIterations(count);
     }
-
+    
+    /**
+     * 
+     * @return max interations the debugcontrol
+     */
+    public int getMaxIterations(){
+        return debugControl.getMaxIterations();
+    }
+    
     /**
      * @see DebugControl#setMaximumFunctionCalls(int)
      */
@@ -184,6 +192,14 @@ public class DebugLogicFacade extends Observable {
         debugControl.setMaximumFunctionCalls(count);
     }
 
+    /**
+     * 
+     * @return max function calls of the debugcontrol
+     */
+    public int getMaxFunctionCalls(){
+        return debugControl.getMaxFunctionCalls();
+    }
+    
     public void deleteAllBreakpoints() {
         debugControl.deleteAllBreakpoints();
     }
