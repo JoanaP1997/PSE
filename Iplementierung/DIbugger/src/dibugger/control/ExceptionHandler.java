@@ -43,10 +43,9 @@ public class ExceptionHandler implements Observer {
     public void handle(DIbuggerLogicException exception) {
         String exceptionId = exception.getID();
         String errorMessage = "<html>" + languageFile.getTranslation(exceptionId) + "<br>";
-
+        
         
         List<String> occurrence = exception.getOccurrence();
-        
         if (occurrence != null && occurrence.size() != 0) {
             String firstOccurrence = occurrence.get(0);
             firstOccurrence.trim();
@@ -60,7 +59,6 @@ public class ExceptionHandler implements Observer {
         }
         
         errorMessage += "</html>";
-        
         guiFacade.showError(errorMessage);
     }
 
