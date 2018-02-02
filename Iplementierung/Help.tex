@@ -58,14 +58,19 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \tableofcontents
 \pagenumbering{arabic}
 
-%\chapter{The User Interface} %Benedikt
+\chapter{The User Interface} %Benedikt
 %Du hattest ja bereits das UserInterface im Pflichtenheft mit Nummern versehen.
 %Vielleicht kannst du das hier mit einem Bild der richtigen GUI recyceln?
 %Tendenziell sollte man das wohl am Ende machen, falls sich in der GUI noch etwas ändert.
-
+This chapter gives a short overview over the user interface. The functions of the buttons and menu entries itself are explained within the next chapters.
 
 %Die Grafik muss noch verkleinert werden, damit sie nicht die ganze Seite einnimmt.
 \begin{figure}[t]
+
+\includegraphics[width=1.0\textwidth]{../Iplementierung/document_data/guiOverview.png}
+
+\end{figure}
+
 \begin{itemize}
 \item[1] Menu
 \item[2] Load text into program window / delete programwindow
@@ -77,11 +82,6 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Implementierungsdokume
 \item[8] Watch Expression Panel
 \item[9] Conditional Breakpoint Panel
 \end{itemize}
-\includegraphics[width=1.0\textwidth]{../Iplementierung/document_data/guiOverview.png}
-
-\end{figure}
-
-
 
 
 \chapter{Configuring the DIbugger} %Ulla
@@ -131,7 +131,8 @@ Array declaration has the syntax \texttt{<type> <dimensions> <arrayname>}.
 \paragraph{Calling functions}
 You can call a function in a assignment. Within this assignment the functioncall is the only thing on the right side e.g. \texttt{x = foo(y);}
 \section{Sample Program}
-As an easy example, see the implementation of the factorial of an integer in tow different ways.
+As an easy example, see the implementation of the factorial of an integer in two different ways.
+With iterations:
 \begin{verbatim}
 //factorial programmed in an iterative manner
 int main(int n){
@@ -144,6 +145,9 @@ int main(int n){
     return sum;
 }
 \end{verbatim}
+
+Or with recursion:
+
 \begin{verbatim}
 //other functions must be declared before the main
 int fac(int k) {
@@ -264,7 +268,7 @@ After two or more programs are added you can start the Debug-Mode with the green
 \section{Making Steps}
 There are different buttons for different kinds of steps.
 \paragraph{Step}
-The button labeled with \enquote{step} leads to an execution of all programs according to the number of commands given in the specified stepsize. As an example, assume the stepsize of program A is 3 and the stepsize of program B is 2. Then there are 3 commands executed in program A and 2 commands in program B. Encountering a function call, the execution is always steping into the function.
+The button labeled with \enquote{step} leads to an execution of all programs according to the number of commands given in the specified stepsize. As an example, assume the stepsize of program A is 3 and the stepsize of program B is 2. Then there are 3 commands executed in program A and 2 commands in program B. Encountering a function call, the execution is always stepping into the function.
 \paragraph{StepBack}
 The button labeled with \enquote{stepBack} causes the DIbugger to rewind one command in each program.
 \paragraph{StepOut}
@@ -278,7 +282,7 @@ There is one button up above each program with the label \enquote{singlestep}. T
 \section{Understanding the Output}
 %Hiermit meinte ich zum Beispiel, wie die Variablen angezeigt werden.
 You can inspect the variables occuring in a program in the variable inspector, which is settled under the programs code. With your right mouse button you can hide a variable.\\
-A program, whose main-routine has a return type i.e. is a function, will produce an output. 
+A program, whose main-routine has a return type will produce an output. 
 This return value will be printed right under the variable inspector.
 
 \end{document}
