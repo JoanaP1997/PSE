@@ -216,4 +216,8 @@ public class DoubleValue extends TermValue {
         return value;
     }
 
+    @Override
+    public TermValue clone() {
+        return new DoubleValue(this.value);
+    }
 }

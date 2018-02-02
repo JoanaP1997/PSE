@@ -294,7 +294,7 @@ public class ConfigurationFile {
 
     /**
      * 
-     * @return the list obejct containing all focused variables of the programs.
+     * @return the list object containing all focused variables of the programs.
      */
     public List<List<String>> getList_varInspector() {
         return list_varInspector;
@@ -302,7 +302,7 @@ public class ConfigurationFile {
 
     /**
      * 
-     * @return the list obejct containing all breakpoints.
+     * @return the list object containing all breakpoints.
      */
     public List<List<Integer>> getList_breakpoints() {
         return list_breakpoints;
@@ -346,7 +346,7 @@ public class ConfigurationFile {
      * Setter for the programNameID of a given program
      * 
      * @param programID
-     *            the id of te program
+     *            the id of the program
      * @param name
      *            the new name of the given programID
      */
@@ -465,7 +465,7 @@ public class ConfigurationFile {
      *            a list containing all linenumbers of the active breakpoints
      */
     public void setBreakpoints(int programID, List<Integer> lines) {
-        while (list_breakpoints.size() < programID) {
+        while (list_breakpoints.size() - 1 < programID) {
             list_breakpoints.add(new ArrayList<Integer>());
         }
         list_breakpoints.set(programID, lines);

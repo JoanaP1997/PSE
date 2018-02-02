@@ -234,4 +234,9 @@ public class LongValue extends TermValue {
         return value;
     }
 
+    @Override
+    public TermValue clone() {
+        return new LongValue(this.value);
+    }
+
 }

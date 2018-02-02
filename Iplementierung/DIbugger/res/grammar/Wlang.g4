@@ -7,8 +7,16 @@ grammar Wlang;
 	}
 }
 
-webppterm: condition | term;
+inputparameter: term #inputparameterNoArray
+		| '{'filledArglist'}' #inputparameterArray
+		;
+wecbterm: condition 
+	| term;
 program: routine* mainRoutine;
+
+
+
+
 routineHead: returntype = TYPE id = ID '(' args=arglist? ')' #FunctionHead
 			| 'void' id =ID '('args=arglist?')' #ProcedureHead
 			;
@@ -57,7 +65,7 @@ arrayDeclaration: type = TYPE '[' index = term']' id = ID ';' #arrayDeclarationO
 					| type = TYPE '[' firstIndex = term']' '['secondIndex=term']' '[' thirdIndex = term']' id = ID ';' #arrayDeclarationThreeDim
 					;
 					
-arrayDeclareAssign: type = TYPE dims id = ID ASSIGN '{'filledArglist'};';
+arrayDeclareAssign: type = TYPE '['term']' id = ID ASSIGN '{'filledArglist'};';
 
 arrayElementAssign: id = ID '['index=term']'  ASSIGN value = term';' #arrayElementAssignOneDim
 		| id = ID '['firstIndex=term']' '['secondIndex=term']'  ASSIGN value = term';' #arrayElementAssignTwoDim
@@ -114,6 +122,8 @@ term : '-' inner = term #NegativeTerm
 	| left = term '+' right = term #Addition
 	| left = term '%' right = term #Modulo
 	|'('inner = term')' #Brackets
+    | arrayAccess #ArrayAccessInTerm
+    | relArrayAccess #RelArrayAccessInTerm
 	| FLOATLITERAL #FloatLiteral
 	| INTLITERAL #IntLiteral
 	| LONGLITERAL #LongLiteral
@@ -123,12 +133,15 @@ term : '-' inner = term #NegativeTerm
 	| ID #Id
 	| REL_ID #RelId
 /*	| funcCall #FunctionCallInTerm*/
-	| arrayAccess #ArrayAccessInTerm
 	;
 
 arrayAccess: id = ID '['index=term']' #OneDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccess
 		| id = ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccess
+		;
+relArrayAccess: id = REL_ID '['index=term']' #OneDimArrayAccessRel
+		| id = REL_ID '['firstIndex=term']' '['secondIndex=term']' #TwoDimArrayAccessRel
+		| id = REL_ID '['firstIndex=term']' '['secondIndex=term']' '['thirdIndex=term']' #ThreeDimArrayAccessRel
 		;
 
 
@@ -140,7 +153,7 @@ COMPOPERATOR:  '<'|'>'|'<='|'>='|'=='|'!=';
 WS : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT:   '//' ~[\r\n]* -> skip;
-TYPE: 'float' | 'int' | 'char' | 'boolean' | 'double' | 'long';
+TYPE: ('float' | 'int' | 'char' | 'boolean' | 'double' | 'long') ('[]')?;
 BOOLEANLITERAL:	'true' | 'false';
 INTLITERAL: DIGITNONZERO DIGIT* | '0';
 fragment DIGITNONZERO: '1'..'9';

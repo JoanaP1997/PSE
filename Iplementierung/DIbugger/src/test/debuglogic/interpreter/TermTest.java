@@ -67,9 +67,11 @@ public class TermTest {
         Scope s = new Scope();
         s.setValueOf("a", new IntValue(42));
         TraceState stateInA = new TraceState(TraceStatePosition.NOTSPECIAL, 10, s);
+        stateInA.setProgramId("A");
         Scope t = new Scope();
         t.setValueOf("b", new FloatValue(3.04f));
         TraceState stateInB = new TraceState(TraceStatePosition.NOTSPECIAL, 10, t);
+        stateInB.setProgramId("B");
         states.add(stateInA);
         states.add(stateInB);
         assert (variableA.evaluate(states).toString().equals("42"));

@@ -7,7 +7,8 @@ import java.util.List;
 import dibugger.debuglogic.debugger.ProgramInput;
 
 /**
- *  Used to store user-input of type (input texts, program texts, program identifiers).
+ * Used to store user-input of type (input texts, program texts, program
+ * identifiers).
  */
 public class TextInputBuffer {
     private List<String> inputTexts;
@@ -31,14 +32,13 @@ public class TextInputBuffer {
     }
 
     /**
-     * Returns {@code ProgramInput}s corresponding to user-input, which
-     * was stored earlier. 
+     * Returns {@code ProgramInput}s corresponding to user-input, which was
+     * stored earlier.
      * 
      * @return a list of all {@code ProgramInput}s known to this buffer
      */
     public List<ProgramInput> getProgramInput() {
-        assert (inputTexts.size() == programTexts.size()
-                && inputTexts.size() == programIdentifiers.size());
+        assert (inputTexts.size() == programTexts.size() && inputTexts.size() == programIdentifiers.size());
 
         List<ProgramInput> programs = new ArrayList<>();
         for (int i = 0; i < inputTexts.size(); i++) {
@@ -46,22 +46,25 @@ public class TextInputBuffer {
             List<String> variablesAndValues = Arrays.asList(inputValuesString.split(";"));
             String programIdentifier = programIdentifiers.get(i);
             ProgramInput input = new ProgramInput(programTexts.get(i), variablesAndValues, 0, programIdentifier);
-            
+
             programs.add(input);
         }
         return programs;
     }
 
     /**
-     * Stores a single (input texts, program texts, program identifiers) user input-triple.
+     * Stores a single (input texts, program texts, program identifiers) user
+     * input-triple.
      * 
-     * @param inputTexts a list containing each program's input variable-assignemts
-     * @param programTexts a list containing each program's text
-     * @param programIdentifiers a list of containing each program's identifier
+     * @param inputTexts
+     *            a list containing each program's input variable-assignemts
+     * @param programTexts
+     *            a list containing each program's text
+     * @param programIdentifiers
+     *            a list of containing each program's identifier
      */
     public void storeTextInput(List<String> inputTexts, List<String> programTexts, List<String> programIdentifiers) {
-        if (inputTexts.size() != programTexts.size() 
-            || inputTexts.size() != programIdentifiers.size()) {
+        if (inputTexts.size() != programTexts.size() || inputTexts.size() != programIdentifiers.size()) {
             /*
              * Assuming that inputVariables has entry for each program, even if
              * user did not specify any for one specific program (using UI)

@@ -5,6 +5,7 @@ import java.util.List;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.InvalidProgramException;
+import dibugger.debuglogic.exceptions.RoutineNotFoundException;
 
 /**
  * A command to represent a routine call.
@@ -39,7 +40,7 @@ public class RoutineCall extends Command {
     public List<TraceState> run() throws DIbuggerLogicException {
         RoutineCommand rootCommand = this.controller.getRoutineRootCommand(calleeName);
         if (rootCommand == null) {
-            throw new InvalidProgramException(this.linenumber);
+            throw new RoutineNotFoundException(this.linenumber);
         }
 
         List<TraceState> traceStateList = new ArrayList<TraceState>();

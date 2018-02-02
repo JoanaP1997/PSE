@@ -1,10 +1,13 @@
 package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.GenerationController;
 import dibugger.debuglogic.interpreter.ScopeTuple;
@@ -76,6 +79,7 @@ public class DebugControl {
      */
     public void launchRun(List<ProgramInput> programs) throws DIbuggerLogicException {
         list_traceIterator.clear();
+        list_programReturnValue.clear();
 
         generationController.setMaxFuncCalls(maxFunctionCalls);
         generationController.setMaxIterations(maxIterations);
@@ -84,8 +88,12 @@ public class DebugControl {
 
             list_traceIterator
                     .add(generationController.generateTrace(pi.getText(), pi.getInputValues(), pi.getProgramID()));
-            list_programReturnValue.add(generationController.getReturnValue());            
-            
+            list_programReturnValue.add(generationController.getReturnValue());
+
+            if (list_stepSize.size() <= i) {
+                list_stepSize.add(1);
+            }
+
             jumpTraceIterator(i, pi.getCounter());
         }
 
@@ -95,13 +103,15 @@ public class DebugControl {
 
     /**
      * Synchronizes the ProgramInput with a given Programinput List
-     * @param programs the list containing all new programs
+     * 
+     * @param programs
+     *            the list containing all new programs
      */
-    public void syncProgramInput(List<ProgramInput> programs){
+    public void syncProgramInput(List<ProgramInput> programs) {
         list_programInput = programs;
         numPrograms = programs.size();
     }
-    
+
     /**
      * Executes a step defined by a given step type.
      * 
@@ -126,7 +136,7 @@ public class DebugControl {
                 }
                 // evaluate conditional breakpoints
                 breakpointFound = !breakpointFound ? evaluateConditionalBreakpoints() : true;
-                if (breakpointFound) {
+                if (breakpointFound && stepID != 0) {
                     stepID = maxSteps;
                 }
             }
@@ -260,10 +270,10 @@ public class DebugControl {
     }
 
     private boolean evaluateBreakpoints(int programID) {
-        if(programID < list_breakpoints.size()){
+        if (programID < list_breakpoints.size()) {
             TraceState state = list_currentTraceStates.get(programID);
             for (Breakpoint bp : list_breakpoints.get(programID)) {
-                if (bp.getLine() == state.getLineNumber()) {
+                if (bp != null && bp.getLine() == state.getLineNumber()) {
                     return true;
                 }
             }
@@ -274,7 +284,7 @@ public class DebugControl {
     private boolean evaluateConditionalBreakpoints() throws DIbuggerLogicException {
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
             ConditionalBreakpoint cb = list_condBreakpoints.get(i);
-            if (cb.evaluate(list_currentTraceStates)) {
+            if (cb != null && cb.evaluate(list_currentTraceStates)) {
                 return true;
             }
         }
@@ -288,13 +298,13 @@ public class DebugControl {
      *            the id of the watch expression
      * @param expr
      *            the expression of the watch expression
+     * @throws DIbuggerLogicException
      */
-    public void createWatchExpression(int id, String expr) {
+    public void createWatchExpression(int id, String expr) throws DIbuggerLogicException {
         while (list_watchExpressions.size() - 1 < id) {
             list_watchExpressions.add(null);
         }
         list_watchExpressions.set(id, new WatchExpression(expr));
-        // TODO add default Scope
     }
 
     /**
@@ -306,12 +316,17 @@ public class DebugControl {
      *            the new expression
      * @param scopes
      *            a list of scopes for the new watch expression
+     * @throws DIbuggerLogicException
      */
-    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) {
+    public void changeWatchExpression(int id, String expr, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         if (id < list_watchExpressions.size()) {
             WatchExpression e = list_watchExpressions.get(id);
             if (e != null) {
-                e.change(expr, scopes);
+                if (scopes != null) {
+                    e.change(expr, scopes);
+                } else {
+                    e.change(expr, e.getScopes());
+                }
             }
         }
     }
@@ -323,7 +338,18 @@ public class DebugControl {
      *            the id of the watch expression
      */
     public void deleteWatchExpression(int id) {
-        list_watchExpressions.remove(id);
+        if (id == list_watchExpressions.size() - 1) {
+            list_watchExpressions.remove(id);
+        } else {
+            for (int i = list_watchExpressions.size() - 1; i > id; --i) {
+                if (list_watchExpressions.get(i) == null) {
+                    list_watchExpressions.remove(i);
+                } else {
+                    i = id;
+                }
+            }
+            list_watchExpressions.set(id, null);
+        }
     }
 
     /**
@@ -333,13 +359,13 @@ public class DebugControl {
      *            the id of the breakpoint
      * @param cond
      *            the condition of the breakpoint
+     * @throws DIbuggerLogicException
      */
-    public void createCondBreakpoint(int id, String cond) {
+    public void createCondBreakpoint(int id, String cond) throws DIbuggerLogicException {
         while (list_condBreakpoints.size() - 1 < id) {
             list_condBreakpoints.add(null);
         }
-        list_condBreakpoints.add(id, new ConditionalBreakpoint(cond));
-        // TODO default scope
+        list_condBreakpoints.set(id, new ConditionalBreakpoint(cond));
     }
 
     /**
@@ -351,12 +377,17 @@ public class DebugControl {
      *            the condition of the breakpoint
      * @param scopes
      *            a list of all scopes
+     * @throws DIbuggerLogicException
      */
-    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) {
+    public void changeCondBreakpoint(int id, String cond, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         if (id < list_condBreakpoints.size()) {
             ConditionalBreakpoint cb = list_condBreakpoints.get(id);
             if (cb != null) {
-                cb.change(cond, scopes);
+                if (scopes != null) {
+                    cb.change(cond, scopes);
+                } else {
+                    cb.change(cond, cb.getScopes());
+                }
             }
         }
     }
@@ -368,7 +399,18 @@ public class DebugControl {
      *            the id of the breakpoint
      */
     public void deleteCondBreakpoint(int id) {
-        list_condBreakpoints.remove(id);
+        if (id == list_condBreakpoints.size() - 1) {
+            list_condBreakpoints.remove(id);
+        } else {
+            for (int i = list_condBreakpoints.size() - 1; i > id; --i) {
+                if (list_condBreakpoints.get(i) == null) {
+                    list_condBreakpoints.remove(i);
+                } else {
+                    i = id;
+                }
+            }
+            list_condBreakpoints.set(id, null);
+        }
     }
 
     /**
@@ -397,7 +439,7 @@ public class DebugControl {
     public void deleteBreakpoint(int program, int line) {
         List<Breakpoint> l = list_breakpoints.get(program);
         for (int i = 0; i < l.size(); ++i) {
-            if (line == l.get(line).getLine()) {
+            if (line == l.get(i).getLine()) {
                 l.remove(i);
                 --i;
             }
@@ -433,6 +475,7 @@ public class DebugControl {
      *            the program to change the stepsize
      * @param stepSize
      *            the new stepsize to use while debugging
+     * @throws SyntaxException
      */
     public void setStepSize(int programID, int stepSize) {
         while (list_stepSize.size() - 1 < programID) {
@@ -459,10 +502,11 @@ public class DebugControl {
      * 
      * @return a list countaining the current execution line of all programs
      */
-    public List<Integer> getCurrentExecutionLines() {
-        List<Integer> l = new ArrayList<Integer>();
-        for (int i = 0; i < numPrograms; ++i) {
-            l.add(list_currentTraceStates.get(i).getLineNumber());
+    public Map<String, Integer> getCurrentExecutionLines() {
+        Map<String, Integer> l = new HashMap<String, Integer>();
+        for (int i = 0; i < Math.min(numPrograms, list_currentTraceStates.size()); ++i) {
+            TraceState state = list_currentTraceStates.get(i);
+            l.put(state.getProgramId(), state.getLineNumber());
         }
         return l;
     }
@@ -478,6 +522,14 @@ public class DebugControl {
     }
 
     /**
+     * 
+     * @return max interations the debugcontrol
+     */
+    public int getMaxIterations(){
+        return maxIterations;
+    }
+    
+    /**
      * Sets the maximum iteration count for recursive function calls
      * 
      * @param count
@@ -487,6 +539,14 @@ public class DebugControl {
         this.maxFunctionCalls = count;
     }
 
+    /**
+     * 
+     * @return max function calls of the debugcontrol
+     */
+    public int getMaxFunctionCalls(){
+        return maxFunctionCalls;
+    }
+    
     // Getter
     /**
      * 
@@ -559,6 +619,9 @@ public class DebugControl {
      *             {@linkplain WatchExpression#evaluate(List)}
      */
     public String getWEValue(int expressionID) throws DIbuggerLogicException {
+        if (expressionID >= list_watchExpressions.size() || list_watchExpressions.get(expressionID) == null) {
+            return "?";
+        }
         return list_watchExpressions.get(expressionID).evaluate(list_currentTraceStates);
     }
 
@@ -576,7 +639,7 @@ public class DebugControl {
      */
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
-        for (int i = 0; i < numPrograms; ++i) {
+        for (int i = 0; i < list_condBreakpoints.size(); ++i) {
             l.add(list_condBreakpoints.get(i).getSpecifier());
         }
         return l;
@@ -634,6 +697,9 @@ public class DebugControl {
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
     public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+        if (breakpointID >= list_condBreakpoints.size() || list_condBreakpoints.get(breakpointID) == null) {
+            return false;
+        }
         return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
     }
 
@@ -646,9 +712,11 @@ public class DebugControl {
      */
     public List<Integer> getBreakpoints(int programID) {
         List<Integer> l = new ArrayList<Integer>();
-        List<Breakpoint> l_p = list_breakpoints.get(programID);
-        for (int i = 0; i < l_p.size(); ++i) {
-            l.add(l_p.get(i).getLine());
+        if (programID < list_breakpoints.size()) {
+            List<Breakpoint> l_p = list_breakpoints.get(programID);
+            for (int i = 0; i < l_p.size(); ++i) {
+                l.add(l_p.get(i).getLine());
+            }
         }
         return l;
     }
@@ -669,8 +737,13 @@ public class DebugControl {
      *            the program ID
      * @return the step size of program programID
      */
-    public int getStepSize(int programID) {
-        return list_stepSize.get(programID);
+    public int getStepSize(String programID) {
+        for (int i = 0; i < Math.min(numPrograms, list_stepSize.size()); ++i) {
+            if (list_programInput.get(i).getProgramID().equals(programID)) {
+                return list_stepSize.get(i);
+            }
+        }
+        return 1;
     }
 
     /**
@@ -704,22 +777,25 @@ public class DebugControl {
         }
         return new ArrayList<String>();
     }
-    
+
     /**
-     * Getter for the return value of a given program, if the current TraceState is the last in the Trace iteration.
-     * @param programNameID the nameID of the program
+     * Getter for the return value of a given program, if the current TraceState
+     * is the last in the Trace iteration.
+     * 
+     * @param programNameID
+     *            the nameID of the program
      * @return the value of the return of the given program
      */
-    public String getReturnValue(String programNameID){
+    public String getReturnValue(String programNameID) {
         for (int i = 0; i < list_currentTraceStates.size(); ++i) {
             TraceState state = list_currentTraceStates.get(i);
             if (state.getProgramId().equals(programNameID)) {
-                if(list_programReturnValue.get(i)!=null){
-                	return list_programReturnValue.get(i).toString();
+                if (list_programReturnValue.get(i) != null) {
+                    return list_programReturnValue.get(i).toString();
                 }
             }
         }
-        return "?";
+        return "-";
     }
 
     // private helper methods

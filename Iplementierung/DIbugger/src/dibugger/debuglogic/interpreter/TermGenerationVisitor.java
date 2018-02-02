@@ -1,5 +1,8 @@
 package dibugger.debuglogic.interpreter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dibugger.debuglogic.antlrparser.WlangBaseVisitor;
 import dibugger.debuglogic.antlrparser.WlangParser.AdditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.AndConditionContext;
@@ -14,9 +17,14 @@ import dibugger.debuglogic.antlrparser.WlangParser.ConstantConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DivisionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.DoubleLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.EqualCompContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArglistContext;
+import dibugger.debuglogic.antlrparser.WlangParser.FilledArgumentContext;
 import dibugger.debuglogic.antlrparser.WlangParser.FloatLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IdContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterArrayContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterContext;
+import dibugger.debuglogic.antlrparser.WlangParser.InputparameterNoArrayContext;
 import dibugger.debuglogic.antlrparser.WlangParser.IntLiteralContext;
 import dibugger.debuglogic.antlrparser.WlangParser.LessCompContext;
 import dibugger.debuglogic.antlrparser.WlangParser.LessEqualCompContext;
@@ -29,12 +37,16 @@ import dibugger.debuglogic.antlrparser.WlangParser.NegativeTermContext;
 import dibugger.debuglogic.antlrparser.WlangParser.NotConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.NotEqualCompContext;
 import dibugger.debuglogic.antlrparser.WlangParser.OneDimArrayAccessContext;
+import dibugger.debuglogic.antlrparser.WlangParser.OneDimArrayAccessRelContext;
 import dibugger.debuglogic.antlrparser.WlangParser.OrConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.RelIdConditionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.RelIdContext;
+import dibugger.debuglogic.antlrparser.WlangParser.StatementContext;
 import dibugger.debuglogic.antlrparser.WlangParser.SubtractionContext;
 import dibugger.debuglogic.antlrparser.WlangParser.ThreeDimArrayAccessContext;
+import dibugger.debuglogic.antlrparser.WlangParser.ThreeDimArrayAccessRelContext;
 import dibugger.debuglogic.antlrparser.WlangParser.TwoDimArrayAccessContext;
+import dibugger.debuglogic.antlrparser.WlangParser.TwoDimArrayAccessRelContext;
 
 /**
  * 
@@ -191,10 +203,34 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
     }
 
     @Override
-    public Term visitOneDimArrayAccess(OneDimArrayAccessContext ctx) {
+    public Term visitOneDimArrayAccessRel(OneDimArrayAccessRelContext ctx) {
         String id = ctx.id.getText();
         Term index = this.visit(ctx.index);
         return new ArrayAccessRelationalTerm(id, index);
+    }
+
+    @Override
+    public Term visitTwoDimArrayAccessRel(TwoDimArrayAccessRelContext ctx) {
+        String id = ctx.id.getText();
+        Term firstIndex = this.visit(ctx.firstIndex);
+        Term secondIndex = this.visit(ctx.secondIndex);
+        return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex);
+    }
+
+    @Override
+    public Term visitThreeDimArrayAccessRel(ThreeDimArrayAccessRelContext ctx) {
+        String id = ctx.id.getText();
+        Term firstIndex = this.visit(ctx.firstIndex);
+        Term secondIndex = this.visit(ctx.secondIndex);
+        Term thirdIndex = this.visit(ctx.thirdIndex);
+        return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex, thirdIndex);
+    }
+
+    @Override
+    public Term visitOneDimArrayAccess(OneDimArrayAccessContext ctx) {
+        String id = ctx.id.getText();
+        Term index = this.visit(ctx.index);
+        return new ArrayAccessTerm(id, index);
     }
 
     @Override
@@ -202,7 +238,7 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
         String id = ctx.id.getText();
         Term firstIndex = this.visit(ctx.firstIndex);
         Term secondIndex = this.visit(ctx.secondIndex);
-        return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex);
+        return new ArrayAccessTerm(id, firstIndex, secondIndex);
     }
 
     @Override
@@ -211,7 +247,38 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
         Term firstIndex = this.visit(ctx.firstIndex);
         Term secondIndex = this.visit(ctx.secondIndex);
         Term thirdIndex = this.visit(ctx.thirdIndex);
-        return new ArrayAccessRelationalTerm(id, firstIndex, secondIndex, thirdIndex);
+        return new ArrayAccessTerm(id, firstIndex, secondIndex, thirdIndex);
+    }
+
+    @Override
+    public Term visitInputparameterNoArray(InputparameterNoArrayContext ctx) {
+        return this.visit(ctx.term());
+    }
+
+    @Override
+    public Term visitInputparameterArray(InputparameterArrayContext ctx) {
+        return this.visit(ctx.filledArglist());
+    }
+
+    @Override
+    public Term visitFilledArglist(FilledArglistContext ctx) {
+        List<Term> content = new ArrayList<Term>();
+        // gather in the content
+        FilledArglistContext arglist = ctx;
+        while (arglist != null && arglist.getChildCount() > 1) {
+            FilledArgumentContext argument = arglist.filledArgument();
+            Term term = this.visit(argument);
+            content.add(term);
+            // sift down the tree
+            arglist = arglist.filledArglist();
+        }
+        // gather in the leaf
+        if (arglist != null) {
+            FilledArgumentContext argument = arglist.filledArgument();
+            Term term = this.visit(argument);
+            content.add(term);
+        }
+        return new TermList(content);
     }
 
     // Literals
@@ -232,17 +299,19 @@ public class TermGenerationVisitor extends WlangBaseVisitor<Term> {
 
     @Override
     public Term visitLongLiteral(LongLiteralContext ctx) {
-        return new ConstantTerm(new LongValue(Long.parseLong(ctx.getText())));
+        return new ConstantTerm(new LongValue(Long.parseLong(ctx.getText().replaceAll("L", ""))));
     }
 
     @Override
     public Term visitCharLiteral(CharLiteralContext ctx) {
-        return new ConstantTerm(new CharValue(ctx.getText().charAt(0)));
+        return new ConstantTerm(new CharValue(ctx.getText().charAt(1)));
     }
+
     @Override
     public Term visitBooleanLiteral(BooleanLiteralContext ctx) {
-    	return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
+        return new ConstantTerm(new BooleanValue(Boolean.parseBoolean(ctx.getText())));
     }
+
     // IDs and Constants
     @Override
     public Term visitId(IdContext ctx) {

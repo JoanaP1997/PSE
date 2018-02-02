@@ -49,4 +49,6 @@ public abstract class TermValue {
     public Type getType() {
         return type;
     }
+
+    public abstract TermValue clone();
 }

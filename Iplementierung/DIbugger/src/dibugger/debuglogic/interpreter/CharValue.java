@@ -234,4 +234,8 @@ public class CharValue extends TermValue {
         return value;
     }
 
+    @Override
+    public TermValue clone() {
+        return new CharValue(this.value);
+    }
 }

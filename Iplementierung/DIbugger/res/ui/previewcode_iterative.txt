@@ -1,0 +1,10 @@
+//factorial programmed in an iterative manner
+int main(int n){
+	int i = 1;
+	int sum = 1;
+	while(i<=n) {
+		sum = sum * i;
+		i = i + 1;
+	}
+	return sum;
+}

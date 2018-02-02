@@ -11,9 +11,13 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
+import dibugger.debuglogic.exceptions.ConditionalBreakpointSyntaxException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
 
 /**
  * @author wagner
@@ -25,7 +29,7 @@ public class ConditionalBreakpoint {
     private List<ScopeTuple> scopes;
     private Term condition;
 
-    public ConditionalBreakpoint(String specifier) {
+    public ConditionalBreakpoint(String specifier) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = new ArrayList<ScopeTuple>();
         this.value = false;
@@ -33,14 +37,14 @@ public class ConditionalBreakpoint {
 
     }
 
-    public ConditionalBreakpoint(String specifier, List<ScopeTuple> scopes) {
+    public ConditionalBreakpoint(String specifier, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = scopes;
         this.value = false;
         this.createTerm();
     }
 
-    public void change(String specifier, List<ScopeTuple> scopes) {
+    public void change(String specifier, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = scopes;
         this.createTerm();
@@ -71,13 +75,23 @@ public class ConditionalBreakpoint {
         return this.value;
     }
 
-    private void createTerm() {
-        CharStream input = CharStreams.fromString(this.specifier);
-        WlangLexer lexer = new WlangLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        WlangParser parser = new WlangParser(tokens);
-        // Chose start rule
-        ParseTree tree = parser.webppterm();
+    private void createTerm() throws DIbuggerLogicException {
+
+        ParseTree tree;
+        try {
+            CharStream input = CharStreams.fromString(this.specifier);
+            WlangLexer lexer = new WlangLexer(input);
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            WlangParser parser = new WlangParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(new ActuallyHelpfulErrorListener());
+            // Chose start rule
+            tree = parser.wecbterm();
+        } catch (ActuallyHelpfulSyntaxException e) {
+            throw new ConditionalBreakpointSyntaxException(e.getMessage());
+        }
         TermGenerationVisitor visitor = new TermGenerationVisitor();
         this.condition = visitor.visit(tree);
     }

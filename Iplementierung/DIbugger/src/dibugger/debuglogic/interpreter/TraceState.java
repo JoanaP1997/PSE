@@ -17,6 +17,7 @@ public class TraceState {
     private TraceStatePosition position;
     private int lineNumber;
     private String programId;
+
     /**
      * Constructor for a new TraceState.
      * 
@@ -31,14 +32,21 @@ public class TraceState {
         this.position = position;
         this.lineNumber = lineNumber;
         vars = new HashMap<String, TermValue>();
-        // TODO oder soll scope.getValues() gleich eine HashMap zurückgeben?
         deepCopyValues(scope);
     }
+
     private void deepCopyValues(Scope scope) {
-    	for (Map.Entry<String, TermValue> entry : scope.getValues().entrySet()) {
-    		this.vars.put(entry.getKey(), entry.getValue()); //TODO besser eine clone() Methode fuer den Value
-    	}
+        for (Map.Entry<String, TermValue> entry : scope.getValues().entrySet()) {
+            this.vars.put(entry.getKey(), entry.getValue().clone()); // TODO
+                                                                     // besser
+                                                                     // eine
+                                                                     // clone()
+                                                                     // Methode
+                                                                     // fuer den
+                                                                     // Value
+        }
     }
+
     /**
      * Returns the value of a variable by its identifier.
      * 
@@ -79,25 +87,31 @@ public class TraceState {
     public int getLineNumber() {
         return this.lineNumber;
     }
+
     /**
      * Sets the id of the program, the state belongs to.
+     * 
      * @param id
      */
     public void setProgramId(String id) {
-      this.programId = id;
+        this.programId = id;
     }
+
     /**
      * Getter for the program id
+     * 
      * @return the id of the program, the state belongs to.
      */
     public String getProgramId() {
-      return this.programId;
+        return this.programId;
     }
+
     /**
      * Returns the Variables existing in this state.
+     * 
      * @return the identifiers of the variables
      */
     public Set<String> getAllVariableIdentifiers() {
-      return this.vars.keySet();
+        return this.vars.keySet();
     }
 }

@@ -99,4 +99,9 @@ public class BooleanValue extends TermValue {
         return value;
     }
 
+    @Override
+    public TermValue clone() {
+        return new BooleanValue(this.value);
+    }
+
 }

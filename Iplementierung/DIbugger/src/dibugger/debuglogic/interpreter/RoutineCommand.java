@@ -79,7 +79,7 @@ public class RoutineCommand extends Command {
             newScope.setTypeOf(this.identifiers.get(i), this.expectedTypes.get(i));
             newScope.setValueOf(this.identifiers.get(i), values.get(i));
         }
-        //reset return value
+        // reset return value
         this.controller.setReturnValue(null);
         // run all kids while return value not set
         List<TraceState> traceStateList = new ArrayList<TraceState>();
@@ -91,12 +91,10 @@ public class RoutineCommand extends Command {
 
         // check if return value of controller is set and of correct type
         TermValue returnValue = this.controller.getReturnValue();
-        
+
         if ((returnValue == null) && (this.expectedReturnType != Type.NULL)) {
             throw new MissingReturnCallException(this.linenumber);
-        }
-
-        else if (returnValue != null && returnValue.getType() != this.expectedReturnType) {
+        } else if (returnValue != null && returnValue.getType() != this.expectedReturnType) {
             throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value");
         }
 
@@ -136,20 +134,21 @@ public class RoutineCommand extends Command {
     public Command getChild(int i) {
         return this.children.get(i);
     }
-    
+
     /**
      * Getter for the name of a routine.
+     * 
      * @return the name of the routine
      */
     public String getName() {
-      return this.name;
+        return this.name;
     }
-    
+
     public List<Type> getExpectedTypes() {
-      return this.expectedTypes;
+        return this.expectedTypes;
     }
-    
+
     public List<String> getIdentifiersOfArgs() {
-      return this.identifiers;
+        return this.identifiers;
     }
 }

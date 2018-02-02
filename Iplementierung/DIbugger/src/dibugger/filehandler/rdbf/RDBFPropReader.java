@@ -51,7 +51,7 @@ public class RDBFPropReader extends PropertiesFileReader {
             e.printStackTrace();
         }
 
-        return null;
+        return new PropertiesFile();
     }
 
 }

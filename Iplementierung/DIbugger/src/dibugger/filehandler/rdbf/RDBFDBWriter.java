@@ -9,7 +9,7 @@ import dibugger.filehandler.facade.DBFileWriter;
 import dibugger.filehandler.facade.LanguageFile;
 
 /**
- * SPecific implementation of the {@linkplain DBFileWriter} for the RDBF Format
+ * Specific implementation of the {@linkplain DBFileWriter} for the RDBF Format
  * 
  * @author Pascal
  *
@@ -32,7 +32,7 @@ public class RDBFDBWriter extends DBFileWriter {
             // Program StepSize
             block_program.addData(new RDBFData("stepsize", "" + f.getStepSize(i)));
             // Program nameID
-            block_program.addData(new RDBFData("name",	"'"+f.getProgramNameID(i)+"'"));
+            block_program.addData(new RDBFData("name", "'" + f.getProgramNameID(i) + "'"));
             // Last Exec Line
             block_program.addData(new RDBFData("lastExecLine", "" + f.getLatestExecutionLine(i)));
             // Program Text
@@ -41,8 +41,10 @@ public class RDBFDBWriter extends DBFileWriter {
             block_program.addBlock(block);
             // InputValues
             block = new RDBFBlock("INPUTVALUES");
-            for (String key : f.getList_inputValues().get(i).keySet()) {
-                block.addData(new RDBFData(key, "'" + f.getInputValue(i, key) + "'"));
+            if (i < f.getList_inputValues().size()) {
+                for (String key : f.getList_inputValues().get(i).keySet()) {
+                    block.addData(new RDBFData(key, "'" + f.getInputValue(i, key) + "'"));
+                }
             }
             block_program.addBlock(block);
             // Var Inspector
@@ -100,13 +102,15 @@ public class RDBFDBWriter extends DBFileWriter {
         try {
             writer.saveRDBFFile(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
     @Override
     public void saveLanguageFile(LanguageFile file) {
-        RDBFFile f = new RDBFFile(new File(LanguageFile.DEFAULT_LANG_FILE_PATH + file.getLangID() + ".rdbf"));
+        File f0 = new File(LanguageFile.DEFAULT_LANG_FILE_PATH + file.getLangID() + ".rdbf");
+        f0.mkdirs();
+        RDBFFile f = new RDBFFile(f0);
         f.addData(new RDBFData("langID", "'" + file.getLangID() + "'"));
         f.addData(new RDBFData("langName", "'" + file.getName() + "'"));
         for (String key : file.getMap_translations().keySet()) {

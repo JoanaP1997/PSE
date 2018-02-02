@@ -10,11 +10,11 @@ import java.util.List;
  */
 public abstract class RelationalSuggestion {
     DebugControl debugControl;
-    
-    public RelationalSuggestion(DebugControl debugControl){
+
+    public RelationalSuggestion(DebugControl debugControl) {
         this.debugControl = debugControl;
     }
-    
+
     /**
      * suggests a watch expression for the DIbugger.
      * 

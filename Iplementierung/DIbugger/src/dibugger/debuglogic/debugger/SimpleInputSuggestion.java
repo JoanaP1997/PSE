@@ -21,18 +21,15 @@ public class SimpleInputSuggestion extends InputValueSuggestion {
      */
     @Override
     public String suggest(String identifier, String range, int type) {
-        boolean exc = false;
         int a = 0, b = 0;
         try {
             a = Integer.parseInt(range.substring(1).split(",")[0]);
             b = Integer.parseInt(range.substring(1, range.length() - 1).split(",")[1]);
         } catch (NumberFormatException e) {
-            exc = true;
+            e.printStackTrace();
         }
         if (type == TYPE_BOOLEAN) {
             return "" + rand.nextBoolean();
-        } else if (exc) {
-            // TODO throw exception
         } else if (type == TYPE_CHAR) {
             return "" + (char) rand.nextInt(a, b);
         } else if (type == TYPE_DOUBLE) {

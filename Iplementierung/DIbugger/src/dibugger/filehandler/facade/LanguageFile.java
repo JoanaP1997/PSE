@@ -49,12 +49,12 @@ public class LanguageFile {
      */
     public String getTranslation(String textID) {
         String text = map_translations.get(textID);
-        return (text != null) ? text : "No Translation Available";
+        return (text != null) ? text : "No Translation Available: " + textID;
     }
 
     /**
      * 
-     * @return the lang id of this LanguageFile
+     * @return the language id of this LanguageFile
      */
     public String getLangID() {
         return langID;
@@ -97,7 +97,7 @@ public class LanguageFile {
     }
 
     /**
-     * Default Folder filepath for language Files
+     * Default Folder filepath for language files
      */
     public static final String DEFAULT_LANG_FILE_PATH = "res/lang/";
 }

@@ -147,20 +147,28 @@ public class FileHandlerFacade {
     /**
      * help method to read all available languages
      * 
-     * @return a list of all avilable LanguageFiles
+     * @return a list of all available LanguageFiles
      * @throws FileHandlerException
      *             see {@linkplain DBFileReader#loadLanguageFile(File)}
      */
-    private List<LanguageFile> loadAllAvailableLanguages() throws FileHandlerException {
+    private List<LanguageFile> loadAllAvailableLanguages() {
+        FileHandlerException exception = null;
         List<LanguageFile> l = new ArrayList<LanguageFile>();
 
         File d = new File(LanguageFile.DEFAULT_LANG_FILE_PATH);
         for (File f : d.listFiles()) {
             if (f.isFile()) {
-                l.add(reader_rdbf_db.loadLanguageFile(f));
+                try {
+                    LanguageFile lang = reader_rdbf_db.loadLanguageFile(f);
+                    l.add(lang);
+                } catch (FileHandlerException e) {
+                    exception = e;
+                }
             }
         }
-
+        if (exception != null) {
+            // throw exception;
+        }
         return l;
     }
 

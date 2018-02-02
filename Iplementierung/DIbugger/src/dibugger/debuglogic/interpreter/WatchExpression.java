@@ -8,9 +8,13 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.SyntaxException;
+import dibugger.debuglogic.exceptions.WatchExpressionSyntaxException;
 
 /**
  * 
@@ -23,7 +27,7 @@ public class WatchExpression {
     private List<ScopeTuple> scopes;
     private Term expression;
 
-    public WatchExpression(String specifier) {
+    public WatchExpression(String specifier) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = new ArrayList<ScopeTuple>();
         this.value = "?";
@@ -31,21 +35,21 @@ public class WatchExpression {
 
     }
 
-    public WatchExpression(String specifier, List<ScopeTuple> scopes) {
+    public WatchExpression(String specifier, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = scopes;
         this.value = "?";
         this.createTerm();
     }
 
-    public void change(String specifier, List<ScopeTuple> scopes) {
+    public void change(String specifier, List<ScopeTuple> scopes) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = scopes;
         this.createTerm();
     }
 
     public String evaluate(List<TraceState> states) throws DIbuggerLogicException {
-        boolean isValid = true;   
+        boolean isValid = true;
         // check whether #states = #scopes
         if (states.size() != this.scopes.size())
             isValid = false;
@@ -60,13 +64,22 @@ public class WatchExpression {
         return this.value;
     }
 
-    private void createTerm() {
-        CharStream input = CharStreams.fromString(this.specifier);
-        WlangLexer lexer = new WlangLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        WlangParser parser = new WlangParser(tokens);
-        // Choose start rule
-        ParseTree tree = parser.webppterm();
+    private void createTerm() throws DIbuggerLogicException {
+        ParseTree tree;
+        try {
+            CharStream input = CharStreams.fromString(this.specifier);
+            WlangLexer lexer = new WlangLexer(input);
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            WlangParser parser = new WlangParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(new ActuallyHelpfulErrorListener());
+            // Chose start rule
+            tree = parser.wecbterm();
+        } catch (ActuallyHelpfulSyntaxException e) {
+            throw new WatchExpressionSyntaxException(e.getMessage());
+        }
         TermGenerationVisitor visitor = new TermGenerationVisitor();
         this.expression = visitor.visit(tree);
     }

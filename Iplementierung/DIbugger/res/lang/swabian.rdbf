@@ -1,0 +1,499 @@
+﻿langID='swabian'
+langName='Schwäbisch'
+ui_add_program{
+	def_blockLen=1
+Programm hinzufüga
+
+}
+ui_confirm_close{
+	def_blockLen=1
+	Mim DIbugga aufhera
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Willschd wirklich mim DIbugga aufhera?
+	
+}
+fh_exc_parse_assign{
+	def_blockLen=1
+Die Datei hat a falscha Zuweisung.
+
+}
+ui_reset_gui{
+	def_blockLen=1
+Zurücksetza
+
+}
+dl_exc_wrong_type_assignment{
+	def_blockLen=1
+Der Zuweisungswert isch ned gleich wie der Wert der zuweisenda Variable.
+
+}
+ui_for{
+	def_blockLen=1
+Für
+
+}
+ui_debug_step_out{
+	def_blockLen=1
+Mach an Step Out
+
+}
+ui_step_tooltip{
+	def_blockLen=1
+Als Schrittgröße festgelegta Anzahl an Befehle wird ausgführt
+
+}
+ui_start{
+	def_blockLen=1
+Start
+
+}
+db_it_exc_not{
+	def_blockLen=1
+Die Operation "not" hat oi oder mehrere falsche Typa.
+
+}
+ui_watch_expression{
+	def_blockLen=1
+Watch Expression
+
+}
+db_it_exc_and{
+	def_blockLen=1
+Die Operation "and" hat oi oder mehrere falsche Typea.
+
+}
+ui_suggestion{
+	def_blockLen=1
+Vorschlag
+}
+db_it_exc_eq{
+	def_blockLen=1
+Die Operation "equals" hat oi oder mehrere falsche Typa.
+
+}
+ui_file_menu{
+	def_blockLen=1
+Datei
+
+}
+ui_debug_step_back{
+	def_blockLen=1
+Führ Step Back aus
+
+}
+ui_program_limit_reached{
+	def_blockLen=1
+Programmlimit erroicht
+
+}
+ui_var_inspector{
+	def_blockLen=1
+Variablainschpektor
+
+}
+ui_debug_stop{
+	def_blockLen=1
+Debuggen beenda
+
+}
+dl_exc_variable_not_found{
+	def_blockLen=1
+Variable ned gfunda.
+
+}
+english{
+	def_blockLen=1
+Englisch
+
+}
+db_it_exc_mul{
+	def_blockLen=1
+Die Operation "mul" hat oin oder mehrere falsche Typa.
+
+}
+ui_show_hidden_variables{
+	def_blockLen=1
+Ausgeblendete Variabla azoiga
+
+}
+dl_exc_missing_return_call{
+	def_blockLen=1
+Die Method braucht a "return" Angab.
+
+}
+ui_program{
+	def_blockLen=1
+Programm
+
+}
+ui_interval{
+	def_blockLen=1
+Intervall
+
+}
+dl_exc_routine_not_found{
+	def_blockLen=1
+Funktion ned gfunda. Vielleicht isch se unter dem Aufruf definiert.
+
+}
+ui_cond_breakpoint_akkusativ{
+	def_blockLen=1
+B'dingten Breakpoint
+
+}
+ui_stop_tooltip{
+	def_blockLen=1
+Hier kligga, um Debugmodus zu beenda
+
+}
+dl_exc_syntax{
+	def_blockLen=1
+Syntax Fehler in oim oder mehrere Programme.
+
+}
+ui_max_functioncalls{
+	def_blockLen=1
+Maximale Funktionsaufrufe festlega
+
+}
+db_it_exc_sub{
+	def_blockLen=1
+Die Operation "sub" hat oin oder mehrere falsche Typa.
+
+}
+ui_stepsize{
+	def_blockLen=1
+Schrittgröße
+
+}
+ui_from{
+	def_blockLen=1
+Von
+
+}
+ui_debug_step_over{
+	def_blockLen=1
+Mach an Step Over
+
+}
+ui_to{
+	def_blockLen=1
+Bis
+
+}
+ui_yes{
+	def_blockLen=1
+Ja
+
+}
+ui_end{
+	def_blockLen=1
+Ende
+
+}
+ui_stepover_tooltip{
+	def_blockLen=1
+Nächstan Befehl überspringa, falls der n Funktionsaufruf isch
+
+}
+ui_debug_step{
+	def_blockLen=1
+Mach n Schritt
+
+}
+ui_adjust_scopeassignment{
+	def_blockLen=1
+Bereichsbindung anpassa
+
+}
+ui_cond_breakpoint{
+	def_blockLen=1
+Bedingter Breakpoint
+
+}
+ui_save_config{
+	def_blockLen=1
+Konfigurationsdatei spoichra
+
+}
+ui_suggestion_strategy_stepsize{
+	def_blockLen=1
+Strategie für Vorschläge von dr Schrittgröße ändra
+
+}
+dl_exc_wrong_number_argument{
+	def_blockLen=1
+Ned die richtige Anzahl Parameter
+
+}
+ui_exit{
+	def_blockLen=1
+Beenda
+
+}
+fh_exc_parse_block{
+	def_blockLen=1
+Die Datei hot a falscha Block Syntax
+
+}
+fh_exc_lang_not_found{
+	def_blockLen=1
+Sproch ned gfunda
+
+}
+ui_suggest_condbreakpoint{
+	def_blockLen=1
+Bedingta Breakpoint voschlaga
+
+}
+dl_exc_wesyntax{
+	def_blockLen=1
+Syntaxfehler in oiner Watch-Expression
+}
+ui_step{
+	def_blockLen=1
+Schritt
+
+}
+ui_suggest_stepsize{
+	def_blockLen=1
+Schrittgröß vorschlaga
+
+}
+ui_suggest_input{
+	def_blockLen=1
+Oigabewerte vorschlaga
+
+}
+ui_change_language{
+	def_blockLen=1
+Sproch ändra
+
+}
+ui_values_out{
+	def_blockLen=1
+Ausgabewerte
+
+}
+db_it_exc_le{
+	def_blockLen=1
+Die Operation "less equal" hat oin oder mehrere falsche Typa.
+
+}
+db_it_exc_add{
+	def_blockLen=1
+Die Operation "add" hat oin oder mehrere falsche Typa.
+
+}
+ui_debug_run{
+	def_blockLen=1
+Debuggen afanga
+
+}
+ui_we_tooltip{
+	def_blockLen=3
+<html>Erschdes Feld für Optiona zu dera Watch-Expression, <br>
+middleres Feld um die Watch-Expression zu ändra. <br>
+Um a neua Watch-Expression hinzuzufüga, middleres Feld in dr letschda Zeile aklicka.</html>
+
+}
+ui_options{
+	def_blockLen=1
+Einstellunga
+
+}
+dl_exc_wrong_type_argument{
+	def_blockLen=1
+Oin oder mehr Argumente sind vom falscha Typ.
+
+}
+ui_delete{
+	def_blockLen=1
+Löscha
+
+}
+ui_max_iterations{
+	def_blockLen=1
+Maximale Iterationen feschdlega
+
+}
+ui_suggestion_strategy_input{
+	def_blockLen=1
+Strategie für Vorschläge von Eingabewerte ändra
+
+}
+ui_stepout_tooltip{
+	def_blockLen=1
+Aus dera derzeitiga Methode herausspringa
+
+}
+db_it_exc_gt{
+	def_blockLen=1
+Die Operation "greater than" hat oin oder mehrere falsche Typa.
+
+}
+ui_type{
+	def_blockLen=1
+Typ
+
+}
+db_it_exc_div{
+	def_blockLen=1
+Die Operation "div" hat oin oder mehrere falsche Typa.
+
+}
+ui_debug_step_single{
+	def_blockLen=1
+Mach an Oinzelschritt
+
+}
+ui_suggestion_infotext{
+	def_blockLen=1
+Ok drücka, um Voschlag zu kriega
+
+}
+ui_suggestions{
+	def_blockLen=1
+Vorschläge
+
+}
+db_it_exc_mod{
+	def_blockLen=1
+Die Operation "modulo" hat oin oder mehrere falsche Typa.
+
+}
+db_it_exc_or{
+	def_blockLen=1
+Die Operation "or" hat oin oder mehrere falsche Typa.
+
+}
+ui_return{
+	def_blockLen=1
+Rückgabewert
+
+}
+ui_suggest_watchexpression{
+	def_blockLen=1
+WatchExpression vorschlaga
+
+}
+ui_help{
+	def_blockLen=1
+Hilf mr
+
+}
+ui_values_in{
+	def_blockLen=1
+Eigabewerte
+
+}
+db_it_exc_ge{
+	def_blockLen=1
+Die Operation "greater equal" hat oin oder mehrere falsche Typa.
+
+}
+dl_exc_invalid_program{
+	def_blockLen=1
+Dieses Program isch invalide und kann ned als Wlang Program interpretiert werda.
+
+}
+ui_suggestion_strategy_expression{
+	def_blockLen=1
+Strategie für Vorschläge von relationale Ausdrücke ändra
+
+}
+ui_settings{
+	def_blockLen=1
+Einstellunga
+
+}
+fh_exc_invalid_line_type{
+	def_blockLen=1
+Die Datei beinhaltet a invalida Zeile.
+
+}
+ui_stepsize_tooltip{
+	def_blockLen=1
+Enter drücka, um Eingabe zu bestätiga
+
+}
+ui_input_tooltip{
+	def_blockLen=1
+Eingabewerte durch Semikola trenna
+
+}
+dl_exc_cbsyntax{
+	def_blockLen=1
+Syntaxfehler in oim bedingta Breakpoint
+}
+ui_line{
+	def_blockLen=1
+Zeile
+
+}
+ui_no{
+	def_blockLen=1
+Noi
+
+}
+ui_start_tooltip{
+	def_blockLen=1
+Hier klicka, um Debugmodus zu starta
+
+}
+db_it_exc_lt{
+	def_blockLen=1
+Die Operation "less than hat oin oder mehrere falsche Typa.
+
+}
+ui_continue_tooltip{
+	def_blockLen=1
+Debugging bis zum nächsta Breakpoint fortführa
+
+}
+ui_varinspector_tooltip{
+	def_blockLen=1
+Variable markiera und mit Rechtsklick ausblenda
+
+}
+ui_single_step{
+	def_blockLen=1
+Oinzelschritt
+
+}
+ui_load_program_text{
+	def_blockLen=1
+Programmtext lada
+
+}
+dl_exc_already_declared{
+	def_blockLen=1
+Variable wurd schon deklariert.
+
+}
+ui_load_config{
+	def_blockLen=1
+Konfigurationsdatei lada
+
+}
+ui_debug_continue{
+	def_blockLen=1
+Weiter
+
+}
+ui_cb_tooltip{
+	def_blockLen=3
+<html>Erschdes Feld für Optiona zu dem bedingta Breakpoint, <br>
+middleres Feld um den bedingta Breakpoint zu ändra. <br>
+Um n neue bedingta Breakpoint hinzuzufüga, middleres Feld der letschda Zeile anklicka.</html>
+
+control_occurrence_message{
+	def_blockLen=1
+In folgenden Zeilen:
+
+}
+
+}
