@@ -480,4 +480,10 @@ ui_cb_tooltip{
 middleres Feld um den bedingta Breakpoint zu ändra. <br>
 Um n neue bedingta Breakpoint hinzuzufüga, middleres Feld der letschda Zeile anklicka.</html>
 
+control_occurrence_message{
+	def_blockLen=1
+In folgenden Zeilen:
+
+}
+
 }
