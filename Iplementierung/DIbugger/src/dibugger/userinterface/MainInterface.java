@@ -417,7 +417,9 @@ public class MainInterface extends JFrame {
         codePanelLayout = new FlowLayout();
         codePanel.setLayout(codePanelLayout);
         programPanels.get("A").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_iterative.txt")));
+        programPanels.get("A").showInput("n = 5;");
         programPanels.get("B").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_recursive.txt")));
+        programPanels.get("B").showInput("k = 4;");
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
 
