@@ -206,7 +206,10 @@ public class MainInterface extends JFrame {
         });
         exit = new JMenuItem();
         exit.setText(END_DIBUGGER);
-        exit.addActionListener(actionEvent -> System.exit(0));
+        exit.addActionListener(actionEvent -> {
+            controlFacade.saveProperties();
+            System.exit(0);
+        });
         fileMenu.add(newView);
         fileMenu.add(newProgram);
         fileMenu.add(loadConfig);

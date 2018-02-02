@@ -31,7 +31,10 @@ public class ErrorPopUp extends DIbuggerPopUp {
         GridBagLayout layout = new GridBagLayout();
         this.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
-        this.add(new JLabel(message), constraints);
+        JLabel errorMessageLabel = new JLabel(message);
+        errorMessageLabel.setSize(390, 190);
+        errorMessageLabel.setMinimumSize(new Dimension(390, 190));
+        this.add(errorMessageLabel, constraints);
         constraints.gridy = 1;
         this.setModal(true);
         this.setLocationRelativeTo(mainInterface);
@@ -43,7 +46,7 @@ public class ErrorPopUp extends DIbuggerPopUp {
         });
 
         this.add(ok, constraints);
-
+        this.pack();
         this.setVisible(true);
     }
 
