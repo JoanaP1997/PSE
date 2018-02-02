@@ -1,11 +1,10 @@
+//Calculate the factorial of k recursively.
 //other functions must be declared before the main
 int fac(int k) {
-	//Calculate the factorial of k recursively.
 	if (k <= 1) 
 		return 1;
-	// int res = fac(k-1) in a single command is not applicable
 	int res;
-	res = fac(k-1); //this is the correct way to call functions.
+	res = fac(k-1);
 	res = res * k;
 	return res;
 }
