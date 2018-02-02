@@ -66,6 +66,14 @@ public class FileHandlerInteractor extends Observable {
         return languageFile;
     }
 
+    public PropertiesFile getPropertiesFile() {
+        return propertiesFile;
+    }
+    
+    public void savePropertiesFile(){
+        fileHandlerFacade.savePropertiesFile(propertiesFile);
+    }
+
     private void setLanguageFile(LanguageFile languageFile) {
         Objects.requireNonNull(languageFile);
         this.languageFile = languageFile;

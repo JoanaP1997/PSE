@@ -81,11 +81,11 @@ public class ArrayValue extends TermValue {
     public String toString() {
         StringBuilder s = new StringBuilder("{");
         for (int i = 0; i < value.length; ++i) {
-            if (value.length != 1) {
+            if (value[i].length != 1) {
                 s.append("{");
             }
             for (int j = 0; j < value[i].length; ++j) {
-                if (value[i].length != 1) {
+                if (value[i][j].length != 1) {
                     s.append("{");
                 }
                 for (int k = 0; k < value[i][j].length; ++k) {
@@ -94,14 +94,14 @@ public class ArrayValue extends TermValue {
                         s.append(",");
                     }
                 }
-                if (value[i].length != 1) {
+                if (value[i][j].length != 1) {
                     s.append("}");
                 }
                 if (j < value[i].length - 1) {
                     s.append(",");
                 }
             }
-            if (value.length != 1) {
+            if (value[i].length != 1) {
                 s.append("}");
             }
             if (i < value.length - 1) {

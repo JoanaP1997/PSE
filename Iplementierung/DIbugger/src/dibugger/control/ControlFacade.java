@@ -556,4 +556,11 @@ public class ControlFacade {
     public Map<String, Integer> getConditionalBreakpointScopeEnds(int expressionId) {
         return debugLogicController.getConditionalBreakpointScopeEnds(expressionId);
     }
+    
+    public void saveProperties(){
+        fileHandlerInteractor.getPropertiesFile().setMaxFunctionCalls(debugLogicController.getDebugLogicFacade().getMaxFunctionCalls());
+        fileHandlerInteractor.getPropertiesFile().setMaxWhileIterations(debugLogicController.getDebugLogicFacade().getMaxIterations());
+        fileHandlerInteractor.getPropertiesFile().setSelectedLanguage(fileHandlerInteractor.getLanguageFile().getLangID());
+        fileHandlerInteractor.savePropertiesFile();
+    }
 }

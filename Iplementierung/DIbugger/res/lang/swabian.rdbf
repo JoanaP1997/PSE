@@ -5,6 +5,16 @@ ui_add_program{
 Programm hinzufüga
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	Mim DIbugga aufhera
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Willschd wirklich mim DIbugga aufhera?
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 Die Datei hat a falscha Zuweisung.
@@ -479,5 +489,11 @@ ui_cb_tooltip{
 <html>Erschdes Feld für Optiona zu dem bedingta Breakpoint, <br>
 middleres Feld um den bedingta Breakpoint zu ändra. <br>
 Um n neue bedingta Breakpoint hinzuzufüga, middleres Feld der letschda Zeile anklicka.</html>
+
+control_occurrence_message{
+	def_blockLen=1
+In folgenden Zeilen:
+
+}
 
 }

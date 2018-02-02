@@ -5,6 +5,16 @@ ui_add_program{
 Mach e neiie Datei dezu.
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	Feierowed
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Bischd da sicher, dassd Feierowend mim programm mache willst? 
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 Dei Datei isch bleed.
@@ -474,5 +484,10 @@ ui_cb_tooltip{
 <html>Des erschde Feld is ferr die Optione, <br>
 es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
 Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+
+}
+control_occurrence_message{
+	def_blockLen=1
+Un zwa in de Zeil:
 
 }

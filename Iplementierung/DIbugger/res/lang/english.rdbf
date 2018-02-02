@@ -10,6 +10,16 @@ ui_add_program{
 Add program
 
 }
+ui_confirm_close{
+	def_blockLen=1
+	Close DIbugger
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Are you sure you want to close the program?
+	
+}
 fh_exc_parse_assign{
 	def_blockLen=1
 The File contains an wrong Assignment Line.
@@ -47,7 +57,7 @@ Start
 }
 db_it_exc_not{
 	def_blockLen=1
-The "not" operation has one ore more incompatible types.
+The "not" operation has one or more incompatible types.
 
 }
 ui_watch_expression{
@@ -57,7 +67,7 @@ Watch Expression
 }
 db_it_exc_and{
 	def_blockLen=1
-The "and" operation has one ore more incompatible types.
+The "and" operation has one or more incompatible types.
 
 }
 ui_suggestion{
@@ -66,7 +76,7 @@ Suggestion
 }
 db_it_exc_eq{
 	def_blockLen=1
-The "equal" comparison has one ore more incompatible types.
+The "equal" comparison has one or more incompatible types.
 
 }
 ui_file_menu{
@@ -141,7 +151,7 @@ Click here to stop debug mode
 }
 dl_exc_syntax{
 	def_blockLen=1
-The Syntax of one ore more programs is wrong.
+The Syntax of one or more programs is wrong.
 
 }
 ui_max_functioncalls{
@@ -216,7 +226,7 @@ Change strategy for stepsize suggestions
 }
 dl_exc_wrong_number_argument{
 	def_blockLen=1
-One ore more arguments are missing or there are too many arguments as parameters.
+One or more arguments are missing or there are too many arguments as parameters.
 
 }
 ui_exit{
@@ -241,7 +251,7 @@ Suggest conditional breakpoint
 }
 dl_exc_wesyntax{
 	def_blockLen=1
-Syntax error in one ore more watchexpressions
+Syntax error in one or more watchexpressions
 }
 ui_step{
 	def_blockLen=1
@@ -270,7 +280,7 @@ Output Values
 }
 db_it_exc_le{
 	def_blockLen=1
-The "less equal" comparison has one ore more incompatible types.
+The "less equal" comparison has one or more incompatible types.
 
 }
 db_it_exc_add{
@@ -297,7 +307,7 @@ Options
 }
 dl_exc_wrong_type_argument{
 	def_blockLen=1
-One ore more arguments are having an incorrect type.
+One or more arguments are having an incorrect type.
 
 }
 ui_delete{
@@ -357,7 +367,7 @@ The "mod" operation has one or more incopatibly types
 }
 db_it_exc_or{
 	def_blockLen=1
-The "or" operation has one ore more incompatible types.
+The "or" operation has one or more incompatible types.
 
 }
 ui_return{
@@ -417,7 +427,7 @@ Separate inputvalues with semicola
 }
 dl_exc_cbsyntax{
 	def_blockLen=1
-Syntax error in one ore more conditional breakpoints
+Syntax error in one or more conditional breakpoints
 }
 ui_line{
 	def_blockLen=1
@@ -436,7 +446,7 @@ Click here to start debug mode
 }
 db_it_exc_lt{
 	def_blockLen=1
-The "less than" comparison has one ore more incompatible types.
+The "less than" comparison has one or more incompatible types.
 
 }
 ui_continue_tooltip{
