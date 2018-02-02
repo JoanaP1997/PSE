@@ -1,7 +1,6 @@
 package dibugger.userinterface;
 
 import dibugger.control.ControlFacade;
-import dibugger.debuglogic.interpreter.WatchExpression;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.dibuggerpopups.ErrorPopUp;
 import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
@@ -405,6 +404,8 @@ public class MainInterface extends JFrame {
         codePanel = new JPanel();
         codePanelLayout = new FlowLayout();
         codePanel.setLayout(codePanelLayout);
+        programPanels.get("A").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_iterative.txt")));
+        programPanels.get("B").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_recursive.txt")));
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
 
