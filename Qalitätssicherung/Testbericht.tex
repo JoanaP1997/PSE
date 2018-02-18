@@ -1,0 +1,78 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[german]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
+,%
+}
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
+\usepackage{enumitem}
+\usepackage{xcolor}
+\newcommand\frage[1]{\textcolor{red}{#1}}
+\renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
+
+\font\myfont=cmr12 at 20pt
+
+\title{
+	\vspace{2cm}
+	\myfont 
+	Praxis der Softwareentwicklung:\\ 
+	Entwicklung eines relationalen Debuggers\\
+}
+\subtitle{
+	\vspace{1cm}
+	\myfont
+	Testbericht
+}
+
+\author{
+	\vspace{1cm} \\
+	Benedikt Wagner\\
+	\and 
+        \vspace{1cm} \\ 
+        Chiara Staudenmaier\\
+        \and 
+        \vspace{1cm} \\
+        Etienne Brunner\\
+	\and Joana Plewnia\\
+	\and Pascal Zwick\\
+	\and Ulla Scheler\\
+	\vspace{1cm}
+	\and Betreuer: Mihai Herda, Michael Kirsten
+	\vspace{4cm}
+}
+
+\begin{document}
+\clearpage
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Einleitung}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Plichtenheft/logo_nongi.png}
+\caption{Produktlogo}
+\end{figure}
+
+\section{Komponententest}
+
+\subsection{Funktionale Tests}
+
+\subsection{Belastungstests}
+
+\section{Integrationstest}
+
+\subsection{Funktionale Tests}
+
+\subsection{Belastungstests}
+\end{document}
