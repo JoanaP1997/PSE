@@ -65,9 +65,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \end{figure}
 
 \section{Komponententest}
-
 \subsection{Funktionale Tests}
-
+\subsubsection{Interpreter}
+Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
+Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt. 
+So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
 \subsection{Belastungstests}
 
 \section{Integrationstest}
