@@ -3,7 +3,10 @@ package test.debuglogic.interpreter;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+
+
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.interpreter.BooleanValue;
 import dibugger.debuglogic.interpreter.CharValue;
 import dibugger.debuglogic.interpreter.DoubleValue;
 import dibugger.debuglogic.interpreter.FloatValue;
@@ -79,7 +82,15 @@ public class TermValueTest {
 		value = new CharValue('4');
 		assertEquals("" + value.getValue(), "4");
 	}
-
+	@Test
+	public void test_booleanValue_getValue_valid() throws DIbuggerLogicException {
+		// positive value
+		BooleanValue valueTrue = new BooleanValue(true);
+		assertEquals("" + valueTrue.getValue(), "true");
+		// negative value
+		BooleanValue valueFalse = new BooleanValue(false);
+		assertEquals("" + valueFalse.getValue(), "false");
+	}
 	// tests the arithmetic operations
 	@Test
 	public void test_add_double_double_valid() throws DIbuggerLogicException {
@@ -122,24 +133,29 @@ public class TermValueTest {
 		assertEquals("" + ((FloatValue) tv.clone()).getValue(), "1.5");
 
 	}
-
+	@Test
 	public void test_clone_double() {
 		TermValue tv = new DoubleValue(1.534);
 		assertEquals("" + ((DoubleValue) tv.clone()).getValue(), "1.534");
 	}
-
+	@Test
 	public void test_clone_int() {
 		TermValue tv = new IntValue(10);
 		assertEquals("" + ((IntValue) tv.clone()).getValue(), "10");
 	}
-
+	@Test
 	public void test_clone_long() {
 		TermValue tv = new LongValue(100000000);
 		assertEquals("" + ((LongValue) tv.clone()).getValue(), "100000000");
 	}
-
+	@Test
 	public void test_clone_char() {
 		TermValue tv = new CharValue('r');
 		assertEquals("" + ((CharValue) tv.clone()).getValue(), "r");
+	}
+	@Test
+	public void test_clone_boolean() {
+		TermValue tv = new BooleanValue(true);
+		assertEquals("" + ((BooleanValue) tv.clone()).getValue(), "true");
 	}
 }
