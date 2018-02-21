@@ -521,7 +521,6 @@ public class DebugLogicController {
         List<ProgramInput> currentInput = getProgramInput();
         List<String> programTexts = new ArrayList<>();
 
-        // programTexts containing null-objects is unlikely
         currentInput.stream().map(ProgramInput::getText).forEach(programTexts::add);
         debugLogicFacade.suggestStepSize(programTexts);
     }

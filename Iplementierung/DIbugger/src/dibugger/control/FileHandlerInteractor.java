@@ -96,7 +96,7 @@ public class FileHandlerInteractor extends Observable {
         applyConfiguration(nextConfigFile);
     }
 
-    private void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
+    public void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
