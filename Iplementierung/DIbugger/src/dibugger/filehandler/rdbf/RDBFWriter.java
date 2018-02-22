@@ -1,6 +1,7 @@
 package dibugger.filehandler.rdbf;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -30,7 +31,10 @@ public class RDBFWriter {
         if (f.getSysFile() == null) {
             throw new FileNotFoundException();
         }
-        f.getSysFile().mkdirs();
+        File parent = f.getSysFile().getParentFile();
+        if(parent!=null){
+        	parent.mkdirs();
+        }
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream(f.getSysFile()), StandardCharsets.UTF_8));
         saveBlock(writer, f, "");
