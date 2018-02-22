@@ -12,21 +12,31 @@ import org.junit.Test;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.AdditionTerm;
 import dibugger.debuglogic.interpreter.AndCondition;
+import dibugger.debuglogic.interpreter.ArrayValue;
 import dibugger.debuglogic.interpreter.BooleanValue;
+import dibugger.debuglogic.interpreter.CharValue;
 import dibugger.debuglogic.interpreter.ConstantTerm;
 import dibugger.debuglogic.interpreter.DivisionTerm;
+import dibugger.debuglogic.interpreter.EqualComparison;
 import dibugger.debuglogic.interpreter.FloatValue;
 import dibugger.debuglogic.interpreter.IntValue;
+import dibugger.debuglogic.interpreter.LessComparison;
+import dibugger.debuglogic.interpreter.LessEqualComparison;
 import dibugger.debuglogic.interpreter.ModuloTerm;
+import dibugger.debuglogic.interpreter.MoreComparison;
+import dibugger.debuglogic.interpreter.MoreEqualComparison;
 import dibugger.debuglogic.interpreter.MultiplicationTerm;
 import dibugger.debuglogic.interpreter.NegativeTerm;
 import dibugger.debuglogic.interpreter.NotCondition;
+import dibugger.debuglogic.interpreter.NotEqualComparison;
 import dibugger.debuglogic.interpreter.OrCondition;
 import dibugger.debuglogic.interpreter.Scope;
 import dibugger.debuglogic.interpreter.SubtractionTerm;
 import dibugger.debuglogic.interpreter.Term;
+import dibugger.debuglogic.interpreter.TermList;
 import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
+import dibugger.debuglogic.interpreter.Type;
 import dibugger.debuglogic.interpreter.VariableRelationalTerm;
 import dibugger.debuglogic.interpreter.VariableTerm;
 
@@ -68,34 +78,34 @@ public class TermTest {
         Scope s = new Scope();
         s.setValueOf("a", new IntValue(42));
         s.setValueOf("b", new FloatValue(3.04f));
-        assert (variableA.evaluate(s).toString().equals("42"));
-        assert (variableB.evaluate(s).toString().equals("3.04"));
+        assertTrue(variableA.evaluate(s).toString().equals("42"));
+        assertTrue(variableB.evaluate(s).toString().equals("3.04"));
         Term addition = new AdditionTerm(variableA, variableB);
-        assert (addition.evaluate(s).toString().equals("45.04"));
+        assertTrue(addition.evaluate(s).toString().equals("45.04"));
     }
 
     @Test
     public void test_variableRelationalTerm() throws DIbuggerLogicException {
         Term variableA = new VariableRelationalTerm("A.a");
         Term variableB = new VariableRelationalTerm("B.b");   
-        assert (variableA.evaluate(states).toString().equals("42"));
-        assert (variableB.evaluate(states).toString().equals("3.04"));
+        assertTrue(variableA.evaluate(states).toString().equals("42"));
+        assertTrue(variableB.evaluate(states).toString().equals("3.04"));
         Term addition = new AdditionTerm(variableA, variableB);
-        assert (addition.evaluate(states).toString().equals("45.04"));
+        assertTrue(addition.evaluate(states).toString().equals("45.04"));
     }
 
     @Test
     public void test_constantTerm() throws DIbuggerLogicException {
         // Constant Term
-        assert (constantA.evaluate(currentScope).toString().equals("5"));
-        assert (constantB.evaluate(currentScope).toString().equals("7"));
-        assert (constantFalse.evaluate(currentScope).toString().equals("false"));
-        assert (constantTrue.evaluate(currentScope).toString().equals("true"));
+        assertTrue (constantA.evaluate(currentScope).toString().equals("5"));
+        assertTrue (constantB.evaluate(currentScope).toString().equals("7"));
+        assertTrue (constantFalse.evaluate(currentScope).toString().equals("false"));
+        assertTrue (constantTrue.evaluate(currentScope).toString().equals("true"));
         
-        assert (constantA.evaluate(states).toString().equals("5"));
-        assert (constantB.evaluate(states).toString().equals("7"));
-        assert (constantFalse.evaluate(states).toString().equals("false"));
-        assert (constantTrue.evaluate(states).toString().equals("true"));
+        assertTrue (constantA.evaluate(states).toString().equals("5"));
+        assertTrue (constantB.evaluate(states).toString().equals("7"));
+        assertTrue (constantFalse.evaluate(states).toString().equals("false"));
+        assertTrue (constantTrue.evaluate(states).toString().equals("true"));
     }
 
     @Test
@@ -103,50 +113,50 @@ public class TermTest {
 
         // Multiply
         Term mult = new MultiplicationTerm(constantA, constantB);
-        assert (mult.evaluate(currentScope).toString().equals("35"));
-        assert (mult.evaluate(states).toString().equals("35"));
+        assertTrue (mult.evaluate(currentScope).toString().equals("35"));
+        assertTrue (mult.evaluate(states).toString().equals("35"));
     }
 
     @Test
     public void test_divisionTerm() throws DIbuggerLogicException {
         // Div
         Term div = new DivisionTerm(constantA, constantB);
-        assert (div.evaluate(currentScope).toString().equals("0"));
-        assert (div.evaluate(states).toString().equals("0"));
+        assertTrue (div.evaluate(currentScope).toString().equals("0"));
+        assertTrue (div.evaluate(states).toString().equals("0"));
     }
 
     @Test
     public void test_additionTerm() throws DIbuggerLogicException {
 
         Term add = new AdditionTerm(constantA, constantB);
-        assert (add.evaluate(currentScope).toString().equals("12"));
-        assert (add.evaluate(states).toString().equals("12"));
-        assert (add.evaluateToString(states).equals("12"));
+        assertTrue (add.evaluate(currentScope).toString().equals("12"));
+        assertTrue (add.evaluate(states).toString().equals("12"));
+        assertTrue (add.evaluateToString(states).equals("12"));
     }
 
     @Test
     public void test_subtractionTerm() throws DIbuggerLogicException {
 
         Term sub = new SubtractionTerm(constantA, constantB);
-        assert (sub.evaluate(currentScope).toString().equals("-2"));
-        assert (sub.evaluate(states).toString().equals("-2"));
+        assertTrue (sub.evaluate(currentScope).toString().equals("-2"));
+        assertTrue (sub.evaluate(states).toString().equals("-2"));
     }
 
     @Test
     public void test_moduloTerm() throws DIbuggerLogicException {
 
         Term mod = new ModuloTerm(constantB, constantA);
-        assert (mod.evaluate(currentScope).toString().equals("2"));
-        assert (mod.evaluate(states).toString().equals("2"));
+        assertTrue (mod.evaluate(currentScope).toString().equals("2"));
+        assertTrue (mod.evaluate(states).toString().equals("2"));
     }
     @Test
     public void test_negativeTerm() throws DIbuggerLogicException {
     	 Term negA = new NegativeTerm(constantA);
          Term negB = new NegativeTerm(constantB);
-         assert (negA.evaluate(currentScope).toString().equals("-5"));
-         assert (negB.evaluate(currentScope).toString().equals("-7"));
-         assert (negA.evaluate(states).toString().equals("-5"));
-         assert (negB.evaluate(states).toString().equals("-7"));
+         assertTrue (negA.evaluate(currentScope).toString().equals("-5"));
+         assertTrue (negB.evaluate(currentScope).toString().equals("-7"));
+         assertTrue (negA.evaluate(states).toString().equals("-5"));
+         assertTrue (negB.evaluate(states).toString().equals("-7"));
     }
     //////////////////////////////// Boolean Terms/////////////////////////////
     @Test
@@ -154,28 +164,115 @@ public class TermTest {
 
         Term notA = new NotCondition(constantFalse);
         Term notB = new NotCondition(constantTrue);
-        assert (notA.evaluate(currentScope).toString().equals("true"));
-        assert (notB.evaluate(currentScope).toString().equals("false"));
-        assert (notA.evaluate(states).toString().equals("true"));
-        assert (notB.evaluate(states).toString().equals("false"));
+        assertTrue (notA.evaluate(currentScope).toString().equals("true"));
+        assertTrue (notB.evaluate(currentScope).toString().equals("false"));
+        assertTrue (notA.evaluate(states).toString().equals("true"));
+        assertTrue (notB.evaluate(states).toString().equals("false"));
     }
 
     @Test
     public void test_OrCondition() throws DIbuggerLogicException {
 
         Term or = new OrCondition(constantFalse, constantTrue);
-        assert (or.evaluate(currentScope).toString().equals("true"));
-        assert (or.evaluate(states).toString().equals("true"));
+        assertTrue (or.evaluate(currentScope).toString().equals("true"));
+        assertTrue (or.evaluate(states).toString().equals("true"));
     }
     @Test
     public void test_AndCondition() throws DIbuggerLogicException {
 
         Term and = new AndCondition(constantFalse, constantTrue);
-        assert (and.evaluate(currentScope).toString().equals("false"));
-        assert (and.evaluate(states).toString().equals("false"));
+        assertTrue (and.evaluate(currentScope).toString().equals("false"));
+        assertTrue (and.evaluate(states).toString().equals("false"));
         and = new AndCondition(constantTrue, constantTrue);
-        assert (and.evaluate(currentScope).toString().equals("true"));
-        assert (and.evaluate(states).toString().equals("true"));
+        assertTrue (and.evaluate(currentScope).toString().equals("true"));
+        assertTrue (and.evaluate(states).toString().equals("true"));
     }
     //conditions
+    @Test 
+    public void test_moreComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(11));
+    	MoreComparison comp = new MoreComparison(left, right);
+    	assertFalse(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new FloatValue(12.1f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new MoreComparison(left,right);
+    	assertTrue(comp.evaluate(states).getValue()); 
+    	
+    }
+    @Test 
+    public void test_moreEqualComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(10));
+    	MoreEqualComparison comp = new MoreEqualComparison(left, right);
+    	assertTrue(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new FloatValue(12.1f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new MoreEqualComparison(left,right);
+    	assertTrue(comp.evaluate(states).getValue()); 
+    }
+    @Test 
+    public void test_equalComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(10));
+    	EqualComparison comp = new EqualComparison(left, right);
+    	assertTrue(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new FloatValue(12.1f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new EqualComparison(left,right);
+    	assertFalse(comp.evaluate(states).getValue()); 
+    }
+    @Test 
+    public void test_notEqualComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(10));
+    	NotEqualComparison comp = new NotEqualComparison(left, right);
+    	assertFalse(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new IntValue(12));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new NotEqualComparison(left,right);
+    	assertTrue(comp.evaluate(states).getValue()); 
+    }
+    @Test 
+    public void test_lessComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(10));
+    	LessComparison comp = new LessComparison(left, right);
+    	assertFalse(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new FloatValue(12.1f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new LessComparison(left,right);
+    	assertFalse(comp.evaluate(states).getValue()); 
+    	left = new ConstantTerm(new FloatValue(12.0f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new LessComparison(left,right);
+    	assertTrue(comp.evaluate(states).getValue()); 
+    }
+    @Test 
+    public void test_lessEqualComparison() throws DIbuggerLogicException {
+    	Term left = new ConstantTerm(new IntValue(10));
+    	Term right = new ConstantTerm(new IntValue(10));
+    	LessEqualComparison comp = new LessEqualComparison(left, right);
+    	assertTrue(comp.evaluate(currentScope).getValue());
+    	left = new ConstantTerm(new FloatValue(12.1f));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new LessEqualComparison(left,right);
+    	assertFalse(comp.evaluate(states).getValue()); 
+    	left = new ConstantTerm(new IntValue(12));
+    	right = new ConstantTerm(new FloatValue(12.01f));
+    	comp = new LessEqualComparison(left,right);
+    	assertTrue(comp.evaluate(states).getValue()); 
+    }
+    //TermList
+    @Test
+    public void test_termList() throws DIbuggerLogicException {
+    	List<Term> theTerms = new ArrayList<Term>();
+    	theTerms.add(constantA);
+    	theTerms.add(constantB);
+    	Term list = new TermList(theTerms);
+    	assertEquals(((CharValue) list.evaluate(states)).getValue(),'?');
+    	assertEquals(list.evaluate(currentScope).getType(), Type.ARRAY);
+    	assertEquals(((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0].getType(), constantA.evaluate(currentScope).getType());
+    	assertTrue(((IntValue) ((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0]).getValue() == 5);
+    }
 }

@@ -164,7 +164,7 @@ public class TermValueTest {
 	
 	//Arithmetic Test 
 	@Test
-	public void test_arythmetic_operations() throws DIbuggerLogicException{
+	public void test_arithmetic_operations() throws DIbuggerLogicException{
 		SplittableRandom rand = new SplittableRandom();
 		int cycleAmount = 100;
 		for(int i=0;i<cycleAmount;++i){
