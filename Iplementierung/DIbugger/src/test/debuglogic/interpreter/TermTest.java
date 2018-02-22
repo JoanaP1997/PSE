@@ -121,6 +121,7 @@ public class TermTest {
         Term add = new AdditionTerm(constantA, constantB);
         assert (add.evaluate(currentScope).toString().equals("12"));
         assert (add.evaluate(states).toString().equals("12"));
+        assert (add.evaluateToString(states).equals("12"));
     }
 
     @Test
@@ -177,5 +178,4 @@ public class TermTest {
         assert (and.evaluate(states).toString().equals("true"));
     }
     //conditions
-    
 }
