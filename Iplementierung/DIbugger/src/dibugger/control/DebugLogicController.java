@@ -24,9 +24,14 @@ public class DebugLogicController {
      * Creates a new {@code DebugLogicController} object.
      */
     public DebugLogicController() {
-        debugLogicFacade = new DebugLogicFacade();
+        this(new DebugLogicFacade());
+    }
+    
+    public DebugLogicController(DebugLogicFacade facade) {
+        Objects.requireNonNull(facade);
+        this.debugLogicFacade = facade;
         inputBuffer = new TextInputBuffer();
-
+        
         programIds = new HashMap<>();
     }
 

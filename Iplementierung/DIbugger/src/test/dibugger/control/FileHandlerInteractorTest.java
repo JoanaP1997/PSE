@@ -3,6 +3,7 @@ package test.dibugger.control;
 import static org.junit.Assert.*;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -14,11 +15,14 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.*;
 
 import dibugger.control.DebugLogicController;
 import dibugger.control.FileHandlerInteractor;
+import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.facade.ConfigurationFile;
@@ -33,11 +37,17 @@ public class FileHandlerInteractorTest {
         configFile.deleteOnExit();
     }
     
+    private static boolean areDepthOneEqual(Collection one, Collection another) {
+        return (one.containsAll(another) && another.containsAll(one));
+    }
+    
     @Test
     public void testApplyConfiguration_valid() throws IOException, FileHandlerException, DIbuggerLogicException {
+        DebugLogicFacade logicFacade = mock(DebugLogicFacade.class);
+        DebugLogicController logicController = new DebugLogicController(logicFacade);
         GUIFacade guiFacade = mock(GUIFacade.class);
         
-        FileHandlerInteractor interactor= new FileHandlerInteractor(new DebugLogicController(), guiFacade);
+        FileHandlerInteractor interactor= new FileHandlerInteractor(logicController, guiFacade);
         ConfigurationFile configuration = new ConfigurationFile(configurationFile);
         
         configuration.setNumPrograms(2);
@@ -73,10 +83,30 @@ public class FileHandlerInteractorTest {
         verify(guiFacade).showProgramText(eq("text sample"), eq("A"));
         verify(guiFacade).showProgramText(eq("another sample"), eq("B"));
         
-        verify(guiFacade).showInput(eq("A"), argThat(list -> list.contains("inputVariable = 0")));
-        verify(guiFacade).showInput(eq("B"), argThat(list -> list.contains("firstInputVariable = 2")));
-        verify(guiFacade).showInput(eq("B"), argThat(list -> list.contains("secondInputVariable = 4")));
+        verify(guiFacade).showInput(eq("A"), argThat(list -> areDepthOneEqual(
+                list, 
+                Arrays.asList("inputVariable = 0"))));
+        verify(guiFacade).showInput(eq("B"), argThat(list -> areDepthOneEqual(
+                list, 
+                Arrays.asList("firstInputVariable = 2", "secondInputVariable = 4"))));
         
-        //-----------------------------------------------
+        verify(guiFacade).showVariables(eq("A"), argThat(list -> areDepthOneEqual(
+                list,
+                Arrays.asList("inputVariable"))));
+        verify(guiFacade).showVariables(eq("B"), argThat(list -> areDepthOneEqual(
+                list,
+                Arrays.asList("firstInputVariable", "secondInputVariable"))));
+        
+        //-----
+        
+        verify(logicFacade).setStepSize(anyInt(), eq(2));
+        verify(logicFacade).setStepSize(anyInt(), eq(4));
+        
+        verify(logicFacade).createBreakpoint(anyInt(), eq(8));
+        verify(logicFacade).createBreakpoint(anyInt(), eq(4));
+        
+        verify(logicFacade).createCondBreakpoint(anyInt(), eq("A.inputVariable < B.secondInputVariable"));
+        
+        verify(logicFacade).createWatchExpression(anyInt(), eq("A.inputVariable == B.firstInputVariable + 8"));
     }
 }
