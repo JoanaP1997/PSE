@@ -1,0 +1,14 @@
+A_BLOCK{
+		value=5
+		f_val=7f
+		INNER_BLOCK{
+				str='something great is happening'
+		}
+		
+}
+B_BLOCK{
+		def_blockLen=3
+Hello World,
+today is a great day.
+I'm done...
+}

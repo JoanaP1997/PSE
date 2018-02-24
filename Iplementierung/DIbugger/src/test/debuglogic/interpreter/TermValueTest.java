@@ -170,12 +170,12 @@ public class TermValueTest {
 		for(int i=0;i<cycleAmount;++i){
 			int i_a_v = rand.nextInt();
 			int i_b_v = rand.nextInt();	
-			float f_a_v = (float) rand.nextDouble() * Float.MAX_VALUE;
-			float f_b_v = (float) rand.nextDouble() * Float.MAX_VALUE;
+			float f_a_v = (float) rand.nextDouble() * (Float.MAX_VALUE-Float.MIN_VALUE)+Float.MIN_VALUE;
+			float f_b_v = (float) rand.nextDouble() * (Float.MAX_VALUE-Float.MIN_VALUE)+Float.MIN_VALUE;
 			long l_a_v = (long) rand.nextLong();
 			long l_b_v = (long) rand.nextLong();	
-			double d_a_v = rand.nextDouble() * Double.MAX_VALUE;
-			double d_b_v = rand.nextDouble() * Double.MAX_VALUE;
+			double d_a_v = rand.nextDouble() * (Double.MAX_VALUE-Double.MIN_VALUE)+Double.MIN_VALUE;
+			double d_b_v = rand.nextDouble() * (Double.MAX_VALUE-Double.MIN_VALUE)+Double.MIN_VALUE;
 			
 			IntValue i_a = new IntValue(i_a_v);
 			IntValue i_b = new IntValue(i_b_v);
@@ -231,7 +231,7 @@ public class TermValueTest {
 				_test_arithmeticOperations(d_a, i_b, correct);
 				//double float
 				correct = _generate_correct_arithmetic_results(d_a_v, f_b_v);
-				_test_arithmeticOperations(d_a, l_b, correct);
+				_test_arithmeticOperations(d_a, f_b, correct);
 				//double long
 				correct = _generate_correct_arithmetic_results(d_a_v, l_b_v);
 				_test_arithmeticOperations(d_a, l_b, correct);
