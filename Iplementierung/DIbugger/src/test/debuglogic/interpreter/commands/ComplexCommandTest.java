@@ -26,47 +26,6 @@ import dibugger.debuglogic.interpreter.WhileCommand;
 public class ComplexCommandTest {
 
     @Test
-    public void ifTokenTest() throws DIbuggerLogicException {
-        GenerationController gc = new GenerationController(1000, 1000);
-        Scope s = new Scope();
-        s.setTypeOf("val", Type.BOOLEAN);
-        s.setValueOf("val", new BooleanValue(true));
-        s.setTypeOf("result", Type.INT);
-        s.setValueOf("result", new IntValue(0));
-        gc.pushScope(s);
-        IfCommand ifcmd = new IfCommand(gc, 1, new VariableTerm("val")); // if(val)
-                                                                         // {
-        Assignment assign = new Assignment(gc, 0, "result", new ConstantTerm(new IntValue(1))); // result
-                                                                                                // =
-                                                                                                // 1
-        ifcmd.addChild(assign);
-        ifcmd.run();
-        assert (s.getValueOf("result").toString().equals("1")); // result should
-                                                                // be 1
-    }
-
-    @Test
-    public void ifNotTokenTest() throws DIbuggerLogicException {
-        GenerationController gc = new GenerationController(1000, 1000);
-        Scope s = new Scope();
-        s.setTypeOf("val", Type.BOOLEAN);
-        s.setValueOf("val", new BooleanValue(false));
-        s.setTypeOf("result", Type.INT);
-        s.setValueOf("result", new IntValue(0));
-        gc.pushScope(s);
-        IfCommand ifcmd = new IfCommand(gc, 1, new VariableTerm("val")); // if(val)
-                                                                         // {
-        Assignment assign = new Assignment(gc, 0, "result", new ConstantTerm(new IntValue(1))); // result
-                                                                                                // =
-                                                                                                // 1
-        ifcmd.addChild(assign);
-        List<TraceState> states = ifcmd.run();
-        assert (states.get(0).getValueOf("result").toString().equals("0"));
-        assert (s.getValueOf("result").toString().equals("0")); // result should
-                                                                // be 0
-    }
-
-    @Test
     public void whileTest() throws DIbuggerLogicException {
         for (int i = 0; i < 1000; i++) {
             whileTestIterations(i);
