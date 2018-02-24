@@ -27,9 +27,9 @@ import dibugger.debuglogic.interpreter.WhileCommand;
 public class WhileCommandTest {
 
     @Test
-    public void whileTest() throws DIbuggerLogicException {
+    public void test_whileCommand_multipleIterations() throws DIbuggerLogicException {
         for (int i = 0; i < 1000; i++) {
-            whileTestIterations(i);
+            test_whileCommand_singleIteration(i);
         }
     }
 
@@ -40,7 +40,7 @@ public class WhileCommandTest {
      *            #iterations.
      * @throws DIbuggerLogicException
      */
-    public void whileTestIterations(int k) throws DIbuggerLogicException {
+    public void test_whileCommand_singleIteration(int k) throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         Scope s = new Scope();
         s.setTypeOf("i", Type.INT);
@@ -61,7 +61,7 @@ public class WhileCommandTest {
 
     
     @Test(expected = WrongTypeArgumentException.class)
-    public void testWhileCommandWithInt() throws DIbuggerLogicException {
+    public void test_whileCommand_WithInt() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         gc.setMaxFuncCalls(3);
         Scope s = new Scope();
@@ -77,7 +77,7 @@ public class WhileCommandTest {
      * @throws DIbuggerLogicException
      */
     @Test(expected = ExceededMaxIterationsException.class)
-    public void testWhileCommand() throws DIbuggerLogicException {
+    public void test_WhileCommand_correctStopping() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         gc.setMaxFuncCalls(3);
         Scope s = new Scope();
