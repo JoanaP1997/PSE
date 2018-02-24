@@ -1,4 +1,4 @@
-package test.debuglogic.interpreter;
+package test.debuglogic.interpreter.commands;
 
 import static org.junit.Assert.*;
 
@@ -28,53 +28,6 @@ import dibugger.debuglogic.interpreter.VariableTerm;
 import dibugger.debuglogic.interpreter.WhileCommand;
 
 public class SimpleCommandsTest {
-
-    @Test
-    public void testAssignment() throws DIbuggerLogicException {
-
-        for (int k = 0; k < 1000; k++) {
-            // test "x=x+k;"
-            GenerationController gc = new GenerationController(1000, 1000);
-            Scope s = new Scope();
-            s.setTypeOf("x", Type.INT);
-            s.setValueOf("x", new IntValue(3));
-            gc.pushScope(s);
-            // create Command
-            Term t = new AdditionTerm(new VariableTerm("x"), new ConstantTerm(new IntValue(k))); // x+k
-            Command assign = new Assignment(gc, 4, "x", t);
-            List<TraceState> result = assign.run(); // run it
-            assert (s.getValueOf("x").toString().equals(new Integer(3 + k).toString()));
-            assert (result.size() == 1);
-            assert (result.get(0).getValueOf("x").toString().equals(new Integer(3 + k).toString()));
-        }
-        for (int k = 0; k < 1000; k++) {
-            // test "y=y*k;"
-            GenerationController gc = new GenerationController(1000, 1000);
-            Scope s = new Scope();
-            s.setTypeOf("y", Type.INT);
-            s.setValueOf("y", new IntValue(3));
-            gc.pushScope(s);
-            // create Command
-            Term t = new MultiplicationTerm(new VariableTerm("y"), new ConstantTerm(new IntValue(k))); // y*k
-            Command assign = new Assignment(gc, 4, "y", t);
-            List<TraceState> result = assign.run(); // run it
-            assert (s.getValueOf("y").toString().equals(new Integer(3 * k).toString()));
-            assert (result.size() == 1);
-            assert (result.get(0).getValueOf("y").toString().equals(new Integer(3 * k).toString()));
-        }
-    }
-
-    @Test
-    public void testDeclaration() throws DIbuggerLogicException {
-        GenerationController gc = new GenerationController(1000, 1000);
-        Scope s = new Scope();
-        gc.pushScope(s);
-        // create Command
-        Command declare = new Declaration(gc, 0, "var", Type.DOUBLE);
-        List<TraceState> result = declare.run(); // run it
-        assert (s.getTypeOf("var") == Type.DOUBLE);
-        assert (result.size() == 1);
-    }
 
     @Test(expected = WrongTypeArgumentException.class)
     public void testWhileCommandWithInt() throws DIbuggerLogicException {
