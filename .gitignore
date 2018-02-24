@@ -5,6 +5,9 @@ ErgebnisseBrainstorming3.11.
 Iplementierung/DIbugger/cloc.exe
 Iplementierung/Implementierungsdokument.pdf
 Plichtenheft/Pflichtenheft.pdf
+Qalitätssicherung/*.pdf
+Qalitätssicherung/*.ods#
+Qalitätssicherung/*.xlsx#
 RemoteSystemsTempFiles
 *.acn
 *.acr
