@@ -406,7 +406,8 @@ public class MainInterface extends JFrame {
                         .addComponent(controlButtonsPanel).addComponent(watchExpPanel).addComponent(condBreakPanel)));
         groupLayout.setVerticalGroup(groupLayout.createSequentialGroup().addComponent(controlButtonsPanel)
                 .addComponent(watchExpPanel).addComponent(condBreakPanel));
-        rightControlBar.setPreferredSize(new Dimension(200, 1000));
+        rightControlBar.setPreferredSize(new Dimension(300, 1000));
+        rightControlBar.setMaximumSize(new Dimension(300, 1000));
     }
 
     private void initProgramPanels() {
