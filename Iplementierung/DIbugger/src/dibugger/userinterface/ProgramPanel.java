@@ -127,6 +127,8 @@ public class ProgramPanel extends JPanel {
         result = new JLabel(RETURN + ": ");
 
         GroupLayout firstTextPanelLayout = new GroupLayout(this);
+        firstTextPanelLayout.setAutoCreateGaps(true);
+        firstTextPanelLayout.setAutoCreateContainerGaps(true);
         setLayout(firstTextPanelLayout);
         firstTextPanelLayout.setHorizontalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addGroup(firstTextPanelLayout
@@ -232,8 +234,9 @@ public class ProgramPanel extends JPanel {
 
         codeScrollPane.setViewportView(editor);
 
+        codeScrollPane.setMinimumSize(new Dimension(400, 300));
+        codeScrollPane.setMaximumSize(new Dimension(400, 800));
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
-        codeScrollPane.setSize(400, 800);
         codePanel.add(codeScrollPane);
     }
 
@@ -417,7 +420,7 @@ public class ProgramPanel extends JPanel {
         }
         variableInspectorList.updateUI();
 
-        // show current excecution line
+        // show current execution line
         currentExecutionLine = logicFacade.getCurrentExecutionLines().getOrDefault(id, 0);
 
         // show result
@@ -488,7 +491,7 @@ public class ProgramPanel extends JPanel {
         public float nextTabStop(float x, int tabOffset) {
             TabSet tabs = getTabSet();
             if (tabs == null) {
-                return (float) (getTabBase() + (x - TAB_SIZE));
+                return (getTabBase() + (x - TAB_SIZE));
             }
             return super.nextTabStop(x, tabOffset);
         }

@@ -8,9 +8,7 @@ import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -121,6 +119,7 @@ public class MainInterface extends JFrame {
         }
         MainInterface mainInterface = new MainInterface();
         mainInterface.setSize(1200, 900);
+        mainInterface.setMinimumSize(new Dimension(1155, 850));
         mainInterface.setVisible(true);
     }
 
@@ -133,6 +132,13 @@ public class MainInterface extends JFrame {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
                 showCloseConfirmationDialog();
+            }
+        });
+
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent componentEvent) {
+                super.componentResized(componentEvent);
             }
         });
         GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -423,6 +429,7 @@ public class MainInterface extends JFrame {
         programPanels.get("B").showInput("k = 4;");
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
+        codePanel.setMinimumSize(new Dimension(450, 870));
 
         codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
