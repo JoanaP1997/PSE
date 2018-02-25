@@ -476,7 +476,7 @@ Variable already exists.
 }
 ui_load_config{
 	def_blockLen=1
-Save config file
+Load config file
 
 }
 ui_debug_continue{
