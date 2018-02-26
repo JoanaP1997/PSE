@@ -12,6 +12,8 @@ import org.junit.Test;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.interpreter.AdditionTerm;
 import dibugger.debuglogic.interpreter.AndCondition;
+import dibugger.debuglogic.interpreter.ArrayAccessRelationalTerm;
+import dibugger.debuglogic.interpreter.ArrayAccessTerm;
 import dibugger.debuglogic.interpreter.ArrayValue;
 import dibugger.debuglogic.interpreter.BooleanValue;
 import dibugger.debuglogic.interpreter.CharValue;
@@ -34,6 +36,7 @@ import dibugger.debuglogic.interpreter.Scope;
 import dibugger.debuglogic.interpreter.SubtractionTerm;
 import dibugger.debuglogic.interpreter.Term;
 import dibugger.debuglogic.interpreter.TermList;
+import dibugger.debuglogic.interpreter.TermValue;
 import dibugger.debuglogic.interpreter.TraceState;
 import dibugger.debuglogic.interpreter.TraceStatePosition;
 import dibugger.debuglogic.interpreter.Type;
@@ -274,5 +277,54 @@ public class TermTest {
     	assertEquals(list.evaluate(currentScope).getType(), Type.ARRAY);
     	assertEquals(((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0].getType(), constantA.evaluate(currentScope).getType());
     	assertTrue(((IntValue) ((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0]).getValue() == 5);
+    }
+    //ArrayTerme
+    @Test
+    public void test_arrayAccessTerm_one_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessTerm("a", new ConstantTerm(new IntValue(0)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][1][1];
+    	array[0][0][0] = new IntValue(20);
+    	currentScope.setValueOf("a", new ArrayValue(array)) ;
+    	assertEquals(term.evaluate(currentScope).getType(), Type.INT);
+    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
+    	assertTrue(((IntValue)term.evaluate(currentScope)).getValue()==20);
+    }
+    @Test
+    public void test_arrayAccessTerm_two_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessTerm("a", new ConstantTerm(new IntValue(0)), new ConstantTerm(new IntValue(1)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][2][1];
+    	array[0][0][0] = new CharValue('e');
+    	array[0][1][0] = new CharValue('f');
+    	currentScope.setValueOf("a", new ArrayValue(array)) ;
+    	assertEquals(term.evaluate(currentScope).getType(), Type.CHAR);
+    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
+    	assertTrue(((CharValue)term.evaluate(currentScope)).getValue()=='f');
+    }
+    @Test
+    public void test_arrayAccessTerm_three_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessTerm("a", new ConstantTerm(new IntValue(0)), new ConstantTerm(new IntValue(1)), new ConstantTerm(new IntValue(0)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][2][1];
+    	array[0][0][0] = new CharValue('e');
+    	array[0][1][0] = new CharValue('f');
+    	currentScope.setValueOf("a", new ArrayValue(array));
+    	assertEquals(term.evaluate(currentScope).getType(), Type.CHAR);
+    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
+    	assertTrue(((CharValue)term.evaluate(currentScope)).getValue()=='f');
+    }
+    @Test
+    public void test_arrayAccessRelationalTerm_one_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessRelationalTerm("Z.a", new ConstantTerm(new IntValue(0)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][1][1];
+    	array[0][0][0] = new IntValue(20);
+    	currentScope.setValueOf("a", new ArrayValue(array));
+    	TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, currentScope);
+    	state.setProgramId("Z");
+    	assertEquals(term.evaluate(states).getType(), Type.INT);
+    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
+    	assertTrue(((IntValue)term.evaluate(states)).getValue()==20);
     }
 }

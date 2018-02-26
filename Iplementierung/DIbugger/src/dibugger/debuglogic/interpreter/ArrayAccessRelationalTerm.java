@@ -28,12 +28,13 @@ public final class ArrayAccessRelationalTerm extends Term {
         DIM = 1;
         this.indexA = index;
         // Dummy indices
-        this.indexB = new ConstantTerm(new IntValue(1));
+        this.indexB = new ConstantTerm(new IntValue(0));
         this.indexC = this.indexB; // maybe you could make this more efficient
                                    // // by
                                    // using one global 0 Term
         splitId(identifier);
     }
+    
 
     /**
      * Constructor of an ArrayAccess on an twodimensional Array
@@ -47,7 +48,7 @@ public final class ArrayAccessRelationalTerm extends Term {
         this.indexA = firstIndex;
         this.indexB = secondIndex;
         // Dummy index
-        this.indexC = new ConstantTerm(new IntValue(1));
+        this.indexC = new ConstantTerm(new IntValue(0));
         splitId(identifier);
     }
 
@@ -82,6 +83,7 @@ public final class ArrayAccessRelationalTerm extends Term {
                 int i = ((IntValue) firstIndex).getValue();
                 int j = ((IntValue) secondIndex).getValue();
                 int k = ((IntValue) thirdIndex).getValue();
+                System.out.println(i+ "," + j + "," + k);
                 TermValue[][][] array = ((ArrayValue) t).getValue();
                 // make sure that i,j,k are not out of bounds
                 if (i < array.length) {
