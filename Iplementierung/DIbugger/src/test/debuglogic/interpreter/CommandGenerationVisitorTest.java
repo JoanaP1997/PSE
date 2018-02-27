@@ -94,16 +94,6 @@ public class CommandGenerationVisitorTest {
         assertTrue(((IfElseCommand) ((RoutineCommand) root).getChild(4)).getIfChild(0) instanceof Assignment);
         assertTrue(((IfElseCommand) ((RoutineCommand) root).getChild(4)).getElseChild(0) instanceof DeclarationAssignment);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     @Test
     public void test_code_with_whileStatement() {
         String code = "void main(int x) { \n" + "int i = x+1; \n" + "while(i<100+x) { \n" + "x=2; \n" + "i=i+2; \n"
