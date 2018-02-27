@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class DebugControlTest {
 
     @Test
-    public void steppingTest() throws DIbuggerLogicException {
+    public void test_step_normal_back() throws DIbuggerLogicException {
 
         DebugLogicFacade facade = new DebugLogicFacade();
         ProgramInput in = new ProgramInput("void main() { \n" + "int i = 2 \n;" + "int x = 3+i; \n"
@@ -39,11 +39,18 @@ public class DebugControlTest {
     }
 
     @Test
-    public void breakpointTest() throws DIbuggerLogicException {
+    public void test_breakpoint_step_normal_back() throws DIbuggerLogicException {
         DebugLogicFacade facade = new DebugLogicFacade();
-        ProgramInput in = new ProgramInput("void main() { \n" + "int i = 2 \n;" + "int x = 3+i; \n"
-                + "boolean b = true; \n" + "while (x<80) { \n" + " i = i+2; \n" + " x = x +1; \n" + " } \n" + "}",
-                new ArrayList<String>(), 0, "A");
+        ProgramInput in = new ProgramInput("void main() { \n"
+        		+ "int i = 2 \n;"
+        		+ "int x = 3+i; \n"
+                + "boolean b = true; \n"
+        		+ "while (x<80) { \n"
+                + " i = i+2; \n"
+        		+ " x = x +1; \n"
+                + " } \n"
+        		+ "}",
+        new ArrayList<String>(), 0, "A");
         List<ProgramInput> l_in = new ArrayList<ProgramInput>();
         l_in.add(in);
         facade.setStepSize(0, 5);
@@ -60,7 +67,7 @@ public class DebugControlTest {
     }
 
     @Test
-    public void watchExpressionTest() throws DIbuggerLogicException {
+    public void test_watch_expression_step_normal_back() throws DIbuggerLogicException {
         DebugLogicFacade facade = new DebugLogicFacade();
         ProgramInput in = new ProgramInput("void main() { \n" + "int i = 2 \n;" + "int x = 3+i; \n"
                 + "boolean b = true; \n" + "while (x<80) { \n" + " i = i+2; \n" + " x = x +1; \n" + " } \n" + "}",
@@ -73,6 +80,5 @@ public class DebugControlTest {
         facade.launchRun(l_in);
         facade.step(DebugControl.STEP_NORMAL);
         assertEquals("9", facade.getWEValue(0));
-        System.out.println(facade.getCBValue(0));
     }
 }

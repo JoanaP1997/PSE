@@ -162,7 +162,16 @@ public class TermValueTest {
 		assertEquals("" + ((BooleanValue) tv.clone()).getValue(), "true");
 	}
 	
+	@Test
+	public void test_boolean_value() throws DIbuggerLogicException{
+		assertEquals(false, new BooleanValue(true).equal(new BooleanValue(false)));
+		assertEquals(true, new BooleanValue(true).or(new BooleanValue(false)));
+		assertEquals(false, new BooleanValue(true).and(new BooleanValue(false)));
+		assertEquals(false, new BooleanValue(true).not());
+	}
+	
 	//Arithmetic Test 
+	private final double epsilon = 1e-13;
 	@Test
 	public void test_arithmetic_operations() throws DIbuggerLogicException{
 		SplittableRandom rand = new SplittableRandom();
@@ -176,6 +185,13 @@ public class TermValueTest {
 			long l_b_v = (long) rand.nextLong();	
 			double d_a_v = rand.nextDouble() * (Double.MAX_VALUE-Double.MIN_VALUE)+Double.MIN_VALUE;
 			double d_b_v = rand.nextDouble() * (Double.MAX_VALUE-Double.MIN_VALUE)+Double.MIN_VALUE;
+			char c_a_v = (char) rand.nextInt(1, 255);
+			char c_b_v = (char) rand.nextInt(1, 255);
+			
+			i_b_v = i_b_v!=0 ? i_b_v : rand.nextInt(1, Integer.MAX_VALUE);
+			l_b_v = l_b_v!=0 ? l_b_v : rand.nextLong(1, Long.MAX_VALUE);
+			f_b_v = f_b_v!=0 ? f_b_v : (float)rand.nextDouble(epsilon, Float.MAX_VALUE);
+			d_b_v = d_b_v!=0 ? d_b_v : rand.nextDouble(epsilon, Double.MAX_VALUE);
 			
 			IntValue i_a = new IntValue(i_a_v);
 			IntValue i_b = new IntValue(i_b_v);
@@ -185,56 +201,86 @@ public class TermValueTest {
 			LongValue l_b = new LongValue(l_b_v);
 			DoubleValue d_a = new DoubleValue(d_a_v);
 			DoubleValue d_b = new DoubleValue(d_b_v);
+			CharValue c_a = new CharValue(c_a_v);
+			CharValue c_b = new CharValue(c_b_v);
+			
 						
 			//Comparisons
 			//int int
 			String[] correct = _generate_correct_arithmetic_results(i_a_v, i_b_v);
-			_test_arithmeticOperations(i_a, i_b, correct);
+			_test_arithmeticOperations(i_a, i_b, correct, false);
 				//int float
 				correct = _generate_correct_arithmetic_results(i_a_v, f_b_v);
-				_test_arithmeticOperations(i_a, f_b, correct);
+				_test_arithmeticOperations(i_a, f_b, correct, false);
 				//int long
 				correct = _generate_correct_arithmetic_results(i_a_v, l_b_v);
-				_test_arithmeticOperations(i_a, l_b, correct);
+				_test_arithmeticOperations(i_a, l_b, correct, false);
 				//int double
 				correct = _generate_correct_arithmetic_results(i_a_v, d_b_v);
-				_test_arithmeticOperations(i_a, d_b, correct);
+				_test_arithmeticOperations(i_a, d_b, correct, false);
+				//int char
+				correct = _generate_correct_arithmetic_results(i_a_v, (int)c_b_v);
+				_test_arithmeticOperations(i_a, c_b, correct, false);
 			//float float
 			correct = _generate_correct_arithmetic_results(f_a_v, f_b_v);
-			_test_arithmeticOperations(f_a, f_b, correct);
+			_test_arithmeticOperations(f_a, f_b, correct, false);
 				//float int
 				correct = _generate_correct_arithmetic_results(f_a_v, i_b_v);
-				_test_arithmeticOperations(f_a, i_b, correct);
+				_test_arithmeticOperations(f_a, i_b, correct, false);
 				//float long
 				correct = _generate_correct_arithmetic_results(f_a_v, l_b_v);
-				_test_arithmeticOperations(f_a, l_b, correct);
+				_test_arithmeticOperations(f_a, l_b, correct, false);
 				//float double
 				correct = _generate_correct_arithmetic_results(f_a_v, d_b_v);
-				_test_arithmeticOperations(f_a, d_b, correct);
+				_test_arithmeticOperations(f_a, d_b, correct, false);
+				//float char
+				correct = _generate_correct_arithmetic_results(f_a_v, (int)c_b_v);
+				_test_arithmeticOperations(f_a, c_b, correct, false);
 			//long long
 			correct = _generate_correct_arithmetic_results(l_a_v, l_b_v);
-			_test_arithmeticOperations(l_a, l_b, correct);
+			_test_arithmeticOperations(l_a, l_b, correct, false);
 				//long int
 				correct = _generate_correct_arithmetic_results(l_a_v, i_b_v);
-				_test_arithmeticOperations(l_a, i_b, correct);
+				_test_arithmeticOperations(l_a, i_b, correct, false);
 				//long float
 				correct = _generate_correct_arithmetic_results(l_a_v, f_b_v);
-				_test_arithmeticOperations(l_a, f_b, correct);
+				_test_arithmeticOperations(l_a, f_b, correct, false);
 				//long double
 				correct = _generate_correct_arithmetic_results(l_a_v, d_b_v);
-				_test_arithmeticOperations(l_a, d_b, correct);
+				_test_arithmeticOperations(l_a, d_b, correct, false);
+				//long char
+				correct = _generate_correct_arithmetic_results(l_a_v, (int)c_b_v);
+				_test_arithmeticOperations(l_a, c_b, correct, false);
 			//double double
 			correct = _generate_correct_arithmetic_results(d_a_v, d_b_v);
-			_test_arithmeticOperations(d_a, d_b, correct);
+			_test_arithmeticOperations(d_a, d_b, correct, false);
 				//double int
 				correct = _generate_correct_arithmetic_results(d_a_v, i_b_v);
-				_test_arithmeticOperations(d_a, i_b, correct);
+				_test_arithmeticOperations(d_a, i_b, correct, false);
 				//double float
 				correct = _generate_correct_arithmetic_results(d_a_v, f_b_v);
-				_test_arithmeticOperations(d_a, f_b, correct);
+				_test_arithmeticOperations(d_a, f_b, correct, false);
 				//double long
 				correct = _generate_correct_arithmetic_results(d_a_v, l_b_v);
-				_test_arithmeticOperations(d_a, l_b, correct);
+				_test_arithmeticOperations(d_a, l_b, correct, false);
+				//double char
+				correct = _generate_correct_arithmetic_results(d_a_v, (int)c_b_v);
+				_test_arithmeticOperations(d_a, c_b, correct, false);
+			//char char
+			correct = _generate_correct_arithmetic_results((int)c_a_v, (int)c_b_v);
+			_test_arithmeticOperations(c_a, c_b, correct, true);
+				//char int
+				correct = _generate_correct_arithmetic_results((int)c_a_v, i_b_v);
+				_test_arithmeticOperations(c_a, i_b, correct, false);
+				//char float
+				correct = _generate_correct_arithmetic_results((int)c_a_v, f_b_v);
+				_test_arithmeticOperations(c_a, f_b, correct, false);
+				//char long
+				correct = _generate_correct_arithmetic_results((int)c_a_v, l_b_v);
+				_test_arithmeticOperations(c_a, l_b, correct, false);
+				//char double
+				correct = _generate_correct_arithmetic_results((int)c_a_v, d_b_v);
+				_test_arithmeticOperations(c_a, d_b, correct, false);
 		}
 	}
 	
@@ -460,8 +506,13 @@ public class TermValueTest {
 
 		return results;
 	}
-	private void _test_arithmeticOperations(TermValue a, TermValue b, String[] correct) throws DIbuggerLogicException{
+	private void _test_arithmeticOperations(TermValue a, TermValue b, String[] correct, boolean charCast) throws DIbuggerLogicException{
 		String msg = " ->a:"+a.getClass().getName()+" b:"+b.getClass().getName()+"<-";
+		if(charCast){
+			for(int i=0;i<5;++i){
+				correct[i] = ""+(char)Integer.parseInt(correct[i]);
+			}
+		}
 		assertEquals(msg,correct[0], a.add(b).toString());
 		assertEquals(msg,correct[1], a.sub(b).toString());
 		assertEquals(msg,correct[2], a.mul(b).toString());
