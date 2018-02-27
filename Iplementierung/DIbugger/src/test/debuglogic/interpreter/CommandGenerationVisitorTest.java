@@ -35,13 +35,13 @@ public class CommandGenerationVisitorTest {
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
 
-        assertTrue (root instanceof RoutineCommand);
-        assertTrue (((RoutineCommand) root).getChild(0) instanceof Declaration);
-        assertTrue (((RoutineCommand) root).getChild(1) instanceof Assignment);
-        assertTrue (((RoutineCommand) root).getChild(2) instanceof DeclarationAssignment);
-        assertTrue (((RoutineCommand) root).getChild(3) instanceof IfCommand);
-        assertTrue (((IfCommand) ((RoutineCommand) root).getChild(3)).getChild(0) instanceof Assignment);
-        assertTrue (((RoutineCommand) root).getChild(4) instanceof ReturnCommand);
+        assertTrue(root instanceof RoutineCommand);
+        assertTrue(((RoutineCommand) root).getChild(0) instanceof Declaration);
+        assertTrue(((RoutineCommand) root).getChild(1) instanceof Assignment);
+        assertTrue(((RoutineCommand) root).getChild(2) instanceof DeclarationAssignment);
+        assertTrue(((RoutineCommand) root).getChild(3) instanceof IfCommand);
+        assertTrue(((IfCommand) ((RoutineCommand) root).getChild(3)).getChild(0) instanceof Assignment);
+        assertTrue(((RoutineCommand) root).getChild(4) instanceof ReturnCommand);
     }
 
     @Test
@@ -55,11 +55,12 @@ public class CommandGenerationVisitorTest {
         ParseTree tree = parser.program();
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
-        assertTrue (root instanceof RoutineCommand);
-        assertTrue (((RoutineCommand) root).getChild(0) instanceof DeclarationAssignment);
-        assertTrue (((RoutineCommand) root).getChild(1) instanceof WhileCommand);
-        assertTrue (((RoutineCommand) root).getChild(2) instanceof ReturnCommand);
-        assertTrue (((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(0) instanceof Assignment);
-        assertTrue (((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(1) instanceof Assignment);
+        
+        assertTrue(root instanceof RoutineCommand);
+        assertTrue(((RoutineCommand) root).getChild(0) instanceof DeclarationAssignment);
+        assertTrue(((RoutineCommand) root).getChild(1) instanceof WhileCommand);
+        assertTrue(((RoutineCommand) root).getChild(2) instanceof ReturnCommand);
+        assertTrue(((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(0) instanceof Assignment);
+        assertTrue(((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(1) instanceof Assignment);
     }
 }

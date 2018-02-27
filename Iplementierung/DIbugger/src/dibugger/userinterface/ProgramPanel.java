@@ -428,6 +428,7 @@ public class ProgramPanel extends JPanel {
         result.updateUI();
 
         // update stepSize
+        //TODO: ist hier Fehler der stepSize bzw kommt hier ein falscher Wert von unten?
         stepSizeTextField.setText(Integer.toString(logicFacade.getStepSize(id)));
         this.updateUI();
     }
