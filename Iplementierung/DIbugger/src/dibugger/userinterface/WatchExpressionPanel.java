@@ -190,6 +190,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
      */
     public void reset() {
         singleton = new WatchExpressionPanel(mainInterface);
+        this.updateUI();
     }
 
     /**

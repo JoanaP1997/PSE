@@ -24,7 +24,7 @@ import dibugger.debuglogic.interpreter.WhileCommand;
 public class CommandGenerationVisitorTest {
 
     @Test
-    public void structureIfTest() {
+    public void test_code_with_ifstatement() {
         String code = "int main() { \n" + "int i; \n" + "i=2; \n" + "char c = 't'; \n" + "if(i<c) \n " + "i=3; \n"
                 + "return i; \n" + "}";
         CharStream input = CharStreams.fromString(code);
@@ -45,7 +45,7 @@ public class CommandGenerationVisitorTest {
     }
 
     @Test
-    public void structureWhileTest() {
+    public void test_code_with_whileStatement() {
         String code = "void main(int x) { \n" + "int i = x+1; \n" + "while(i<100+x) { \n" + "x=2; \n" + "i=i+2; \n"
                 + "} \n" + "return x; \n" + "}";
         CharStream input = CharStreams.fromString(code);
@@ -55,12 +55,12 @@ public class CommandGenerationVisitorTest {
         ParseTree tree = parser.program();
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
+        
         assertTrue(root instanceof RoutineCommand);
         assertTrue(((RoutineCommand) root).getChild(0) instanceof DeclarationAssignment);
         assertTrue(((RoutineCommand) root).getChild(1) instanceof WhileCommand);
         assertTrue(((RoutineCommand) root).getChild(2) instanceof ReturnCommand);
         assertTrue(((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(0) instanceof Assignment);
         assertTrue(((WhileCommand) ((RoutineCommand) root).getChild(1)).getChild(1) instanceof Assignment);
-
     }
 }

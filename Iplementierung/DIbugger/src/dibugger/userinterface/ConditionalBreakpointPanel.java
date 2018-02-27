@@ -164,6 +164,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
      */
     public void reset() {
         singleton = new ConditionalBreakpointPanel(mainInterface);
+        this.updateUI();
     }
 
     /**
