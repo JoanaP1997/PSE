@@ -88,12 +88,8 @@ public class RoutineCommand extends Command {
             traceStateList.addAll(this.children.get(i).run());
             i++;
         }
-        TraceState afterrunning = new TraceState(TraceStatePosition.AFTERRETURN, linenumber, scope);
-        if(!traceStateList.isEmpty()) {
-        	traceStateList.get(0).setPosition(TraceStatePosition.AFTERFUNCCALL);
-        }
-        traceStateList.add(afterrunning);
-    	// check if return value of controller is set and of correct type
+
+        // check if return value of controller is set and of correct type
         TermValue returnValue = this.controller.getReturnValue();
 
         if ((returnValue == null) && (this.expectedReturnType != Type.NULL)) {
