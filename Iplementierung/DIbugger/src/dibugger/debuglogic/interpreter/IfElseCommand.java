@@ -14,8 +14,8 @@ import dibugger.debuglogic.exceptions.WrongTypeArgumentException;
  */
 public class IfElseCommand extends Command {
 
-    private Command ifChild;
-    private Command elseChild;
+    private List<Command> ifChilds;
+    private List<Command> elseChilds;
     private Term condition;
 
     /**
@@ -31,6 +31,8 @@ public class IfElseCommand extends Command {
     public IfElseCommand(GenerationController controller, int linenumber, Term condition) {
         super(controller, linenumber);
         this.condition = condition;
+        this.ifChilds = new ArrayList<Command>();
+        this.elseChilds = new ArrayList<Command>();
     }
 
     @Override
@@ -49,9 +51,11 @@ public class IfElseCommand extends Command {
 
         // check if condition is true
         if (((BooleanValue) value).getValue()) {
-            traceStateList.addAll(this.ifChild.run());
+        	for(Command ifChild : this.ifChilds)
+        		traceStateList.addAll(ifChild.run());
         } else {
-            traceStateList.addAll(this.elseChild.run());
+        	for(Command elseChild: this.elseChilds)
+        		traceStateList.addAll(elseChild.run());
         }
         return traceStateList;
     }
@@ -63,7 +67,7 @@ public class IfElseCommand extends Command {
      *            the if-child
      */
     public void addIfChild(Command child) {
-        this.ifChild = child;
+    	 this.ifChilds.add(child);
     }
 
     /**
@@ -73,6 +77,15 @@ public class IfElseCommand extends Command {
      *            the else-child
      */
     public void addElseChild(Command child) {
-        this.elseChild = child;
+        this.elseChilds.add(child);
     }
+
+	public Command getIfChild(int i) {
+		if (this.ifChilds.size()>i) return this.ifChilds.get(i);
+		return null;
+	}
+	public Command getElseChild(int i) {
+		if (this.elseChilds.size()>i) return this.elseChilds.get(i);
+		return null;
+	}
 }
