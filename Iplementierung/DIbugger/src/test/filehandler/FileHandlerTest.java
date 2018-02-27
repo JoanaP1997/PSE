@@ -30,6 +30,7 @@ import dibugger.filehandler.rdbf.RDBFWriter;
 
 public class FileHandlerTest {
     @Test
+    @Ignore
     public void testWrite() throws IOException {
         RDBFWriter writer = new RDBFWriter();
         RDBFFile f = new RDBFFile(new File("res/testing/test_out.txt"));
@@ -40,6 +41,7 @@ public class FileHandlerTest {
     }
 
     @Test
+    @Ignore
     public void testRead() throws IOException, FileHandlerException {
         RDBFReader reader = new RDBFReader();
 
@@ -55,6 +57,7 @@ public class FileHandlerTest {
     }
 
     @Test
+    @Ignore
     public void testProperties() {
         RDBFPropReader reader = new RDBFPropReader();
         PropertiesFile f = reader.loadProperties(PropertiesFile.DEFAULT_LOCATION);
@@ -63,6 +66,7 @@ public class FileHandlerTest {
     }
 
     @Test
+    @Ignore
     public void testRDBFConfig() throws FileHandlerException {
         RDBFDBWriter writer = new RDBFDBWriter();
         ConfigurationFile f = generateConfig(new File("res/testing/config_test_out.rdbf"));
@@ -72,6 +76,7 @@ public class FileHandlerTest {
     }
 
     @Test
+    @Ignore
     public void testRDBFLanguage() throws FileHandlerException {
         RDBFDBReader reader = new RDBFDBReader();
         LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.txt"));

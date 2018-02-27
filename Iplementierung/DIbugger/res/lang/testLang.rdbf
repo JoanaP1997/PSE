@@ -1,0 +1,6 @@
+langID='testLang'
+langName='Testing Language'
+test{
+	def_blockLen=1
+Thats a test
+}

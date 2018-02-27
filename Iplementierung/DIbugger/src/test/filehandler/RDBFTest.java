@@ -6,8 +6,12 @@ import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.InvalidLineTypeExeption;
 import dibugger.filehandler.exceptions.ParseAssignmentException;
 import dibugger.filehandler.exceptions.ParseBlockException;
+import dibugger.filehandler.facade.ConfigurationFile;
+import dibugger.filehandler.facade.LanguageFile;
 import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.filehandler.rdbf.RDBFBlock;
+import dibugger.filehandler.rdbf.RDBFDBReader;
+import dibugger.filehandler.rdbf.RDBFDBWriter;
 import dibugger.filehandler.rdbf.RDBFData;
 import dibugger.filehandler.rdbf.RDBFFile;
 import dibugger.filehandler.rdbf.RDBFParser;
@@ -23,6 +27,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.SplittableRandom;
 
 public class RDBFTest {
@@ -201,7 +207,69 @@ public class RDBFTest {
 		
 		block = f.getList_blocks().get(1);
 		assertEquals(RDBFData.DATA_TEXT, block.getList_data().get(0).getDataType());
-		assertEquals("Hello World,\ntoday is a great day.\nI'm done...\n", block.getList_data().get(0).getValue());
+		assertEquals("Hello World,\ntoday is a great day.\nI'm done...", block.getList_data().get(0).getValue());
 	}
 	
+
+	@Test
+	public void test_RDBFDBReader() throws FileHandlerException{
+		RDBFDBReader reader = new RDBFDBReader();
+		ConfigurationFile f = reader.loadConfigFile(new File("res/testing/test_config.rdbf"));
+		assertEquals(1,f.getStepSize(0));
+		assertEquals("A",f.getProgramNameID(0));
+		assertEquals(5,f.getLatestExecutionLine(0));
+		assertEquals("n",f.getInputValueIdentifiers(0).get(0));
+		assertEquals("5",f.getInputValue(0, "n"));
+		String programText = "//factorial programmed in an iterative manner\n"
+				+ "int main(int n){\n"
+				+ "\tint i = 1;\n"
+				+ "\tint sum = 1;\n"
+				+ "\twhile(i<=n) {\n"
+				+ "\t\tsum = sum * i;\n"
+				+ "\t\ti = i + 1;\n"
+				+ "\t}\n"
+				+ "\treturn sum;\n"
+				+ "}";
+		assertEquals(programText,f.getProgramText(0));
+		assertEquals("5 == 5", f.getWatchExpressions().get(0));
+		assertEquals(1, (int)f.getWEScopeBegin(0).get(0));
+		assertEquals(10, (int)f.getWEScopeEnd(0).get(0));
+		
+		LanguageFile l = reader.loadLanguageFile(new File("res/lang/testLang.rdbf"));
+		assertEquals("testLang", l.getLangID());
+		assertEquals("Testing Language", l.getName());
+		assertEquals("Thats a test", l.getTranslation("test"));
+	}
+	
+	@Test
+	public void test_RDBFDBWriter(){
+		ConfigurationFile f = new ConfigurationFile(new File("res/testing/test_config_out.rdbf"));
+		f.setStepSize(0, 1);
+		f.setProgramNameID(0, "AX");
+		f.setLastExecutionLine(0, 7);
+		String programText = "//factorial programmed in an iterative manner\n"
+				+ "int main(int n){\n"
+				+ "\tint i = 1;\n"
+				+ "\tint sum = 1;\n"
+				+ "\twhile(i<=n) {\n"
+				+ "\t\tsum = sum * i;\n"
+				+ "\t\ti = i + 1;\n"
+				+ "\t}\n"
+				+ "\treturn sum;\n"
+				+ "}";
+		f.setProgramText(0, programText);
+		f.setInputValue(0, "n", "37");
+		f.addWatchExpressions("A.x == 3", Arrays.asList(1), Arrays.asList(5));
+		f.setBreakpoints(0, Arrays.asList(2,4));
+		f.setNumPrograms(1);
+		f.setVariablesOfInspector(0, new ArrayList<String>());
+		
+		RDBFDBWriter writer = new RDBFDBWriter();
+		writer.saveConfigFile(f);		
+		
+		//lang
+		LanguageFile l = new LanguageFile("testLang", "Testing Language");
+		l.putTranslation("test", "Thats a test");
+		writer.saveLanguageFile(l);
+	}
 }

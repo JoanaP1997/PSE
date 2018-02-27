@@ -68,7 +68,7 @@ public class RDBFDBReader extends DBFileReader {
                 List<Integer> le = new ArrayList<Integer>();
                 for (RDBFBlock b0 : b.getBlocksByName("SCOPE")) {
                     lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
-                    lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
+                    le.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
                 }
                 f.addWatchExpressions(expression, lb, le);
             }
@@ -79,7 +79,7 @@ public class RDBFDBReader extends DBFileReader {
                 List<Integer> le = new ArrayList<Integer>();
                 for (RDBFBlock b0 : b.getBlocksByName("SCOPE")) {
                     lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
-                    lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
+                    le.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
                 }
                 f.addConditionalBreakpoint(expression, lb, le);
             }
