@@ -24,7 +24,7 @@ public class ReturnCommand extends Command {
         // routine call will get the value from the controller later
         controller.setReturnValue(returnValue.evaluate(scope));
         List<TraceState> traceStateList = new ArrayList<TraceState>();
-        traceStateList.add(new TraceState(TraceStatePosition.AFTERRETURN, this.linenumber, scope));
+        traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
         return traceStateList;
     }
 

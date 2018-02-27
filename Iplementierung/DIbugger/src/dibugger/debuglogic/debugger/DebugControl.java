@@ -174,7 +174,7 @@ public class DebugControl {
                     if (!breaked[i]) {
                         boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                         TraceState state = list_currentTraceStates.get(i);
-                        if (state.getPosition() == TraceStatePosition.AFTERFUNCCALL) {
+                        if (state.getPosition() == TraceStatePosition.FUNCCALL) {
                             ++inline[i];
                         } else if (first) {
                             breaked[i] = true;
@@ -252,9 +252,6 @@ public class DebugControl {
         if ((direction == STEP_NORMAL || direction == STEP_OVER || direction == STEP_OUT) && it.hasNext()) {
             list_currentTraceStates.set(programID, it.next());
             list_programInput.get(programID).setCounter(list_programInput.get(programID).getCounter() + 1);
-        	if(list_currentTraceStates.get(programID).getPosition()==TraceStatePosition.AFTERFUNCCALL){
-        		System.out.println(list_currentTraceStates.get(programID).getPosition());
-        	}
             return true;
         } else if (direction == STEP_BACK && it.hasPrevious()) {
             list_currentTraceStates.set(programID, it.previous());
