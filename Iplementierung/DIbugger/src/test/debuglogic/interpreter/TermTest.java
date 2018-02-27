@@ -323,8 +323,39 @@ public class TermTest {
     	currentScope.setValueOf("a", new ArrayValue(array));
     	TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, currentScope);
     	state.setProgramId("Z");
+    	states.add(state);
     	assertEquals(term.evaluate(states).getType(), Type.INT);
     	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
     	assertTrue(((IntValue)term.evaluate(states)).getValue()==20);
+    }
+    @Test
+    public void test_arrayAccessRelationalTerm_two_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessRelationalTerm("Z.a", new ConstantTerm(new IntValue(0)),  new ConstantTerm(new IntValue(1)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][2][1];
+    	array[0][0][0] = new CharValue('e');
+    	array[0][1][0] = new CharValue('f');
+    	currentScope.setValueOf("a", new ArrayValue(array));
+    	TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, currentScope);
+    	state.setProgramId("Z");
+        states.add(state);
+    	assertEquals(term.evaluate(states).getType(), Type.CHAR);
+    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
+    	assertTrue(((CharValue)term.evaluate(states)).getValue()=='f');
+    }
+    @Test
+    public void test_arrayAccessRelationalTerm_three_dim() throws DIbuggerLogicException {
+    	Term term = new ArrayAccessRelationalTerm("Z.a", new ConstantTerm(new IntValue(0)),  new ConstantTerm(new IntValue(1)),new ConstantTerm(new IntValue(0)));
+    	currentScope.setTypeOf("a", Type.ARRAY);
+    	TermValue[][][] array  = new TermValue[2][2][1];
+    	array[0][0][0] = new CharValue('e');
+    	array[0][1][0] = new CharValue('f');
+    	currentScope.setValueOf("a", new ArrayValue(array));
+    	TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, currentScope);
+    	state.setProgramId("Z");
+    	states.add(state);
+    	assertEquals(term.evaluate(states).getType(), Type.CHAR);
+    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
+    	assertTrue(((CharValue)term.evaluate(states)).getValue()=='f');
     }
 }
