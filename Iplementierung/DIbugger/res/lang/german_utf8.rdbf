@@ -484,6 +484,11 @@ ui_debug_continue{
 Weiter
 
 }
+ui_stepback_tooltip{
+	def_blockLen=1
+Führe einen Schritt rückwärts aus
+
+}
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>

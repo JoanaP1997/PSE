@@ -454,6 +454,11 @@ ui_continue_tooltip{
 Debug until next active breakpoint
 
 }
+ui_stepback_tooltip{
+	def_blockLen=1
+Excecute a step back
+
+}
 ui_varinspector_tooltip{
 	def_blockLen=1
 Mark variable then hide it by right clicking

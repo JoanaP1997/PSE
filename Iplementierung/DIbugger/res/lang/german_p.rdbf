@@ -173,6 +173,11 @@ ui_from{
 Vun
 
 }
+ui_stepback_tooltip{
+	def_blockLen=1
+Mach an Schritt reduur
+
+}
 ui_debug_step_over{
 	def_blockLen=1
 Driwwa huppse.
