@@ -67,12 +67,29 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \section{Komponententest}
 \subsection{Funktionale Tests}
 \subsubsection{Interpreter}
+Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
+Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
+Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
+\paragraph{Klassentests}
 Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
 Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt. 
 So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
 Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in %TODO
  ???????????? beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
-Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen.  
+Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
+\paragraph{Paketweite Tests}
+Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
+%TODO das muss noch ausformuliert und wirklich getestet werden.
+\subparagraph{Syntaktisch falsche Wlang-Programme}
+fehlende main, falsche methoden definition, falsche zuweisung...
+\subparagraph{Semantisch falsche Wlang-Programme}
+hier gibt es viel: 
+fehlendes return, while(3+2), if(2.4f), falsche Arraynutzung: int[3][4] a; a[4] = 10; oder char[2.3f] a; oder char[b] a; wobei b kein int
+falscher umgang mit datentypen, falsche übergabeparameter, endlosschleifen
+\subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
+falsche Syntax z.B. A.x = l,y
+\subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
+z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
 \subsection{Belastungstests}
 
 \section{Integrationstest}
