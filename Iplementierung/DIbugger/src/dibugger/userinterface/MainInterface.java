@@ -48,6 +48,7 @@ public class MainInterface extends JFrame {
     private static String CONFIRM_CLOSE_QUESTION = "Sind sie sicher, dass sie das Programm beenden möchten?";
     private static String YES_OPTION = "Ja";
     private static String NO_OPTION = "Nein";
+
     TreeMap<String, ProgramPanel> programPanels;
 
     private JMenu fileMenu;
@@ -125,7 +126,7 @@ public class MainInterface extends JFrame {
         }
         MainInterface mainInterface = new MainInterface();
         mainInterface.setSize(1200, 900);
-        mainInterface.setMinimumSize(new Dimension(1155, 850));
+        mainInterface.setMinimumSize(new Dimension(1165, 0));
         mainInterface.setVisible(true);
     }
 
