@@ -56,7 +56,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \newpage
 \pagenumbering{arabic}
 
-\section{Einleitung}
+\section{Übersicht}
 
 \begin{figure}[!h]
 \centering
@@ -64,9 +64,24 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \caption{Produktlogo}
 \end{figure}
 
-\section{Komponententest}
-\subsection{Funktionale Tests}
+\subsection{Erklären des Vorgehens}
+\subsection{Welche Qualitäten wurden wie getestet?}
+
+Benutzeroberfläche:
+Verständlichkeit \\
+Übersichtlichkeit \\
+Erlernbarkeit \\
+
+System:
+Fehlertoleranz/Stabilität \\
+Zeit-/Ressourceneffizienz \\
+
+
+\section{Testen einzelner Pakete}
+\subsection{Gesamtabdeckung}
+\subsection{Testfälle}
 \subsubsection{Interpreter}
+%TODO Annahme, dass Antlr korrekt funktioniert
 Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
 Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
 Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
@@ -90,15 +105,35 @@ falscher umgang mit datentypen, falsche übergabeparameter, endlosschleifen
 falsche Syntax z.B. A.x = l,y
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
-\subsection{Belastungstests}
+%\subsection{Belastungstests}
 
-\section{Integrationstest}
+\section{Testen des Gesamtprodukts}
 
 \subsection{Funktionale Tests}
+\begin{itemize}
+\item Einige übliche Algorithmen
+\end{itemize}
+
 
 \subsection{Belastungstests}
 
-\section{UserInterface Test}
+\begin{itemize}
+\item Tiefe Rekursion (Ackermann)
+\item Endlosschleifen
+\item falsche Nutzereingaben
+\item keine Nutzereingaben
+\item n-viele Programme gleichzeitig debuggen
+\item leere Fenster
+\item falsche Dateien laden
+\item Testen von Programmen aus den anderen Relationalen Programmen
+
+\end{itemize}
+
+\subsection{Test auf verschiedener Hard- und Software}
+
+\subsection{Untersuchung von Laufzeit und Speicherverbrauch}
+
+\section{Gesondertes Testen der Benutzeroberfläche}
 
 \subsection{Testplan / Übersicht}
 -Monkey Testing \\
@@ -108,6 +143,15 @@ z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
 \subsubsection{Dummes Monkey Testing}
 \subsubsection{Intelligentes Monkey Testing}
 
+\subsection{Untersuchung der Nutzerfreundlichkeit}
+
 \subsection{Testfälle}
+
+\section{Vorgenommene Veränderungen}
+
+\section{Anhang}
+\subsection{Testprotokoll für die Nutzerstudie}
+%Testprotokoll
+%getestete Programme
 
 \end{document}
