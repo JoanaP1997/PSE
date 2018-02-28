@@ -92,6 +92,8 @@ So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \t
 Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in %TODO
  ???????????? beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
 Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
+Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
+Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
 \paragraph{Paketweite Tests}
 Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
 %TODO das muss noch ausformuliert und wirklich getestet werden.
@@ -106,6 +108,13 @@ falsche Syntax z.B. A.x = l,y
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
 %\subsection{Belastungstests}
+
+\paragraph{Im Interpreter gefundene Fehler}
+Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
+Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
+
+%TODO Fehler bei paketweiten Tests
 
 \section{Testen des Gesamtprodukts}
 
