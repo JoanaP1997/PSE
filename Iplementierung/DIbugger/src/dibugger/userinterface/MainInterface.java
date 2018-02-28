@@ -513,6 +513,7 @@ public class MainInterface extends JFrame {
         programPanels.clear();
         programPanels.put("A", new ProgramPanel("A", this));
         programPanels.put("B", new ProgramPanel("B", this));
+
         programPanels.get("A").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_iterative.txt")));
         programPanels.get("A").showInput("n = 5;");
         programPanels.get("B").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_recursive.txt")));
@@ -520,6 +521,12 @@ public class MainInterface extends JFrame {
         codePanel.removeAll();
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
+        for (String id : programPanels.keySet()) {
+            programPanels.get(id).resizeToHeight(codePanel.getHeight());
+            programPanels.get(id).updateUI();
+        }
+        codePanel.updateUI();
+        codeScrollPane.updateUI();
         WatchExpressionPanel.getWatchExpressionPanel(this).reset();
         ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
 
