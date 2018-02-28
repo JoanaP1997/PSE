@@ -174,7 +174,7 @@ public class DebugControl {
                     if (!breaked[i]) {
                         boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                         TraceState state = list_currentTraceStates.get(i);
-                        if (state.getPosition() == TraceStatePosition.FUNCCALL) {
+                        if (state.getPosition() == TraceStatePosition.AFTERFUNCCALL) {
                             ++inline[i];
                         } else if (first) {
                             breaked[i] = true;
@@ -463,7 +463,8 @@ public class DebugControl {
         list_traceIterator.clear();
         list_watchExpressions.clear();
         list_condBreakpoints.clear();
-
+        list_currentTraceStates.clear();
+        
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }
@@ -563,11 +564,17 @@ public class DebugControl {
     public List<String> getWatchExpressions() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_watchExpressions.size(); ++i) {
-            l.add(list_watchExpressions.get(i).getSpecifier());
+            WatchExpression we = list_watchExpressions.get(i);
+        	if(we!=null){
+            	l.add(we.getSpecifier());
+            }
+        	else{
+        		l.add(null);
+        	}
         }
         return l;
     }
-
+    
     /**
      * Getter for the Scope Begin of a given Watch Expression
      * 
@@ -640,7 +647,13 @@ public class DebugControl {
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
-            l.add(list_condBreakpoints.get(i).getSpecifier());
+        	ConditionalBreakpoint cb = list_condBreakpoints.get(i);
+            if(cb!=null){
+            	l.add(cb.getSpecifier());
+            }
+            else{
+            	l.add(null);
+            }
         }
         return l;
     }

@@ -491,6 +491,21 @@ es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
 Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
 
 }
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+En äfache Vorschlach ferr e Schrittgres
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+En äfache Vorschlach ferr en Eingawewert
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+En äfache Vorschlach ferr was realtionales
+
+}
 control_occurrence_message{
 	def_blockLen=1
 Un zwa in de Zeil:

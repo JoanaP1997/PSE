@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -75,6 +76,7 @@ public class ProgramPanel extends JPanel {
         this.mainInterface = mainInterface;
         controlFacade = mainInterface.getControlFacade();
         initComponents();
+        resizeToHeight(mainInterface.getHeight());
     }
 
     /**
@@ -234,12 +236,28 @@ public class ProgramPanel extends JPanel {
 
         codeScrollPane.setViewportView(editor);
 
-        codeScrollPane.setMinimumSize(new Dimension(400, 300));
-        codeScrollPane.setMaximumSize(new Dimension(400, 800));
+//        codeScrollPane.setMinimumSize(new Dimension(400, 300));
+//        editor.setMinimumSize(new Dimension(400, 300));
+//        
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
+        editor.setPreferredSize(new Dimension(400, 300));
         codePanel.add(codeScrollPane);
     }
 
+    final int offset = 100;
+    public void resizeToHeight(int h){
+    	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
+    	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
+    	    	    	
+    	this.setPreferredSize(new Dimension(400, h - offset));
+    	
+//    	System.out.println(variableInspector.getY());
+    	
+    	editor.updateUI();
+    	codeScrollPane.updateUI();
+    	this.updateUI();
+    }
+    
     /**
      * initializes components of variable inspector.
      */
@@ -422,7 +440,7 @@ public class ProgramPanel extends JPanel {
 
         // show current execution line
         currentExecutionLine = logicFacade.getCurrentExecutionLines().getOrDefault(id, 0);
-
+        
         // show result
         result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
         result.updateUI();

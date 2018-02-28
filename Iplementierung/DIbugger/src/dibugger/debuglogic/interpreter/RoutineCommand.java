@@ -84,24 +84,12 @@ public class RoutineCommand extends Command {
         // run all kids while return value not set
         List<TraceState> traceStateList = new ArrayList<TraceState>();
         int i = 0;
-        //int index = 0;
+        traceStateList.add(new TraceState(TraceStatePosition.AFTERFUNCCALL, this.linenumber, newScope));
         while (i < this.children.size() && !newScope.isRoutineFinished()) {
             traceStateList.addAll(this.children.get(i).run());
-            
-            // - - - - - - - - - - - - - - - //
-            //TODO fix of StepOver issue
-            /*if(this.children.get(i).getClass().equals(RoutineCall.class)){
-            	traceStateList.get(index).setPosition(TraceStatePosition.FUNCCALL);
-            }
-            if(i>1 && this.children.get(i-1).getClass().equals(RoutineCall.class)){
-            	traceStateList.get(index).setPosition(TraceStatePosition.AFTERRETURN);
-            }
-            index = traceStateList.size();*/
-            // - - - - - - - - - - - - - - - //
-            
             i++;
         }
-
+        
         // check if return value of controller is set and of correct type
         TermValue returnValue = this.controller.getReturnValue();
 

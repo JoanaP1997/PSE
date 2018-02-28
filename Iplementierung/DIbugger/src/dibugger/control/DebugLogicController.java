@@ -484,6 +484,7 @@ public class DebugLogicController {
      */
     public void stopDebug() {
         /*  */
+    	debugLogicFacade.reset();
     }
 
     /**
@@ -573,7 +574,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectStepSizeStrategy(int)
      */
-    public void selectStepSizeStrategy(int stepSizeStrategyId) {
+    public void selectStepSizeStrategy(String stepSizeStrategyId) {
         debugLogicFacade.selectStepSizeStrategy(stepSizeStrategyId);
     }
 
@@ -584,7 +585,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectRelationalStrategy(int)
      */
-    public void selectRelationalExpressionStrategy(int expressionStrategyId) {
+    public void selectRelationalExpressionStrategy(String expressionStrategyId) {
         debugLogicFacade.selectRelationalStrategy(expressionStrategyId);
     }
 
@@ -595,7 +596,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectInputValueStrategy(int)
      */
-    public void selectInputValueStrategy(int inputValueStrategyId) {
+    public void selectInputValueStrategy(String inputValueStrategyId) {
         debugLogicFacade.selectInputValueStrategy(inputValueStrategyId);
     }
 

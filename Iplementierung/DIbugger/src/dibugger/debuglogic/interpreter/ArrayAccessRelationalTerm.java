@@ -3,6 +3,7 @@ package dibugger.debuglogic.interpreter;
 import java.util.List;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 /**
  * Represents an arrayaccess based on the arrays of multiple programs
@@ -103,8 +104,8 @@ public final class ArrayAccessRelationalTerm extends Term {
 	}
 
 	@Override
-	public TermValue evaluate(Scope currentScope) {
-		return new CharValue('?');
+	public TermValue evaluate(Scope currentScope) throws VariableNotFoundException {
+		throw new VariableNotFoundException(-1);
 	}
 
 	private void splitId(String identifier) {

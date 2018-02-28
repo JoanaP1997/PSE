@@ -2,6 +2,8 @@ package dibugger.debuglogic.interpreter;
 
 import java.util.List;
 
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
+
 /**
  * Represents a variableaccess based on the values of multiple programs.
  * 
@@ -40,8 +42,8 @@ public final class VariableRelationalTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(Scope currentScope) {
-        return new CharValue('?');
+    public TermValue evaluate(Scope currentScope) throws VariableNotFoundException {
+    	throw new VariableNotFoundException(-1);
     }
 
 }

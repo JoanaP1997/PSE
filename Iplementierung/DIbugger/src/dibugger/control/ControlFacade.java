@@ -454,7 +454,7 @@ public class ControlFacade {
      *            the strategy id to select
      * @see DebugLogicController#selectStepSizeStrategy(int)
      */
-    public void selectStepSizeStrategy(int stepSizeStrategyId) {
+    public void selectStepSizeStrategy(String stepSizeStrategyId) {
         debugLogicController.selectStepSizeStrategy(stepSizeStrategyId);
     }
 
@@ -465,7 +465,7 @@ public class ControlFacade {
      *            the strategy id to select
      * @see DebugLogicController#selectRelationalExpressionStrategy(int)
      */
-    public void selectRelationalExpressionStrategy(int expressionStrategyId) {
+    public void selectRelationalExpressionStrategy(String expressionStrategyId) {
         debugLogicController.selectRelationalExpressionStrategy(expressionStrategyId);
     }
 
@@ -476,7 +476,7 @@ public class ControlFacade {
      *            the strategy id to select
      * @see DebugLogicController#selectInputValueStrategy(int)
      */
-    public void selectInputValueStrategy(int inputValueStrategyId) {
+    public void selectInputValueStrategy(String inputValueStrategyId) {
         debugLogicController.selectInputValueStrategy(inputValueStrategyId);
     }
 
