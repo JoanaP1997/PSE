@@ -67,20 +67,19 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \subsection{Erklären des Vorgehens}
 \subsection{Welche Qualitäten wurden wie getestet?}
 
-Benutzeroberfläche:
+Benutzeroberfläche: \\
 Verständlichkeit \\
 Übersichtlichkeit \\
 Erlernbarkeit \\
 
-System:
+System: \\
 Fehlertoleranz/Stabilität \\
 Zeit-/Ressourceneffizienz \\
 
 
 \section{Testen einzelner Pakete}
 \subsection{Gesamtabdeckung}
-\subsection{Testfälle}
-\subsubsection{Interpreter}
+\subsection{Interpreter}
 %TODO Annahme, dass Antlr korrekt funktioniert
 Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
 Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
@@ -106,6 +105,25 @@ falsche Syntax z.B. A.x = l,y
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
 %\subsection{Belastungstests}
+\subsection{Control}
+\subsection{Filehandler}
+
+
+\section{Gesondertes Testen der Benutzeroberfläche}
+
+\subsection{Testplan / Übersicht}
+-Monkey Testing \\
+-Testbereiche: Visual Design Functionality Performance Security Usability Compliance
+
+\subsection{Monkey Testing}
+\subsubsection{Dummes Monkey Testing}
+\subsubsection{Intelligentes Monkey Testing}
+
+\subsection{Untersuchung der Nutzerfreundlichkeit}
+
+\subsection{Testfälle}
+
+
 
 \section{Testen des Gesamtprodukts}
 
@@ -132,20 +150,6 @@ z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
 \subsection{Test auf verschiedener Hard- und Software}
 
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
-
-\section{Gesondertes Testen der Benutzeroberfläche}
-
-\subsection{Testplan / Übersicht}
--Monkey Testing \\
--Testbereiche: Visual Design Functionality Performance Security Usability Compliance
-
-\subsection{Monkey Testing}
-\subsubsection{Dummes Monkey Testing}
-\subsubsection{Intelligentes Monkey Testing}
-
-\subsection{Untersuchung der Nutzerfreundlichkeit}
-
-\subsection{Testfälle}
 
 \section{Vorgenommene Veränderungen}
 
