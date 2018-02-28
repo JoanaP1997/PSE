@@ -67,12 +67,12 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \subsection{Erklären des Vorgehens}
 \subsection{Welche Qualitäten wurden wie getestet?}
 
-Benutzeroberfläche:
+Benutzeroberfläche: \\
 Verständlichkeit \\
 Übersichtlichkeit \\
 Erlernbarkeit \\
 
-System:
+System: \\
 Fehlertoleranz/Stabilität \\
 Zeit-/Ressourceneffizienz \\
 
@@ -80,8 +80,13 @@ Zeit-/Ressourceneffizienz \\
 \section{Testen einzelner Pakete}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Gesamtabdeckung}
+<<<<<<< HEAD
 \subsection{Interpreter}
 %TODO Annahme, dass Antlr korrekt funktioniert
+=======
+\subsection{Testfälle}
+\subsubsection{Interpreter}
+>>>>>>> a621057a3e275a586a1e42a840bf5550016587e4
 Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
 Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
 Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
@@ -107,19 +112,10 @@ falscher umgang mit datentypen, falsche übergabeparameter, endlosschleifen
 falsche Syntax z.B. A.x = l,y
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
-
-\paragraph{Im Interpreter gefundene Fehler}
-Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
-In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
-Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
-
-%TODO Fehler bei paketweiten Tests
-Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis "~", da in Ascii "'?'+'?' = 63+63=126 = '\~'".
-Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
-
 %\subsection{Belastungstests}
 \subsection{Control}
 \subsection{Filehandler}
+
 
 \section{Gesondertes Testen der Benutzeroberfläche}
 
@@ -135,6 +131,15 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 
 \subsection{Testfälle}
 
+
+
+\paragraph{Im Interpreter gefundene Fehler}
+Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
+Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
+
+%TODO Fehler bei paketweiten Tests
+Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis "~", da in Ascii $'?'+'?' = 63+63=126 = '\~'$. Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
 
 \section{Testen des Gesamtprodukts}
 
@@ -161,7 +166,6 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 \subsection{Test auf verschiedener Hard- und Software}
 
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
-
 
 \section{Vorgenommene Veränderungen}
 
