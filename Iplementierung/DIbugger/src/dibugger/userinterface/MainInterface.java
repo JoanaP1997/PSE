@@ -141,6 +141,16 @@ public class MainInterface extends JFrame {
                 showCloseConfirmationDialog();
             }
         });
+        this.addWindowStateListener(new WindowStateListener() {			
+			@Override
+			public void windowStateChanged(WindowEvent arg0) {
+				for(String s : programPanels.keySet()){
+                	programPanels.get(s).resizeToHeight(arg0.getWindow().getHeight());
+                }
+                codePanel.updateUI();
+                codeScrollPane.updateUI();
+			}
+		});
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
