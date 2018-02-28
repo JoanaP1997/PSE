@@ -83,7 +83,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JButton addButton = new JButton("WE hinzufügen");
+        JButton addButton = new JButton("+");
         this.add(addButton);
 
         addButton.addActionListener(e -> {
