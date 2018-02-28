@@ -31,7 +31,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
     private JTable table;
     private DefaultTableModel tableModel;
-    private int rowCount = 1;
 
     private static String WE_TOOLTIP = "<html>Erstes Feld für Optionen zu dieser"
             + " Watch-Expression, mittleres Feld um die WE " + "zu ändern. <br>Um eine neue WE hinzuzufügen, "
