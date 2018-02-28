@@ -580,6 +580,8 @@ public class MainInterface extends JFrame {
         }
         programPanels.get(programId).setText(programText);
         codePanel.updateUI();
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
 
     }
 
@@ -722,6 +724,8 @@ public class MainInterface extends JFrame {
             codePanel.add(p, codePanelLayout);
         }
         codePanel.updateUI();
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
     }
 
     /**
