@@ -85,6 +85,12 @@ public class MainInterface extends JFrame {
     private GUIFacade guiFacade;
     private ControlFacade controlFacade;
 
+    private TreeMap<String, String> inputStrategies;
+    private TreeMap<String, String> expressionStrategies;
+    private TreeMap<String, String> stepsizeStrategies;
+
+    private LanguageFile languageFile;
+
     /**
      * Creates new MainInterface.
      */
@@ -297,10 +303,11 @@ public class MainInterface extends JFrame {
      * it.
      */
     private void initExpressionStrategyMenu() {
+        expressionStrategies = new TreeMap<>();
         expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
         ActionListener expressionStrategyListener = e -> {
             String expressionStrategy = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? ändern?
+            // TODO: Map! ausfüllen
         };
         for (String expressionStrategy : controlFacade.getRelationalExpressionSuggestionStrategies()) {
             JMenuItem expressionStrategyItem = new JMenuItem(expressionStrategy);
@@ -313,6 +320,7 @@ public class MainInterface extends JFrame {
      * initializes the input strategy menu and adds an ActionListener to it.
      */
     private void initInputStrategyMenu() {
+        inputStrategies = new TreeMap<>();
         inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
         ActionListener inputStrategyListener = e -> {
             String inputStrategy = ((JMenuItem) e.getSource()).getText();
@@ -329,6 +337,7 @@ public class MainInterface extends JFrame {
      * initializes the step size strategy menu and adds an ActionListener to it.
      */
     private void initStepSizeStrategyMenu() {
+        stepsizeStrategies = new TreeMap<>();
         stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
         ActionListener stepSizeStrategyListener = e -> {
             String stepSizeStrategyItem = ((JMenuItem) e.getSource()).getText();
@@ -523,7 +532,14 @@ public class MainInterface extends JFrame {
                 break;
             }
         }
-        programPanels.put(programId, new ProgramPanel(programText, this));
+        programPanels.put(programId, new ProgramPanel(programId, this));
+        codePanel.removeAll();
+        for (ProgramPanel p : programPanels.values()) {
+            p.changeLanguage();
+            codePanel.add(p, codePanelLayout);
+        }
+        programPanels.get(programId).setText(programText);
+        codePanel.updateUI();
 
     }
 
@@ -560,7 +576,7 @@ public class MainInterface extends JFrame {
     }
 
     /**
-     * update-method as part of the obbserver pattern.
+     * update-method as part of the observer pattern.
      *
      * @param observable
      *            DebugLogicFacade
@@ -608,7 +624,7 @@ public class MainInterface extends JFrame {
      */
     public void changeLanguage() {
         if (controlFacade != null) {
-            LanguageFile languageFile = controlFacade.getLanguageFile();
+            languageFile = controlFacade.getLanguageFile();
             ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).changeLanguage();
             WatchExpressionPanel.getWatchExpressionPanel(this).changeLanguage();
             CommandPanel.getCommandPanel(this).changeLanguage();
