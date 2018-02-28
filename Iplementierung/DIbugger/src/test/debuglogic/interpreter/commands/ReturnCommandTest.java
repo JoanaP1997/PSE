@@ -26,7 +26,6 @@ public class ReturnCommandTest {
         List<TraceState> traceStateList = returnCommand.run();
         // assertEquals(gc.getReturnValue(), new IntValue(5).getValue());
         assertEquals(gc.getCurrentScope().isRoutineFinished(), true);
-        assertEquals(traceStateList.iterator().next().getPosition(), TraceStatePosition.AFTERRETURN);
     }
     
     
