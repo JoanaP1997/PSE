@@ -9,6 +9,8 @@ import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -79,6 +81,20 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
     private void initComponents() {
 
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JButton addButton = new JButton("+");
+        this.add(addButton);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addRow();
+                mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "A.i <= B.k");
+                getConditionalBreakpointPanel(mainInterface).updateUI();
+                saveCBs();
+            }
+        });
+
         idMap.put(0, 0);
 
         panelType = "Conditional Breakpoints:";
@@ -110,9 +126,6 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
                     new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", row, table,
                             ConditionalBreakpointPanel.this, id);
                 }
-                if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
-                    addRow(p);
-                }
                 saveCBs();
             }
 
@@ -136,6 +149,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
                 saveCBs();
             }
         });
+        table.setSize(50,50);
 
         JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -187,8 +201,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         dataEntriesAsList.toArray(dataEntries);
     }
 
-    private void addRow(Point p) {
-        int row = table.rowAtPoint(p) + 1;
+    private void addRow() {
+        int row = this.table.getRowCount();
         idMap.put(row, currentHighestId + 1);
         currentHighestId++;
         Object[] newRow = { " ", "A.i <= B.k", "" };
@@ -200,10 +214,10 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         for (int j = 0; j < dataAsList.size(); j++) {
             dataEntries[j] = dataAsList.get(j);
         }
-        mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "A.i <= B.k");
+        this.updateUI();
     }
 
-    private void saveCBs() {
+    protected void saveCBs() {
         for (int j = 0; j < table.getRowCount(); j++) {
             mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
                     table.getModel().getValueAt(j, 1).toString(), scopes.get(j));
