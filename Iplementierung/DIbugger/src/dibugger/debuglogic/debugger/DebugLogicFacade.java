@@ -1,6 +1,7 @@
 package dibugger.debuglogic.debugger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -25,10 +26,9 @@ public class DebugLogicFacade extends Observable {
     private InputValueSuggestion suggest_input;
     private RelationalSuggestion suggest_relational;
 
-    private void notifyAllObservers() {
-        this.setChanged();
-        this.notifyObservers();
-    }
+    private Map<String, StepSizeSuggestion> map_suggestions_step_size;
+    private Map<String, InputValueSuggestion> map_suggestions_input_value;
+    private Map<String, RelationalSuggestion> map_suggestions_relational;
 
     public DebugLogicFacade() {
         super();
@@ -37,8 +37,23 @@ public class DebugLogicFacade extends Observable {
         suggest_stepsize = new SimpleStepSizeSuggestion(debugControl);
         suggest_input = new SimpleInputSuggestion();
         suggest_relational = new SimpleRelationalSuggestion(debugControl);
+        
+        map_suggestions_step_size = new HashMap<String, StepSizeSuggestion>();
+        map_suggestions_step_size.put("suggest_strategy_simple_stepsize", suggest_stepsize);
+        
+        map_suggestions_input_value = new HashMap<String, InputValueSuggestion>();
+        map_suggestions_input_value.put("suggest_strategy_simple_input", suggest_input);
+        
+        map_suggestions_relational = new HashMap<String, RelationalSuggestion>();
+        map_suggestions_relational.put("suggest_strategy_simple_relational", suggest_relational);
+    }
+   
+    private void notifyAllObservers() {
+        this.setChanged();
+        this.notifyObservers();
     }
 
+    
     /**
      * @see DebugControl#setStepSize(int, int)
      */
@@ -241,10 +256,8 @@ public class DebugLogicFacade extends Observable {
      * @param id
      *            the strategy id to select
      */
-    public void selectStepSizeStrategy(int id) {
-        if (id == STRAT_STEP_SIZE_SIMPLE) {
-            suggest_stepsize = new SimpleStepSizeSuggestion(debugControl);
-        }
+    public void selectStepSizeStrategy(String id) {
+    	suggest_stepsize = map_suggestions_step_size.get(id);
     }
 
     /**
@@ -253,10 +266,8 @@ public class DebugLogicFacade extends Observable {
      * @param id
      *            the strategy id to select
      */
-    public void selectRelationalStrategy(int id) {
-        if (id == STRAT_REL_SIMPLE) {
-            suggest_relational = new SimpleRelationalSuggestion(debugControl);
-        }
+    public void selectRelationalStrategy(String id) {
+        suggest_relational = map_suggestions_relational.get(id);
     }
 
     /**
@@ -265,10 +276,8 @@ public class DebugLogicFacade extends Observable {
      * @param id
      *            the strategy id to select
      */
-    public void selectInputValueStrategy(int id) {
-        if (id == STRAT_INPUT_SIMPLE) {
-            suggest_input = new SimpleInputSuggestion();
-        }
+    public void selectInputValueStrategy(String id) {
+    	suggest_input = map_suggestions_input_value.get(id);
     }
 
     // Getter delegated to DebugControl
@@ -286,6 +295,17 @@ public class DebugLogicFacade extends Observable {
      */
     public List<String> getWatchExpressions() {
         return debugControl.getWatchExpressions();
+    }
+    
+    public Map<Integer, String> getWatchExpressionMap(){
+    	Map<Integer, String> map = new HashMap<Integer, String>();
+    	List<String> we = getWatchExpressions();
+    	for(int i=0;i<we.size();++i){
+    		if(we.get(i)!=null){
+    			map.put(i, we.get(i));
+    		}
+    	}
+    	return map;
     }
 
     /**
@@ -340,6 +360,17 @@ public class DebugLogicFacade extends Observable {
         return debugControl.getConditionalBreakpoints();
     }
 
+    public Map<Integer, String> getConditionalBreakpointMap(){
+    	Map<Integer, String> map = new HashMap<Integer, String>();
+    	List<String> we = getConditionalBreakpoints();
+    	for(int i=0;i<we.size();++i){
+    		if(we.get(i)!=null){
+    			map.put(i, we.get(i));
+    		}
+    	}
+    	return map;
+    }
+    
     /**
      * Getter for the Scope Begin of a given Conditional Breakpoint
      * 
@@ -435,9 +466,7 @@ public class DebugLogicFacade extends Observable {
      * @return all available strategies for RelationalExpressionSuggestions
      */
     public List<String> getRelationalExpressionSuggestionStrategies() {
-        List<String> l = new ArrayList<String>();
-        l.add("suggest_strategy_simple_relational");
-        return l;
+    	return new ArrayList<String>(map_suggestions_relational.keySet());
     }
 
     /**
@@ -446,9 +475,7 @@ public class DebugLogicFacade extends Observable {
      * @return all available strategies for StepSizeSuggestions
      */
     public List<String> getStepSizeSuggestionStrategies() {
-        List<String> l = new ArrayList<String>();
-        l.add("suggest_strategy_simple_stepsize");
-        return l;
+        return new ArrayList<String>(map_suggestions_step_size.keySet());
     }
 
     /**
@@ -457,9 +484,7 @@ public class DebugLogicFacade extends Observable {
      * @return all available strategies for InputValueSuggestions
      */
     public List<String> getInputValueSuggestionStrategies() {
-        List<String> l = new ArrayList<String>();
-        l.add("suggest_strategy_simple_input");
-        return l;
+    	return new ArrayList<String>(map_suggestions_input_value.keySet());
     }
 
     /**
@@ -473,9 +498,4 @@ public class DebugLogicFacade extends Observable {
     public String getReturnValue(String programNameId) {
         return debugControl.getReturnValue(programNameId);
     }
-
-    // Strategy Types
-    public static final int STRAT_STEP_SIZE_SIMPLE = 0;
-    public static final int STRAT_REL_SIMPLE = 1;
-    public static final int STRAT_INPUT_SIMPLE = 2;
 }

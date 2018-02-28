@@ -31,6 +31,9 @@ public class RDBFWriter {
         if (f.getSysFile() == null) {
             throw new FileNotFoundException();
         }
+        if(!f.getSysFile().getAbsolutePath().endsWith(".rdbf")){
+        	f.setSysFile(new File(f.getSysFile().getAbsolutePath()+".rdbf"));
+        }
         File parent = f.getSysFile().getParentFile();
         if(parent!=null){
         	parent.mkdirs();

@@ -564,11 +564,17 @@ public class DebugControl {
     public List<String> getWatchExpressions() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_watchExpressions.size(); ++i) {
-            l.add(list_watchExpressions.get(i).getSpecifier());
+            WatchExpression we = list_watchExpressions.get(i);
+        	if(we!=null){
+            	l.add(we.getSpecifier());
+            }
+        	else{
+        		l.add(null);
+        	}
         }
         return l;
     }
-
+    
     /**
      * Getter for the Scope Begin of a given Watch Expression
      * 
@@ -641,7 +647,13 @@ public class DebugControl {
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
-            l.add(list_condBreakpoints.get(i).getSpecifier());
+        	ConditionalBreakpoint cb = list_condBreakpoints.get(i);
+            if(cb!=null){
+            	l.add(cb.getSpecifier());
+            }
+            else{
+            	l.add(null);
+            }
         }
         return l;
     }
