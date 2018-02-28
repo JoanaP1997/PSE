@@ -296,6 +296,17 @@ public class DebugLogicFacade extends Observable {
     public List<String> getWatchExpressions() {
         return debugControl.getWatchExpressions();
     }
+    
+    public Map<Integer, String> getWatchExpressionMap(){
+    	Map<Integer, String> map = new HashMap<Integer, String>();
+    	List<String> we = getWatchExpressions();
+    	for(int i=0;i<we.size();++i){
+    		if(we.get(i)!=null){
+    			map.put(i, we.get(i));
+    		}
+    	}
+    	return map;
+    }
 
     /**
      * Getter for the Scope Begin of a given Watch Expression
@@ -349,6 +360,17 @@ public class DebugLogicFacade extends Observable {
         return debugControl.getConditionalBreakpoints();
     }
 
+    public Map<Integer, String> getConditionalBreakpointMap(){
+    	Map<Integer, String> map = new HashMap<Integer, String>();
+    	List<String> we = getConditionalBreakpoints();
+    	for(int i=0;i<we.size();++i){
+    		if(we.get(i)!=null){
+    			map.put(i, we.get(i));
+    		}
+    	}
+    	return map;
+    }
+    
     /**
      * Getter for the Scope Begin of a given Conditional Breakpoint
      * 
