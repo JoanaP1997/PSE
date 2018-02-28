@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -234,12 +235,25 @@ public class ProgramPanel extends JPanel {
 
         codeScrollPane.setViewportView(editor);
 
-        codeScrollPane.setMinimumSize(new Dimension(400, 300));
-        codeScrollPane.setMaximumSize(new Dimension(400, 800));
+//        codeScrollPane.setMinimumSize(new Dimension(400, 300));
+//        editor.setMinimumSize(new Dimension(400, 300));
+//        
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
+        editor.setPreferredSize(new Dimension(400, 300));
         codePanel.add(codeScrollPane);
     }
 
+    public void foo(ComponentEvent e){
+    	editor.setPreferredSize(new Dimension(400, 500));
+    	codeScrollPane.setPreferredSize(new Dimension(400, 500));
+    	
+    	this.setPreferredSize(new Dimension(400, 500));
+    	
+    	editor.updateUI();
+    	codeScrollPane.updateUI();
+    	this.updateUI();
+    }
+    
     /**
      * initializes components of variable inspector.
      */

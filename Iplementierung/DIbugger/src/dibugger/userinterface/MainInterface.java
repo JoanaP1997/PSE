@@ -146,6 +146,7 @@ public class MainInterface extends JFrame {
             @Override
             public void componentResized(ComponentEvent componentEvent) {
                 super.componentResized(componentEvent);
+                programPanels.get("A").foo(componentEvent);
             }
         });
         GroupLayout groupLayout = new GroupLayout(getContentPane());
