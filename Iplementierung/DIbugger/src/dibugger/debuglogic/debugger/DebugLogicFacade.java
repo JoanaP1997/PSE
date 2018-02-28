@@ -168,6 +168,7 @@ public class DebugLogicFacade extends Observable {
      */
     public void reset() {
         debugControl.reset();
+        notifyAllObservers();
     }
 
     /**

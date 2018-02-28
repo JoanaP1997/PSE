@@ -463,7 +463,8 @@ public class DebugControl {
         list_traceIterator.clear();
         list_watchExpressions.clear();
         list_condBreakpoints.clear();
-
+        list_currentTraceStates.clear();
+        
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }

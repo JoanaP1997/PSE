@@ -484,6 +484,7 @@ public class DebugLogicController {
      */
     public void stopDebug() {
         /*  */
+    	debugLogicFacade.reset();
     }
 
     /**

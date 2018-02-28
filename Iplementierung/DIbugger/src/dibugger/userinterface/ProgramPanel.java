@@ -422,7 +422,7 @@ public class ProgramPanel extends JPanel {
 
         // show current execution line
         currentExecutionLine = logicFacade.getCurrentExecutionLines().getOrDefault(id, 0);
-
+        
         // show result
         result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
         result.updateUI();
