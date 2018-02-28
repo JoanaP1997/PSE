@@ -29,6 +29,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
     private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
     private JTable table;
     private DefaultTableModel tableModel;
+    private int rowCount = 1;
 
     private static String WE_TOOLTIP = "<html>Erstes Feld für Optionen zu dieser"
             + " Watch-Expression, mittleres Feld um die WE " + "zu ändern. <br>Um eine neue WE hinzuzufügen, "
@@ -79,6 +80,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     private void initComponents() {
 
+
         idMap.put(0, 0);
 
         panelType = "Watch Expressions:";
@@ -87,9 +89,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
         columnTitles = new String[] { "Opt", panelType, "=" };
         dataEntries = new Object[1][3];
         dataEntries[0][0] = " ";
-        dataEntries[0][1] = "5 == 5";
+        dataEntries[0][1] = "A.i * B.k";
         dataEntries[0][2] = " ";
-        mainInterface.getControlFacade().createWatchExpression(0, "5 == 5");
+        mainInterface.getControlFacade().createWatchExpression(0, "A.i * B.k");
         tableModel = new DefaultTableModel(dataEntries, columnTitles) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -113,7 +115,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
                 }
                 if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
                     addRow(p);
-                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "5 == 5");
+                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "A.i * B.k");
                     getWatchExpressionPanel(mainInterface).updateUI();
                 }
                 saveWEs();
@@ -214,7 +216,7 @@ public class WatchExpressionPanel extends ExpressionPanel {
         int row = table.rowAtPoint(p) + 1;
         idMap.put(row, currentHighestId + 1);
         currentHighestId += 1;
-        Object[] newRow = { " ", "5 == 5", " " };
+        Object[] newRow = { " ", "A.i * B.k", " " };
         tableModel.addRow(newRow);
         ArrayList<Object[]> dataAsList = new ArrayList<>(dataEntries.length);
         dataAsList.addAll(Arrays.asList(dataEntries));
@@ -224,6 +226,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
             dataEntries[j] = dataAsList.get(j);
         }
     }
+
+
 
     /**
      * changes language.
