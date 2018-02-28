@@ -115,6 +115,7 @@ In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Type
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
 
 %TODO Fehler bei paketweiten Tests
+Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis "~", da in Ascii $'?'+'?' = 63+63=126 = '\~'$. Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
 
 \section{Testen des Gesamtprodukts}
 
