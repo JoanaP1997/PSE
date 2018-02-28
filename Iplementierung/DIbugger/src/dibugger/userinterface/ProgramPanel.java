@@ -243,13 +243,12 @@ public class ProgramPanel extends JPanel {
         codePanel.add(codeScrollPane);
     }
 
+    final int offset = 100;
     public void foo(ComponentEvent e){
     	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY()));
     	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY()));
-    	
-    	System.out.println(variableInspector.getY()+" "+codePanel.getY());
-    	
-    	this.setPreferredSize(new Dimension(400, (int) e.getComponent().getSize().getHeight()));
+    	    	
+    	this.setPreferredSize(new Dimension(400, (int) e.getComponent().getSize().getHeight() - offset));
     	
     	editor.updateUI();
     	codeScrollPane.updateUI();
