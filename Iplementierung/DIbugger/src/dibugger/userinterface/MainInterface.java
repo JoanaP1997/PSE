@@ -151,6 +151,10 @@ public class MainInterface extends JFrame {
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         getContentPane().setLayout(groupLayout);
 
+        if (controlFacade != null) {
+            languageFile = controlFacade.getLanguageFile();
+        }
+
         configureMenuBar();
 
         initProgramPanels();
@@ -164,6 +168,7 @@ public class MainInterface extends JFrame {
                         .addComponent(rightControlBar)));
 
         changeLanguage();
+
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("DIbugger");
         ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
@@ -308,10 +313,16 @@ public class MainInterface extends JFrame {
         expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
         ActionListener expressionStrategyListener = e -> {
             String expressionStrategy = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map! ausfüllen
+            for (String key : expressionStrategies.keySet()) {
+                if (expressionStrategies.get(key).equals(expressionStrategy)) {
+                    controlFacade.selectRelationalExpressionStrategy(key);
+                }
+            }
         };
         for (String expressionStrategy : controlFacade.getRelationalExpressionSuggestionStrategies()) {
-            JMenuItem expressionStrategyItem = new JMenuItem(expressionStrategy);
+            String translation = languageFile.getTranslation(expressionStrategy);
+            JMenuItem expressionStrategyItem = new JMenuItem(translation);
+            expressionStrategies.put(expressionStrategy, translation);
             expressionStrategyItem.addActionListener(expressionStrategyListener);
             expressionStrategyMenu.add(expressionStrategyItem);
         }
@@ -325,10 +336,16 @@ public class MainInterface extends JFrame {
         inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
         ActionListener inputStrategyListener = e -> {
             String inputStrategy = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? ändern?
+            for (String key : inputStrategies.keySet()) {
+                if (inputStrategies.get(key).equals(inputStrategy)) {
+                    controlFacade.selectInputValueStrategy(key);
+                }
+            }
         };
         for (String strategy : controlFacade.getInputValueSuggestionStrategies()) {
-            JMenuItem strategyItem = new JMenuItem(strategy);
+            String translation = languageFile.getTranslation(strategy);
+            inputStrategies.put(strategy, translation);
+            JMenuItem strategyItem = new JMenuItem(translation);
             strategyItem.addActionListener(inputStrategyListener);
             inputStrategyMenu.add(strategyItem);
         }
@@ -341,11 +358,16 @@ public class MainInterface extends JFrame {
         stepsizeStrategies = new TreeMap<>();
         stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
         ActionListener stepSizeStrategyListener = e -> {
-            String stepSizeStrategyItem = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? Ändern?
+            String stepSizeStrategy = ((JMenuItem) e.getSource()).getText();
+            for (String key : stepsizeStrategies.keySet()) {
+                if (inputStrategies.get(key).equals(stepSizeStrategy)) {
+                    controlFacade.selectStepSizeStrategy(key);
+                }
+            }
         };
         for (String stepSizeStrategy : controlFacade.getStepSizeSuggestionStrategies()) {
-            JMenuItem stepSizeStrategyItem = new JMenuItem(stepSizeStrategy);
+            stepsizeStrategies.put(stepSizeStrategy, languageFile.getTranslation(stepSizeStrategy));
+            JMenuItem stepSizeStrategyItem = new JMenuItem(languageFile.getTranslation(stepSizeStrategy));
             stepSizeStrategyItem.addActionListener(stepSizeStrategyListener);
             stepSizeStrategyMenu.add(stepSizeStrategyItem);
         }
