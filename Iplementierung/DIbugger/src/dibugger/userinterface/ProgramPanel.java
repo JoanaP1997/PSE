@@ -245,8 +245,8 @@ public class ProgramPanel extends JPanel {
 
     final int offset = 100;
     public void resizeToHeight(int h){
-    	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 8));
-    	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 8));
+    	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
+    	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
     	    	
     	this.setPreferredSize(new Dimension(400, h - offset));
     	
