@@ -100,6 +100,8 @@ public class FileHandlerInteractor extends Observable {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
+            debugLogicController.putId(programIdentifier, i);
+            
             String programText = configFile.getProgramText(i);
 
             guiFacade.showProgramText(programText, programIdentifier);

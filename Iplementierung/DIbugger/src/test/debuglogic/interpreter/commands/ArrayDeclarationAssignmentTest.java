@@ -38,7 +38,10 @@ public class ArrayDeclarationAssignmentTest {
     }
     
     public static boolean areEqual(ArrayValue one, ArrayValue other) throws DIbuggerLogicException {
-        assert (one != null || other != null);
+        if (one == other) {
+            return true;
+        }
+        
         boolean areEqual = true;
         
         if (one == null || other == null) {

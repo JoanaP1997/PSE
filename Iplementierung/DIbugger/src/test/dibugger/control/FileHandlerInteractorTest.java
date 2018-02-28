@@ -37,8 +37,21 @@ public class FileHandlerInteractorTest {
         configFile.deleteOnExit();
     }
     
-    private static boolean areDepthOneEqual(Collection one, Collection another) {
-        return (one.containsAll(another) && another.containsAll(one));
+    private static boolean areDepthOneEqual(List<?> one, List<?> other) {
+        if (one == other) {
+            return true;
+        }
+        
+        int size = one.size();
+        boolean areEqual = (one.size() == other.size());
+        
+        for (int i = 0; (i < size) && areEqual; i++) {
+            Object elementInOne = one.get(i);
+            Object elementInOther = other.get(i);
+            areEqual = elementInOne.equals(elementInOther);
+        }
+        
+        return areEqual;
     }
     
     @Test
@@ -99,8 +112,8 @@ public class FileHandlerInteractorTest {
         
         //-----
         
-        verify(logicFacade).setStepSize(anyInt(), eq(2));
-        verify(logicFacade).setStepSize(anyInt(), eq(4));
+        verify(logicFacade).setStepSize(eq(0), eq(2));
+        verify(logicFacade).setStepSize(eq(1), eq(4));
         
         verify(logicFacade).createBreakpoint(anyInt(), eq(8));
         verify(logicFacade).createBreakpoint(anyInt(), eq(4));

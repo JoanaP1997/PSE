@@ -45,7 +45,7 @@ public class DebugLogicController {
         return programIds.containsKey(programId);
     }
 
-    private void putId(String programId, int integerId) {
+    void putId(String programId, int integerId) {
         programIds.put(programId, integerId);
     }
 
