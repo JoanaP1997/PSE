@@ -147,7 +147,7 @@ public class MainInterface extends JFrame {
             public void componentResized(ComponentEvent componentEvent) {
                 super.componentResized(componentEvent);
                 for(String s : programPanels.keySet()){
-                	programPanels.get(s).foo(componentEvent);
+                	programPanels.get(s).resizeToHeight((int) componentEvent.getComponent().getSize().getHeight());
                 }
                 codePanel.updateUI();
                 codeScrollPane.updateUI();
