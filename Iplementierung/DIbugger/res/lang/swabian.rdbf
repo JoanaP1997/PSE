@@ -489,6 +489,21 @@ ui_stepback_tooltip{
 Mach an Schritt zrück
 
 }
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+Oifacher Vorschlag
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+Oifacher Vorschlag
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+Oifacher Vorschlag
+
+}
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erschdes Feld für Optiona zu dem bedingta Breakpoint, <br>

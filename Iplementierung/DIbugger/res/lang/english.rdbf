@@ -454,6 +454,21 @@ ui_continue_tooltip{
 Debug until next active breakpoint
 
 }
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+Simple stepsize suggestion
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+Simple input suggestion
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+Simple relational suggestion
+
+}
 ui_stepback_tooltip{
 	def_blockLen=1
 Excecute a step back
