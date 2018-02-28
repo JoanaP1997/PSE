@@ -212,6 +212,9 @@ public class MainInterface extends JFrame {
                 programPanels.put(nextId, newPanel);
                 codePanel.add(programPanels.get(nextId), codePanelLayout);
                 codePanel.updateUI();
+                
+                setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+                setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
             }
         });
         loadConfig = new JMenuItem();
@@ -530,8 +533,8 @@ public class MainInterface extends JFrame {
         WatchExpressionPanel.getWatchExpressionPanel(this).reset();
         ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
         
-        setSize(1201, 900);
-        setSize(1200, 900);
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
     }
 
     /**
