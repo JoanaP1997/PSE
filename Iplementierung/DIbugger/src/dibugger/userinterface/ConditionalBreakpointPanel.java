@@ -68,7 +68,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         for (int i = 0; i <= currentHighestId; i++) {
             try {
                 if (dataEntries[i] != null) {
+                    dataEntries[i][1] = debugLogicFacade.getConditionalBreakpoints().get(i);
                     dataEntries[i][2] = debugLogicFacade.getCBValue(i);
+                    table.getModel().setValueAt(dataEntries[i][1], i, 1);
                     table.getModel().setValueAt(dataEntries[i][2], i, 2);
                 }
             } catch (DIbuggerLogicException e) {

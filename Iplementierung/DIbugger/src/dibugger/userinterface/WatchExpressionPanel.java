@@ -69,7 +69,9 @@ public class WatchExpressionPanel extends ExpressionPanel {
         for (int i = 0; i <= currentHighestId; i++) {
             try {
                 if (dataEntries[i] != null) {
+                    dataEntries[i][1] = debugLogicFacade.getWatchExpressions().get(i);
                     dataEntries[i][2] = debugLogicFacade.getWEValue(i);
+                    table.getModel().setValueAt(dataEntries[i][1], i, 1);
                     table.getModel().setValueAt(dataEntries[i][2], i, 2);
                 }
             } catch (DIbuggerLogicException e) {
