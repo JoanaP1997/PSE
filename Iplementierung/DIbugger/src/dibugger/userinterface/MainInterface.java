@@ -126,7 +126,7 @@ public class MainInterface extends JFrame {
         }
         MainInterface mainInterface = new MainInterface();
         mainInterface.setSize(1200, 900);
-        mainInterface.setMinimumSize(new Dimension(1165, 0));
+        mainInterface.setMinimumSize(new Dimension(1165, 800));
         mainInterface.setVisible(true);
     }
 
