@@ -522,14 +522,16 @@ public class MainInterface extends JFrame {
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
         for (String id : programPanels.keySet()) {
-            programPanels.get(id).resizeToHeight(codePanel.getHeight());
+//            programPanels.get(id).resizeToHeight(codePanel.getHeight());
             programPanels.get(id).updateUI();
         }
         codePanel.updateUI();
         codeScrollPane.updateUI();
         WatchExpressionPanel.getWatchExpressionPanel(this).reset();
         ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
-
+        
+        setSize(1201, 900);
+        setSize(1200, 900);
     }
 
     /**

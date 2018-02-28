@@ -76,6 +76,7 @@ public class ProgramPanel extends JPanel {
         this.mainInterface = mainInterface;
         controlFacade = mainInterface.getControlFacade();
         initComponents();
+        resizeToHeight(mainInterface.getHeight());
     }
 
     /**
@@ -247,8 +248,10 @@ public class ProgramPanel extends JPanel {
     public void resizeToHeight(int h){
     	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 8));
     	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 8));
-    	    	
+    	    	    	
     	this.setPreferredSize(new Dimension(400, h - offset));
+    	
+//    	System.out.println(variableInspector.getY());
     	
     	editor.updateUI();
     	codeScrollPane.updateUI();
