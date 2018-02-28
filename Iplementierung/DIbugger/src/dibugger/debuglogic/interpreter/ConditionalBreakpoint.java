@@ -18,6 +18,7 @@ import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.ConditionalBreakpointSyntaxException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.SyntaxException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 /**
  * @author wagner
@@ -68,7 +69,12 @@ public class ConditionalBreakpoint {
             }
             this.value = false;
         }
-        TermValue result = this.condition.evaluate(states);
+        TermValue result;
+        try {
+        	result = this.condition.evaluate(states);
+        } catch(VariableNotFoundException vnfe) {
+        	return false;
+        }
         if (result.getType() == Type.BOOLEAN) {
             return ((BooleanValue) result).getValue();
         }
