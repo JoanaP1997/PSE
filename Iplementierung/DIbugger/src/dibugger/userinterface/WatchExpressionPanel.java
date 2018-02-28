@@ -9,6 +9,8 @@ import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -80,6 +82,18 @@ public class WatchExpressionPanel extends ExpressionPanel {
 
     private void initComponents() {
 
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JButton addButton = new JButton("WE hinzufügen");
+        this.add(addButton);
+
+        addButton.addActionListener(e -> {
+            addRow();
+            mainInterface.getControlFacade().createWatchExpression(currentHighestId, "A.i * B.k");
+            getWatchExpressionPanel(mainInterface).updateUI();
+            saveWEs();
+        });
+
 
         idMap.put(0, 0);
 
@@ -112,11 +126,6 @@ public class WatchExpressionPanel extends ExpressionPanel {
                     int id = idMap.get(row);
                     new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, WatchExpressionPanel.this,
                             id);
-                }
-                if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
-                    addRow(p);
-                    mainInterface.getControlFacade().createWatchExpression(currentHighestId, "A.i * B.k");
-                    getWatchExpressionPanel(mainInterface).updateUI();
                 }
                 saveWEs();
             }
@@ -199,21 +208,16 @@ public class WatchExpressionPanel extends ExpressionPanel {
      * method to save all the watch-expressions that are displayed in this
      * WatchExpressionPanel.
      */
-    private void saveWEs() {
+    protected void saveWEs() {
         for (int j = 0; j < table.getRowCount(); j++) {
             mainInterface.getControlFacade().changeWatchExpression(idMap.get(j),
                     table.getModel().getValueAt(j, 1).toString(), scopes.get(j));
         }
     }
 
-    /**
-     * adds a row.
-     *
-     * @param p
-     *            point p
-     */
-    private void addRow(Point p) {
-        int row = table.rowAtPoint(p) + 1;
+
+    private void addRow() {
+        int row = this.table.getRowCount();
         idMap.put(row, currentHighestId + 1);
         currentHighestId += 1;
         Object[] newRow = { " ", "A.i * B.k", " " };
@@ -225,9 +229,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
         for (int j = 0; j < dataAsList.size(); j++) {
             dataEntries[j] = dataAsList.get(j);
         }
+        this.updateUI();
     }
-
-
 
     /**
      * changes language.
