@@ -273,7 +273,6 @@ public class TermTest {
     	theTerms.add(constantA);
     	theTerms.add(constantB);
     	Term list = new TermList(theTerms);
-    	assertEquals(((CharValue) list.evaluate(states)).getValue(),'?');
     	assertEquals(list.evaluate(currentScope).getType(), Type.ARRAY);
     	assertEquals(((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0].getType(), constantA.evaluate(currentScope).getType());
     	assertTrue(((IntValue) ((ArrayValue)list.evaluate(currentScope)).getValue()[0][0][0]).getValue() == 5);
@@ -287,7 +286,6 @@ public class TermTest {
     	array[0][0][0] = new IntValue(20);
     	currentScope.setValueOf("a", new ArrayValue(array)) ;
     	assertEquals(term.evaluate(currentScope).getType(), Type.INT);
-    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
     	assertTrue(((IntValue)term.evaluate(currentScope)).getValue()==20);
     }
     @Test
@@ -299,7 +297,6 @@ public class TermTest {
     	array[0][1][0] = new CharValue('f');
     	currentScope.setValueOf("a", new ArrayValue(array)) ;
     	assertEquals(term.evaluate(currentScope).getType(), Type.CHAR);
-    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
     	assertTrue(((CharValue)term.evaluate(currentScope)).getValue()=='f');
     }
     @Test
@@ -311,7 +308,6 @@ public class TermTest {
     	array[0][1][0] = new CharValue('f');
     	currentScope.setValueOf("a", new ArrayValue(array));
     	assertEquals(term.evaluate(currentScope).getType(), Type.CHAR);
-    	assertEquals(((CharValue)term.evaluate(states)).getValue(), '?');
     	assertTrue(((CharValue)term.evaluate(currentScope)).getValue()=='f');
     }
     @Test
@@ -325,7 +321,6 @@ public class TermTest {
     	state.setProgramId("Z");
     	states.add(state);
     	assertEquals(term.evaluate(states).getType(), Type.INT);
-    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
     	assertTrue(((IntValue)term.evaluate(states)).getValue()==20);
     }
     @Test
@@ -340,7 +335,6 @@ public class TermTest {
     	state.setProgramId("Z");
         states.add(state);
     	assertEquals(term.evaluate(states).getType(), Type.CHAR);
-    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
     	assertTrue(((CharValue)term.evaluate(states)).getValue()=='f');
     }
     @Test
@@ -355,7 +349,6 @@ public class TermTest {
     	state.setProgramId("Z");
     	states.add(state);
     	assertEquals(term.evaluate(states).getType(), Type.CHAR);
-    	assertEquals(((CharValue)term.evaluate(currentScope)).getValue(), '?');
     	assertTrue(((CharValue)term.evaluate(states)).getValue()=='f');
     }
 }
