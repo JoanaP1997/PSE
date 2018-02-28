@@ -27,5 +27,4 @@ public class ReturnCommand extends Command {
         traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
         return traceStateList;
     }
-
 }

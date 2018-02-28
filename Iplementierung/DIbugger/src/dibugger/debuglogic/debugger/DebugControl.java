@@ -174,7 +174,7 @@ public class DebugControl {
                     if (!breaked[i]) {
                         boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
                         TraceState state = list_currentTraceStates.get(i);
-                        if (state.getPosition() == TraceStatePosition.FUNCCALL) {
+                        if (state.getPosition() == TraceStatePosition.AFTERFUNCCALL) {
                             ++inline[i];
                         } else if (first) {
                             breaked[i] = true;
