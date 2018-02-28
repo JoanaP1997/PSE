@@ -8,8 +8,11 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Test;
 
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener;
+import dibugger.debuglogic.antlrparser.ActuallyHelpfulSyntaxException;
 import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
+import dibugger.debuglogic.exceptions.SyntaxException;
 import dibugger.debuglogic.interpreter.ArrayDeclaration;
 import dibugger.debuglogic.interpreter.ArrayDeclarationAssignment;
 import dibugger.debuglogic.interpreter.ArrayElementAssignment;
@@ -31,7 +34,7 @@ import dibugger.debuglogic.interpreter.WhileCommand;
 public class CommandGenerationVisitorTest {
 
     @Test
-    public void test_code_with_ifstatements() {
+    public void test_code_with_ifstatements() throws SyntaxException {
         String code = "int main() { \n" 
         		+ "int i; \n" 
         		+ "i=2; \n" 
@@ -42,11 +45,23 @@ public class CommandGenerationVisitorTest {
         		+ "i = 5;"
         		+ "}\n"
                 + "return i; \n" + "}";
-        CharStream input = CharStreams.fromString(code);
-        WlangLexer lexer = new WlangLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        WlangParser parser = new WlangParser(tokens);
-        ParseTree tree = parser.program();
+        
+        ParseTree tree;
+        try {
+            CharStream stream = CharStreams.fromString(code);
+            WlangLexer lexer = new WlangLexer(stream);
+            // Setting our own error listener.
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(new ActuallyHelpfulErrorListener());
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            WlangParser parser = new WlangParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(new ActuallyHelpfulErrorListener());
+            tree = parser.program();
+        } catch (ActuallyHelpfulSyntaxException e) {
+            throw new SyntaxException(e.getMessage());
+        }
+       
         CommandGenerationVisitor visitor = new CommandGenerationVisitor(null);
         Command root = visitor.visit(tree);
 
