@@ -46,7 +46,7 @@ public class SemanticallyWrongExpressionsTest {
         assertEquals("?", variableResult);
         
         String comparisonResult = equalComparison.evaluate(defaultStates);
-        assertEquals("false", comparisonResult);
+        assertEquals("?", comparisonResult);
     }
     
     @Test(expected = IncompatibleTypeException.class)
