@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.ExceededMaxIterationsException;
+import dibugger.debuglogic.exceptions.WrongTypeArgumentException;
 import dibugger.debuglogic.interpreter.GenerationController;
 
 public class StressTest {
@@ -53,7 +54,7 @@ public class StressTest {
         gc.generateTrace(code, input , "A");
     }
     
-    @Test
+    @Test(expected=WrongTypeArgumentException.class)
     public void testNoUserInputAlthoughExpected() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         String code = "void main (int m, int n) {\n"
@@ -65,4 +66,6 @@ public class StressTest {
         List<String> input = new ArrayList<String>();
         gc.generateTrace(code, input , "A");
     }
+    
+    
 }
