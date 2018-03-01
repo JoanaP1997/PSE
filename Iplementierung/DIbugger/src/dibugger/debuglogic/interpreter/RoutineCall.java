@@ -50,7 +50,6 @@ public class RoutineCall extends Command {
 
         this.controller.getCurrentScope().setReturnValue(this.controller.getReturnValue());
         traceStateList.add(new TraceState(TraceStatePosition.AFTERRETURN, this.linenumber, this.controller.getCurrentScope()));
-        
         return traceStateList;
     }
 
