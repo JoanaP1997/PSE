@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.IncompatibleTypeException;
-import dibugger.debuglogic.exceptions.VariableNotFoundException;
 import dibugger.debuglogic.interpreter.BooleanValue;
 import dibugger.debuglogic.interpreter.DoubleValue;
 import dibugger.debuglogic.interpreter.IntValue;
@@ -42,11 +41,11 @@ public class SemanticallyWrongExpressionsTest {
         defaultStates.add(state);
         state.setProgramId("B");
         
-        String variableResult = variableRelational.evaluate(defaultStates);
-        assertEquals("?", variableResult);
+        String variableValue = variableRelational.evaluate(defaultStates);
+        assertEquals("?", variableValue);
         
-        String comparisonResult = equalComparison.evaluate(defaultStates);
-        assertEquals("?", comparisonResult);
+        String comparisonValue = equalComparison.evaluate(defaultStates);
+        assertEquals("?", comparisonValue);
     }
     
     @Test(expected = IncompatibleTypeException.class)
@@ -67,8 +66,10 @@ public class SemanticallyWrongExpressionsTest {
     
     @Test
     public void testEvaluate_incompatibleType() throws DIbuggerLogicException {
-        WatchExpression expression = new WatchExpression("A.a * A.b");
-
+        WatchExpression multiplication = new WatchExpression("A.a * A.b");
+        WatchExpression andCondition = new WatchExpression("A.a && A.b");
+        WatchExpression arrayAccess = new WatchExpression("A.a[0]");
+        
         defaultScope.setTypeOf("a", Type.BOOLEAN);
         defaultScope.setValueOf("a", new BooleanValue(false));
         defaultScope.setTypeOf("b", Type.DOUBLE);
@@ -77,7 +78,37 @@ public class SemanticallyWrongExpressionsTest {
         defaultStates.add(state);
         state.setProgramId("A");
         
-        String result = expression.evaluate(defaultStates);
-        assertEquals("?", result);
+        String multiplicationValue = multiplication.evaluate(defaultStates);
+        assertEquals("?", multiplicationValue);
+        
+        String conditionValue = andCondition.evaluate(defaultStates);
+        assertEquals("?", conditionValue);
+        
+        String accessValue = arrayAccess.evaluate(defaultStates);
+        assertEquals("?", accessValue);
     }
+    
+    @Test
+    @Ignore
+    public void testEvaluate_other() throws DIbuggerLogicException {
+        WatchExpression expression = new WatchExpression("A.a A.b A.c");
+        WatchExpression secondExpression = new WatchExpression("A.a;1234j;jiiop$$$");
+        
+        defaultScope.setTypeOf("a", Type.INT);
+        defaultScope.setValueOf("a", new IntValue(4));
+        defaultScope.setTypeOf("b", Type.INT);
+        defaultScope.setValueOf("b", new IntValue(4));
+        defaultScope.setTypeOf("c", Type.INT);
+        defaultScope.setValueOf("c", new IntValue(8));
+        TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, defaultScope);
+        defaultStates.add(state);
+        state.setProgramId("A");
+        
+        String value = expression.evaluate(defaultStates);
+        assertEquals("?", value);
+        
+        String secondValue = secondExpression.evaluate(defaultStates);
+        assertEquals("?", secondValue);
+    }
+    
 }
