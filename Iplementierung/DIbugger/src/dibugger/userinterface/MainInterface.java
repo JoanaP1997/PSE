@@ -48,6 +48,7 @@ public class MainInterface extends JFrame {
     private static String CONFIRM_CLOSE_QUESTION = "Sind sie sicher, dass sie das Programm beenden möchten?";
     private static String YES_OPTION = "Ja";
     private static String NO_OPTION = "Nein";
+    private static String NEW_PROGRAM_TOOLTIP = "Um ein leeres Programmfeld hinzuzuf\u00fcgen, bitte die Auswahl abbrechen";
 
     TreeMap<String, ProgramPanel> programPanels;
 
@@ -227,6 +228,7 @@ public class MainInterface extends JFrame {
                 setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
             }
         });
+        newProgram.setToolTipText(NEW_PROGRAM_TOOLTIP);
         loadConfig = new JMenuItem();
         loadConfig.setText(LOAD_CONFIG);
         loadConfig.addActionListener(actionEvent -> {
