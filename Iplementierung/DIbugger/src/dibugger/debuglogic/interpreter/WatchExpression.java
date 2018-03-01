@@ -63,7 +63,8 @@ public class WatchExpression {
 		if (isValid || this.scopes.isEmpty())
 			try {
 				this.value = this.expression.evaluate(states).toString();
-			} catch (VariableNotFoundException vnfe) {
+			} catch (DIbuggerLogicException vnfe) {
+				this.value = "?";
 				return "?";
 			}
 		return this.value;

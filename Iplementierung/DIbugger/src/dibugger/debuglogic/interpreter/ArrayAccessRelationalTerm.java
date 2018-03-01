@@ -100,7 +100,7 @@ public final class ArrayAccessRelationalTerm extends Term {
 				}
 			}
 		}
-		return new CharValue('?');
+		throw new VariableNotFoundException(-1);
 	}
 
 	@Override

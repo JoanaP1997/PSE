@@ -29,7 +29,7 @@ public final class VariableRelationalTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(List<TraceState> states) {
+    public TermValue evaluate(List<TraceState> states) throws VariableNotFoundException {
         // find the state the variable belongs to
         for (TraceState state : states) {
             if (state.getProgramId() != null && state.getProgramId().equals(this.programId)) {
@@ -38,7 +38,7 @@ public final class VariableRelationalTerm extends Term {
                     return value;
             }
         }
-        return new CharValue('?');
+        throw new VariableNotFoundException(-1);
     }
 
     @Override
