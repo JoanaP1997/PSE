@@ -12,6 +12,7 @@ import org.junit.Test;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
 import dibugger.debuglogic.exceptions.IncompatibleTypeException;
 import dibugger.debuglogic.interpreter.BooleanValue;
+import dibugger.debuglogic.interpreter.ConditionalBreakpoint;
 import dibugger.debuglogic.interpreter.DoubleValue;
 import dibugger.debuglogic.interpreter.IntValue;
 import dibugger.debuglogic.interpreter.Scope;
@@ -109,6 +110,22 @@ public class SemanticallyWrongExpressionsTest {
         
         String secondValue = secondExpression.evaluate(defaultStates);
         assertEquals("?", secondValue);
+    }
+    
+    
+    @Test
+    public void testEvaluate_CondBreakpoint_notOfBooleanType() throws DIbuggerLogicException {
+        ConditionalBreakpoint condBreakpoint = new ConditionalBreakpoint("A.a *A.b");
+        defaultScope.setTypeOf("a", Type.BOOLEAN);
+        defaultScope.setValueOf("a", new BooleanValue(false));
+        defaultScope.setTypeOf("b", Type.DOUBLE);
+        defaultScope.setValueOf("b", new DoubleValue(1.0));
+        TraceState state = new TraceState(TraceStatePosition.NOTSPECIAL, 0, defaultScope);
+        defaultStates.add(state);
+        state.setProgramId("A");
+        
+        Boolean value = condBreakpoint.evaluate(defaultStates);
+        assertEquals(false, value);
     }
     
 }
