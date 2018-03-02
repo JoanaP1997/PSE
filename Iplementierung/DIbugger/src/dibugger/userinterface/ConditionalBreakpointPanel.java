@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -65,10 +66,12 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
      */
     public void update(Observable o) {
         DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
+        Map<Integer, String> map = debugLogicFacade.getConditionalBreakpointMap();
         for (int i = 0; i <= currentHighestId; i++) {
             try {
-                if (dataEntries[i] != null) {
-                    dataEntries[i][1] = debugLogicFacade.getConditionalBreakpointMap().get(debugLogicFacade.getConditionalBreakpointMap().get(i));
+            	String val = map.get(i);
+                if (dataEntries[i] != null && val!=null) {
+                    dataEntries[i][1] = val;
                     dataEntries[i][2] = debugLogicFacade.getCBValue(i);
                     table.getModel().setValueAt(dataEntries[i][1], i, 1);
                     table.getModel().setValueAt(dataEntries[i][2], i, 2);

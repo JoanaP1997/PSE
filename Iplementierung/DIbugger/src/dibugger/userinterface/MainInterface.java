@@ -109,11 +109,11 @@ public class MainInterface extends JFrame {
      *            the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            System.setErr(new PrintStream(new FileOutputStream(new File("error.log"))));
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
+//        try {
+//            System.setErr(new PrintStream(new FileOutputStream(new File("error.log"))));
+//        } catch (FileNotFoundException e1) {
+//            e1.printStackTrace();
+//        }
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
