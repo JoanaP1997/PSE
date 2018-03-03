@@ -144,6 +144,11 @@ public class FileHandlerInteractor extends Observable {
      */
     public void saveConfiguration(File file) {
         ConfigurationFile configurationFile = new ConfigurationFile(file);
+        gatherConfiguration(configurationFile);
+        fileHandlerFacade.saveConfig(configurationFile);
+    }
+    
+    public void gatherConfiguration(ConfigurationFile configuration) {
         List<ProgramInput> currentInput = debugLogicController.getProgramInput();
 
         int numberOfBufferedPrograms = debugLogicController.getNumberOfBufferedPrograms();
@@ -152,10 +157,10 @@ public class FileHandlerInteractor extends Observable {
             ProgramInput input = currentInput.get(i);
 
             String bufferedProgramIdentifier = input.getProgramID();
-            configurationFile.setProgramNameID(i, bufferedProgramIdentifier);
+            configuration.setProgramNameID(i, bufferedProgramIdentifier);
 
             String programText = input.getText();
-            configurationFile.setProgramText(i, programText);
+            configuration.setProgramText(i, programText);
 
             List<String> variableAssignments = input.getInputValues();
 
@@ -164,12 +169,12 @@ public class FileHandlerInteractor extends Observable {
                 if (variableAndValue.length == 2) {
                     String variable = variableAndValue[0];
                     String value = variableAndValue[1];
-                    configurationFile.setInputValue(i, variable, value);
+                    configuration.setInputValue(i, variable, value);
                 }
             }
 
             List<String> variablesOfInspector = guiFacade.getVariablesOfInspector(bufferedProgramIdentifier);
-            configurationFile.setVariablesOfInspector(i, variablesOfInspector);
+            configuration.setVariablesOfInspector(i, variablesOfInspector);
         }
 
         List<Integer> programCounter = debugLogicController.getDebugLogicFacade().getProgramCounter();
@@ -177,16 +182,16 @@ public class FileHandlerInteractor extends Observable {
         int numberOfPrograms = debugLogicController.getNumberOfPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             int stepSize = debugLogicController.getStepSize(currentInput.get(i).getProgramID());
-            configurationFile.setStepSize(i, stepSize);
+            configuration.setStepSize(i, stepSize);
 
             List<Integer> breakpoints = debugLogicController.getBreakpoints(i);
             List<Integer> lines = new ArrayList<>();
             for (Integer element : breakpoints) {
                 lines.add(element);
             }
-            configurationFile.setBreakpoints(i, lines);
+            configuration.setBreakpoints(i, lines);
 
-            configurationFile.setLastExecutionLine(i, programCounter.get(i));
+            configuration.setLastExecutionLine(i, programCounter.get(i));
         }
         List<String> conditions = debugLogicController.getConditionalBreakpoints();
 
@@ -197,7 +202,7 @@ public class FileHandlerInteractor extends Observable {
                     debugLogicController.getConditionalBreakpointScopeBeginnings(i));
             List<Integer> breakpointScopeEnds = createListFromMap(
                     debugLogicController.getConditionalBreakpointScopeEnds(i));
-            configurationFile.addConditionalBreakpoint(condition, breakpointScopeBeginnings, breakpointScopeEnds);
+            configuration.addConditionalBreakpoint(condition, breakpointScopeBeginnings, breakpointScopeEnds);
         }
 
         List<String> expressions = debugLogicController.getWatchExpressions();
@@ -207,12 +212,10 @@ public class FileHandlerInteractor extends Observable {
             List<Integer> expressionScopeBeginnings = createListFromMap(
                     debugLogicController.getWatchExpressionScopeBeginnnings(i));
             List<Integer> expressionScopeEnds = createListFromMap(debugLogicController.getWatchExpressionScopeEnds(i));
-            configurationFile.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
+            configuration.addWatchExpressions(expression, expressionScopeBeginnings, expressionScopeEnds);
         }
 
-        configurationFile.setNumPrograms(numberOfPrograms);
-
-        fileHandlerFacade.saveConfig(configurationFile);
+        configuration.setNumPrograms(numberOfPrograms);
     }
 
     private List<Integer> createListFromMap(Map<String, Integer> map) {
