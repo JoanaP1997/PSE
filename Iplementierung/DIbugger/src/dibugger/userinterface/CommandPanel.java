@@ -140,6 +140,7 @@ public class CommandPanel extends JPanel {
     public void reset() {
         stop.setEnabled(false);
         start.setEnabled(true);
+        this.updateUI();
     }
 
     /**

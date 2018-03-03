@@ -1,0 +1,46 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[german]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={Testfalltabelle},%
+,%
+}
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{enumitem}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+
+\font\myfont=cmr12 at 20pt
+
+\begin{document}
+\begin{landscape}
+\begin{table}
+    \begin{tabularx}{\linewidth}{ p{0.15\linewidth} | p{0.3\linewidth} | X | X | p{0.1\linewidth}}
+    %\begin{tabular}{lcccc}
+    JunitKlasse & Testfall & Getestete Komponenten & Getestete Funktionalität & Erfolg des Testes\\
+    \hline
+    \multirow{13}{*}{TermValueTest}
+        & test\_doubleValue\_getValue\_valid         & TermValue, DoubleValue        & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_floatValue\_getValue\_valid          & TermValue, FloatValue         & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_intValue\_getValue\_valid            & TermValue, IntValue           & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_longValue\_getValue\_valid           & TermValue, LongValue          & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_charValue\_getValue\_valid           & TermValue, CharValue          & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_booleanValue\_getValue\_valid        & TermValue, BooleanValue       & Wert wird korrekt gespeichert und ausgegeben                                  & Ja\\
+        & test\_clone\_double                        & TermValue, DoubleValue        & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_clone\_float                         & TermValue, FloatValue         & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_clone\_int                           & TermValue, IntValue           & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_clone\_long                          & TermValue, LongValue          & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_clone\_char                          & TermValue, CharValue          & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_clone\_boolean                       & TermValue, BooleanValue       & Das Objekt kann korrekt kopiert werden.                                       & Ja\\
+        & test\_arithmetic\_operations               & TermValue, IntValue, FloatValue, LongValue, DoubleValue &Arithmetische Operationen                            & Nein\\
+    \hline
+    \end{tabularx} 
+\end{table}
+\end{landscape}
+\end{document}

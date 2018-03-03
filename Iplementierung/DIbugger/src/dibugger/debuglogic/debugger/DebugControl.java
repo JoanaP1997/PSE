@@ -140,33 +140,15 @@ public class DebugControl {
                     stepID = maxSteps;
                 }
             }
-        } else if (type == STEP_OUT) {
-            boolean[] breaked = new boolean[numPrograms];
-            boolean forceStop = false;
-            // infinite loop till end of function
-            while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
-                boolean breakpointFound = false;
-                for (int i = 0; i < numPrograms; ++i) {
-                    if (!breaked[i]) {
-                        boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
-                        TraceState state = list_currentTraceStates.get(i);
-                        breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-                        // only stop stepping when trace state is after a return
-                        // call
-                        if (breakpointFound || state.getPosition() == TraceStatePosition.AFTERRETURN || !iterated) {
-                            breaked[i] = true;
-                        }
-                    }
-                }
-                breakpointFound = evaluateConditionalBreakpoints();
-                if (breakpointFound) {
-                    forceStop = true;
-                }
-            }
-        } else if (type == STEP_OVER) {
+        } else if (type == STEP_OVER || type == STEP_OUT) {
             int[] inline = new int[numPrograms];
+            if(type==STEP_OUT){
+            	for(int i=0;i<numPrograms;++i){
+            		inline[i] = 1;
+            	}
+            }
             boolean[] breaked = new boolean[numPrograms];
-            boolean first = true;
+            boolean first = type==STEP_OVER;
             boolean forceStop = false;
             while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
                 boolean breakpointFound = false;
@@ -463,7 +445,8 @@ public class DebugControl {
         list_traceIterator.clear();
         list_watchExpressions.clear();
         list_condBreakpoints.clear();
-
+        list_currentTraceStates.clear();
+        
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }
@@ -563,11 +546,17 @@ public class DebugControl {
     public List<String> getWatchExpressions() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_watchExpressions.size(); ++i) {
-            l.add(list_watchExpressions.get(i).getSpecifier());
+            WatchExpression we = list_watchExpressions.get(i);
+        	if(we!=null){
+            	l.add(we.getSpecifier());
+            }
+        	else{
+        		l.add(null);
+        	}
         }
         return l;
     }
-
+    
     /**
      * Getter for the Scope Begin of a given Watch Expression
      * 
@@ -640,7 +629,13 @@ public class DebugControl {
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
-            l.add(list_condBreakpoints.get(i).getSpecifier());
+        	ConditionalBreakpoint cb = list_condBreakpoints.get(i);
+            if(cb!=null){
+            	l.add(cb.getSpecifier());
+            }
+            else{
+            	l.add(null);
+            }
         }
         return l;
     }

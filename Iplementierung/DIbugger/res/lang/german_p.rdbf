@@ -173,6 +173,11 @@ ui_from{
 Vun
 
 }
+ui_stepback_tooltip{
+	def_blockLen=1
+Mach an Schritt reduur
+
+}
 ui_debug_step_over{
 	def_blockLen=1
 Driwwa huppse.
@@ -484,6 +489,21 @@ ui_cb_tooltip{
 <html>Des erschde Feld is ferr die Optione, <br>
 es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
 Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+
+}
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+En äfache Vorschlach ferr e Schrittgres
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+En äfache Vorschlach ferr en Eingawewert
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+En äfache Vorschlach ferr was realtionales
 
 }
 control_occurrence_message{

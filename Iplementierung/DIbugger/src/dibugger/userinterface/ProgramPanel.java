@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -75,6 +76,7 @@ public class ProgramPanel extends JPanel {
         this.mainInterface = mainInterface;
         controlFacade = mainInterface.getControlFacade();
         initComponents();
+        resizeToHeight(mainInterface.getHeight());
     }
 
     /**
@@ -127,6 +129,8 @@ public class ProgramPanel extends JPanel {
         result = new JLabel(RETURN + ": ");
 
         GroupLayout firstTextPanelLayout = new GroupLayout(this);
+        firstTextPanelLayout.setAutoCreateGaps(true);
+        firstTextPanelLayout.setAutoCreateContainerGaps(true);
         setLayout(firstTextPanelLayout);
         firstTextPanelLayout.setHorizontalGroup(firstTextPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(firstTextPanelLayout.createSequentialGroup().addGroup(firstTextPanelLayout
@@ -232,11 +236,28 @@ public class ProgramPanel extends JPanel {
 
         codeScrollPane.setViewportView(editor);
 
+//        codeScrollPane.setMinimumSize(new Dimension(400, 300));
+//        editor.setMinimumSize(new Dimension(400, 300));
+//        
         codeScrollPane.setPreferredSize(new Dimension(400, 300));
-        codeScrollPane.setSize(400, 800);
+        editor.setPreferredSize(new Dimension(400, 300));
         codePanel.add(codeScrollPane);
     }
 
+    final int offset = 100;
+    public void resizeToHeight(int h){
+    	editor.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
+    	codeScrollPane.setPreferredSize(new Dimension(400, variableInspector.getY() - codePanel.getY() - 15));
+    	    	    	
+    	this.setPreferredSize(new Dimension(400, h - offset));
+    	
+//    	System.out.println(variableInspector.getY());
+    	
+    	editor.updateUI();
+    	codeScrollPane.updateUI();
+    	this.updateUI();
+    }
+    
     /**
      * initializes components of variable inspector.
      */
@@ -417,14 +438,15 @@ public class ProgramPanel extends JPanel {
         }
         variableInspectorList.updateUI();
 
-        // show current excecution line
+        // show current execution line
         currentExecutionLine = logicFacade.getCurrentExecutionLines().getOrDefault(id, 0);
-
+        
         // show result
         result.setText(RETURN + ": " + logicFacade.getReturnValue(id));
         result.updateUI();
 
         // update stepSize
+        //TODO: ist hier Fehler der stepSize bzw kommt hier ein falscher Wert von unten?
         stepSizeTextField.setText(Integer.toString(logicFacade.getStepSize(id)));
         this.updateUI();
     }
@@ -488,7 +510,7 @@ public class ProgramPanel extends JPanel {
         public float nextTabStop(float x, int tabOffset) {
             TabSet tabs = getTabSet();
             if (tabs == null) {
-                return (float) (getTabBase() + (x - TAB_SIZE));
+                return (getTabBase() + (x - TAB_SIZE));
             }
             return super.nextTabStop(x, tabOffset);
         }

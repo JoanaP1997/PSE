@@ -26,7 +26,7 @@ public final class FloatValue extends TermValue {
         } else if (operand.getType() == Type.INT) {
             return new FloatValue(value + ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value + ((LongValue) operand).getValue());
+            return new FloatValue(value + ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
             return new FloatValue(value + ((CharValue) operand).getValue());
         }
@@ -42,7 +42,7 @@ public final class FloatValue extends TermValue {
         } else if (operand.getType() == Type.INT) {
             return new FloatValue(value * ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value * ((LongValue) operand).getValue());
+            return new FloatValue(value * ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
             return new FloatValue(value * ((CharValue) operand).getValue());
         }
@@ -58,7 +58,7 @@ public final class FloatValue extends TermValue {
         } else if (operand.getType() == Type.INT) {
             return new FloatValue(value / ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value / ((LongValue) operand).getValue());
+            return new FloatValue(value / ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
             return new FloatValue(value / ((CharValue) operand).getValue());
         }
@@ -74,7 +74,7 @@ public final class FloatValue extends TermValue {
         } else if (operand.getType() == Type.INT) {
             return new FloatValue(value % ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value % ((LongValue) operand).getValue());
+            return new FloatValue(value % ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
             return new FloatValue(value % ((CharValue) operand).getValue());
         }
@@ -90,7 +90,7 @@ public final class FloatValue extends TermValue {
         } else if (operand.getType() == Type.INT) {
             return new FloatValue(value - ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value - ((LongValue) operand).getValue());
+            return new FloatValue(value - ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
             return new FloatValue(value - ((CharValue) operand).getValue());
         }

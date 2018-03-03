@@ -1,0 +1,177 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[german]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
+,%
+}
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
+\usepackage{enumitem}
+\usepackage{xcolor}
+\newcommand\frage[1]{\textcolor{red}{#1}}
+\renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
+
+\font\myfont=cmr12 at 20pt
+
+\title{
+	\vspace{2cm}
+	\myfont 
+	Praxis der Softwareentwicklung:\\ 
+	Entwicklung eines relationalen Debuggers\\
+}
+\subtitle{
+	\vspace{1cm}
+	\myfont
+	Testbericht
+}
+
+\author{
+	\vspace{1cm} \\
+	Benedikt Wagner\\
+	\and 
+        \vspace{1cm} \\ 
+        Chiara Staudenmaier\\
+        \and 
+        \vspace{1cm} \\
+        Etienne Brunner\\
+	\and Joana Plewnia\\
+	\and Pascal Zwick\\
+	\and Ulla Scheler\\
+	\vspace{1cm}
+	\and Betreuer: Mihai Herda, Michael Kirsten
+	\vspace{4cm}
+}
+
+\begin{document}
+\clearpage
+\maketitle
+\pagenumbering{gobble}
+\newpage
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\section{Übersicht}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\textwidth]{../Plichtenheft/logo_nongi.png}
+\caption{Produktlogo}
+\end{figure}
+
+\subsection{Erklären des Vorgehens}
+\subsection{Welche Qualitäten wurden wie getestet?}
+
+Benutzeroberfläche: \\
+Verständlichkeit \\
+Übersichtlichkeit \\
+Erlernbarkeit \\
+
+System: \\
+Fehlertoleranz/Stabilität \\
+Zeit-/Ressourceneffizienz \\
+
+
+\section{Testen einzelner Pakete}
+Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
+\subsection{Gesamtabdeckung}
+<<<<<<< HEAD
+\subsection{Interpreter}
+%TODO Annahme, dass Antlr korrekt funktioniert
+=======
+\subsection{Testfälle}
+\subsubsection{Interpreter}
+>>>>>>> a621057a3e275a586a1e42a840bf5550016587e4
+Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
+Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
+Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
+\paragraph{Klassentests}
+Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
+Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt. 
+So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
+Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in %TODO
+ ???????????? beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
+Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
+Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
+Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
+\paragraph{Paketweite Tests}
+Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
+%TODO das muss noch ausformuliert und wirklich getestet werden.
+\subparagraph{Syntaktisch falsche Wlang-Programme}
+fehlende main, falsche methoden definition, falsche zuweisung...
+\subparagraph{Semantisch falsche Wlang-Programme}
+hier gibt es viel: 
+fehlendes return, while(3+2), if(2.4f), falsche Arraynutzung: int[3][4] a; a[4] = 10; oder char[2.3f] a; oder char[b] a; wobei b kein int
+falscher umgang mit datentypen, falsche übergabeparameter, endlosschleifen
+\subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
+falsche Syntax z.B. A.x = l,y
+\subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
+z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
+%\subsection{Belastungstests}
+\subsection{Control}
+\subsection{Filehandler}
+
+
+\section{Gesondertes Testen der Benutzeroberfläche}
+
+\subsection{Testplan / Übersicht}
+-Monkey Testing \\
+-Testbereiche: Visual Design Functionality Performance Security Usability Compliance
+
+\subsection{Monkey Testing}
+\subsubsection{Dummes Monkey Testing}
+\subsubsection{Intelligentes Monkey Testing}
+
+\subsection{Untersuchung der Nutzerfreundlichkeit}
+
+\subsection{Testfälle}
+
+
+
+\paragraph{Im Interpreter gefundene Fehler}
+Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
+Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
+
+%TODO Fehler bei paketweiten Tests
+Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis "~", da in Ascii $'?'+'?' = 63+63=126 = '\~'$. Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
+
+\section{Testen des Gesamtprodukts}
+
+\subsection{Funktionale Tests}
+\begin{itemize}
+\item Einige übliche Algorithmen
+\end{itemize}
+
+
+\subsection{Belastungstests}
+
+\begin{itemize}
+\item Tiefe Rekursion (Ackermann)
+\item Endlosschleifen
+\item falsche Nutzereingaben
+\item keine Nutzereingaben
+\item n-viele Programme gleichzeitig debuggen
+\item leere Fenster
+\item falsche Dateien laden
+\item Testen von Programmen aus den anderen Relationalen Programmen
+
+\end{itemize}
+
+\subsection{Test auf verschiedener Hard- und Software}
+
+\subsection{Untersuchung von Laufzeit und Speicherverbrauch}
+
+\section{Vorgenommene Veränderungen}
+
+\section{Anhang}
+\subsection{Testprotokoll für die Nutzerstudie}
+%Testprotokoll
+%getestete Programme
+
+\end{document}

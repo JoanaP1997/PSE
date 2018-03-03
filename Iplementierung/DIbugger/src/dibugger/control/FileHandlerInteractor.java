@@ -96,10 +96,12 @@ public class FileHandlerInteractor extends Observable {
         applyConfiguration(nextConfigFile);
     }
 
-    private void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
+    public void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
         int numberOfPrograms = configFile.getNumPrograms();
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
+            debugLogicController.putId(programIdentifier, i);
+            
             String programText = configFile.getProgramText(i);
 
             guiFacade.showProgramText(programText, programIdentifier);
@@ -123,15 +125,14 @@ public class FileHandlerInteractor extends Observable {
             debugLogicController.setStepSize(programIdentifier, stepSize);
 
             List<Integer> lineNumbers = configFile.getBreakpoints(i);
-            debugLogicController.createBreakpoints(configFile.getProgramNameID(i), lineNumbers);
-
-            List<String> conditions = configFile.getConditionalBreakpoints();
-            debugLogicController.createConditionalBreakpoints(conditions);
-
-            List<String> expressions = configFile.getWatchExpressions();
-            debugLogicController.createWatchExpressions(expressions);
+            debugLogicController.createBreakpoints(configFile.getProgramNameID(i), lineNumbers);            
         }
+        
+        List<String> conditions = configFile.getConditionalBreakpoints();
+        debugLogicController.createConditionalBreakpoints(conditions);
 
+        List<String> expressions = configFile.getWatchExpressions();
+        debugLogicController.createWatchExpressions(expressions);
     }
 
     /**

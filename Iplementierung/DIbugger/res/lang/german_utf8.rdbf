@@ -484,11 +484,31 @@ ui_debug_continue{
 Weiter
 
 }
+ui_stepback_tooltip{
+	def_blockLen=1
+Führe einen Schritt rückwärts aus
+
+}
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>
 mittleres Feld um den bedingten Breakpoint zu ändern. <br>
 Um einen neuen bedingten Breakpoint hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+
+}
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+Einfacher Vorschlag
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+Einfacher Vorschlag
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+Einfacher Vorschlag
 
 }
 control_occurrence_message{
