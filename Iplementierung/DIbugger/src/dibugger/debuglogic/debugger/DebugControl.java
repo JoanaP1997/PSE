@@ -140,33 +140,15 @@ public class DebugControl {
                     stepID = maxSteps;
                 }
             }
-        } else if (type == STEP_OUT) {
-            boolean[] breaked = new boolean[numPrograms];
-            boolean forceStop = false;
-            // infinite loop till end of function
-            while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
-                boolean breakpointFound = false;
-                for (int i = 0; i < numPrograms; ++i) {
-                    if (!breaked[i]) {
-                        boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
-                        TraceState state = list_currentTraceStates.get(i);
-                        breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-                        // only stop stepping when trace state is after a return
-                        // call
-                        if (breakpointFound || state.getPosition() == TraceStatePosition.AFTERRETURN || !iterated) {
-                            breaked[i] = true;
-                        }
-                    }
-                }
-                breakpointFound = evaluateConditionalBreakpoints();
-                if (breakpointFound) {
-                    forceStop = true;
-                }
-            }
-        } else if (type == STEP_OVER) {
+        } else if (type == STEP_OVER || type == STEP_OUT) {
             int[] inline = new int[numPrograms];
+            if(type==STEP_OUT){
+            	for(int i=0;i<numPrograms;++i){
+            		inline[i] = 1;
+            	}
+            }
             boolean[] breaked = new boolean[numPrograms];
-            boolean first = true;
+            boolean first = type==STEP_OVER;
             boolean forceStop = false;
             while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
                 boolean breakpointFound = false;
