@@ -1,4 +1,4 @@
-package test.debuglogic.interpreter.integration;
+package test.debuglogic.interpreter;
 
 import static org.junit.Assert.*;
 
