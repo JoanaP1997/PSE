@@ -128,6 +128,19 @@ Dabei wurde die Interaktion von \textit{FileHandlerInteractor} mit Klassen aus \
 In der Methode \textit{applyConfig} wurden Methoden aus \textit{dibugger.userinterface} oder \textit{dibugger.debuglogic} zu oft, oder gar nicht aufgerufen.
 Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hinzugefügt.
 \subsection{Filehandler}
+\paragraph{Klassentests}
+Der Filehandler ist zuständig für das laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
+Die Schwierigkeit lag bei Writer / Reader Klassen, da Java \textit{Properties} Dateien abhängig vom Betriebssystem gespeichert werden. Somit haben diese auf Linux eine anderer Struktur als auf Windows. Dies erschwert das automatisierte Vergleichen auf richtige Ausgaben.
+
+\paragraph{Paketweite Tests}
+Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Testen der \textit{*Writer} und \textit{*Reader} Klassen wird dadurch auf die obigen Klassentests aufgebaut. Die Klasse \textit{ConfigurationFile}, \textit{LanguageFile} und \textit{PropertiesFile} wurden somit indirekt getestet.
+
+\paragraph{Nicht durchgeführte Tests}
+Einige Klassen im FileHandler wurden nicht direkt getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
+Die ersteren wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
+
+\paragraph{Im FileHandler gefundene Fehler}
+Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
 
 \section{Gesondertes Testen der Benutzeroberfläche}
 
