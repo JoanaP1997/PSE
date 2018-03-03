@@ -145,6 +145,9 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 \subsubsection{Paketweite Tests}
 Unter Verwendung von Testhelfern wurde \textit{applyConfig} in \textit{FileHandlerInteractor} getestet.
 Dabei wurde die Interaktion von \textit{FileHandlerInteractor} mit Klassen aus \textit{dibugger.control} oder anderen Paketen mit dem Sollverhalten verglichen.
+
+Weiteres (explizites) Testen des Paketes wurde unterlassen, da das Paket über wenig \enquote{eigene Funktionalität} verfügt.
+Die meisten Aufrufe über \textit{dibugger.userinterface} werden direkt an \textit{dibugger.debuglogic} weitergeleitet.
 \subsubsection{In Control gefundene Fehler}
 In der Methode \textit{applyConfig} wurden Methoden aus \textit{dibugger.userinterface} oder \textit{dibugger.debuglogic} zu oft, oder gar nicht aufgerufen.
 Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hinzugefügt.
