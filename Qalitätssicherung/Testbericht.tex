@@ -60,6 +60,11 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 
 \section{Übersicht}
 
+\subsection{Einleitung}
+%Einleitung mit grobem Überblick. Dieser Abschnitt soll an das Pflichtenheft anschließen.
+Dieses Dokument dokumentiert die Ergebnisse der Qualitätssicherungsphase (\textit{19,02.-12.03.2018}) im Rahmen des Moduls Praxis der Softwareentwicklung (PSE) am Lehrstuhl \enquote{Anwendungsorientierte formale Verifikation - Prof. Dr. Beckert} am Karlsruher Institut für Technologie (KIT).\\
+Hierbei handelt es sich um die Qualitätssicherung des \textit{DIbuggers}, der im Pflichtenheft definiert und in folgenden Dokumenten entworfen und implementiert wurde. Aufgabe des \textit{DIbuggers} ist es, dem Nutzer zu helfen, mehrere Programme gleichzeitig zu debuggen und interaktiv zu analysieren. \\
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.6\textwidth]{../Plichtenheft/logo_nongi.png}
@@ -67,21 +72,14 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \end{figure}
 
 \subsection{Erklären des Vorgehens}
-\subsection{Welche Qualitäten wurden wie getestet?}
+Zunächst wurden alle Pakete abgesehen von der Benutzeroberfläche intern auf Fehler getestet (siehe Abschnitt \ref{einzelnePakete})
+Die Grundfunktionalität der Benutzeroberfläche wurde in nicht-automatisierten Tests erprobt (siehe Abschnitt \ref{gui}) und orientierte sich dabei an den im Pflichtenheft definierten Testfällen. Im Pflichtenheft geforderte nicht-funktionale Anforderungen an die Benutzeroberfläche, wie zum Beispiel Verständlichkeit und Erlernbarkeit, wurden mittels eines Nutzertestes gesondert erhoben (siehe Abschnitt \ref{usertestimdoc}).
+Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe von Unit-Tests getestet. Da viele unzulässige Nutzereingaben bereits auf Ebene des Interpreterpakets getestet wurden, fällt die Zahl der entsprechenden Belastungstests (siehe Abschnitt \ref{stress}) geringer aus. Untersuchungen zu verschiedener Hard- und Software, sowie Laufzeit und Speicherverbrauch, finden sich ebenfalls in Abschnitt \ref{gesamthwsw} .
 
-Benutzeroberfläche:
-Verständlichkeit \\
-Übersichtlichkeit \\
-Erlernbarkeit \\
+\newpage
+\section{Testen einzelner Pakete}\label{einzelnePakete}
 
-System:
-Fehlertoleranz/Stabilität \\
-Zeit-/Ressourceneffizienz \\
-
-
-\section{Testen einzelner Pakete}
-
-\subsection{Gesamtabdeckung}
+\subsection{Gesamtabdeckung}\label{abdeckung}
 \subsection{AnltrParser}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -92,8 +90,7 @@ Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Int
 Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
 Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.  \\
 So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
-Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in %TODO
- ???????????? beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
+Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in Punkt \ref{abdeckung} beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
 Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
 Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
 Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
@@ -153,7 +150,7 @@ In der Methode \textit{applyConfig} wurden Methoden aus \textit{dibugger.userint
 Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hinzugefügt.
 \subsection{Filehandler}
 \subsubsection{Klassentests}
-Der Filehandler ist zuständig für das laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
+Der Filehandler ist zuständig für das Laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
 Die Schwierigkeit lag bei Writer / Reader Klassen, da Java \textit{Properties} Dateien abhängig vom Betriebssystem gespeichert werden. Somit haben diese auf Linux eine anderer Struktur als auf Windows. Dies erschwert das automatisierte Vergleichen auf richtige Ausgaben.
 
 \subsubsection{Paketweite Tests}
@@ -166,7 +163,8 @@ Die ersteren wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten k
 \subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
 
-\section{Gesondertes Testen der Benutzeroberfläche}
+\newpage
+\section{Gesondertes Testen der Benutzeroberfläche}\label{gui}
 
 \subsection{Testplan / Übersicht}
 -Monkey Testing \\
@@ -176,32 +174,64 @@ Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere,
 \subsubsection{Dummes Monkey Testing}
 \subsubsection{Intelligentes Monkey Testing}
 
-\subsection{Untersuchung der Nutzerfreundlichkeit}
+\subsection{Untersuchung der Nutzerfreundlichkeit}\label{usertestimdoc}
 
-Es werden Grundfunktionalitäten getestet. (Also zum Beispiel keine Bereichsbindung.)
+\subsubsection{Testaufbau}
+
+Im Pflichtenheft wurden bezüglich der Benutzeroberfläche ein besonderer Fokus auf Verständlichkeit, Übersichtlichkeit und Erlernbarkeit gelegt. Dem wurde mit einem gesonderten Nutzertest Rechnung getragen. \\
+Im Anhang findet sich unter Punkt \ref{usertest} das Protokoll für den Versuchsaufbau. Dieser besteht aus zwei Teilen: Zunächst setzt die Testperson mit Hilfe des DIbuggers mehrere praktische Aufgaben um. Geprüft werden die in Tabelle \ref{testfaelle} aufgelisteten Grundfunktionalitäten des DIbuggers. Zunächst soll versucht werden, die Aufgabe ohne Hilfestellung zu lösen. Schlägt dies fehl, darf das Nutzermanual zu Rate gezogen werden (und wird somit ebenfalls auf Verständlichkeit geprüft). Die Testleitung soll nur die letzte Instanz sein. \\
+Die Testperson wird dabei von der Versuchsleitung zum lauten Denken angehalten. So können nicht nur Probleme erkannt werden, die die Ausführung einer Aufgabe für die Versuchsperson unmöglich machen, sondern auch Programmeigenschaften, die die Ausführung verzögern oder umständlich machen. \\
+Die zwei Programme, die von den Nutzern untersucht werden sollen, sind ebenfalls im Anhang, unter Punkt \ref{code} zu finden.
+Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fragebogen aus, der aus statistischen und offenen Fragen besteht.
+
+\begin{table}
+\begin{tabular}{l||c}
+   	Aufgabe & Getestetes DIbugger-Konzept \\
+	\hline
+	\hline
+	1 & Nutzen der Menüleiste, Anzeigen der Hilfe\\
+	2 & Nutzen der Menüleiste, Ändern der Sprache\\
+	3 & Hinzufügen eines neuen Programmfensters \\
+	4 & Löschen eines Programmfensters \\
+	5 & einfache Wlang-Syntax, Fehlermeldungen, Variablenanzeige, Steps \\
+	6 & Anordnung und Aufrufen von Funktionen, Fehlermeldungen, Speichern \\
+	7 & Laden einer Konfiguration, Bedingte Breakpoints, Watch-Expressions \\
+	8 & Watch-Expression-Menüs
+
+
+\end{tabular}
+\label{testfaelle}
+\caption{Hintergrund der Aufgaben im Praxisteil}
+\end{table}
+
+
+
+\subsubsection{Auswertung}
+
+Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse des \enquote{Lauten Denkens} werden nach Themengebieten geclustert und für die Einarbeitung nach Vorkommenshäufigkeit und Schwere der Einschränkung geordnet. Ebenso wird mit den Anmerkungen aus dem Fragenteil verfahren.
+
+(Zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt.)
 
 \subsection{Testfälle}
 
-
-\section{Testen des Gesamtprodukts}
+\newpage
+\section{Testen des Gesamtprodukts}\label{gesamthwsw}
 
 \subsection{Funktionale Tests}
+Sowohl im Rahmen der Nutzertests als auch innerhalb des Interpreterpaketes wurden immer wieder semantisch und syntaktisch korrekte Programme getestet. Möglicherweise aufgetretene Fehler sind jeweils in ihrem Paket aufgezählt.
+
+
+\subsection{Belastungstests}\label{stress}
+Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
 \begin{itemize}
-\item Einige übliche Algorithmen
-\end{itemize}
-
-
-\subsection{Belastungstests}
-
-\begin{itemize}
-\item Tiefe Rekursion (Ackermann)
+\item Tiefe Rekursion (Ackermann) (zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt)
 \item Endlosschleifen
 \item falsche Nutzereingaben
 \item keine Nutzereingaben
 \item n-viele Programme gleichzeitig debuggen
 \item leere Fenster
-\item falsche Dateien laden
-\item Testen von Programmen aus den anderen Relationalen Programmen
+\item Dateien laden, die nicht dem RDBF-Format entsprechen
+\item ...
 
 \end{itemize}
 
@@ -226,7 +256,7 @@ Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \
 
 
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
-
+(Geplant für diese Woche.)
 
 %\section{Vorgenommene Veränderungen}
 \newpage
