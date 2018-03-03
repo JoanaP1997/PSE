@@ -1,4 +1,5 @@
 \documentclass[parskip=full]{scrartcl}
+\setcounter{tocdepth}{2}
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
@@ -84,63 +85,85 @@ Zeit-/Ressourceneffizienz \\
 \subsection{AnltrParser}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
-%TODO Annahme, dass Antlr korrekt funktioniert
 Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
 Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
 Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
-\paragraph{Klassentests}
+\subsubsection{Klassentests}
 Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
-Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt. 
+Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.  \\
 So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
 Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in %TODO
  ???????????? beschriebenen Form zu erreichen. Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
 Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
 Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
 Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
-\paragraph{Paketweite Tests}
+\subsubsection{Paketweite Tests}
 Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
 %TODO das muss noch ausformuliert und wirklich getestet werden.
 \subparagraph{Syntaktisch falsche Wlang-Programme}
-fehlende main, falsche methoden definition, falsche zuweisung...
-\subparagraph{Semantisch falsche Wlang-Programme}
-hier gibt es viel: 
-fehlendes return, while(3+2), if(2.4f), falsche Arraynutzung: int[3][4] a; a[4] = 10; oder char[2.3f] a; oder char[b] a; wobei b kein int
-falscher umgang mit datentypen, falsche übergabeparameter, endlosschleifen
-\subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
-falsche Syntax z.B. A.x = l,y
-\subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
-z.B. Variable existiert nicht, Typfehler, Programm mit der Id existiert nicht
+Beispielsweise:
+\begin{itemize}
+\item eine fehlende Main-Methode
+\item eine unzulässige Methoden-Definition
+\item fehlende Semikola im Code
+\item ...
+\end{itemize}
 
-\paragraph{Im Interpreter gefundene Fehler}
+\subparagraph{Semantisch falsche Wlang-Programme}
+Beispielsweise:
+\begin{itemize}
+\item ein fehlendes Return-Statement
+\item While-Schleifen ohne Boolean-Term in der Bedingung
+\item falsche Arraynutzung
+\item ...
+\end{itemize}
+
+\subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
+Beispielsweise:
+\begin{itemize}
+\item Variablen ohne Programm-Identifikator
+\item unzulässige Operatoren
+\item ...
+\end{itemize}
+\subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
+Beispielsweise:
+\begin{itemize}
+\item die genannte Variable existiert nicht
+\item die genannte Variable hat den falschen Typen
+\item das genannte Programm existiert nicht
+\item ...
+\end{itemize}
+
+\subsubsection{Im Interpreter gefundene Fehler}
 Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
 
 %TODO Fehler bei paketweiten Tests
-Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis "~", da in Ascii "'?'+'?' = 63+63=126 = '\~'".
+Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis \enquote{\~{}} (Tilde), da in Ascii \enquote{'?'+'?' = 63+63=126 = '\~{}'}.
 Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
 
 %\subsection{Belastungstests}
 \subsection{Control}
-\paragraph{Paketweite Tests}
+\subsubsection{Paketweite Tests}
 Unter Verwendung von Testhelfern wurde \textit{applyConfig} in \textit{FileHandlerInteractor} getestet.
 Dabei wurde die Interaktion von \textit{FileHandlerInteractor} mit Klassen aus \textit{dibugger.control} oder anderen Paketen mit dem Sollverhalten verglichen.
-\paragraph{In Control gefundene Fehler}
+\subsubsection{In Control gefundene Fehler}
 In der Methode \textit{applyConfig} wurden Methoden aus \textit{dibugger.userinterface} oder \textit{dibugger.debuglogic} zu oft, oder gar nicht aufgerufen.
 Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hinzugefügt.
 \subsection{Filehandler}
-\paragraph{Klassentests}
+\subsubsection{Klassentests}
 Der Filehandler ist zuständig für das laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
 Die Schwierigkeit lag bei Writer / Reader Klassen, da Java \textit{Properties} Dateien abhängig vom Betriebssystem gespeichert werden. Somit haben diese auf Linux eine anderer Struktur als auf Windows. Dies erschwert das automatisierte Vergleichen auf richtige Ausgaben.
 
-\paragraph{Paketweite Tests}
+\subsubsection{Paketweite Tests}
 Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Testen der \textit{*Writer} und \textit{*Reader} Klassen wird dadurch auf die obigen Klassentests aufgebaut. Die Klasse \textit{ConfigurationFile}, \textit{LanguageFile} und \textit{PropertiesFile} wurden somit indirekt getestet.
 
-\paragraph{Nicht durchgeführte Tests}
+\subsubsection{Nicht durchgeführte Tests}
 Einige Klassen im FileHandler wurden nicht direkt getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
 Die ersteren wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
 
-\paragraph{Im FileHandler gefundene Fehler}
+\subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
 
 \section{Gesondertes Testen der Benutzeroberfläche}
@@ -185,10 +208,10 @@ Es werden Grundfunktionalitäten getestet. (Also zum Beispiel keine Bereichsbind
 \subsection{Test auf verschiedener Hard- und Software}
 
 \subsubsection{Software}
-Das Produkt wurde sowohl auf Windows (Vista SP2, 7, 8.x, 10), als auch auf Mac OS X (10.8.3+, 10.9+) und Linux (15.10 Kernel 4.2 oder höher) (64bit empfohlen) getestet.
+Das Produkt wurde sowohl auf Windows (Vista SP2, 7, 8.x, 10), als auch auf Mac OS X (10.8.3+, 10.9+) und Linux (15.10 Kernel 4.2 oder höher) (64bit empfohlen) erfolgreich getestet.
 
 \subsubsection{Hardware}
-Das Produkt wurde auf Rechnern mit folgender Hardware getestet: \\ \\
+Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \\
 \begin{tabular}{l||c|c|c}
    	& Betriebssystem & Prozessor & RAM \\
 	\hline
