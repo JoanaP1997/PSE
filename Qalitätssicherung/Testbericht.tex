@@ -11,6 +11,7 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \usepackage{csquotes}       % provides \enquote{} macro for "quotes"
 \usepackage[nonumberlist]{glossaries}     % provides glossary commands
 \usepackage{enumitem}
+\usepackage{pdfpages}
 \usepackage{xcolor}
 \newcommand\frage[1]{\textcolor{red}{#1}}
 \renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
@@ -205,10 +206,49 @@ Das Produkt wurde auf Rechnern mit folgender Hardware getestet: \\ \\
 
 
 %\section{Vorgenommene Veränderungen}
-
+\newpage
 \section{Anhang}
-\subsection{Testprotokoll für die Nutzerstudie}
-%Testprotokoll
 %getestete Programme
+\subsection{Testprogramme für die Nutzerstudie}\label{code}
+\textbf{Programm A:}
+\begin{verbatim}
+int main (int n) {
+	int a = 1;
+	int b = 0;
+	int c = 34723;
+	while (a < 2*n) {
+		b = b + a;
+		a = a + 2;
+		c = c*a-b;
+	}
+	return b;
+}
+\end{verbatim}
+
+\textbf{Programm B:}
+\begin{verbatim}
+int foo(int k) {
+	int i = 0;
+	int d = 0;
+	while(i < k) {
+	i = i +1;
+	d = d + k;
+}
+return d;
+}
+int main (int k) {
+
+	int a = 0;
+	a = foo(k);
+	return a;
+}
+\end{verbatim}
+
+\subsection{Testprotokoll für die Nutzerstudie}\label{usertest}
+%Testprotokoll
+
+\includepdf[pages={1-},scale=0.75]{UsabilitytestDebugger.pdf}
+
+
 
 \end{document}
