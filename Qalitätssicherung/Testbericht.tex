@@ -220,6 +220,13 @@ Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse
 \subsection{Funktionale Tests}
 Sowohl im Rahmen der Nutzertests als auch innerhalb des Interpreterpaketes wurden immer wieder semantisch und syntaktisch korrekte Programme getestet. Möglicherweise aufgetretene Fehler sind jeweils in ihrem Paket aufgezählt.
 
+In Form eines Integrationstests wurde das Laden von Konfigurationsdateien durch die Methode \textit{gatherConfiguration} in \textit{FileHandlerInteractor} getestet.
+Dabei wurden zugehörige Methoden aus \textit{dibugger.control} und \textit{dibugger.debuglogic.debugger} aufgerufen.\\
+Es zeigte sich, dass nach Aufrufen von \textit{startDebug}, gefolgt von \textit{stopDebug} aus \textit{DebugLogicController} nicht alle nötigen Informationen zum Erstellen der Datei korrekt gesammelt werden.
+Dies konnte durch minimale Änderung in \textit{stopDebug} und/oder Abänderung von \textit{dibugger.debuglogic.debugger} behoben werden. % Vlt. genauer beschreiben, wenn umgesetzt
+
+\subsubsection{Testszenarien}
+Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. Hierzu sei auf Abschnitt \ref{gui} verwiesen.
 
 \subsection{Belastungstests}\label{stress}
 Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
