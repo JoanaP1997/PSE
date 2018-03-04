@@ -450,6 +450,10 @@ public class DebugControl {
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
     }
+    
+    public void endRun(){
+    	list_currentTraceStates.clear();
+    }
 
     /**
      * Sets the stepsize of a program

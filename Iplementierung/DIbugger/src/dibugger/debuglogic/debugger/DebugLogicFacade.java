@@ -185,6 +185,11 @@ public class DebugLogicFacade extends Observable {
         debugControl.reset();
         notifyAllObservers();
     }
+    
+    public void endRun(){
+    	debugControl.endRun();
+        notifyAllObservers();
+    }
 
     /**
      * @see DebugControl#setMaximumIterations(int)
