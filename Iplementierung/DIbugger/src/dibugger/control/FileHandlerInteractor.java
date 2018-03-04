@@ -125,7 +125,7 @@ public class FileHandlerInteractor extends Observable {
             input.add(inbuffer);
             
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
-            guiFacade.showVariables(programIdentifier, variablesOfInspector);
+            guiFacade.setHiddenVariables(programIdentifier, variablesOfInspector);
 
             // Notiz: "configFile.getLatestExecutionLine" muss noch verwendet
             // werden

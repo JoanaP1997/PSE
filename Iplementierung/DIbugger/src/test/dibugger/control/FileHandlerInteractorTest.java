@@ -145,10 +145,10 @@ public class FileHandlerInteractorTest {
                 list, 
                 Arrays.asList("firstInputVariable = 2", "secondInputVariable = 4"))));
         
-        verify(guiFacade).showVariables(eq("A"), argThat(list -> areDepthOneEqual(
+        verify(guiFacade).setHiddenVariables(eq("A"), argThat(list -> areDepthOneEqual(
                 list,
                 Arrays.asList("inputVariable"))));
-        verify(guiFacade).showVariables(eq("B"), argThat(list -> areDepthOneEqual(
+        verify(guiFacade).setHiddenVariables(eq("B"), argThat(list -> areDepthOneEqual(
                 list,
                 Arrays.asList("firstInputVariable", "secondInputVariable"))));
         

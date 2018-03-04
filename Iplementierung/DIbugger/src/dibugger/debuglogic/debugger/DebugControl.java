@@ -34,7 +34,7 @@ public class DebugControl {
     private List<List<Breakpoint>> list_breakpoints;
 
     private List<ListIterator<TraceState>> list_traceIterator;
-    private List<TraceState> list_currentTraceStates;
+    private List<TraceState> list_currentTraceStates,list_lastTraceStates;
 
     private List<ProgramInput> list_programInput;
 
@@ -60,7 +60,8 @@ public class DebugControl {
 
         list_traceIterator = new ArrayList<ListIterator<TraceState>>();
         list_currentTraceStates = new ArrayList<TraceState>();
-
+        list_lastTraceStates = new ArrayList<TraceState>();
+        
         list_programInput = new ArrayList<ProgramInput>();
 
         list_stepSize = new ArrayList<Integer>();
@@ -452,7 +453,11 @@ public class DebugControl {
     }
     
     public void endRun(){
-    	list_currentTraceStates.clear();
+    	if(list_currentTraceStates.size()>0){
+	    	list_lastTraceStates.clear();
+	    	list_lastTraceStates.addAll(list_currentTraceStates);
+	    	list_currentTraceStates.clear();
+    	}
     }
 
     /**
@@ -753,8 +758,8 @@ public class DebugControl {
      * @return the value of the given variable
      */
     public String getValueOf(String programNameID, String variable) {
-        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
-            TraceState state = list_currentTraceStates.get(i);
+        for (int i = 0; i < Math.max(list_currentTraceStates.size(), list_lastTraceStates.size()); ++i) {
+            TraceState state = (i<list_currentTraceStates.size()) ? list_currentTraceStates.get(i) : list_lastTraceStates.get(i);
             if (state.getProgramId().equals(programNameID)) {
                 return state.getValueOf(variable).toString();
             }
@@ -767,15 +772,24 @@ public class DebugControl {
      * 
      * @return list containing all variables
      */
-    public List<String> getAllVariables(String programNameID) {
-        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
-            TraceState state = list_currentTraceStates.get(i);
-            if (state.getProgramId().equals(programNameID)) {
-                return new ArrayList<String>(state.getAllVariableIdentifiers());
-            }
-        }
-        return new ArrayList<String>();
-    }
+	public List<String> getAllVariables(String programNameID) {
+		if (list_currentTraceStates.size() > 0) {
+			for (int i = 0; i < list_currentTraceStates.size(); ++i) {
+				TraceState state = list_currentTraceStates.get(i);
+				if (state.getProgramId().equals(programNameID)) {
+					return new ArrayList<String>(state.getAllVariableIdentifiers());
+				}
+			}
+		} else {
+			for (int i = 0; i < list_lastTraceStates.size(); ++i) {
+				TraceState state = list_lastTraceStates.get(i);
+				if (state.getProgramId().equals(programNameID)) {
+					return new ArrayList<String>(state.getAllVariableIdentifiers());
+				}
+			}
+		}
+		return new ArrayList<String>();
+	}
 
     /**
      * Getter for the return value of a given program, if the current TraceState

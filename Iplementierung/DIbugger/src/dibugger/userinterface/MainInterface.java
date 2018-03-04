@@ -612,7 +612,7 @@ public class MainInterface extends JFrame {
     List<String> getVariablesOfInspector(String programId) {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
-                return programPanels.get(id).getInspectedVariables();
+                return programPanels.get(id).getUninspectedVariables();
             }
         }
         return new ArrayList<>();
@@ -626,10 +626,10 @@ public class MainInterface extends JFrame {
      * @param variables
      *            new variables
      */
-    void showVariables(String programId, List<String> variables) {
+    void setHiddenVariables(String programId, List<String> variables) {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
-                programPanels.get(id).showVariables(variables);
+                programPanels.get(id).setHiddenVariables(variables);
             }
         }
     }

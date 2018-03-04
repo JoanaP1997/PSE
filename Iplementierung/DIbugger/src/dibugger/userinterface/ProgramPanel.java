@@ -56,7 +56,7 @@ public class ProgramPanel extends JPanel {
     private JLabel varLabel;
     private JButton showHiddenVariables;
     private TreeMap<String, String> variableValueMap;
-    private List<String> shownVariables;
+    private List<String> hiddenVariables;
     private DefaultListModel<String> listModel;
     private JScrollPane variableInspectorScrollPane;
     private JList<String> variableInspectorList;
@@ -267,7 +267,7 @@ public class ProgramPanel extends JPanel {
         GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
         variableInspector.setLayout(variableInspectorLayout);
         variableValueMap = new TreeMap<>();
-        shownVariables = new ArrayList<>();
+        hiddenVariables = new ArrayList<>();
         listModel = new DefaultListModel<>();
 
         variableInspectorList = new JList<>(listModel);
@@ -281,12 +281,15 @@ public class ProgramPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-                    for (int i = 0; i < shownVariables.size(); i++) {
-                        if (shownVariables.get(i).equals(variableInspectorList.getSelectedValue().replace(" ", "").split("=")[0])) {
-                            shownVariables.remove(shownVariables.get(i));
-                        }
-                    }
-                    listModel.remove(variableInspectorList.getSelectedIndex());
+                   // for (int i = 0; i < hiddenVariables.size(); i++) {
+                	if(variableInspectorList.getSelectedIndex()!=-1){
+                    	String val = variableInspectorList.getSelectedValue().replace(" ", "").split("=")[0];
+                       // if (!hiddenVariables.get(i).equals(val)) {
+                            hiddenVariables.add(val);
+                       //}
+                   // }
+                      listModel.remove(variableInspectorList.getSelectedIndex());
+                	}
                 }
                 variableInspectorList.updateUI();
                 variableInspectorScrollPane.updateUI();
@@ -321,9 +324,9 @@ public class ProgramPanel extends JPanel {
         showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
         showHiddenVariables.addActionListener(actionEvent -> {
             listModel.clear();
-            shownVariables.clear();
+            hiddenVariables.clear();
             for (String variable : variableValueMap.keySet()) {
-                shownVariables.add(variable);
+                //hiddenVariables.add(variable);
                 listModel.addElement(variableValueMap.get(variable));
             }
             variableInspectorList.updateUI();
@@ -368,10 +371,10 @@ public class ProgramPanel extends JPanel {
      * @param variables
      *            displayed variables
      */
-    public void showVariables(List<String> variables) {
+    public void setHiddenVariables(List<String> variables) {
         listModel.clear();
         variableValueMap.clear();
-        shownVariables = variables;
+        hiddenVariables = variables;
         for (String s : variables) {
             listModel.addElement(s);
             variableValueMap.put(s, s + " = ");
@@ -384,8 +387,8 @@ public class ProgramPanel extends JPanel {
      *
      * @return inspected variables in an ArrayList
      */
-    public List<String> getInspectedVariables() {
-        return shownVariables;
+    public List<String> getUninspectedVariables() {
+        return hiddenVariables;
     }
 
     /**
@@ -426,16 +429,20 @@ public class ProgramPanel extends JPanel {
         // update variable inspector
         DebugLogicFacade logicFacade = (DebugLogicFacade) observable;
         listModel.clear();
+
         for (String currentVariable : logicFacade.getAllVariables(id)) {
-            if (!variableValueMap.containsKey(currentVariable)) {
-                shownVariables.add(currentVariable);
-            }
+//            if (!variableValueMap.containsKey(currentVariable)) {
+//                hiddenVariables.add(currentVariable);
+//            }
             variableValueMap.put(currentVariable,
                     currentVariable + " = " + logicFacade.getValueOf(id, currentVariable));
+            if(!hiddenVariables.contains(currentVariable)){
+            	listModel.addElement(variableValueMap.get(currentVariable));
+            }
         }
-        for (String variable : shownVariables) {
-            listModel.addElement(variableValueMap.get(variable));
-        }
+//        for (String variable : hiddenVariables) {
+//            listModel.addElement(variableValueMap.get(variable));
+//        }
         variableInspectorList.updateUI();
 
         // show current execution line
