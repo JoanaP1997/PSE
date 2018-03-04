@@ -129,19 +129,64 @@ Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hi
 
 \section{Gesondertes Testen der Benutzeroberfläche}
 
-\subsection{Testplan / Übersicht}
--Monkey Testing \\
--Testbereiche: Visual Design Functionality Performance Security Usability Compliance
+\subsection{Testplan und Übersicht}
+Da automatisiertes Testen der Benutzeroberfläche sehr zeitaufwändig ist, wurde die Benutzeroberfläche des Dibuggers nach einem eigenen Testplan getestet. Dieser besteht zunächst aus sowohl dummem als auch intelligentem \textit{Monkey Testing}, um Schwächen oder Absturzpunkte der Benutzeroberfläche zu finden. \\
+Anschließend wurde die Benutzeroberfläche von den Entwicklern hinsichtlich Nutzerfreundlichkeit betrachtet. Aufgrund der Gefahr, hier wichtige Kriterien zu übersehen, wird zusätzlich eine Benutzerstudie durchgeführt. \\
+Außerdem wurden alle Funktionen der Benutzeroberfläche einzeln (z.B. jeder Button und Menüeintrag für sich) getestet, um diese Basisfunktionen dann in den Anwendungsfällen, welche im Pflichtenheft beschrieben wurden, zusammenzufassen. Die einzelnen Funktionen wurden hierbei in die Kriterien Gestaltung, Funktionalität und Performanz aufgeteilt.
 
 \subsection{Monkey Testing}
 \subsubsection{Dummes Monkey Testing}
 \subsubsection{Intelligentes Monkey Testing}
 
 \subsection{Untersuchung der Nutzerfreundlichkeit}
+Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten.
+Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
 
-Es werden Grundfunktionalitäten getestet. (Also zum Beispiel keine Bereichsbindung.)
+\subsection{Test der Basisfunktionen}
+\subsubsection{Gestaltung}
+\paragraph{Getestete Funktionen}
+In diesem Bereich wurde die Anpassung des Produkts an die vom Benutzer gewählte Fenstergröße getestet. Außerdem wurden sämtliche PopUps auf ausreichende Größe überprüft.
+Weitere Basisfunktionen im Bereich Gestaltung sind das korrekte Anzeigen der Scrollbalken, der hinzugefügten ProgramPanels und des Texts in den Textboxen.
+\paragraph{Vorgenommene Änderungen}
+Das rechte Control-Panel, welches die ExpressionPanels und das CommandPanel enthält, bleibt nun bei einer festen Größe, um keinen Platz zu verschwenden. Bei Vergößern oder Verkleinern passt sich der Editor der ProgramPanels an die Größe des Fensters an.
+\subsubsection{Funktionalität}
+\paragraph{Getestete Funktionen}
+\subparagraph{Menüs}
+Es wurde getestet, ob die Menüeinträge und deren ActionListener valide sind, also ob die richtigen Optionen (zB verschiedene Sprachdateien) verfügbar sind, und richtig angewählt werden können.  \\
+Zusätzlich wurden die Sprachdateien auf Vollständigkeit überprüft, und anschließend ob das Ändern der Sprache jederzeit möglich ist. \\
+Die PopUps für Vorschläge wurden auf korrekte Funktionalität und Sprache überprüft, sowie die Menüeinträge für Vorschläge auf korrektes Aufrufen der jeweiligen PopUps. \\
+Es wurde sichergestellt, dass vorgenommene Einstellungen im Einstellungsmenü nach Neustart des Produkts gleichbleiben.
+\subparagraph{ProgramPanel}
+Hinzufügen und Löschen bzw Zurücksetzen von ProgramPanels wurde in verschiedenen Reihenfolgen überprüft, um zusätzlich zu testen ob die Programmbezeichner korrekt berechnet werden. \\
+Die Textfelder für Eingabevariablen und Schrittgröße wurden auf korrektes Weitergeben ihrer Daten geprüft. \\
+Im Editorfeld, welches das jeweilige Programm enthält, waren folgende Funktionen zu testen:
+\begin{itemize}
+\item Hinzufügen, Löschen und Anzeige von (aktiven) Breakpoints an Zeilen im Text
+\item Korrekte Zeilennummerierung bei Änderungen im Code
+\item Markierbarkeit, Kopierbarkeit, Anzeige und Tab-Funktionalität im Text
+\end{itemize}
+Außerdem wurde die korrekte Returnvalue und das Anzeigen, Aus-und Einblenden von Variablen im Variableninspektor überprüft.
+\subparagraph{Rechtes Control-Panel}
+Das \textit{CommandPanel} wurde auf korrektes Ausgrauen der Buttons und richtige Übergabe von Benutzereingaben getestet.
+Folgende Funktionalitäten wurden in den \textit{ExpressionPanels} überprüft:
+\begin{itemize}
+\item Anzeige der Auswertung
+\item Übergabe der Expression
+\item Hinzufügen und Löschen von Expressions
+\item PopUps für Bereichsbindung
+\end{itemize}
+\paragraph{Vorgenommene Änderungen}
+\subsubsection{Performanz}
+\paragraph{Getestete Funktionen}
+Während sämtlichen Tests der Benutzeroberfläche wurde darauf geachtet, ob es spürbare und störende Zeitverzögerungen bei Benutzung des Produkts gibt. Dies war nicht der Fall, jedoch kann sich in den Tests des Gesamtprodukts noch herausstellen, dass sich das Generieren des Traces, bei Betätigung des \textit{Debugmodus starten}-Buttons, unter ungünstigen Bedingungen verzögern kann.
+\subsection{Testszenarien}
+\paragraph{/AF10/ Hinzufügen von Programmen}
+\paragraph{/AF20/ Ändern von Programmen}
+\paragraph{/AF30/ Setzen von Breakpoints}
+\paragraph{/AF40/ Hinzufügen von Watch-Expressions}
+\paragraph{/AF50/ Codes debuggen}
+\paragraph{/AF60/ Speichern eines Durchlaufs}
 
-\subsection{Testfälle}
 
 
 \section{Testen des Gesamtprodukts}
