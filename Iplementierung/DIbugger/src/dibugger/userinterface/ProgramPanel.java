@@ -282,8 +282,8 @@ public class ProgramPanel extends JPanel {
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
                     for (int i = 0; i < shownVariables.size(); i++) {
-                        if (shownVariables.get(i).equals(variableInspectorList.getSelectedValue())) {
-                            shownVariables.remove(variableInspectorList.getSelectedValue());
+                        if (shownVariables.get(i).equals(variableInspectorList.getSelectedValue().replace(" ", "").split("=")[0])) {
+                            shownVariables.remove(shownVariables.get(i));
                         }
                     }
                     listModel.remove(variableInspectorList.getSelectedIndex());

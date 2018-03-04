@@ -48,7 +48,7 @@ public class DebugLogicFacade extends Observable {
         map_suggestions_relational.put("suggest_strategy_simple_relational", suggest_relational);
     }
    
-    private void notifyAllObservers() {
+    public void notifyAllObservers() {
         this.setChanged();
         this.notifyObservers();
     }

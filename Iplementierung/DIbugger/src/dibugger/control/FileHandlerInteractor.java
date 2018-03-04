@@ -98,23 +98,32 @@ public class FileHandlerInteractor extends Observable {
 
     public void applyConfiguration(ConfigurationFile configFile) throws DIbuggerLogicException {
         int numberOfPrograms = configFile.getNumPrograms();
+        List<String> input = new ArrayList<>()
+        		,programTexts = new ArrayList<>()
+        		,pids = new ArrayList<>();
+        
         for (int i = 0; i < numberOfPrograms; i++) {
             String programIdentifier = configFile.getProgramNameID(i);
             debugLogicController.putId(programIdentifier, i);
+            pids.add(programIdentifier);
             
             String programText = configFile.getProgramText(i);
 
             guiFacade.showProgramText(programText, programIdentifier);
-
+            programTexts.add(programText);
+            
             List<String> inputValueIdentifiers = configFile.getInputValueIdentifiers(i);
             List<String> variablesAndValues = new ArrayList<>();
 
+            String inbuffer = "";
             for (String identifier : inputValueIdentifiers) {
                 String inputValue = configFile.getInputValue(i, identifier);
                 variablesAndValues.add(identifier + " = " + inputValue);
+                inbuffer += variablesAndValues.get(variablesAndValues.size()-1);
             }
             guiFacade.showInput(programIdentifier, variablesAndValues);
-
+            input.add(inbuffer);
+            
             List<String> variablesOfInspector = configFile.getVariablesOfInspector(i);
             guiFacade.showVariables(programIdentifier, variablesOfInspector);
 
@@ -133,6 +142,10 @@ public class FileHandlerInteractor extends Observable {
 
         List<String> expressions = configFile.getWatchExpressions();
         debugLogicController.createWatchExpressions(expressions);
+        
+        debugLogicController.saveText(input, programTexts, pids);
+        debugLogicController.getDebugLogicFacade().launchRun(debugLogicController.getProgramInput());      
+        debugLogicController.getDebugLogicFacade().notifyAllObservers();
     }
 
     /**
@@ -142,7 +155,7 @@ public class FileHandlerInteractor extends Observable {
      * @param configurationFile
      *            a {@code File} to save DIbugger's state to
      */
-    public void saveConfiguration(File file) {
+    public void saveConfiguration(File file) {    	
         ConfigurationFile configurationFile = new ConfigurationFile(file);
         gatherConfiguration(configurationFile);
         fileHandlerFacade.saveConfig(configurationFile);
@@ -165,7 +178,7 @@ public class FileHandlerInteractor extends Observable {
             List<String> variableAssignments = input.getInputValues();
 
             for (String assignment : variableAssignments) {
-                String[] variableAndValue = assignment.split(" = ");
+                String[] variableAndValue = assignment.replace(" ", "").split("=");
                 if (variableAndValue.length == 2) {
                     String variable = variableAndValue[0];
                     String value = variableAndValue[1];

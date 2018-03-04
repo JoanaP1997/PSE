@@ -561,8 +561,13 @@ public class MainInterface extends JFrame {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
                 String input = "";
+                int i = 0;
                 for (String s : vars) {
-                    input += s + "; ";
+                    input += s;
+                    if(i<vars.size()-1){
+                    	input += "; ";
+                    }
+                    ++i;
                 }
                 programPanels.get(id).showInput(input);
             }
