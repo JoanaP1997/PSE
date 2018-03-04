@@ -216,7 +216,7 @@ Im Editorfeld, welches das jeweilige Programm enthält, waren folgende Funktione
 \end{itemize}
 Außerdem wurde die korrekte Returnvalue und das Anzeigen, Aus-und Einblenden von Variablen im Variableninspektor überprüft.
 \subparagraph{Rechtes Control-Panel}
-Das \textit{CommandPanel} wurde auf korrektes Ausgrauen der Buttons und richtige Übergabe von Benutzereingaben getestet.
+Das \textit{CommandPanel} wurde auf korrektes Ausgrauen der Buttons und richtige Übergabe von Benutzereingaben getestet. \\
 Folgende Funktionalitäten wurden in den \textit{ExpressionPanels} überprüft:
 \begin{itemize}
 \item Anzeige der Auswertung
@@ -225,77 +225,15 @@ Folgende Funktionalitäten wurden in den \textit{ExpressionPanels} überprüft:
 \item PopUps für Bereichsbindung
 \end{itemize}
 \paragraph{Vorgenommene Änderungen}
+Es wurden fehlende Übersetzungen zu allen Sprachdateien hinzugefügt. \\
+Beim Speichern einer Konfigurationsdatei muss der Nutzer nun nicht mehr selbst die Dateiendung \textit{.rdbf} anhängen und Konfigrationsdateien lassen sich korrekt laden, ohne dass das Programm selbst als Programmbezeichner benutzt wird.
 \subsubsection{Performanz}
 \paragraph{Getestete Funktionen}
 Während sämtlichen Tests der Benutzeroberfläche wurde darauf geachtet, ob es spürbare und störende Zeitverzögerungen bei Benutzung des Produkts gibt. Dies war nicht der Fall, jedoch kann sich in den Tests des Gesamtprodukts noch herausstellen, dass sich das Generieren des Traces, bei Betätigung des \textit{Debugmodus starten}-Buttons, unter ungünstigen Bedingungen verzögern kann.
-\subsection{Testszenarien}
-\paragraph{/AF10/ Hinzufügen von Programmen}
-\paragraph{/AF20/ Ändern von Programmen}
-\paragraph{/AF30/ Setzen von Breakpoints}
-\paragraph{/AF40/ Hinzufügen von Watch-Expressions}
-\paragraph{/AF50/ Codes debuggen}
-\paragraph{/AF60/ Speichern eines Durchlaufs}
-
-
-\subsubsection{Testaufbau}
-
-Im Pflichtenheft wurden bezüglich der Benutzeroberfläche ein besonderer Fokus auf Verständlichkeit, Übersichtlichkeit und Erlernbarkeit gelegt. Dem wurde mit einem gesonderten Nutzertest Rechnung getragen. \\
-Im Anhang findet sich unter Punkt \ref{usertest} das Protokoll für den Versuchsaufbau. Dieser besteht aus zwei Teilen: Zunächst setzt die Testperson mit Hilfe des DIbuggers mehrere praktische Aufgaben um. Geprüft werden die in Tabelle \ref{testfaelle} aufgelisteten Grundfunktionalitäten des DIbuggers. Zunächst soll versucht werden, die Aufgabe ohne Hilfestellung zu lösen. Schlägt dies fehl, darf das Nutzermanual zu Rate gezogen werden (und wird somit ebenfalls auf Verständlichkeit geprüft). Die Testleitung soll nur die letzte Instanz sein. \\
-Die Testperson wird dabei von der Versuchsleitung zum lauten Denken angehalten. So können nicht nur Probleme erkannt werden, die die Ausführung einer Aufgabe für die Versuchsperson unmöglich machen, sondern auch Programmeigenschaften, die die Ausführung verzögern oder umständlich machen. \\
-Die zwei Programme, die von den Nutzern untersucht werden sollen, sind ebenfalls im Anhang, unter Punkt \ref{code} zu finden.
-Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fragebogen aus, der aus statistischen und offenen Fragen besteht.
-
-\begin{table}
-\begin{tabular}{l||c}
-   	Aufgabe & Getestetes DIbugger-Konzept \\
-	\hline
-	\hline
-	1 & Nutzen der Menüleiste, Anzeigen der Hilfe\\
-	2 & Nutzen der Menüleiste, Ändern der Sprache\\
-	3 & Hinzufügen eines neuen Programmfensters \\
-	4 & Löschen eines Programmfensters \\
-	5 & einfache Wlang-Syntax, Fehlermeldungen, Variablenanzeige, Steps \\
-	6 & Anordnung und Aufrufen von Funktionen, Fehlermeldungen, Speichern \\
-	7 & Laden einer Konfiguration, Bedingte Breakpoints, Watch-Expressions \\
-	8 & Watch-Expression-Menüs
-
-
-\end{tabular}
-\label{testfaelle}
-\caption{Hintergrund der Aufgaben im Praxisteil}
-\end{table}
-
-
-
-\subsubsection{Auswertung}
-
-Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse des \enquote{Lauten Denkens} werden nach Themengebieten geclustert und für die Einarbeitung nach Vorkommenshäufigkeit und Schwere der Einschränkung geordnet. Ebenso wird mit den Anmerkungen aus dem Fragenteil verfahren.
-
-(Zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt.)
-
-\subsection{Manuelles Testen} 
-Bei den manuellen Tests, wurden zuerst einzelne Komponenten und Funktionalitäten mittels Testfällen getestet, welche dann anschließend zu Testszenarien zusammengefügt wurden, wie sie im Pflichtenheft definiert waren.
-
-\subsubsection{Testfälle}
-Die Testfälle wurden aufgeteilt in die oben genannten Kategorien Gestaltung, Funktionalität, Performanz und Benutzerfreundlichkeit. \\
-  \\
-Zur Gestaltung wurde getestet ob die Fenstergröße der Unterklassen sich an die Fenstergröße der Grundapplikation anpasst, ob die PopUps eine feste Fenstergröße beibehalten, ob alle Menüeinträge vorhanden und anzeigbar sind, alle Scrollbalken korrekt angezeigt werden, die ProgramPanels und der Text in den Textboxen richtig angezeigt werden und ob das rechte Panel bei einer Mindestgröße bleibt. \\
-Alle Testfälle zur Gestaltung waren am Ende positiv. \\
- \\
-Zur Kategorie Funktionalität wurde getestet, ob alle Menüeinträge valide sind, ob die Sprache korrekt angezeigt wird und geändert werden kann, ob man eine Konfigurationsdatei speichern und laden kann, ob die Benutzeroberfläche zurückgesetzt und beendet werden kann und ob man ein Programm hinzufügen kann. Des weiteren wurde getestet ob die Vorschlagsmenüs richtig funktionieren und die dazugehörigen PopUps richtig angezeigt werden und korrekt funktionieren. Auch das Einstellungsmenü wurde getestet, sowie das Hilfemenü. \\
-Auch das ProgramPanel wurde ausführlich getestet. Hier wurde der Programmbezeichner, die Funktionalität des Öffnens bzw. Löschens eines Programms durch die Buttons, das korrekte Anzeigen und Ändern der Schrittgröße, die Funktionalität des Einzelschritts und der Eingabewerte getestet. \\
-Des weiteren wurde das setzen und löschen der Breakpoints, sowie dessen Anzeige, die korrekte Zeilennummerierung und das Anzeigen von Text im Textfeld getestet. Auch getestet wurde der Variableninspektor, die Rückgabewerte und die Funktionalitäten des CommandPanel, WatchExpressionPanel, sowie ConditionalBreakpointPanel. Zuletzt wurde unter dem Punkt Funktionalität noch das Aufrufen der PopUps getestet. \\
-Zum Zeitpunkt der Vorabgabe schlagen noch die Tests zur Schrittgröße und zum Anzeigen des Textes in den Textboxen der ProgamPanels fehl.\\
- \\
-Zum Punkt Performanz wurde getestet, ob eine spürbare Zeitverzögerung für den Nutzer auftritt. Dazu wurde bei jedem anderen Testfall, sowie den Testszenarien auf die Performanz geachtet.
- \\Hier konnten keine spürbaren Verzögerungen bemerkt werden. \\
- \\  
-Zur Kategorie Benutzerfreundlichkeit wurden die MouseOvers mit den Tooltips auf Vollständigkeit und Verständlichkeit überprüft.
-Des weiteren wurden während der Nutzerstudie die Probanden angehalten das Hilfedokument auf Vollständigkeit zu überprüfen.
 
 \label{testszenarien}
-\subsubsection{Testszenarien}
-Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichtenheft getestet.
+\subsection{Testszenarien}
+Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichtenheft getestet, indem die Anwendungsfällen aus den zuvor getesteten Basisfunktionen zusammengesetzt wurden.
 \begin{itemize} 
 	\item[AF10] Hinzufügen von Programmen beinhaltet: 
 	\begin{itemize}
@@ -340,6 +278,45 @@ Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichte
 		\item PopUp zum Speichern einer Konfigurationsdatei funktioniert
 	\end{itemize}
 \end{itemize}
+
+\subsection{Benutzerstudie}
+
+\subsubsection{Testaufbau}
+
+Im Pflichtenheft wurden bezüglich der Benutzeroberfläche ein besonderer Fokus auf Verständlichkeit, Übersichtlichkeit und Erlernbarkeit gelegt. Dem wurde mit einem gesonderten Nutzertest Rechnung getragen. \\
+Im Anhang findet sich unter Punkt \ref{usertest} das Protokoll für den Versuchsaufbau. Dieser besteht aus zwei Teilen: Zunächst setzt die Testperson mit Hilfe des DIbuggers mehrere praktische Aufgaben um. Geprüft werden die in Tabelle \ref{testfaelle} aufgelisteten Grundfunktionalitäten des DIbuggers. Zunächst soll versucht werden, die Aufgabe ohne Hilfestellung zu lösen. Schlägt dies fehl, darf das Nutzermanual zu Rate gezogen werden (und wird somit ebenfalls auf Verständlichkeit geprüft). Die Testleitung soll nur die letzte Instanz sein. \\
+Die Testperson wird dabei von der Versuchsleitung zum lauten Denken angehalten. So können nicht nur Probleme erkannt werden, die die Ausführung einer Aufgabe für die Versuchsperson unmöglich machen, sondern auch Programmeigenschaften, die die Ausführung verzögern oder umständlich machen. \\
+Die zwei Programme, die von den Nutzern untersucht werden sollen, sind ebenfalls im Anhang, unter Punkt \ref{code} zu finden.
+Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fragebogen aus, der aus statistischen und offenen Fragen besteht.
+
+\begin{table}
+\begin{tabular}{l||c}
+   	Aufgabe & Getestetes DIbugger-Konzept \\
+	\hline
+	\hline
+	1 & Nutzen der Menüleiste, Anzeigen der Hilfe\\
+	2 & Nutzen der Menüleiste, Ändern der Sprache\\
+	3 & Hinzufügen eines neuen Programmfensters \\
+	4 & Löschen eines Programmfensters \\
+	5 & einfache Wlang-Syntax, Fehlermeldungen, Variablenanzeige, Steps \\
+	6 & Anordnung und Aufrufen von Funktionen, Fehlermeldungen, Speichern \\
+	7 & Laden einer Konfiguration, Bedingte Breakpoints, Watch-Expressions \\
+	8 & Watch-Expression-Menüs
+
+
+\end{tabular}
+\label{testfaelle}
+\caption{Hintergrund der Aufgaben im Praxisteil}
+\end{table}
+
+
+
+\subsubsection{Auswertung}
+
+Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse des \enquote{Lauten Denkens} werden nach Themengebieten geclustert und für die Einarbeitung nach Vorkommenshäufigkeit und Schwere der Einschränkung geordnet. Ebenso wird mit den Anmerkungen aus dem Fragenteil verfahren.
+
+(Zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt.)
+
 
 
 \newpage
