@@ -296,8 +296,7 @@ Debuggen beginnen
 ui_we_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu dieser Watch-Expression, <br>
-mittleres Feld um die Watch-Expression zu ändern. <br>
-Um einee neue Watch-Expression hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+mittleres Feld um die Watch-Expression zu ändern. </html>
 
 }
 ui_options{
@@ -492,8 +491,7 @@ Führe einen Schritt rückwärts aus
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>
-mittleres Feld um den bedingten Breakpoint zu ändern. <br>
-Um einen neuen bedingten Breakpoint hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+mittleres Feld um den bedingten Breakpoint zu ändern.</html>
 
 }
 suggest_strategy_simple_stepsize{

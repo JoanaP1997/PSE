@@ -299,8 +299,7 @@ Dibaggeabfahrt.
 ui_we_tooltip{
 	def_blockLen=3
 <html>Des erschde Feld is ferr die Optione, <br>
-es zwedde Feld is ferrs ännre der Watch Expression. <br>
-Wennd e neie Watch Expression nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+es zwedde Feld is ferrs ännre der Watch Expression.</html>
 
 }
 ui_options{
@@ -487,8 +486,7 @@ Weida.
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Des erschde Feld is ferr die Optione, <br>
-es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
-Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+es zwedde Feld is ferrs ännre des bedingte Breakpoints.</html>
 
 }
 suggest_strategy_simple_stepsize{
