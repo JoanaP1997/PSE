@@ -4,6 +4,7 @@ import java.io.File;
 import static test.filehandler.FileHandlerTestUtilities.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.facade.ConfigurationFile;
+import dibugger.filehandler.facade.FileHandlerFacade;
 import dibugger.filehandler.facade.LanguageFile;
 import dibugger.filehandler.facade.PropertiesFile;
 import dibugger.filehandler.rdbf.RDBFAdditions;
@@ -80,6 +82,28 @@ public class FileHandlerTest {
     public void testRDBFLanguage() throws FileHandlerException {
         RDBFDBReader reader = new RDBFDBReader();
         LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.txt"));
+    }
+    
+    @Test
+    public void test_facade() throws FileHandlerException{
+    	FileHandlerFacade fac = new FileHandlerFacade();
+    	assertNotEquals(null, fac.getLanguageFile("english"));
+    	List<String> l = Arrays.asList("german", "english", "palatinate", "swabian", "testLang");
+    	for(String id : fac.getLanguages()){
+    		assertEquals(true, l.contains(id));
+    	}
+    	
+    	String text = "int main(){\n"
+    			+ "int i = 1;\n"
+    			+ "int n = 5;\n"
+    			+ "int sum = 1;\n"
+    			+ "while(i<n){\n"
+    			+ "sum = sum * i;\n"
+    			+ "i = i + 1;\n"
+    			+ "}\n"
+    			+ "return sum;\n"
+    			+ "}";
+    	assertEquals(text, fac.loadProgramText(new File("res/testing/uselessAlgo.txt")));
     }
 
 }
