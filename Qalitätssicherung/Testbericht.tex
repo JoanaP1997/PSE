@@ -83,20 +83,41 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 Die Gesamtabdeckung des Produktes wird dem nächste Woche angehängten Archiv zu entnehmen sein.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
 Ausgeschlossen sind allerdings Angaben über erreichte Abdeckung mittels der in \ref{gui} beschriebenen Tests.
-\subsection{AnltrParser}
+\subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
-Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
-Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
+Im Interpreter wurden zunächst die Klassen der im Folgenden beschriebenen Reihenfolge für sich getestet. 
+Dabei wurden die wichtigsten Methoden der Klassen zunächst so durch Unit-Tests getestet, dass eine möglichst hohe Testüberdeckung erreicht wurde. Die resultierende Überdeckung ist in Abbildung \ref{AbdeckungImInterpreter} dargestellt. Hierbei ist zu beachten, dass die mit \enquote(av.) gekennzeichneten abstrakten Klassen, mit dem Durchschnitt der jeweiligen Überdeckung ihrer Subklassen aufgeführt werden. \\
+\subsubsection{Testen der Interpreterklassen}
+Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. Hierzu wird zunächst der Quelltext vom in \ref{ANTLRPARSER} erklärten Paket in einen Syntaxbaum überführt.
+Zwei im Interpreterpaket angesiedelte \textit{Visitor}-Klassen übersetzen diesen in einen Baum aus \textit{Commandobjekten}. Diese Objekte nutzen wiederum \textit{Terme} und diese nutzen, sobald sie ausgewertet werden, \textit{TermValues}, die das Typsystem der Wlang-Sprache darstellen. 
+Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.
+So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben:
+\paragraph{Testen der TermValues}
+Um das Typsystem zu testen, wurden für jede Kombination von Datentypen (\texttt{char, int, long ... }) und jeden arithmetischen Operator (\texttt{+,-,\%,...}) sowie logischen und vergleichenden Operator(\texttt{<,>,!=,...}) Beispielwerte ausprobiert und mit dem korrekten Ergebnis verglichen. Hierbei fiel lediglich in der Klasse \textit{LongValue} ein Fehler auf (siehe \ref{fehlerImInterpreter}).
+(siehe \textit{test.debuglogic.interpreter.TermValueTest.java})
+\paragraph{Testen der Terme}
+Bei den Termen wurde getestet, ob die konkrete Termausprägung (z.B. \textit{AdditionTerm}) bei Ausführen ihrer \textit{evaluate}-Methode das richtige Ergebnis liefert. \\
+Da die Implementierung aufgrund des Entwurfs im Wesentlichen die Methoden der TermValues nutzt, wurde hier nicht mehr jede mögliche Datentypkombination getestet.\\
+Hierbei fiel bei der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler auf, der ebenfalls in \ref{fehlerImInterpreter} beschrieben ist. 
+(siehe \textit{test.debuglogic.interpreter.TermTest.java})
+\paragraph{Testen der Commands}
+Um die Commands zu testen, die einzelne Anweisungen oder Kontrollstrukturen in WLang-Programmen repräsentieren, wurde für jede konkrete Subklasse der abstrakten Klasse \textit{Command}, etwa \textit{IfCommand}, eine eigene Testklasse geschrieben. Diese Test sind nach dem folgenden Prinzip aufgebaut: Die \textit{Command}-Objekte werden erschaffen und ein \textit{Scope}-Objekt angelegt, in dem bereits Daten durch Aufruf der entsprechenden Methoden eingespeist sind ( Beispiel: x hat den Wert 1)
+Dann wird der zu testende Command mit der \textit{run()}-Methode über diesem Scope ausgeführt. Nun wird geprüft, ob die zu erwartende Änderung an den Daten stattgefunden hat.
+Ein Fehler wurde hierbei nicht gefunden.
+(siehe \textit{test.debuglogic.interpreter.commands.*})
+
+\paragraph{Testen der beiden Visitor-Klassen}
+
+
+
+
+
+
+
+
+
 Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
-\subsubsection{Klassentests}
-Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
-Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.  \\
-So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
-Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in Punkt \ref{abdeckung} beschriebenen Form zu erreichen.
-Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
-Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
-Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
 Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
 \subsubsection{Paketweite Tests}
 Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
@@ -107,7 +128,6 @@ Beispielsweise:
 \item eine fehlende Main-Methode
 \item eine unzulässige Methoden-Definition
 \item fehlende Semikola im Code
-\item ...
 \end{itemize}
 
 \subparagraph{Semantisch falsche Wlang-Programme}
@@ -116,7 +136,6 @@ Beispielsweise:
 \item ein fehlendes Return-Statement
 \item While-Schleifen ohne Boolean-Term in der Bedingung
 \item falsche Arraynutzung
-\item ...
 \end{itemize}
 
 \subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
@@ -124,7 +143,6 @@ Beispielsweise:
 \begin{itemize}
 \item Variablen ohne Programm-Identifikator
 \item unzulässige Operatoren
-\item ...
 \end{itemize}
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
@@ -132,11 +150,10 @@ Beispielsweise:
 \item die genannte Variable existiert nicht
 \item die genannte Variable hat den falschen Typen
 \item das genannte Programm existiert nicht
-\item ...
 \end{itemize}
 
-\subsubsection{Im Interpreter gefundene Fehler}
-Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+\subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
+Während der Klassentests zeigten sich wenige Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
 
