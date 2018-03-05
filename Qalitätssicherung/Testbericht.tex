@@ -94,34 +94,28 @@ Zwei im Interpreterpaket angesiedelte \textit{Visitor}-Klassen übersetzen diese
 Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.
 So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben:
 \paragraph{Testen der TermValues}
-Um das Typsystem zu testen, wurden für jede Kombination von Datentypen (\texttt{char, int, long ... }) und jeden arithmetischen Operator (\texttt{+,-,\%,...}) sowie logischen und vergleichenden Operator(\texttt{<,>,!=,...}) Beispielwerte ausprobiert und mit dem korrekten Ergebnis verglichen. Hierbei fiel lediglich in der Klasse \textit{LongValue} ein Fehler auf (siehe \ref{fehlerImInterpreter}).
+Um das Typsystem zu testen, wurden für jede Kombination von Datentypen (\texttt{char, int, long ... }) und jeden arithmetischen Operator (\texttt{+,-,\%,...}) sowie logischen und vergleichenden Operator(\texttt{<,>,!=,...}) Beispielwerte ausprobiert und mit dem korrekten Ergebnis verglichen. Hierbei fiel lediglich in der Klasse \textit{LongValue} ein Fehler auf (siehe \ref{fehlerImInterpreter}).\\
 (siehe \textit{test.debuglogic.interpreter.TermValueTest.java})
 \paragraph{Testen der Terme}
 Bei den Termen wurde getestet, ob die konkrete Termausprägung (z.B. \textit{AdditionTerm}) bei Ausführen ihrer \textit{evaluate}-Methode das richtige Ergebnis liefert. \\
 Da die Implementierung aufgrund des Entwurfs im Wesentlichen die Methoden der TermValues nutzt, wurde hier nicht mehr jede mögliche Datentypkombination getestet.\\
-Hierbei fiel bei der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler auf, der ebenfalls in \ref{fehlerImInterpreter} beschrieben ist. 
+Hierbei fiel bei der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler auf, der ebenfalls in \ref{fehlerImInterpreter} beschrieben ist. \\
 (siehe \textit{test.debuglogic.interpreter.TermTest.java})
 \paragraph{Testen der Commands}
 Um die Commands zu testen, die einzelne Anweisungen oder Kontrollstrukturen in WLang-Programmen repräsentieren, wurde für jede konkrete Subklasse der abstrakten Klasse \textit{Command}, etwa \textit{IfCommand}, eine eigene Testklasse geschrieben. Diese Test sind nach dem folgenden Prinzip aufgebaut: Die \textit{Command}-Objekte werden erschaffen und ein \textit{Scope}-Objekt angelegt, in dem bereits Daten durch Aufruf der entsprechenden Methoden eingespeist sind ( Beispiel: x hat den Wert 1)
 Dann wird der zu testende Command mit der \textit{run()}-Methode über diesem Scope ausgeführt. Nun wird geprüft, ob die zu erwartende Änderung an den Daten stattgefunden hat.
-Ein Fehler wurde hierbei nicht gefunden.
+Ein Fehler wurde hierbei nicht gefunden.\\
 (siehe \textit{test.debuglogic.interpreter.commands.*})
 
 \paragraph{Testen der beiden Visitor-Klassen}
 Die Aufgabe der Visitor ist es, den von Antlr generierten Baum in einem Baum aus \textit{Command}- beziehungsweise \textit{Term}-Objekten zu übersetzen. 
-
-
-
-
-
-
-
+So wurde den Klassen in den Tests ein ensprechender von Antlr generierter Syntaxbaum gegeben, und geprüft, ob die von ihnen erzeugten Klassen vom erwarteten Typ waren. So musste zum Beispiel aus einem Syntaxbaum, der aus dem Ausdruck \texttt{a+b} stammt, ein \textit{AdditionTerm}-Objekt, dessen Kinder vom Typ \textit{VariableTerm} waren, entstehen. Es sei bemerkt, dass diese Tests auch implizit die Korrektheit der von uns spezifizierten Antlr Grammatik testen.
+Hierbei zeigten sich keine Fehler.\\
 (siehe \textit{test.debuglogic.interpreter.*GenerationVisitorTest.java})
-
-Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
-Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
-\subsubsection{Paketweite Tests}
-Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
+\\\\
+Darauf wurden Tests geschrieben, die das Zusammenspiel innerhalb der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
+Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft. Das Paket \textit{Interpreter} wurde also hierbei von aussen als ganzes betrachtet. 
+Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
 %TODO das muss noch ausformuliert und wirklich getestet werden.
 \subparagraph{Syntaktisch falsche Wlang-Programme}
 Beispielsweise:
@@ -130,7 +124,7 @@ Beispielsweise:
 \item eine unzulässige Methoden-Definition
 \item fehlende Semikola im Code
 \end{itemize}
-
+(siehe \textit{test.debuglogic.interpreter.SyntacticallyWrongProgramsTest.java})\\
 \subparagraph{Semantisch falsche Wlang-Programme}
 Beispielsweise:
 \begin{itemize}
@@ -138,6 +132,7 @@ Beispielsweise:
 \item While-Schleifen ohne Boolean-Term in der Bedingung
 \item falsche Arraynutzung
 \end{itemize}
+(siehe\textit{test.debuglogic.interpreter.SemanticallyWrongProgramsTest.java})\\
 
 \subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
@@ -145,6 +140,7 @@ Beispielsweise:
 \item Variablen ohne Programm-Identifikator
 \item unzulässige Operatoren
 \end{itemize}
+(siehe \textit{test.debuglogic.interpreter.SyntacticallyWrongExpressionsTest.java})\\
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
 \begin{itemize}
@@ -152,16 +148,19 @@ Beispielsweise:
 \item die genannte Variable hat den falschen Typen
 \item das genannte Programm existiert nicht
 \end{itemize}
+(siehe \textit{test.debuglogic.interpreter.SemanticallyWrongExpressionsTest.java})\\
+Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei von semantisch fehlerhaften Watch-Expressions ein \texttt{"?"} erwartet wurde. Hierbei ist ein in \ref{fehlerImInterpreter} sichtbar geworden.
 
 \subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
-Während der Klassentests zeigten sich wenige Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+Während der Tests im Interpreterpaket zeigten Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
 
 %TODO Fehler bei paketweiten Tests
 Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis \enquote{\~{}} (Tilde), da in Ascii \enquote{'?'+'?' = 63+63=126 = '\~{}'}.
 Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
-
+\\
+So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
 \subsection{Control}
 \subsubsection{Paketweite Tests}
@@ -395,7 +394,6 @@ Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \
 \subsection{Änderungen an der Graphischen Benutzeroberfläche}
 Zur graphischen Benutzeroberfläche wurde im WatchExpressionPanel und im ConditionalBreakpointPanel noch ein Button eingefügt, über welche man einen weiteren Breakpoint oder eine Watch-Expression hinzufügen kann, da dies sich als Intuitiver herausstellte als die vorherige Variante. \\
 (Weitere Änderungen erfolgen eventuell nach der Auswertung der Nutzerstudie)
-
 \newpage
 \section{Anhang}
 %getestete Programme
