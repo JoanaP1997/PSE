@@ -658,10 +658,11 @@ public class MainInterface extends JFrame {
         //WatchExpressionPanel.getWatchExpressionPanel(this).saveWEs();
         //ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).saveCBs();
         newProgram.setEnabled(false);
+        controlFacade.startDebug();
         for (ProgramPanel p : programPanels.values()) {
             p.startDebug();
         }
-        controlFacade.startDebug();
+
     }
 
     /**
