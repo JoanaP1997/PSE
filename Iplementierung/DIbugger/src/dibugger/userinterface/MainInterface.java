@@ -655,8 +655,8 @@ public class MainInterface extends JFrame {
      */
     void startDebug() {
         saveText();
-        //WatchExpressionPanel.getWatchExpressionPanel(this).saveWEs();
-        //ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).saveCBs();
+        WatchExpressionPanel.getWatchExpressionPanel(this).saveWEs();
+        ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).saveCBs();
         newProgram.setEnabled(false);
         controlFacade.startDebug();
         for (ProgramPanel p : programPanels.values()) {
