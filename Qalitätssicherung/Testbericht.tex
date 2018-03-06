@@ -361,28 +361,33 @@ Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse
 
 
 
+
+
+
 \newpage
 \section{Testen des Gesamtprodukts}\label{gesamthwsw}
 
-\subsection{Funktionale Tests}
-Sowohl im Rahmen der Nutzertests als auch innerhalb des Interpreterpaketes wurden immer wieder semantisch und syntaktisch korrekte Programme getestet. Möglicherweise aufgetretene Fehler sind jeweils in ihrem Paket aufgezählt.
+%Sowohl im Rahmen der Nutzertests als auch innerhalb des Interpreterpaketes wurden immer wieder semantisch und syntaktisch korrekte Programme getestet. Möglicherweise aufgetretene Fehler sind jeweils in ihrem Paket aufgezählt.
+%
+%In Form eines Integrationstests wurde das Laden von Konfigurationsdateien durch die Methode \textit{gatherConfiguration} in \textit{FileHandlerInteractor} getestet.
+%Dabei wurden zugehörige Methoden aus \textit{dibugger.control} und \textit{dibugger.debuglogic.debugger} aufgerufen.\\
+%Es zeigte sich, dass nach Aufrufen von \textit{startDebug}, gefolgt von \textit{stopDebug} aus \textit{DebugLogicController} nicht alle nötigen Informationen zum Erstellen der Datei korrekt gesammelt werden.
+%Dies konnte durch minimale Änderung in \textit{stopDebug} und/oder Abänderung von \textit{dibugger.debuglogic.debugger} behoben werden. % Vlt. genauer beschreiben, wenn umgesetzt
 
-In Form eines Integrationstests wurde das Laden von Konfigurationsdateien durch die Methode \textit{gatherConfiguration} in \textit{FileHandlerInteractor} getestet.
-Dabei wurden zugehörige Methoden aus \textit{dibugger.control} und \textit{dibugger.debuglogic.debugger} aufgerufen.\\
-Es zeigte sich, dass nach Aufrufen von \textit{startDebug}, gefolgt von \textit{stopDebug} aus \textit{DebugLogicController} nicht alle nötigen Informationen zum Erstellen der Datei korrekt gesammelt werden.
-Dies konnte durch minimale Änderung in \textit{stopDebug} und/oder Abänderung von \textit{dibugger.debuglogic.debugger} behoben werden. % Vlt. genauer beschreiben, wenn umgesetzt
+\subsection{Testfälle aus dem Pflichtenheft}
+Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. %TODO
 
-\subsubsection{Testszenarien}
-Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. Hierzu sei auf Abschnitt \ref{testszenarien} verwiesen.
+\subsection{Weitere Testfälle}
 
-\subsection{Belastungstests}\label{stress}
+\subsubsection{Belastungstests}
+\label{stress}
 Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
 \begin{itemize}
 %\item Tiefe Rekursion (Ackermann) (zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt)
 \item Endlosschleifen
 \item falsche Nutzereingaben
 \item keine Nutzereingaben
-\item n-viele Programme gleichzeitig debuggen
+\item n Programme gleichzeitig debuggen
 \item leere Fenster
 \item Dateien laden, die nicht dem RDBF-Format entsprechen
 \item ...
@@ -391,11 +396,9 @@ Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzerob
 
 \subsection{Test auf verschiedener Hard- und Software}
 
-\subsubsection{Software}
-Das Produkt wurde sowohl auf Windows (Vista SP2, 7, 8.x, 10), als auch auf Mac OS X (10.8.3+, 10.9+) und Linux (15.10 Kernel 4.2 oder höher) (64bit empfohlen) erfolgreich getestet.
+Das Produkt wurde sowohl auf Windows (7 und 10), als auch auf Linux (Ubuntu 17.04 64bit und KDE Neon 5.11.3 64bit) erfolgreich getestet, indem alle JUni-Tests der einzelnen Pakete, die Tests der graphischen Benutzeroberfläche und die in diesem Kapitel aufgeführten Tests des Gesamtprodukts auf den unterschiedlichen Rechnern durchgeführt wurden.
 
-\subsubsection{Hardware}
-Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \\
+Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \\ \\
 \begin{tabular}{l||c|c|c}
    	& Betriebssystem & Prozessor & RAM \\
 	\hline
