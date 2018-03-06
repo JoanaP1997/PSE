@@ -205,7 +205,7 @@ Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere,
 \newpage
 \section{Gesondertes Testen der Benutzeroberfläche}\label{gui}
 
-\subsection{Testplan und Übersicht}
+\subsection{Übersicht über das Testen der Benutzeroberfläche}
 Da automatisiertes Testen der Benutzeroberfläche sehr zeitaufwändig ist, wurde die Benutzeroberfläche des Dibuggers nach einem eigenen Testplan getestet. Dieser besteht zunächst aus sowohl dummem als auch intelligentem \textit{Monkey Testing}, um Schwächen oder Absturzpunkte der Benutzeroberfläche zu finden. \\
 Anschließend wurde die Benutzeroberfläche von den Entwicklern hinsichtlich Nutzerfreundlichkeit betrachtet. Aufgrund der Gefahr, hier wichtige Kriterien zu übersehen, wird zusätzlich eine Benutzerstudie durchgeführt. \\
 Außerdem wurden alle Funktionen der Benutzeroberfläche einzeln (z.B. jeder Button und Menüeintrag für sich) getestet, um diese Basisfunktionen dann in den Anwendungsfällen, welche im Pflichtenheft beschrieben wurden, zusammenzufassen. Die einzelnen Funktionen wurden hierbei in die Kriterien Gestaltung, Funktionalität und Performanz aufgeteilt.
@@ -218,11 +218,11 @@ Unter \textit{dummem Monkey Testing} versteht man das Testen des Produktes ohne 
 Unter dummem Monkey Testing zeigte sich unser Produkt sehr stabil. So führte keine getestete, zufällige Kombination von Aktionen zu einem Absturz des Programms. 
 \subsubsection{Intelligentes Monkey Testing}
 Unter \textit{intelligentem Monkey Testing} versteht man das Testen des Produktes mit rudimentärem Wissen über das Produkt, Kenntnis des gegenwärtigen Zustandes, vergangener Zustände und  möglicher zukünftiger Zustände und Fähigkeiten des Systems. \\
-Auch unter intelligentem Monkey Testing bestand das Produkt die Tests. Hier führte ebenfalls keine Kombination von Aktionen zum Absturz und Fehler die Auftraten wurden abgefangen und korrekt behandelt.
+Auch unter intelligentem Monkey Testing bestand das Produkt, nach Behebung zweier Fehler, die Tests. Zwischenzeitlich auftretende Fehler in den \textit{ExpressionPanels} und im Verändern der Größe dess gesamten Fensters führten zu einem Einfrieren der Benutzeroberfläche. Seit der Behebung dieser Fehler führte keine Kombination von Aktionen zum Absturz und Fehler die Auftraten wurden abgefangen und korrekt behandelt.
 
-\subsection{Untersuchung der Nutzerfreundlichkeit}\label{usertestimdoc}
-Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten.
-Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
+\subsection{Untersuchung der Nutzerfreundlichkeit}
+Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen.
+%TODO: Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
 
 \subsection{Test der Basisfunktionen}
 \subsubsection{Gestaltung}
@@ -230,7 +230,8 @@ Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt 
 In diesem Bereich wurde die Anpassung des Produkts an die vom Benutzer gewählte Fenstergröße getestet. Außerdem wurden sämtliche PopUps auf ausreichende Größe überprüft.
 Weitere Basisfunktionen im Bereich Gestaltung sind das korrekte Anzeigen der Scrollbalken, der hinzugefügten ProgramPanels und des Texts in den Textboxen.
 \paragraph{Vorgenommene Änderungen}
-Das rechte Control-Panel, welches die ExpressionPanels und das CommandPanel enthält, bleibt nun bei einer festen Größe, um keinen Platz zu verschwenden. Bei Vergößern oder Verkleinern passt sich der Editor der ProgramPanels an die Größe des Fensters an.
+Bei Untersuchung der Gestaltung der Benutzeroberfläche  fiel auf, dass sich ausschließlich die Größe des \textit{MainInterface} ändern lies, die Komponenten innerhalb jedoch bei einer festen Größe blieben. Außerdem verdeckte das rechte Control-Panel, welches die \textit{ExpressionPanels} und das \textit{CommandPanel} enthält, bei zu großer Fenstergröße die \textit{ProgramPanels} und versteckte bei zu kleiner Fenstergröße den Inhalt der \textit{ExpressionPanels}.\\
+Das rechte Control-Panel bleibt nun bei einer festen Größe, um keinen Platz zu verschwenden. Bei Vergößern oder Verkleinern passt sich der Editor der ProgramPanels an die Größe des Fensters an.
 \subsubsection{Funktionalität}
 \paragraph{Getestete Funktionen}
 \subparagraph{Menüs}
@@ -312,7 +313,7 @@ Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichte
 	\end{itemize}
 \end{itemize}
 
-\subsection{Benutzerstudie}
+\subsection{Benutzerstudie}\label{usertestimdoc}
 
 \subsubsection{Testaufbau}
 
