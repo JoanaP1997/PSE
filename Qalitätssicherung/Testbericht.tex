@@ -17,6 +17,29 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \newcommand\frage[1]{\textcolor{red}{#1}}
 \renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
 
+\newglossaryentry{Komponententest}
+{
+    name={Komponententest},
+    plural={Komponententests},
+    description={
+        Ein Komponententest ist ein Test eines Softwaresystems, der eine Komponente des Systems testet.
+        Beim Durchführen eines Komponententests einer Komponente werden keine anderen Komponenten verwendet.
+        Als Komponente sei in diesem Kontext ein Paket oder eine Klasse bezeichnet.
+    }                
+}
+
+\newglossaryentry{Testhelfer}
+{
+    name={Testhelfer},
+    plural={Testhelfern},
+    description={
+        Ein Testhelfer ist ein Programmteil der zur Durchführung von Tests eines Softwaresystems verwendet wird.
+        Der Testhelfer soll als Platzhalter oder Stellvertreter für andere Systemkomponenten des Systems dienen.
+    }                
+}
+
+\makeglossaries
+
 \font\myfont=cmr12 at 20pt
 
 \title{
@@ -177,15 +200,45 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
 \subsection{Control}
-\subsubsection{Paketweite Tests}
-Unter Verwendung von Testhelfern wurde \textit{applyConfig} in \textit{FileHandlerInteractor} getestet.
-Dabei wurde die Interaktion von \textit{FileHandlerInteractor} mit Klassen aus \textit{dibugger.control} oder anderen Paketen mit dem Sollverhalten verglichen.
 
-Weiteres (explizites) Testen des Paketes wurde unterlassen, da das Paket über wenig \enquote{eigene Funktionalität} verfügt.
-Die meisten Aufrufe über \textit{dibugger.userinterface} werden direkt an \textit{dibugger.debuglogic} weitergeleitet.
-\subsubsection{In Control gefundene Fehler}
-In der Methode \textit{applyConfig} wurden Methoden aus \textit{dibugger.userinterface} oder \textit{dibugger.debuglogic} zu oft, oder gar nicht aufgerufen.
-Zur Behebeung wurden Funktionsaufrufe in \textit{applyConfig} umgeordnet oder hinzugefügt.
+\subsubsection{Testen der Klassen in Control}
+Das Paket \textit{dibugger.control} (Control) dient als Schnittstelle zwischen der Präsentationskomponente \textit{dibugger.userinterface} und der Modellkomponente \textit{dibugger.debuglogic} (DebugLogic).
+Control besitzt eine Fassade \textit{ControlFacade} und einer Klasse zum Aufrufen von Debugmechanismen aus DebugLogic \textit{DebugLogicController}.
+\textit{ControlFacade} und \textit{DebugLogicController} wurden nicht im Rahmen von \glspl{Komponententest} getestet, da sie ausschließlich an andere Klassen deligieren.\\
+\textit{FileHandlerInteractor} ist Teil des Paketes und zuständig für verwalten von Sprach- oder Konfigurationsdateien.
+Dazu gehören das Laden und Speichern von Konfigurationen des Programmes DIbugger.
+Hierbei handelt es sich um Musskriterien aus der Definitionsphase und die zugehörigen Algorithmen sollten auf Korrektheit geprüft werden.
+Um die Chance des Auffindens von Fehlern beim Testen dieser Algorithmen zu vergrößern, wurde das Testvollständigkeitskriterium \textit{Zweigüberdeckung} für \textit{FileHandlerInteractor} erfüllt.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ueberdeckung-kontrolle.png}
+    \caption{Testüberdeckung der Teile von Control erreicht durch \glspl{Komponententest}, Integrationstests und Systemtests}\label{AbdeckungImInterpreter}
+\end{figure}
+
+\subsubsection{Testen Ladens von Konfigurationsdateien}
+\textit{FileHandlerInteractor} ermöglicht dass Laden von Konfigurationsdateien mit der Methode \textit{applyConfiguration}.
+Dabei wird nach Auslesen einer solchen Datei DIbugger in den Stand zurückversetzt, in dem DIbugger sich beim Speichern der Datei befand.
+Um dies zu ermöglichen speichert \textit{FileHandlerInteractor} die in der Datei enthaltenen Daten im Modell DebugLogic, wie zum Beispiel die Zeilennummern von bedingten Haltepunkten.
+Außerdem wird die Präsentationskomponente \textit{dibugger.userinterface} dazu aufgefordert bestimmte Texte anzuzeigen wie zum Beispiel Programmtexte.
+Insgesamt werden aus diesen beiden Paketen 10 verschiedene Methoden aufgerufen.
+Unter Verwendung von \glspl{Testhelfer} wurde getestet, ob Anzahl und Art dieser Funktionsaufrufe dem Sollverhalten entsprechen.
+Das Sollverhalten ist in einem Sequenzdiagramm des Entwurfsdokumentes beschrieben, und wurde in der Implementierungsphase aus der Schnittstelle der Klasse für Konfigurationsdateien abgeleitet.
+Eine Abweichen von diesem Verhalten wurde gefunden und ist in Abschnitt \ref{fehlerInControl} beschrieben.\\
+(siehe test.control.FileHandlerInteractorTest, dibugger.debuglogic.debugger.ConfigurationFile)
+
+\subsubsection{Beim Komponententest gefundene Fehler in Control}\label{fehlerInControl}
+Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurde die in der Datei enthaltene Einstellung für Schrittgröße eines Programmes nicht übernommen.\\
+Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
+Der der Methodenaufruf zum Speichern der Schrittgrößeneinstellung erfolgt über eine andere Klasse (\textit{dibugger.controlDebugLogicControl}) und beim Aufruf wird eine Programmkennung mitübergeben.
+Die übergebene Programmkennung muss aber vor Aufruf der Methode der Klasse (\textit{dibugger.control.DebugLogicController}) über eine andere Zugriffsmethode übergeben werden.
+Dies wurde zur Fehlerbehebung umgesetzt.
+
+Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurden die in der Datei enthaltenen Watch-Expressions und bedingte Haltepunkte mehrfach im Modell DebugLogic gespeichert.\\
+Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
+Ursache für den Fehler war, dass die Funktionsaufrufe zum Speichern innerhalb eines Schleifenrumpfes standen. 
+Sie wurden zur Fehlerbehebung aus dem Schleifenrumpf entfernt.
+
 \subsection{Filehandler}
 \subsubsection{Klassentests}
 Der Filehandler ist zuständig für das Laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
@@ -409,6 +462,10 @@ Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \
 Zur graphischen Benutzeroberfläche wurde im WatchExpressionPanel und im ConditionalBreakpointPanel noch ein Button eingefügt, über welche man einen weiteren Breakpoint oder eine Watch-Expression hinzufügen kann, da dies sich als Intuitiver herausstellte als die vorherige Variante. \\
 (Weitere Änderungen erfolgen eventuell nach der Auswertung der Nutzerstudie)
 \newpage
+
+\printglossary[style=altlist, toctitle=Glossar]
+\newpage
+
 \section{Anhang}
 %getestete Programme
 \subsection{Testprogramme für die Nutzerstudie}\label{code}
@@ -450,7 +507,5 @@ int main (int k) {
 %Testprotokoll
 
 \includepdf[pages={1-},scale=0.75]{UsabilitytestDebugger.pdf}
-
-
 
 \end{document}
