@@ -112,8 +112,12 @@ public class DebugControlTest {
                 new ArrayList<String>(), 0, "A");
         List<ProgramInput> l_in = new ArrayList<ProgramInput>();
         l_in.add(in);
-        facade.createWatchExpression(0, "A.i + A.x");
-        facade.createCondBreakpoint(0, "A.x == 2*A.i");
+        facade.createWatchExpression(0, "A.i - A.x");
+        facade.changeWatchExpression(0, "A.i + A.x", null);
+        assertEquals("A.i + A.x", facade.getWatchExpressions().get(0));
+        facade.createCondBreakpoint(0, "A.x != 2*A.i");
+        facade.changeCondBreakpoint(0, "A.x == 2*A.i", null);
+        assertEquals("A.x == 2*A.i", facade.getConditionalBreakpoints().get(0));
         facade.launchRun(l_in);
         facade.step(DebugControl.STEP_NORMAL);
         facade.setStepSize(0, 5);

@@ -82,8 +82,14 @@ public class FileHandlerFacade {
         try {
             StringBuilder s = new StringBuilder();
 
-            for (String line : Files.readAllLines(Paths.get(f.toURI()))) {
-                s.append(line).append("\n");
+            List<String> lines = Files.readAllLines(Paths.get(f.toURI()));
+            int index = 0;
+            for (String line : lines) {
+                s.append(line);
+                if(index<lines.size()-1){
+                	s.append("\n");
+                }
+                ++index;
             }
 
             return s.toString();

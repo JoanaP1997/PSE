@@ -83,23 +83,53 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 Die Gesamtabdeckung des Produktes wird dem nächste Woche angehängten Archiv zu entnehmen sein.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
 Ausgeschlossen sind allerdings Angaben über erreichte Abdeckung mittels der in \ref{gui} beschriebenen Tests.
-\subsection{AnltrParser}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1\textwidth]{paketeCoverage.png}
+\caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
+\end{figure}
+
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interfacem, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+\subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
-Im Interpreter wurden zwei Arten von Komponententests durchgeführt. Zunächst wurden die Klassen in einer unten beschriebenen, sinnvollen Reihenfolge für sich getestet. 
-Hierbei wurde vor allem getestet, dass das was funktionieren soll, funktioniert.\\ %TODO bessere Formulierung
-Dann wurden Tests geschrieben, die das Zusammenspiel der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
-\subsubsection{Klassentests}
-Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. 
-Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.  \\
-So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben.
-Bei der Klasse \textit{Term} und ihren Implementierungen wurde die Kenntnis der Implementierung genutzt, um hier den Aufwand der Tests niedrig zu halten. Diese Klassen sind wegen des Kompositum Musters sehr schlank und nutzen vor allem die entsprechenden Methoden der \textit{TermValue} Klassen. So wurden auch die Tests schlank gehalten und hier wurde vor allem darauf geachtet, eine hohe Abdeckung nach der in Punkt \ref{abdeckung} beschriebenen Form zu erreichen.
-Die Abdeckung lag so bei fast allen dieser Klassen bei 100\%. Dennoch halfen diese Tests, eine Unachtsamkeit der Implementierungsphase zu finden, in der vergessen wurde die Klassen \textit{ArrayAccessRelationalTerm} einer Implementierungsänderung anzupassen.\\
-Ein weiterer zu testender Bestandteil waren die \textit{Command}-Klassen. 
-Anschließend wurden die beiden \textit{Visitor}-Klassen getestet. Hierbei war wichtig, dass diese die korrekte Baumstruktur aus Commands und Termen erzeugen.
-Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft.
-\subsubsection{Paketweite Tests}
-Eine wichtige Frage, die beim Testen beantwortet werden soll, ist die Frage nach der Robustheit des Paketes gegenüber falschen oder grenzwertigen Eingaben. Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
+Im Interpreter wurden zunächst die Klassen der im Folgenden beschriebenen Reihenfolge für sich getestet. 
+Dabei wurden die wichtigsten Methoden der Klassen zunächst so durch Unit-Tests getestet, dass eine möglichst hohe Testüberdeckung erreicht wurde. Die resultierende Überdeckung ist in Abbildung \ref{AbdeckungImInterpreter} dargestellt. Hierbei ist zu beachten, dass die mit \enquote{(av.)} gekennzeichneten abstrakten Klassen, mit dem Durchschnitt der jeweiligen Überdeckung ihrer Subklassen aufgeführt werden. \\ Zu beachten ist hierbei, dass die Termklassen eine Zweigüberdeckung von 100\% haben, was dadurch zu begründen ist, dass diese lediglich an andere Terme oder das Typsystem weiterdelegieren. So konnte die Entwurfsentscheidung des Kompositums hier eine gute Testbarkeit verursachen.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\textwidth]{interpreterCoverage.png}
+\caption{Testüberdeckung der Teile des Interpreters}\label{AbdeckungImInterpreter}
+\end{figure}
+
+
+\subsubsection{Testen der Interpreterklassen}
+Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. Hierzu wird zunächst der Quelltext vom in \ref{ANTLRPARSER} erklärten Paket in einen Syntaxbaum überführt.
+Zwei im Interpreterpaket angesiedelte \textit{Visitor}-Klassen übersetzen diesen in einen Baum aus \textit{Commandobjekten}. Diese Objekte nutzen wiederum \textit{Terme} und diese nutzen, sobald sie ausgewertet werden, \textit{TermValues}, die das Typsystem der Wlang-Sprache darstellen. 
+Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.
+So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben:
+\paragraph{Testen der TermValues}
+Um das Typsystem zu testen, wurden für jede Kombination von Datentypen (\texttt{char, int, long ... }) und jeden arithmetischen Operator (\texttt{+,-,\%,...}) sowie logischen und vergleichenden Operator(\texttt{<,>,!=,...}) Beispielwerte ausprobiert und mit dem korrekten Ergebnis verglichen. Hierbei fiel lediglich in der Klasse \textit{LongValue} ein Fehler auf (siehe \ref{fehlerImInterpreter}).\\
+(siehe \textit{test.debuglogic.interpreter.TermValueTest.java})
+\paragraph{Testen der Terme}
+Bei den Termen wurde getestet, ob die konkrete Termausprägung (z.B. \textit{AdditionTerm}) bei Ausführen ihrer \textit{evaluate}-Methode das richtige Ergebnis liefert. \\
+Da die Implementierung aufgrund des Entwurfs im Wesentlichen die Methoden der TermValues nutzt, wurde hier nicht mehr jede mögliche Datentypkombination getestet.\\
+Hierbei fiel bei der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler auf, der ebenfalls in \ref{fehlerImInterpreter} beschrieben ist. \\
+(siehe \textit{test.debuglogic.interpreter.TermTest.java})
+\paragraph{Testen der Commands}
+Um die Commands zu testen, die einzelne Anweisungen oder Kontrollstrukturen in WLang-Programmen repräsentieren, wurde für jede konkrete Subklasse der abstrakten Klasse \textit{Command}, etwa \textit{IfCommand}, eine eigene Testklasse geschrieben. Diese Test sind nach dem folgenden Prinzip aufgebaut: Die \textit{Command}-Objekte werden erschaffen und ein \textit{Scope}-Objekt angelegt, in dem bereits Daten durch Aufruf der entsprechenden Methoden eingespeist sind ( Beispiel: x hat den Wert 1)
+Dann wird der zu testende Command mit der \textit{run()}-Methode über diesem Scope ausgeführt. Nun wird geprüft, ob die zu erwartende Änderung an den Daten stattgefunden hat.
+Ein Fehler wurde hierbei nicht gefunden.\\
+(siehe \textit{test.debuglogic.interpreter.commands.*})
+
+\paragraph{Testen der beiden Visitor-Klassen}
+Die Aufgabe der Visitor ist es, den von Antlr generierten Baum in einem Baum aus \textit{Command}- beziehungsweise \textit{Term}-Objekten zu übersetzen. 
+So wurde den Klassen in den Tests ein ensprechender von Antlr generierter Syntaxbaum gegeben, und geprüft, ob die von ihnen erzeugten Klassen vom erwarteten Typ waren. So musste zum Beispiel aus einem Syntaxbaum, der aus dem Ausdruck \texttt{a+b} stammt, ein \textit{AdditionTerm}-Objekt, dessen Kinder vom Typ \textit{VariableTerm} waren, entstehen. Es sei bemerkt, dass diese Tests auch implizit die Korrektheit der von uns spezifizierten Antlr Grammatik testen.
+Hierbei zeigten sich keine Fehler.\\
+(siehe \textit{test.debuglogic.interpreter.*GenerationVisitorTest.java})
+\\\\
+Darauf wurden Tests geschrieben, die das Zusammenspiel innerhalb der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
+Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft. Das Paket \textit{Interpreter} wurde also hierbei von aussen als ganzes betrachtet. 
+Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
 %TODO das muss noch ausformuliert und wirklich getestet werden.
 \subparagraph{Syntaktisch falsche Wlang-Programme}
 Beispielsweise:
@@ -107,43 +137,44 @@ Beispielsweise:
 \item eine fehlende Main-Methode
 \item eine unzulässige Methoden-Definition
 \item fehlende Semikola im Code
-\item ...
 \end{itemize}
-
+(siehe \textit{test.debuglogic.interpreter.SyntacticallyWrongProgramsTest.java})\\
 \subparagraph{Semantisch falsche Wlang-Programme}
 Beispielsweise:
 \begin{itemize}
 \item ein fehlendes Return-Statement
 \item While-Schleifen ohne Boolean-Term in der Bedingung
 \item falsche Arraynutzung
-\item ...
 \end{itemize}
+(siehe\textit{test.debuglogic.interpreter.SemanticallyWrongProgramsTest.java})\\
 
 \subparagraph{Syntaktisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
 \begin{itemize}
 \item Variablen ohne Programm-Identifikator
 \item unzulässige Operatoren
-\item ...
 \end{itemize}
+(siehe \textit{test.debuglogic.interpreter.SyntacticallyWrongExpressionsTest.java})\\
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
 \begin{itemize}
 \item die genannte Variable existiert nicht
 \item die genannte Variable hat den falschen Typen
 \item das genannte Programm existiert nicht
-\item ...
 \end{itemize}
+(siehe \textit{test.debuglogic.interpreter.SemanticallyWrongExpressionsTest.java})\\
+Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei von semantisch fehlerhaften Watch-Expressions ein \texttt{"?"} erwartet wurde. Hierbei ist ein in \ref{fehlerImInterpreter} sichtbar geworden.
 
-\subsubsection{Im Interpreter gefundene Fehler}
-Während der Klassentests zeigten sich wenige kleine Fehler in der Umsetzung einiger Klassen. Diese waren jedoch schnell behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+\subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
+Während der Tests im Interpreterpaket zeigten Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
 
 %TODO Fehler bei paketweiten Tests
 Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis \enquote{\~{}} (Tilde), da in Ascii \enquote{'?'+'?' = 63+63=126 = '\~{}'}.
 Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
-
+\\
+So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
 \subsection{Control}
 \subsubsection{Paketweite Tests}
@@ -163,9 +194,10 @@ Die Schwierigkeit lag bei Writer / Reader Klassen, da Java \textit{Properties} D
 \subsubsection{Paketweite Tests}
 Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Testen der \textit{*Writer} und \textit{*Reader} Klassen wird dadurch auf die obigen Klassentests aufgebaut. Die Klasse \textit{ConfigurationFile}, \textit{LanguageFile} und \textit{PropertiesFile} wurden somit indirekt getestet.
 
-\subsubsection{Nicht durchgeführte Tests}
-Einige Klassen im FileHandler wurden nicht direkt getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
-Die ersteren wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
+\subsubsection{Weggelassene Methoden}
+Einige Klassen im FileHandler wurden nur implizit getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
+%Diese wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
+Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss somit in diesen getestet werden.
 
 \subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
@@ -173,7 +205,7 @@ Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere,
 \newpage
 \section{Gesondertes Testen der Benutzeroberfläche}\label{gui}
 
-\subsection{Testplan und Übersicht}
+\subsection{Übersicht über das Testen der Benutzeroberfläche}
 Da automatisiertes Testen der Benutzeroberfläche sehr zeitaufwändig ist, wurde die Benutzeroberfläche des Dibuggers nach einem eigenen Testplan getestet. Dieser besteht zunächst aus sowohl dummem als auch intelligentem \textit{Monkey Testing}, um Schwächen oder Absturzpunkte der Benutzeroberfläche zu finden. \\
 Anschließend wurde die Benutzeroberfläche von den Entwicklern hinsichtlich Nutzerfreundlichkeit betrachtet. Aufgrund der Gefahr, hier wichtige Kriterien zu übersehen, wird zusätzlich eine Benutzerstudie durchgeführt. \\
 Außerdem wurden alle Funktionen der Benutzeroberfläche einzeln (z.B. jeder Button und Menüeintrag für sich) getestet, um diese Basisfunktionen dann in den Anwendungsfällen, welche im Pflichtenheft beschrieben wurden, zusammenzufassen. Die einzelnen Funktionen wurden hierbei in die Kriterien Gestaltung, Funktionalität und Performanz aufgeteilt.
@@ -186,11 +218,11 @@ Unter \textit{dummem Monkey Testing} versteht man das Testen des Produktes ohne 
 Unter dummem Monkey Testing zeigte sich unser Produkt sehr stabil. So führte keine getestete, zufällige Kombination von Aktionen zu einem Absturz des Programms. 
 \subsubsection{Intelligentes Monkey Testing}
 Unter \textit{intelligentem Monkey Testing} versteht man das Testen des Produktes mit rudimentärem Wissen über das Produkt, Kenntnis des gegenwärtigen Zustandes, vergangener Zustände und  möglicher zukünftiger Zustände und Fähigkeiten des Systems. \\
-Auch unter intelligentem Monkey Testing bestand das Produkt die Tests. Hier führte ebenfalls keine Kombination von Aktionen zum Absturz und Fehler die Auftraten wurden abgefangen und korrekt behandelt.
+Auch unter intelligentem Monkey Testing bestand das Produkt, nach Behebung zweier Fehler, die Tests. Zwischenzeitlich auftretende Fehler in den \textit{ExpressionPanels} und im Verändern der Größe dess gesamten Fensters führten zu einem Einfrieren der Benutzeroberfläche. Seit der Behebung dieser Fehler führte keine Kombination von Aktionen zum Absturz und Fehler die Auftraten wurden abgefangen und korrekt behandelt.
 
-\subsection{Untersuchung der Nutzerfreundlichkeit}\label{usertestimdoc}
-Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten.
-Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
+\subsection{Untersuchung der Nutzerfreundlichkeit}
+Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen.
+%TODO: Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
 
 \subsection{Test der Basisfunktionen}
 \subsubsection{Gestaltung}
@@ -198,7 +230,8 @@ Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt 
 In diesem Bereich wurde die Anpassung des Produkts an die vom Benutzer gewählte Fenstergröße getestet. Außerdem wurden sämtliche PopUps auf ausreichende Größe überprüft.
 Weitere Basisfunktionen im Bereich Gestaltung sind das korrekte Anzeigen der Scrollbalken, der hinzugefügten ProgramPanels und des Texts in den Textboxen.
 \paragraph{Vorgenommene Änderungen}
-Das rechte Control-Panel, welches die ExpressionPanels und das CommandPanel enthält, bleibt nun bei einer festen Größe, um keinen Platz zu verschwenden. Bei Vergößern oder Verkleinern passt sich der Editor der ProgramPanels an die Größe des Fensters an.
+Bei Untersuchung der Gestaltung der Benutzeroberfläche  fiel auf, dass sich ausschließlich die Größe des \textit{MainInterface} ändern lies, die Komponenten innerhalb jedoch bei einer festen Größe blieben. Außerdem verdeckte das rechte Control-Panel, welches die \textit{ExpressionPanels} und das \textit{CommandPanel} enthält, bei zu großer Fenstergröße die \textit{ProgramPanels} und versteckte bei zu kleiner Fenstergröße den Inhalt der \textit{ExpressionPanels}.\\
+Das rechte Control-Panel bleibt nun bei einer festen Größe, um keinen Platz zu verschwenden. Bei Vergößern oder Verkleinern passt sich der Editor der ProgramPanels an die Größe des Fensters an.
 \subsubsection{Funktionalität}
 \paragraph{Getestete Funktionen}
 \subparagraph{Menüs}
@@ -280,7 +313,7 @@ Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichte
 	\end{itemize}
 \end{itemize}
 
-\subsection{Benutzerstudie}
+\subsection{Benutzerstudie}\label{usertestimdoc}
 
 \subsubsection{Testaufbau}
 
