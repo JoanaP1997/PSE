@@ -19,27 +19,35 @@ public class StressTest {
     @Ignore
     public void testAckermann() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
-        String code = " int ackermann(int m, int n) {\n"
+        String code =
+             " int ackermann(int m, int n) {\n"
             +"    if (m == 0) {\n"
-            +"        return n + 1;\n"
+            + "       int i = n+1;\n"      
+            +"        return i;\n"
             +"    }\n"
             + "   if (n == 0) {\n"
-            + "int x = m-1;\n"
-            +"return ackermann(x,1);\n"
+            + "         int l = m-1;\n"        
+            + "         int x;\n"
+            + "         x = ackermann(l,1);\n"
+            +"          return x;\n"
             +"    } else {\n"
-            +"        return ackermann(m-1, ackermann(m,n-1));\n"
+            + "         int y;\n"
+            + "         y = ackermann(m,n-1);\n"
+            + "         int z;\n"
+            + "         z = ackermann(m-1,y);\n"
+            +"          return z;\n"
             +"    }\n"
             +"}\n"
             +"void main (int m, int n) {\n"
-            +" int a;\n"
-            +" a = ackermann(int m, int n);\n"
+            +"      int a;\n"
+            +"      a = ackermann(m, n);\n"
             +"}\n";
         List<String> input = new ArrayList<String>();
-        input.add(" m = 10 ");
-        input.add(" n = 12 ");
+        input.add(" m = 3 ");
+        input.add(" n = 2 ");
         gc.generateTrace(code, input , "A");
     }
-
+    
     @Test(expected=ExceededMaxIterationsException.class)
     public void testEndlessLoop() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
