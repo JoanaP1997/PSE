@@ -176,6 +176,14 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 \\
 So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
+
+\subsection{Debugger}
+\subsubsection{Regressionstests}
+Das Paket \textit{Debugger} wurde hauptsächlich Regressionstests unterzogen. Es steht in starker Verbindung mit dem Interpreter Paket, sodass es nicht möglich war, die Klassen einzeln zu Testen. Nach dem Testen des Interpreters konnte nun auch der Kern des Debuggers getestet werden, die Klasse \textit{DebugControl}. Hierbei wurde besonders Wert darauf gelegt, die Methoden, welche für das Ausführen der Debug Logik verantwortlich sind, stärker zu Testen. Dazu gehören unter anderem das richtige Ablaufen von Schritten, Auswerten von Watch-Expressions und Conditional-Breakpoints, sowie das Verändern dieser und weiterer Elemente.
+
+\subsubsection{Gefundene Fehler}
+Das Testen dieses Paketes hat erbracht, dass nie ein TraceState als \textit{AFTER\_FUNC\_CALL} bezeichnet wurde. Dies ist nötig um beim Ausführen von \textit{Step-Over und Step-Out} das Aufrufen von Funktionen zu erkennen. Dieser Fehler lag nicht im Debugger Paket, sondern im Interpreter \textit{(Klasse: RoutineCall)}. Weiter gab es auch einen Fehler im Debugger selbst, bei dem \textit{Step-Over} nicht richtig funktionierte. Beide Fehler konnten ohne Probleme behoben werden.
+
 \subsection{Control}
 \subsubsection{Paketweite Tests}
 Unter Verwendung von Testhelfern wurde \textit{applyConfig} in \textit{FileHandlerInteractor} getestet.
@@ -197,7 +205,7 @@ Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Tes
 \subsubsection{Weggelassene Methoden}
 Einige Klassen im FileHandler wurden nur implizit getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
 %Diese wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
-Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss somit in diesen getestet werden.
+Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss daher in diesen getestet werden.
 
 \subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
@@ -409,6 +417,10 @@ Das Produkt wurde auf Rechnern mit folgender Hardware erfolgreich getestet: \\ \
 \subsection{Änderungen an der Graphischen Benutzeroberfläche}
 Zur graphischen Benutzeroberfläche wurde im WatchExpressionPanel und im ConditionalBreakpointPanel noch ein Button eingefügt, über welche man einen weiteren Breakpoint oder eine Watch-Expression hinzufügen kann, da dies sich als Intuitiver herausstellte als die vorherige Variante. \\
 (Weitere Änderungen erfolgen eventuell nach der Auswertung der Nutzerstudie)
+
+\subsection{Regressionstests}
+%TODO
+
 \newpage
 \section{Anhang}
 %getestete Programme
