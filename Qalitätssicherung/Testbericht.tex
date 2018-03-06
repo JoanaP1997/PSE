@@ -367,11 +367,47 @@ Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse
 %Dies konnte durch minimale Änderung in \textit{stopDebug} und/oder Abänderung von \textit{dibugger.debuglogic.debugger} behoben werden. % Vlt. genauer beschreiben, wenn umgesetzt
 
 \subsection{Testfälle aus dem Pflichtenheft}
-Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. %TODO
+Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. 
+
+\subsubsection{Produktfunktionen}
+Viele Anforderungen an das Produkt wurden bereits mit den Testszenarien (\ref{testszenarien}) getestet, die aus den Anwendungsfällen aus dem Pflichtenheft generiert wurden um die graphische Benutzeroberfläche zu testen.
+\\
+ \\
+So wurden die zum Debugging-Mechanismus gehörenden funktionalen Anforderungen (FA10,15,20,30, 50, 60, 70, 80, 90, 100, 110, 120, 130, 180, 190, 200, 210, 215, 240, 310) durch das Testszenario zum Anwendungsfall 50 ("Codes debuggen") getestet.
+Das Einbinden von Programmen (FA170) wurde durch das Testszenario zu AF10 ("Hinzufügen von Programmen") abgedeckt, das Schreiben und Kopieren von Texten in Textfenster (FA150 und FA160) wurde durch das Testszenario zu AF20("Ändern von Programmen" und das Speichern der Konfigurationsdateien durch das Testszenario zu AF60 ("Speichern eines Durchlaufs") abgedeckt.
+\\
+ \\
+Die Funktionalen Anforderungen zu Schrittgrößen (FA40) und Vorschlägen (FA220, 270, 280, 300) wurde durch folgendes Szenario abgedeckt: \\
+\textbf{Szenario 1}: Zu den vorhandenen Beispielprogrammen gibt der Benutzer jeweils von 1 abweichende, unterschiedliche Schrittgrößen ein. Dann führt er den Debuglauf aus, um diesen dann anzuhalten und sich Schrittgrößen für die beiden Programme vorschlagen zu lassen und diese zu übernehmen. Dann lässt er sich jeweils zwei Watch-Expressions und bedingte Breakpoints vorschlagen und startet den Debuglauf erneut. Der Debuglauf wird bis zum Ende durchgeführt und dann beendet.
+\\
+ \\
+Die Funktionale Anforderung, dass man mehr als zwei Programme gleichzeitig debuggen kann, wird durch folgendes Szenario abgedeckt: 
+\\
+\textbf{Szenario 2}: Der Benutzer fügt zu den beiden Beispielprogrammen zwei weitere Programme hinzu, welche er selbst geschrieben hat (in unserem Test noch einmal die selben Programme). Dann führt er für alle vier Programme das Testszenario zu AF50 aus.
+\\
+ \\
+Die Anforderungen zu den Produktdaten bezüglich der Konfigurationsdatei wurden ebenfalls mittels des Testszenarios zu AF50 getestet. Die Sprachdateien wurden während des Testens der graphischen Benutzeroberfläche getestet. Für die Einstellungsdatei wurde ein weiteres Szenario entwickelt: \\
+\textbf{Szenario 3}: Der Benutzer führt AF50 aus, ändert dann die Sprache, schließt das Produkt und öffnet es dann anschließend erneut. \\
+ \\
+Die Anforderungen zu den Produktleistungen wurden ebenfalls größtenteils durch das Testen der graphischen Benutzeroberfläche abgedeckt: Der Punkt Performanz der Benutzeroberfläche beinhaltet auch das Zeitverhalten des Produkts (PL10) und das Monkey Testing deckt die Fehlertoleranz (PL30) ab. Zur Genauigkeitsüberprüfung dienten die JUnit-Tests zu den TermValues die überprüft haben, ob die arithmetischen Operationen wie in Java ausgeführt werden. \\
+ \\
+Die Benutzerfreundlichkeit (NA50) wurde durch die Nutzerstudie überprüft. 
+
+\subsubsection{Globale Testfälle des Pflichtenhefts} %TODO
+Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60,T100 und T360, welche zu keiner umgesetzen funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die dazugehörenden Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
+Die Änderungen sind: \\
+\begin{itemize}
+	\item in manchem Testfällen wurden die Bezeichner von Aktionen verändert (z.B. T20, T40)
+	\item in T70 wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
+	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Begin
+	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen indem er als Bereich das gesamte Programm eingibt
+	\item in T270 und T330 kann man eine Bereichsbindung nur Anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und "Bereichsbindung ändern" auswählt
+	\item in T370 eine Variable wird durch auswählen und Rechtsklick entfernt, alle Variablen werden wieder angezeigt, wenn der Button "Ausgeblendete Variablen anzeigen" betätigt wird
+\end{itemize}
 
 \subsection{Weitere Testfälle}
 
-\subsubsection{Belastungstests}
+\subsubsection{Belastungstests} %TODO
 \label{stress}
 Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
 \begin{itemize}
