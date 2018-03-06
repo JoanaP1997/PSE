@@ -89,7 +89,7 @@ Ausgeschlossen sind allerdings Angaben über erreichte Abdeckung mittels der in 
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interfacem, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interfacem, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger delegierende Methoden und getter und setter aufweist.
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -176,6 +176,14 @@ Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Kla
 \\
 So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
+
+\subsection{Debugger}
+\subsubsection{Regressionstests}
+Das Paket \textit{Debugger} wurde hauptsächlich Regressionstests unterzogen. Es steht in starker Verbindung mit dem Interpreter Paket, sodass es nicht möglich war, die Klassen einzeln zu Testen. Nach dem Testen des Interpreters konnte nun auch der Kern des Debuggers getestet werden, die Klasse \textit{DebugControl}. Hierbei wurde besonders Wert darauf gelegt, die Methoden, welche für das Ausführen der Debug Logik verantwortlich sind, stärker zu Testen. Dazu gehören unter anderem das richtige Ablaufen von Schritten, Auswerten von Watch-Expressions und Conditional-Breakpoints, sowie das Verändern dieser und weiterer Elemente.
+
+\subsubsection{Gefundene Fehler}
+Das Testen dieses Paketes hat erbracht, dass nie ein TraceState als \textit{AFTER\_FUNC\_CALL} bezeichnet wurde. Dies ist nötig um beim Ausführen von \textit{Step-Over und Step-Out} das Aufrufen von Funktionen zu erkennen. Dieser Fehler lag nicht im Debugger Paket, sondern im Interpreter \textit{(Klasse: RoutineCall)}. Weiter gab es auch einen Fehler im Debugger selbst, bei dem \textit{Step-Over} nicht richtig funktionierte. Beide Fehler konnten ohne Probleme behoben werden.
+
 \subsection{Control}
 \subsubsection{Paketweite Tests}
 Unter Verwendung von Testhelfern wurde \textit{applyConfig} in \textit{FileHandlerInteractor} getestet.
@@ -197,7 +205,7 @@ Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Tes
 \subsubsection{Weggelassene Methoden}
 Einige Klassen im FileHandler wurden nur implizit getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
 %Diese wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
-Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss somit in diesen getestet werden.
+Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss daher in diesen getestet werden.
 
 \subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
@@ -343,13 +351,36 @@ Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fr
 \caption{Hintergrund der Aufgaben im Praxisteil}
 \end{table}
 
-
-
 \subsubsection{Auswertung}
+Getestet wurden acht Testpersonen (alle männlich, 20-27 Jahre alt, Studenten mit Haupt- oder Nebenfach Informatik).
+Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIBuggers}, wie Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
+Im Folgenden werden die Ergebnisse und ihre Verbesserung im Detail erklärt:
 
-Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse des \enquote{Lauten Denkens} werden nach Themengebieten geclustert und für die Einarbeitung nach Vorkommenshäufigkeit und Schwere der Einschränkung geordnet. Ebenso wird mit den Anmerkungen aus dem Fragenteil verfahren.
+\paragraph{Nutzen der Menüleiste (Aufgaben 1-3)}
+Im Praxisteil wurden die Aufgaben 1 bis 3 (siehe Tabelle \ref{testfaelle}) jeweils in wenigen Sekunden und fehlerfrei ausgeführt, d.h. die Testpersonen konnten das Nutzerhandbuch finden, die Sprache umstellen und ein neues Fenster hinzufügen.\\
+Auch im Fragebogen wurden das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche durchweg als hilfreich und nutzerfreundlich bewertet.\\
+Dies könnte darauf zurückzuführen sein, dass die Menüleiste sich in ihrer Struktur an Konventionen orientiert, die den Nutzern bekannt sind.
 
-(Zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt. Hier wird eine Übersicht zu sehen sein, die die nach Themengebieten geordneten Probleme und ihre Lösung aufzeigt.)
+\paragraph{Löschen eines Programmfensters (Aufgabe 4)}
+Die Testpersonen fanden den Entfernen-Knopf (mit einem roten X-Symbol versehen) über den jeweiligen Programmfenstern zügig und konnten das Programm löschen. Auch dies könnte auf Konventionen zurückzuführen sein. \\Allerdings wurde angeregt, auch für die mit Bildern belegten Knöpfe Tooltips zur Rückversicherung einzusetzen.\\\\
+Vorgenommene Verbesserung:\\
+Es wurden entsprechend Tooltips bei den Knöpfen eingefügt.
+
+\paragraph{Wlang-Syntax (Aufgaben 5-6)}
+Im Praxisteil gelang es den Versuchspersonen trotz des Beispieltextes in den Programmfenstern nur mit erhöhtem Zeitaufwand und mehreren Anläufen, ein korrektes WLang-Programm zu schreiben. Das Nutzermanual musste jedes Mal zu Rate gezogen werden, half aber beim Finden des Fehlers.\\
+Auch im Fragebogen wurden zu diesem Punkt die meisten Anmerkungen gemacht. Die Nutzer wünschten sich konkretere Hinweise auf Fehler. \\
+Eine Erklärung dafür könnte sein, dass WLang einigen Erwartungen an übliche Programmiersprachen, wie zum Beispiel Java, nicht entspricht. Des Weiteren sind die Nutzer die Hilfe von Entwicklungsumgebungen gewohnt, die die Fehlerfindung erleichtern. Außerdem muss man uns Entwicklern eine gewisse Betriebsblindheit unterstellen, denn natürlich ist die Fehlersuche leichter, wenn man die Sprache selbst definiert hat. So fiel zum Beispiel auf, dass die Syntax-Exceptions, die vom Antlr-Paket erstellt werden und den Nutzer auf ein inkorrektes Programm hinweisen, keine Zeilennummer enthalten.\\\\
+Vorgenommene Verbesserung:\\
+Die Exception-Behandlung des Antlr-Pakets (\textit{dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener}) wurde so angepasst, dass sie nicht nur die Zeilennummer, sondern auch das Vorkommen eines Fehlers innerhalb der Zeile angibt. Des Weiteren wurde das Nutzerhandbuch an mehreren Stellen ergänzt. Unter anderem wurde der Abschnitt zu üblichen Fehlern erweitert.
+
+
+\paragraph{Laden einer Konfiguration (Aufgabe 6)}
+
+
+\paragraph{Nutzen von Bedingten Breakpoints und Watch-Expressions}
+
+\paragraph{Umgang mit bedingten Breakpoints und Watch-Expressions (Aufgabe 6)}
+
 
 
 
@@ -443,19 +474,14 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
 (Diese Untersuchung ist geplant für diese Woche.)
 
-
-
-\newpage
-
 \section{Vorgenommene Veränderungen}
 
 \subsection{Änderungen an der Graphischen Benutzeroberfläche}
 Zur graphischen Benutzeroberfläche wurde im WatchExpressionPanel und im ConditionalBreakpointPanel noch ein Button eingefügt, über welche man einen weiteren Breakpoint oder eine Watch-Expression hinzufügen kann, da dies sich als Intuitiver herausstellte als die vorherige Variante. \\
 (Weitere Änderungen erfolgen eventuell nach der Auswertung der Nutzerstudie)
 
-
-
-
+\subsection{Regressionstests}
+%TODO
 
 \newpage
 \section{Anhang}
