@@ -103,7 +103,8 @@ An dieser Stelle soll der Entwurf des \textit{DIbuggers} noch einmal kurz erläu
 \caption{Architekturdiagramm}
 \label{Architekturdiagramm}
 \end{figure}
-Die Architektur des \textit{DIbuggers} orientiert sich am Model-View-Control-Entwurfsmuster und beinhaltet ein weiteres Paket zum Umgang mit Dateien. Das Produkt ist entsprechend aufgeteilt in die vier Pakete \textit{DebugLogic} (Model), \textit{UserInterface} (View),  \textit{Control} (Control) und \textit{FileHandler}. 
+Die Architektur des \textit{DIbuggers} orientiert sich am Model-View-
+-Entwurfsmuster und beinhaltet ein weiteres Paket zum Umgang mit Dateien. Das Produkt ist entsprechend aufgeteilt in die vier Pakete \textit{DebugLogic} (Model), \textit{UserInterface} (View),  \textit{Control} (Control) und \textit{FileHandler}. 
 Dabei hat jedes Paket seine eigene Aufgabe:
 \begin{itemize}
 \item Die \textit{DebugLogic} enthält die Anwendungslogik.
@@ -223,53 +224,49 @@ So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 \subsubsection{Testen der Klassen in Control}
 Das Paket \textit{dibugger.control} (Control) dient als Schnittstelle zwischen der Präsentationskomponente \textit{dibugger.userinterface} und der Modellkomponente \textit{dibugger.debuglogic} (DebugLogic).
 Control besitzt eine Fassade \textit{ControlFacade} und einer Klasse zum Aufrufen von Debugmechanismen aus DebugLogic \textit{DebugLogicController}.
-\textit{ControlFacade} und \textit{DebugLogicController} wurden nicht im Rahmen von \glspl{Komponententest} getestet, da sie ausschließlich an andere Klassen deligieren.\\
+\textit{ControlFacade} und \textit{DebugLogicController} wurden nicht im Rahmen von Komponententests (d.h. Tests der Funktion der alleinstehenden Klasse) getestet, da sie ausschließlich an andere Klassen delegieren.\\
 \textit{FileHandlerInteractor} ist Teil des Paketes und zuständig für verwalten von Sprach- oder Konfigurationsdateien.
-Dazu gehören das Laden und Speichern von Konfigurationen des Programmes DIbugger.
+Dazu gehören das Laden und Speichern von Konfigurationen des Programmes \textit{DIbugger}.
 Hierbei handelt es sich um Musskriterien aus der Definitionsphase und die zugehörigen Algorithmen sollten auf Korrektheit geprüft werden.
 Um die Chance des Auffindens von Fehlern beim Testen dieser Algorithmen zu vergrößern, wurde das Testvollständigkeitskriterium \textit{Zweigüberdeckung} für \textit{FileHandlerInteractor} erfüllt.
 
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.8\textwidth]{ueberdeckung-kontrolle.png}
-    \caption{Testüberdeckung der Teile von Control erreicht durch \glspl{Komponententest}, Integrationstests und Systemtests}\label{AbdeckungImInterpreter}
+    \caption{Testüberdeckung der Teile von Control erreicht durch Komponententests, Integrationstests und Systemtests}\label{AbdeckungImInterpreter}
 \end{figure}
 
 \subsubsection{Testen Ladens von Konfigurationsdateien}
 \textit{FileHandlerInteractor} ermöglicht dass Laden von Konfigurationsdateien mit der Methode \textit{applyConfiguration}.
 Dabei wird nach Auslesen einer solchen Datei DIbugger in den Stand zurückversetzt, in dem DIbugger sich beim Speichern der Datei befand.
-Um dies zu ermöglichen speichert \textit{FileHandlerInteractor} die in der Datei enthaltenen Daten im Modell DebugLogic, wie zum Beispiel die Zeilennummern von bedingten Haltepunkten.
+Um dies zu ermöglichen speichert \textit{FileHandlerInteractor} die in der Datei enthaltenen Daten im Modell DebugLogic, wie zum Beispiel die Zeilennummern von bedingten Breakpoints.
 Außerdem wird die Präsentationskomponente \textit{dibugger.userinterface} dazu aufgefordert bestimmte Texte anzuzeigen wie zum Beispiel Programmtexte.
 Insgesamt werden aus diesen beiden Paketen 10 verschiedene Methoden aufgerufen.
-Unter Verwendung von \glspl{Testhelfer} wurde getestet, ob Anzahl und Art dieser Funktionsaufrufe dem Sollverhalten entsprechen.
+Unter Verwendung von Testhelfern (das sind Platzhalter oder Stellvertreter für andere Systemkomponenten des Systems) wurde getestet, ob Anzahl und Art dieser Funktionsaufrufe dem Sollverhalten entsprechen.
 Das Sollverhalten ist in einem Sequenzdiagramm des Entwurfsdokumentes beschrieben, und wurde in der Implementierungsphase aus der Schnittstelle der Klasse für Konfigurationsdateien abgeleitet.
 Eine Abweichen von diesem Verhalten wurde gefunden und ist in Abschnitt \ref{fehlerInControl} beschrieben.\\
-(siehe test.control.FileHandlerInteractorTest, dibugger.debuglogic.debugger.ConfigurationFile)
+(siehe \textit{test.control.FileHandlerInteractorTest, dibugger.debuglogic.debugger.ConfigurationFile})
 
 \subsubsection{Beim Komponententest gefundene Fehler in Control}\label{fehlerInControl}
 Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurde die in der Datei enthaltene Einstellung für Schrittgröße eines Programmes nicht übernommen.\\
 Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
-Der der Methodenaufruf zum Speichern der Schrittgrößeneinstellung erfolgt über eine andere Klasse (\textit{dibugger.controlDebugLogicControl}) und beim Aufruf wird eine Programmkennung mitübergeben.
+Der Methodenaufruf zum Speichern der Schrittgrößeneinstellung erfolgt über eine andere Klasse (\textit{dibugger.controlDebugLogicControl}) und beim Aufruf wird eine Programmkennung mitübergeben.
 Die übergebene Programmkennung muss aber vor Aufruf der Methode der Klasse (\textit{dibugger.control.DebugLogicController}) über eine andere Zugriffsmethode übergeben werden.
 Dies wurde zur Fehlerbehebung umgesetzt.
 
-Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurden die in der Datei enthaltenen Watch-Expressions und bedingte Haltepunkte mehrfach im Modell DebugLogic gespeichert.\\
+Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurden die in der Datei enthaltenen Watch-Expressions und bedingte Breakpoints mehrfach im Modell DebugLogic gespeichert.\\
 Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
 Ursache für den Fehler war, dass die Funktionsaufrufe zum Speichern innerhalb eines Schleifenrumpfes standen. 
 Sie wurden zur Fehlerbehebung aus dem Schleifenrumpf entfernt.
 
 \subsection{Filehandler}
-\subsubsection{Klassentests}
-Der Filehandler ist zuständig für das Laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} representieren.
-Die Schwierigkeit lag bei Writer / Reader Klassen, da Java \textit{Properties} Dateien abhängig vom Betriebssystem gespeichert werden. Somit haben diese auf Linux eine anderer Struktur als auf Windows. Dies erschwert das automatisierte Vergleichen auf richtige Ausgaben.
+\subsubsection{Klassenweite Tests}
+Der Filehandler ist zuständig für das Laden von Dateien. Hier wurde darauf geachtet, dass die Klassen des Paketes \textit{filehandler.rdbf} ausgiebig getestet werden, da diese die Datenstruktur des \textit{Relational Dibugger Formats (RDBF)} repräsentieren und eine fehlerhafte Datenstruktur direkt zu einer fehlerhaften Datei führt.\\
+Es wurde als Abdeckungskriterium die Anweisungsüberdeckung gewählt. Bei vorkommenden Verzweigungen handelt es sich in großen Teilen um von Java geforderte Fehlerbehandlung (beispielsweise Exception-Behandlung beim Einlesen einer nicht-existenten Datei, was die Benutzeroberfläche durch den FileChooser-Dialog bereits verhindert), weswegen die Zweigabdeckung für den Filehandler weniger relevant ist.
 
 \subsubsection{Paketweite Tests}
-Die Klassen des Pakets haben eine sehr starke Abhängigkeit zueinander. Beim Testen der \textit{*Writer} und \textit{*Reader} Klassen wird dadurch auf die obigen Klassentests aufgebaut. Die Klasse \textit{ConfigurationFile}, \textit{LanguageFile} und \textit{PropertiesFile} wurden somit indirekt getestet.
-
-\subsubsection{Weggelassene Methoden}
-Einige Klassen im FileHandler wurden nur implizit getestet. Dazu gehören die Klassen \textit{RDBFFile}, \textit{PropertiesFile} und \textit{FileHandlerFacade}.
-%Diese wurden aufgrund sehr simpler Logik nicht getestet. Sie beinhalten keine schwierigen Algorithmen, sondern nur \textit{Getter und Setter}. Bei \textit{FileHandlerFacade} trifft dies ebenso zu, jedoch gibt es hier auch einige komplexere Methoden, welche jedoch meist nur eine Schleife beinhalten. Auch da die Klasse oft nur Anfragen und Aufrufe an anderer Klassen stellt und somit die Implementierung verlagert wird, wurde die Entscheidung zum Überspringen der Klassen- und Pakettests getroffen.
-Viele Methoden dieser Klassen wurden daher nicht getestet. Sie beinhalten auch nur \textit{Getter und Setter} oder Weiterleitungen an andere Klassen. Die Implementierung wird somit verlagert und muss somit in diesen getestet werden.
+Es wurde das korrekte Lesen und Schreiben von Dateien durch die im Paket enthaltenen \textit{Writer-} und \textit{Reader-}Klassen überprüft.
+Da ein korrektes Lesen und Schreiben eine korrekte Datenstruktur impliziert, wurden die Klassen \textit{ConfigurationFile}, \textit{LanguageFile} und \textit{PropertiesFile} somit implizit getestet. Weitere implizit getestete Klassen sind \textit{RDBFFile} und die \textit{FileHandlerFacade}. Erstere enthält lediglich eine Variable und ihre Überklasse wurde getestet. Letztere reicht lediglich Arbeit an andere Klassen weiter.
 
 \subsubsection{Im FileHandler gefundene Fehler}
 Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere, namentlich einen \textit{Copy / Paste} Fehler und das Übersehen von negativen Zahlen in der RDBF-Grammatik.
