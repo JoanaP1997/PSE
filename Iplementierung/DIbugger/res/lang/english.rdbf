@@ -1,5 +1,10 @@
 langID='english'
 langName='English'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Exceeded maximum iterations
+	
+}
 german{
 	def_blockLen=1
 German

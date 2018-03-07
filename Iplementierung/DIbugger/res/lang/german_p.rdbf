@@ -1,5 +1,10 @@
 ﻿langID='palatinate'
 langName='Pälzisch'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Du hoscht dei maximal Iteratione üwerschritte
+	
+}
 ui_add_program{
 	def_blockLen=1
 Mach e neiie Datei dezu.

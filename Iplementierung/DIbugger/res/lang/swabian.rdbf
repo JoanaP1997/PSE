@@ -1,5 +1,10 @@
 ﻿langID='swabian'
 langName='Schwäbisch'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Maximale Iterationsanzahl überschritten
+	
+}
 ui_add_program{
 	def_blockLen=1
 Programm hinzufüga
