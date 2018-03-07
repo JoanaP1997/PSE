@@ -131,7 +131,7 @@ Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittel
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs- und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -294,9 +294,9 @@ Auch unter intelligentem Monkey Testing bestand das Produkt, nach Behebung zweie
 
 \subsection{Untersuchung der Nutzerfreundlichkeit}
 Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen.
-%TODO: Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
+%TODO Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
 
-\subsection{Test der Basisfunktionen}
+\subsection{Test der Grundfunktionen}
 \subsubsection{Gestaltung}
 \paragraph{Getestete Funktionen}
 In diesem Bereich wurde die Anpassung des Produkts an die vom Benutzer gewählte Fenstergröße getestet. Außerdem wurden sämtliche PopUps auf ausreichende Größe überprüft.
@@ -331,15 +331,17 @@ Folgende Funktionalitäten wurden in den \textit{ExpressionPanels} überprüft:
 \item PopUps für Bereichsbindung
 \end{itemize}
 \paragraph{Vorgenommene Änderungen}
-Es wurden fehlende Übersetzungen zu allen Sprachdateien hinzugefügt. \\
-Beim Speichern einer Konfigurationsdatei muss der Nutzer nun nicht mehr selbst die Dateiendung \textit{.rdbf} anhängen und Konfigrationsdateien lassen sich korrekt laden, ohne dass das Programm selbst als Programmbezeichner benutzt wird.
-\subsubsection{Performanz}
+Es wurden fehlende Übersetzungen, wie zum Beispiel der Tooltip für \textit{StepOver}, zu allen Sprachdateien hinzugefügt. \\
+Beim Speichern einer Konfigurationsdatei musste der Nutzer zunächst selbst die Dateiendung \textit{.rdbf} anhängen. Dies wurde geändert, sodass die korrekte Dateiendung automatisch angehängt wird, wenn nicht von Benutzer angegeben. \\ 
+Beim Laden von Konfigurationsdateien trat aufgrund von vertauschten Parametern im Konstruktor der Fehler auf, dass der Programmcode selbst als Programmbezeichner benutzt wurde. Dies wurde korrigiert und Konfigurationsdateien lassen sich nun korrekt laden. \\
+Es stellte sich während der Qualitätssicherungsphase heraus, dass im Editor stehender Text bei Markierung zum Teil verschwindet und erst wieder angezeigt wird, sobald der Benutzer mit der Maus außerhalb der \textit{javax.swing.JEditorPane}-Komponente klickt. Dieses Fehlverhalten ist darin begründet, dass für die Funktionalität der Breakpoints und Zeilennummerierung ein updaten der Komponente nötig ist. Wird währenddessen Text markiert, kann dieser aufgrund der Arbeitsweise des \textit{javax.swing.JEditorPane} nicht mehr korrekt dargestellt werden, bleibt aber bestehen. Somit stellt dieses Problem zwar ein Ärgernis dar, mindert aber nicht die Funktionalität des Produkts. \\ Obwohl die grobe Ursache des Problems gefunden wurde, konnte keine Möglichkeit gefunden werden, das Problem zu lösen ohne die Funktionalität der Zeilennummerierung oder der Breakpoints zu gefährden.
+\subsubsection{Performanz der Elemente der Benutzeroberfläche}
 \paragraph{Getestete Funktionen}
 Während sämtlichen Tests der Benutzeroberfläche wurde darauf geachtet, ob es spürbare und störende Zeitverzögerungen bei Benutzung des Produkts gibt. Dies war nicht der Fall, jedoch kann sich in den Tests des Gesamtprodukts noch herausstellen, dass sich das Generieren des Traces, bei Betätigung des \textit{Debugmodus starten}-Buttons, unter ungünstigen Bedingungen verzögern kann.
 
 \label{testszenarien}
 \subsection{Testszenarien}
-Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichtenheft getestet, indem die Anwendungsfällen aus den zuvor getesteten Basisfunktionen zusammengesetzt wurden.
+Bei den Testszenarien wurden die Anwendungsfälle AF10 bis AF60 aus dem Pflichtenheft getestet, indem die Anwendungsfällen aus den zuvor getesteten Basisfunktionen zusammengesetzt wurden. Diese wurden nach den vorangehenden Tests der Grundfunktionen manuell in der hier angegebenen Reihenfolge erfolgreich durchgeführt.
 \begin{itemize} 
 	\item[AF10] Hinzufügen von Programmen beinhaltet: 
 	\begin{itemize}
