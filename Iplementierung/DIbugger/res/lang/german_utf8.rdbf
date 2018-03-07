@@ -419,6 +419,11 @@ fh_exc_invalid_line_type{
 Die Datei ist invalide.
 
 }
+ui_load_program{
+	def_blockLen=1
+Programm Laden
+
+}
 ui_stepsize_tooltip{
 	def_blockLen=1
 Enter drücken, um Eingabe zu bestätigen

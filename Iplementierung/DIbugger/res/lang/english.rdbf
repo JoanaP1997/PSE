@@ -493,6 +493,11 @@ ui_load_program_text{
 Load Program Text
 
 }
+ui_load_program{
+	def_blockLen=1
+Load Program
+
+}
 dl_exc_already_declared{
 	def_blockLen=1
 Variable already exists.

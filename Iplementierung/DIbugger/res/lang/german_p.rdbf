@@ -483,6 +483,11 @@ ui_load_config{
 Konfigurationsdatei lade.
 
 }
+ui_load_program{
+	def_blockLen=1
+Programm lade
+
+}
 ui_debug_continue{
 	def_blockLen=1
 Weida.
