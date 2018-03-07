@@ -94,8 +94,27 @@ Hierbei handelt es sich um die Qualitätssicherung des \textit{DIbuggers}, der i
 \caption{Produktlogo}
 \end{figure}
 
+\subsection{Kurzer Überblick über den Entwurf}
+An dieser Stelle soll der Entwurf des \textit{DIbuggers} noch einmal kurz erläutert werden, da in folgenden Abschnitten darauf Bezug genommen wird. Eine weitere Übersicht bietet Abbildung \ref{Architekturdiagramm}. Für detailliertere Informationen sei der Leser auf das Entwurfsdokument verwiesen.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.5\textwidth]{../Plichtenheft/Architektur.png} \\
+\caption{Architekturdiagramm}
+\label{Architekturdiagramm}
+\end{figure}
+Die Architektur des \textit{DIbuggers} orientiert sich am Model-View-Control-Entwurfsmuster und beinhaltet ein weiteres Paket zum Umgang mit Dateien. Das Produkt ist entsprechend aufgeteilt in die vier Pakete \textit{DebugLogic} (Model), \textit{UserInterface} (View),  \textit{Control} (Control) und \textit{FileHandler}. 
+Dabei hat jedes Paket seine eigene Aufgabe:
+\begin{itemize}
+\item Die \textit{DebugLogic} enthält die Anwendungslogik.
+\item Das \textit{UserInterface} beinhaltet den Code für die Benutzeroberfläche, also alles, was der Nutzer vom Produkt sieht.
+\item Die \textit{Control} nimmt die Benutzereingaben entgegen und steuert die Interaktion zwischen dem \textit{UserInterface} und der \textit{DebugLogic}.
+\item Der \textit{FileHandler} ist dazu da, Daten zu speichern und zu lesen.
+\end{itemize}
+
+
 \subsection{Erklären des Vorgehens}
-Zunächst wurden alle Pakete abgesehen von der Benutzeroberfläche Paket-/Klassenweise auf Fehler getestet (siehe Abschnitt \ref{einzelnePakete})
+Zunächst wurden alle Pakete abgesehen von der Benutzeroberfläche Paket-/Klassenweise auf Fehler getestet (siehe Abschnitt \ref{einzelnePakete}).
 Die Grundfunktionalität der Benutzeroberfläche wurde in nicht-automatisierten Tests erprobt (siehe Abschnitt \ref{gui}) und orientierte sich dabei an den im Pflichtenheft definierten Testfällen. Im Pflichtenheft geforderte nicht-funktionale Anforderungen an die Benutzeroberfläche, wie zum Beispiel Verständlichkeit und Erlernbarkeit, wurden mittels eines Nutzertestes gesondert erhoben (siehe Abschnitt \ref{usertestimdoc}).
 Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe von Unit-Tests getestet. Da viele unzulässige Nutzereingaben bereits auf Ebene des Interpreterpakets getestet wurden, fällt die Zahl der entsprechenden Belastungstests (siehe Abschnitt \ref{stress}) geringer aus. Untersuchungen zu verschiedener Hard- und Software, sowie Laufzeit und Speicherverbrauch, finden sich ebenfalls in Abschnitt \ref{gesamthwsw} .
 
@@ -112,7 +131,7 @@ Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittel
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs- und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -402,7 +421,7 @@ Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fr
 
 \subsubsection{Auswertung}
 Getestet wurden acht Testpersonen (alle männlich, 20-27 Jahre alt, Studenten mit Haupt- oder Nebenfach Informatik).
-Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIBuggers}, wie Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
+Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIBuggers}, wie zum Beispiel von Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen Problemen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
 Im Folgenden werden die Ergebnisse und ihre Verbesserung im Detail erklärt:
 
 \paragraph{Nutzen der Menüleiste (Aufgaben 1-3)}
@@ -417,21 +436,35 @@ Es wurden entsprechend Tooltips bei den Knöpfen eingefügt.
 
 \paragraph{Wlang-Syntax (Aufgaben 5-6)}
 Im Praxisteil gelang es den Versuchspersonen trotz des Beispieltextes in den Programmfenstern nur mit erhöhtem Zeitaufwand und mehreren Anläufen, ein korrektes WLang-Programm zu schreiben. Das Nutzermanual musste jedes Mal zu Rate gezogen werden, half aber beim Finden des Fehlers.\\
-Auch im Fragebogen wurden zu diesem Punkt die meisten Anmerkungen gemacht. Die Nutzer wünschten sich konkretere Hinweise auf Fehler. \\
-Eine Erklärung dafür könnte sein, dass WLang einigen Erwartungen an übliche Programmiersprachen, wie zum Beispiel Java, nicht entspricht. Des Weiteren sind die Nutzer die Hilfe von Entwicklungsumgebungen gewohnt, die die Fehlerfindung erleichtern. Außerdem muss man uns Entwicklern eine gewisse Betriebsblindheit unterstellen, denn natürlich ist die Fehlersuche leichter, wenn man die Sprache selbst definiert hat. So fiel zum Beispiel auf, dass die Syntax-Exceptions, die vom Antlr-Paket erstellt werden und den Nutzer auf ein inkorrektes Programm hinweisen, keine Zeilennummer enthalten.\\\\
+Auch im Fragebogen wurden zu diesem Punkt die meisten Anmerkungen gemacht. Die Nutzer wünschten sich vor allem konkretere Hinweise auf Fehler, am liebsten mit Syntax-Highlighting. \\
+Eine Erklärung für die Schwierigkeiten könnte sein, dass WLang einigen Erwartungen an übliche Programmiersprachen, wie zum Beispiel Java, nicht entspricht. Des Weiteren sind die Nutzer vermutlich die Hilfe von Entwicklungsumgebungen gewohnt, die die Fehlerfindung erleichtern. Außerdem muss man uns Entwicklern eine gewisse Betriebsblindheit unterstellen, denn natürlich ist die Fehlersuche leichter, wenn man die Sprache selbst definiert hat.\\\\
 Vorgenommene Verbesserung:\\
-Die Exception-Behandlung des Antlr-Pakets (\textit{dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener}) wurde so angepasst, dass sie nicht nur die Zeilennummer, sondern auch das Vorkommen eines Fehlers innerhalb der Zeile angibt. Des Weiteren wurde das Nutzerhandbuch an mehreren Stellen ergänzt. Unter anderem wurde der Abschnitt zu üblichen Fehlern erweitert.
+Die Exception-Behandlung des Antlr-Pakets wurde so angepasst, dass sie nicht nur die Zeilennummer, sondern auch das Vorkommen eines Fehlers innerhalb der Zeile angibt.\\
+(siehe \textit{dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener})\\
+Des Weiteren wurde das Nutzerhandbuch an mehreren Stellen ergänzt. Unter anderem wurde der Abschnitt zu üblichen Fehlern erweitert.
+%
+%
+%\paragraph{Laden einer Konfiguration (Aufgabe 7)}
+%In Aufgabe 6 sollten die Testpersonen eine vorbereitete \textit{DIbugger}-Konfiguration in den \textit{DIbugger} laden. Obwohl diese Aufgabe ohne Nutzung des Manuals erledigt werden konnte und die Testpersonen schnell den richtigen Menü-Unterpunkt aufriefen, kam es doch zu Verzögerungen, weil der Menüpunkt \enquote{Konfiguration laden} und nicht \enquote{Datei laden} heißt.\\
+%Dieses Hindernis ist ein weiteres Beispiel für Betriebsblindheit während der Entwicklung, denn Nutzern ist eine Konfiguration ohne gesonderte Erklärung kein Begriff.\\\\
+%Vorgenommene Verbesserung:\\
+%Der entsprechende Menüpunkt wurde umbenannt.
 
 
-\paragraph{Laden einer Konfiguration (Aufgabe 6)}
+\paragraph{Nutzen von Bedingten Breakpoints und Watch-Expressions (Aufgabe 7)}
+Im Praxisteil wurden Bedingte Breakpoints und Watch-Expressions nach kurzem Nachdenken und Explorieren oder nach Nachlesen im Benutzerhandbuch erfolgreich genutzt.\\
+Dazu scheinbar widersprüchlich wurde von einigen Nutzern im Fragebogen der Wunsch nach einer besseren Einführung in diese beiden \textit{DIbugger}-Konzepte geäußert.\\
+Eine tatsächliche Schwierigkeit bereitete das Verständnis der Auswertung von Bedingten Breakpoints.
+\\
+Es ist verständlich, dass Nutzern ohne Vorkenntnis Bedingte Breakpoints und Watch-Expressions kein Begriff sind. Dass diese Funktionen trotzdem zügig und mit weitgehend korrekter Syntax genutzt wurden, liegt wohl an den Beispielen, die beim Programmstart standardmäßig angezeigt werden. Möglich wäre auch, dass die Versuchspersonen bei der Aufgabenerfüllung davon ausgingen, dass sie die in vorigen Aufgaben noch nicht betrachteten Panels der Benutzeroberfläche nutzen sollten.\\\\
+Vorgenommene Verbesserung:\\
+Da die Nutzung von Bedingten Breakpoints und Watch-Expressions im Allgemeinen zügig und erfolgreich war, wurde aus Gründen der Übersichtlichkeit (die ja ebenfalls eine nicht-funktionale Anforderung der Benutzeroberfläche darstellt) darauf verzichtet, in der Benutzeroberfläche direkt eine Erklärung zu bieten. Stattdessen wurde das Manual erweitert.
 
+\paragraph{Nicht explizit erwähnte Verbesserungen}
+Wenn eine einzelne Person ein Problem mit der Benutzung des \textit{DIbuggers} hatte, die ihre Ursache tatsächlich im Produkt und nicht zum Beispiel einer fehlenden Sehhilfe hatte, wurde das Nutzermanual entsprechend erweitert oder verbessert.
 
-\paragraph{Nutzen von Bedingten Breakpoints und Watch-Expressions}
-
-\paragraph{Umgang mit bedingten Breakpoints und Watch-Expressions (Aufgabe 6)}
-
-
-
+\paragraph{Weitere mögliche Verbesserungen}
+Viele weitere Änderungen sind denkbar. So könnten noch mehr Exceptions eingeführt werden, um die Fehlerbehandlung für den Nutzer transparenter zu machen, insbesondere bei der WLang-Syntax. Weitere Buttons könnten für ein schnelles Hinzufügen neuer Programmfenster eingefügt werden. Ein interaktives Tutorial könnte eine schnelle Einführung in das Produkt geben. Auch ein Syntax-Highlighting denkbar. 
 
 
 
