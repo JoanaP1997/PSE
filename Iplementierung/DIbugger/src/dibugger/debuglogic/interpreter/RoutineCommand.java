@@ -49,12 +49,12 @@ public class RoutineCommand extends Command {
         this.expectedReturnType = expectedReturnType;
         this.name = routinename;
         this.args = new ArrayList<Term>();
+        System.out.println("In: "+ this.name + "exprectedargs: " + this.expectedTypes);
     }
 
     @Override
     public List<TraceState> run() throws DIbuggerLogicException {
-
-        // OLD SCOPE
+    	 // OLD SCOPE
         Scope scope = this.controller.getCurrentScope();
         // check number of arguments
         if (this.expectedTypes.size() != this.args.size() || this.expectedTypes.size() != this.identifiers.size()) {

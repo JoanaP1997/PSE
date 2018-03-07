@@ -106,7 +106,7 @@ public class GenerationController {
         scopes.push(firstScope);
 
         
-        //
+        //remove empty strings
         for(int i = 0; i < input.size();++i) {
         	if(input.get(i).isEmpty()) {
         		input.remove(i);
@@ -126,10 +126,8 @@ public class GenerationController {
             String id = identifiers.get(i);
             // find this id in the users input
             boolean found = false;
-            System.out.println(input + ", " + input.size());
             for (String s : input) {
-            	System.out.println("im in.");
-                if (getIdentifierOfInput(s).equals(id)) {
+            	if (getIdentifierOfInput(s).equals(id)) {
                     args.add(getTermFromInput(s));
                     found = true;
                 }
