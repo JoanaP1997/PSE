@@ -122,16 +122,16 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 \section{Testen einzelner Pakete}\label{einzelnePakete}
 
 \subsection{Gesamtabdeckung}\label{abdeckung}
-Die Gesamtabdeckung des Produktes wird dem nächste Woche angehängten Archiv zu entnehmen sein.
-Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
-Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\textwidth]{paketeCoverage.png}
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist. \\
+Die Gesamtabdeckung nach Klassen aufgeschlüsselt ist dem Archiv im SVN zu entnehmen.
+Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
+Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -293,8 +293,8 @@ Unter \textit{intelligentem Monkey Testing} versteht man das Testen des Produkte
 Auch unter intelligentem Monkey Testing bestand das Produkt, nach Behebung zweier Fehler, die Tests. Zwischenzeitlich auftretende Fehler in den \textit{ExpressionPanels} und im Verändern der Größe dess gesamten Fensters führten zu einem Einfrieren der Benutzeroberfläche. Seit der Behebung dieser Fehler führte keine Kombination von Aktionen zum Absturz und Fehler die Auftraten wurden abgefangen und korrekt behandelt.
 
 \subsection{Untersuchung der Nutzerfreundlichkeit}
-Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen.
-%TODO Weitere Änderungen werden, falls nötig, nach der Benutzerstudie durchgeführt und hier dokumentiert. Außerdem wird gegebenenfalls das Hilfedokument geändert oder erweitert.
+Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen. \\
+Nach Auswertung der Benutzerstudie wurden außerdem Tooltips für die Laden- und Speicher-Buttons der \textit{ProgramPanels} hinzugefügt.
 
 \subsection{Test der Grundfunktionen}
 \subsubsection{Gestaltung}
@@ -480,21 +480,11 @@ Viele weitere Änderungen sind denkbar. So könnten noch mehr Exceptions eingef�
 \newpage
 \section{Testen des Gesamtprodukts}\label{gesamthwsw}
 
-%Sowohl im Rahmen der Nutzertests als auch innerhalb des Interpreterpaketes wurden immer wieder semantisch und syntaktisch korrekte Programme getestet. Möglicherweise aufgetretene Fehler sind jeweils in ihrem Paket aufgezählt.
-%
-%In Form eines Integrationstests wurde das Laden von Konfigurationsdateien durch die Methode \textit{gatherConfiguration} in \textit{FileHandlerInteractor} getestet.
-%Dabei wurden zugehörige Methoden aus \textit{dibugger.control} und \textit{dibugger.debuglogic.debugger} aufgerufen.\\
-%Es zeigte sich, dass nach Aufrufen von \textit{startDebug}, gefolgt von \textit{stopDebug} aus \textit{DebugLogicController} nicht alle nötigen Informationen zum Erstellen der Datei korrekt gesammelt werden.
-%Dies konnte durch minimale Änderung in \textit{stopDebug} und/oder Abänderung von \textit{dibugger.debuglogic.debugger} behoben werden. % Vlt. genauer beschreiben, wenn umgesetzt
-
-\subsection{Testfälle aus dem Pflichtenheft}
-Ein Großteil der im Pflichtenheft aufgelisteten Produktfunktionen und globalen Testfälle wurde in Testszenarien umgesetzt. 
-
 \subsubsection{Produktfunktionen}
-Viele Anforderungen an das Produkt wurden bereits mit den Testszenarien (\ref{testszenarien}) getestet, die aus den Anwendungsfällen aus dem Pflichtenheft generiert wurden um die graphische Benutzeroberfläche zu testen.
+Viele Anforderungen an das Produkt wurden bereits mit den Testszenarien der Benutzeroberfläche (\ref{testszenarien}) getestet, die aus den Anwendungsfällen aus dem Pflichtenheft generiert wurden, um die graphische Benutzeroberfläche zu testen.
 \\
  \\
-So wurden die zum Debugging-Mechanismus gehörenden funktionalen Anforderungen (FA10,15,20,30, 50, 60, 70, 80, 90, 100, 110, 120, 130, 180, 190, 200, 210, 215, 240, 310) durch das Testszenario zum Anwendungsfall 50 ("Codes debuggen") getestet.
+So wurden die zum Debugging-Mechanismus gehörenden funktionalen Anforderungen (FA10-30, 50-130, 180-215, 240, 310) durch das Testszenario zum Anwendungsfall 50 ("Codes debuggen") getestet.
 Das Einbinden von Programmen (FA170) wurde durch das Testszenario zu AF10 ("Hinzufügen von Programmen") abgedeckt, das Schreiben und Kopieren von Texten in Textfenster (FA150 und FA160) wurde durch das Testszenario zu AF20("Ändern von Programmen" und das Speichern der Konfigurationsdateien durch das Testszenario zu AF60 ("Speichern eines Durchlaufs") abgedeckt.
 \\
  \\
@@ -518,7 +508,7 @@ Die Benutzerfreundlichkeit (NA50) wurde durch die Nutzerstudie überprüft.
 Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60, T100 und T360, welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
 Die Änderungen sind: \\
 \begin{itemize}
-	\item in manchem Testfällen wurden die Bezeichner von Aktionen verändert (z.B. T20, T40)
+	\item in manchen Testfällen wurden die Bezeichner von Aktionen verändert (z.B. T20, T40)
 	\item in T70 wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
 	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
 	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
@@ -533,12 +523,12 @@ Die Änderungen sind: \\
 Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
 \begin{itemize}
 %\item Tiefe Rekursion (Ackermann) (zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt)
-\item Endlosschleifen
-\item falsche Nutzereingaben
+\item Endlosschleifen: Das Produkt benachrichtigt den Benutzer über das Überschreiten der von ihm ausgewählten maximalen Anzahl der Iterationen und das Auftreten im Programm und beendet den Debugvorgang.
+\item falsche Nutzereingaben: Das Produkt benachrichtigt den Benutzer über falsche Syntax und beendet den Debugvorgang. Syntaktisch falsche \textit{Relational Expressions} werden zu \enquote{?} ausgewertet.
 \item keine Nutzereingaben
 \item n Programme gleichzeitig debuggen
-\item leere Fenster
-\item Dateien laden, die nicht dem RDBF-Format entsprechen
+\item leere Fenster: Gibt der Benutzer kein Programm in einem seiner \textit{ProgramPanels} ein, so benachrichtigt das Produkt den Benutzer über falsche Syntax und beendet den Debugvorgang.
+\item Dateien laden, die nicht dem RDBF-Format entsprechen: Das Produkt benachrichtigt den Benutzer darüber, dass die von ihm ausgewählte Datei invalide ist.
 \item ...
 
 \end{itemize}
@@ -548,16 +538,14 @@ Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzerob
 Das Produkt wurde sowohl auf Windows (7 und 10), als auch auf Linux (Ubuntu 17.04 64bit und KDE Neon 5.11.3 64bit) erfolgreich getestet, indem alle JUni-Tests der einzelnen Pakete, die Tests der graphischen Benutzeroberfläche und die in diesem Kapitel aufgeführten Tests des Gesamtprodukts auf den unterschiedlichen Rechnern durchgeführt wurden.
 
 Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \\ \\
-\begin{tabular}{l||c|c|c}
-   	& Betriebssystem & Prozessor & RAM \\
+\begin{tabular}{l||l|l}
+   	 & Prozessor & RAM \\
 	\hline
 	\hline
-	Rechner 1 & Windows 7 64bit & AMD Phenom II X4 B50 4K 4T @3.5Ghz & 10GB DDR3 \\
-	Rechner 2 & Windows 7 64bit & Intel Core i3-380M 2K 4T @2.5Ghz & 8GB DDR3 \\
-	 & KDE Neon 5.11.3 64bit &  \\
-	Rechner 3 & Ubuntu 17.04 64bit & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
-	Rechner 4 & Windows 10 Pro 64bit & Intel Core i7-7500U @2.7Ghz & 16GB DDR4\\
-		& Ubuntu 17.04 64bit\\
+	Rechner 1 & AMD Phenom II X4 B50 4K 4T @3.5Ghz & 10GB DDR3 \\
+	Rechner 2 & Intel Core i3-380M 2K 4T @2.5Ghz & 8GB DDR3 \\
+	Rechner 3 & Intel Core i5-7200U @3.1Ghz & 8GB DDR3 \\
+	Rechner 4 & Intel Core i7-7500U @2.7Ghz & 16GB DDR4\\
 \end{tabular}
 
 
@@ -567,13 +555,6 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
 
 
 \newpage
-
-\section{Vorgenommene Veränderungen}
-
-\subsection{Änderungen an der Graphischen Benutzeroberfläche}
-Zur graphischen Benutzeroberfläche wurde im WatchExpressionPanel und im ConditionalBreakpointPanel noch ein Button eingefügt, über welche man einen weiteren Breakpoint oder eine Watch-Expression hinzufügen kann, da dies sich als Intuitiver herausstellte als die vorherige Variante. \\
-(Weitere Änderungen erfolgen eventuell nach der Auswertung der Nutzerstudie)
-
 \section{Fazit}
 %TODO
 
