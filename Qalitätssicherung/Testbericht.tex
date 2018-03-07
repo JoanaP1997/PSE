@@ -400,9 +400,42 @@ Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fr
 
 \subsubsection{Auswertung}
 
-Der Praxis- und der Fragenteil werden zunächst getrennt ausgewertet. Ergebnisse des \enquote{Lauten Denkens} werden nach Themengebieten geclustert und für die Einarbeitung nach Vorkommenshäufigkeit und Schwere der Einschränkung geordnet. Ebenso wird mit den Anmerkungen aus dem Fragenteil verfahren.
+\subsubsection{Auswertung}
+Getestet wurden acht Testpersonen (alle männlich, 20-27 Jahre alt, Studenten mit Haupt- oder Nebenfach Informatik).
+Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIBuggers}, wie Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
+Im Folgenden werden die Ergebnisse und ihre Verbesserung im Detail erklärt:
 
-(Zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt. Hier wird eine Übersicht zu sehen sein, die die nach Themengebieten geordneten Probleme und ihre Lösung aufzeigt.)
+\paragraph{Nutzen der Menüleiste (Aufgaben 1-3)}
+Im Praxisteil wurden die Aufgaben 1 bis 3 (siehe Tabelle \ref{testfaelle}) jeweils in wenigen Sekunden und fehlerfrei ausgeführt, d.h. die Testpersonen konnten das Nutzerhandbuch finden, die Sprache umstellen und ein neues Fenster hinzufügen.\\
+Auch im Fragebogen wurden das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche durchweg als hilfreich und nutzerfreundlich bewertet.\\
+Dies könnte darauf zurückzuführen sein, dass die Menüleiste sich in ihrer Struktur an Konventionen orientiert, die den Nutzern bekannt sind.
+
+\paragraph{Löschen eines Programmfensters (Aufgabe 4)}
+Die Testpersonen fanden den Entfernen-Knopf (mit einem roten X-Symbol versehen) über den jeweiligen Programmfenstern zügig und konnten das Programm löschen. Auch dies könnte auf Konventionen zurückzuführen sein. \\Allerdings wurde angeregt, auch für die mit Bildern belegten Knöpfe Tooltips zur Rückversicherung einzusetzen.\\\\
+Vorgenommene Verbesserung:\\
+Es wurden entsprechend Tooltips bei den Knöpfen eingefügt.
+
+\paragraph{Wlang-Syntax (Aufgaben 5-6)}
+Im Praxisteil gelang es den Versuchspersonen trotz des Beispieltextes in den Programmfenstern nur mit erhöhtem Zeitaufwand und mehreren Anläufen, ein korrektes WLang-Programm zu schreiben. Das Nutzermanual musste jedes Mal zu Rate gezogen werden, half aber beim Finden des Fehlers.\\
+Auch im Fragebogen wurden zu diesem Punkt die meisten Anmerkungen gemacht. Die Nutzer wünschten sich konkretere Hinweise auf Fehler. \\
+Eine Erklärung dafür könnte sein, dass WLang einigen Erwartungen an übliche Programmiersprachen, wie zum Beispiel Java, nicht entspricht. Des Weiteren sind die Nutzer die Hilfe von Entwicklungsumgebungen gewohnt, die die Fehlerfindung erleichtern. Außerdem muss man uns Entwicklern eine gewisse Betriebsblindheit unterstellen, denn natürlich ist die Fehlersuche leichter, wenn man die Sprache selbst definiert hat. So fiel zum Beispiel auf, dass die Syntax-Exceptions, die vom Antlr-Paket erstellt werden und den Nutzer auf ein inkorrektes Programm hinweisen, keine Zeilennummer enthalten.\\\\
+Vorgenommene Verbesserung:\\
+Die Exception-Behandlung des Antlr-Pakets (\textit{dibugger.debuglogic.antlrparser.ActuallyHelpfulErrorListener}) wurde so angepasst, dass sie nicht nur die Zeilennummer, sondern auch das Vorkommen eines Fehlers innerhalb der Zeile angibt. Des Weiteren wurde das Nutzerhandbuch an mehreren Stellen ergänzt. Unter anderem wurde der Abschnitt zu üblichen Fehlern erweitert.
+
+
+\paragraph{Laden einer Konfiguration (Aufgabe 6)}
+
+
+\paragraph{Nutzen von Bedingten Breakpoints und Watch-Expressions}
+
+\paragraph{Umgang mit bedingten Breakpoints und Watch-Expressions (Aufgabe 6)}
+
+
+
+
+
+
+
 
 
 
@@ -455,7 +488,7 @@ Die Änderungen sind: \\
 	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
 	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
 	\item in T270 und T330 kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
-	\item in T370 eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button ȩnquote{Ausgeblendete Variablen anzeigen} betätigt wird
+	\item in T370 eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button \enquote{Ausgeblendete Variablen anzeigen} betätigt wird
 \end{itemize}
 
 \subsection{Weitere Testfälle}
