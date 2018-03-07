@@ -416,7 +416,7 @@ Einstellungen
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-Die Datei beinhaltet eine invalide Zeile.
+Die Datei ist invalide.
 
 }
 ui_stepsize_tooltip{

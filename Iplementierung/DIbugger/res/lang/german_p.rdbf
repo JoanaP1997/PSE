@@ -416,7 +416,7 @@ ui_settings{
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-In deinre Datei is e Zeil krumplich.
+Dei Datei is krumplich.
 
 }
 ui_stepsize_tooltip{
