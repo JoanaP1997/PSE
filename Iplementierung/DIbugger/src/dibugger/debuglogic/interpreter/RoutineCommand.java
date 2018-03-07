@@ -49,7 +49,6 @@ public class RoutineCommand extends Command {
         this.expectedReturnType = expectedReturnType;
         this.name = routinename;
         this.args = new ArrayList<Term>();
-        System.out.println("In: "+ this.name + "exprectedargs: " + this.expectedTypes);
     }
 
     @Override

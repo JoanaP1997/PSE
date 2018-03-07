@@ -107,15 +107,14 @@ public class GenerationController {
 
         
         //remove empty strings
-        for(int i = 0; i < input.size();++i) {
-        	if(input.get(i).isEmpty()) {
-        		input.remove(i);
-        		--i;
-        	}
+        if(input != null) {
+        	for(int i = 0; i < input.size();++i) {
+            	if(input.get(i).isEmpty()) {
+            		input.remove(i);
+            		--i;
+            	}
+            }
         }
-        
-        
-        
         // run main routine
         RoutineCommand mainRoutine = routines.get("main");
         ArrayList<Term> args = new ArrayList<Term>();
