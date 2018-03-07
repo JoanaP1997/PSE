@@ -251,7 +251,7 @@ Sprache nicht gefunden
 }
 ui_suggest_condbreakpoint{
 	def_blockLen=1
-Bedingten Breakpoint voschlagen
+Bedingten Breakpoint vorschlagen
 
 }
 dl_exc_wesyntax{
@@ -265,12 +265,12 @@ Schritt
 }
 ui_suggest_stepsize{
 	def_blockLen=1
-Schrittgöße voschlagen
+Schrittgöße vorschlagen
 
 }
 ui_suggest_input{
 	def_blockLen=1
-Eingabewerte voschlagen
+Eingabewerte vorschlagen
 
 }
 ui_change_language{
@@ -356,7 +356,7 @@ Führe Einzelschritt aus
 }
 ui_suggestion_infotext{
 	def_blockLen=1
-Ok drücken, um Voschlag zu erhalten
+Ok drücken, um Vorschlag zu erhalten
 
 }
 ui_suggestions{
@@ -381,7 +381,7 @@ Rückgabewert
 }
 ui_suggest_watchexpression{
 	def_blockLen=1
-WatchExpression voschlagen
+WatchExpression vorschlagen
 
 }
 ui_help{
