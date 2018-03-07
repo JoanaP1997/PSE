@@ -16,29 +16,29 @@ pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
 \usepackage{xcolor}
 \newcommand\frage[1]{\textcolor{red}{#1}}
 \renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
-
-\newglossaryentry{Komponententest}
-{
-    name={Komponententest},
-    plural={Komponententests},
-    description={
-        Ein Komponententest ist ein Test eines Softwaresystems, der eine Komponente des Systems testet.
-        Beim Durchführen eines Komponententests einer Komponente werden keine anderen Komponenten verwendet.
-        Als Komponente sei in diesem Kontext ein Paket oder eine Klasse bezeichnet.
-    }                
-}
-
-\newglossaryentry{Testhelfer}
-{
-    name={Testhelfer},
-    plural={Testhelfern},
-    description={
-        Ein Testhelfer ist ein Programmteil der zur Durchführung von Tests eines Softwaresystems verwendet wird.
-        Der Testhelfer soll als Platzhalter oder Stellvertreter für andere Systemkomponenten des Systems dienen.
-    }                
-}
-
-\makeglossaries
+%
+%\newglossaryentry{Komponententest}
+%{
+%    name={Komponententest},
+%    plural={Komponententests},
+%    description={
+%        Ein Komponententest ist ein Test eines Softwaresystems, der eine Komponente des Systems testet.
+%        Beim Durchführen eines Komponententests einer Komponente werden keine anderen Komponenten verwendet.
+%        Als Komponente sei in diesem Kontext ein Paket oder eine Klasse bezeichnet.
+%    }                
+%}
+%
+%\newglossaryentry{Testhelfer}
+%{
+%    name={Testhelfer},
+%    plural={Testhelfern},
+%    description={
+%        Ein Testhelfer ist ein Programmteil der zur Durchführung von Tests eines Softwaresystems verwendet wird.
+%        Der Testhelfer soll als Platzhalter oder Stellvertreter für andere Systemkomponenten des Systems dienen.
+%    }                
+%}
+%
+%\makeglossaries
 
 \font\myfont=cmr12 at 20pt
 
@@ -129,7 +129,7 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist. \\
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Der Interpreter hat eine höhere Abdeckung als die anderen Pakete, weil er im Gegensatz zu diesen prozentual gesehen weniger delegierende Methoden und Getter und Setter enthält.\\
 Die Gesamtabdeckung nach Klassen aufgeschlüsselt ist dem Archiv im SVN zu entnehmen.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
 Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
@@ -209,7 +209,7 @@ Beispielsweise:
 \item das genannte Programm existiert nicht
 \end{itemize}
 (siehe \textit{test.debuglogic.interpreter.SemanticallyWrongExpressionsTest.java})\\
-Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei von semantisch fehlerhaften Watch-Expressions ein \texttt{"?"} erwartet wurde. Hierbei ist ein in \ref{fehlerImInterpreter} sichtbar geworden.
+Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei von semantisch fehlerhaften Watch-Expressions ein \texttt{"?"} erwartet wurde. Hierbei ist ein in \ref{fehlerImInterpreter} beschriebener Fehler sichtbar geworden.
 
 \subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
 Während der Tests im Interpreterpaket zeigten Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
