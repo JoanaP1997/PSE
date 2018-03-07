@@ -105,14 +105,14 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 \subsection{Gesamtabdeckung}\label{abdeckung}
 Die Gesamtabdeckung des Produktes wird dem nächste Woche angehängten Archiv zu entnehmen sein.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
-Ausgeschlossen sind allerdings Angaben über erreichte Abdeckung mittels der in \ref{gui} beschriebenen Tests.
+Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\textwidth]{paketeCoverage.png}
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interfacem, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Die hohe Abdeckung im Interpreter zeigt, dass dieser Teil ausgiebig getestet wurde und im Vergleich zu den anderen Paketen, wie etwa dem Debuggerpaket oder dem Paket \textit{Control}, prozentual gesehen weniger deligierende Methoden und getter und setter aufweist.
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -447,15 +447,15 @@ Die Anforderungen zu den Produktleistungen wurden ebenfalls größtenteils durch
 Die Benutzerfreundlichkeit (NA50) wurde durch die Nutzerstudie überprüft. 
 
 \subsubsection{Globale Testfälle des Pflichtenhefts} %TODO
-Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60,T100 und T360, welche zu keiner umgesetzen funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die dazugehörenden Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
+Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60, T100 und T360, welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
 Die Änderungen sind: \\
 \begin{itemize}
 	\item in manchem Testfällen wurden die Bezeichner von Aktionen verändert (z.B. T20, T40)
 	\item in T70 wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
-	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Begin
-	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen indem er als Bereich das gesamte Programm eingibt
-	\item in T270 und T330 kann man eine Bereichsbindung nur Anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und "Bereichsbindung ändern" auswählt
-	\item in T370 eine Variable wird durch auswählen und Rechtsklick entfernt, alle Variablen werden wieder angezeigt, wenn der Button "Ausgeblendete Variablen anzeigen" betätigt wird
+	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
+	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
+	\item in T270 und T330 kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
+	\item in T370 eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button ȩnquote{Ausgeblendete Variablen anzeigen} betätigt wird
 \end{itemize}
 
 \subsection{Weitere Testfälle}
