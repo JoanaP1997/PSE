@@ -63,12 +63,12 @@ public class StressTest {
         gc.generateTrace(code, input , "A");
     }
     
-    @Test(expected=WrongTypeArgumentException.class)
+    @Test
     public void testNoUserInputAlthoughExpected() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         String code = "void main (int m, int n) {\n"
             + "int a = 0;\n"
-            +" while (true) {\n"
+            +" while (false) {\n"
             + "a = a + m + n;\n"
             + "}\n"
             +"}\n";
