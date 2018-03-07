@@ -133,6 +133,8 @@ In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisung
 Die Gesamtabdeckung nach Klassen aufgeschlüsselt ist dem Archiv im SVN zu entnehmen.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
 Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
+Ein durch einen JUnit-Test gefundener Fehler besitzt durch den entsprechenden Test damit automatisch einen Regressionstest.
+
 \subsection{AnltrParser}\label{ANTLRPARSER}
 Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
@@ -198,6 +200,7 @@ Beispielsweise:
 \item unzulässige Operatoren
 \end{itemize}
 (siehe \textit{test.debuglogic.interpreter.SyntacticallyWrongExpressionsTest.java})\\
+
 \subparagraph{Semantisch falsche Watch-Expressions oder Bedingte Breakpoints}
 Beispielsweise:
 \begin{itemize}
@@ -211,12 +214,16 @@ Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei 
 \subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
 Während der Tests im Interpreterpaket zeigten Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
-Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht.
+Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht. \\
 
 %TODO Fehler bei paketweiten Tests
 Beim Testen der WatchExpressions auf ihre Reaktion gegenüber falscher Eingaben zeigte sich ein Fehler in der Ausnahmebehandlung im Interpreterpaket. Bei Spezifizieren einer Watch-Expression durch den mehrdeutigen Bezeichner \texttt{a} erwartet man bei Auswertung ein \texttt{"?"} als Ergebnis, da nicht klar ist, aus welchem Programm die Variable \texttt{a} stammt. Dies funktionierte auch, doch die Eingabe \texttt{a+b} resultierte im Ergebnis \enquote{\~{}} (Tilde), da in Ascii \enquote{'?'+'?' = 63+63=126 = '\~{}'}.
 Durch Werfen einer Exception im entsprechenden Term und Fangen dieser in der Klasse \textit{WatchExpression} sowie \textit{ConditionalBreakpoint} konnte dieser Fehler behoben werden.
 \\
+Beim Testen eines Programms mit korrekter Syntax, das aus einer Main-Methode ohne Rückgabe (Typ void) und einer aufgerufenen, rekursiven Funktion mit einer nicht-leeren Rückgabe (konkret: int) bestand, trat ein Typfehler auf, d.h. das Programm meldete zurück, dass der erhaltene Typ der Main-Methode (dann int) nicht dem erwarteten Typ (void) entsprach.
+Das folgende Problem trat dabei auf: Jede aufgerufene Methode setzt am Anfang ihrer Ausführung zunächst den Rückgabewert im GenerationController auf null. Allerdings führte das dazu, dass der GenerationController bei Funktionsaufrufen innerhalb der Methode den Rückgabewert der aufgerufenen Methode enthielt.
+Das Problem wurde durch eine Änderung in der Klasse RoutineCall gelöst. Ein RoutineCall schrieb bisher den Rückgabewert in den aktuellen Scope, nun löscht er den Rückgabewert zusätzlich noch im GenerationController. Der Rückgabewert wird sozusagen verschoben statt kopiert.\\
+
 So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 %\subsection{Belastungstests}
 \subsection{Control}
@@ -236,7 +243,7 @@ Um die Chance des Auffindens von Fehlern beim Testen dieser Algorithmen zu vergr
     \caption{Testüberdeckung der Teile von Control erreicht durch Komponententests, Integrationstests und Systemtests}\label{AbdeckungImInterpreter}
 \end{figure}
 
-\subsubsection{Testen Ladens von Konfigurationsdateien}
+\subsubsection{Testen des Ladens von Konfigurationsdateien}
 \textit{FileHandlerInteractor} ermöglicht dass Laden von Konfigurationsdateien mit der Methode \textit{applyConfiguration}.
 Dabei wird nach Auslesen einer solchen Datei DIbugger in den Stand zurückversetzt, in dem DIbugger sich beim Speichern der Datei befand.
 Um dies zu ermöglichen speichert \textit{FileHandlerInteractor} die in der Datei enthaltenen Daten im Modell DebugLogic, wie zum Beispiel die Zeilennummern von bedingten Breakpoints.
@@ -517,12 +524,13 @@ Die Änderungen sind: \\
 
 \subsubsection{Belastungstests} %TODO
 \label{stress}
-Auch Randfälle des Einsetzens wurden über Unit-Tests oder über die Benutzeroberfläche getestet: 
+Auch Randfälle der Produktnutzung wurden über Unit-Tests oder über die Benutzeroberfläche getestet. Sie sind im Folgenden beschrieben und bei Fehlern ist die Ursache dokumentiert.
 \begin{itemize}
-%\item Tiefe Rekursion (Ackermann) (zum Zeitpunkt der Vorabgabe noch nicht fertig gestellt)
+\item Tiefe Rekursion: Das Produkt bricht ab, wenn die Rekursionstiefe zu hoch ist und gibt eine Fehlermeldung zurück. Dies wurde mit Hilfe der Ackermann-Funktion (Eingabewerte 25 und 8) überprüft.
 \item Endlosschleifen: Das Produkt benachrichtigt den Benutzer über das Überschreiten der von ihm ausgewählten maximalen Anzahl der Iterationen und das Auftreten im Programm und beendet den Debugvorgang.
 \item falsche Nutzereingaben: Das Produkt benachrichtigt den Benutzer über falsche Syntax und beendet den Debugvorgang. Syntaktisch falsche \textit{Relational Expressions} werden zu \enquote{?} ausgewertet.
-\item keine Nutzereingaben
+\item keine Nutzereingaben: Das Produkt sollte das Starten des Debuggens mit Hilfe von Default-Werten ermöglichen. Stattdessen wurde eine Syntax-Exception geworfen. Obwohl die entsprechende Funktionalität im Interpreter bereits implementiert war, hatten die Default-Werte nicht den Typ, den sie haben sollten, da das Objekt für den jeweiligen DefaultWert nicht richtig initialisiert wurde.
+Der entsprechende UnitTest \textit{testNoUserInputAlthoughExpected} in \textit{test.debuglogic.interpreter.StressTest} verhindert hier Regression.
 \item n Programme gleichzeitig debuggen
 \item leere Fenster: Gibt der Benutzer kein Programm in einem seiner \textit{ProgramPanels} ein, so benachrichtigt das Produkt den Benutzer über falsche Syntax und beendet den Debugvorgang.
 \item Dateien laden, die nicht dem RDBF-Format entsprechen: Das Produkt benachrichtigt den Benutzer darüber, dass die von ihm ausgewählte Datei invalide ist.
@@ -549,7 +557,7 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
 (Diese Untersuchung ist geplant für diese Woche.)
 
-
+\paragraph{Tiefe Rekursion - Ackermann}
 
 \newpage
 \section{Fazit}
