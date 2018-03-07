@@ -237,7 +237,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
     }
 
     private void cbsuggestion() {
-        showExpression(SUGGESTION + FOR + CONDITIONAL_BREAKPOINT_AKKUSATIV);
+        showExpression(SUGGESTION + " " + FOR + " " + CONDITIONAL_BREAKPOINT_AKKUSATIV);
 
         okButtonExpression.addActionListener(e -> {
             String suggestion = mainInterface.getControlFacade().suggestConditionalBreakpoint();
