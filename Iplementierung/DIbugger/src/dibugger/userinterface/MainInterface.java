@@ -370,7 +370,6 @@ public class MainInterface extends JFrame {
             inputStrategyMenu.add(strategyItem);
         }
     }
-
     /**
      * initializes the step size strategy menu and adds an ActionListener to it.
      */

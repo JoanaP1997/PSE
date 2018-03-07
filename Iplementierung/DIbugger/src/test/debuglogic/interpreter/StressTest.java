@@ -16,7 +16,7 @@ import dibugger.debuglogic.interpreter.GenerationController;
 
 public class StressTest {
 
-    @Ignore
+    @Test
     public void testAckermann() throws DIbuggerLogicException {
         GenerationController gc = new GenerationController(1000, 1000);
         String code =

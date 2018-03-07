@@ -105,6 +105,17 @@ public class GenerationController {
         Scope firstScope = new Scope();
         scopes.push(firstScope);
 
+        
+        //remove empty strings
+        for(int i = 0; i < input.size();++i) {
+        	if(input.get(i).isEmpty()) {
+        		input.remove(i);
+        		--i;
+        	}
+        }
+        
+        
+        
         // run main routine
         RoutineCommand mainRoutine = routines.get("main");
         ArrayList<Term> args = new ArrayList<Term>();
@@ -116,7 +127,7 @@ public class GenerationController {
             // find this id in the users input
             boolean found = false;
             for (String s : input) {
-                if (getIdentifierOfInput(s).equals(id)) {
+            	if (getIdentifierOfInput(s).equals(id)) {
                     args.add(getTermFromInput(s));
                     found = true;
                 }

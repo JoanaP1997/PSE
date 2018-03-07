@@ -29,6 +29,8 @@ public class ProgramPanel extends JPanel {
     private static String RETURN = "R\u00fcckgabewert";
     private static String STEP_SIZE_TOOLTIP = "Schrittgr\u00f6\u00dfe mit Enter best\u00e4tigen";
     private static String INPUT_TOOLTIP = "Einzelne Eingaben durch Semikola trennen.";
+    private static String LOAD_PROGRAM = "Programm laden";
+    private static String DELETE = "L\u00f6schen";
 
     private final short MARGIN_WIDTH_PX = 36;
     private List<Integer> listBreakpointLines;
@@ -110,12 +112,14 @@ public class ProgramPanel extends JPanel {
         inputVariableTextField.setPreferredSize(new Dimension(288, 40));
 
         loadFile = new JButton();
+        loadFile.setToolTipText(LOAD_PROGRAM);
         ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
         iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
         loadFile.setIcon(iconLoad);
         loadFile.addActionListener(actionEvent -> setTextWithFileChooser());
 
         delete = new JButton();
+        delete.setToolTipText(DELETE);
         ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
         deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
         delete.setIcon(deleteIcon);
@@ -591,6 +595,8 @@ public class ProgramPanel extends JPanel {
         stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
         stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
         inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
+        loadFile.setToolTipText(languageFile.getTranslation("ui_load_program"));
+        delete.setToolTipText(languageFile.getTranslation("ui_delete"));
     }
 
     /**
