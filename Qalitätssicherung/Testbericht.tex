@@ -529,12 +529,10 @@ Auch Randfälle der Produktnutzung wurden über Unit-Tests oder über die Benutz
 \item Tiefe Rekursion: Das Produkt bricht ab, wenn die Rekursionstiefe zu hoch ist und gibt eine Fehlermeldung zurück. Dies wurde mit Hilfe der Ackermann-Funktion (Eingabewerte 25 und 8) überprüft.
 \item Endlosschleifen: Das Produkt benachrichtigt den Benutzer über das Überschreiten der von ihm ausgewählten maximalen Anzahl der Iterationen und das Auftreten im Programm und beendet den Debugvorgang.
 \item falsche Nutzereingaben: Das Produkt benachrichtigt den Benutzer über falsche Syntax und beendet den Debugvorgang. Syntaktisch falsche \textit{Relational Expressions} werden zu \enquote{?} ausgewertet.
-\item keine Nutzereingaben: Das Produkt sollte das Starten des Debuggens mit Hilfe von Default-Werten ermöglichen. Stattdessen wurde eine Syntax-Exception geworfen. Obwohl die entsprechende Funktionalität im Interpreter bereits implementiert war, hatten die Default-Werte nicht den Typ, den sie haben sollten, da das Objekt für den jeweiligen DefaultWert nicht richtig initialisiert wurde.
-Der entsprechende UnitTest \textit{testNoUserInputAlthoughExpected} in \textit{test.debuglogic.interpreter.StressTest} verhindert hier Regression.
-\item n Programme gleichzeitig debuggen
+\item keine Nutzereingaben: Das Produkt sollte das Starten des Debuggens mit Hilfe von Default-Werten ermöglichen. Stattdessen wurde zunächst eine Syntax-Exception geworfen. Obwohl die entsprechende Funktionalität im Interpreter bereits implementiert war, hatten die Default-Werte nicht den Typ, den sie haben sollten, da das Objekt für den jeweiligen DefaultWert nicht richtig initialisiert wurde. Dieser Fehler wurde behoben und der entsprechende UnitTest \textit{testNoUserInputAlthoughExpected} in \textit{test.debuglogic.interpreter.StressTest} verhindert hier Regression.
+\item n Programme gleichzeitig debuggen: 
 \item leere Fenster: Gibt der Benutzer kein Programm in einem seiner \textit{ProgramPanels} ein, so benachrichtigt das Produkt den Benutzer über falsche Syntax und beendet den Debugvorgang.
 \item Dateien laden, die nicht dem RDBF-Format entsprechen: Das Produkt benachrichtigt den Benutzer darüber, dass die von ihm ausgewählte Datei invalide ist.
-\item ...
 
 \end{itemize}
 
