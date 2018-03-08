@@ -509,15 +509,15 @@ Die Anforderungen zu den Produktleistungen wurden ebenfalls größtenteils durch
 Die Benutzerfreundlichkeit (NA50) wurde durch die Nutzerstudie überprüft. 
 
 \subsubsection{Globale Testfälle des Pflichtenhefts} %TODO
-Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60, T100 und T360, welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
+Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60 ("Setzen eines Breakpoints synchron in allen Textfenstern"), T100 ("Löschen aller Breakpoints eines Fensters") und T360 ("Verändern der Item-Reihenfolge im Variableninspektor"), welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
 Die Änderungen sind: \\
 \begin{itemize}
-	\item in manchen Testfällen wurden die Bezeichner von Aktionen (z.B. Namen von Buttons) verändert (z.B. T20, T40)
-	\item in T70 wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
-	\item  in T190 wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
-	\item in T260 kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
-	\item in T270 und T330 kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
-	\item in T370 eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button \enquote{Ausgeblendete Variablen anzeigen} betätigt wird
+	\item in manchen Testfällen wurden die Bezeichner von Aktionen (z.B. Namen von Buttons) verändert (z.B. T20 ("Öffnen einer Textdatei"), T40 ("Öffnen einer Konfiguration"))
+	\item in T70 ("Löschen eines Breakpoints in einem Textfenster") wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
+	\item  in T190 ("Korrektes Ausgeben der Ausgabewerte") wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
+	\item in T260 ("Löschen einer Bereichsbindung") kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
+	\item in T270 ("Anzeigen einer Bereichsbindung [bei Watch-Expressions]") und T330 ("Anzeigen einer Bereichsbindung [bei bedingten Breakpoints]") kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
+	\item in T370 ("Ein- und Ausblenden von Variablen") eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button \enquote{Ausgeblendete Variablen anzeigen} betätigt wird
 \end{itemize}
 
 \subsection{Weitere Testfälle}
