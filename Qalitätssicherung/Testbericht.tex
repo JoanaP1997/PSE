@@ -284,7 +284,8 @@ Im \textit{FileHandler} gab es keine größeren Fehler. Lediglich zwei kleinere,
 \subsection{Übersicht über das Testen der Benutzeroberfläche}
 Da automatisiertes Testen der Benutzeroberfläche sehr zeitaufwändig ist, wurde die Benutzeroberfläche des Dibuggers nach einem eigenen Testplan getestet. Dieser besteht zunächst aus sowohl dummem als auch intelligentem \textit{Monkey Testing}, um Schwächen oder Absturzpunkte der Benutzeroberfläche zu finden. \\
 Anschließend wurde die Benutzeroberfläche von den Entwicklern hinsichtlich Nutzerfreundlichkeit betrachtet. Aufgrund der Gefahr, hier wichtige Kriterien zu übersehen, wird zusätzlich eine Benutzerstudie durchgeführt. \\
-Außerdem wurden alle Funktionen der Benutzeroberfläche einzeln (z.B. jeder Button und Menüeintrag für sich) getestet, um diese Basisfunktionen dann in den Anwendungsfällen, welche im Pflichtenheft beschrieben wurden, zusammenzufassen. Die einzelnen Funktionen wurden hierbei in die Kriterien Gestaltung, Funktionalität und Performanz aufgeteilt.
+Außerdem wurden alle Funktionen der Benutzeroberfläche einzeln (z.B. jeder Button und Menüeintrag für sich) getestet, um diese Grundfunktionen dann in den Anwendungsfällen, welche im Pflichtenheft beschrieben wurden, zusammenzufassen und in dieser Reihenfolge zu testen. Die einzelnen Funktionen wurden hierbei in die Kriterien Gestaltung, Funktionalität und Performanz aufgeteilt. \\
+Um zu verhindern, dass durch Korrektur von Fehlern neue Fehler auftreten, wurde die Benutzeroberfläche nach den vorgenommenen Änderungen erneut manuell sowohl auf die Grundfunktionen, als auch im Rahmen der Tests des Gesamtprodukts, überprüft.
 
 
 \subsection{Monkey Testing}
@@ -298,7 +299,7 @@ Auch unter intelligentem Monkey Testing bestand das Produkt, nach Behebung zweie
 
 \subsection{Untersuchung der Nutzerfreundlichkeit}
 Zur Verbessserung der Benutzerfreundlichkeit wurde zu den \textit{ExpressionPanels} jeweils ein +-Button hinzugefügt, um das Hinzufügen von Relationalen Ausdrücken intuitiver zu gestalten. Aufgrund der Funktionsweise der \textit{javax.swing.JTable} Komponente, muss zu jedem Zeitpunkt mindestens eine Expression in den Tabellen des \textit{WatchExpressionPanels} und des \textit{ConditionalBreakpointPanels} stehen. \\
-Nach Auswertung der Benutzerstudie wurden außerdem Tooltips für die Laden- und Speicher-Buttons der \textit{ProgramPanels} hinzugefügt.
+Nach Auswertung der Benutzerstudie wurden außerdem Tooltips für die Buttons zum Laden und Löschen der \textit{ProgramPanels} hinzugefügt.
 
 \subsection{Test der Grundfunktionen}
 \subsubsection{Gestaltung}
