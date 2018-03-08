@@ -251,7 +251,7 @@ Außerdem wird die Präsentationskomponente \textit{dibugger.userinterface} dazu
 Insgesamt werden aus diesen beiden Paketen 10 verschiedene Methoden aufgerufen.
 Unter Verwendung von Testhelfern (das sind Platzhalter oder Stellvertreter für andere Systemkomponenten des Systems) wurde getestet, ob Anzahl und Art dieser Funktionsaufrufe dem Sollverhalten entsprechen.
 Das Sollverhalten ist in einem Sequenzdiagramm des Entwurfsdokumentes beschrieben, und wurde in der Implementierungsphase aus der Schnittstelle der Klasse für Konfigurationsdateien abgeleitet.
-Eine Abweichen von diesem Verhalten wurde gefunden und ist in Abschnitt \ref{fehlerInControl} beschrieben.\\
+Eine Abweichung von diesem Verhalten wurde gefunden und ist in Abschnitt \ref{fehlerInControl} beschrieben.\\
 (siehe \textit{test.control.FileHandlerInteractorTest, dibugger.debuglogic.debugger.ConfigurationFile})
 
 \subsubsection{Beim Komponententest gefundene Fehler in Control}\label{fehlerInControl}
@@ -554,7 +554,43 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
 
 
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
-(Diese Untersuchung ist geplant für diese Woche.)
+    \subsubsection{Randbedingungen und Vorgehen}
+        Im folgenden sollen Angaben über Laufzeit und Speicherverbrauch von DIbugger gemacht werden.
+        Vorerst wird eine Übersicht über Speicherauslastung und Funktionsaufrufe während der Ausführung von DIbugger geboten.
+        Im Anschluss werden die Angaben der verschiedenen Szenarien verglichen, zusammengefasst und eine mögliche Optimierung beschrieben.\\
+        Die zugrundeliegenden Daten entstanden bei Durchführung dreier Nutzungsszenarien, und wurden unter Benutzung des Programmes VisualVm erstellt.
+        Die Szenarien wurden auf einem Rechner mit Arbeitsspeicher von 7,7 GiB, vierkernigem Prozessor \enquote{Intel Core i5-4690} und \enquote{64 Bit Fedora 26} Betriebssystem durchgeführt.
+
+    \subsubsection{Szenario 1}
+        \paragraph{Informelle Beschreibung}
+        \begin{itemize}
+            \item{Dauer:} 3 Minuten 
+            \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder \enquote{Schrittgröße}, Verwenden von Haltepunkten, einem bedingten Haltepunkt und einer \enquote{Watch-Expression}
+            \item{Eingaben:} Die zwei Programme der Nutzerstudie, siehe auch \ref{code}
+            \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
+        \end{itemize}
+        \paragraph{Statistiken}
+    \subsubsection{Szenario 2}
+        \paragraph{Informelle Beschreibung}
+        \begin{itemize}
+            \item{Dauer:} 5 Minuten 
+            \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder \enquote{Schrittgröße}, Verwenden von Haltepunkten, einem bedingten Haltepunkt und einer \enquote{Watch-Expression}, Betrachten von 9 Dokumenten von jeweils rund 620KiB, Kompilieren der DIbugger-Quelltexte, Betrachten von Videos im Netz
+            \item{Eingaben:} Die zwei Programme der Nutzerstudie, siehe auch \ref{code}
+            \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, (Netz-) Browser, Dokumentbetrachter, javac, VisualVm  
+        \end{itemize}
+       \paragraph{Statistiken}
+    \subsubsection{Szenario 3}
+        \paragraph{Informelle Beschreibung}
+        \begin{itemize}
+            \item{Dauer:} 6 Minuten 
+            \item{Aktionen des Nutzers:}  
+            \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder \enquote{Schrittgröße}, Verwenden von Haltepunkten, bedingten Haltepunkten und \enquote{Watch-Expressions}, Speichern und Laden von Konfigurationsdateien, Ändern der Sprache, Ändern der Programme
+            \item{Eingaben:} Elf Programme, darunter sechs mal Ackermann-Implementierung, die zwei Programme der Nutzerstudie, siehe auch \ref{code} und die bei Programmstart automatisch geladenen Programme
+            \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
+        \end{itemize}
+        \paragraph{Statistiken}
+    
+    \subsubsection{Schlussfolgerung}
 
 \paragraph{Tiefe Rekursion - Ackermann}
 
