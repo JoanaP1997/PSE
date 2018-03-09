@@ -17,7 +17,9 @@ import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.ConditionalBreakpointSyntaxException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.IncompatibleTypeException;
 import dibugger.debuglogic.exceptions.SyntaxException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 /**
  * @author wagner
@@ -62,17 +64,26 @@ public class ConditionalBreakpoint {
                     isValid = false;
         }
         if (isValid || this.scopes.isEmpty()) {
-            TermValue result = this.condition.evaluate(states);
+        	TermValue result;
+        	try {
+        		result = this.condition.evaluate(states);
+        	} catch(DIbuggerLogicException dble) {
+        		   	return false;
+            }
             if (result.getType() == Type.BOOLEAN) {
                 return ((BooleanValue) result).getValue();
             }
             this.value = false;
         }
-        TermValue result = this.condition.evaluate(states);
-        if (result.getType() == Type.BOOLEAN) {
-            return ((BooleanValue) result).getValue();
-        }
-        return this.value;
+        return false;
+//        TermValue result;
+//        try {
+//        	result = this.condition.evaluate(states);
+//        } 
+//        if (result.getType() == Type.BOOLEAN) {
+//            return ((BooleanValue) result).getValue();
+//        }
+//        return this.value;
     }
 
     private void createTerm() throws DIbuggerLogicException {

@@ -20,15 +20,15 @@ public class LongValue extends TermValue {
     @Override
     public TermValue add(TermValue operand) throws DIbuggerLogicException {
         if (operand.getType() == Type.FLOAT) {
-            return new DoubleValue(value + ((FloatValue) operand).getValue());
+            return new FloatValue(value + ((FloatValue) operand).getValue());
         } else if (operand.getType() == Type.DOUBLE) {
             return new DoubleValue(value + ((DoubleValue) operand).getValue());
         } else if (operand.getType() == Type.INT) {
-            return new DoubleValue(value + ((IntValue) operand).getValue());
+            return new LongValue(value + ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value + ((LongValue) operand).getValue());
+            return new LongValue(value + ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
-            return new DoubleValue(value + ((CharValue) operand).getValue());
+            return new LongValue(value + ((CharValue) operand).getValue());
         }
         throw new IncompatibleTypeException("db_it_exc_add");
     }
@@ -36,15 +36,15 @@ public class LongValue extends TermValue {
     @Override
     public TermValue mul(TermValue operand) throws DIbuggerLogicException {
         if (operand.getType() == Type.FLOAT) {
-            return new DoubleValue(value * ((FloatValue) operand).getValue());
+            return new FloatValue(value * ((FloatValue) operand).getValue());
         } else if (operand.getType() == Type.DOUBLE) {
             return new DoubleValue(value * ((DoubleValue) operand).getValue());
         } else if (operand.getType() == Type.INT) {
-            return new DoubleValue(value * ((IntValue) operand).getValue());
+            return new LongValue(value * ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value * ((LongValue) operand).getValue());
+            return new LongValue(value * ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
-            return new DoubleValue(value * ((CharValue) operand).getValue());
+            return new LongValue(value * ((CharValue) operand).getValue());
         }
         throw new IncompatibleTypeException("db_it_exc_mul");
     }
@@ -52,15 +52,15 @@ public class LongValue extends TermValue {
     @Override
     public TermValue div(TermValue operand) throws DIbuggerLogicException {
         if (operand.getType() == Type.FLOAT) {
-            return new DoubleValue(value / ((FloatValue) operand).getValue());
+            return new FloatValue(value / ((FloatValue) operand).getValue());
         } else if (operand.getType() == Type.DOUBLE) {
             return new DoubleValue(value / ((DoubleValue) operand).getValue());
         } else if (operand.getType() == Type.INT) {
-            return new DoubleValue(value / ((IntValue) operand).getValue());
+            return new LongValue(value / ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value / ((LongValue) operand).getValue());
+            return new LongValue(value / ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
-            return new DoubleValue(value / ((CharValue) operand).getValue());
+            return new LongValue(value / ((CharValue) operand).getValue());
         }
         throw new IncompatibleTypeException("db_it_exc_div");
     }
@@ -68,15 +68,15 @@ public class LongValue extends TermValue {
     @Override
     public TermValue mod(TermValue operand) throws DIbuggerLogicException {
         if (operand.getType() == Type.FLOAT) {
-            return new DoubleValue(value % ((FloatValue) operand).getValue());
+            return new FloatValue(value % ((FloatValue) operand).getValue());
         } else if (operand.getType() == Type.DOUBLE) {
             return new DoubleValue(value % ((DoubleValue) operand).getValue());
         } else if (operand.getType() == Type.INT) {
-            return new DoubleValue(value % ((IntValue) operand).getValue());
+            return new LongValue(value % ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value % ((LongValue) operand).getValue());
+            return new LongValue(value % ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
-            return new DoubleValue(value % ((CharValue) operand).getValue());
+            return new LongValue(value % ((CharValue) operand).getValue());
         }
         throw new IncompatibleTypeException("db_it_exc_mod");
     }
@@ -84,15 +84,15 @@ public class LongValue extends TermValue {
     @Override
     public TermValue sub(TermValue operand) throws DIbuggerLogicException {
         if (operand.getType() == Type.FLOAT) {
-            return new DoubleValue(value - ((FloatValue) operand).getValue());
+            return new FloatValue(value - ((FloatValue) operand).getValue());
         } else if (operand.getType() == Type.DOUBLE) {
             return new DoubleValue(value - ((DoubleValue) operand).getValue());
         } else if (operand.getType() == Type.INT) {
-            return new DoubleValue(value - ((IntValue) operand).getValue());
+            return new LongValue(value - ((IntValue) operand).getValue());
         } else if (operand.getType() == Type.LONG) {
-            return new DoubleValue(value - ((LongValue) operand).getValue());
+            return new LongValue(value - ((LongValue) operand).getValue());
         } else if (operand.getType() == Type.CHAR) {
-            return new DoubleValue(value - ((CharValue) operand).getValue());
+            return new LongValue(value - ((CharValue) operand).getValue());
         }
         throw new IncompatibleTypeException("db_it_exc_sub");
     }

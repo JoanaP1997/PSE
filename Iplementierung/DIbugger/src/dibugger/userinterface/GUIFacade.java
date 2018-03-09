@@ -76,8 +76,8 @@ public class GUIFacade implements Observer {
      * @param variables
      *            variables
      */
-    public void showVariables(String idOfProgram, List<String> variables) {
-        mainInterface.showVariables(idOfProgram, variables);
+    public void setHiddenVariables(String idOfProgram, List<String> variables) {
+        mainInterface.setHiddenVariables(idOfProgram, variables);
     }
 
     /**

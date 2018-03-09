@@ -84,7 +84,10 @@ public class RDBFReader {
         StringBuilder text = new StringBuilder();
         int i = 0;
         while (i < len && (line = reader.readLine()) != null) {
-            text.append(line + "\n");
+            text.append(line);
+            if(i<len-1){
+            	text.append("\n");
+            }
             ++i;
         }
         return text.toString();

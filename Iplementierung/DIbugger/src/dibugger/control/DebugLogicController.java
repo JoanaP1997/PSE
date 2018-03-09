@@ -24,9 +24,14 @@ public class DebugLogicController {
      * Creates a new {@code DebugLogicController} object.
      */
     public DebugLogicController() {
-        debugLogicFacade = new DebugLogicFacade();
+        this(new DebugLogicFacade());
+    }
+    
+    public DebugLogicController(DebugLogicFacade facade) {
+        Objects.requireNonNull(facade);
+        this.debugLogicFacade = facade;
         inputBuffer = new TextInputBuffer();
-
+        
         programIds = new HashMap<>();
     }
 
@@ -40,7 +45,7 @@ public class DebugLogicController {
         return programIds.containsKey(programId);
     }
 
-    private void putId(String programId, int integerId) {
+    void putId(String programId, int integerId) {
         programIds.put(programId, integerId);
     }
 
@@ -479,6 +484,7 @@ public class DebugLogicController {
      */
     public void stopDebug() {
         /*  */
+    	debugLogicFacade.endRun();
     }
 
     /**
@@ -521,7 +527,6 @@ public class DebugLogicController {
         List<ProgramInput> currentInput = getProgramInput();
         List<String> programTexts = new ArrayList<>();
 
-        // programTexts containing null-objects is unlikely
         currentInput.stream().map(ProgramInput::getText).forEach(programTexts::add);
         debugLogicFacade.suggestStepSize(programTexts);
     }
@@ -569,7 +574,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectStepSizeStrategy(int)
      */
-    public void selectStepSizeStrategy(int stepSizeStrategyId) {
+    public void selectStepSizeStrategy(String stepSizeStrategyId) {
         debugLogicFacade.selectStepSizeStrategy(stepSizeStrategyId);
     }
 
@@ -580,7 +585,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectRelationalStrategy(int)
      */
-    public void selectRelationalExpressionStrategy(int expressionStrategyId) {
+    public void selectRelationalExpressionStrategy(String expressionStrategyId) {
         debugLogicFacade.selectRelationalStrategy(expressionStrategyId);
     }
 
@@ -591,7 +596,7 @@ public class DebugLogicController {
      *            the strategy id to select
      * @see DebugLogicFacade#selectInputValueStrategy(int)
      */
-    public void selectInputValueStrategy(int inputValueStrategyId) {
+    public void selectInputValueStrategy(String inputValueStrategyId) {
         debugLogicFacade.selectInputValueStrategy(inputValueStrategyId);
     }
 

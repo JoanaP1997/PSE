@@ -8,9 +8,7 @@ import dibugger.userinterface.dibuggerpopups.VariableSuggestionPopUp;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -50,6 +48,8 @@ public class MainInterface extends JFrame {
     private static String CONFIRM_CLOSE_QUESTION = "Sind sie sicher, dass sie das Programm beenden möchten?";
     private static String YES_OPTION = "Ja";
     private static String NO_OPTION = "Nein";
+    private static String NEW_PROGRAM_TOOLTIP = "Um ein leeres Programmfeld hinzuzuf\u00fcgen, bitte die Auswahl abbrechen";
+
     TreeMap<String, ProgramPanel> programPanels;
 
     private JMenu fileMenu;
@@ -87,6 +87,12 @@ public class MainInterface extends JFrame {
     private GUIFacade guiFacade;
     private ControlFacade controlFacade;
 
+    private TreeMap<String, String> inputStrategies;
+    private TreeMap<String, String> expressionStrategies;
+    private TreeMap<String, String> stepsizeStrategies;
+
+    private LanguageFile languageFile;
+
     /**
      * Creates new MainInterface.
      */
@@ -103,11 +109,11 @@ public class MainInterface extends JFrame {
      *            the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            System.setErr(new PrintStream(new FileOutputStream(new File("error.log"))));
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
+//        try {
+//            System.setErr(new PrintStream(new FileOutputStream(new File("error.log"))));
+//        } catch (FileNotFoundException e1) {
+//            e1.printStackTrace();
+//        }
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -121,6 +127,7 @@ public class MainInterface extends JFrame {
         }
         MainInterface mainInterface = new MainInterface();
         mainInterface.setSize(1200, 900);
+        mainInterface.setMinimumSize(new Dimension(1165, 800));
         mainInterface.setVisible(true);
     }
 
@@ -135,8 +142,34 @@ public class MainInterface extends JFrame {
                 showCloseConfirmationDialog();
             }
         });
+        this.addWindowStateListener(new WindowStateListener() {			
+			@Override
+			public void windowStateChanged(WindowEvent arg0) {
+				for(String s : programPanels.keySet()){
+                	programPanels.get(s).resizeToHeight(arg0.getWindow().getHeight());
+                }
+                codePanel.updateUI();
+                codeScrollPane.updateUI();
+			}
+		});
+
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent componentEvent) {
+                super.componentResized(componentEvent);
+                for(String s : programPanels.keySet()){
+                	programPanels.get(s).resizeToHeight((int) componentEvent.getComponent().getSize().getHeight());
+                }
+                codePanel.updateUI();
+                codeScrollPane.updateUI();
+            }
+        });
         GroupLayout groupLayout = new GroupLayout(getContentPane());
         getContentPane().setLayout(groupLayout);
+
+        if (controlFacade != null) {
+            languageFile = controlFacade.getLanguageFile();
+        }
 
         configureMenuBar();
 
@@ -151,6 +184,7 @@ public class MainInterface extends JFrame {
                         .addComponent(rightControlBar)));
 
         changeLanguage();
+
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("DIbugger");
         ImageIcon icon = new ImageIcon("res/ui/logo_nongi.png");
@@ -189,8 +223,12 @@ public class MainInterface extends JFrame {
                 programPanels.put(nextId, newPanel);
                 codePanel.add(programPanels.get(nextId), codePanelLayout);
                 codePanel.updateUI();
+                
+                setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+                setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
             }
         });
+        newProgram.setToolTipText(NEW_PROGRAM_TOOLTIP);
         loadConfig = new JMenuItem();
         loadConfig.setText(LOAD_CONFIG);
         loadConfig.addActionListener(actionEvent -> {
@@ -291,13 +329,20 @@ public class MainInterface extends JFrame {
      * it.
      */
     private void initExpressionStrategyMenu() {
+        expressionStrategies = new TreeMap<>();
         expressionStrategyMenu = new JMenu(SUGGESTION_STRATEGY_EXPRESSION);
         ActionListener expressionStrategyListener = e -> {
             String expressionStrategy = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? ändern?
+            for (String key : expressionStrategies.keySet()) {
+                if (expressionStrategies.get(key).equals(expressionStrategy)) {
+                    controlFacade.selectRelationalExpressionStrategy(key);
+                }
+            }
         };
         for (String expressionStrategy : controlFacade.getRelationalExpressionSuggestionStrategies()) {
-            JMenuItem expressionStrategyItem = new JMenuItem(expressionStrategy);
+            String translation = languageFile.getTranslation(expressionStrategy);
+            JMenuItem expressionStrategyItem = new JMenuItem(translation);
+            expressionStrategies.put(expressionStrategy, translation);
             expressionStrategyItem.addActionListener(expressionStrategyListener);
             expressionStrategyMenu.add(expressionStrategyItem);
         }
@@ -307,29 +352,41 @@ public class MainInterface extends JFrame {
      * initializes the input strategy menu and adds an ActionListener to it.
      */
     private void initInputStrategyMenu() {
+        inputStrategies = new TreeMap<>();
         inputStrategyMenu = new JMenu(SUGGESTION_STRATEGY_INPUT);
         ActionListener inputStrategyListener = e -> {
             String inputStrategy = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? ändern?
+            for (String key : inputStrategies.keySet()) {
+                if (inputStrategies.get(key).equals(inputStrategy)) {
+                    controlFacade.selectInputValueStrategy(key);
+                }
+            }
         };
         for (String strategy : controlFacade.getInputValueSuggestionStrategies()) {
-            JMenuItem strategyItem = new JMenuItem(strategy);
+            String translation = languageFile.getTranslation(strategy);
+            inputStrategies.put(strategy, translation);
+            JMenuItem strategyItem = new JMenuItem(translation);
             strategyItem.addActionListener(inputStrategyListener);
             inputStrategyMenu.add(strategyItem);
         }
     }
-
     /**
      * initializes the step size strategy menu and adds an ActionListener to it.
      */
     private void initStepSizeStrategyMenu() {
+        stepsizeStrategies = new TreeMap<>();
         stepSizeStrategyMenu = new JMenu(SUGGESTION_STRATEGY_STEPSIZE);
         ActionListener stepSizeStrategyListener = e -> {
-            String stepSizeStrategyItem = ((JMenuItem) e.getSource()).getText();
-            // TODO: Map? Ändern?
+            String stepSizeStrategy = ((JMenuItem) e.getSource()).getText();
+            for (String key : stepsizeStrategies.keySet()) {
+                if (inputStrategies.get(key).equals(stepSizeStrategy)) {
+                    controlFacade.selectStepSizeStrategy(key);
+                }
+            }
         };
         for (String stepSizeStrategy : controlFacade.getStepSizeSuggestionStrategies()) {
-            JMenuItem stepSizeStrategyItem = new JMenuItem(stepSizeStrategy);
+            stepsizeStrategies.put(stepSizeStrategy, languageFile.getTranslation(stepSizeStrategy));
+            JMenuItem stepSizeStrategyItem = new JMenuItem(languageFile.getTranslation(stepSizeStrategy));
             stepSizeStrategyItem.addActionListener(stepSizeStrategyListener);
             stepSizeStrategyMenu.add(stepSizeStrategyItem);
         }
@@ -406,7 +463,8 @@ public class MainInterface extends JFrame {
                         .addComponent(controlButtonsPanel).addComponent(watchExpPanel).addComponent(condBreakPanel)));
         groupLayout.setVerticalGroup(groupLayout.createSequentialGroup().addComponent(controlButtonsPanel)
                 .addComponent(watchExpPanel).addComponent(condBreakPanel));
-        rightControlBar.setPreferredSize(new Dimension(200, 1000));
+        rightControlBar.setPreferredSize(new Dimension(300, 1000));
+        rightControlBar.setMaximumSize(new Dimension(300, 1000));
     }
 
     private void initProgramPanels() {
@@ -422,6 +480,7 @@ public class MainInterface extends JFrame {
         programPanels.get("B").showInput("k = 4;");
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
+        codePanel.setMinimumSize(new Dimension(450, 870));
 
         codeScrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -468,12 +527,25 @@ public class MainInterface extends JFrame {
         programPanels.clear();
         programPanels.put("A", new ProgramPanel("A", this));
         programPanels.put("B", new ProgramPanel("B", this));
+
+        programPanels.get("A").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_iterative.txt")));
+        programPanels.get("A").showInput("n = 5;");
+        programPanels.get("B").setText(controlFacade.loadProgramText(new File("res/ui/previewcode_recursive.txt")));
+        programPanels.get("B").showInput("k = 4;");
         codePanel.removeAll();
         codePanel.add(programPanels.get("A"), codePanelLayout);
         codePanel.add(programPanels.get("B"), codePanelLayout);
+        for (String id : programPanels.keySet()) {
+//            programPanels.get(id).resizeToHeight(codePanel.getHeight());
+            programPanels.get(id).updateUI();
+        }
+        codePanel.updateUI();
+        codeScrollPane.updateUI();
         WatchExpressionPanel.getWatchExpressionPanel(this).reset();
         ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).reset();
-
+        
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
     }
 
     /**
@@ -488,8 +560,13 @@ public class MainInterface extends JFrame {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
                 String input = "";
+                int i = 0;
                 for (String s : vars) {
-                    input += s + "; ";
+                    input += s;
+                    if(i<vars.size()-1){
+                    	input += "; ";
+                    }
+                    ++i;
                 }
                 programPanels.get(id).showInput(input);
             }
@@ -511,7 +588,16 @@ public class MainInterface extends JFrame {
                 break;
             }
         }
-        programPanels.put(programId, new ProgramPanel(programText, this));
+        programPanels.put(programId, new ProgramPanel(programId, this));
+        codePanel.removeAll();
+        for (ProgramPanel p : programPanels.values()) {
+            p.changeLanguage();
+            codePanel.add(p, codePanelLayout);
+        }
+        programPanels.get(programId).setText(programText);
+        codePanel.updateUI();
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
 
     }
 
@@ -525,7 +611,7 @@ public class MainInterface extends JFrame {
     List<String> getVariablesOfInspector(String programId) {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
-                return programPanels.get(id).getInspectedVariables();
+                return programPanels.get(id).getUninspectedVariables();
             }
         }
         return new ArrayList<>();
@@ -539,16 +625,16 @@ public class MainInterface extends JFrame {
      * @param variables
      *            new variables
      */
-    void showVariables(String programId, List<String> variables) {
+    void setHiddenVariables(String programId, List<String> variables) {
         for (String id : programPanels.descendingKeySet()) {
             if (id.equals(programId)) {
-                programPanels.get(id).showVariables(variables);
+                programPanels.get(id).setHiddenVariables(variables);
             }
         }
     }
 
     /**
-     * update-method as part of the obbserver pattern.
+     * update-method as part of the observer pattern.
      *
      * @param observable
      *            DebugLogicFacade
@@ -568,11 +654,14 @@ public class MainInterface extends JFrame {
      */
     void startDebug() {
         saveText();
+        WatchExpressionPanel.getWatchExpressionPanel(this).saveWEs();
+        ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).saveCBs();
         newProgram.setEnabled(false);
+        controlFacade.startDebug();
         for (ProgramPanel p : programPanels.values()) {
             p.startDebug();
         }
-        controlFacade.startDebug();
+
     }
 
     /**
@@ -596,7 +685,7 @@ public class MainInterface extends JFrame {
      */
     public void changeLanguage() {
         if (controlFacade != null) {
-            LanguageFile languageFile = controlFacade.getLanguageFile();
+            languageFile = controlFacade.getLanguageFile();
             ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).changeLanguage();
             WatchExpressionPanel.getWatchExpressionPanel(this).changeLanguage();
             CommandPanel.getCommandPanel(this).changeLanguage();
@@ -652,6 +741,8 @@ public class MainInterface extends JFrame {
             codePanel.add(p, codePanelLayout);
         }
         codePanel.updateUI();
+        setSize((int)getSize().getWidth()+1, (int)getSize().getHeight());
+        setSize((int)getSize().getWidth()-1, (int)getSize().getHeight());
     }
 
     /**

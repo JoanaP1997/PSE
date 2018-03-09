@@ -1,0 +1,78 @@
+PROGRAM{
+	stepsize=1
+	name='A'
+	lastExecLine=0
+	PROGRAMTEXT{
+		def_blockLen=11
+int main (int n) {
+	int a = 1;
+	int b = 0;
+	int c = 34723;
+	while (a < 2*n) {
+		b = b + a;
+		a = a + 2;
+		c = c*a-b;
+	}
+	return b;
+}
+	}
+	INPUTVALUES{
+		n='5'
+	}
+	VARINSPECTOR{
+	}
+	BREAKPOINTS{
+	}
+}
+PROGRAM{
+	stepsize=1
+	name='B'
+	lastExecLine=0
+	PROGRAMTEXT{
+		def_blockLen=15
+int foo(int k) {
+	int i = 0;
+	int d = 0;
+	while(i < k) {
+	i = i +1;
+	d = d + k;
+}
+return d;
+}
+int main (int k) {
+
+	int a = 0;
+	a = foo(k);
+	return a;
+}
+	}
+	INPUTVALUES{
+		k='4'
+	}
+	VARINSPECTOR{
+	}
+	BREAKPOINTS{
+	}
+}
+WATCHEXPR{
+	expression='A.i * B.k'
+	SCOPE{
+		begin=1
+		end=11
+	}
+	SCOPE{
+		begin=1
+		end=15
+	}
+}
+CONDBREAKPOINT{
+	expression='A.i <= B.k'
+	SCOPE{
+		begin=1
+		end=11
+	}
+	SCOPE{
+		begin=1
+		end=15
+	}
+}

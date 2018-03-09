@@ -43,7 +43,7 @@ public class TextInputBuffer {
         List<ProgramInput> programs = new ArrayList<>();
         for (int i = 0; i < inputTexts.size(); i++) {
             String inputValuesString = inputTexts.get(i);
-            List<String> variablesAndValues = Arrays.asList(inputValuesString.split(";"));
+            List<String> variablesAndValues = new ArrayList<>(Arrays.asList(inputValuesString.split(";")));
             String programIdentifier = programIdentifiers.get(i);
             ProgramInput input = new ProgramInput(programTexts.get(i), variablesAndValues, 0, programIdentifier);
 

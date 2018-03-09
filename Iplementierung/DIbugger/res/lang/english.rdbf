@@ -1,5 +1,10 @@
 langID='english'
 langName='English'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Exceeded maximum iterations
+	
+}
 german{
 	def_blockLen=1
 German
@@ -296,8 +301,7 @@ Start debugging
 ui_we_tooltip{
 	def_blockLen=3
 <html>Click first cell for options, <br>
-middle cell for changing the watchexpression, <br>
-middle cell of last line to add a new watchexpression.</html>
+middle cell for changing the watchexpression.</html>
 
 }
 ui_options{
@@ -412,7 +416,7 @@ Settings
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-The File contains a invalid Line Type.
+The File is invalid.
 
 }
 ui_stepsize_tooltip{
@@ -454,6 +458,26 @@ ui_continue_tooltip{
 Debug until next active breakpoint
 
 }
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+Simple stepsize suggestion
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+Simple input suggestion
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+Simple relational suggestion
+
+}
+ui_stepback_tooltip{
+	def_blockLen=1
+Excecute a step back
+
+}
 ui_varinspector_tooltip{
 	def_blockLen=1
 Mark variable then hide it by right clicking
@@ -469,6 +493,11 @@ ui_load_program_text{
 Load Program Text
 
 }
+ui_load_program{
+	def_blockLen=1
+Load Program
+
+}
 dl_exc_already_declared{
 	def_blockLen=1
 Variable already exists.
@@ -476,7 +505,7 @@ Variable already exists.
 }
 ui_load_config{
 	def_blockLen=1
-Save config file
+Load config file
 
 }
 ui_debug_continue{
@@ -487,8 +516,7 @@ Continue
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Click first cell for options, <br>
-middle cell for changing the conditional breakpoint, <br>
-middle cell of last line to add a new breakpoint.</html>
+middle cell for changing the conditional breakpoint.</html>
 
 }
 control_occurrence_message{

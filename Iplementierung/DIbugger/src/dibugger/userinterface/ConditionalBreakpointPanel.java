@@ -9,11 +9,14 @@ import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -24,7 +27,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
     private static ConditionalBreakpointPanel singleton = null;
     private MainInterface mainInterface;
-    private Object[][] dataEntries;
+    private java.util.List<String[]> dataEntries;
     private HashMap<Integer, Integer> idMap = new HashMap<>();
     private int currentHighestId = 0;
     private HashMap<Integer, ArrayList<ScopeTuple>> scopes = new HashMap<>();
@@ -63,14 +66,40 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
      */
     public void update(Observable o) {
         DebugLogicFacade debugLogicFacade = (DebugLogicFacade) o;
-        for (int i = 0; i <= currentHighestId; i++) {
-            try {
-                if (dataEntries[i] != null) {
-                    dataEntries[i][2] = debugLogicFacade.getCBValue(i);
-                    table.getModel().setValueAt(dataEntries[i][2], i, 2);
+        Map<Integer, String> map = debugLogicFacade.getConditionalBreakpointMap();
+//        for (int i = 0; i <= currentHighestId; i++) {
+//            try {
+//            	String val = map.get(i);
+//                if (dataEntries[i] != null && val!=null) {
+//                    dataEntries[i][1] = val;
+//                    dataEntries[i][2] = debugLogicFacade.getCBValue(i);
+//                    table.getModel().setValueAt(dataEntries[i][1], i, 1);
+//                    table.getModel().setValueAt(dataEntries[i][2], i, 2);
+//                }
+//            } catch (DIbuggerLogicException e) {
+//                // TODO do nothing?
+//            }
+//        }
+        for(Integer i : map.keySet()){
+        	if(!idMap.containsValue(i)){
+        		addRow(i);
+        	}
+        }
+        Object[][] oa = new Object[dataEntries.size()][3];
+        for(int i=0;i<dataEntries.size();++i){
+        	try {
+            	String val = map.get(idMap.get(i));
+            	String[] data = dataEntries.get(i);
+                if (data != null && val!=null) {
+                	data[1] = val;
+                	data[2] = ""+debugLogicFacade.getCBValue(idMap.get(i));
+                	for(int j=0;j<3;++j){
+                		oa[i][j] = data[j];
+                		table.getModel().setValueAt(data[j], i, j);
+                	}
                 }
             } catch (DIbuggerLogicException e) {
-                // TODO do nothing?
+                // TODO: Muss von der LogicFacade gefangen werden
             }
         }
         table.updateUI();
@@ -79,17 +108,33 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
     private void initComponents() {
 
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JButton addButton = new JButton("+");
+        this.add(addButton);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addRow();
+                mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "A.i <= B.k");
+                getConditionalBreakpointPanel(mainInterface).updateUI();
+                saveCBs();
+            }
+        });
+
         idMap.put(0, 0);
 
         panelType = "Conditional Breakpoints:";
         String[] columnTitles;
         columnTitles = new String[] { "Opt", panelType, "=" };
-        dataEntries = new Object[1][3];
-        dataEntries[0][0] = " ";
-        dataEntries[0][1] = "5 == 3";
-        dataEntries[0][2] = "false";
-        mainInterface.getControlFacade().createConditionalBreakpoint(0, "5 == 3");
-        tableModel = new DefaultTableModel(dataEntries, columnTitles) {
+        dataEntries = new ArrayList<String[]>();
+        String[] s = new String[3];
+        s[0] = " ";
+        s[1] = "A.i <= B.k";
+        s[2] = "false";
+        dataEntries.add(s);
+        mainInterface.getControlFacade().createConditionalBreakpoint(0, "A.i <= B.k");
+        tableModel = new DefaultTableModel(createDataFromList(), columnTitles) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return column == 1;
@@ -109,9 +154,6 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
                     int id = idMap.get(row);
                     new ExpressionChangePopUp(mainInterface, "ConditionalBreakpoint", row, table,
                             ConditionalBreakpointPanel.this, id);
-                }
-                if (table.rowAtPoint(p) == table.getRowCount() - 1 & table.columnAtPoint(p) == 1) {
-                    addRow(p);
                 }
                 saveCBs();
             }
@@ -136,6 +178,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
                 saveCBs();
             }
         });
+        table.setSize(50,50);
 
         JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -164,6 +207,7 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
      */
     public void reset() {
         singleton = new ConditionalBreakpointPanel(mainInterface);
+        this.updateUI();
     }
 
     /**
@@ -173,36 +217,50 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
      *            row that should be deleted
      */
     public void deleteEntry(int rowToDelete) {
-        ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
-        if (dataEntriesAsList.size() > 1) {
+//        ArrayList<Object[]> dataEntriesAsList = new ArrayList<>(Arrays.asList(dataEntries));
+    	if (dataEntries.size() > 0) {
             tableModel.removeRow(rowToDelete);
-            dataEntriesAsList.remove(rowToDelete);
-            for (int row : idMap.keySet()) {
-                if (row > rowToDelete) {
-                    idMap.put(row - 1, idMap.get(row));
-                }
+            dataEntries.remove(rowToDelete);
+//            for (int row : idMap.keySet()) {
+//                if (row > rowToDelete) {
+//                    idMap.put(row - 1, idMap.get(row));
+//                }
+//            }
+            for(int i=rowToDelete;i<dataEntries.size()-1;++i){
+            	idMap.put(i, idMap.get(i+1));
             }
         }
-        dataEntriesAsList.toArray(dataEntries);
+//        dataEntriesAsList.toArray(dataEntries);
     }
 
-    private void addRow(Point p) {
-        int row = table.rowAtPoint(p) + 1;
+    private void addRow() {
+        int row = this.table.getRowCount();
         idMap.put(row, currentHighestId + 1);
         currentHighestId++;
-        Object[] newRow = { " ", "5 == 3 ", "" };
+        String[] newRow = { " ", "A.i <= B.k", "" };
         tableModel.addRow(newRow);
-        ArrayList<Object[]> dataAsList = new ArrayList<>(dataEntries.length);
-        dataAsList.addAll(Arrays.asList(dataEntries));
-        dataAsList.add(newRow);
-        dataEntries = new Object[dataAsList.size()][];
-        for (int j = 0; j < dataAsList.size(); j++) {
-            dataEntries[j] = dataAsList.get(j);
-        }
-        mainInterface.getControlFacade().createConditionalBreakpoint(currentHighestId, "5 == 3");
+//        ArrayList<Object[]> dataAsList = new ArrayList<>(dataEntries.length);
+//        dataAsList.addAll(Arrays.asList(dataEntries));
+//        dataAsList.add(newRow);
+//        dataEntries = new Object[dataAsList.size()][];
+//        for (int j = 0; j < dataAsList.size(); j++) {
+//            dataEntries[j] = dataAsList.get(j);
+//        }
+        dataEntries.add(newRow);
+        this.updateUI();
     }
 
-    private void saveCBs() {
+    private void addRow(int id) {
+        int row = this.table.getRowCount();
+        idMap.put(row, id);
+        currentHighestId = Math.max(currentHighestId, id);
+        String[] newRow = { " ", "A.i <= B.k", " " };
+        tableModel.addRow(newRow);
+        dataEntries.add(newRow);
+        this.updateUI();
+    }
+    
+    protected void saveCBs() {
         for (int j = 0; j < table.getRowCount(); j++) {
             mainInterface.getControlFacade().changeConditionalBreakpoint(idMap.get(j),
                     table.getModel().getValueAt(j, 1).toString(), scopes.get(j));
@@ -212,5 +270,16 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     void changeLanguage() {
         LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
         table.setToolTipText(languageFile.getTranslation("ui_cb_tooltip"));
+    }
+    
+    private Object[][] createDataFromList(){
+    	Object[][] o = new Object[dataEntries.size()][3];
+    	for(int i=0;i<dataEntries.size();++i){
+    		String[] s = dataEntries.get(i);
+    		for(int j=0;j<3;++j){
+    			o[i][j] = s[j];
+    		}
+    	}
+    	return o;
     }
 }

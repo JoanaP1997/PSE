@@ -109,7 +109,7 @@ public class RDBFDBWriter extends DBFileWriter {
     @Override
     public void saveLanguageFile(LanguageFile file) {
         File f0 = new File(LanguageFile.DEFAULT_LANG_FILE_PATH + file.getLangID() + ".rdbf");
-        f0.mkdirs();
+        f0.getParentFile().mkdirs();
         RDBFFile f = new RDBFFile(f0);
         f.addData(new RDBFData("langID", "'" + file.getLangID() + "'"));
         f.addData(new RDBFData("langName", "'" + file.getName() + "'"));

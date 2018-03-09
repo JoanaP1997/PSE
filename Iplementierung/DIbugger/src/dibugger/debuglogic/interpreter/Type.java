@@ -7,7 +7,8 @@ package dibugger.debuglogic.interpreter;
  *
  */
 public enum Type {
-    NULL(new ConstantTerm(null)), INT(new ConstantTerm(new IntValue(0))), LONG(
+	
+    NULL(new ConstantTerm(null)), INT(new ConstantTerm(new IntValue(4))), LONG(
             (new ConstantTerm(new LongValue(0)))), FLOAT((new ConstantTerm(new FloatValue(0)))), DOUBLE(
                     (new ConstantTerm(new DoubleValue(0)))), CHAR((new ConstantTerm(new CharValue('a')))), BOOLEAN(
                             (new ConstantTerm(new BooleanValue(false)))), ARRAY((new ConstantTerm(null)));
@@ -18,7 +19,24 @@ public enum Type {
     }
 
     public Term getDefault() {
-        return this.defaultConstantTerm;
+       switch (this.name()) {
+         case "VOID":
+             return null;
+         case "INT":
+        	 return new ConstantTerm(new IntValue(1));
+         case "LONG":
+        	 return new ConstantTerm(new LongValue(1));
+         case "FLOAT":
+        	 return new ConstantTerm(new FloatValue(1.20f));
+         case "DOUBLE":
+        	 return new ConstantTerm(new DoubleValue(1.20f));
+         case "CHAR":
+        	 return new ConstantTerm(new CharValue('a'));
+         case "BOOLEAN":
+             return new ConstantTerm(new BooleanValue(true));
+       }
+         return null;
+         
     }
 
     /**

@@ -53,8 +53,7 @@ public class RoutineCommand extends Command {
 
     @Override
     public List<TraceState> run() throws DIbuggerLogicException {
-
-        // OLD SCOPE
+    	 // OLD SCOPE
         Scope scope = this.controller.getCurrentScope();
         // check number of arguments
         if (this.expectedTypes.size() != this.args.size() || this.expectedTypes.size() != this.identifiers.size()) {
@@ -84,18 +83,19 @@ public class RoutineCommand extends Command {
         // run all kids while return value not set
         List<TraceState> traceStateList = new ArrayList<TraceState>();
         int i = 0;
+        traceStateList.add(new TraceState(TraceStatePosition.AFTERFUNCCALL, this.linenumber, newScope));
         while (i < this.children.size() && !newScope.isRoutineFinished()) {
             traceStateList.addAll(this.children.get(i).run());
             i++;
         }
-
+        
         // check if return value of controller is set and of correct type
         TermValue returnValue = this.controller.getReturnValue();
 
         if ((returnValue == null) && (this.expectedReturnType != Type.NULL)) {
             throw new MissingReturnCallException(this.linenumber);
         } else if (returnValue != null && returnValue.getType() != this.expectedReturnType) {
-            throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value");
+        	throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value"); 
         }
 
         // pop Scope

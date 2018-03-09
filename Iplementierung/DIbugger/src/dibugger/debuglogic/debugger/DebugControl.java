@@ -34,7 +34,7 @@ public class DebugControl {
     private List<List<Breakpoint>> list_breakpoints;
 
     private List<ListIterator<TraceState>> list_traceIterator;
-    private List<TraceState> list_currentTraceStates;
+    private List<TraceState> list_currentTraceStates,list_lastTraceStates;
 
     private List<ProgramInput> list_programInput;
 
@@ -60,7 +60,8 @@ public class DebugControl {
 
         list_traceIterator = new ArrayList<ListIterator<TraceState>>();
         list_currentTraceStates = new ArrayList<TraceState>();
-
+        list_lastTraceStates = new ArrayList<TraceState>();
+        
         list_programInput = new ArrayList<ProgramInput>();
 
         list_stepSize = new ArrayList<Integer>();
@@ -140,33 +141,15 @@ public class DebugControl {
                     stepID = maxSteps;
                 }
             }
-        } else if (type == STEP_OUT) {
-            boolean[] breaked = new boolean[numPrograms];
-            boolean forceStop = false;
-            // infinite loop till end of function
-            while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
-                boolean breakpointFound = false;
-                for (int i = 0; i < numPrograms; ++i) {
-                    if (!breaked[i]) {
-                        boolean iterated = singleStepNoEvaluation(i, STEP_NORMAL);
-                        TraceState state = list_currentTraceStates.get(i);
-                        breakpointFound = !breakpointFound ? evaluateBreakpoints(i) : true;
-                        // only stop stepping when trace state is after a return
-                        // call
-                        if (breakpointFound || state.getPosition() == TraceStatePosition.AFTERRETURN || !iterated) {
-                            breaked[i] = true;
-                        }
-                    }
-                }
-                breakpointFound = evaluateConditionalBreakpoints();
-                if (breakpointFound) {
-                    forceStop = true;
-                }
-            }
-        } else if (type == STEP_OVER) {
+        } else if (type == STEP_OVER || type == STEP_OUT) {
             int[] inline = new int[numPrograms];
+            if(type==STEP_OUT){
+            	for(int i=0;i<numPrograms;++i){
+            		inline[i] = 1;
+            	}
+            }
             boolean[] breaked = new boolean[numPrograms];
-            boolean first = true;
+            boolean first = type==STEP_OVER;
             boolean forceStop = false;
             while (!checkBoolArrayOnValue(breaked, true) && !forceStop) {
                 boolean breakpointFound = false;
@@ -463,9 +446,18 @@ public class DebugControl {
         list_traceIterator.clear();
         list_watchExpressions.clear();
         list_condBreakpoints.clear();
-
+        list_currentTraceStates.clear();
+        
         maxIterations = DEF_IT;
         maxFunctionCalls = DEF_MAX_FUNC_CALLS;
+    }
+    
+    public void endRun(){
+    	if(list_currentTraceStates.size()>0){
+	    	list_lastTraceStates.clear();
+	    	list_lastTraceStates.addAll(list_currentTraceStates);
+	    	list_currentTraceStates.clear();
+    	}
     }
 
     /**
@@ -563,11 +555,17 @@ public class DebugControl {
     public List<String> getWatchExpressions() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_watchExpressions.size(); ++i) {
-            l.add(list_watchExpressions.get(i).getSpecifier());
+            WatchExpression we = list_watchExpressions.get(i);
+        	if(we!=null){
+            	l.add(we.getSpecifier());
+            }
+        	else{
+        		l.add(null);
+        	}
         }
         return l;
     }
-
+    
     /**
      * Getter for the Scope Begin of a given Watch Expression
      * 
@@ -640,7 +638,13 @@ public class DebugControl {
     public List<String> getConditionalBreakpoints() {
         List<String> l = new ArrayList<String>();
         for (int i = 0; i < list_condBreakpoints.size(); ++i) {
-            l.add(list_condBreakpoints.get(i).getSpecifier());
+        	ConditionalBreakpoint cb = list_condBreakpoints.get(i);
+            if(cb!=null){
+            	l.add(cb.getSpecifier());
+            }
+            else{
+            	l.add(null);
+            }
         }
         return l;
     }
@@ -754,8 +758,8 @@ public class DebugControl {
      * @return the value of the given variable
      */
     public String getValueOf(String programNameID, String variable) {
-        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
-            TraceState state = list_currentTraceStates.get(i);
+        for (int i = 0; i < Math.max(list_currentTraceStates.size(), list_lastTraceStates.size()); ++i) {
+            TraceState state = (i<list_currentTraceStates.size()) ? list_currentTraceStates.get(i) : list_lastTraceStates.get(i);
             if (state.getProgramId().equals(programNameID)) {
                 return state.getValueOf(variable).toString();
             }
@@ -768,15 +772,24 @@ public class DebugControl {
      * 
      * @return list containing all variables
      */
-    public List<String> getAllVariables(String programNameID) {
-        for (int i = 0; i < list_currentTraceStates.size(); ++i) {
-            TraceState state = list_currentTraceStates.get(i);
-            if (state.getProgramId().equals(programNameID)) {
-                return new ArrayList<String>(state.getAllVariableIdentifiers());
-            }
-        }
-        return new ArrayList<String>();
-    }
+	public List<String> getAllVariables(String programNameID) {
+		if (list_currentTraceStates.size() > 0) {
+			for (int i = 0; i < list_currentTraceStates.size(); ++i) {
+				TraceState state = list_currentTraceStates.get(i);
+				if (state.getProgramId().equals(programNameID)) {
+					return new ArrayList<String>(state.getAllVariableIdentifiers());
+				}
+			}
+		} else {
+			for (int i = 0; i < list_lastTraceStates.size(); ++i) {
+				TraceState state = list_lastTraceStates.get(i);
+				if (state.getProgramId().equals(programNameID)) {
+					return new ArrayList<String>(state.getAllVariableIdentifiers());
+				}
+			}
+		}
+		return new ArrayList<String>();
+	}
 
     /**
      * Getter for the return value of a given program, if the current TraceState

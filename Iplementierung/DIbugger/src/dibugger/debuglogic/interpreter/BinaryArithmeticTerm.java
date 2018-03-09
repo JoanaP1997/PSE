@@ -9,4 +9,18 @@ package dibugger.debuglogic.interpreter;
 public abstract class BinaryArithmeticTerm extends Term {
     protected Term left;
     protected Term right;
+    /**
+     * Returns the left child.
+     * @return left child
+     */
+    public Term getLeftChild() {
+    	return left;
+    }
+    /**
+     * Returns the right child.
+     * @return right child
+     */
+    public Term getRightChild() {
+    	return right;
+    }
 }

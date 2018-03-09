@@ -8,6 +8,6 @@ public class ActuallyHelpfulErrorListener extends BaseErrorListener {
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
             String msg, RecognitionException e) throws ActuallyHelpfulSyntaxException {
-        throw new ActuallyHelpfulSyntaxException(e.getMessage());
+        throw new ActuallyHelpfulSyntaxException("Problem in line " + line + " with character number " + charPositionInLine);
     }
 }

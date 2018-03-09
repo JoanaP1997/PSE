@@ -42,7 +42,8 @@ public class CallingAssignment extends Command {
         }
         // set value
         scope.setValueOf(this.identifier, value);
-        traceStateList.add(new TraceState(TraceStatePosition.NOTSPECIAL, this.linenumber, scope));
+        traceStateList.remove(traceStateList.size()-1); //remove the state added by the function call and replace it with the state with the assignment done
+        traceStateList.add(new TraceState(TraceStatePosition.AFTERRETURN, this.linenumber, scope));
         return traceStateList;
     }
 

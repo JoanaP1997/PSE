@@ -43,6 +43,8 @@ public class CommandPanel extends JPanel {
         start = new JButton();
         start.addActionListener(actionEvent -> {
             startDebug();
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
         });
         ImageIcon iconStart = new ImageIcon("res/ui/play-arrow.png");
         start.setIcon(iconStart);
@@ -52,6 +54,8 @@ public class CommandPanel extends JPanel {
         stop.setEnabled(false);
         stop.addActionListener(actionEvent -> {
             stopDebug();
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
         });
         ImageIcon iconStop = new ImageIcon("res/ui/stop-button.png");
         stop.setIcon(iconStop);
@@ -59,27 +63,47 @@ public class CommandPanel extends JPanel {
 
         step = new JButton(("Step"));
         step.setEnabled(false);
-        step.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_NORMAL));
+        step.addActionListener(actionEvent -> {
+            mainInterface.getControlFacade().step(DebugControl.STEP_NORMAL);
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
+        });
         step.setToolTipText(STEP_TOOLTIP);
 
         stepOver = new JButton("StepOver");
         stepOver.setEnabled(false);
-        stepOver.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OVER));
+        stepOver.addActionListener(actionEvent -> {
+            mainInterface.getControlFacade().step(DebugControl.STEP_OVER);
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
+        });
         stepOver.setToolTipText(STEP_OVER_TOOLTIP);
 
         stepOut = new JButton(("StepOut"));
         stepOut.setEnabled(false);
-        stepOut.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_OUT));
+        stepOut.addActionListener(actionEvent -> {
+            mainInterface.getControlFacade().step(DebugControl.STEP_OUT);
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
+        });
         stepOut.setToolTipText(STEP_OUT_TOOLTIP);
 
         stepBack = new JButton("StepBack");
         stepBack.setEnabled(false);
-        stepBack.addActionListener(actionEvent -> mainInterface.getControlFacade().step(DebugControl.STEP_BACK));
+        stepBack.addActionListener(actionEvent -> {
+            mainInterface.getControlFacade().step(DebugControl.STEP_BACK);
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
+        });
         stepBack.setToolTipText(STEP_BACK_TOOLTIP);
 
         continueDebug = new JButton("Continue");
         continueDebug.setEnabled(false);
-        continueDebug.addActionListener(actionEvent -> mainInterface.getControlFacade().continueDebug());
+        continueDebug.addActionListener(actionEvent -> {
+            mainInterface.getControlFacade().continueDebug();
+            WatchExpressionPanel.getWatchExpressionPanel(mainInterface).saveWEs();
+            ConditionalBreakpointPanel.getConditionalBreakpointPanel(mainInterface).saveCBs();
+        });
         continueDebug.setToolTipText(CONTINUE_TOOLTIP);
 
         groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
@@ -140,6 +164,7 @@ public class CommandPanel extends JPanel {
     public void reset() {
         stop.setEnabled(false);
         start.setEnabled(true);
+        this.updateUI();
     }
 
     /**
