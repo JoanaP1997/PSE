@@ -575,19 +575,23 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-1/szenario-1_1/prozessor_szenario-1-1.png}
             \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 9060 B}
         \end{figure}
-        \subparagraph{Methoden mit größter Ausführungszeit (inklusive Aufrufe anderer Funktionen) in echter Prozessorzeit (EPZ)}
+        \subparagraph{Methoden mit größter Ausführungszeit (inklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
         \begin{itemize}
             \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 51,6\% der Gesamt-EPZ
-            \item{step}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 13,5\% der Gesamt-EPZ
+            \item{step}: (in \textit{ControlFacade} aus \textit{dibugger.control}) mit 12,7\% der Gesamt-EPZ
             \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,2\% der Gesamt-EPZ
         \end{itemize}
-        \subparagraph{Methoden mit größter Ausführungszeit (exklusive Aufrufe anderer Funktionen) in echter Prozessorzeit (EPZ)}
+        \subparagraph{Methoden mit größter Ausführungszeit (exklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
         \begin{itemize}
-
+            \item{update}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 7,1\% der Gesamt-EPZ 
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 5,9\% der Gesamt-EPZ
+            \item{closure\_}: (in einer Klasse des Paketes \textit{org.antlr.v4.runtime.atn} mit 4,4\% der Gesamt-EPZ
         \end{itemize}
         \subparagraph{Meistaufgerufene Methoden}
         \begin{itemize}
-
+            \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 4,439 Aufrufen
+            \item{getLineNumber}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 4,439 Aufrufen
         \end{itemize}
     \subsubsection{Szenario 2}
         \paragraph{Informelle Beschreibung}
@@ -597,12 +601,30 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{Eingaben:} Die zwei Programme der Nutzerstudie, siehe auch \ref{code}
             \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, (Netz-) Browser, Dokumentbetrachter, javac, VisualVm  
         \end{itemize}
-       \paragraph{Statistiken}
-       \begin{figure}[!h]
+        \paragraph{Statistiken}
+        \begin{figure}[!h]
             \centering
             \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-1/szenario-1_2/prozessor_szenario-1-2.png}
             \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 9520 B}
-       \end{figure}
+        \end{figure}
+        \subparagraph{Methoden mit größter Ausführungszeit (inklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+            \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 42,3\% der Gesamt-EPZ
+            \item{step}: (in \textit{ControlFacade} aus \textit{dibugger.control}) mit 12,7\% der Gesamt-EPZ
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,9\% der Gesamt-EPZ
+        \end{itemize}
+        \subparagraph{Methoden mit größter Ausführungszeit (exklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+            \item{update}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 7,9\% der Gesamt-EPZ 
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,5\% der Gesamt-EPZ
+            \item{update}: (im \textit{ConditionalBreakpointPanel} von \textit{dibugger.userinterface}) mit 3,2\% der Gesamt-EPZ 
+        \end{itemize}
+        \subparagraph{Meistaufgerufene Methoden}
+        \begin{itemize}
+            \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 10,060 Aufrufen
+            \item{getLineNumber}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 10,060 Aufrufen
+        \end{itemize}
     \subsubsection{Szenario 3}
         \paragraph{Informelle Beschreibung}
         \begin{itemize}
@@ -618,6 +640,24 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-3/prozessor_szenario-3.png}
             \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 1436200 B}
         \end{figure}   
+        \subparagraph{Methoden mit größter Ausführungszeit (inklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+            \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 56,1\% der Gesamt-EPZ
+            \item{loadConfiguration}: (in der Klasse \textit{ControlFacade} aus dem Paket \textit{dibugger.control}) mit 15,7\% der Gesamt-EPZ
+            \item{saveWEs}: (in \textit{WatchExpressionPanel} von \textit{dibugger.userinterface}) mit 3,7\% der Gesamt-EPZ
+        \end{itemize}
+        \subparagraph{Methoden mit größter Ausführungszeit (exklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+            \item{closure\_}: (in einer Klasse des Paketes \textit{org.antlr.v4.runtime.atn} mit 7,1\% der Gesamt-EPZ
+            \item{update}: (im \textit{ConditionalBreakpointPanel} von \textit{dibugger.userinterface}) mit 3,7\% der Gesamt-EPZ 
+            \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
+        \end{itemize}
+        \subparagraph{Meistaufgerufene Methoden}
+        \begin{itemize}
+            \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
+            \item{clone} (in der Klasse \textit{IntValue} aus dem Paket \textit{dibugger.debuglogic.interpreter}) mit 324513 Aufrufen
+            \item{getCurrentScope} (in der Klasse \textit{GenerationController} aus dem Paket \textit{dibugger.debuglogic.interpreter}) mit 156860 Aufrufen
+        \end{itemize}
     \subsubsection{Schlussfolgerung}
 
 \paragraph{Tiefe Rekursion - Ackermann}
