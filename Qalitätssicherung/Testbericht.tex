@@ -629,7 +629,6 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
         \paragraph{Informelle Beschreibung}
         \begin{itemize}
             \item{Dauer:} 6 Minuten 
-            \item{Aktionen des Nutzers:}  
             \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder \enquote{Schrittgröße}, Verwenden von Haltepunkten, bedingten Haltepunkten und \enquote{Watch-Expressions}, Speichern und Laden von Konfigurationsdateien, Ändern der Sprache, Ändern der Programme
             \item{Eingaben:} Elf Programme, darunter sechs mal Ackermann-Implementierung, die zwei Programme der Nutzerstudie, siehe auch \ref{code} und die bei Programmstart automatisch geladenen Programme
             \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
@@ -659,18 +658,22 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{getCurrentScope} (in der Klasse \textit{GenerationController} aus dem Paket \textit{dibugger.debuglogic.interpreter}) mit 156860 Aufrufen
         \end{itemize}
     \subsubsection{Schlussfolgerung}
+        Szenario 1 und Szenario 2 sind bis auf ihre Dauer und den nebenher vom Nutzer verwendeten Anwendungen identisch.
+        Anhand der Statistiken zu Szenario 1 und Szenario 2 lässt sich kein Schluss ziehen, einzig die Ausführungszeit pro Methode ist in Szenario 2 (wahrscheinlich) größer als in Szenario 1.\\
+        
+        In Szenario 1 machen Objekte der Präsentationskomponente \textit{UserInterface} den größten Anteil am Speicherverbrauch aus.
+        In Szenario 3 hingegen machen Objekte des erstellten Programmablaufpfades oder \textit{Trace} den größten Anteil am Speicherverbrauch aus.
+        Speicherlecks großen Ausmaßes wurden bei Untersuchungen des Speicherverbrauches nicht gefunden.
+        Eine mögliche Optimierung des Speicherverbrauches ist das Wiederverwenden von \textit{Trace}-Objekten, falls mehrmals das gleiche Programm geladen wird.
 
+        In Szenario 1 machen Methoden der Präsentationskomponente \textit{UserInterface} den größten Anteil an der Laufzeit aus.
+        Dazu gehört die Methode \textit{update}, die Teil des Beobachter-Musters ist.
+        In Szenario 3 machen Methoden die während der \textit{Trace}-Erzeugung aufgerufen werden, neben den Methoden der Präsentation, den größten Anteil der Laufzeit aus.
+        Eine mögliche Optimierung der Laufzeit ist eine Umimplementierung der Aktualisierungsstrategie des Modells, sodass pro \textit{update}-Aufruf weniger Daten von der Präsentation geholt werden, oder die Präsentation in einer kleineren Anzahl von Fällen aktualisiert wird.
+
+        Für die Umsetzung dieser Optimierung ist eine Umstrukturierung mehrerer Pakete von Nöten.
 \paragraph{Tiefe Rekursion - Ackermann}
 
-\newpage
-\section{Fazit}
-%TODO
-
-
-
-\newpage
-
-\printglossary[style=altlist, toctitle=Glossar]
 \newpage
 
 \section{Anhang}
