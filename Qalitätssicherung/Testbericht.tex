@@ -103,7 +103,7 @@ An dieser Stelle soll der Entwurf des \textit{DIbuggers} noch einmal kurz erläu
 \caption{Architekturdiagramm}
 \label{Architekturdiagramm}
 \end{figure}
-Die Architektur des \textit{DIbuggers} orientiert sich am Model-View-
+Die Architektur des \textit{DIbuggers} orientiert sich am Model-View-Control
 -Entwurfsmuster und beinhaltet ein weiteres Paket zum Umgang mit Dateien. Das Produkt ist entsprechend aufgeteilt in die vier Pakete \textit{DebugLogic} (Model), \textit{UserInterface} (View),  \textit{Control} (Control) und \textit{FileHandler}. 
 Dabei hat jedes Paket seine eigene Aufgabe:
 \begin{itemize}
@@ -129,17 +129,17 @@ Die Fehlertoleranz und Stabilität des Systems wurde hauptsächlich mit Hilfe vo
 \caption{Testüberdeckung der Pakete}\label{AbdeckungPakete}
 \end{figure}
 
-In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels Eclemma ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Der Interpreter hat eine höhere Abdeckung als die anderen Pakete, weil er im Gegensatz zu diesen prozentual gesehen weniger delegierende Methoden und Getter und Setter enthält.\\
-Die Gesamtabdeckung nach Klassen aufgeschlüsselt ist dem Archiv im SVN zu entnehmen.
+In Abbildung \ref{AbdeckungPakete} ist die durch JUnit Tests erreichte Anweisungs und Zweigüberdeckung (mittels \textit{Eclemma} ermittelt) dargestellt. Zu erwähnen ist, dass das User Interface, wie in \ref{gui} erklärt, nicht durch automatisierte Unittests überprüft wurde, sondern durch einen anderweitig ausgearbeiteten Testplan. Der Interpreter hat eine höhere Abdeckung als die anderen Pakete, weil er im Gegensatz zu diesen prozentual gesehen weniger delegierende Methoden und Getter und Setter enthält.\\
+Die Gesamtabdeckung nach Klassen aufgeschlüsselt ist dem Archiv im \textit{SVN} zu entnehmen.
 Im Archiv sind Zeilen-, Anweisungs-, Zweig- und Klassenüberdeckung auf Paket- und/oder Klassenebene dokumentiert.
 Nicht beinhaltet sind Angaben über die Abdeckung der Benutzeroberfläche mittels der in \ref{gui} beschriebenen Tests.
 Ein durch einen JUnit-Test gefundener Fehler besitzt durch den entsprechenden Test damit automatisch einen Regressionstest.
 
 \subsection{AnltrParser}\label{ANTLRPARSER}
-Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool Antlr (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
+Das Paket \textit{AntlrParser} besteht lediglich aus von dem verwendeten Tool \textit{Antlr} (siehe Entwurfsdokument Abschnitt 10.2) generierten Klassen. Da dieses Tool öffentlich bekannt und verbreitet ist, wurde es nicht explizit getestet. Die Korrektheit der von uns spezifizierten Grammatik, aus denen Antlr diese Klassen generiert, wurde im Rahmen der Tests des Paketes \textit{Interpreter} implizit getestet.
 \subsection{Interpreter}
 Im Interpreter wurden zunächst die Klassen der im Folgenden beschriebenen Reihenfolge für sich getestet. 
-Dabei wurden die wichtigsten Methoden der Klassen zunächst so durch Unit-Tests getestet, dass eine möglichst hohe Testüberdeckung erreicht wurde. Die resultierende Überdeckung ist in Abbildung \ref{AbdeckungImInterpreter} dargestellt. Hierbei ist zu beachten, dass die mit \enquote{(av.)} gekennzeichneten abstrakten Klassen, mit dem Durchschnitt der jeweiligen Überdeckung ihrer Subklassen aufgeführt werden. \\ Zu beachten ist hierbei, dass die Termklassen eine Zweigüberdeckung von 100\% haben, was dadurch zu begründen ist, dass diese lediglich an andere Terme oder das Typsystem weiterdelegieren. So konnte die Entwurfsentscheidung des Kompositums hier eine gute Testbarkeit verursachen.
+Dabei wurden die wichtigsten Methoden der Klassen zunächst so durch Unit-Tests getestet, dass eine möglichst hohe Testüberdeckung erreicht wurde. Die resultierende Überdeckung ist in Abbildung \ref{AbdeckungImInterpreter} dargestellt. Hierbei ist zu beachten, dass die mit \enquote{(av.)} gekennzeichneten abstrakten Klassen, mit dem Durchschnitt der jeweiligen Überdeckung ihrer Subklassen aufgeführt werden. \\ Zu beachten ist hierbei, dass die Termklassen eine Zweigüberdeckung von 100\% haben, was dadurch zu begründen ist, dass diese lediglich an andere Terme oder das Typsystem weiterdelegieren. So wurde durch die Entwurfsentscheidung für ein Kompositums hier eine gute Testüberdeckung erreicht.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\textwidth]{interpreterCoverage.png}
@@ -148,7 +148,7 @@ Dabei wurden die wichtigsten Methoden der Klassen zunächst so durch Unit-Tests 
 
 
 \subsubsection{Testen der Interpreterklassen}
-Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. Hierzu wird zunächst der Quelltext vom in \ref{ANTLRPARSER} erklärten Paket in einen Syntaxbaum überführt.
+Die Aufgabe des Interpreters ist das Ausführen der vom Nutzer als Quelltext gegebenen Programme. Hierzu wird zunächst der Quelltext vom, in \ref{ANTLRPARSER} erklärten Paket, in einen Syntaxbaum überführt.
 Zwei im Interpreterpaket angesiedelte \textit{Visitor}-Klassen übersetzen diesen in einen Baum aus \textit{Commandobjekten}. Diese Objekte nutzen wiederum \textit{Terme} und diese nutzen, sobald sie ausgewertet werden, \textit{TermValues}, die das Typsystem der Wlang-Sprache darstellen. 
 Da Commandklassen die Funktionsfähigkeit von Termen vorraussetzen und diese ein korrekt implementiertes Typsystem erfordern wurde dies hier in der Reihenfolge des Schreibens der Unittests berücksichtigt.
 So wurden zunächst Unittest für die Implementierungen der abstrakten Klasse \textit{TermValue} geschrieben:
@@ -175,7 +175,6 @@ Hierbei zeigten sich keine Fehler.\\
 Darauf wurden Tests geschrieben, die das Zusammenspiel innerhalb der gesamten Komponente Interpreter testet. Hierbei wurden insbesondere die Reaktion auf Ausnahmefälle und falsche Eingaben getestet.
 Das Zusammenspiel all dieser Komponenten wurde in den Paketweiten Tests und in den funktionalen Gesamttests überprüft. Das Paket \textit{Interpreter} wurde also hierbei von aussen als ganzes betrachtet. 
 Erwartet ist bei etwa einem semantisch oder syntaktisch falschen Programmtext, dass eine aussagekräftige Exception an den Aufrufer gegeben wird. Hierbei unterscheiden wir verschiedene Arten von \enquote{falschen} Eingaben:
-%TODO das muss noch ausformuliert und wirklich getestet werden.
 \subparagraph{Syntaktisch falsche Wlang-Programme}
 Beispielsweise:
 \begin{itemize}
@@ -212,7 +211,7 @@ Beispielsweise:
 Bei diesen Tests wurden das Werfen der erwarteten Exceptions überprüft, wobei von semantisch fehlerhaften Watch-Expressions ein \texttt{"?"} erwartet wurde. Hierbei ist ein in \ref{fehlerImInterpreter} beschriebener Fehler sichtbar geworden.
 
 \subsubsection{Im Interpreter gefundene Fehler}\label{fehlerImInterpreter}
-Während der Tests im Interpreterpaket zeigten Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
+Während der Tests im Interpreterpaket zeigten sich Fehler in der Umsetzung einiger Klassen. Diese wurden behoben, und durch das Nutzen von JUnit-Tests konnte sichergestellt werden, dass auch nach Beheben des Fehlers kein neuer Fehler dadurch entstand.\\
 In einigen Methoden der Subklassen von \textit{TermValue} zeigte sich, dass Typen des Ergebnisses nicht immer korrekt waren. So wertete sich \texttt{long} + \texttt{long} zu \texttt{double} aus. Diese Art von Fehler konnte durch ändern weniger Zeilen behoben werden.\\
 Weiterhin konnte in der Klasse \textit{ArrayAccessRelationalTerm} ein Fehler gefunden werden, der noch aus einer hier nicht durchgeführten Änderung einer Implementierungsentscheidung stammte. Genauer konnte ein Array mit dem Namen \texttt{a} in Programm Z unter dem Bezeichner \texttt{Z.a} nicht abgerufen werden, da die vorhandene Implementierung das Programm Z immer an 26. Stelle in der Liste der Programme vorsah. Auch dies war schnell behoben. Weitere Fehler ergaben sich bei den umfangreichen Klassentests nicht. \\
 
@@ -230,7 +229,7 @@ So konnten die im Interpreterpaket gefundenen Fehler alle behoben werden.
 
 \subsubsection{Testen der Klassen in Control}
 Das Paket \textit{dibugger.control} (Control) dient als Schnittstelle zwischen der Präsentationskomponente \textit{dibugger.userinterface} und der Modellkomponente \textit{dibugger.debuglogic} (DebugLogic).
-Control besitzt eine Fassade \textit{ControlFacade} und einer Klasse zum Aufrufen von Debugmechanismen aus DebugLogic \textit{DebugLogicController}.
+Control besitzt eine Fassade \textit{ControlFacade} und eine Klasse zum Aufrufen der Debugmechanismen aus DebugLogic \textit{DebugLogicController}.
 \textit{ControlFacade} und \textit{DebugLogicController} wurden nicht im Rahmen von Komponententests (d.h. Tests der Funktion der alleinstehenden Klasse) getestet, da sie ausschließlich an andere Klassen delegieren.\\
 \textit{FileHandlerInteractor} ist Teil des Paketes und zuständig für verwalten von Sprach- oder Konfigurationsdateien.
 Dazu gehören das Laden und Speichern von Konfigurationen des Programmes \textit{DIbugger}.
@@ -244,8 +243,8 @@ Um die Chance des Auffindens von Fehlern beim Testen dieser Algorithmen zu vergr
 \end{figure}
 
 \subsubsection{Testen des Ladens von Konfigurationsdateien}
-\textit{FileHandlerInteractor} ermöglicht dass Laden von Konfigurationsdateien mit der Methode \textit{applyConfiguration}.
-Dabei wird nach Auslesen einer solchen Datei DIbugger in den Stand zurückversetzt, in dem DIbugger sich beim Speichern der Datei befand.
+\textit{FileHandlerInteractor} ermöglicht das Laden von Konfigurationsdateien mit der Methode \textit{applyConfiguration}.
+Dabei wird nach Auslesen einer solchen Konfigurationsdatei der DIbugger in den Stand zurückversetzt, in dem er sich beim Speichern der Datei befand.
 Um dies zu ermöglichen speichert \textit{FileHandlerInteractor} die in der Datei enthaltenen Daten im Modell DebugLogic, wie zum Beispiel die Zeilennummern von bedingten Breakpoints.
 Außerdem wird die Präsentationskomponente \textit{dibugger.userinterface} dazu aufgefordert bestimmte Texte anzuzeigen wie zum Beispiel Programmtexte.
 Insgesamt werden aus diesen beiden Paketen 10 verschiedene Methoden aufgerufen.
@@ -259,7 +258,7 @@ Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurde d
 Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
 Der Methodenaufruf zum Speichern der Schrittgrößeneinstellung erfolgt über eine andere Klasse (\textit{dibugger.controlDebugLogicControl}) und beim Aufruf wird eine Programmkennung mitübergeben.
 Die übergebene Programmkennung muss aber vor Aufruf der Methode der Klasse (\textit{dibugger.control.DebugLogicController}) über eine andere Zugriffsmethode übergeben werden.
-Dies wurde zur Fehlerbehebung umgesetzt.
+Dies wurde umgesetzt und damit der Fehler behoben.
 
 Beim Laden von Konfigurationsdateien mittels \textit{applyConfiguration} wurden die in der Datei enthaltenen Watch-Expressions und bedingte Breakpoints mehrfach im Modell DebugLogic gespeichert.\\
 Der Fehler wurden beim Testen entdeckt (Testfall \textit{testApplyConfiguration\_valid} der Testklasse \textit{FileHandlerInteractorTest}).\\
@@ -342,7 +341,7 @@ Beim Laden von Konfigurationsdateien trat aufgrund von vertauschten Parametern i
 Es stellte sich während der Qualitätssicherungsphase heraus, dass im Editor stehender Text bei Markierung zum Teil verschwindet und erst wieder angezeigt wird, sobald der Benutzer mit der Maus außerhalb der \textit{javax.swing.JEditorPane}-Komponente klickt. Dieses Fehlverhalten ist darin begründet, dass für die Funktionalität der Breakpoints und Zeilennummerierung ein updaten der Komponente nötig ist. Wird währenddessen Text markiert, kann dieser aufgrund der Arbeitsweise des \textit{javax.swing.JEditorPane} nicht mehr korrekt dargestellt werden, bleibt aber bestehen. Somit stellt dieses Problem zwar ein Ärgernis dar, mindert aber nicht die Funktionalität des Produkts. \\ Obwohl die grobe Ursache des Problems gefunden wurde, konnte keine Möglichkeit gefunden werden, das Problem zu lösen ohne die Funktionalität der Zeilennummerierung oder der Breakpoints zu gefährden.
 \subsubsection{Performanz der Elemente der Benutzeroberfläche}
 \paragraph{Getestete Funktionen}
-Während sämtlichen Tests der Benutzeroberfläche wurde darauf geachtet, ob es spürbare und störende Zeitverzögerungen bei Benutzung des Produkts gibt. Dies war nicht der Fall, jedoch kann sich in den Tests des Gesamtprodukts noch herausstellen, dass sich das Generieren des Traces, bei Betätigung des \textit{Debugmodus starten}-Buttons, unter ungünstigen Bedingungen verzögern kann.
+Während sämtlicher Tests der Benutzeroberfläche wurde darauf geachtet, ob es spürbare und störende Zeitverzögerungen bei Benutzung des Produkts gibt. Dies war nicht der Fall, jedoch hat sich in den Tests des Gesamtprodukts herausgestellt, dass sich das Generieren des Traces, bei Betätigung des \textit{Debugmodus starten}-Buttons, unter ungünstigen Bedingungen (siehe 4.1.1) etwas verzögern kann.
 
 \label{testszenarien}
 \subsection{Testszenarien}
@@ -428,7 +427,7 @@ Im zweiten Teil der Untersuchung füllt die Versuchsperson einen zweiseitigen Fr
 
 \subsubsection{Auswertung}
 Getestet wurden acht Testpersonen (alle männlich, 20-27 Jahre alt, Studenten mit Haupt- oder Nebenfach Informatik).
-Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIBuggers}, wie zum Beispiel von Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen Problemen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
+Im Allgemeinen lässt sich sagen, dass das Nutzerhandbuch und die Übersichtlichkeit der Benutzeroberfläche als hilfreich und nutzerfreundlich empfunden wurden. Probleme ergaben sich vor allem beim Verständnis von speziellen Konzepten des \textit{DIbuggers}, wie zum Beispiel von Watch-Expressions, und beim Erlernen der WLang-Syntax. Diesen Problemen wurde mit der Verfeinerung von Exceptions und Änderungen an der Benutzeroberfläche sowie dem Nutzerhandbuch entgegengewirkt.\\
 Im Folgenden werden die Ergebnisse und ihre Verbesserung im Detail erklärt:
 
 \paragraph{Nutzen der Menüleiste (Aufgaben 1-3)}
@@ -489,8 +488,8 @@ Viele weitere Änderungen sind denkbar. So könnten noch mehr Exceptions eingef�
 Viele Anforderungen an das Produkt wurden bereits mit den Testszenarien der Benutzeroberfläche (\ref{testszenarien}) getestet, die aus den Anwendungsfällen aus dem Pflichtenheft generiert wurden, um die graphische Benutzeroberfläche zu testen.
 \\
  \\
-So wurden die zum Debugging-Mechanismus gehörenden funktionalen Anforderungen (FA10-30, 50-130, 180-215, 240, 310) durch das Testszenario zum Anwendungsfall 50 ("Codes debuggen") getestet.
-Das Einbinden von Programmen (FA170) wurde durch das Testszenario zu AF10 ("Hinzufügen von Programmen") abgedeckt, das Schreiben und Kopieren von Texten in Textfenster (FA150 und FA160) wurde durch das Testszenario zu AF20("Ändern von Programmen" und das Speichern der Konfigurationsdateien durch das Testszenario zu AF60 ("Speichern eines Durchlaufs") abgedeckt.
+So wurden die zum Debugging-Mechanismus gehörenden funktionalen Anforderungen (FA10-30, 50-130, 180-215, 240, 310) durch das Testszenario zum Anwendungsfall 50 (\enquote{Codes debuggen}) getestet.
+Das Einbinden von Programmen (FA170) wurde durch das Testszenario zu AF10 ("Hinzufügen von Programmen") abgedeckt, das Schreiben und Kopieren von Texten in Textfenster (FA150 und FA160) wurde durch das Testszenario zu AF20 (\enquote{Ändern von Programmen}) und das Speichern der Konfigurationsdateien durch das Testszenario zu AF60 (\enquote{Speichern eines Durchlaufs}) abgedeckt.
 \\
  \\
 Die Funktionalen Anforderungen zu Schrittgrößen (FA40) und Vorschlägen (FA220, 270, 280, 300) wurde durch folgendes Szenario abgedeckt: \\
@@ -505,20 +504,20 @@ Die Funktionale Anforderung, dass man mehr als zwei Programme gleichzeitig debug
 Die Anforderungen zu den Produktdaten bezüglich der Konfigurationsdatei wurden ebenfalls mittels des Testszenarios zu AF50 getestet. Die Sprachdateien wurden während des Testens der graphischen Benutzeroberfläche getestet. Für die Einstellungsdatei wurde ein weiteres Szenario entwickelt: \\
 \textbf{Szenario 3}: Der Benutzer führt AF50 aus, ändert dann die Sprache, schließt das Produkt und öffnet es dann anschließend erneut. \\
  \\
-Die Anforderungen zu den Produktleistungen wurden ebenfalls größtenteils durch das Testen der graphischen Benutzeroberfläche abgedeckt: Der Punkt Performanz der Benutzeroberfläche beinhaltet auch das Zeitverhalten des Produkts (PL10) und das Monkey Testing deckt die Fehlertoleranz (PL30) ab. Zur Genauigkeitsüberprüfung dienten die JUnit-Tests zu den TermValues die überprüft haben, ob die arithmetischen Operationen wie in Java ausgeführt werden. \\
+Die Anforderungen zu den Produktleistungen wurden ebenfalls größtenteils durch das Testen der graphischen Benutzeroberfläche abgedeckt: Der Punkt \textit{Performanz der Benutzeroberfläche} beinhaltet auch das Zeitverhalten des Produkts (PL10) und das Monkey Testing deckt die Fehlertoleranz (PL30) ab. Zur Genauigkeitsüberprüfung dienten die JUnit-Tests zu den TermValues die überprüft haben, ob die arithmetischen Operationen wie in Java ausgeführt werden. \\
  \\
 Die Benutzerfreundlichkeit (NA50) wurde durch die Nutzerstudie überprüft. 
 
 \subsubsection{Globale Testfälle des Pflichtenhefts} %TODO
-Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60 ("Setzen eines Breakpoints synchron in allen Textfenstern"), T100 ("Löschen aller Breakpoints eines Fensters") und T360 ("Verändern der Item-Reihenfolge im Variableninspektor"), welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
+Die globalen Testfälle aus dem Pflichtenheft T10 bis T380 wurden, bis auf die Ausnahmen T60 (\enquote{Setzen eines Breakpoints synchron in allen Textfenster}), T100 (\enquote{Löschen aller Breakpoints eines Fensters}) und T360 (\enquote{Verändern der Item-Reihenfolge im Variableninspektor}), welche zu keiner umgesetzten funktionalen Anforderung gehören, manuell ausgeführt und getestet. Bei wenigen Testfällen gab es dabei kleine Abänderungen, da die zugehörigen Funktionen anders implementiert wurden als im Pflichtenheft noch angenommen. \\
 Die Änderungen sind: \\
 \begin{itemize}
-	\item in manchen Testfällen wurden die Bezeichner von Aktionen (z.B. Namen von Buttons) verändert (z.B. T20 ("Öffnen einer Textdatei"), T40 ("Öffnen einer Konfiguration"))
-	\item in T70 ("Löschen eines Breakpoints in einem Textfenster") wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
-	\item  in T190 ("Korrektes Ausgeben der Ausgabewerte") wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
-	\item in T260 ("Löschen einer Bereichsbindung") kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
-	\item in T270 ("Anzeigen einer Bereichsbindung [bei Watch-Expressions]") und T330 ("Anzeigen einer Bereichsbindung [bei bedingten Breakpoints]") kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
-	\item in T370 ("Ein- und Ausblenden von Variablen") eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button \enquote{Ausgeblendete Variablen anzeigen} betätigt wird
+	\item in manchen Testfällen wurden die Bezeichner von Aktionen (z.B. Namen von Buttons) verändert (z.B. T20 (\enquote{Öffnen einer Textdatei}), T40 (\enquote{Öffnen einer Konfiguration}))
+	\item in T70 (\enquote{Löschen eines Breakpoints in einem Textfenster}) wird ein Breakpoint nun gelöscht indem man ihn mit Doppelklick entfernt statt mit einem einfachen Klick
+	\item  in T190 (\enquote{Korrektes Ausgeben der Ausgabewerte}) wird der Rückgabewert nicht erst nach Ende des Debuglaufs angezeigt sondern sofort nach Beginn
+	\item in T260 (\enquote{Löschen einer Bereichsbindung}) kann der Benutzer eine Bereichsbindung nur löschen, indem er als Bereich das gesamte Programm eingibt
+	\item in T270 (\enquote{Anzeigen einer Bereichsbindung [bei Watch-Expressions]}) und T330 (\enquote{Anzeigen einer Bereichsbindung [bei bedingten Breakpoints]}) kann man eine Bereichsbindung nur anzeigen, indem man auf das Optionenfeld der Watch-Expression klickt und \enquote{Bereichsbindung ändern} auswählt
+	\item in T370 (\enquote{Ein- und Ausblenden von Variablen}) eine Variable wird durch Auswählen und Rechtsklick entfernt und alle Variablen werden wieder angezeigt, wenn der Button \enquote{Ausgeblendete Variablen anzeigen} betätigt wird
 \end{itemize}
 
 \subsection{Weitere Testfälle}
@@ -531,7 +530,7 @@ Auch Randfälle der Produktnutzung wurden über Unit-Tests oder über die Benutz
 \item Endlosschleifen: Das Produkt benachrichtigt den Benutzer über das Überschreiten der von ihm ausgewählten maximalen Anzahl der Iterationen und das Auftreten im Programm und beendet den Debugvorgang.
 \item falsche Nutzereingaben: Das Produkt benachrichtigt den Benutzer über falsche Syntax und beendet den Debugvorgang. Syntaktisch falsche \textit{Relational Expressions} werden zu \enquote{?} ausgewertet.
 \item keine Nutzereingaben: Das Produkt sollte das Starten des Debuggens mit Hilfe von Default-Werten ermöglichen. Stattdessen wurde zunächst eine Syntax-Exception geworfen. Obwohl die entsprechende Funktionalität im Interpreter bereits implementiert war, hatten die Default-Werte nicht den Typ, den sie haben sollten, da das Objekt für den jeweiligen DefaultWert nicht richtig initialisiert wurde. Dieser Fehler wurde behoben und der entsprechende UnitTest \textit{testNoUserInputAlthoughExpected} in \textit{test.debuglogic.interpreter.StressTest} verhindert hier Regression.
-\item n Programme gleichzeitig debuggen: 
+\item n Programme gleichzeitig debuggen: Ab einer gewissen Anzahl und Länge von Programmen, beziehungsweise dementsprechender Komplexität (hohe Anzahl an Iterationen oder hohe Rekursionstiefe) gibt es eine spürbare Verzögerung bei Starten des Debugmodus.
 \item leere Fenster: Gibt der Benutzer kein Programm in einem seiner \textit{ProgramPanels} ein, so benachrichtigt das Produkt den Benutzer über falsche Syntax und beendet den Debugvorgang.
 \item Dateien laden, die nicht dem RDBF-Format entsprechen: Das Produkt benachrichtigt den Benutzer darüber, dass die von ihm ausgewählte Datei invalide ist.
 
@@ -555,7 +554,7 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
 
 \subsection{Untersuchung von Laufzeit und Speicherverbrauch}
     \subsubsection{Randbedingungen und Vorgehen}
-        Im folgenden sollen Angaben über Laufzeit und Speicherverbrauch von DIbugger gemacht werden.
+        Im folgenden sollen Angaben über Laufzeit und Speicherverbrauch des Produkts gemacht werden.
         Vorerst wird eine Übersicht über Speicherauslastung und Funktionsaufrufe während der Ausführung von DIbugger geboten.
         Im Anschluss werden die Angaben der verschiedenen Szenarien verglichen, zusammengefasst und eine mögliche Optimierung beschrieben.\\
         Die zugrundeliegenden Daten entstanden bei Durchführung dreier Nutzungsszenarien, und wurden unter Benutzung des Programmes VisualVm erstellt.
@@ -565,9 +564,9 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
         \paragraph{Informelle Beschreibung}
         \begin{itemize}
             \item{Dauer:} 3 Minuten 
-            \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder \enquote{Schrittgröße}, Verwenden von Haltepunkten, einem bedingten Haltepunkt und einer \enquote{Watch-Expression}
+            \item{Aktionen des Nutzers:} Ausführen des Debugmodus, Durchführen von Schritten inklusive Einzel- und Rückschritte, Änderungen der Eingabewerte oder Schrittgröße, Verwenden von Haltepunkten, einem bedingten Haltepunkt und einer Watch-Expression
             \item{Eingaben:} Die zwei Programme der Nutzerstudie, siehe auch \ref{code}
-            \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
+            \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, \textit{VisualVM}
         \end{itemize}
         \paragraph{Statistiken}
         \begin{figure}[!h]
@@ -579,18 +578,18 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
         \begin{itemize}
             \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 51,6\% der Gesamt-EPZ
             \item{step}: (in \textit{ControlFacade} aus \textit{dibugger.control}) mit 12,7\% der Gesamt-EPZ
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,2\% der Gesamt-EPZ
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}. Diese Methode ist für das Schreiben der Breakpoints in Zeilen und das Anzeigen der Zeilennummerierung zuständig) mit 6,2\% der Gesamt-EPZ
         \end{itemize}
         \subparagraph{Methoden mit größter Ausführungszeit (exklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
         \begin{itemize}
             \item{update}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 7,1\% der Gesamt-EPZ 
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 5,9\% der Gesamt-EPZ
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}) mit 5,9\% der Gesamt-EPZ
             \item{closure\_}: (in einer Klasse des Paketes \textit{org.antlr.v4.runtime.atn} mit 4,4\% der Gesamt-EPZ
         \end{itemize}
         \subparagraph{Meistaufgerufene Methoden}
         \begin{itemize}
             \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 4,439 Aufrufen
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}) mit 4,439 Aufrufen
             \item{getLineNumber}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 4,439 Aufrufen
         \end{itemize}
     \subsubsection{Szenario 2}
@@ -611,18 +610,18 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
         \begin{itemize}
             \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 42,3\% der Gesamt-EPZ
             \item{step}: (in \textit{ControlFacade} aus \textit{dibugger.control}) mit 12,7\% der Gesamt-EPZ
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,9\% der Gesamt-EPZ
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}) mit 6,9\% der Gesamt-EPZ
         \end{itemize}
         \subparagraph{Methoden mit größter Ausführungszeit (exklusive Ausführung anderer aufgerufener Funktionen) in echter Prozessorzeit (EPZ)}
         \begin{itemize}
             \item{update}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 7,9\% der Gesamt-EPZ 
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,5\% der Gesamt-EPZ
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}) mit 6,5\% der Gesamt-EPZ
             \item{update}: (im \textit{ConditionalBreakpointPanel} von \textit{dibugger.userinterface}) mit 3,2\% der Gesamt-EPZ 
         \end{itemize}
         \subparagraph{Meistaufgerufene Methoden}
         \begin{itemize}
             \item{antlr-Methoden} (aus dem Paket oder Unterpaketen von \textit{org.antlr.v4.runtime}) 
-            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 10,060 Aufrufen
+            \item{paintChild}: (Aus einer inneren Klasse in \textit{ProgramPanel} in \textit{dibugger.userinterface}) mit 10,060 Aufrufen
             \item{getLineNumber}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 10,060 Aufrufen
         \end{itemize}
     \subsubsection{Szenario 3}
@@ -657,22 +656,21 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{clone} (in der Klasse \textit{IntValue} aus dem Paket \textit{dibugger.debuglogic.interpreter}) mit 324513 Aufrufen
             \item{getCurrentScope} (in der Klasse \textit{GenerationController} aus dem Paket \textit{dibugger.debuglogic.interpreter}) mit 156860 Aufrufen
         \end{itemize}
+
     \subsubsection{Schlussfolgerung}
-        Szenario 1 und Szenario 2 sind bis auf ihre Dauer und den nebenher vom Nutzer verwendeten Anwendungen identisch.
+        Szenario 1 und Szenario 2 sind bis auf ihre Dauer und den nebenher vom Nutzer verwendeten Anwendungen identisch. \\
         Anhand der Statistiken zu Szenario 1 und Szenario 2 lässt sich kein Schluss ziehen, einzig die Ausführungszeit pro Methode ist in Szenario 2 (wahrscheinlich) größer als in Szenario 1.\\
         
-        In Szenario 1 machen Objekte der Präsentationskomponente \textit{UserInterface} den größten Anteil am Speicherverbrauch aus.
+        In Szenario 1 machen Objekte der Präsentationskomponente \textit{UserInterface} den größten Anteil am Speicherverbrauch aus. \\
         In Szenario 3 hingegen machen Objekte des erstellten Programmablaufpfades oder \textit{Trace} den größten Anteil am Speicherverbrauch aus.
         Speicherlecks großen Ausmaßes wurden bei Untersuchungen des Speicherverbrauches nicht gefunden.
-        Eine mögliche Optimierung des Speicherverbrauches ist das Wiederverwenden von \textit{Trace}-Objekten, falls mehrmals das gleiche Programm geladen wird.
-
-        In Szenario 1 machen Methoden der Präsentationskomponente \textit{UserInterface} den größten Anteil an der Laufzeit aus.
+        Eine mögliche Optimierungsstrategie wäre abschnittsweises Laden (\textit{Chunk-Loading}) des Traces, um Ladezeiten zu verkürzen und Speocherverbrauch zu optimieren. \\
+        In Szenario 1 machen Methoden des \textit{UserInterface} den größten Anteil an der Laufzeit aus.
         Dazu gehört die Methode \textit{update}, die Teil des Beobachter-Musters ist.
         In Szenario 3 machen Methoden die während der \textit{Trace}-Erzeugung aufgerufen werden, neben den Methoden der Präsentation, den größten Anteil der Laufzeit aus.
-        Eine mögliche Optimierung der Laufzeit ist eine Umimplementierung der Aktualisierungsstrategie des Modells, sodass pro \textit{update}-Aufruf weniger Daten von der Präsentation geholt werden, oder die Präsentation in einer kleineren Anzahl von Fällen aktualisiert wird.
+        Eine mögliche Optimierung der Laufzeit ist eine Um-Implementierung der Aktualisierungsstrategie des Modells, sodass pro \textit{update}-Aufruf weniger Daten von der graphischen Benutzeroberfläche geholt werden, oder die Präsentation in einer kleineren Anzahl von Fällen aktualisiert wird.
 
         Für die Umsetzung dieser Optimierung ist eine Umstrukturierung mehrerer Pakete von Nöten.
-\paragraph{Tiefe Rekursion - Ackermann}
 
 \newpage
 
