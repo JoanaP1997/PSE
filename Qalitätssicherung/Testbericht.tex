@@ -570,6 +570,25 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
         \end{itemize}
         \paragraph{Statistiken}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-1/szenario-1_1/prozessor_szenario-1-1.png}
+            \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 9060 B}
+        \end{figure}
+        \subparagraph{Methoden mit größter Ausführungszeit (inklusive Aufrufe anderer Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+            \item{startDebug}: (im \textit{CommandPanel} von \textit{dibugger.userinterface}) mit 51,6\% der Gesamt-EPZ
+            \item{step}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 13,5\% der Gesamt-EPZ
+            \item{paintChild}: (in einer Klasse des \textit{ProgramPanel} von \textit{dibugger.userinterface}) mit 6,2\% der Gesamt-EPZ
+        \end{itemize}
+        \subparagraph{Methoden mit größter Ausführungszeit (exklusive Aufrufe anderer Funktionen) in echter Prozessorzeit (EPZ)}
+        \begin{itemize}
+
+        \end{itemize}
+        \subparagraph{Meistaufgerufene Methoden}
+        \begin{itemize}
+
+        \end{itemize}
     \subsubsection{Szenario 2}
         \paragraph{Informelle Beschreibung}
         \begin{itemize}
@@ -579,6 +598,11 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, (Netz-) Browser, Dokumentbetrachter, javac, VisualVm  
         \end{itemize}
        \paragraph{Statistiken}
+       \begin{figure}[!h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-1/szenario-1_2/prozessor_szenario-1-2.png}
+            \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 9520 B}
+       \end{figure}
     \subsubsection{Szenario 3}
         \paragraph{Informelle Beschreibung}
         \begin{itemize}
@@ -589,7 +613,11 @@ Die Tests wurde auf Rechnern mit folgender Hardware erfolgreich durchgeführt: \
             \item{Neben DIbugger benutzte Anwendungen:} Entwicklungsumgebung, VisualVm
         \end{itemize}
         \paragraph{Statistiken}
-    
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=0.8\textwidth]{laufzeit-speicherverbrauch/szenario-3/prozessor_szenario-3.png}
+            \caption{Speicherbelegung von DIbugger in Prozent bei einer Gesamtbelegung von ca. 1436200 B}
+        \end{figure}   
     \subsubsection{Schlussfolgerung}
 
 \paragraph{Tiefe Rekursion - Ackermann}
