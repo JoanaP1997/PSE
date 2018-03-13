@@ -686,38 +686,40 @@ public class MainInterface extends JFrame {
     public void changeLanguage() {
         if (controlFacade != null) {
             languageFile = controlFacade.getLanguageFile();
-            ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).changeLanguage();
-            WatchExpressionPanel.getWatchExpressionPanel(this).changeLanguage();
-            CommandPanel.getCommandPanel(this).changeLanguage();
-            if (programPanels != null) {
-                for (ProgramPanel p : programPanels.values()) {
-                    p.changeLanguage();
+            if (languageFile != null) {
+                ConditionalBreakpointPanel.getConditionalBreakpointPanel(this).changeLanguage();
+                WatchExpressionPanel.getWatchExpressionPanel(this).changeLanguage();
+                CommandPanel.getCommandPanel(this).changeLanguage();
+                if (programPanels != null) {
+                    for (ProgramPanel p : programPanels.values()) {
+                        p.changeLanguage();
+                    }
                 }
-            }
-            fileMenu.setText(languageFile.getTranslation("ui_file_menu"));
-            newView.setText(languageFile.getTranslation("ui_reset_gui"));
-            newProgram.setText(languageFile.getTranslation("ui_add_program"));
-            TOO_MANY_PROGRAM_PANELS = languageFile.getTranslation("ui_program_limit_reached");
-            loadConfig.setText(languageFile.getTranslation("ui_load_config"));
-            saveConfig.setText(languageFile.getTranslation("ui_save_config"));
-            exit.setText(languageFile.getTranslation("ui_exit"));
-            suggestionMenu.setText(languageFile.getTranslation("ui_suggestions"));
-            stepSizeSuggestion.setText(languageFile.getTranslation("ui_suggest_stepsize"));
-            inputSuggestion.setText(languageFile.getTranslation("ui_suggest_input"));
-            watchExpressionSuggestion.setText(languageFile.getTranslation("ui_suggest_watchexpression"));
-            condBreakpointSuggestion.setText(languageFile.getTranslation("ui_suggest_condbreakpoint"));
-            settingsMenu.setText(languageFile.getTranslation("ui_settings"));
-            languageMenu.setText(languageFile.getTranslation("ui_change_language"));
-            maxFunctionCalls.setText(languageFile.getTranslation("ui_max_functioncalls"));
-            maxIterations.setText(languageFile.getTranslation("ui_max_iterations"));
-            stepSizeStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_stepsize"));
-            expressionStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_expression"));
-            inputStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_input"));
+                fileMenu.setText(languageFile.getTranslation("ui_file_menu"));
+                newView.setText(languageFile.getTranslation("ui_reset_gui"));
+                newProgram.setText(languageFile.getTranslation("ui_add_program"));
+                TOO_MANY_PROGRAM_PANELS = languageFile.getTranslation("ui_program_limit_reached");
+                loadConfig.setText(languageFile.getTranslation("ui_load_config"));
+                saveConfig.setText(languageFile.getTranslation("ui_save_config"));
+                exit.setText(languageFile.getTranslation("ui_exit"));
+                suggestionMenu.setText(languageFile.getTranslation("ui_suggestions"));
+                stepSizeSuggestion.setText(languageFile.getTranslation("ui_suggest_stepsize"));
+                inputSuggestion.setText(languageFile.getTranslation("ui_suggest_input"));
+                watchExpressionSuggestion.setText(languageFile.getTranslation("ui_suggest_watchexpression"));
+                condBreakpointSuggestion.setText(languageFile.getTranslation("ui_suggest_condbreakpoint"));
+                settingsMenu.setText(languageFile.getTranslation("ui_settings"));
+                languageMenu.setText(languageFile.getTranslation("ui_change_language"));
+                maxFunctionCalls.setText(languageFile.getTranslation("ui_max_functioncalls"));
+                maxIterations.setText(languageFile.getTranslation("ui_max_iterations"));
+                stepSizeStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_stepsize"));
+                expressionStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_expression"));
+                inputStrategyMenu.setText(languageFile.getTranslation("ui_suggestion_strategy_input"));
 
-            CONFIRM_CLOSE = languageFile.getTranslation("ui_confirm_close");
-            CONFIRM_CLOSE_QUESTION = languageFile.getTranslation("ui_confirm_close_question");
-            YES_OPTION = languageFile.getTranslation("ui_yes");
-            NO_OPTION = languageFile.getTranslation("ui_no");
+                CONFIRM_CLOSE = languageFile.getTranslation("ui_confirm_close");
+                CONFIRM_CLOSE_QUESTION = languageFile.getTranslation("ui_confirm_close_question");
+                YES_OPTION = languageFile.getTranslation("ui_yes");
+                NO_OPTION = languageFile.getTranslation("ui_no");
+            }
 
         }
 

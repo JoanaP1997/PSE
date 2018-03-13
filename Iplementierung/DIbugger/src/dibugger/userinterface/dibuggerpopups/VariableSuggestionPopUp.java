@@ -309,16 +309,18 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
      */
     private void setLanguage() {
         LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-        FROM = languageFile.getTranslation("ui_from");
-        TO = languageFile.getTranslation("ui_to");
-        INTERVAL = languageFile.getTranslation("ui_interval");
-        TYPE = languageFile.getTranslation("ui_type");
-        SUGGESTION = languageFile.getTranslation("ui_suggestion");
-        INFO_TEXT = languageFile.getTranslation("ui_suggestion_infotext");
-        PROGRAM = languageFile.getTranslation("ui_program");
-        STEPSIZE = languageFile.getTranslation("ui_stepsize");
-        FOR = languageFile.getTranslation("ui_for");
-        CONDITIONAL_BREAKPOINT_AKKUSATIV = languageFile.getTranslation("ui_cond_breakpoint_akkusativ");
+        if (languageFile != null) {
+            FROM = languageFile.getTranslation("ui_from");
+            TO = languageFile.getTranslation("ui_to");
+            INTERVAL = languageFile.getTranslation("ui_interval");
+            TYPE = languageFile.getTranslation("ui_type");
+            SUGGESTION = languageFile.getTranslation("ui_suggestion");
+            INFO_TEXT = languageFile.getTranslation("ui_suggestion_infotext");
+            PROGRAM = languageFile.getTranslation("ui_program");
+            STEPSIZE = languageFile.getTranslation("ui_stepsize");
+            FOR = languageFile.getTranslation("ui_for");
+            CONDITIONAL_BREAKPOINT_AKKUSATIV = languageFile.getTranslation("ui_cond_breakpoint_akkusativ");
+        }
     }
 
 }

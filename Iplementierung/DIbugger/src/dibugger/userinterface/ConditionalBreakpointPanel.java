@@ -269,7 +269,9 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
 
     void changeLanguage() {
         LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-        table.setToolTipText(languageFile.getTranslation("ui_cb_tooltip"));
+        if (languageFile != null) {
+            table.setToolTipText(languageFile.getTranslation("ui_cb_tooltip"));
+        }
     }
     
     private Object[][] createDataFromList(){

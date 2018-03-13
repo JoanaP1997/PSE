@@ -583,20 +583,22 @@ public class ProgramPanel extends JPanel {
 
     void changeLanguage() {
         LanguageFile languageFile = controlFacade.getLanguageFile();
-        stepSize.setText(languageFile.getTranslation("ui_stepsize") + ": ");
-        programName.setText(languageFile.getTranslation("ui_program") + ": " + id);
-        inputVariablesLabel.setText(languageFile.getTranslation("ui_values_in") + ": ");
-        variableInspectorList.setToolTipText(languageFile.getTranslation("ui_varinspector_tooltip"));
-        varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
-        showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
-        ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
-        singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
-        result.setText(languageFile.getTranslation("ui_return"));
-        stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
-        stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
-        inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
-        loadFile.setToolTipText(languageFile.getTranslation("ui_load_program"));
-        delete.setToolTipText(languageFile.getTranslation("ui_delete"));
+        if (languageFile != null) {
+            stepSize.setText(languageFile.getTranslation("ui_stepsize") + ": ");
+            programName.setText(languageFile.getTranslation("ui_program") + ": " + id);
+            inputVariablesLabel.setText(languageFile.getTranslation("ui_values_in") + ": ");
+            variableInspectorList.setToolTipText(languageFile.getTranslation("ui_varinspector_tooltip"));
+            varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
+            showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
+            ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
+            singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
+            result.setText(languageFile.getTranslation("ui_return"));
+            stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+            stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+            inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
+            loadFile.setToolTipText(languageFile.getTranslation("ui_load_program"));
+            delete.setToolTipText(languageFile.getTranslation("ui_delete"));
+        }
     }
 
     /**
