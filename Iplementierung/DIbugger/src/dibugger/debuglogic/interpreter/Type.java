@@ -34,6 +34,12 @@ public enum Type {
         	 return new ConstantTerm(new CharValue('a'));
          case "BOOLEAN":
              return new ConstantTerm(new BooleanValue(true));
+         case "ARRAY":
+        	 TermValue [][][] content = new TermValue[10][1][1];
+        	 for(int i = 0; i<10; i++) {
+        		 content[i][0][0] = new IntValue(i);
+        	 }
+        	 return new ConstantTerm(new ArrayValue(content)) ;
        }
          return null;
          
