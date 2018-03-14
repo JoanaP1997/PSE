@@ -467,11 +467,12 @@ public class ProgramPanel extends JPanel {
      */
     public void setTextWithFileChooser() {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("java files (*.java)", "java",
-                "text files (*.txt)", "txt");
-
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("java files (*.java)", "java",
+//                "text files (*.txt)", "txt");
+        
         fileChooser.setDialogTitle(ADD_PROGRAM);
-        fileChooser.setFileFilter(filter);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Text files (*.txt)", "txt"));
+       // fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("java files (*.java)", "java"));
         int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
