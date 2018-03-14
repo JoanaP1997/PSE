@@ -621,7 +621,10 @@ public class ProgramPanel extends JPanel {
         delete.setEnabled(false);
         inputVariableTextField.setEditable(false);
         singleStepButton.setEnabled(true);
-        controlFacade.singleStep(id);
+//       controlFacade.singleStep(id);
+    }
+    void singleStep(){
+    	controlFacade.singleStep(id);
     }
 
     /**

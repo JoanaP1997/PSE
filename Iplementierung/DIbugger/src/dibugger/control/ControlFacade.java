@@ -94,11 +94,13 @@ public class ControlFacade {
      * @see DebugLogicController#step(int)
      */
     public void step(int type) {
-        ensureInDebugMode();
         try {
+        	ensureInDebugMode();
             debugLogicController.step(type);
         } catch (DIbuggerLogicException exception) {
             exceptionHandler.handle(exception);
+        } catch (IllegalStateException e){
+        	
         }
     }
 
@@ -109,11 +111,13 @@ public class ControlFacade {
      * @see DebugLogicController#continueDebug()
      */
     public void continueDebug() {
-        ensureInDebugMode();
         try {
+            ensureInDebugMode();
             debugLogicController.continueDebug();
         } catch (DIbuggerLogicException exception) {
             exceptionHandler.handle(exception);
+        } catch (IllegalStateException e){
+        	
         }
     }
 
@@ -125,8 +129,12 @@ public class ControlFacade {
      * @see DebugLogicController#singleStep(String)
      */
     public void singleStep(String programNameId) {
-        ensureInDebugMode();
-        debugLogicController.singleStep(programNameId);
+        try{
+        	ensureInDebugMode();
+            debugLogicController.singleStep(programNameId);
+        } catch (IllegalStateException e){
+        	
+        }
     }
 
     /**
