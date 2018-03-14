@@ -1,6 +1,7 @@
 package dibugger.filehandler.facade;
 
 import java.io.File;
+import java.io.InputStream;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 
@@ -33,6 +34,6 @@ public abstract class DBFileReader {
      * @throws FileHandlerException
      *             if some error during file parsing occured
      */
-    public abstract LanguageFile loadLanguageFile(File f) throws FileHandlerException;
+    public abstract LanguageFile loadLanguageFile(InputStream f) throws FileHandlerException;
 
 }

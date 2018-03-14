@@ -26,7 +26,7 @@ public class LanguageEditor {
         JFileChooser chooser = new JFileChooser("./");
         chooser.showOpenDialog(null);
         if (chooser.getSelectedFile() != null) {
-            f0 = new RDBFDBReader().loadLanguageFile(chooser.getSelectedFile());
+//            f0 = new RDBFDBReader().loadLanguageFile(chooser.getSelectedFile());
         }
 
         final LanguageFile f = f0;

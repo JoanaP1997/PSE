@@ -235,10 +235,10 @@ public class RDBFTest {
 		assertEquals(1, (int)f.getWEScopeBegin(0).get(0));
 		assertEquals(10, (int)f.getWEScopeEnd(0).get(0));
 		
-		LanguageFile l = reader.loadLanguageFile(new File("res/lang/testLang.rdbf"));
-		assertEquals("testLang", l.getLangID());
-		assertEquals("Testing Language", l.getName());
-		assertEquals("Thats a test", l.getTranslation("test"));
+//		LanguageFile l = reader.loadLanguageFile(new File("res/lang/testLang.rdbf"));
+//		assertEquals("testLang", l.getLangID());
+//		assertEquals("Testing Language", l.getName());
+//		assertEquals("Thats a test", l.getTranslation("test"));
 	}
 	
 	@Test

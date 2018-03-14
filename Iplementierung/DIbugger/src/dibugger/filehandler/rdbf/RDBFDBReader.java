@@ -8,7 +8,9 @@ import java.util.Map;
 import static dibugger.filehandler.rdbf.RDBFParser.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
@@ -91,7 +93,7 @@ public class RDBFDBReader extends DBFileReader {
     }
 
     @Override
-    public LanguageFile loadLanguageFile(File file) throws FileHandlerException {
+    public LanguageFile loadLanguageFile(InputStream file) throws FileHandlerException {
         try {
             RDBFFile f0 = reader.loadRDBFFile(file);
 

@@ -81,7 +81,7 @@ public class FileHandlerTest {
     @Ignore
     public void testRDBFLanguage() throws FileHandlerException {
         RDBFDBReader reader = new RDBFDBReader();
-        LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.txt"));
+//        LanguageFile f = reader.loadLanguageFile(new File("res/testing/lang_test_in.txt"));
     }
     
     @Test
