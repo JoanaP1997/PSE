@@ -43,8 +43,8 @@ public class StressTest {
             +"      a = ackermann(m, n);\n"
             +"}\n";
         List<String> input = new ArrayList<String>();
-        input.add(" m = 3 ");
-        input.add(" n = 2 ");
+        input.add(" m = 2 ");
+        input.add(" n = 8 ");
         gc.generateTrace(code, input , "A");
     }
     
