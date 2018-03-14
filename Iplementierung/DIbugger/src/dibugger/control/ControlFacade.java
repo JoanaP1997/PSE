@@ -39,18 +39,7 @@ public class ControlFacade {
         try {
             fileHandlerInteractor = new FileHandlerInteractor(debugLogicController, guiFacade);
         } catch (FileHandlerException exception) {
-        	new Thread(new Runnable() {
-				@Override
-				public void run() {
-					guiFacade.showError("No Languages found to use!!! Program will automatically close in 5 seconds...");
-				}
-			}).start();
-        	try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-        	System.exit(0);
+            System.exit(0);
         }
         exceptionHandler = new ExceptionHandler(fileHandlerInteractor, guiFacade);
     }

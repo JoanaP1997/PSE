@@ -41,9 +41,6 @@ public class ErrorPopUp extends DIbuggerPopUp {
 
         JButton ok = new JButton("OK");
         ok.addActionListener(actionEvent -> {
-        	if(!mainInterface.isInitFinished()){
-        		System.exit(0);
-        	}
             CommandPanel.getCommandPanel(this.mainInterface).stopDebug();
             dispose();
         });

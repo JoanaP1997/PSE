@@ -93,10 +93,6 @@ public class MainInterface extends JFrame {
 
     private LanguageFile languageFile;
 
-    
-    private boolean initFinished;
-    
-    
     /**
      * Creates new MainInterface.
      */
@@ -104,13 +100,8 @@ public class MainInterface extends JFrame {
         guiFacade = new GUIFacade(this);
         controlFacade = guiFacade.getControlFacade();
         initComponents();
-        initFinished=true;
     }
 
-    public boolean isInitFinished() {
-		return initFinished;
-	}
-    
     /**
      * main method.
      *
