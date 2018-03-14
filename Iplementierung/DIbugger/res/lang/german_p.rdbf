@@ -5,6 +5,11 @@ dl_exc_exceeded_max_iterations{
 	Du hoscht dei maximal Iteratione üwerschritte
 	
 }
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Dei Eigawedate sinn falsch. So kammer doch känn Vorschlach mache.
+	
+}
 ui_add_program{
 	def_blockLen=1
 Mach e neiie Datei dezu.

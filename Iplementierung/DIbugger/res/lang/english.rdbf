@@ -404,6 +404,11 @@ dl_exc_invalid_program{
 The program is invalid and cannot be parsed to be a WLang program.
 
 }
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Not enough or wrong data provided for a successfull suggestion.
+	
+}
 ui_suggestion_strategy_expression{
 	def_blockLen=1
 Change strategy for relational suggestions

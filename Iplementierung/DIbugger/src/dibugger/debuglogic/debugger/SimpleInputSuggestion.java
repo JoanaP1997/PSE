@@ -2,6 +2,8 @@ package dibugger.debuglogic.debugger;
 
 import java.util.SplittableRandom;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+
 /**
  * Generates Input Values based on {@linkplain SplittableRandom} pseudorandom
  * number generator.
@@ -20,13 +22,16 @@ public class SimpleInputSuggestion extends InputValueSuggestion {
      * Simple suggestion via a pseudorandom number generator
      */
     @Override
-    public String suggest(String identifier, String range, int type) {
+    public String suggest(String identifier, String range, int type) throws DIbuggerLogicException{
         int a = 0, b = 0;
         try {
             a = Integer.parseInt(range.substring(1).split(",")[0]);
             b = Integer.parseInt(range.substring(1, range.length() - 1).split(",")[1]);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+        	throw new DIbuggerLogicException(-1, "dl_exc_suggest_input_wrong_format") {
+				private static final long serialVersionUID = 1L;
+			};
         }
         if (type == TYPE_BOOLEAN) {
             return "" + rand.nextBoolean();

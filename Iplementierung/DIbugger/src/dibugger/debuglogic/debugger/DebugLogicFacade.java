@@ -251,7 +251,7 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see InputValueSuggestion#suggest(String, String, int)
      */
-    public String suggestInputValue(String identifier, String range, int type) {
+    public String suggestInputValue(String identifier, String range, int type)  throws DIbuggerLogicException{
         return suggest_input.suggest(identifier, range, type);
     }
 

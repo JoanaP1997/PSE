@@ -453,7 +453,12 @@ public class ControlFacade {
      * @see DebugLogicController#suggestInputValue(String, String, int)
      */
     public String suggestInputValue(String inputVariableId, String range, int type) {
-        return debugLogicController.suggestInputValue(inputVariableId, range, type);
+        try{
+        	return debugLogicController.suggestInputValue(inputVariableId, range, type);
+        } catch (DIbuggerLogicException e){
+        	exceptionHandler.handle(e);
+        }
+		return "";
     }
 
     /**

@@ -5,6 +5,11 @@ dl_exc_exceeded_max_iterations{
 	Maximale Iterationsanzahl überschritten
 	
 }
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Die Eingabedata ham a falscha Wert.
+	
+}
 ui_add_program{
 	def_blockLen=1
 Programm hinzufüga
