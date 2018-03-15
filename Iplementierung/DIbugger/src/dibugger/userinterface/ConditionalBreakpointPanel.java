@@ -109,9 +109,12 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
     private void initComponents() {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        JPanel panel_ar = new JPanel();
+        panel_ar.setLayout(new BoxLayout(panel_ar, BoxLayout.X_AXIS));
+        this.add(panel_ar);        
+        
         JButton addButton = new JButton("+");
-        this.add(addButton);
+        panel_ar.add(addButton);
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,6 +124,17 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
                 saveCBs();
             }
         });
+        
+        JButton removeButton = new JButton("-");
+        panel_ar.add(removeButton);
+        removeButton.addActionListener(e -> {
+        	int row = table.getSelectedRow();
+        	if(row!=-1){
+        		deleteEntry(row);
+            	mainInterface.getControlFacade().deleteConditionalBreakpoint(idMap.get(row));
+        	}
+        });
+        
 
         idMap.put(0, 0);
 
