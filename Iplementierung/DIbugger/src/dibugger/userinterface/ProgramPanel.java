@@ -186,7 +186,12 @@ public class ProgramPanel extends JPanel {
         codePanel = new JPanel();
         listBreakpointLines = new ArrayList<>();
 
-        editor = new JEditorPane();
+        editor = new JEditorPane(){
+        	@Override
+        	public void setText(String t) {
+        		super.setText(prepareText(t));
+        	}
+        };
         editor.setEditorKit(new StyledEditorKit() {
             @Override
             public ViewFactory getViewFactory() {
@@ -369,6 +374,21 @@ public class ProgramPanel extends JPanel {
         listModel.clear();
         variableInspectorList.updateUI();
     }
+    
+    private static final int DELTA = 64; 
+    private String prepareText(String text){
+    	String[] lines = text.split(String.format("\n"));
+    	StringBuilder sb = new StringBuilder();
+    	for(int i=0;i<lines.length;++i){
+    		String line = lines[i];
+    		StringBuilder sb1 = new StringBuilder();
+    		for(int j=line.length();j<DELTA;++j){
+    			sb1.append(" ");
+    		}
+    		sb.append(line).append(sb1.toString()).append(String.format("\n"));
+    	}
+    	return sb.toString();
+    }
 
     /**
      * Shows the variables of the List in the variable inspector panel.
@@ -532,18 +552,19 @@ public class ProgramPanel extends JPanel {
         protected void setInsets(short top, short left, short bottom, short right) {
             super.setInsets(top, (short) (left + MARGIN_WIDTH_PX), bottom, right);
         }
-
+        
         @Override
         public void paintChild(Graphics g, Rectangle alloc, int index) {
             super.paintChild(g, alloc, index);
             if (index > 0) {
                 return;
-            }
+            }                      
 
             int lineNumber = getLineNumber() + 1;
             String lnStr = String.format("%3d", lineNumber);
             font = font != null ? font : new Font(Font.MONOSPACED, Font.PLAIN, getFont().getSize());
             // g.setFont(font);
+                     
 
             int x = alloc.x - g.getFontMetrics().stringWidth(lnStr) - 4;
             int y = alloc.y + alloc.height - 3;
@@ -554,7 +575,8 @@ public class ProgramPanel extends JPanel {
             } else {
                 g.setColor(Color.BLACK);
             }
-
+            
+            //numbers
             g.drawString(lnStr, x, y);
 
             // draw Breakpoints
