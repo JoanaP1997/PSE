@@ -129,8 +129,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
         removeButton.addActionListener(e -> {
         	int row = table.getSelectedRow();
         	if(row!=-1){
-        		deleteEntry(row);
             	mainInterface.getControlFacade().deleteWatchExpression(idMap.get(row));
+        		deleteEntry(row);
         	}
         });
 

@@ -131,8 +131,8 @@ public class ConditionalBreakpointPanel extends ExpressionPanel {
         removeButton.addActionListener(e -> {
         	int row = table.getSelectedRow();
         	if(row!=-1){
-        		deleteEntry(row);
             	mainInterface.getControlFacade().deleteConditionalBreakpoint(idMap.get(row));
+        		deleteEntry(row);
         	}
         });
         
