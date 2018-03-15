@@ -115,7 +115,7 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
                                         .createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addComponent(intervallStartLabel).addComponent(typeLabel))
-                                        .addGap(30, 30, 30)
+                                        .addGap(50, 50, 50)
                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(layout.createSequentialGroup()
                                                         .addComponent(intervallStartField, GroupLayout.PREFERRED_SIZE,
@@ -128,12 +128,12 @@ public class VariableSuggestionPopUp extends DIbuggerPopUp {
                                                         GroupLayout.PREFERRED_SIZE)))
                                         .addComponent(suggestionLabel))))
                 .addContainerGap(62, Short.MAX_VALUE)).addGroup(
-                        layout.createSequentialGroup().addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        layout.createSequentialGroup().addContainerGap(GroupLayout.DEFAULT_SIZE+20, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(suggestedLabel).addComponent(okButton))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
-                .createSequentialGroup().addContainerGap().addComponent(intervallLabel).addGap(35, 35, 35)
+                .createSequentialGroup().addContainerGap().addComponent(intervallLabel).addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(intervallStartLabel)
                         .addComponent(intervallStartField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
                                 GroupLayout.PREFERRED_SIZE)
