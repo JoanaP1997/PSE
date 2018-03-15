@@ -700,11 +700,12 @@ public class DebugControl {
      * @throws DIbuggerLogicException
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
-    public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+    public String getCBValue(int breakpointID) throws DIbuggerLogicException {
         if (breakpointID >= list_condBreakpoints.size() || list_condBreakpoints.get(breakpointID) == null) {
-            return false;
+            return "?";
         }
-        return list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
+        list_condBreakpoints.get(breakpointID).evaluate(list_currentTraceStates);
+        return list_condBreakpoints.get(breakpointID).evaluateToString();
     }
 
     /**

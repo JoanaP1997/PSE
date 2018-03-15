@@ -409,7 +409,7 @@ public class DebugLogicFacade extends Observable {
      * @throws DIbuggerLogicException
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
-    public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+    public String getCBValue(int breakpointID) throws DIbuggerLogicException {
         return debugControl.getCBValue(breakpointID);
     }
 
