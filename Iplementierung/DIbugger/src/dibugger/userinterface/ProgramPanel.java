@@ -3,13 +3,10 @@ package dibugger.userinterface;
 import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.filehandler.facade.LanguageFile;
-import sun.swing.SwingUtilities2;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;

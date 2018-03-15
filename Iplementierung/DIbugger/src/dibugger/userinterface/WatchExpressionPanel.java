@@ -7,6 +7,7 @@ import dibugger.filehandler.facade.LanguageFile;
 import dibugger.userinterface.dibuggerpopups.ExpressionChangePopUp;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -162,13 +163,15 @@ public class WatchExpressionPanel extends ExpressionPanel {
         table.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                Point p = mouseEvent.getPoint();
-                if ((table.columnAtPoint(p) == 0)) {
-                    int row = table.rowAtPoint(p);
-                    int id = idMap.get(row);
-                    new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, WatchExpressionPanel.this,
-                            id);
-                }
+            	if(mouseEvent.getButton()==MouseEvent.BUTTON1){
+	                Point p = mouseEvent.getPoint();
+	                if ((table.columnAtPoint(p) == 0)) {
+	                    int row = table.rowAtPoint(p);
+	                    int id = idMap.get(row);
+	                    new ExpressionChangePopUp(mainInterface, "WatchExpression", row, table, WatchExpressionPanel.this,
+	                            id);
+	                }
+            	}
                 saveWEs();
             }
 
@@ -193,7 +196,8 @@ public class WatchExpressionPanel extends ExpressionPanel {
             }
         });
         table.setSize(50, 50);
-
+        table.getColumnModel().getColumn(0).setCellRenderer(new ButtonCellRenderer());
+        
         JScrollPane tableContainer = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tableContainer.setViewportView(table);
@@ -308,6 +312,20 @@ public class WatchExpressionPanel extends ExpressionPanel {
     		}
     	}
     	return o;
+    }
+    
+    
+    //Option Cell Renderer
+    private class ButtonCellRenderer extends DefaultTableCellRenderer{
+		private static final long serialVersionUID = 1L;
+		private final JButton btn = new JButton("");
+		
+		@Override
+    	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+    			int row, int column) {
+    		return btn;
+    	}
+    	
     }
     
 }
