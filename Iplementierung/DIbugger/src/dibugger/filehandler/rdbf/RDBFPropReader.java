@@ -48,7 +48,7 @@ public class RDBFPropReader extends PropertiesFileReader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         return new PropertiesFile();

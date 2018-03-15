@@ -3,12 +3,10 @@ package dibugger.userinterface;
 import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.filehandler.facade.LanguageFile;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -29,6 +27,8 @@ public class ProgramPanel extends JPanel {
     private static String RETURN = "R\u00fcckgabewert";
     private static String STEP_SIZE_TOOLTIP = "Schrittgr\u00f6\u00dfe mit Enter best\u00e4tigen";
     private static String INPUT_TOOLTIP = "Einzelne Eingaben durch Semikola trennen.";
+    private static String LOAD_PROGRAM = "Programm laden";
+    private static String DELETE = "L\u00f6schen";
 
     private final short MARGIN_WIDTH_PX = 36;
     private List<Integer> listBreakpointLines;
@@ -56,7 +56,7 @@ public class ProgramPanel extends JPanel {
     private JLabel varLabel;
     private JButton showHiddenVariables;
     private TreeMap<String, String> variableValueMap;
-    private List<String> shownVariables;
+    private List<String> hiddenVariables;
     private DefaultListModel<String> listModel;
     private JScrollPane variableInspectorScrollPane;
     private JList<String> variableInspectorList;
@@ -75,6 +75,7 @@ public class ProgramPanel extends JPanel {
         id = identifier;
         this.mainInterface = mainInterface;
         controlFacade = mainInterface.getControlFacade();
+                
         initComponents();
         resizeToHeight(mainInterface.getHeight());
     }
@@ -110,12 +111,14 @@ public class ProgramPanel extends JPanel {
         inputVariableTextField.setPreferredSize(new Dimension(288, 40));
 
         loadFile = new JButton();
+        loadFile.setToolTipText(LOAD_PROGRAM);
         ImageIcon iconLoad = new ImageIcon("res/ui/load-icon.png");
         iconLoad = new ImageIcon(iconLoad.getImage().getScaledInstance(25, 25, 25));
         loadFile.setIcon(iconLoad);
         loadFile.addActionListener(actionEvent -> setTextWithFileChooser());
 
         delete = new JButton();
+        delete.setToolTipText(DELETE);
         ImageIcon deleteIcon = new ImageIcon("res/ui/delete-icon.png");
         deleteIcon = new ImageIcon(deleteIcon.getImage().getScaledInstance(25, 25, 25));
         delete.setIcon(deleteIcon);
@@ -183,7 +186,12 @@ public class ProgramPanel extends JPanel {
         codePanel = new JPanel();
         listBreakpointLines = new ArrayList<>();
 
-        editor = new JEditorPane();
+        editor = new JEditorPane(){
+        	@Override
+        	public void setText(String t) {
+        		super.setText(prepareText(t));
+        	}
+        };
         editor.setEditorKit(new StyledEditorKit() {
             @Override
             public ViewFactory getViewFactory() {
@@ -197,7 +205,9 @@ public class ProgramPanel extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+            	if(e.getClickCount()==2){
+            		editor.updateUI();
+            	}
             }
 
             @Override
@@ -214,7 +224,7 @@ public class ProgramPanel extends JPanel {
                             controlFacade.deleteBreakpoint(id, lineID);
                         }
                     }
-                    editor.updateUI();
+                    //editor.updateUI();
                 }
             }
 
@@ -267,7 +277,7 @@ public class ProgramPanel extends JPanel {
         GroupLayout variableInspectorLayout = new GroupLayout(variableInspector);
         variableInspector.setLayout(variableInspectorLayout);
         variableValueMap = new TreeMap<>();
-        shownVariables = new ArrayList<>();
+        hiddenVariables = new ArrayList<>();
         listModel = new DefaultListModel<>();
 
         variableInspectorList = new JList<>(listModel);
@@ -281,12 +291,15 @@ public class ProgramPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
-                    for (int i = 0; i < shownVariables.size(); i++) {
-                        if (shownVariables.get(i).equals(variableInspectorList.getSelectedValue())) {
-                            shownVariables.remove(variableInspectorList.getSelectedValue());
-                        }
-                    }
-                    listModel.remove(variableInspectorList.getSelectedIndex());
+                   // for (int i = 0; i < hiddenVariables.size(); i++) {
+                	if(variableInspectorList.getSelectedIndex()!=-1){
+                    	String val = variableInspectorList.getSelectedValue().replace(" ", "").split("=")[0];
+                       // if (!hiddenVariables.get(i).equals(val)) {
+                            hiddenVariables.add(val);
+                       //}
+                   // }
+                      listModel.remove(variableInspectorList.getSelectedIndex());
+                	}
                 }
                 variableInspectorList.updateUI();
                 variableInspectorScrollPane.updateUI();
@@ -321,12 +334,13 @@ public class ProgramPanel extends JPanel {
         showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
         showHiddenVariables.addActionListener(actionEvent -> {
             listModel.clear();
-            shownVariables.clear();
+            hiddenVariables.clear();            
             for (String variable : variableValueMap.keySet()) {
-                shownVariables.add(variable);
+                //hiddenVariables.add(variable);
                 listModel.addElement(variableValueMap.get(variable));
             }
             variableInspectorList.updateUI();
+            update(controlFacade.getDebugLogicFacade());
         });
 
         varLabel = new JLabel(VARIABLE_INSPECTOR);
@@ -361,6 +375,21 @@ public class ProgramPanel extends JPanel {
         listModel.clear();
         variableInspectorList.updateUI();
     }
+    
+    private static final int DELTA = 64; 
+    private String prepareText(String text){
+    	String[] lines = text.split(String.format("\n"));
+    	StringBuilder sb = new StringBuilder();
+    	for(int i=0;i<lines.length;++i){
+    		String line = lines[i];
+    		StringBuilder sb1 = new StringBuilder();
+    		for(int j=line.length();j<DELTA;++j){
+    			sb1.append(" ");
+    		}
+    		sb.append(line).append(sb1.toString()).append(String.format("\n"));
+    	}
+    	return sb.toString();
+    }
 
     /**
      * Shows the variables of the List in the variable inspector panel.
@@ -368,10 +397,10 @@ public class ProgramPanel extends JPanel {
      * @param variables
      *            displayed variables
      */
-    public void showVariables(List<String> variables) {
+    public void setHiddenVariables(List<String> variables) {
         listModel.clear();
         variableValueMap.clear();
-        shownVariables = variables;
+        hiddenVariables = variables;
         for (String s : variables) {
             listModel.addElement(s);
             variableValueMap.put(s, s + " = ");
@@ -384,8 +413,8 @@ public class ProgramPanel extends JPanel {
      *
      * @return inspected variables in an ArrayList
      */
-    public List<String> getInspectedVariables() {
-        return shownVariables;
+    public List<String> getUninspectedVariables() {
+        return hiddenVariables;
     }
 
     /**
@@ -426,16 +455,20 @@ public class ProgramPanel extends JPanel {
         // update variable inspector
         DebugLogicFacade logicFacade = (DebugLogicFacade) observable;
         listModel.clear();
+
         for (String currentVariable : logicFacade.getAllVariables(id)) {
-            if (!variableValueMap.containsKey(currentVariable)) {
-                shownVariables.add(currentVariable);
-            }
+//            if (!variableValueMap.containsKey(currentVariable)) {
+//                hiddenVariables.add(currentVariable);
+//            }
             variableValueMap.put(currentVariable,
                     currentVariable + " = " + logicFacade.getValueOf(id, currentVariable));
+            if(!hiddenVariables.contains(currentVariable)){
+            	listModel.addElement(variableValueMap.get(currentVariable));            	
+            }
         }
-        for (String variable : shownVariables) {
-            listModel.addElement(variableValueMap.get(variable));
-        }
+//        for (String variable : hiddenVariables) {
+//            listModel.addElement(variableValueMap.get(variable));
+//        }
         variableInspectorList.updateUI();
 
         // show current execution line
@@ -456,11 +489,12 @@ public class ProgramPanel extends JPanel {
      */
     public void setTextWithFileChooser() {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("java files (*.java)", "java",
-                "text files (*.txt)", "txt");
-
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("java files (*.java)", "java",
+//                "text files (*.txt)", "txt");
+        
         fileChooser.setDialogTitle(ADD_PROGRAM);
-        fileChooser.setFileFilter(filter);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Text files (*.txt)", "txt"));
+       // fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("java files (*.java)", "java"));
         int returnVal = fileChooser.showOpenDialog(ProgramPanel.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -519,18 +553,19 @@ public class ProgramPanel extends JPanel {
         protected void setInsets(short top, short left, short bottom, short right) {
             super.setInsets(top, (short) (left + MARGIN_WIDTH_PX), bottom, right);
         }
-
+        
         @Override
         public void paintChild(Graphics g, Rectangle alloc, int index) {
             super.paintChild(g, alloc, index);
             if (index > 0) {
                 return;
-            }
+            }                      
 
             int lineNumber = getLineNumber() + 1;
             String lnStr = String.format("%3d", lineNumber);
             font = font != null ? font : new Font(Font.MONOSPACED, Font.PLAIN, getFont().getSize());
             // g.setFont(font);
+                     
 
             int x = alloc.x - g.getFontMetrics().stringWidth(lnStr) - 4;
             int y = alloc.y + alloc.height - 3;
@@ -541,7 +576,8 @@ public class ProgramPanel extends JPanel {
             } else {
                 g.setColor(Color.BLACK);
             }
-
+            
+            //numbers
             g.drawString(lnStr, x, y);
 
             // draw Breakpoints
@@ -572,18 +608,22 @@ public class ProgramPanel extends JPanel {
 
     void changeLanguage() {
         LanguageFile languageFile = controlFacade.getLanguageFile();
-        stepSize.setText(languageFile.getTranslation("ui_stepsize") + ": ");
-        programName.setText(languageFile.getTranslation("ui_program") + ": " + id);
-        inputVariablesLabel.setText(languageFile.getTranslation("ui_values_in") + ": ");
-        variableInspectorList.setToolTipText(languageFile.getTranslation("ui_varinspector_tooltip"));
-        varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
-        showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
-        ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
-        singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
-        result.setText(languageFile.getTranslation("ui_return"));
-        stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
-        stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
-        inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
+        if (languageFile != null) {
+            stepSize.setText(languageFile.getTranslation("ui_stepsize") + ": ");
+            programName.setText(languageFile.getTranslation("ui_program") + ": " + id);
+            inputVariablesLabel.setText(languageFile.getTranslation("ui_values_in") + ": ");
+            variableInspectorList.setToolTipText(languageFile.getTranslation("ui_varinspector_tooltip"));
+            varLabel.setText(languageFile.getTranslation("ui_var_inspector"));
+            showHiddenVariables.setText(languageFile.getTranslation("ui_show_hidden_variables"));
+            ADD_PROGRAM = languageFile.getTranslation("ui_add_program");
+            singleStepButton.setText(languageFile.getTranslation("ui_single_step"));
+            result.setText(languageFile.getTranslation("ui_return"));
+            stepSize.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+            stepSizeTextField.setToolTipText(languageFile.getTranslation("ui_stepsize_tooltip"));
+            inputVariableTextField.setToolTipText(languageFile.getTranslation("ui_input_tooltip"));
+            loadFile.setToolTipText(languageFile.getTranslation("ui_load_program"));
+            delete.setToolTipText(languageFile.getTranslation("ui_delete"));
+        }
     }
 
     /**
@@ -606,6 +646,10 @@ public class ProgramPanel extends JPanel {
         delete.setEnabled(false);
         inputVariableTextField.setEditable(false);
         singleStepButton.setEnabled(true);
+//       controlFacade.singleStep(id);
+    }
+    void singleStep(){
+    	controlFacade.singleStep(id);
     }
 
     /**

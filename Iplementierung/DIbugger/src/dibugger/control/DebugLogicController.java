@@ -484,7 +484,7 @@ public class DebugLogicController {
      */
     public void stopDebug() {
         /*  */
-    	debugLogicFacade.reset();
+    	debugLogicFacade.endRun();
     }
 
     /**
@@ -563,7 +563,7 @@ public class DebugLogicController {
      * @return String representing the suggestion value
      * @see DebugLogicFacade#suggestInputValue(String, String, int)
      */
-    public String suggestInputValue(String inputVariableId, String range, int type) {
+    public String suggestInputValue(String inputVariableId, String range, int type) throws DIbuggerLogicException {
         return debugLogicFacade.suggestInputValue(inputVariableId, range, type);
     }
 

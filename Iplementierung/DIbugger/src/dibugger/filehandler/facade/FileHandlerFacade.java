@@ -1,7 +1,10 @@
 package dibugger.filehandler.facade;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -82,8 +85,14 @@ public class FileHandlerFacade {
         try {
             StringBuilder s = new StringBuilder();
 
-            for (String line : Files.readAllLines(Paths.get(f.toURI()))) {
-                s.append(line).append("\n");
+            List<String> lines = Files.readAllLines(Paths.get(f.toURI()));
+            int index = 0;
+            for (String line : lines) {
+                s.append(line);
+                if(index<lines.size()-1){
+                	s.append("\n");
+                }
+                ++index;
             }
 
             return s.toString();
@@ -141,7 +150,8 @@ public class FileHandlerFacade {
                 return f;
             }
         }
-        throw new LanguageNotFoundException();
+       // throw new LanguageNotFoundException();
+        return list_languages.get(0);
     }
 
     /**
@@ -155,20 +165,32 @@ public class FileHandlerFacade {
         FileHandlerException exception = null;
         List<LanguageFile> l = new ArrayList<LanguageFile>();
 
+        //Add Default Language
+        try {
+			l.add(reader_rdbf_db.loadLanguageFile(getClass().getResourceAsStream("lang_default.rdbf")));
+		} catch (FileHandlerException e) {
+			e.printStackTrace();
+		}
+        
         File d = new File(LanguageFile.DEFAULT_LANG_FILE_PATH);
-        for (File f : d.listFiles()) {
-            if (f.isFile()) {
-                try {
-                    LanguageFile lang = reader_rdbf_db.loadLanguageFile(f);
-                    l.add(lang);
-                } catch (FileHandlerException e) {
-                    exception = e;
-                }
-            }
-        }
+	    if(d.exists()){
+        	for (File f : d.listFiles()) {
+	            if (f.isFile()) {
+	                try {
+	                    LanguageFile lang = reader_rdbf_db.loadLanguageFile(new FileInputStream(f));
+	                    l.add(lang);
+	                } catch (FileHandlerException e) {
+	                    exception = e;
+	                } catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+	            }
+	        }
+	    }
         if (exception != null) {
             // throw exception;
         }
+        
         return l;
     }
 

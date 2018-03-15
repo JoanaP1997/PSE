@@ -53,9 +53,7 @@ public class DeclarationAssignment extends Command {
 
         // set type
         scope.setTypeOf(this.identifier, this.type);
-
         TermValue value = this.term.evaluate(scope);
-
         // check type
         if (this.type != value.getType()) {
             throw new WrongTypeAssignmentException(this.linenumber);

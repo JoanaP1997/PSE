@@ -1,5 +1,15 @@
 ﻿langID='palatinate'
 langName='Pälzisch'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Du hoscht dei maximal Iteratione üwerschritte
+	
+}
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Dei Eigawedate sinn falsch. So kammer doch känn Vorschlach mache.
+	
+}
 ui_add_program{
 	def_blockLen=1
 Mach e neiie Datei dezu.
@@ -299,8 +309,7 @@ Dibaggeabfahrt.
 ui_we_tooltip{
 	def_blockLen=3
 <html>Des erschde Feld is ferr die Optione, <br>
-es zwedde Feld is ferrs ännre der Watch Expression. <br>
-Wennd e neie Watch Expression nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+es zwedde Feld is ferrs ännre der Watch Expression.</html>
 
 }
 ui_options{
@@ -412,7 +421,7 @@ ui_settings{
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-In deinre Datei is e Zeil krumplich.
+Dei Datei is krumplich.
 
 }
 ui_stepsize_tooltip{
@@ -479,6 +488,11 @@ ui_load_config{
 Konfigurationsdatei lade.
 
 }
+ui_load_program{
+	def_blockLen=1
+Programm lade
+
+}
 ui_debug_continue{
 	def_blockLen=1
 Weida.
@@ -487,8 +501,7 @@ Weida.
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Des erschde Feld is ferr die Optione, <br>
-es zwedde Feld is ferrs ännre des bedingte Breakpoints. <br>
-Wennd en neie bedingte Breakpoint nei mache willscht, drigg uffs letschte Feld ind mitt.</html>
+es zwedde Feld is ferrs ännre des bedingte Breakpoints.</html>
 
 }
 suggest_strategy_simple_stepsize{

@@ -1,5 +1,15 @@
 ﻿langID='german'
 langName='Deutsch'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Maximale Iterationsanzahl überschritten
+	
+}
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Nicht genügend oder falsche Eingabedaten vorhanden, um einen Erfolgreichen Vorschlag anzeigen zu können.
+	
+}
 ui_add_program{
 	def_blockLen=1
 Programm hinzufügen
@@ -246,7 +256,7 @@ Sprache nicht gefunden
 }
 ui_suggest_condbreakpoint{
 	def_blockLen=1
-Bedingten Breakpoint voschlagen
+Bedingten Breakpoint vorschlagen
 
 }
 dl_exc_wesyntax{
@@ -260,12 +270,12 @@ Schritt
 }
 ui_suggest_stepsize{
 	def_blockLen=1
-Schrittgöße voschlagen
+Schrittgöße vorschlagen
 
 }
 ui_suggest_input{
 	def_blockLen=1
-Eingabewerte voschlagen
+Eingabewerte vorschlagen
 
 }
 ui_change_language{
@@ -296,8 +306,7 @@ Debuggen beginnen
 ui_we_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu dieser Watch-Expression, <br>
-mittleres Feld um die Watch-Expression zu ändern. <br>
-Um einee neue Watch-Expression hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+mittleres Feld um die Watch-Expression zu ändern. </html>
 
 }
 ui_options{
@@ -352,7 +361,7 @@ Führe Einzelschritt aus
 }
 ui_suggestion_infotext{
 	def_blockLen=1
-Ok drücken, um Voschlag zu erhalten
+Ok drücken, um Vorschlag zu erhalten
 
 }
 ui_suggestions{
@@ -377,7 +386,7 @@ Rückgabewert
 }
 ui_suggest_watchexpression{
 	def_blockLen=1
-WatchExpression voschlagen
+WatchExpression vorschlagen
 
 }
 ui_help{
@@ -412,7 +421,12 @@ Einstellungen
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-Die Datei beinhaltet eine invalide Zeile.
+Die Datei ist invalide.
+
+}
+ui_load_program{
+	def_blockLen=1
+Programm Laden
 
 }
 ui_stepsize_tooltip{
@@ -492,8 +506,7 @@ Führe einen Schritt rückwärts aus
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erstes Feld für Optionen zu diesem bedingten Breakpoint, <br>
-mittleres Feld um den bedingten Breakpoint zu ändern. <br>
-Um einen neuen bedingten Breakpoint hinzuzufügen, mittleres Feld der letzten Zeile anklicken.</html>
+mittleres Feld um den bedingten Breakpoint zu ändern.</html>
 
 }
 suggest_strategy_simple_stepsize{

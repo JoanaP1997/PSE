@@ -53,8 +53,7 @@ public class RoutineCommand extends Command {
 
     @Override
     public List<TraceState> run() throws DIbuggerLogicException {
-
-        // OLD SCOPE
+    	 // OLD SCOPE
         Scope scope = this.controller.getCurrentScope();
         // check number of arguments
         if (this.expectedTypes.size() != this.args.size() || this.expectedTypes.size() != this.identifiers.size()) {
@@ -96,7 +95,7 @@ public class RoutineCommand extends Command {
         if ((returnValue == null) && (this.expectedReturnType != Type.NULL)) {
             throw new MissingReturnCallException(this.linenumber);
         } else if (returnValue != null && returnValue.getType() != this.expectedReturnType) {
-            throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value");
+        	throw new IncompatibleTypeException(this.linenumber, "incompatible_return_value"); 
         }
 
         // pop Scope

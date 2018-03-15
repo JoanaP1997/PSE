@@ -30,12 +30,14 @@ public class ConditionalBreakpoint {
     private String specifier;
     private List<ScopeTuple> scopes;
     private Term condition;
+    private String valueText;
 
     public ConditionalBreakpoint(String specifier) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = new ArrayList<ScopeTuple>();
         this.value = false;
         this.createTerm();
+        this.valueText = "false";
 
     }
 
@@ -68,13 +70,16 @@ public class ConditionalBreakpoint {
         	try {
         		result = this.condition.evaluate(states);
         	} catch(DIbuggerLogicException dble) {
+        			this.valueText = "?";
         		   	return false;
             }
             if (result.getType() == Type.BOOLEAN) {
+            	this.valueText = "" + ((BooleanValue) result).getValue();
                 return ((BooleanValue) result).getValue();
             }
             this.value = false;
         }
+        this.valueText = "?";
         return false;
 //        TermValue result;
 //        try {
@@ -117,5 +122,8 @@ public class ConditionalBreakpoint {
 
     public boolean isValue() {
         return value;
+    }
+    public String evaluateToString() {
+    	return this.valueText;
     }
 }

@@ -33,6 +33,7 @@ public class DebugControlTest {
         l_in.add(in);
         facade.setStepSize(0, 1);
         facade.launchRun(l_in);
+        facade.step(DebugControl.STEP_NORMAL);
         for (int i = 0; i < 5; ++i) {
             facade.step(DebugControl.STEP_NORMAL);
         }
@@ -66,12 +67,13 @@ public class DebugControlTest {
         l_in.add(in);
         facade.setStepSize(0, 1);
         facade.launchRun(l_in);
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 3; ++i) {
             facade.step(DebugControl.STEP_NORMAL);
         }
         assertArrayEquals(new Object[] {"x", "i"}, facade.getAllVariables("A").toArray());
+        assertEquals(6, (int)facade.getCurrentExecutionLines().get("A"));
         facade.step(DebugControl.STEP_OVER);
-        assertEquals(8, (int)facade.getCurrentExecutionLines().get("A"));
+        assertEquals(7, (int)facade.getCurrentExecutionLines().get("A"));
     }
 
     @Test
@@ -95,7 +97,7 @@ public class DebugControlTest {
         facade.step(DebugControl.STEP_NORMAL);
         assertArrayEquals(new Object[] { "x", "i" }, facade.getAllVariables("A").toArray());
         facade.step(DebugControl.STEP_BACK);
-        assertArrayEquals(new Object[] { "i" }, facade.getAllVariables("A").toArray());
+        assertArrayEquals(new Object[] {}, facade.getAllVariables("A").toArray());
         facade.continueDebug();
         assertArrayEquals(new Object[] { "x", "i" }, facade.getAllVariables("A").toArray());
         facade.continueDebug();
@@ -110,10 +112,15 @@ public class DebugControlTest {
                 new ArrayList<String>(), 0, "A");
         List<ProgramInput> l_in = new ArrayList<ProgramInput>();
         l_in.add(in);
-        facade.setStepSize(0, 5);
-        facade.createWatchExpression(0, "A.i + A.x");
-        facade.createCondBreakpoint(0, "A.x == 2*A.i");
+        facade.createWatchExpression(0, "A.i - A.x");
+        facade.changeWatchExpression(0, "A.i + A.x", null);
+        assertEquals("A.i + A.x", facade.getWatchExpressions().get(0));
+        facade.createCondBreakpoint(0, "A.x != 2*A.i");
+        facade.changeCondBreakpoint(0, "A.x == 2*A.i", null);
+        assertEquals("A.x == 2*A.i", facade.getConditionalBreakpoints().get(0));
         facade.launchRun(l_in);
+        facade.step(DebugControl.STEP_NORMAL);
+        facade.setStepSize(0, 5);
         facade.step(DebugControl.STEP_NORMAL);
         assertEquals("9", facade.getWEValue(0));
     }

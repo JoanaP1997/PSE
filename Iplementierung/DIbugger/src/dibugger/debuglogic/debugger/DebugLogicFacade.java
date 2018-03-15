@@ -48,7 +48,7 @@ public class DebugLogicFacade extends Observable {
         map_suggestions_relational.put("suggest_strategy_simple_relational", suggest_relational);
     }
    
-    private void notifyAllObservers() {
+    public void notifyAllObservers() {
         this.setChanged();
         this.notifyObservers();
     }
@@ -185,6 +185,11 @@ public class DebugLogicFacade extends Observable {
         debugControl.reset();
         notifyAllObservers();
     }
+    
+    public void endRun(){
+    	debugControl.endRun();
+        notifyAllObservers();
+    }
 
     /**
      * @see DebugControl#setMaximumIterations(int)
@@ -246,7 +251,7 @@ public class DebugLogicFacade extends Observable {
     /**
      * @see InputValueSuggestion#suggest(String, String, int)
      */
-    public String suggestInputValue(String identifier, String range, int type) {
+    public String suggestInputValue(String identifier, String range, int type)  throws DIbuggerLogicException{
         return suggest_input.suggest(identifier, range, type);
     }
 
@@ -404,7 +409,7 @@ public class DebugLogicFacade extends Observable {
      * @throws DIbuggerLogicException
      *             {@linkplain ConditionalBreakpoint#evaluate(List)}
      */
-    public boolean getCBValue(int breakpointID) throws DIbuggerLogicException {
+    public String getCBValue(int breakpointID) throws DIbuggerLogicException {
         return debugControl.getCBValue(breakpointID);
     }
 

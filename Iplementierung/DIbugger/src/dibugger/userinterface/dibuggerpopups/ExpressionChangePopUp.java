@@ -152,11 +152,13 @@ public class ExpressionChangePopUp extends DIbuggerPopUp {
 
     private void setLanguage() {
         LanguageFile languageFile = mainInterface.getControlFacade().getLanguageFile();
-        DELETE = languageFile.getTranslation("ui_delete");
-        ADJUST_SCOPEASSIGNMENT = languageFile.getTranslation("ui_adjust_scopeassignment");
-        PROGRAM = languageFile.getTranslation("ui_program");
-        START = languageFile.getTranslation("ui_start");
-        END = languageFile.getTranslation("ui_end");
+        if (languageFile != null) {
+            DELETE = languageFile.getTranslation("ui_delete");
+            ADJUST_SCOPEASSIGNMENT = languageFile.getTranslation("ui_adjust_scopeassignment");
+            PROGRAM = languageFile.getTranslation("ui_program");
+            START = languageFile.getTranslation("ui_start");
+            END = languageFile.getTranslation("ui_end");
+        }
     }
 
     private void setPopUpLayout() {

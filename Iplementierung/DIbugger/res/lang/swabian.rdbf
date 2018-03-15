@@ -1,5 +1,15 @@
 ﻿langID='swabian'
 langName='Schwäbisch'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Maximale Iterationsanzahl überschritten
+	
+}
+dl_exc_suggest_input_wrong_format{
+	def_blockLen=1
+Die Eingabedata ham a falscha Wert.
+	
+}
 ui_add_program{
 	def_blockLen=1
 Programm hinzufüga
@@ -296,8 +306,7 @@ Debuggen afanga
 ui_we_tooltip{
 	def_blockLen=3
 <html>Erschdes Feld für Optiona zu dera Watch-Expression, <br>
-middleres Feld um die Watch-Expression zu ändra. <br>
-Um a neua Watch-Expression hinzuzufüga, middleres Feld in dr letschda Zeile aklicka.</html>
+middleres Feld um die Watch-Expression zu ändra. </html>
 
 }
 ui_options{
@@ -412,7 +421,7 @@ Einstellunga
 }
 fh_exc_invalid_line_type{
 	def_blockLen=1
-Die Datei beinhaltet a invalida Zeile.
+Dei Datei isch henig.
 
 }
 ui_stepsize_tooltip{
@@ -479,6 +488,11 @@ ui_load_config{
 Konfigurationsdatei lada
 
 }
+ui_load_program{
+	def_blockLen=1
+Programm lada
+
+}
 ui_debug_continue{
 	def_blockLen=1
 Weiter
@@ -507,8 +521,7 @@ Oifacher Vorschlag
 ui_cb_tooltip{
 	def_blockLen=3
 <html>Erschdes Feld für Optiona zu dem bedingta Breakpoint, <br>
-middleres Feld um den bedingta Breakpoint zu ändra. <br>
-Um n neue bedingta Breakpoint hinzuzufüga, middleres Feld der letschda Zeile anklicka.</html>
+middleres Feld um den bedingta Breakpoint zu ändra. </html>
 
 control_occurrence_message{
 	def_blockLen=1

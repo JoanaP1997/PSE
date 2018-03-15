@@ -34,6 +34,21 @@ public class ConditionalBreakpointTest {
         breakpoint.change("4 == 4", scopeTuples);
         assertTrue(breakpoint.evaluate(states));
     }
+    
+    @Test
+    public void testEvaluate_invalidNonBooleanExpression() throws DIbuggerLogicException {
+        //  "valid": no DIbuggerLogicException expected
+        List<TraceState> states = new ArrayList<TraceState>();
+        states.add(new TraceState(TraceStatePosition.NOTSPECIAL, 1, new Scope()));       
+        List<ScopeTuple> scopeTuples = new ArrayList<ScopeTuple>();
+        scopeTuples.add(new ScopeTuple(0, 100));
+
+        breakpoint = new ConditionalBreakpoint("0 == 2", scopeTuples);
+        assertFalse(breakpoint.evaluate(states));
+        
+        breakpoint.change("4 + 4", scopeTuples);
+        assertFalse(breakpoint.evaluate(states));
+    }
 
     @Test
     public void testEvaluate_validArithmeticComparison() throws DIbuggerLogicException {

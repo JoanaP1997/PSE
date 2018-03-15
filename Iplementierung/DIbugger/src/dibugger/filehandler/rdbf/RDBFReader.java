@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 
@@ -41,6 +43,15 @@ public class RDBFReader {
 
         reader.close();
         return f;
+    }
+    public RDBFFile loadRDBFFile(InputStream in) throws FileHandlerException, IOException{
+    	RDBFFile f = new RDBFFile(new File("temp.rdbf"));
+    	 BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+    	 
+         readBlock(reader, f);
+
+         reader.close();
+    	return f;
     }
 
     /**
