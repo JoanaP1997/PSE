@@ -334,12 +334,13 @@ public class ProgramPanel extends JPanel {
         showHiddenVariables = new JButton(SHOW_HIDDEN_VARIABLES);
         showHiddenVariables.addActionListener(actionEvent -> {
             listModel.clear();
-            hiddenVariables.clear();
+            hiddenVariables.clear();            
             for (String variable : variableValueMap.keySet()) {
                 //hiddenVariables.add(variable);
                 listModel.addElement(variableValueMap.get(variable));
             }
             variableInspectorList.updateUI();
+            update(controlFacade.getDebugLogicFacade());
         });
 
         varLabel = new JLabel(VARIABLE_INSPECTOR);
@@ -462,7 +463,7 @@ public class ProgramPanel extends JPanel {
             variableValueMap.put(currentVariable,
                     currentVariable + " = " + logicFacade.getValueOf(id, currentVariable));
             if(!hiddenVariables.contains(currentVariable)){
-            	listModel.addElement(variableValueMap.get(currentVariable));
+            	listModel.addElement(variableValueMap.get(currentVariable));            	
             }
         }
 //        for (String variable : hiddenVariables) {
