@@ -3,6 +3,7 @@ package dibugger.userinterface;
 import dibugger.control.ControlFacade;
 import dibugger.debuglogic.debugger.DebugLogicFacade;
 import dibugger.filehandler.facade.LanguageFile;
+import sun.swing.SwingUtilities2;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -77,6 +78,7 @@ public class ProgramPanel extends JPanel {
         id = identifier;
         this.mainInterface = mainInterface;
         controlFacade = mainInterface.getControlFacade();
+                
         initComponents();
         resizeToHeight(mainInterface.getHeight());
     }
@@ -201,7 +203,9 @@ public class ProgramPanel extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
+            	if(e.getClickCount()==2){
+            		editor.updateUI();
+            	}
             }
 
             @Override
@@ -218,7 +222,7 @@ public class ProgramPanel extends JPanel {
                             controlFacade.deleteBreakpoint(id, lineID);
                         }
                     }
-                    editor.updateUI();
+                    //editor.updateUI();
                 }
             }
 
