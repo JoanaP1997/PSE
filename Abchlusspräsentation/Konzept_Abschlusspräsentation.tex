@@ -1,0 +1,98 @@
+\documentclass[parskip=full]{scrartcl}
+\setcounter{tocdepth}{2}
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[german]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={PSE: Entwicklung eines relationalen Debuggers - Testbericht},%
+,%
+}
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist]{glossaries}     % provides glossary commands
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\newcommand\frage[1]{\textcolor{red}{#1}}
+\renewcommand{\glstextformat}[1]{\textbf{\color{blue}\em #1}}
+\font\myfont=cmr12 at 20pt
+
+\title{
+	\vspace{2cm}
+	\myfont 
+	Praxis der Softwareentwicklung:\\ 
+	Entwicklung eines relationalen Debuggers\\
+}
+\subtitle{
+	\vspace{1cm}
+	\myfont
+	Vorstellung des Produktes
+}
+
+\begin{document}
+\clearpage
+\maketitle
+%\pagenumbering{gobble}
+%\newpage
+
+%\newpage
+\pagenumbering{arabic}
+
+\section{Einleitung}
+Es wird in die Präsentation eingeleitet, indem dem Publikum die Aufgaben eines relationalen Debuggers vorgestellt werden.
+\begin{itemize}
+\item Erklärung der Anforderungen: Was war das Ziel? Was tut ein relationaler Debugger?
+\item Einführen eines Beispiels, das während der Vorlesung als Programmcode wieder aufgegriffen wird
+\item Herausforderungen, die sich aus der Aufgabenstellung ergaben (z.B. das Interpretieren und Ausführen von Code, Halten an den richtigen Stellen, etc.)
+\end{itemize}
+\section{Demonstration}
+Das Produkt wird live vorgestellt. Das Beispiel aus der Einleitung wird wieder aufgegriffen.\\
+Die folgenden Funktionalitäten werden vorgestellt:
+\subsection{Allgemeine Einführung}
+\begin{itemize}
+\item Überblick über die Benutzeroberfläche
+\item (Sprache ändern)
+\item Erläutern der Mächtigkeit von Wlang mit Hilfe der Beispieltexte
+\item Laden einer Konfigurationsdatei für die folgende Demonstration
+\end{itemize}
+
+\subsection{Übliche Debugger-Funktionen}
+\begin{itemize}
+\item Code einfügen
+\item Breakpoints setzen
+\item Debugging starten
+\item Schritte machen
+\end{itemize}
+
+\subsection{Relationale Debugger-Funktionen}
+\begin{itemize}
+\item Watch-Expressions einfügen und auswerten
+\item Bedingte Breakpoints einfügen und auswerten
+\end{itemize}
+
+\section{Kennzahlen}
+Kennzahlen zum Produkt werden genannt.
+\begin{itemize}
+\item Klassen
+\item Zeilen Code
+\item Rekursionstiefe, Fehlerbehandlung, maximale Programmlänge
+\item Anzahl an gleichzeitig debuggbaren Programmen
+\item amüsante Kennzahlen
+\end{itemize}
+
+\section{Fazit}
+Was das Team aus dem PSE mitgenommen hat.
+
+\begin{itemize}
+\item akkurate Aufwandschätzung ist schwierig
+\item Synchronisation im Team ist auch mit git eine Herausforderung
+\item Auch ein großes Projekt besteht aus Einzelschritten.
+\item Die Frage \enquote{Was ist das Minimum Viable Product?} ist schwierig zu beantworten.
+\item Wir haben im Ansatz erfahren, wie man einen Compiler baut.
+\end{itemize}
+
+\section{Schluss}
+Das ganze Team kommt nach vorne.
+
+\end{document}
