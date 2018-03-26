@@ -1,0 +1,17 @@
+int addzero(int high, int low) {
+   if(high == 0) low += high;
+   return low;
+}
+//non interference proved No flow from high to return value.
+int setzero(int h) {
+   h-=h; 
+   return h;
+}
+//Program proved non-interferent: No flow from h to return value
+int iffalse(int high, int low) {
+   if(high == high + 1)
+      return high;
+   
+   return low;
+}
+////Program proved non-interferent: No flow from high to return value
