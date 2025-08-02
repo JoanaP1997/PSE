@@ -5,6 +5,8 @@ import java.util.List;
 
 import dibugger.debuglogic.exceptions.AlreadyDeclaredException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.WrongNumberArgumentException;
+import dibugger.debuglogic.exceptions.WrongTypeArgumentException;
 import dibugger.debuglogic.exceptions.WrongTypeAssignmentException;
 
 public class ArrayDeclarationAssignment extends Command {
@@ -47,6 +49,16 @@ public class ArrayDeclarationAssignment extends Command {
         if (Type.ARRAY != value.getType()) {
             throw new WrongTypeAssignmentException(this.linenumber);
         }
+        
+        //check size
+        TermValue sizeVal = this.sizeA.evaluate(scope);
+        if(sizeVal.getType() != Type.INT)
+        	throw new WrongTypeArgumentException(this.linenumber);
+        
+        int expectedSize = ((IntValue)sizeVal).getValue();
+        if(expectedSize != ((ArrayValue)value).getValue().length)
+        	throw new WrongNumberArgumentException(this.linenumber);
+        
         // set value
         scope.setValueOf(this.identifier, value);
 

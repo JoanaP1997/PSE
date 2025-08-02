@@ -64,13 +64,13 @@ public class RDBFParser {
                 s += "=" + as[i];
             }
             as[1] = s;
-            if (as[1].matches("\\d+")) {
+            if (as[1].matches("-?\\d+")) {
                 return RDBFData.DATA_INT;
-            } else if (as[1].matches("\\d+L")) {
+            } else if (as[1].matches("-?\\d+L")) {
                 return RDBFData.DATA_LONG;
-            } else if (as[1].matches("\\d+(\\.\\d*)?f")) {
+            } else if (as[1].matches("-?\\d+(\\.\\d*)?(E\\d+)?f")) {
                 return RDBFData.DATA_FLOAT;
-            } else if (as[1].matches("\\d+(\\.\\d*)?")) {
+            } else if (as[1].matches("-?\\d+(\\.\\d*)?(E\\d+)?")) {
                 return RDBFData.DATA_DOUBLE;
             } else if (as[1].matches("(true)|(false)")) {
                 return RDBFData.DATA_BOOLEAN;

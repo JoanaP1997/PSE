@@ -21,4 +21,11 @@ public abstract class Comparison extends Term {
     public abstract BooleanValue evaluate(List<TraceState> states) throws DIbuggerLogicException;
 
     public abstract BooleanValue evaluate(Scope currentScope) throws DIbuggerLogicException;
+
+	public Term getLeftChild() {
+		return this.leftOperand;
+	}
+	public Term getRightChild() {
+		return this.rightOperand;
+	}
 }

@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import dibugger.debuglogic.antlrparser.WlangLexer;
@@ -29,21 +30,21 @@ public class WatchExpressionTest {
     WatchExpression we;
 
     @Test
-    public void constantTest() throws DIbuggerLogicException {
+    public void testEvaluate_constant() throws DIbuggerLogicException {
         ///
         List<TraceState> states = new ArrayList<TraceState>();
         states.add(new TraceState(TraceStatePosition.NOTSPECIAL, 1, new Scope()));
         List<ScopeTuple> scopes = new ArrayList<ScopeTuple>();
         scopes.add(new ScopeTuple(0, 100));
         we = new WatchExpression("3-2", scopes);
-        assert (we.evaluate(states).equals("1"));
+        assertTrue(we.evaluate(states).equals("1"));
         we.change("(4%2)+3", scopes);
-        assert (we.evaluate(states).equals("3"));
-        assert (we.evaluate(states).equals("3"));
+        assertTrue(we.evaluate(states).equals("3"));
+        assertTrue(we.evaluate(states).equals("3"));
     }
 
     @Test
-    public void defaultScopeTest() throws DIbuggerLogicException {
+    public void testEvaluate_validAddition() throws DIbuggerLogicException {
         List<TraceState> states = new ArrayList<TraceState>();
         Scope s = new Scope();
         s.setTypeOf("a", Type.DOUBLE);
@@ -52,25 +53,25 @@ public class WatchExpressionTest {
         state.setProgramId("A");
         states.add(state);
         we = new WatchExpression("3+A.a");
-        assert (we.evaluate(states).equals("8.3"));
+        assertTrue(we.evaluate(states).equals("8.3"));
     }
 
     @Test
-    public void constantBooleanTest() throws DIbuggerLogicException {
+    public void testEvaluate_validBoolean() throws DIbuggerLogicException {
         List<TraceState> states = new ArrayList<TraceState>();
         states.add(new TraceState(TraceStatePosition.NOTSPECIAL, 1, new Scope()));
         List<ScopeTuple> scopes = new ArrayList<ScopeTuple>();
         scopes.add(new ScopeTuple(0, 100));
         we = new WatchExpression("a", scopes);
         we.change("true||false", scopes);
-        assert (we.evaluate(states).equals("true"));
+        assertTrue(we.evaluate(states).equals("true"));
         we.change("!!true", scopes);
-        assert (we.evaluate(states).equals("true"));
+        assertTrue(we.evaluate(states).equals("true"));
         we.change("(5+3)*2 == 5+3*2", scopes);
-        assert (we.evaluate(states).equals("false"));
+        assertTrue(we.evaluate(states).equals("false"));
         we.change("(5+3)*2!=16", scopes);
-        assert (we.evaluate(states).equals("false"));
+        assertTrue(we.evaluate(states).equals("false"));
         we.change("3<1+3", scopes);
-        assert (we.evaluate(states).equals("true"));
+        assertTrue(we.evaluate(states).equals("true"));
     }
 }

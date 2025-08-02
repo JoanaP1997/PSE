@@ -96,6 +96,6 @@ public class PropertiesFile {
     /**
      * Default properties file location
      */
-    public static final File DEFAULT_LOCATION = new File("config.cfg");
+    public static File DEFAULT_LOCATION = new File("config.cfg");
 
 }

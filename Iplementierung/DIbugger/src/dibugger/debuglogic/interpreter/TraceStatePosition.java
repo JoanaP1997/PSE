@@ -16,7 +16,7 @@ public enum TraceStatePosition {
     AFTERRETURN,
 
     /**
-     * The state after the execution of the first command of a function;
+     * The state after the command that calls a function;
      * Relevant for "Step Over" in recursive functions.
      */
     AFTERFUNCCALL,

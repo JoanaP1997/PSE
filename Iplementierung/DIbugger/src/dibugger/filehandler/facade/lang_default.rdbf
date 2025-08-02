@@ -1,0 +1,526 @@
+langID='default'
+langName='Default'
+dl_exc_exceeded_max_iterations{
+	def_blockLen=1
+	Exceeded maximum iterations
+	
+}
+german{
+	def_blockLen=1
+German
+
+}
+ui_add_program{
+	def_blockLen=1
+Add program
+
+}
+ui_confirm_close{
+	def_blockLen=1
+	Close DIbugger
+	
+}
+ui_confirm_close_question{
+	def_blockLen=1
+	Are you sure you want to close the program?
+	
+}
+fh_exc_parse_assign{
+	def_blockLen=1
+The File contains an wrong Assignment Line.
+
+}
+ui_reset_gui{
+	def_blockLen=1
+Reset
+
+}
+dl_exc_wrong_type_assignment{
+	def_blockLen=1
+The assigned variable or type does not correspond to the type needed for the assignment.
+
+}
+ui_for{
+	def_blockLen=1
+For
+
+}
+ui_debug_step_out{
+	def_blockLen=1
+Execute Step Out
+
+}
+ui_step_tooltip{
+	def_blockLen=1
+As many commands as set as stepsize will be executed
+
+}
+ui_start{
+	def_blockLen=1
+Start
+
+}
+db_it_exc_not{
+	def_blockLen=1
+The "not" operation has one or more incompatible types.
+
+}
+ui_watch_expression{
+	def_blockLen=1
+Watch Expression
+
+}
+db_it_exc_and{
+	def_blockLen=1
+The "and" operation has one or more incompatible types.
+
+}
+ui_suggestion{
+	def_blockLen=1
+Suggestion
+}
+db_it_exc_eq{
+	def_blockLen=1
+The "equal" comparison has one or more incompatible types.
+
+}
+ui_file_menu{
+	def_blockLen=1
+File
+
+}
+ui_debug_step_back{
+	def_blockLen=1
+Execute Step Back
+
+}
+ui_program_limit_reached{
+	def_blockLen=1
+Program limit reached
+
+}
+ui_var_inspector{
+	def_blockLen=1
+Variable Inspector
+
+}
+ui_debug_stop{
+	def_blockLen=1
+Stop debugging
+
+}
+dl_exc_variable_not_found{
+	def_blockLen=1
+Variable not found. Maybe it is in another program.
+
+}
+db_it_exc_mul{
+	def_blockLen=1
+The "mul" operation has one or more incopatibly types
+
+}
+ui_show_hidden_variables{
+	def_blockLen=1
+Show hidden variables
+
+}
+dl_exc_missing_return_call{
+	def_blockLen=1
+The method requires a return statement.
+
+}
+ui_program{
+	def_blockLen=1
+Program
+
+}
+ui_interval{
+	def_blockLen=1
+Interval
+
+}
+dl_exc_routine_not_found{
+	def_blockLen=1
+Could not find function. Maybe it is specified below the tryed execution.
+
+}
+ui_cond_breakpoint_akkusativ{
+	def_blockLen=1
+Conditional Breakpoint
+
+}
+ui_stop_tooltip{
+	def_blockLen=1
+Click here to stop debug mode
+
+}
+dl_exc_syntax{
+	def_blockLen=1
+The Syntax of one or more programs is wrong.
+
+}
+ui_max_functioncalls{
+	def_blockLen=1
+Set maximum function calls
+
+}
+db_it_exc_sub{
+	def_blockLen=1
+The "sub" operation has one or more incopatibly types
+
+}
+ui_stepsize{
+	def_blockLen=1
+Stepsize
+
+}
+ui_from{
+	def_blockLen=1
+From
+
+}
+ui_debug_step_over{
+	def_blockLen=1
+Execute Step Over
+
+}
+ui_to{
+	def_blockLen=1
+To
+
+}
+ui_yes{
+	def_blockLen=1
+Yes
+
+}
+ui_end{
+	def_blockLen=1
+End
+
+}
+ui_stepover_tooltip{
+	def_blockLen=1
+Jump over the next command, if it is a function call
+
+}
+ui_debug_step{
+	def_blockLen=1
+Execute Step
+
+}
+ui_adjust_scopeassignment{
+	def_blockLen=1
+Adjust scope
+
+}
+ui_cond_breakpoint{
+	def_blockLen=1
+Conditional Breakpoint
+
+}
+ui_save_config{
+	def_blockLen=1
+Save config file
+
+}
+ui_suggestion_strategy_stepsize{
+	def_blockLen=1
+Change strategy for stepsize suggestions
+
+}
+dl_exc_wrong_number_argument{
+	def_blockLen=1
+One or more arguments are missing or there are too many arguments as parameters.
+
+}
+ui_exit{
+	def_blockLen=1
+Exit
+
+}
+fh_exc_parse_block{
+	def_blockLen=1
+The File contains a wrong Block Syntax.
+
+}
+fh_exc_lang_not_found{
+	def_blockLen=1
+Language Not Found.
+
+}
+ui_suggest_condbreakpoint{
+	def_blockLen=1
+Suggest conditional breakpoint
+
+}
+dl_exc_wesyntax{
+	def_blockLen=1
+Syntax error in one or more watchexpressions
+}
+ui_step{
+	def_blockLen=1
+Step
+
+}
+ui_suggest_stepsize{
+	def_blockLen=1
+Suggest stepsize
+
+}
+ui_suggest_input{
+	def_blockLen=1
+Suggest input values
+
+}
+ui_change_language{
+	def_blockLen=1
+Change language
+
+}
+ui_values_out{
+	def_blockLen=1
+Output Values
+
+}
+db_it_exc_le{
+	def_blockLen=1
+The "less equal" comparison has one or more incompatible types.
+
+}
+db_it_exc_add{
+	def_blockLen=1
+The "add" operation has one or more incopatibly types
+
+}
+ui_debug_run{
+	def_blockLen=1
+Start debugging
+
+}
+ui_we_tooltip{
+	def_blockLen=3
+<html>Click first cell for options, <br>
+middle cell for changing the watchexpression.</html>
+
+}
+ui_options{
+	def_blockLen=1
+Options
+
+}
+dl_exc_wrong_type_argument{
+	def_blockLen=1
+One or more arguments are having an incorrect type.
+
+}
+ui_delete{
+	def_blockLen=1
+Delete
+
+}
+ui_max_iterations{
+	def_blockLen=1
+Set maximum iterations
+
+}
+ui_suggestion_strategy_input{
+	def_blockLen=1
+Change strategy for input value suggestions
+
+}
+ui_stepout_tooltip{
+	def_blockLen=1
+Jump out of the current method
+
+}
+db_it_exc_gt{
+	def_blockLen=1
+The "greater than" comparison has one or more incopatibly types
+
+}
+ui_type{
+	def_blockLen=1
+Type
+
+}
+db_it_exc_div{
+	def_blockLen=1
+The "div" operation has one or more incopatibly types
+
+}
+ui_debug_step_single{
+	def_blockLen=1
+Execute Single Step
+
+}
+ui_suggestion_infotext{
+	def_blockLen=1
+Press ok to get a suggestion
+
+}
+ui_suggestions{
+	def_blockLen=1
+Suggestions
+
+}
+db_it_exc_mod{
+	def_blockLen=1
+The "mod" operation has one or more incopatibly types
+
+}
+db_it_exc_or{
+	def_blockLen=1
+The "or" operation has one or more incompatible types.
+
+}
+ui_return{
+	def_blockLen=1
+Returnvalue
+
+}
+ui_suggest_watchexpression{
+	def_blockLen=1
+Suggest watchexpression
+
+}
+ui_help{
+	def_blockLen=1
+Help
+
+}
+ui_values_in{
+	def_blockLen=1
+Input Values
+
+}
+db_it_exc_ge{
+	def_blockLen=1
+The "greater equal" comparison has one or more incopatibly types
+
+}
+dl_exc_invalid_program{
+	def_blockLen=1
+The program is invalid and cannot be parsed to be a WLang program.
+
+}
+ui_suggestion_strategy_expression{
+	def_blockLen=1
+Change strategy for relational suggestions
+
+}
+ui_settings{
+	def_blockLen=1
+Settings
+
+}
+fh_exc_invalid_line_type{
+	def_blockLen=1
+The File is invalid.
+
+}
+ui_stepsize_tooltip{
+	def_blockLen=1
+Press enter to confirm input
+
+}
+ui_input_tooltip{
+	def_blockLen=1
+Separate inputvalues with semicola
+
+}
+dl_exc_cbsyntax{
+	def_blockLen=1
+Syntax error in one or more conditional breakpoints
+}
+ui_line{
+	def_blockLen=1
+Line
+
+}
+ui_no{
+	def_blockLen=1
+No
+
+}
+ui_start_tooltip{
+	def_blockLen=1
+Click here to start debug mode
+
+}
+db_it_exc_lt{
+	def_blockLen=1
+The "less than" comparison has one or more incompatible types.
+
+}
+ui_continue_tooltip{
+	def_blockLen=1
+Debug until next active breakpoint
+
+}
+suggest_strategy_simple_stepsize{
+	def_blockLen=1
+Simple stepsize suggestion
+
+}
+suggest_strategy_simple_input{
+	def_blockLen=1
+Simple input suggestion
+
+}
+suggest_strategy_simple_relational{
+	def_blockLen=1
+Simple relational suggestion
+
+}
+ui_stepback_tooltip{
+	def_blockLen=1
+Excecute a step back
+
+}
+ui_varinspector_tooltip{
+	def_blockLen=1
+Mark variable then hide it by right clicking
+
+}
+ui_single_step{
+	def_blockLen=1
+Singlestep
+
+}
+ui_load_program_text{
+	def_blockLen=1
+Load Program Text
+
+}
+ui_load_program{
+	def_blockLen=1
+Load Program
+
+}
+dl_exc_already_declared{
+	def_blockLen=1
+Variable already exists.
+
+}
+ui_load_config{
+	def_blockLen=1
+Load config file
+
+}
+ui_debug_continue{
+	def_blockLen=1
+Continue
+
+}
+ui_cb_tooltip{
+	def_blockLen=3
+<html>Click first cell for options, <br>
+middle cell for changing the conditional breakpoint.</html>
+
+}
+control_occurrence_message{
+	def_blockLen=1
+At following line(s):
+
+}

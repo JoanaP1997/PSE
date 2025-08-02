@@ -32,5 +32,7 @@ public final class NotCondition extends Term {
     public BooleanValue evaluate(Scope currentScope) throws DIbuggerLogicException {
         return new BooleanValue(this.child.evaluate(currentScope).not());
     }
-
+    public Term getChild() {
+    	return this.child;
+    }
 }

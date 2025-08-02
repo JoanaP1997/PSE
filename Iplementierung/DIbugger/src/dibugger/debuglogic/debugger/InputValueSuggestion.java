@@ -1,5 +1,7 @@
 package dibugger.debuglogic.debugger;
 
+import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+
 /**
  * abstract class for suggesting a inputvalue
  * 
@@ -18,7 +20,7 @@ public abstract class InputValueSuggestion {
      *            the type of the variable
      * @return String representing the suggestion value
      */
-    public abstract String suggest(String identifier, String range, int type);
+    public abstract String suggest(String identifier, String range, int type) throws DIbuggerLogicException;
 
     // Input Types
     public static final int TYPE_CHAR = 0;

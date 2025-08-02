@@ -8,7 +8,9 @@ import java.util.Map;
 import static dibugger.filehandler.rdbf.RDBFParser.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import dibugger.filehandler.exceptions.FileHandlerException;
 import dibugger.filehandler.exceptions.LanguageNotFoundException;
@@ -68,7 +70,7 @@ public class RDBFDBReader extends DBFileReader {
                 List<Integer> le = new ArrayList<Integer>();
                 for (RDBFBlock b0 : b.getBlocksByName("SCOPE")) {
                     lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
-                    lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
+                    le.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
                 }
                 f.addWatchExpressions(expression, lb, le);
             }
@@ -79,7 +81,7 @@ public class RDBFDBReader extends DBFileReader {
                 List<Integer> le = new ArrayList<Integer>();
                 for (RDBFBlock b0 : b.getBlocksByName("SCOPE")) {
                     lb.add(getInstance().getIValue(b0.getFirstDataByName("begin").getValue()));
-                    lb.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
+                    le.add(getInstance().getIValue(b0.getFirstDataByName("end").getValue()));
                 }
                 f.addConditionalBreakpoint(expression, lb, le);
             }
@@ -91,7 +93,7 @@ public class RDBFDBReader extends DBFileReader {
     }
 
     @Override
-    public LanguageFile loadLanguageFile(File file) throws FileHandlerException {
+    public LanguageFile loadLanguageFile(InputStream file) throws FileHandlerException {
         try {
             RDBFFile f0 = reader.loadRDBFFile(file);
 

@@ -19,8 +19,8 @@ public final class VariableTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(List<TraceState> states) {
-        return new CharValue('?');
+    public TermValue evaluate(List<TraceState> states) throws VariableNotFoundException {
+    	throw new VariableNotFoundException(-1);
     }
 
     @Override

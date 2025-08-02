@@ -2,9 +2,15 @@
 ErgebnisseBrainstorming3.11.
 ErgebnisseBrainstorming3.11.
 ErgebnisseBrainstorming3.11.
+Iplementierung/DIbugger/cloc.exe
 Iplementierung/Implementierungsdokument.pdf
-Iplementierung/RemoteSystemsTempFiles
 Plichtenheft/Pflichtenheft.pdf
+Qalitätssicherung/Präsentation/*.nav
+Qalitätssicherung/Präsentation/*.pdf
+Qalitätssicherung/*.ods#
+Qalitätssicherung/*.xlsx#
+Qalitätssicherung/*.pdf
+RemoteSystemsTempFiles
 *.acn
 *.acr
 *.alg
@@ -31,5 +37,6 @@ Plichtenheft/Pflichtenheft.pdf
 *.swp
 *.synctex.gz
 *.toc
+.metadata/
+.recommenders/
 ~$Aufgabenliste für Projekte1.xlsx
-Iplementierung/DIbugger/cloc.exe

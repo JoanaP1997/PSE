@@ -17,7 +17,9 @@ import dibugger.debuglogic.antlrparser.WlangLexer;
 import dibugger.debuglogic.antlrparser.WlangParser;
 import dibugger.debuglogic.exceptions.ConditionalBreakpointSyntaxException;
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.IncompatibleTypeException;
 import dibugger.debuglogic.exceptions.SyntaxException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 /**
  * @author wagner
@@ -28,12 +30,14 @@ public class ConditionalBreakpoint {
     private String specifier;
     private List<ScopeTuple> scopes;
     private Term condition;
+    private String valueText;
 
     public ConditionalBreakpoint(String specifier) throws DIbuggerLogicException {
         this.specifier = specifier;
         this.scopes = new ArrayList<ScopeTuple>();
         this.value = false;
         this.createTerm();
+        this.valueText = "false";
 
     }
 
@@ -62,17 +66,29 @@ public class ConditionalBreakpoint {
                     isValid = false;
         }
         if (isValid || this.scopes.isEmpty()) {
-            TermValue result = this.condition.evaluate(states);
+        	TermValue result;
+        	try {
+        		result = this.condition.evaluate(states);
+        	} catch(DIbuggerLogicException dble) {
+        			this.valueText = "?";
+        		   	return false;
+            }
             if (result.getType() == Type.BOOLEAN) {
+            	this.valueText = "" + ((BooleanValue) result).getValue();
                 return ((BooleanValue) result).getValue();
             }
             this.value = false;
         }
-        TermValue result = this.condition.evaluate(states);
-        if (result.getType() == Type.BOOLEAN) {
-            return ((BooleanValue) result).getValue();
-        }
-        return this.value;
+        this.valueText = "?";
+        return false;
+//        TermValue result;
+//        try {
+//        	result = this.condition.evaluate(states);
+//        } 
+//        if (result.getType() == Type.BOOLEAN) {
+//            return ((BooleanValue) result).getValue();
+//        }
+//        return this.value;
     }
 
     private void createTerm() throws DIbuggerLogicException {
@@ -106,5 +122,8 @@ public class ConditionalBreakpoint {
 
     public boolean isValue() {
         return value;
+    }
+    public String evaluateToString() {
+    	return this.valueText;
     }
 }

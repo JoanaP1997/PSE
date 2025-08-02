@@ -3,6 +3,7 @@ package dibugger.debuglogic.interpreter;
 import java.util.List;
 
 import dibugger.debuglogic.exceptions.DIbuggerLogicException;
+import dibugger.debuglogic.exceptions.VariableNotFoundException;
 
 /**
  * Represents an arrayaccess based on the arrays of a single program.
@@ -67,8 +68,8 @@ public final class ArrayAccessTerm extends Term {
     }
 
     @Override
-    public TermValue evaluate(List<TraceState> states) {
-        return new CharValue('?');
+    public TermValue evaluate(List<TraceState> states) throws VariableNotFoundException {
+    	throw new VariableNotFoundException(-1);
     }
 
     @Override
